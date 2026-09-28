@@ -837,6 +837,25 @@ function initPaywallEvents() {
   if (isUnlocked()) {
     console.log("User has full unlocked access.");
   }
+
+  // Close modals on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closePaywallModal();
+      closeRestoreModal();
+      closeSuccessModal();
+      closeScoreModal();
+    }
+  });
+
+  // Close modal when clicking directly on backdrop overlay
+  document.querySelectorAll('.modal-overlay, .modal-backdrop').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('open');
+      }
+    });
+  });
 }
 
 window.openPaywallModal = function(sourceTitle = "Full Course") {

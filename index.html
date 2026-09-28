@@ -590,11 +590,11 @@
       <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem; text-align: left;">
         <div style="margin-bottom: 0.75rem;">
           <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Candidate Name (for Digital Pass):</label>
-          <input type="text" id="pay-name" placeholder="Enter your full name" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem;">
+          <input type="text" id="pay-name" placeholder="Enter your full name" onkeydown="if(event.key==='Enter') startRazorpayPayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem;">
         </div>
         <div>
           <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">WhatsApp / Mobile Number:</label>
-          <input type="tel" id="pay-phone" placeholder="10-digit mobile number" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem;">
+          <input type="tel" id="pay-phone" placeholder="10-digit mobile number" onkeydown="if(event.key==='Enter') startRazorpayPayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem;">
         </div>
       </div>
 
@@ -620,7 +620,7 @@
           ⚡ Developer / Test Simulation Mode:
         </div>
         <div style="display: flex; gap: 0.5rem;">
-          <input type="text" id="activation-passcode-input" placeholder="Passcode (e.g. TEACHER2026)" style="flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.4rem 0.65rem; border-radius: var(--radius-sm); font-size: 0.82rem;">
+          <input type="text" id="activation-passcode-input" placeholder="Passcode (e.g. TEACHER2026)" onkeydown="if(event.key==='Enter') applyActivationCode()" style="flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.4rem 0.65rem; border-radius: var(--radius-sm); font-size: 0.82rem;">
           <button class="btn-secondary" onclick="applyActivationCode()" style="font-size: 0.82rem; padding: 0.4rem 0.85rem;">Apply Code</button>
         </div>
         <button class="btn-secondary" onclick="simulatePaymentSuccess()" style="font-size: 0.82rem; border-color: rgba(56, 189, 248, 0.4); color: var(--accent-primary);">
@@ -632,10 +632,10 @@
   </div>
 
   <!-- 4. Payment Confirmation & Success Screen Modal -->
-  <div class="modal-backdrop" id="payment-success-modal">
-    <div class="modal-card" style="max-width: 520px; text-align: center;">
+  <div class="modal-overlay" id="payment-success-modal">
+    <div class="modal-content" style="max-width: 520px; text-align: center;">
       <div class="modal-header" style="justify-content: flex-end; border-bottom: none; padding-bottom: 0;">
-        <button class="btn-icon" onclick="closeSuccessModal()">✕</button>
+        <button class="btn-close-modal" onclick="closeSuccessModal()">&times;</button>
       </div>
       
       <div class="success-check-icon">✓</div>
@@ -691,14 +691,14 @@
   </div>
 
   <!-- 5. Cross-Device Restoration Modal -->
-  <div class="modal-backdrop" id="restore-access-modal">
-    <div class="modal-card" style="max-width: 500px;">
+  <div class="modal-overlay" id="restore-access-modal">
+    <div class="modal-content" style="max-width: 500px;">
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 0.6rem;">
           <span style="font-size: 1.5rem;">🔄</span>
           <h2 style="font-size: 1.25rem; margin: 0;">Restore Course Access</h2>
         </div>
-        <button class="btn-icon" onclick="closeRestoreModal()">✕</button>
+        <button class="btn-close-modal" onclick="closeRestoreModal()">&times;</button>
       </div>
 
       <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
@@ -709,7 +709,7 @@
         <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
           Payment ID (pay_...) or 10-Digit Mobile Number:
         </label>
-        <input type="text" id="restore-query-input" placeholder="e.g. pay_Px892k... or 9876543210" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.95rem; font-family: var(--font-mono);">
+        <input type="text" id="restore-query-input" placeholder="e.g. pay_Px892k... or 9876543210" onkeydown="if(event.key==='Enter') submitRestorePayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.95rem; font-family: var(--font-mono);">
       </div>
 
       <div id="restore-status-msg" style="margin-bottom: 1rem;"></div>
