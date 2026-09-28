@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.jpg" alt="BPSC TRE 4.0 Computer Teacher Logo" width="220" style="border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+</p>
+
 # 🎯 BPSC-TRE-4.0-Computer-Teacher
 
 > **Official Source of Truth & Master Preparation Portal for Bihar BPSC TRE 4.0 Computer Teacher (Class 11–12 / PGT / Uchcha Madhyamik) Recruitment (Advt. No. 14/2026).**
