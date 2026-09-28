@@ -810,6 +810,7 @@ window.submitQuiz = function() {
         <tr><td><strong>Calculated Marks</strong></td><td style="font-weight: 800; color: var(--accent-primary);">${roundedScore} Marks</td></tr>
       </table>
     `;
+    scoreModal.style.display = 'flex';
     scoreModal.classList.add('open');
   }
 
@@ -821,13 +822,19 @@ window.restartQuiz = function() {
   quizSubmitted = false;
   currentQuestionIndex = 0;
   const scoreModal = document.getElementById('quiz-score-modal');
-  if (scoreModal) scoreModal.classList.remove('open');
+  if (scoreModal) {
+    scoreModal.style.display = 'none';
+    scoreModal.classList.remove('open');
+  }
   loadQuestion(0);
 };
 
 window.closeScoreModal = function() {
   const scoreModal = document.getElementById('quiz-score-modal');
-  if (scoreModal) scoreModal.classList.remove('open');
+  if (scoreModal) {
+    scoreModal.style.display = 'none';
+    scoreModal.classList.remove('open');
+  }
 };
 
 // -------------------------------------------------------------
@@ -853,6 +860,7 @@ function initPaywallEvents() {
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.classList.remove('open');
+        overlay.style.display = 'none';
       }
     });
   });
@@ -864,12 +872,18 @@ window.openPaywallModal = function(sourceTitle = "Full Course") {
   if (sourceTextEl) {
     sourceTextEl.textContent = `Target: ${sourceTitle}`;
   }
-  if (modal) modal.classList.add('open');
+  if (modal) {
+    modal.style.display = 'flex';
+    modal.classList.add('open');
+  }
 };
 
 window.closePaywallModal = function() {
   const modal = document.getElementById('paywall-checkout-modal');
-  if (modal) modal.classList.remove('open');
+  if (modal) {
+    modal.style.display = 'none';
+    modal.classList.remove('open');
+  }
 };
 
 window.openRestoreModal = function() {
@@ -878,18 +892,25 @@ window.openRestoreModal = function() {
   if (modal) {
     const msgEl = document.getElementById('restore-status-msg');
     if (msgEl) msgEl.innerHTML = '';
+    modal.style.display = 'flex';
     modal.classList.add('open');
   }
 };
 
 window.closeRestoreModal = function() {
   const modal = document.getElementById('restore-access-modal');
-  if (modal) modal.classList.remove('open');
+  if (modal) {
+    modal.style.display = 'none';
+    modal.classList.remove('open');
+  }
 };
 
 window.closeSuccessModal = function() {
   const modal = document.getElementById('payment-success-modal');
-  if (modal) modal.classList.remove('open');
+  if (modal) {
+    modal.style.display = 'none';
+    modal.classList.remove('open');
+  }
 };
 
 // Record payment to backend database (payments_db.json)
@@ -919,6 +940,7 @@ function showPaymentSuccessModal(paymentId, candidateName, phone) {
   if (nameEl) nameEl.textContent = candidateName;
   if (phoneEl) phoneEl.textContent = phone;
 
+  modal.style.display = 'flex';
   modal.classList.add('open');
 }
 

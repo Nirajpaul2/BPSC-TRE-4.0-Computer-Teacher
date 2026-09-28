@@ -1181,7 +1181,11 @@ pre.code-block {
 
 /* Modal Styling */
 .modal-overlay,
-.modal-backdrop {
+.modal-backdrop,
+#quiz-score-modal,
+#paywall-checkout-modal,
+#payment-success-modal,
+#restore-access-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -1193,13 +1197,17 @@ pre.code-block {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 10000;
   padding: 1.25rem;
 }
 
 .modal-overlay.open,
-.modal-backdrop.open {
-  display: flex;
+.modal-backdrop.open,
+#quiz-score-modal.open,
+#paywall-checkout-modal.open,
+#payment-success-modal.open,
+#restore-access-modal.open {
+  display: flex !important;
 }
 
 .modal-content,
