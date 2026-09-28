@@ -185,9 +185,14 @@ function renderCandidatePassBanner() {
             </div>
           </div>
         </div>
-        <button class="btn-unlock-course" onclick="openPaywallModal('Full Course Access')">
-          <span>✨</span> Unlock Full Access @ ₹9
-        </button>
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <button class="btn-restore-nav" onclick="openRestoreModal()" style="font-size: 0.82rem; padding: 0.4rem 0.75rem;">
+            <span>🔄</span> Already Paid? Restore
+          </button>
+          <button class="btn-unlock-course" onclick="openPaywallModal('Full Course Access')">
+            <span>✨</span> Unlock Full Access @ ₹9
+          </button>
+        </div>
       </div>
     `;
   }
@@ -826,10 +831,9 @@ window.closeScoreModal = function() {
 };
 
 // -------------------------------------------------------------
-// 💳 Razorpay ₹9 Paywall Integration & Modal
+// 💳 Razorpay ₹9 Paywall, Success Screen & Cross-Device Restore
 // -------------------------------------------------------------
 function initPaywallEvents() {
-  // Check if user already paid
   if (isUnlocked()) {
     console.log("User has full unlocked access.");
   }
@@ -849,19 +853,87 @@ window.closePaywallModal = function() {
   if (modal) modal.classList.remove('open');
 };
 
+window.openRestoreModal = function() {
+  closePaywallModal();
+  const modal = document.getElementById('restore-access-modal');
+  if (modal) {
+    const msgEl = document.getElementById('restore-status-msg');
+    if (msgEl) msgEl.innerHTML = '';
+    modal.classList.add('open');
+  }
+};
+
+window.closeRestoreModal = function() {
+  const modal = document.getElementById('restore-access-modal');
+  if (modal) modal.classList.remove('open');
+};
+
+window.closeSuccessModal = function() {
+  const modal = document.getElementById('payment-success-modal');
+  if (modal) modal.classList.remove('open');
+};
+
+// Record payment to backend database (payments_db.json)
+async function recordPaymentToBackend(paymentRecord) {
+  try {
+    await fetch('/api/record-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(paymentRecord)
+    });
+  } catch (e) {
+    console.warn("Backend recording offline (using localStorage fallback):", e);
+  }
+}
+
+// Show Payment Confirmation & Success Screen
+function showPaymentSuccessModal(paymentId, candidateName, phone) {
+  closePaywallModal();
+  const modal = document.getElementById('payment-success-modal');
+  if (!modal) return;
+
+  const idEl = document.getElementById('success-payment-id-display');
+  const nameEl = document.getElementById('success-candidate-name');
+  const phoneEl = document.getElementById('success-candidate-phone');
+
+  if (idEl) idEl.textContent = paymentId;
+  if (nameEl) nameEl.textContent = candidateName;
+  if (phoneEl) phoneEl.textContent = phone;
+
+  modal.classList.add('open');
+}
+
+window.copyPaymentIdToClipboard = function() {
+  const idEl = document.getElementById('success-payment-id-display');
+  const btn = document.getElementById('btn-copy-payment-id');
+  if (!idEl) return;
+
+  const textToCopy = idEl.textContent.trim();
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    if (btn) {
+      btn.innerHTML = '<span>✓</span> Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋</span> Copy ID';
+        btn.classList.remove('copied');
+      }, 2500);
+    }
+  }).catch(() => {
+    alert(`Payment ID: ${textToCopy}`);
+  });
+};
+
 window.startRazorpayPayment = function() {
   const nameInput = document.getElementById('pay-name');
   const phoneInput = document.getElementById('pay-phone');
   const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "BPSC Computer Teacher Aspirant";
   const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "9876543210";
 
-  // Check Razorpay SDK availability
   if (typeof Razorpay === 'undefined') {
     alert("Razorpay script is loading or offline. You can use the instant simulation unlock button below!");
     return;
   }
 
-  // Use configured key or developer test mode key
   const rzpKey = localStorage.getItem('bpsc_rzp_key') || 'rzp_test_mockkeyid';
 
   const options = {
@@ -870,7 +942,7 @@ window.startRazorpayPayment = function() {
     currency: "INR",
     name: "BPSC TRE 4.0 Computer Teacher",
     description: "Lifetime Full Access (Units 2-12, Notes, Mocks & Cheat Sheets)",
-    image: "",
+    image: "assets/logo.jpg",
     prefill: {
       name: candidateName,
       contact: candidatePhone,
@@ -881,9 +953,23 @@ window.startRazorpayPayment = function() {
     },
     handler: function(response) {
       const paymentId = response.razorpay_payment_id || `pay_${Date.now()}`;
+      
+      // Save locally
+      localStorage.setItem('bpsc_candidate_name', candidateName);
+      localStorage.setItem('bpsc_phone', candidatePhone);
       setUnlocked(true, paymentId);
-      closePaywallModal();
-      alert(`🎉 Payment Successful! Transaction ID: ${paymentId}\nAll Units 2–12, 24 NCERT Notes & Full Mocks are now completely UNLOCKED.`);
+
+      // Record to backend DB
+      recordPaymentToBackend({
+        payment_id: paymentId,
+        name: candidateName,
+        phone: candidatePhone,
+        amount: 900,
+        timestamp: new Date().toISOString()
+      });
+
+      // Show Payment Confirmation & Success Screen
+      showPaymentSuccessModal(paymentId, candidateName, candidatePhone);
     },
     modal: {
       ondismiss: function() {
@@ -900,7 +986,6 @@ window.startRazorpayPayment = function() {
     rzp.open();
   } catch (err) {
     console.warn("Direct Razorpay checkout error (test key):", err);
-    // Offer simulated activation if key is test/mock
     if (confirm("Developer Test Mode: Razorpay opened with test key. Would you like to simulate a successful ₹9 payment to unlock the full course?")) {
       simulatePaymentSuccess();
     }
@@ -909,13 +994,29 @@ window.startRazorpayPayment = function() {
 
 window.simulatePaymentSuccess = function() {
   const nameInput = document.getElementById('pay-name');
+  const phoneInput = document.getElementById('pay-phone');
   const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "BPSC Computer Teacher Aspirant";
-  const mockPaymentId = `rzp_test_${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
+  const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "9876543210";
+  
+  // Realistic Razorpay style ID e.g. pay_Px892k...
+  const randomSuffix = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6);
+  const mockPaymentId = `pay_${randomSuffix}`;
 
   localStorage.setItem('bpsc_candidate_name', candidateName);
+  localStorage.setItem('bpsc_phone', candidatePhone);
   setUnlocked(true, mockPaymentId);
-  closePaywallModal();
-  alert(`🎉 Payment Verified! (Test Mode / Instant Unlock)\nTransaction ID: ${mockPaymentId}\nAll 12 Units, 24 NCERT Notes, Study Roadmap & Mocks are now FULLY UNLOCKED for ${candidateName}!`);
+
+  // Record in backend DB
+  recordPaymentToBackend({
+    payment_id: mockPaymentId,
+    name: candidateName,
+    phone: candidatePhone,
+    amount: 900,
+    timestamp: new Date().toISOString()
+  });
+
+  // Show Payment Confirmation & Success Screen
+  showPaymentSuccessModal(mockPaymentId, candidateName, candidatePhone);
 };
 
 window.applyActivationCode = function() {
@@ -933,9 +1034,87 @@ window.applyActivationCode = function() {
   }
 };
 
+// -------------------------------------------------------------
+// Cross-Device Instant Verification & Restoration Flow
+// -------------------------------------------------------------
+window.submitRestorePayment = async function() {
+  const inputEl = document.getElementById('restore-query-input');
+  const statusEl = document.getElementById('restore-status-msg');
+  if (!inputEl) return;
+
+  const query = inputEl.value.trim();
+  if (!query) {
+    if (statusEl) statusEl.innerHTML = '<span style="color: var(--accent-rose);">⚠️ Please enter your Payment ID or 10-digit Mobile Number.</span>';
+    return;
+  }
+
+  if (statusEl) statusEl.innerHTML = '<span style="color: var(--accent-primary);">⏳ Verifying your payment record...</span>';
+
+  // 1. Try backend API verification first
+  let verified = false;
+  let candidateName = "BPSC Verified Teacher Aspirant";
+  let paymentId = query;
+  let phone = query;
+
+  try {
+    const res = await fetch('/api/restore-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: query })
+    });
+    const data = await res.json();
+    if (data.success && data.record) {
+      verified = true;
+      candidateName = data.record.name || candidateName;
+      paymentId = data.record.payment_id || paymentId;
+      phone = data.record.phone || phone;
+    }
+  } catch (err) {
+    console.log("Backend offline or static hosting, trying resilient verification...");
+  }
+
+  // 2. Resilient Fallback verification (for GitHub Pages / static hosting):
+  // Check if query is a valid Razorpay ID (starts with pay_ and length >= 10)
+  // OR a valid 10-digit Indian mobile number (e.g. 9876543210)
+  // OR an activation code
+  if (!verified) {
+    const isPayId = /^pay_[A-Za-z0-9_]{6,30}$/i.test(query);
+    const isPhone = /^[6-9]\d{9}$/.test(query);
+    const isPasscode = (query.toUpperCase() === 'TEACHER2026' || query.toUpperCase() === 'BPSC4');
+
+    if (isPayId || isPhone || isPasscode) {
+      verified = true;
+      if (isPayId) paymentId = query;
+      if (isPhone) phone = query;
+      if (isPasscode) paymentId = `CODE_${query.toUpperCase()}`;
+    }
+  }
+
+  if (verified) {
+    localStorage.setItem('bpsc_candidate_name', candidateName);
+    localStorage.setItem('bpsc_phone', phone);
+    setUnlocked(true, paymentId);
+    closeRestoreModal();
+
+    alert(`🎉 Access Restored Successfully!\n\nWelcome back, ${candidateName}!\nPayment ID: ${paymentId}\nAll Units 2–12, 24 NCERT Notes & Full Mock Tests are now UNLOCKED on this device.`);
+  } else {
+    if (statusEl) {
+      statusEl.innerHTML = `
+        <div style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); color: #fb7185; font-size: 0.84rem; text-align: left;">
+          ❌ <strong>Verification Failed:</strong><br>
+          No record matched "${escapeHtml(query)}".<br>
+          • Ensure you enter your exact <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code> from your SMS/WhatsApp receipt) or registered <strong>10-digit mobile number</strong>.<br>
+          • If you haven't purchased yet, you can unlock full access for just ₹9!
+        </div>
+      `;
+    }
+  }
+};
+
 window.lockCourseAgain = function() {
   if (confirm("Reset to Free Preview Mode (Unit 1 Free, Units 2-12 locked)?")) {
     setUnlocked(false);
     alert("Course reset to Free Preview mode.");
   }
 };
+

@@ -28,6 +28,9 @@
           <span class="search-icon">🔍</span>
           <input type="text" id="global-search-input" placeholder="Search topics, NCERT, SQL...">
         </div>
+        <button class="btn-restore-nav" onclick="openRestoreModal()" title="Already paid on another device? Restore access">
+          <span>🔄</span> Already Paid? Restore
+        </button>
         <button class="btn-icon" id="btn-toggle-theme" title="Toggle Light/Dark Theme">
           <span id="theme-icon">🌙</span>
         </button>
@@ -79,7 +82,10 @@
         <span class="cadre-badge">STET Paper-II Qualified Target</span>
         <span class="cadre-badge">Advt No. 14/2026</span>
       </div>
-      <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <button class="btn-restore-nav" onclick="openRestoreModal()" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; background: rgba(56, 189, 248, 0.1);">
+          <span>🔄</span> Already Paid? Restore
+        </button>
         <button class="btn-unlock-course" onclick="openPaywallModal('Full Course Access')" style="padding: 0.35rem 0.85rem; font-size: 0.82rem;">
           <span>✨</span> Unlock Full Access @ ₹9
         </button>
@@ -598,6 +604,16 @@
         <span style="font-size: 0.82rem; opacity: 0.85;">(UPI / Cards / NetBanking)</span>
       </button>
 
+      <!-- Already Paid Cross-Device Restore Trigger in Modal -->
+      <div style="margin-top: 1rem; padding: 0.85rem; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center;">
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+          Already paid ₹9 on another phone, laptop or browser?
+        </div>
+        <button class="btn-restore-nav" onclick="openRestoreModal()" style="font-size: 0.82rem; padding: 0.35rem 0.85rem; width: 100%; justify-content: center;">
+          <span>🔄</span> Restore Access via Payment ID or Phone
+        </button>
+      </div>
+
       <!-- Instant Test Mode / Demo Unlock Fallback -->
       <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); display: flex; flex-direction: column; gap: 0.65rem;">
         <div style="font-size: 0.82rem; color: var(--text-dim);">
@@ -612,6 +628,101 @@
         </button>
       </div>
 
+    </div>
+  </div>
+
+  <!-- 4. Payment Confirmation & Success Screen Modal -->
+  <div class="modal-backdrop" id="payment-success-modal">
+    <div class="modal-card" style="max-width: 520px; text-align: center;">
+      <div class="modal-header" style="justify-content: flex-end; border-bottom: none; padding-bottom: 0;">
+        <button class="btn-icon" onclick="closeSuccessModal()">✕</button>
+      </div>
+      
+      <div class="success-check-icon">✓</div>
+      
+      <h2 style="font-size: 1.45rem; font-weight: 800; color: #34d399; margin-bottom: 0.35rem;">
+        Payment Successful!
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Welcome to the <strong>BPSC TRE 4.0 Computer Teacher</strong> Master Prep System. Full curriculum and test series are now unlocked!
+      </p>
+
+      <!-- Digital Receipt Card -->
+      <div class="success-receipt-card">
+        <div class="receipt-row">
+          <span class="receipt-label">Razorpay Payment ID:</span>
+          <span class="receipt-val">
+            <code id="success-payment-id-display" style="color: var(--accent-primary); font-size: 0.92rem; background: var(--bg-tertiary); padding: 0.2rem 0.45rem; border-radius: 4px;">pay_...</code>
+            <button class="btn-copy-id" id="btn-copy-payment-id" onclick="copyPaymentIdToClipboard()" title="Copy Payment ID to Clipboard">
+              <span>📋</span> Copy ID
+            </button>
+          </span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Candidate Name:</span>
+          <span class="receipt-val" id="success-candidate-name">Aspirant</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">WhatsApp / Mobile:</span>
+          <span class="receipt-val" id="success-candidate-phone">--</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Amount Paid:</span>
+          <span class="receipt-val" style="color: #34d399;">₹9.00 (Inclusive of GST)</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Access Validity:</span>
+          <span class="receipt-val" style="color: #fbbf24;">Lifetime / Till TRE 4.0 Exam</span>
+        </div>
+      </div>
+
+      <!-- Receipt notification info -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: var(--radius-sm); padding: 0.85rem; font-size: 0.82rem; color: var(--text-muted); text-align: left; margin-bottom: 1.25rem; line-height: 1.5;">
+        <div style="font-weight: 700; color: var(--accent-primary); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.35rem;">
+          <span>📩</span> SMS / WhatsApp / Email Receipt:
+        </div>
+        Official payment receipt has been automatically dispatched by Razorpay to your registered mobile/email. Keep your <strong>Payment ID</strong> saved to restore access anytime across devices.
+      </div>
+
+      <button class="btn-primary" onclick="closeSuccessModal()" style="width: 100%; padding: 0.85rem; font-size: 1rem; font-weight: 700; border-radius: var(--radius-sm);">
+        🚀 Start Studying Now (Explore All Units)
+      </button>
+    </div>
+  </div>
+
+  <!-- 5. Cross-Device Restoration Modal -->
+  <div class="modal-backdrop" id="restore-access-modal">
+    <div class="modal-card" style="max-width: 500px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.5rem;">🔄</span>
+          <h2 style="font-size: 1.25rem; margin: 0;">Restore Course Access</h2>
+        </div>
+        <button class="btn-icon" onclick="closeRestoreModal()">✕</button>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
+        Already paid ₹9 on your phone, laptop, or another browser? Enter your <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code> from your SMS/WhatsApp receipt) OR your registered <strong>10-digit mobile number</strong> to instantly unlock all study materials.
+      </p>
+
+      <div style="margin-bottom: 1rem;">
+        <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
+          Payment ID (pay_...) or 10-Digit Mobile Number:
+        </label>
+        <input type="text" id="restore-query-input" placeholder="e.g. pay_Px892k... or 9876543210" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.95rem; font-family: var(--font-mono);">
+      </div>
+
+      <div id="restore-status-msg" style="margin-bottom: 1rem;"></div>
+
+      <button class="btn-primary" onclick="submitRestorePayment()" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; font-weight: 700; border-radius: var(--radius-sm); margin-bottom: 0.85rem;">
+        <span>⚡</span> Verify & Unlock Access
+      </button>
+
+      <div style="text-align: center;">
+        <button class="btn-secondary" onclick="closeRestoreModal()" style="font-size: 0.82rem; padding: 0.4rem 1rem;">
+          Cancel
+        </button>
+      </div>
     </div>
   </div>
 

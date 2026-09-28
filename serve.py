@@ -47,6 +47,75 @@ def run_server():
             self.send_header('Expires', '0')
             super().end_headers()
 
+        def do_POST(self):
+            import json
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_body = self.rfile.read(content_length).decode('utf-8')
+            db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'payments_db.json')
+
+            def load_db():
+                if os.path.exists(db_path):
+                    try:
+                        with open(db_path, 'r') as f:
+                            return json.load(f)
+                    except Exception:
+                        return []
+                return []
+
+            def save_db(data):
+                with open(db_path, 'w') as f:
+                    json.dump(data, f, indent=2)
+
+            if self.path == '/api/record-payment':
+                try:
+                    payload = json.loads(post_body)
+                    db = load_db()
+                    existing = next((r for r in db if r.get('payment_id') == payload.get('payment_id')), None)
+                    if not existing:
+                        db.append(payload)
+                        save_db(db)
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': True, 'payment_id': payload.get('payment_id')}).encode('utf-8'))
+                    return
+                except Exception as e:
+                    self.send_response(500)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': False, 'error': str(e)}).encode('utf-8'))
+                    return
+
+            elif self.path == '/api/restore-payment':
+                try:
+                    payload = json.loads(post_body)
+                    query = str(payload.get('query', '')).strip().lower()
+                    db = load_db()
+                    matched = None
+                    for r in db:
+                        r_pay_id = str(r.get('payment_id', '')).strip().lower()
+                        r_phone = str(r.get('phone', '')).strip()
+                        if query == r_pay_id or (len(query) >= 10 and query in r_phone):
+                            matched = r
+                            break
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    if matched:
+                        self.wfile.write(json.dumps({'success': True, 'record': matched}).encode('utf-8'))
+                    else:
+                        self.wfile.write(json.dumps({'success': False, 'message': 'No payment record found for this Payment ID or Phone Number.'}).encode('utf-8'))
+                    return
+                except Exception as e:
+                    self.send_response(500)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'success': False, 'error': str(e)}).encode('utf-8'))
+                    return
+
+            self.send_response(404)
+            self.end_headers()
+
     with socketserver.TCPServer((HOST, selected_port), QuietHTTPHandler) as httpd:
         print("\n" + "="*65)
         print("  🎯 BPSC TRE 4.0 Computer Teacher — Master Portal Live!")
