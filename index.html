@@ -9,6 +9,19 @@
   <link rel="stylesheet" href="css/style.css?v=2.5">
   <!-- Razorpay Standard Checkout SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Google tag (gtag.js) - BPSC TRE 4.0 Visitor & Multi-City Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNYGTPZ7TC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VNYGTPZ7TC', {
+      page_title: 'Dashboard | BPSC TRE 4.0 Computer Teacher',
+      page_path: '/'
+    });
+    window.GA_MEASUREMENT_ID = 'G-VNYGTPZ7TC';
+  </script>
 </head>
 <body>
 
@@ -772,10 +785,10 @@
   <script src="js/study-plan-data.js"></script>
   <script src="js/cheatsheets-data.js"></script>
   <script src="js/quiz-data.js"></script>
-  <!-- Optional Production Analytics Tags (GA4 & Microsoft Clarity) -->
+  <!-- Production Analytics Tags (GA4 & Microsoft Clarity) -->
   <script>
-    window.GA_MEASUREMENT_ID = ""; // e.g. "G-XXXXXXXXXX"
-    window.CLARITY_PROJECT_ID = ""; // e.g. "XXXXXXXXXX"
+    window.GA_MEASUREMENT_ID = "G-VNYGTPZ7TC";
+    window.CLARITY_PROJECT_ID = ""; // Optional: e.g. "XXXXXXXXXX"
   </script>
   <script src="js/telemetry.js"></script>
   <script src="js/app.js"></script>

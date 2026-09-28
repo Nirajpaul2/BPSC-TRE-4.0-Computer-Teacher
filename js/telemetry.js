@@ -107,7 +107,14 @@
     } catch (e) {}
 
     // Dispatch to GA4 if configured
-    if (typeof window.gtag === 'function' && window.GA_MEASUREMENT_ID) {
+    if (typeof window.gtag === 'function') {
+      if (eventType === 'screen_view' || eventType === 'session_start') {
+        window.gtag('event', 'page_view', {
+          page_title: screenTitle + ' | BPSC TRE 4.0',
+          page_location: window.location.origin + '/#' + screenId,
+          page_path: '/#' + screenId
+        });
+      }
       window.gtag('event', eventType, {
         screen_name: screenTitle,
         device_category: deviceType,
@@ -148,6 +155,14 @@
         }).catch(() => {});
       }
     } catch (e) {}
+
+    // Dispatch exit to GA4
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'screen_exit', {
+        exit_screen_name: screenTitle,
+        session_duration_seconds: durationSeconds
+      });
+    }
   }
 
   // 5. Track Screen Change
