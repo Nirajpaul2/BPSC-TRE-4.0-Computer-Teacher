@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BPSC TRE 4.0 Computer Teacher — Master Portal & Source of Truth</title>
+  <meta name="description" content="Complete Official NCERT-Aligned Syllabus, Blueprint, 8-Week Roadmap, and R&D Study Portal for BPSC TRE 4.0 Computer Teacher Examination (Advt No. 14/2026).">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Razorpay Standard Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-logo">CT</div>
+        <div class="brand-title">
+          <h1>BPSC TRE 4.0 Computer Teacher</h1>
+          <span class="badge-advt">Official Source of Truth • Advt. No. 14/2026</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="global-search-input" placeholder="Search topics, NCERT, SQL...">
+        </div>
+        <button class="btn-icon" id="btn-toggle-theme" title="Toggle Light/Dark Theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <button class="btn-icon" onclick="window.print()" title="Print / Export Syllabus">
+          <span>🖨️</span> Print
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs Bar -->
+    <nav class="nav-tabs-bar">
+      <div class="nav-tabs-container">
+        <button class="nav-tab-btn active" data-tab="tab-dashboard">
+          <span>🏠</span> Dashboard
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-blueprint">
+          <span>📊</span> Weightage Blueprint (80M)
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-ncert">
+          <span>📚</span> NCERT Digital Library
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-syllabus">
+          <span>📑</span> Master Syllabus (12 Units)
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-plan">
+          <span>🗓️</span> 8-Week Study Plan
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-cheatsheets">
+          <span>⚡</span> Quick Cheat Sheets
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-quiz">
+          <span>📝</span> Practice Mock Quiz
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-rnd">
+          <span>🔬</span> R&D Study Hub
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-container">
+
+    <!-- 👨‍🏫 Teacher Cadre & Authority Context Ribbon -->
+    <div class="teacher-cadre-ribbon">
+      <div class="cadre-badge-group">
+        <span class="cadre-badge highlight">👨‍🏫 Bihar PGT Cadre (Level-9)</span>
+        <span class="cadre-badge">उच्च माध्यमिक शिक्षक (Class 11–12 Computer Science)</span>
+        <span class="cadre-badge">STET Paper-II Qualified Target</span>
+        <span class="cadre-badge">Advt No. 14/2026</span>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <button class="btn-unlock-course" onclick="openPaywallModal('Full Course Access')" style="padding: 0.35rem 0.85rem; font-size: 0.82rem;">
+          <span>✨</span> Unlock Full Access @ ₹9
+        </button>
+      </div>
+    </div>
+
+    <!-- 1. DASHBOARD TAB -->
+    <section class="tab-pane active" id="tab-dashboard">
+      <!-- Candidate Pass Placeholder (Live status) -->
+      <div id="candidate-pass-placeholder"></div>
+
+      <div class="section-intro">
+        <h2><span>🎯</span> BPSC TRE 4.0 Preparation Command Center</h2>
+        <p>Comprehensive, NCERT-grounded study system aligned with BPSC Advertisement No. 14/2026 and past TRE 1.0, 2.0 & 3.0 question papers.</p>
+      </div>
+
+      <!-- Quick Stats Ribbon -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon primary">📑</div>
+          <div class="stat-content">
+            <h3>Syllabus Coverage</h3>
+            <div class="stat-val" id="stat-units-completed">0 / 12 (0%)</div>
+            <div class="stat-sub">12 Master Units catalogued</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon emerald">🗓️</div>
+          <div class="stat-content">
+            <h3>Study Plan Milestones</h3>
+            <div class="stat-val" id="stat-tasks-completed">0 / 56 (0%)</div>
+            <div class="stat-sub">8 Weeks • 56 Daily Checkpoints</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber">📚</div>
+          <div class="stat-content">
+            <h3>NCERT Books Attached</h3>
+            <div class="stat-val">24 Chapters</div>
+            <div class="stat-sub">Class 11 (11) + Class 12 (13)</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon rose">📝</div>
+          <div class="stat-content">
+            <h3>Diagnostic Quiz</h3>
+            <div class="stat-val" id="stat-quiz-score">0 / 10</div>
+            <div class="stat-sub">BPSC Pattern 5-Option Format</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice & Strategy Alert -->
+      <div class="alert-box critical">
+        <span style="font-size: 1.4rem;">⚡</span>
+        <div>
+          <strong>Golden Rule for TRE 4.0 Merit Cutoff:</strong>
+          Route <strong>70% of your total study energy</strong> toward Tier 1: Python Programming, Database Management (DBMS & SQL), and Computer Networks. These three sections alone account for <strong>40–49 marks out of 80</strong> in Part III.
+        </div>
+      </div>
+
+      <!-- Quick Action Cards Grid -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span>📋</span> Examination Pattern Architecture</div>
+            <span class="badge-tier tier-1">Advt 14/2026</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr><th>Part</th><th>Subject Area</th><th>Questions</th><th>Nature</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Part I</strong></td>
+                <td>Language (English + Hindi/Urdu)</td>
+                <td>30 Questions</td>
+                <td><span class="badge-tier tier-3">Qualifying (30%)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Part II</strong></td>
+                <td>General Studies (Math, Reasoning, GS, GA)</td>
+                <td>40 Questions</td>
+                <td>Merit Counting</td>
+              </tr>
+              <tr>
+                <td><strong>Part III</strong></td>
+                <td><strong>Computer Science Core</strong></td>
+                <td><strong>80 Questions (80M)</strong></td>
+                <td><span class="badge-tier tier-1">Decisive Merit Maker</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.5rem;">
+            * Negative marking setting is configurable in this portal to adapt seamlessly to official BPSC notifications.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span>🚀</span> Quick Jump Navigator</div>
+            <span class="badge-tier tier-2">Fast Access</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem;">
+            <button class="btn-primary" style="justify-content: center;" onclick="switchTab('tab-ncert')">
+              <span>📖</span> Browse NCERT Class 11 & 12 PDFs
+            </button>
+            <button class="btn-secondary" style="justify-content: center; display: flex; align-items: center; gap: 0.5rem;" onclick="switchTab('tab-blueprint')">
+              <span>📊</span> Review 80-Mark Weightage Breakdown
+            </button>
+            <button class="btn-secondary" style="justify-content: center; display: flex; align-items: center; gap: 0.5rem;" onclick="switchTab('tab-plan')">
+              <span>🗓️</span> Check Today's Study Roadmap Tasks
+            </button>
+            <button class="btn-secondary" style="justify-content: center; display: flex; align-items: center; gap: 0.5rem;" onclick="switchTab('tab-quiz')">
+              <span>🎯</span> Take BPSC Pattern Diagnostic Test
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📊 Historical BPSC TRE Computer Science Cutoff Trends -->
+      <div class="card" style="margin-top: 1.5rem;">
+        <div class="card-header">
+          <div class="card-title"><span>📈</span> Bihar BPSC TRE Computer Science (11–12) Cutoff Trends & Target Score</div>
+          <span class="badge-tier tier-1">Merit Intelligence</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">
+          Historical progression of qualifying cutoffs shows escalating competition. In TRE 4.0, securing <strong>65+ out of 80 in Part III (Subject)</strong> is critical for guaranteed selection.
+        </p>
+        <div style="overflow-x: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Recruitment Cycle</th>
+                <th>Exam Date</th>
+                <th>UR Cutoff</th>
+                <th>EWS Cutoff</th>
+                <th>BC Cutoff</th>
+                <th>EBC Cutoff</th>
+                <th>Key Exam Character</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>TRE 1.0</strong></td>
+                <td>Aug 2023</td>
+                <td><span class="badge-tier tier-3">39 / 120</span></td>
+                <td>39</td>
+                <td>39</td>
+                <td>39</td>
+                <td>First major exam, qualifying score was sufficient</td>
+              </tr>
+              <tr>
+                <td><strong>TRE 2.0</strong></td>
+                <td>Dec 2023</td>
+                <td><span class="badge-tier tier-2">63 / 120</span></td>
+                <td>56</td>
+                <td>53</td>
+                <td>47</td>
+                <td>Sudden jump in competition, Python & DBMS heavy</td>
+              </tr>
+              <tr>
+                <td><strong>TRE 3.0</strong></td>
+                <td>July 2024</td>
+                <td><span class="badge-tier tier-1">73+ / 120</span></td>
+                <td>67+</td>
+                <td>68+</td>
+                <td>64+</td>
+                <td>High difficulty, 22+ questions strictly from Python</td>
+              </tr>
+              <tr style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-emerald);">
+                <td><strong>TRE 4.0 (Target)</strong></td>
+                <td>Advt 14/2026</td>
+                <td><strong style="color: var(--accent-emerald);">85–95+ / 120</strong></td>
+                <td>80+</td>
+                <td>82+</td>
+                <td>78+</td>
+                <td><strong>Safe Zone: Target 65+ in Subject (Part III) + 25+ in GS (Part II)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 8 Golden Exam Strategies -->
+      <div class="card" style="margin-top: 1.5rem;">
+        <div class="card-header">
+          <div class="card-title"><span>💡</span> 8 Golden Rules to Score 60+ in Part III (80 Marks)</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; font-size: 0.88rem;">
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>1. Tier 1 Priority:</strong> Solve Python, DBMS, and Networks questions first to lock in 40+ early points.
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>2. Manual SQL Tracing:</strong> Always draw intermediate tables for `INNER JOIN` and `GROUP BY` on rough paper.
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>3. OS Gantt Charts:</strong> Draw Gantt timeline before computing Turnaround Time (TAT) and Waiting Time (WT).
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>4. Option (E) Trap:</strong> Read all options carefully; BPSC uses "None of the above / More than one of the above" frequently.
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>5. Python Slicing Boundaries:</strong> Verify negative step rules (`start > stop`) for non-empty slices.
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>6. Protocol Port Memorization:</strong> Learn the 10 core ports (80, 443, 20/21, 22, 23, 25, 53, 67/68, 110, 143).
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>7. Eliminate & Estimate:</strong> If you can eliminate 2 out of 4 options, the statistical expectation is positive.
+          </div>
+          <div style="padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+            <strong>8. Don't Over-study Minor Areas:</strong> MS Office & Computer History give only 3-4 marks combined. Don't waste weeks.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WEIGHTAGE BLUEPRINT TAB -->
+    <section class="tab-pane" id="tab-blueprint">
+      <div class="section-intro">
+        <h2><span>📊</span> Topic-Wise Weightage Blueprint (80 Marks)</h2>
+        <p>Derived from rigorous analysis of BPSC TRE 1.0, 2.0, and 3.0 question papers. Use this blueprint to balance your study hours.</p>
+      </div>
+
+      <div id="blueprint-content">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 3. NCERT DIGITAL LIBRARY TAB -->
+    <section class="tab-pane" id="tab-ncert">
+      <div class="section-intro">
+        <h2><span>📚</span> NCERT Digital Companion Library</h2>
+        <p>Direct chapter-by-chapter mapping of Class 11 (<code>kecs1dd/</code>) and Class 12 (<code>lecs1dd/</code>) textbooks available in your workspace.</p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button class="btn-secondary btn-ncert-filter active" data-filter="all">All Chapters (24)</button>
+        <button class="btn-secondary btn-ncert-filter" data-filter="critical">⭐⭐⭐ Critical Tier Only</button>
+        <button class="btn-secondary btn-ncert-filter" data-filter="class11">Class 11 (kecs1dd)</button>
+        <button class="btn-secondary btn-ncert-filter" data-filter="class12">Class 12 (lecs1dd)</button>
+      </div>
+
+      <div class="ncert-grid" id="ncert-cards-container">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 4. MASTER SYLLABUS TAB -->
+    <section class="tab-pane" id="tab-syllabus">
+      <div class="section-intro">
+        <h2><span>📑</span> Complete Master Syllabus (12 Units)</h2>
+        <p>The definitive syllabus breakdown covering every sub-topic, formula, syntax point, and algorithm expected in BPSC TRE 4.0.</p>
+      </div>
+
+      <div id="syllabus-accordion-container">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 5. 8-WEEK STUDY PLAN TAB -->
+    <section class="tab-pane" id="tab-plan">
+      <div class="section-intro" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2><span>🗓️</span> 8-Week Interactive Study Roadmap</h2>
+          <p>Day-by-day structured curriculum with persistent progress tracking saved directly in your browser.</p>
+        </div>
+        <button class="btn-secondary" onclick="resetStudyPlan()" style="color: var(--accent-rose); border-color: rgba(244, 63, 94, 0.4);">
+          <span>🔄</span> Reset Checkpoints
+        </button>
+      </div>
+
+      <div id="study-plan-container">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 6. CHEAT SHEETS TAB -->
+    <section class="tab-pane" id="tab-cheatsheets">
+      <div class="section-intro">
+        <h2><span>⚡</span> High-Yield Quick Revision Cheat Sheets</h2>
+        <p>Condensed formula sheets, Python edge cases, SQL query pipelines, and networking port tables designed for rapid recall.</p>
+      </div>
+
+      <div id="cheatsheets-container">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 7. PRACTICE QUIZ TAB -->
+    <section class="tab-pane" id="tab-quiz">
+      <div class="section-intro">
+        <h2><span>📝</span> BPSC TRE Pattern Diagnostic Mock Test</h2>
+        <p>Test your knowledge with authentic BPSC 5-option multiple-choice questions, complete with step-by-step mathematical & code explanations.</p>
+      </div>
+
+      <div class="quiz-container">
+        <div class="quiz-config-bar">
+          <div class="quiz-meta-tag">
+            <span>⚙️ Settings:</span>
+            <label style="cursor: pointer; display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem;">
+              <input type="checkbox" id="chk-neg-marking" checked style="accent-color: var(--accent-rose);">
+              <span id="neg-marking-label">Negative Marking (1/3 mark deduction)</span>
+            </label>
+          </div>
+          <div class="quiz-meta-tag">
+            <span>⏱️ Pattern: 1 Mark / Q</span>
+          </div>
+        </div>
+
+        <div id="quiz-question-container">
+          <!-- Injected dynamically by app.js -->
+        </div>
+
+        <div class="quiz-actions">
+          <button class="btn-secondary" id="btn-quiz-prev" onclick="prevQuizQuestion()">
+            <span>◀</span> Previous
+          </button>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn-secondary" onclick="restartQuiz()">
+              <span>🔄</span> Restart
+            </button>
+            <button class="btn-primary" id="btn-quiz-next" onclick="nextQuizQuestion()">
+              Next <span>▶</span>
+            </button>
+            <button class="btn-primary" id="btn-quiz-submit" style="display: none; background: linear-gradient(135deg, #059669, #10b981);" onclick="submitQuiz()">
+              <span>✓</span> Submit Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. R&D STUDY HUB TAB -->
+    <section class="tab-pane" id="tab-rnd">
+      <div class="section-intro">
+        <h2><span>🔬</span> R&D Study Hub & Public Contribution Guide</h2>
+        <p>A step-by-step roadmap showing how we are processing each NCERT chapter, expanding notes, and publishing updates for public aspirants.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div class="card-title"><span>🧭</span> How We Will Study Step-by-Step Together</div>
+          <span class="badge-tier tier-1">Workflow Pipeline</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.92rem;">
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="background: var(--bg-tertiary); color: var(--accent-primary); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+            <div>
+              <strong>Phase 1: Deep NCERT Chapter Breakdown</strong><br>
+              <span style="color: var(--text-muted);">
+                We open each chapter PDF in <code>kecs1dd/</code> and <code>lecs1dd/</code> sequentially. I extract all key definitions, line-by-line code nuances, flowchart rules, and create comprehensive markdown study notes in the <code>notes/</code> directory.
+              </span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="background: var(--bg-tertiary); color: var(--accent-primary); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+            <div>
+              <strong>Phase 2: Question Bank Generation (50+ MCQs Per Chapter)</strong><br>
+              <span style="color: var(--text-muted);">
+                For each chapter, we generate 50+ authentic BPSC-pattern MCQs containing output predictions, edge-case traps, and numerical problems with 5 options and step-by-step solutions.
+              </span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="background: var(--bg-tertiary); color: var(--accent-primary); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
+            <div>
+              <strong>Phase 3: Portal Data Sync & UI Upgrades</strong><br>
+              <span style="color: var(--text-muted);">
+                We update <code>syllabus-data.js</code>, <code>quiz-data.js</code>, and <code>cheatsheets-data.js</code> automatically. The web portal instantly re-renders with fresh practice tests, new cheat sheets, and downloadable revision sheets.
+              </span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="background: var(--bg-tertiary); color: var(--accent-primary); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</div>
+            <div>
+              <strong>Phase 4: Public Deployment (GitHub Pages / Netlify / Vercel)</strong><br>
+              <span style="color: var(--text-muted);">
+                Because this website is built with zero-dependency static web architecture, it can be hosted on GitHub Pages or any free host in 30 seconds for students across Bihar and India to access for free!
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current R&D Chapter Queue -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>📋</span> Upcoming Chapter Deep-Dive Queue</div>
+          <span class="badge-tier tier-2">Ready to Process</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Batch</th><th>Focus Chapter</th><th>File</th><th>Key Output</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Batch 1</strong></td>
+              <td>Class 11 Ch. 5: Getting Started with Python</td>
+              <td><code>kecs105.pdf</code></td>
+              <td>Operator precedence, dynamic typing, tokens cheat sheet</td>
+              <td><span class="badge-tier tier-2">Next in Queue</span></td>
+            </tr>
+            <tr>
+              <td><strong>Batch 2</strong></td>
+              <td>Class 11 Ch. 6: Flow of Control & Loops</td>
+              <td><code>kecs106.pdf</code></td>
+              <td>Nested loops, range() bounds, loop else suite output questions</td>
+              <td><span class="badge-tier tier-3">Queued</span></td>
+            </tr>
+            <tr>
+              <td><strong>Batch 3</strong></td>
+              <td>Class 11 Ch. 7: Functions & Variable Scope</td>
+              <td><code>kecs107.pdf</code></td>
+              <td>LEGB rule, default argument traps, recursion tracing</td>
+              <td><span class="badge-tier tier-3">Queued</span></td>
+            </tr>
+            <tr>
+              <td><strong>Batch 4</strong></td>
+              <td>Class 12 Ch. 8: Database Concepts</td>
+              <td><code>lecs108.pdf</code></td>
+              <td>Keys, degree/cardinality, Normalization 1NF to BCNF rules</td>
+              <td><span class="badge-tier tier-3">Queued</span></td>
+            </tr>
+            <tr>
+              <td><strong>Batch 5</strong></td>
+              <td>Class 12 Ch. 9: SQL Queries & Joins</td>
+              <td><code>lecs109.pdf</code></td>
+              <td>HAVING vs WHERE, JOIN syntax, aggregate NULL behaviors</td>
+              <td><span class="badge-tier tier-3">Queued</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Quiz Score Modal -->
+  <div class="modal-overlay" id="quiz-score-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">📊 Test Performance Scorecard</div>
+        <button class="btn-close-modal" onclick="closeScoreModal()">&times;</button>
+      </div>
+      <div id="quiz-score-summary">
+        <!-- Rendered by app.js -->
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.25rem;">
+        <button class="btn-secondary" onclick="closeScoreModal()">Review Answers</button>
+        <button class="btn-primary" onclick="restartQuiz()">Retake Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💳 Razorpay ₹9 Paywall Checkout Modal -->
+  <div class="modal-overlay" id="paywall-checkout-modal">
+    <div class="modal-content" style="max-width: 540px; text-align: center;">
+      <div class="modal-header">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+          <span>🎯</span> BPSC TRE 4.0 Full Access Pass
+        </div>
+        <button class="btn-close-modal" onclick="closePaywallModal()">&times;</button>
+      </div>
+
+      <div style="margin: 0.5rem 0 1rem 0;">
+        <span class="badge-tier tier-1" id="paywall-source-context">Target: Full Course Access</span>
+      </div>
+
+      <div class="price-tag-ribbon">
+        <span class="current-price">₹9</span>
+        <span class="original-price">₹499</span>
+        <span class="discount-badge">98% SUBSIDIZED</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Nominal 1-time micro-contribution for lifetime access to the entire BPSC Computer Teacher syllabus & test series.
+      </p>
+
+      <ul class="paywall-features-list">
+        <li><span style="color: #34d399;">✓</span> <strong>All 12 Units Unlocked:</strong> Python, DBMS & SQL, OS, Networks, Digital Logic & DS.</li>
+        <li><span style="color: #34d399;">✓</span> <strong>All 24 NCERT Notes & Direct PDFs:</strong> Class 11 (kecs1dd) & Class 12 (lecs1dd).</li>
+        <li><span style="color: #34d399;">✓</span> <strong>Full 8-Week Roadmap (56 Days):</strong> Persistent checklist & score tracker.</li>
+        <li><span style="color: #34d399;">✓</span> <strong>High-Yield Revision Cheat Sheets:</strong> Python Output Traps, Normalization & Ports.</li>
+        <li><span style="color: #34d399;">✓</span> <strong>Complete Mock Test Question Bank:</strong> With negative marking simulation.</li>
+        <li><span style="color: #34d399;">✓</span> <strong>Free Lifetime Updates:</strong> All future chapter notes from our R&D hub included!</li>
+      </ul>
+
+      <!-- Aspirant Form -->
+      <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem; text-align: left;">
+        <div style="margin-bottom: 0.75rem;">
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Candidate Name (for Digital Pass):</label>
+          <input type="text" id="pay-name" placeholder="Enter your full name" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem;">
+        </div>
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">WhatsApp / Mobile Number:</label>
+          <input type="tel" id="pay-phone" placeholder="10-digit mobile number" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem;">
+        </div>
+      </div>
+
+      <!-- Razorpay Checkout Action -->
+      <button class="btn-razorpay-pay" onclick="startRazorpayPayment()">
+        <span>🔒 Pay ₹9 with Razorpay</span>
+        <span style="font-size: 0.82rem; opacity: 0.85;">(UPI / Cards / NetBanking)</span>
+      </button>
+
+      <!-- Instant Test Mode / Demo Unlock Fallback -->
+      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); display: flex; flex-direction: column; gap: 0.65rem;">
+        <div style="font-size: 0.82rem; color: var(--text-dim);">
+          ⚡ Developer / Test Simulation Mode:
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="activation-passcode-input" placeholder="Passcode (e.g. TEACHER2026)" style="flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.4rem 0.65rem; border-radius: var(--radius-sm); font-size: 0.82rem;">
+          <button class="btn-secondary" onclick="applyActivationCode()" style="font-size: 0.82rem; padding: 0.4rem 0.85rem;">Apply Code</button>
+        </div>
+        <button class="btn-secondary" onclick="simulatePaymentSuccess()" style="font-size: 0.82rem; border-color: rgba(56, 189, 248, 0.4); color: var(--accent-primary);">
+          <span>🧪</span> Simulate ₹9 Success (Instant Unlock)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div><strong>BPSC TRE 4.0 Computer Teacher (Senior Secondary / Secondary)</strong></div>
+      <div>Official Reference: BPSC Advt. No. 14/2026 • NCERT Class 11 (083) & Class 12 (083) • BSEB/CBSE Curriculum</div>
+      <div style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.25rem;">
+        Designed for aspirants and students. Checkpoints and scores are stored locally in your browser.
+      </div>
+      <div style="margin-top: 0.5rem; display: flex; gap: 0.75rem; justify-content: center; font-size: 0.75rem;">
+        <a href="javascript:void(0)" onclick="openPaywallModal('₹9 Lifetime Pass')" style="color: var(--accent-primary); text-decoration: none;">💎 Unlock Course (₹9)</a>
+        <span>•</span>
+        <a href="javascript:void(0)" onclick="lockCourseAgain()" style="color: var(--text-dim); text-decoration: none;">🔄 Reset to Free Preview Mode</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/syllabus-data.js"></script>
+  <script src="js/ncert-data.js"></script>
+  <script src="js/study-plan-data.js"></script>
+  <script src="js/cheatsheets-data.js"></script>
+  <script src="js/quiz-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
