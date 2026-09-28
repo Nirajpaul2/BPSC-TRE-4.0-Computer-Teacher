@@ -1185,7 +1185,8 @@ pre.code-block {
 #quiz-score-modal,
 #paywall-checkout-modal,
 #payment-success-modal,
-#restore-access-modal {
+#restore-access-modal,
+#admin-analytics-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -1206,7 +1207,8 @@ pre.code-block {
 #quiz-score-modal.open,
 #paywall-checkout-modal.open,
 #payment-success-modal.open,
-#restore-access-modal.open {
+#restore-access-modal.open,
+#admin-analytics-modal.open {
   display: flex !important;
 }
 

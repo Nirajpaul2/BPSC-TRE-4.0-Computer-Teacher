@@ -2,5 +2,6 @@
 *.log
 __pycache__/
 payments_db.json
+analytics_db.json
 .vscode/
 .idea/

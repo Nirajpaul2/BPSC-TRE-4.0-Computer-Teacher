@@ -88,6 +88,10 @@ function initNavigation() {
       const targetPane = document.getElementById(targetTabId);
       if (targetPane) targetPane.classList.add('active');
 
+      if (window.telemetryTrackScreen) {
+        window.telemetryTrackScreen(targetTabId);
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
@@ -852,6 +856,7 @@ function initPaywallEvents() {
       closeRestoreModal();
       closeSuccessModal();
       closeScoreModal();
+      if (window.closeAdminAnalyticsModal) window.closeAdminAnalyticsModal();
     }
   });
 
@@ -876,6 +881,9 @@ window.openPaywallModal = function(sourceTitle = "Full Course") {
     modal.style.display = 'flex';
     modal.classList.add('open');
   }
+  if (window.telemetryTrackScreen) {
+    window.telemetryTrackScreen('tab-paywall');
+  }
 };
 
 window.closePaywallModal = function() {
@@ -894,6 +902,22 @@ window.openRestoreModal = function() {
     if (msgEl) msgEl.innerHTML = '';
     modal.style.display = 'flex';
     modal.classList.add('open');
+  }
+  if (window.telemetryTrackAction) {
+    window.telemetryTrackAction('restore_modal_opened');
+  }
+};
+
+window.promptAdminAnalytics = function() {
+  const code = prompt("🔒 Enter Admin Passcode to view Visitor & Drop-off Analytics:");
+  if (!code) return;
+  const cleanCode = code.trim().toUpperCase();
+  if (cleanCode === 'ADMIN2026' || cleanCode === 'TEACHER2026' || cleanCode === 'ADMIN') {
+    if (window.openAdminAnalyticsModal) {
+      window.openAdminAnalyticsModal();
+    }
+  } else {
+    alert("❌ Invalid Admin Passcode.");
   }
 };
 
