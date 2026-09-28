@@ -988,40 +988,79 @@ window.copyPaymentIdToClipboard = function() {
   });
 };
 
-window.startRazorpayPayment = function() {
+// Live Razorpay credentials from LibraryBPSC
+const RAZORPAY_LIVE_KEY = 'rzp_live_TDeXjTGJZV2T7v';
+const RAZORPAY_FALLBACK_LINK = 'https://rzp.io/rzp/f8vkVi7Y';
+
+function loadRazorpayScript() {
+  return new Promise((resolve) => {
+    if (typeof Razorpay !== 'undefined') {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+
+window.startRazorpayPayment = async function() {
   const nameInput = document.getElementById('pay-name');
   const phoneInput = document.getElementById('pay-phone');
   const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "BPSC Computer Teacher Aspirant";
-  const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "9876543210";
+  const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "";
 
-  if (typeof Razorpay === 'undefined') {
-    alert("Razorpay script is loading or offline. You can use the instant simulation unlock button below!");
+  const payBtn = document.querySelector('.btn-razorpay-pay');
+  const originalBtnContent = payBtn ? payBtn.innerHTML : '';
+  if (payBtn) {
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<span>⏳ Opening Razorpay Secure Checkout...</span>';
+  }
+
+  const isLoaded = await loadRazorpayScript();
+  if (!isLoaded || typeof Razorpay === 'undefined') {
+    if (payBtn) {
+      payBtn.disabled = false;
+      payBtn.innerHTML = originalBtnContent;
+    }
+    alert("Unable to load Razorpay checkout popup. Please check your internet connection or use the Direct Payment link below.");
     return;
   }
 
-  const rzpKey = localStorage.getItem('bpsc_rzp_key') || 'rzp_test_mockkeyid';
+  const rzpKey = localStorage.getItem('bpsc_rzp_key') || RAZORPAY_LIVE_KEY;
 
   const options = {
     key: rzpKey,
     amount: 900, // 900 paise = Rs 9
     currency: "INR",
     name: "BPSC TRE 4.0 Computer Teacher",
-    description: "Lifetime Full Access (Units 2-12, Notes, Mocks & Cheat Sheets)",
+    description: "Lifetime Full Access — All 12 Units, 24 NCERT Notes & Mock Tests",
     image: "assets/logo.jpg",
     prefill: {
       name: candidateName,
       contact: candidatePhone,
-      email: "aspirant@bpscteacher.in"
+      email: ""
+    },
+    notes: {
+      exam: "BPSC TRE 4.0 Computer Teacher",
+      access: "Lifetime Full Access (₹9)"
     },
     theme: {
       color: "#0284c7"
     },
     handler: function(response) {
+      if (payBtn) {
+        payBtn.disabled = false;
+        payBtn.innerHTML = originalBtnContent;
+      }
       const paymentId = response.razorpay_payment_id || `pay_${Date.now()}`;
       
       // Save locally
       localStorage.setItem('bpsc_candidate_name', candidateName);
-      localStorage.setItem('bpsc_phone', candidatePhone);
+      if (candidatePhone) localStorage.setItem('bpsc_phone', candidatePhone);
       setUnlocked(true, paymentId);
 
       // Record to backend DB
@@ -1039,6 +1078,10 @@ window.startRazorpayPayment = function() {
     modal: {
       ondismiss: function() {
         console.log("Razorpay checkout window closed.");
+        if (payBtn) {
+          payBtn.disabled = false;
+          payBtn.innerHTML = originalBtnContent;
+        }
       }
     }
   };
@@ -1046,14 +1089,21 @@ window.startRazorpayPayment = function() {
   try {
     const rzp = new Razorpay(options);
     rzp.on('payment.failed', function(response) {
-      alert(`❌ Payment Failed: ${response.error.description || 'Transaction was canceled'}`);
+      if (payBtn) {
+        payBtn.disabled = false;
+        payBtn.innerHTML = originalBtnContent;
+      }
+      const errDescription = response?.error?.description || 'Transaction was canceled or failed.';
+      alert(`❌ Payment Failed: ${errDescription}\nYou can also use the direct link below.`);
     });
     rzp.open();
   } catch (err) {
-    console.warn("Direct Razorpay checkout error (test key):", err);
-    if (confirm("Developer Test Mode: Razorpay opened with test key. Would you like to simulate a successful ₹9 payment to unlock the full course?")) {
-      simulatePaymentSuccess();
+    console.error("Razorpay Error:", err);
+    if (payBtn) {
+      payBtn.disabled = false;
+      payBtn.innerHTML = originalBtnContent;
     }
+    alert("Failed to initialize Razorpay checkout. Please use the Direct Payment link below.");
   }
 };
 
