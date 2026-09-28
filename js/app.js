@@ -988,9 +988,17 @@ window.copyPaymentIdToClipboard = function() {
   });
 };
 
-// Live Razorpay credentials from LibraryBPSC
+// Live Razorpay credentials (Production Key from LibraryBPSC)
 const RAZORPAY_LIVE_KEY = 'rzp_live_TDeXjTGJZV2T7v';
 const RAZORPAY_FALLBACK_LINK = 'https://rzp.io/rzp/f8vkVi7Y';
+
+// Clean up any stale test mock keys from browser storage
+try {
+  const cachedKey = localStorage.getItem('bpsc_rzp_key');
+  if (cachedKey && cachedKey.startsWith('rzp_test_')) {
+    localStorage.removeItem('bpsc_rzp_key');
+  }
+} catch (e) {}
 
 function loadRazorpayScript() {
   return new Promise((resolve) => {
@@ -1030,7 +1038,8 @@ window.startRazorpayPayment = async function() {
     return;
   }
 
-  const rzpKey = localStorage.getItem('bpsc_rzp_key') || RAZORPAY_LIVE_KEY;
+  // Strictly use verified Live Production Key
+  const rzpKey = window.RAZORPAY_KEY_ID || RAZORPAY_LIVE_KEY;
 
   const options = {
     key: rzpKey,
