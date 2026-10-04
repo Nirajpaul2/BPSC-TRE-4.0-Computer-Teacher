@@ -16,6 +16,7 @@ function initApp() {
   initStudyTracker();
   initCheatSheets();
   initQuizEngine();
+  initDailyNotes();
   updateGlobalStats();
   initPaywallEvents();
 }
@@ -1240,5 +1241,91 @@ window.lockCourseAgain = function() {
     setUnlocked(false);
     alert("Course reset to Free Preview mode.");
   }
+};
+
+// -------------------------------------------------------------
+// Daily Master Notes & Day-Wise Series Manager
+// -------------------------------------------------------------
+let currentActiveDay = 1;
+
+function initDailyNotes() {
+  renderDailyDaysBar();
+  renderDailyNoteContent(currentActiveDay);
+}
+
+function renderDailyDaysBar() {
+  const bar = document.getElementById('daily-days-bar');
+  if (!bar || typeof DAILY_NOTES_DATA === 'undefined') return;
+
+  bar.innerHTML = DAILY_NOTES_DATA.map(note => {
+    const isActive = note.dayNumber === currentActiveDay;
+    return `
+      <button class="day-pill-btn ${isActive ? 'active' : ''}" onclick="selectDailyNote(${note.dayNumber})">
+        <span>📅</span> ${escapeHtml(note.dayLabel)}: ${escapeHtml(note.title.replace('TRE 4.0 Computer Science — ', ''))}
+      </button>
+    `;
+  }).join('');
+}
+
+function renderDailyNoteContent(dayNumber) {
+  const contentArea = document.getElementById('daily-note-content-area');
+  if (!contentArea || typeof DAILY_NOTES_DATA === 'undefined') return;
+
+  const note = (typeof getDailyNote === 'function') ? getDailyNote(dayNumber) : DAILY_NOTES_DATA[0];
+  if (!note) return;
+
+  currentActiveDay = dayNumber;
+  contentArea.innerHTML = note.htmlContent;
+  renderDailyDaysBar();
+}
+
+window.selectDailyNote = function(dayNumber) {
+  renderDailyNoteContent(dayNumber);
+};
+
+window.openDailyNote = function(dayNumber) {
+  switchTab('tab-daily');
+  renderDailyNoteContent(dayNumber);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+window.checkDailyOption = function(btn, isCorrect, feedbackText) {
+  const card = btn.closest('.daily-q-card');
+  if (!card) return;
+
+  const allBtns = card.querySelectorAll('.daily-opt-btn');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    b.classList.remove('correct', 'incorrect');
+  });
+
+  const feedbackEl = card.querySelector('.daily-q-feedback');
+
+  if (isCorrect) {
+    btn.classList.add('correct');
+    if (feedbackEl) {
+      feedbackEl.className = 'daily-q-feedback show good';
+      feedbackEl.innerHTML = `<strong>✓ Correct!</strong> ${escapeHtml(feedbackText)}`;
+    }
+  } else {
+    btn.classList.add('incorrect');
+    const correctIdx = parseInt(card.getAttribute('data-correct'), 10);
+    if (!isNaN(correctIdx) && allBtns[correctIdx]) {
+      allBtns[correctIdx].classList.add('correct');
+    }
+    if (feedbackEl) {
+      feedbackEl.className = 'daily-q-feedback show bad';
+      feedbackEl.innerHTML = `<strong>❌ Incorrect.</strong> ${escapeHtml(feedbackText)}`;
+    }
+  }
+};
+
+window.shareDailyOnWhatsApp = function(dayNumber) {
+  const note = typeof getDailyNote === 'function' ? getDailyNote(dayNumber) : null;
+  const title = note ? note.title : 'TRE 4.0 Computer Science — Number System';
+  const text = `🎯 *${title}* (BPSC TRE 4.0 Daily Master Notes)\n\n⚡ *Key White-Paper Tricks:*\n• B O D H → 2, 8, 10, 16\n• TO Decimal → Multiply & Add\n• FROM Decimal → Divide & Reverse\n• Octal = 3 bits, Hex = 4 bits\n• Valid Digit Rule: Digit must always be strictly smaller than Base!\n\nRead full daily capsule & solve practice MCQs:\n👉 https://tre4ct.aiwazir.com/`;
+  
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
 };
 

@@ -70,6 +70,9 @@
         <button class="nav-tab-btn active" data-tab="tab-dashboard">
           <span>🏠</span> Dashboard
         </button>
+        <button class="nav-tab-btn" data-tab="tab-daily">
+          <span>📖</span> Daily Notes <span class="nav-badge-pill">Day 1 Live</span>
+        </button>
         <button class="nav-tab-btn" data-tab="tab-blueprint">
           <span>📊</span> Weightage Blueprint (80M)
         </button>
@@ -128,6 +131,20 @@
           <h2>BPSC TRE 4.0 Computer Teacher Preparation Command Center</h2>
           <p>Comprehensive, NCERT-grounded study system aligned with BPSC Advertisement No. 14/2026 and past TRE 1.0, 2.0 & 3.0 question papers for Higher Secondary (Class 11–12 / PGT) aspirants.</p>
         </div>
+      </div>
+
+      <!-- Featured Daily Master Capsule Banner -->
+      <div class="dashboard-daily-highlight-card">
+        <div>
+          <div class="daily-highlight-badge">🔥 TODAY'S MASTER CAPSULE • DAY 1 LIVE</div>
+          <div class="daily-highlight-title">TRE 4.0 Computer Science — Number System</div>
+          <div class="daily-highlight-desc">
+            White-paper BODH mental architecture, To/From Decimal conversion rules, Octal (3-bit) &amp; Hex (4-bit) grouping, binary fractions, and valid digit MCQ traps.
+          </div>
+        </div>
+        <button class="btn-open-daily" onclick="openDailyNote(1)">
+          <span>📖 Read Day 1 Notes</span> <span>→</span>
+        </button>
       </div>
 
       <!-- Quick Stats Ribbon -->
@@ -452,7 +469,27 @@
       </div>
     </section>
 
-    <!-- 8. R&D STUDY HUB TAB -->
+    <!-- 8. DAILY MASTER NOTES TAB (TRE 4.0 White-Paper Series) -->
+    <section class="tab-pane" id="tab-daily">
+      <div class="section-intro">
+        <h2><span>📖</span> TRE 4.0 Daily Master Notes &amp; White-Paper Series</h2>
+        <p>High-yield daily revision capsules updated continuously for BPSC TRE 4.0 Computer Teacher aspirants. Master memory tricks, conversion shortcuts, and exam-hall traps.</p>
+      </div>
+
+      <div class="daily-notes-wrapper">
+        <!-- Day Selector Pill Bar (Day 1, Day 2, etc.) -->
+        <div class="daily-selector-bar" id="daily-days-bar">
+          <!-- Dynamically populated from js/daily-notes-data.js -->
+        </div>
+
+        <!-- Selected Day's Article Content -->
+        <div id="daily-note-content-area">
+          <!-- Dynamically populated from js/daily-notes-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. R&D STUDY HUB TAB -->
     <section class="tab-pane" id="tab-rnd">
       <div class="section-intro">
         <h2><span>🔬</span> R&D Study Hub & Public Contribution Guide</h2>
@@ -786,11 +823,12 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/syllabus-data.js?v=3.0"></script>
-  <script src="js/ncert-data.js?v=3.0"></script>
-  <script src="js/study-plan-data.js?v=3.0"></script>
-  <script src="js/cheatsheets-data.js?v=3.0"></script>
-  <script src="js/quiz-data.js?v=3.0"></script>
+  <script src="js/syllabus-data.js?v=3.1"></script>
+  <script src="js/ncert-data.js?v=3.1"></script>
+  <script src="js/study-plan-data.js?v=3.1"></script>
+  <script src="js/cheatsheets-data.js?v=3.1"></script>
+  <script src="js/quiz-data.js?v=3.1"></script>
+  <script src="js/daily-notes-data.js?v=3.1"></script>
   <!-- Production Analytics & Payment Configuration (Live Keys) -->
   <script>
     window.GA_MEASUREMENT_ID = "G-VNYGTPZ7TC";
@@ -798,7 +836,7 @@
     window.RAZORPAY_KEY_ID = "rzp_live_TDeXjTGJZV2T7v"; // Production Live Razorpay Key
     window.RAZORPAY_FALLBACK_LINK = "https://rzp.io/rzp/f8vkVi7Y";
   </script>
-  <script src="js/telemetry.js?v=3.0"></script>
-  <script src="js/app.js?v=3.0"></script>
+  <script src="js/telemetry.js?v=3.1"></script>
+  <script src="js/app.js?v=3.1"></script>
 </body>
 </html>
