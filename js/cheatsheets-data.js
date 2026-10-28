@@ -1,4 +1,4 @@
-// BPSC TRE 4.0 Computer Science — NCERT Master Cheat Sheets (Chapters 1 - 10)
+// BPSC TRE 4.0 Computer Science — NCERT Master Cheat Sheets (Chapters 1 - 12)
 
 const CHEATSHEETS_DATA = [
   {
@@ -1513,6 +1513,361 @@ CREATE/ALTER/DROP   INSERT/UPDATE/DELETE   SELECT
                                         DNS
                                         IoT`,
         explanation: "Networking fundamentals: LAN vs WAN, Hub vs Switch, Switch vs Router, MAC vs IP, Internet vs Web, DNS. Plus master SQL & Network mental hierarchy."
+      }
+    ]
+  },
+  {
+    id: "ch11-data-communication",
+    title: "Chapter 11 — Data Communication",
+    category: "NCERT Class 12: Computer Science",
+    summary: "11.1 Concept & Components (Sender, Receiver, Message, Medium, Protocol), Bandwidth vs Data Rate, 11.4 Modes (Simplex, Half-Duplex, Full-Duplex), Switching & Transmission Media.",
+    cards: [
+      {
+        title: "11.1 Concept of Communication & Core Model",
+        code: `Imagine two people talking through a telephone:
+Person A (Sender)
+      ↓
+   Message
+      ↓
+Telephone Network (Medium)
+      ↓
+Person B (Receiver)
+
+Both must follow the same rules:
+      ↓
+   Protocol
+
+Now convert that into computers:
+COMPUTER A (Sender)
+      ↓
+    Data
+      ↓
+Transmission Medium
+      ↓
+COMPUTER B (Receiver)
+
+The entire chapter can be reduced to:
+                       DATA COMMUNICATION
+                                |
+          ┌─────────────────────┼─────────────────────┐
+          ↓                     ↓                     ↓
+     Who sends?            How travels?          What rules?
+   Sender/Receiver            Medium               Protocol
+
+────────────────────────────────────────────────────────
+11.1 Concept of Communication
+Communication means:
+Sending or receiving data.
+
+Data can be:
+• Text
+• Image
+• Audio
+• Video
+• Multimedia
+
+Example:
+Phone A → "Hello" → Mobile network → Phone B
+
+Memory:
+Data Communication = Exchange of data between connected devices.`,
+        explanation: "Data Communication = Exchange of data between connected devices via a Transmission Medium following a set of Protocols."
+      },
+      {
+        title: "Complete Architecture & Communication Modes (Simplex, Half, Full)",
+        code: `DATA COMMUNICATION
+│
+├── Components
+│   ├── Sender
+│   ├── Receiver
+│   ├── Message
+│   ├── Medium
+│   └── Protocol
+│
+├── Capacity
+│   ├── Bandwidth → Hz
+│   └── Data Rate → bps
+│
+├── Direction
+│   ├── Simplex     → A ──→ B
+│   ├── Half Duplex → A ←→ B, one at a time
+│   └── Full Duplex → A ⇄ B, simultaneously
+│
+├── Switching
+│   ├── Circuit → dedicated path
+│   └── Packet  → break message into packets
+│
+├── Transmission
+│   ├── Wired
+│   │   ├── Twisted Pair
+│   │   ├── Coaxial
+│   │   └── Optical Fibre
+│   │
+│   └── Wireless
+│       ├── Radio
+│       ├── Microwave
+│       └── Infrared
+│
+├── Mobile
+│   └── 1G → 2G → 3G → 4G → 5G
+│
+└── Protocol
+    ├── HTTP → Web
+    ├── FTP  → File transfer
+    └── PPP  → Point-to-point
+
+────────────────────────────────────────────────────────
+11.4 Types of Data Communication:
+Simplex | Half-Duplex | Full-Duplex
+
+## Simplex:
+One-way communication.
+A ─────────→ B
+Sender     Receiver
+
+Examples:
+• Keyboard → computer
+• Computer → speaker
+
+Memory:
+Simplex = only one direction
+
+────────────────────────────────────────────────────────
+## Half-Duplex:
+Both sides can communicate, but not simultaneously.
+A ─────→ B
+then
+A ←───── B
+
+Example:
+Walkie-talkie
+When one person talks, the other listens.
+
+Memory:
+Half-duplex = both directions, one at a time.
+
+────────────────────────────────────────────────────────
+## Full-Duplex:
+Both sides communicate at the same time.
+A ⇄ B
+
+Examples:
+• Telephone call
+• Mobile conversation`,
+        explanation: "Communication Directions: Simplex (one-way: keyboard/speaker) | Half-Duplex (both ways, one at a time: walkie-talkie) | Full-Duplex (both ways simultaneously: telephone)."
+      }
+    ]
+  },
+  {
+    id: "ch12-security-aspects",
+    title: "Chapter 12 — Security Aspects",
+    category: "NCERT Class 12: Security & Ethics",
+    summary: "12.2 Malware (Virus, Worm, Ransomware, Trojan, Spyware, Keylogger), 12.6 Firewall, 12.7 Cookies, Security Follow-Up Questions, and Master Mental Map.",
+    cards: [
+      {
+        title: "🧠 Mental Picture & 12.2 Malware Types",
+        code: `🧠 MENTAL PICTURE
+Imagine your computer as a house:
+
+           COMPUTER
+         ┌─────────┐
+Internet ───────→│ FIREWALL│
+         │         │
+Malware  ───────→│ANTIVIRUS│
+         │         │
+Hacker   ───────→│SECURITY │
+         └─────────┘
+
+You want to protect:
+DEVICE + DATA + NETWORK
+
+────────────────────────────────────────────────────────
+12.2 Malware
+Malware means:
+MALicious softWARE
+
+It is software intentionally designed to damage systems, steal data or cause other trouble.
+
+Important types:
+• Virus
+• Worm
+• Ransomware
+• Trojan
+• Spyware
+• Adware
+• Keylogger
+
+────────────────────────────────────────────────────────
+Virus:
+A virus inserts/copies malicious code into another program or executable.
+It normally becomes active when the infected file is executed.
+
+Mental:
+Host Program + Virus code
+         ↓
+  Infected program
+
+────────────────────────────────────────────────────────
+Worm:
+A worm:
+• Does NOT require a host program
+• Can work independently
+• Can self-replicate
+• Can spread through networks
+
+### Virus vs Worm:
+Virus → needs host/infected file → typically user triggering
+Worm  → standalone → self-replicates`,
+        explanation: "Malware = Malicious Software. Virus requires host file & execution. Worm is standalone and self-replicates across networks without host."
+      },
+      {
+        title: "Ransomware, Trojan, Spyware, Keylogger, Firewall & Cookies",
+        code: `Ransomware:
+Mental:
+Your Files
+    ↓
+LOCK / ENCRYPT
+    ↓
+"Pay money"
+    ↓
+Ransomware
+
+The chapter uses WannaCry as an example and notes its 2017 global outbreak.
+
+────────────────────────────────────────────────────────
+Trojan:
+Looks legitimate:
+Normal-looking program
+    ↓
+Install it
+    ↓
+Malicious behaviour
+
+Unlike a worm, a Trojan does not self-replicate; it relies on user interaction such as opening/downloading it.
+
+────────────────────────────────────────────────────────
+Spyware:
+Secretly collects information.
+Examples of targeted information include:
+• Internet usage
+• Passwords
+• Bank information
+• Identity information
+
+────────────────────────────────────────────────────────
+Keylogger:
+Records keys pressed by the user.
+
+Mental:
+You type: PASSWORD123
+    ↓
+Keylogger records keys
+    ↓
+Sensitive information leaked
+
+────────────────────────────────────────────────────────
+12.6 Firewall:
+Imagine a security guard at a gate:
+
+Internet
+    ↓
+┌──────────┐
+│ FIREWALL │
+│  GUARD   │
+└──────────┘
+    ↓
+Private Network
+
+A firewall monitors and controls incoming and outgoing network traffic according to security rules.
+
+────────────────────────────────────────────────────────
+12.7 Cookies:
+A cookie is a small piece of information a website uses to remember information associated with a user’s browsing/session.
+
+Examples:
+• Login/authentication
+• Session timeout
+• Remembering information`,
+        explanation: "Ransomware locks/encrypts for ransom (e.g. WannaCry 2017). Trojan disguises as legitimate software. Spyware secretly collects data. Keylogger records keystrokes. Firewall monitors/filters traffic. Cookies track sessions."
+      },
+      {
+        title: "🔥 Follow-Up Questions, Security Definitions & 🧠 Final Mental Map",
+        code: `🔥 FOLLOW-UP QUESTIONS — Security
+
+Virus vs Worm?
+Virus → requires a host → usually triggered by user
+Worm  → standalone → self-replicates
+
+Trojan?
+Malware disguised as legitimate software
+
+Ransomware?
+Blocks/encrypts data → demands ransom
+
+Antivirus?
+Detects/prevents/removes malware
+
+HTTP vs HTTPS?
+HTTP  → unencrypted textbook model
+HTTPS → encrypted communication
+
+Firewall?
+Filters network traffic
+
+White vs Black Hat?
+White → ethical
+Black → malicious/unethical
+
+DoS vs DDoS?
+DoS  → denial attack
+DDoS → distributed attack using many systems
+
+────────────────────────────────────────────────────────
+QUICK DEFINITIONS:
+Malware       → malicious software
+Virus         → malicious code requiring host/infected file
+Worm          → standalone self-replicating malware
+Ransomware    → locks/encrypts data for ransom
+Trojan        → malicious software disguised as legitimate
+Firewall      → network traffic filter
+HTTPS         → encrypted web communication
+White Hat     → ethical hacker
+DoS           → deny service by overwhelming resource
+DDoS          → distributed DoS from many machines
+Snooping      → secret traffic capture/analysis
+Eavesdropping → real-time interception
+
+────────────────────────────────────────────────────────
+🧠 FINAL WHITE-PAPER MENTAL MAP
+
+                      DATA COMMUNICATION
+                              |
+        ┌─────────────────────┼─────────────────────┐
+        ↓                     ↓                     ↓
+    COMPONENTS              MEDIA               PROTOCOLS
+        |                     |                     |
+Sender / Receiver           Wired                 HTTP
+    Message                Wireless               FTP
+ Transmission Medium                              PPP
+    Protocol
+        |
+Communication Type:
+  /     |     Simplex Half  Full
+       Duplex Duplex
+
+
+                           SECURITY
+                              |
+        ┌─────────────────────┼─────────────────────┐
+        ↓                     ↓                     ↓
+     MALWARE              PROTECTION             THREATS
+        |                     |                     |
+   Virus / Worm            Antivirus               DoS
+    Ransomware             Firewall               DDoS
+      Trojan                 HTTPS              Intrusion
+     Spyware                Updates             Snooping
+    Keylogger               Backup            Eavesdropping`,
+        explanation: "Master summary: Data Communication = Components + Media + Protocols (Simplex/Half/Full). Security = Malware + Protection + Threats."
       }
     ]
   }
