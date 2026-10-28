@@ -246,6 +246,436 @@ Final Result = 25`,
         explanation: "Critical Operand Order: When evaluating binary operator `op`, pop operand2 first, then operand1: evaluate `operand1 op operand2`!"
       }
     ]
+  },
+  {
+    id: "cs-exception-handling",
+    title: "🛡️ Exception Handling in Python (Ch 1)",
+    category: "NCERT Class 12: Python",
+    summary: "Syntax Errors vs Exceptions, try/except/else/finally flow, and raising exceptions intentionally.",
+    cards: [
+      {
+        title: "1. Syntax Errors vs Exceptions",
+        code: `# SYNTAX ERROR — Wrong Python grammar
+print("Hello"
+# Missing closing parenthesis → SyntaxError
+
+# EXCEPTION — Valid syntax, runtime problem
+number = 10 / 0
+# Syntax is correct, but 10 ÷ 0 is impossible
+# → ZeroDivisionError at runtime
+
+# KEY DIFFERENCE:
+# Syntax Error  → Code structure/grammar is wrong
+# Exception     → Code is syntactically valid,
+#                  but execution encounters a problem`,
+        explanation: "Memory: Syntax Error = Wrong grammar (detected before running). Exception = Valid code that fails during execution."
+      },
+      {
+        title: "2. Raising Exceptions Intentionally",
+        code: `# Python raises exceptions automatically,
+# but we can also intentionally raise one:
+
+age = -5
+
+if age < 0:
+    raise ValueError("Age cannot be negative")
+
+# raise = create/throw an exception intentionally
+# Use raise when your code detects invalid data`,
+        explanation: "Memory: raise = intentionally create/throw an exception when your program logic detects something wrong."
+      },
+      {
+        title: "3. try / except / else / finally",
+        code: `# Full Exception Handling Structure:
+
+try:
+    number = int(input("Enter number: "))
+
+except ValueError:
+    print("Invalid number")       # Runs if error occurs
+
+else:
+    print("Valid number:", number) # Runs if NO error
+
+finally:
+    print("Cleanup done")         # ALWAYS runs
+
+# FLOW:
+# try → attempt risky code
+# except → handle the error
+# else → runs only if try succeeds (no exception)
+# finally → always runs (cleanup work)`,
+        explanation: "Memory: try = attempt, except = catch error, else = success path, finally = always cleanup."
+      }
+    ]
+  },
+  {
+    id: "cs-file-handling",
+    title: "📁 File Handling in Python (Ch 2)",
+    category: "NCERT Class 12: Python",
+    summary: "Text vs Binary files, open/read/write/close, file offsets (tell/seek), and the Pickle module for object serialization.",
+    cards: [
+      {
+        title: "1. Variable vs File & File Types",
+        code: `# Variable → Temporary program data (lost when program stops)
+# File     → Persistent storage for later use
+
+# TWO TYPES OF FILES:
+# Files
+# ├── Text    → Human-readable characters (.txt, .csv, .py)
+# └── Binary  → Raw bytes (images, audio, video)
+
+# Text file example content:
+# Niraj
+# Python
+# 100
+
+# Memory: Text = characters, Binary = bytes`,
+        explanation: "Files provide persistent storage — data survives even after the program stops. Text files store readable characters; binary files store raw bytes."
+      },
+      {
+        title: "2. Opening, Modes & Closing Files",
+        code: `# Open a file:
+file = open("notes.txt", "r")
+
+# Common modes:
+# r → Read (default)
+# w → Write / overwrite (creates new if not exists)
+# a → Append (adds to end)
+
+# Always close when done:
+file.close()
+
+# Better practice — with statement:
+with open("notes.txt", "r") as file:
+    data = file.read()
+# File auto-closes after the 'with' block`,
+        explanation: "Memory: open() → OPEN, read() → READ, write() → WRITE, close() → CLOSE. The 'with' statement handles closing automatically."
+      },
+      {
+        title: "3. File Offsets: tell() & seek()",
+        code: `# A file has a current position (like a cursor)
+
+# tell() → Returns current file position
+position = file.tell()   # WHERE am I?
+
+# seek() → Moves the file position
+file.seek(0)             # MOVE to beginning
+
+# Memory:
+# tell → WHERE?
+# seek → MOVE`,
+        explanation: "tell() tells you WHERE the cursor is; seek() MOVES the cursor to a new position."
+      },
+      {
+        title: "4. Pickle Module — Object Serialization",
+        code: `import pickle
+
+student = {"name": "Aman", "marks": 90}
+
+# WRITE (dump) — object → file
+with open("student.dat", "wb") as file:
+    pickle.dump(student, file)
+
+# READ (load) — file → object
+with open("student.dat", "rb") as file:
+    student = pickle.load(file)
+print(student)
+
+# Memory:
+# pickle.dump → SAVE OBJECT (object → file)
+# pickle.load → RESTORE OBJECT (file → object)`,
+        explanation: "Pickle serializes Python objects into binary format. dump = save object to file, load = restore object from file. Use 'wb'/'rb' modes (binary)."
+      }
+    ]
+  },
+  {
+    id: "cs-stack",
+    title: "📚 Stack — LIFO Data Structure (Ch 3)",
+    category: "NCERT Class 12: Data Structures",
+    summary: "Stack is a LIFO structure where push/pop happen at TOP. Used for expression processing (Infix → Postfix → Evaluation).",
+    cards: [
+      {
+        title: "1. Stack Concept & Operations",
+        code: `# Stack = Linear data structure
+# Insertion & deletion happen at one end: TOP
+# Follows LIFO: Last In, First Out
+
+# Key Operations:
+# Push  → Add element to TOP
+# Pop   → Remove element from TOP
+# Peek  → View TOP element without removing
+# Overflow → Trying to push beyond fixed capacity
+
+#       TOP
+#      ┌───┐
+#      │ 30│  ← Push/Pop here
+#      │ 20│
+#      │ 10│
+#      └───┘`,
+        explanation: "Memory: Stack = LIFO. Think of a stack of plates — you can only add/remove from the TOP."
+      },
+      {
+        title: "2. Stack Mental Map",
+        code: `#               PYTHON
+#                  |
+#      ┌───────────┼────────────┐
+#      ↓           ↓            ↓
+#  EXCEPTION      FILE         STACK
+#  HANDLING     HANDLING
+#      |           |            |
+#  try          open()         LIFO
+#  except       read()          |
+#  else         write()      push/pop
+#  finally      close()         |
+#  raise        seek()       Expression
+#               tell()       Processing
+#                 |             |
+#               pickle    Infix → Postfix
+#                               ↓
+#                        Postfix Evaluation`,
+        explanation: "Exception Handling → Detect and safely handle runtime problems. File Handling → Store and retrieve persistent data. Stack → LIFO structure where push and pop happen at the top."
+      }
+    ]
+  },
+  {
+    id: "cs-queue",
+    title: "🚶 Queue — FIFO Data Structure (Ch 4)",
+    category: "NCERT Class 12: Data Structures",
+    summary: "Queue follows FIFO with Enqueue at REAR and Dequeue at FRONT. Deque allows operations at both ends.",
+    cards: [
+      {
+        title: "1. Queue Concept & Operations",
+        code: `# Queue = Linear data structure
+# Insertion and deletion at OPPOSITE ends
+# Follows FIFO: First In, First Out
+
+# Deletion                       Insertion
+#    ↓                              ↓
+#  FRONT                          REAR
+# [10] [20] [30] [40]
+
+# ENQUEUE → Add element at REAR
+# DEQUEUE → Remove element from FRONT
+
+# Example:
+# Initially:    [10] [20] [30]
+# Enqueue 40:   [10] [20] [30] [40]
+# Dequeue:      10 leaves → [20] [30] [40]`,
+        explanation: "Memory: Queue = FIFO (First In, First Out). Think of a line at a ticket counter — first person in line gets served first."
+      },
+      {
+        title: "2. Deque (Double-Ended Queue)",
+        code: `# Deque = Double-Ended Queue
+# Pronounced: "deck"
+
+# Normal Queue:
+# Delete ← FRONT ........ REAR ← Insert
+
+# Deque:
+# Insert/Delete                Insert/Delete
+#       ↓                           ↓
+#     FRONT                       REAR
+#    [10] [20] [30] [40]
+
+# Both ends can insert AND delete!
+
+# Memory: Deque = Queue with two doors`,
+        explanation: "A Deque allows insertion and deletion at BOTH ends, unlike a regular queue which restricts delete to FRONT and insert to REAR."
+      }
+    ]
+  },
+  {
+    id: "cs-sorting",
+    title: "🔄 Sorting Algorithms (Ch 5)",
+    category: "NCERT Class 12: Algorithms",
+    summary: "Bubble (compare neighbours), Selection (find smallest), Insertion (pick & place cards). All O(n²) at chapter level.",
+    cards: [
+      {
+        title: "1. Three Sorting Strategies — Mental Picture",
+        code: `# Unsorted: 8  7  13  1  -9  4
+# Goal:    -9  1   4  7   8  13
+
+# Three approaches:
+# BUBBLE    → Compare neighbours, swap if wrong order
+# SELECTION → Find smallest, put it first
+# INSERTION → Pick next card, insert at correct position
+
+# Ultimate Memory:
+# Bubble    = neighbour swap
+# Selection = find minimum
+# Insertion = playing cards`,
+        explanation: "Each algorithm achieves sorting differently: Bubble swaps adjacent elements, Selection finds the minimum, Insertion places each item into its correct position."
+      },
+      {
+        title: "2. Bubble Sort — Neighbour Compare & Swap",
+        code: `# Mental phrase: Neighbour → Compare → Swap
+# Largest element "bubbles" to the right each pass
+
+# [5, 3, 4, 1]
+# 5>3? swap → [3, 5, 4, 1]
+# 5>4? swap → [3, 4, 5, 1]
+# 5>1? swap → [3, 4, 1, 5]  ← 5 is fixed
+#                        ↑ Largest fixed at right
+
+numbers = [5, 3, 4, 1]
+n = len(numbers)
+for i in range(n - 1):
+    for j in range(n - i - 1):
+        if numbers[j] > numbers[j + 1]:
+            numbers[j], numbers[j + 1] = (
+                numbers[j + 1], numbers[j])
+print(numbers)  # [1, 3, 4, 5]`,
+        explanation: "Memory: Bubble = largest bubbles to the right. After each pass, the largest unsorted element reaches its final position on the right side."
+      },
+      {
+        title: "3. Selection Sort — Find Smallest, Put First",
+        code: `# Mental phrase: Find smallest → put it first
+# [8, 7, 13, 1, -9, 4]
+# Find smallest: -9 → put first
+# [-9 | 7, 13, 1, 8, 4]  ← sorted|unsorted
+
+numbers = [5, 3, 4, 1]
+n = len(numbers)
+for i in range(n - 1):
+    min_index = i
+    for j in range(i + 1, n):
+        if numbers[j] < numbers[min_index]:
+            min_index = j
+    numbers[i], numbers[min_index] = (
+        numbers[min_index], numbers[i])
+print(numbers)  # [1, 3, 4, 5]`,
+        explanation: "Memory: Selection = select minimum. Each pass finds the smallest element from the unsorted part and places it at the front (sorted side is LEFT)."
+      },
+      {
+        title: "4. Insertion Sort — Playing Cards",
+        code: `# Imagine arranging playing cards in your hand
+# Already have: 2  5  8     Receive: 4
+# Shift 8→right, 5→right, insert 4
+# Result: 2  4  5  8
+
+numbers = [5, 3, 4, 1]
+for i in range(1, len(numbers)):
+    current = numbers[i]
+    j = i - 1
+    while j >= 0 and numbers[j] > current:
+        numbers[j + 1] = numbers[j]
+        j -= 1
+    numbers[j + 1] = current
+print(numbers)  # [1, 3, 4, 5]`,
+        explanation: "Memory: Insertion = Pick → Shift → Insert. Like arranging playing cards. Sorted side grows from the LEFT."
+      },
+      {
+        title: "5. Time Complexity & Active Recall",
+        code: `# Time Complexity at Chapter Level:
+# No loop        → O(1)
+# One n-sized loop    → O(n)
+# Nested n-sized loops → O(n²)
+
+# All three sorts: O(n²) with nested loops
+
+# ACTIVE RECALL:
+# Bubble sorted side?    → Right
+# Selection sorted side? → Left
+# Insertion sorted side? → Left
+
+# Which compares adjacent?    → Bubble Sort
+# Which searches for minimum? → Selection Sort
+# Which shifts larger values? → Insertion Sort`,
+        explanation: "All three algorithms use nested loops giving O(n²). Bubble fixes from the right; Selection and Insertion build sorted portions from the left."
+      }
+    ]
+  },
+  {
+    id: "cs-searching",
+    title: "🔍 Searching Algorithms (Ch 6)",
+    category: "NCERT Class 12: Algorithms",
+    summary: "Linear Search (one by one, O(n)), Binary Search (half repeatedly, O(log n), sorted required), Hashing (bucket, average O(1)).",
+    cards: [
+      {
+        title: "1. Linear vs Binary — Mental Picture",
+        code: `# LINEAR SEARCH — One by one
+# Target = 40
+# 10 → 25 → 31 → 40 ← FOUND
+# Does NOT require sorted data. O(n)
+
+# BINARY SEARCH — Half, half, half
+# Sorted: [10 20 30 40 50 60 70]
+#                   ↑ Middle
+# Target > middle? → Throw away left half
+# Requires SORTED data. O(log n)
+
+# Memory:
+# Linear → ONE BY ONE
+# Binary → HALF, HALF, HALF`,
+        explanation: "Linear Search checks every element sequentially (O(n), no sorting needed). Binary Search eliminates half the search space each step (O(log n), sorted data required)."
+      },
+      {
+        title: "2. Linear Search Code",
+        code: `# Target = 30 in [10, 50, 20, 30, 70]
+# 10 == 30? ❌
+# 50 == 30? ❌
+# 20 == 30? ❌
+# 30 == 30? ✅ Found!
+
+def linear_search(numbers, target):
+    for i in range(len(numbers)):
+        if numbers[i] == target:
+            return i
+    return -1
+
+# Complexity: O(n)
+# Sorting NOT required`,
+        explanation: "Memory: Linear Search = start to finish, one by one. In worst case, you may inspect every element."
+      },
+      {
+        title: "3. Binary Search Code",
+        code: `# [10, 20, 30, 40, 50, 60, 70]  Target = 60
+# Middle: 40 → 60 > 40 → discard left half
+# [50, 60, 70] → Middle: 60 → FOUND!
+
+def binary_search(numbers, target):
+    low = 0
+    high = len(numbers) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if numbers[mid] == target:
+            return mid
+        elif target < numbers[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return -1
+
+# Complexity: O(log n)  |  Sorted data REQUIRED`,
+        explanation: "Memory: Binary Search = keep half, discard half. Much faster than linear on sorted data."
+      },
+      {
+        title: "4. Hashing & Final Mental Map",
+        code: `# HASHING — Hash function → bucket → O(1) average
+# Python dictionaries are hash-based mappings
+
+# Hash Collision: Two keys → same bucket
+# Key A ─┐
+#        ├──→ Bucket 5
+# Key B ─┘
+
+# ──── FINAL MENTAL MAP ────
+#            DATA STRUCTURES + ALGORITHMS
+#                       |
+#     ┌─────────────────┼─────────────────┐
+#     ↓                 ↓                 ↓
+#   QUEUE            SORTING          SEARCHING
+#     |                 |                 |
+#   FIFO         ┌──────┼──────┐    ┌─────┼─────┐
+#     |          ↓      ↓      ↓    ↓     ↓     ↓
+#  Enqueue   Bubble  Select Insert Linear Binary Hash
+#  Dequeue      |      |      |     |      |      |
+#     |     Neighbor  Min   Cards  One    Half  Bucket
+#   Deque                          by one`,
+        explanation: "Queue = FIFO. Sorting: Bubble (neighbours), Selection (minimum), Insertion (cards). Searching: Linear (one by one), Binary (halves sorted space), Hashing (calculates where to look)."
+      }
+    ]
   }
 ];
 
