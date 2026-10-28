@@ -608,7 +608,7 @@ function initCheatSheets() {
                 <div class="subcard-title">${card.title}</div>
                 ${card.code ? `<pre class="code-block"><code>${escapeHtml(card.code)}</code></pre>` : ''}
                 ${card.table ? renderCheatTable(card.table) : ''}
-                <div class="code-explanation"><strong>💡 Exam Insight:</strong> ${card.explanation}</div>
+                ${card.explanation ? `<div class="code-explanation"><strong>💡 Exam Insight:</strong> ${card.explanation}</div>` : ''}
               </div>
             `).join('')}
           </div>
