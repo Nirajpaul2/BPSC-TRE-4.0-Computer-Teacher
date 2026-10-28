@@ -1,1331 +1,1636 @@
-// BPSC TRE 4.0 Computer Teacher Portal - Main Application Logic
-// Author: R&D Education Hub
+/**
+ * BPSC TRE 4.0 Computer Science — Dashboard Controller
+ * Dynamic rendering, search filter, topic checklist tracking, and theme management
+ */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initApp();
-});
+(function () {
+  'use strict';
 
-function initApp() {
-  initTheme();
-  initNavigation();
-  initSearch();
-  initDashboard();
-  initBlueprint();
-  initNcertLibrary();
-  initMasterSyllabus();
-  initStudyTracker();
-  initCheatSheets();
-  initQuizEngine();
-  initDailyNotes();
-  updateGlobalStats();
-  initPaywallEvents();
-}
+  // Constants & Storage Keys
+  const STORAGE_KEY_TOPICS = 'tre4_cs_completed_topics';
+  const STORAGE_KEY_THEME = 'tre4_cs_theme';
 
-// -------------------------------------------------------------
-// Access Control & Freemium State Manager
-// -------------------------------------------------------------
-function isUnlocked() {
-  return localStorage.getItem('bpsc_unlocked') === 'true';
-}
+  // State Management
+  let completedTopics = new Set();
+  let currentFilter = 'ncert-11';
+  let searchQuery = '';
+  let allExpanded = false;
 
-function setUnlocked(status, paymentId = 'MANUAL_PASS') {
-  if (status) {
-    localStorage.setItem('bpsc_unlocked', 'true');
-    localStorage.setItem('bpsc_payment_id', paymentId);
-    localStorage.setItem('bpsc_paid_date', new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }));
-  } else {
-    localStorage.removeItem('bpsc_unlocked');
-    localStorage.removeItem('bpsc_payment_id');
-    localStorage.removeItem('bpsc_paid_date');
-  }
-  // Re-render UI components with new access state
-  initMasterSyllabus();
-  initNcertLibrary();
-  initStudyTracker();
-  initCheatSheets();
-  initDashboard();
-  updateGlobalStats();
-  loadQuestion(currentQuestionIndex);
-}
+  // DOM Elements
+  const unitsContainer = document.getElementById('unitsContainer');
+  const searchInput = document.getElementById('searchInput');
+  const searchClearBtn = document.getElementById('searchClearBtn');
+  const filterPillsContainer = document.getElementById('filterPillsContainer');
+  const masterPercent = document.getElementById('masterPercent');
+  const masterTopicCount = document.getElementById('masterTopicCount');
+  const masterProgressBar = document.getElementById('masterProgressBar');
+  const visibleUnitsCount = document.getElementById('visibleUnitsCount');
+  const noResultsState = document.getElementById('noResultsState');
+  const resetSearchBtn = document.getElementById('resetSearchBtn');
+  const toggleAllBtn = document.getElementById('toggleAllBtn');
+  const toggleAllIcon = document.getElementById('toggleAllIcon');
+  const toggleAllText = document.getElementById('toggleAllText');
+  const printBtn = document.getElementById('printBtn');
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  const resetProgressBtn = document.getElementById('resetProgressBtn');
+  const cutoffBtn = document.getElementById('cutoffBtn');
+  const footerCutoffLink = document.getElementById('footerCutoffLink');
+  const cutoffModal = document.getElementById('cutoffModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
 
-// -------------------------------------------------------------
-// Theme Management
-// -------------------------------------------------------------
-function initTheme() {
-  const savedTheme = localStorage.getItem('bpsc_theme') || 'dark';
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-    const icon = document.getElementById('theme-icon');
-    if (icon) icon.textContent = '☀️';
-  }
-
-  const themeBtn = document.getElementById('btn-toggle-theme');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      const isLight = document.body.classList.contains('light-theme');
-      localStorage.setItem('bpsc_theme', isLight ? 'light' : 'dark');
-      const icon = document.getElementById('theme-icon');
-      if (icon) icon.textContent = isLight ? '☀️' : '🌙';
-    });
-  }
-}
-
-// -------------------------------------------------------------
-// Navigation Tabs
-// -------------------------------------------------------------
-function initNavigation() {
-  const navButtons = document.querySelectorAll('.nav-tab-btn');
-  const tabPanes = document.querySelectorAll('.tab-pane');
-
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetTabId = btn.getAttribute('data-tab');
-
-      navButtons.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(p => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      const targetPane = document.getElementById(targetTabId);
-      if (targetPane) targetPane.classList.add('active');
-
-      if (window.telemetryTrackScreen) {
-        window.telemetryTrackScreen(targetTabId);
+  // Load Saved Topics
+  function loadSavedTopics() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY_TOPICS);
+      if (stored) {
+        const arr = JSON.parse(stored);
+        if (Array.isArray(arr)) {
+          completedTopics = new Set(arr);
+        }
       }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-}
-
-function switchTab(tabId) {
-  const btn = document.querySelector(`.nav-tab-btn[data-tab="${tabId}"]`);
-  if (btn) btn.click();
-}
-
-// -------------------------------------------------------------
-// Global Search Filter
-// -------------------------------------------------------------
-function initSearch() {
-  const searchInput = document.getElementById('global-search-input');
-  if (!searchInput) return;
-
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    if (query.length < 2) {
-      document.querySelectorAll('.unit-card, .ncert-card').forEach(el => el.style.display = '');
-      return;
+    } catch (e) {
+      console.error('Error loading completed topics from localStorage:', e);
+      completedTopics = new Set();
     }
+  }
 
-    // Switch to syllabus tab if searching
-    const activeTab = document.querySelector('.nav-tab-btn.active').getAttribute('data-tab');
-    if (activeTab !== 'tab-syllabus' && activeTab !== 'tab-ncert') {
-      switchTab('tab-syllabus');
+  // Save Topics
+  function saveTopics() {
+    try {
+      localStorage.setItem(STORAGE_KEY_TOPICS, JSON.stringify(Array.from(completedTopics)));
+    } catch (e) {
+      console.error('Error saving topics to localStorage:', e);
     }
+  }
 
-    // Filter unit cards
-    document.querySelectorAll('.unit-card').forEach(card => {
-      const text = card.textContent.toLowerCase();
-      if (text.includes(query)) {
-        card.style.display = '';
-        card.classList.add('open');
+  // Theme Management
+  function initTheme() {
+    // Default to 'warm' light mode for comfortable prolonged studying sessions without eye strain
+    let savedTheme = localStorage.getItem(STORAGE_KEY_THEME);
+    if (!savedTheme || savedTheme === 'light') {
+      savedTheme = 'warm';
+    }
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeUI(savedTheme);
+  }
+
+  function updateThemeUI(theme) {
+    const isWarm = theme === 'warm' || theme === 'light';
+    const themeLabel = document.getElementById('themeLabel');
+    if (themeIcon) {
+      themeIcon.textContent = isWarm ? '☀️' : '🌙';
+    }
+    if (themeLabel) {
+      themeLabel.textContent = isWarm ? 'Warm Light' : 'Night Mode';
+    }
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute('title', isWarm ? 'Switch to Night Mode (Dark)' : 'Switch to Warm Eye-Care Light');
+      if (isWarm) {
+        themeToggleBtn.classList.add('btn-warm-active');
       } else {
-        card.style.display = 'none';
+        themeToggleBtn.classList.remove('btn-warm-active');
       }
-    });
-
-    // Filter NCERT cards
-    document.querySelectorAll('.ncert-card').forEach(card => {
-      const text = card.textContent.toLowerCase();
-      card.style.display = text.includes(query) ? '' : 'none';
-    });
-  });
-}
-
-// -------------------------------------------------------------
-// Dashboard Rendering & Global Stats
-// -------------------------------------------------------------
-function initDashboard() {
-  updateGlobalStats();
-  renderCandidatePassBanner();
-}
-
-function renderCandidatePassBanner() {
-  const container = document.getElementById('candidate-pass-placeholder');
-  if (!container) return;
-
-  if (isUnlocked()) {
-    const paymentId = localStorage.getItem('bpsc_payment_id') || 'RZP_OFFICIAL_PASS';
-    const paidDate = localStorage.getItem('bpsc_paid_date') || 'Active';
-    container.innerHTML = `
-      <div class="verified-candidate-pass">
-        <div style="display: flex; align-items: center; gap: 0.85rem;">
-          <div style="font-size: 2.2rem;">🎖️</div>
-          <div>
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem;">
-              <span class="candidate-pass-badge">VERIFIED ASPIRANT PASS</span>
-              <strong style="font-size: 1.05rem; color: #34d399;">Full Course Lifetime Access Active</strong>
-            </div>
-            <div style="font-size: 0.84rem; color: var(--text-muted);">
-              Reference ID: <code style="font-family: var(--font-mono); color: var(--accent-primary);">${paymentId}</code> • Activated: ${paidDate} • Access: <strong>All 12 Units Unlocked</strong>
-            </div>
-          </div>
-        </div>
-        <div>
-          <button class="btn-icon" onclick="printCandidatePass()" style="font-size: 0.8rem; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-            <span>🖨️</span> Save Receipt
-          </button>
-        </div>
-      </div>
-    `;
-  } else {
-    container.innerHTML = `
-      <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(244, 63, 94, 0.12)); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <span style="font-size: 1.5rem;">🔓</span>
-          <div>
-            <strong>Unit 1 is 100% Free!</strong>
-            <div style="font-size: 0.84rem; color: var(--text-muted);">
-              Unlock Units 2–12, All 24 NCERT Study Notes, and Full Mock Exams for only <span style="color: #34d399; font-weight: 800;">₹9</span>.
-            </div>
-          </div>
-        </div>
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-          <button class="btn-restore-nav" onclick="openRestoreModal()" style="font-size: 0.82rem; padding: 0.4rem 0.75rem;">
-            <span>🔄</span> Already Paid? Restore
-          </button>
-          <button class="btn-unlock-course" onclick="openPaywallModal('Full Course Access')">
-            <span>✨</span> Unlock Full Access @ ₹9
-          </button>
-        </div>
-      </div>
-    `;
-  }
-}
-
-window.printCandidatePass = function() {
-  window.print();
-};
-
-function updateGlobalStats() {
-  const completedTopics = JSON.parse(localStorage.getItem('bpsc_completed_units') || '[]');
-  const totalUnits = SYLLABUS_DATA.length;
-  const unitPct = Math.round((completedTopics.length / totalUnits) * 100);
-
-  const unitStatEl = document.getElementById('stat-units-completed');
-  if (unitStatEl) unitStatEl.textContent = `${completedTopics.length} / ${totalUnits} (${unitPct}%)`;
-
-  const planState = JSON.parse(localStorage.getItem('bpsc_study_plan_state') || '{}');
-  let totalTasks = 0;
-  let doneTasks = 0;
-  STUDY_PLAN_DATA.forEach(w => {
-    w.milestones.forEach(m => {
-      totalTasks++;
-      if (planState[m.id]) doneTasks++;
-    });
-  });
-
-  const taskPct = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
-  const taskStatEl = document.getElementById('stat-tasks-completed');
-  if (taskStatEl) taskStatEl.textContent = `${doneTasks} / ${totalTasks} (${taskPct}%)`;
-
-  const bestScore = localStorage.getItem('bpsc_quiz_best_score') || '0';
-  const quizStatEl = document.getElementById('stat-quiz-score');
-  if (quizStatEl) quizStatEl.textContent = `${bestScore} / ${QUIZ_QUESTIONS.length}`;
-}
-
-// -------------------------------------------------------------
-// Blueprint Tab
-// -------------------------------------------------------------
-function initBlueprint() {
-  const container = document.getElementById('blueprint-content');
-  if (!container) return;
-
-  const tiers = [
-    {
-      name: "Tier 1: High Weightage (~50% of Subject)",
-      cls: "tier-1",
-      badge: "badge-tier tier-1",
-      desc: "Critical Merit-Maker: Dedicated 40–49 marks. Master this tier first before touching any minor topic!",
-      topics: [
-        { name: "Programming & OOPs (Python Core Focus)", q: "18–22 Questions", ncert: "kecs105–110, lecs101–102", prio: "⭐⭐⭐ Top Priority" },
-        { name: "Database Management (DBMS & SQL)", q: "12–15 Questions", ncert: "lecs108–109", prio: "⭐⭐⭐ High Scoring" },
-        { name: "Computer Networks & Data Communication", q: "10–12 Questions", ncert: "lecs110–111", prio: "⭐⭐⭐ Critical" }
-      ]
-    },
-    {
-      name: "Tier 2: Medium Weightage (~35% of Subject)",
-      cls: "tier-2",
-      badge: "badge-tier tier-2",
-      desc: "Core Engineering Fundamentals: Yields 20–26 marks. Contains high-scoring numericals (CPU scheduling, Postfix, K-Maps).",
-      topics: [
-        { name: "Operating Systems (OS)", q: "8–10 Questions", ncert: "Core CS Curriculum", prio: "⭐⭐ Scheduling Numericals" },
-        { name: "Boolean Algebra & Digital Logic", q: "6–8 Questions", ncert: "kecs102.pdf", prio: "⭐⭐ De Morgan & K-Maps" },
-        { name: "Data Structures & Algorithms", q: "6–8 Questions", ncert: "lecs103–106.pdf", prio: "⭐⭐ Stacks & Complexities" }
-      ]
-    },
-    {
-      name: "Tier 3: Foundation & General (~15% of Subject)",
-      cls: "tier-3",
-      badge: "badge-tier tier-3",
-      desc: "Foundation & Office Suite: Yields 10–12 marks combined. Do NOT over-spend study time on these.",
-      topics: [
-        { name: "Computer Fundamentals & Architecture", q: "4–5 Questions", ncert: "kecs101.pdf", prio: "⭐ Memory & Generations" },
-        { name: "Web Technologies & Cyber Security", q: "4–5 Questions", ncert: "lecs112, kecs111", prio: "⭐ HTML Tags & IT Act" },
-        { name: "Emerging Trends (AI, IoT, Cloud)", q: "1–2 Questions", ncert: "kecs103.pdf", prio: "⭐ Cloud Models & Big Data" },
-        { name: "MS Office & General ICT", q: "1–2 Questions", ncert: "General ICT", prio: "⭐ Excel Formulas & Shortcuts" }
-      ]
     }
-  ];
-
-  let html = '';
-  tiers.forEach(t => {
-    html += `
-      <div class="blueprint-card">
-        <div class="tier-header">
-          <div class="tier-title">
-            <span class="${t.badge}">${t.name.split(':')[0]}</span>
-            <span>${t.name.split(':')[1]}</span>
-          </div>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">${t.desc}</p>
-        <div>
-          ${t.topics.map(row => `
-            <div class="topic-row">
-              <div class="topic-meta">
-                <span class="topic-name">${row.name}</span>
-                <span class="topic-ncert-badge">${row.ncert}</span>
-              </div>
-              <div class="topic-stats">
-                <span class="topic-questions">${row.q}</span>
-                <span class="topic-priority">${row.prio}</span>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `;
-  });
-
-  container.innerHTML = html;
-}
-
-// -------------------------------------------------------------
-// NCERT Digital Companion Library
-// -------------------------------------------------------------
-function initNcertLibrary() {
-  const container = document.getElementById('ncert-cards-container');
-  if (!container) return;
-
-  renderNcertCards('all');
-
-  const filterBtns = document.querySelectorAll('.btn-ncert-filter');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderNcertCards(btn.getAttribute('data-filter'));
-    });
-  });
-}
-
-function renderNcertCards(filter) {
-  const container = document.getElementById('ncert-cards-container');
-  if (!container) return;
-
-  const unlocked = isUnlocked();
-  let chaptersToRender = [];
-
-  if (filter === 'all' || filter === 'class11') {
-    NCERT_DATA.class11.chapters.forEach(ch => chaptersToRender.push({ ...ch, classTitle: "Class 11" }));
-  }
-  if (filter === 'all' || filter === 'class12') {
-    NCERT_DATA.class12.chapters.forEach(ch => chaptersToRender.push({ ...ch, classTitle: "Class 12" }));
-  }
-  if (filter === 'critical') {
-    [...NCERT_DATA.class11.chapters, ...NCERT_DATA.class12.chapters].forEach(ch => {
-      if (ch.relevance === 'Critical') chaptersToRender.push(ch);
-    });
   }
 
-  container.innerHTML = chaptersToRender.map(ch => {
-    const canAccess = ch.isFree || unlocked;
-    return `
-      <div class="ncert-card">
-        <div class="ncert-card-top">
-          <div class="ncert-card-header">
-            <span class="ncert-file-code">${ch.fileName}</span>
-            <div style="display: flex; gap: 0.4rem; align-items: center;">
-              ${ch.isFree ? '<span class="badge-free-preview">🟢 Free</span>' : (!unlocked ? '<span class="badge-locked-unit">🔒 ₹9</span>' : '<span class="badge-free-preview">✓ Unlocked</span>')}
-              <span class="badge-tier ${ch.relevanceBadge}">${ch.relevance}</span>
-            </div>
-          </div>
-          <div class="ncert-chapter-title">Ch. ${ch.chapterNumber}: ${ch.title}</div>
-          <div class="ncert-focus-box">
-            <strong>💡 BPSC Exam Focus:</strong> ${ch.bpscFocus}
-          </div>
-          <div style="font-size: 0.83rem; color: var(--text-dim); margin-bottom: 0.5rem;">
-            <strong>Key Topics:</strong> ${ch.topics.join(' • ')}
-          </div>
-        </div>
-        <div class="ncert-card-footer">
-          <span style="font-size: 0.8rem; color: var(--text-muted);">${ch.fileName.startsWith('k') ? 'Class 11 (kecs1dd)' : 'Class 12 (lecs1dd)'}</span>
-          ${canAccess ? `
-            <a href="${ch.pdfPath}" target="_blank" class="btn-open-pdf">
-              <span>📖</span> Open PDF
-            </a>
-          ` : `
-            <button class="btn-unlock-course" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;" onclick="openPaywallModal('NCERT ${ch.fileName}')">
-              <span>🔒</span> Unlock (₹9)
-            </button>
-          `}
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-// -------------------------------------------------------------
-// Master Syllabus (12 Units with Collapsible Accordion & Freemium)
-// -------------------------------------------------------------
-function initMasterSyllabus() {
-  const container = document.getElementById('syllabus-accordion-container');
-  if (!container) return;
-
-  const completedUnits = JSON.parse(localStorage.getItem('bpsc_completed_units') || '[]');
-  const unlocked = isUnlocked();
-
-  container.innerHTML = SYLLABUS_DATA.map(unit => {
-    const isCompleted = completedUnits.includes(unit.id);
-    const accessible = unit.isFree || unlocked;
-
-    return `
-      <div class="unit-card ${isCompleted ? 'completed' : ''}" id="card-${unit.id}">
-        <div class="unit-header" onclick="toggleUnitAccordion('${unit.id}')">
-          <div class="unit-header-left">
-            <div class="unit-number">${unit.unitNumber}</div>
-            <div class="unit-title-group">
-              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                <h3>${unit.title}</h3>
-                ${unit.isFree ? '<span class="badge-free-preview">🟢 100% Free Preview</span>' : (!unlocked ? '<span class="badge-locked-unit">🔒 Unlock for ₹9</span>' : '<span class="badge-free-preview">✅ Premium Unlocked</span>')}
-                ${unit.treTag ? `<span class="tre-freq-badge">${unit.treTag}</span>` : ''}
-              </div>
-              <div class="unit-meta">
-                <span class="badge-tier ${unit.tierClass}">${unit.tier}</span>
-                <span><strong>Weightage:</strong> ${unit.weightage}</span>
-                <span><strong>Source:</strong> ${unit.ncertRef}</span>
-              </div>
-            </div>
-          </div>
-          <div class="unit-header-right">
-            <button class="btn-icon" style="padding: 0.35rem 0.65rem; font-size: 0.78rem;" onclick="event.stopPropagation(); toggleUnitComplete('${unit.id}')">
-              ${isCompleted ? '✅ Completed' : '⭕ Mark Done'}
-            </button>
-            <span class="accordion-arrow">▼</span>
-          </div>
-        </div>
-        <div class="unit-body">
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.85rem; border-left: 3px solid var(--accent-primary); padding-left: 0.75rem;">
-            ${unit.summary}
-          </p>
-
-          ${unit.pedagogyTip ? `
-            <div class="pedagogy-box">
-              ${unit.pedagogyTip}
-            </div>
-          ` : ''}
-
-          ${accessible ? `
-            ${unit.chapters.map(ch => `
-              <div class="chapter-block">
-                <div class="chapter-title">📘 ${ch.title}</div>
-                <ul class="topic-list">
-                  ${ch.topics.map(t => `<li class="topic-item">${t}</li>`).join('')}
-                </ul>
-              </div>
-            `).join('')}
-          ` : `
-            <div class="locked-unit-wrapper">
-              <div class="locked-blur-preview">
-                ${unit.chapters.map(ch => `
-                  <div class="chapter-block">
-                    <div class="chapter-title">📘 ${ch.title}</div>
-                    <ul class="topic-list">
-                      ${ch.topics.slice(0, 3).map(t => `<li class="topic-item">${t}</li>`).join('')}
-                    </ul>
-                  </div>
-                `).join('')}
-              </div>
-              <div class="locked-paywall-banner">
-                <div style="font-size: 1.15rem; font-weight: 800; color: #fbbf24;">
-                  🔒 Premium Unit Content Locked
-                </div>
-                <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 500px; margin: 0 auto;">
-                  This unit carries <strong>${unit.weightage}</strong> in the BPSC TRE exam. Unlock full detailed subtopics, dry-runs, formulas, and practice notes for only ₹9.
-                </p>
-                <button class="btn-unlock-course" onclick="openPaywallModal('${unit.title}')">
-                  <span>✨</span> Unlock All 12 Units for ₹9
-                </button>
-              </div>
-            </div>
-          `}
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-window.toggleUnitAccordion = function(unitId) {
-  const card = document.getElementById(`card-${unitId}`);
-  if (card) {
-    card.classList.toggle('open');
-  }
-};
-
-window.toggleUnitComplete = function(unitId) {
-  let completedUnits = JSON.parse(localStorage.getItem('bpsc_completed_units') || '[]');
-  if (completedUnits.includes(unitId)) {
-    completedUnits = completedUnits.filter(id => id !== unitId);
-  } else {
-    completedUnits.push(unitId);
-  }
-  localStorage.setItem('bpsc_completed_units', JSON.stringify(completedUnits));
-  initMasterSyllabus();
-  updateGlobalStats();
-};
-
-// -------------------------------------------------------------
-// 8-Week Study Tracker (Freemium: Week 1 Free, Weeks 2-8 Locked)
-// -------------------------------------------------------------
-function initStudyTracker() {
-  const container = document.getElementById('study-plan-container');
-  if (!container) return;
-
-  const planState = JSON.parse(localStorage.getItem('bpsc_study_plan_state') || '{}');
-  const unlocked = isUnlocked();
-
-  container.innerHTML = STUDY_PLAN_DATA.map(week => {
-    let weekDone = 0;
-    week.milestones.forEach(m => {
-      if (planState[m.id]) weekDone++;
-    });
-    const weekPct = Math.round((weekDone / week.milestones.length) * 100);
-    const isWeekFree = week.weekNumber === 1 || unlocked;
-
-    return `
-      <div class="week-container">
-        <div class="week-header">
-          <div class="week-title">
-            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
-              <h3>${week.title}</h3>
-              ${week.weekNumber === 1 ? '<span class="badge-free-preview">🟢 Free Trial Week</span>' : (!unlocked ? '<span class="badge-locked-unit">🔒 Unlock @ ₹9</span>' : '<span class="badge-free-preview">✓ Unlocked</span>')}
-            </div>
-            <p>🎯 ${week.focus} | ⏳ ${week.targetHours} | 📚 ${week.ncertChapters.join(', ')}</p>
-          </div>
-          <div class="week-progress-badge">
-            ${weekDone} / ${week.milestones.length} Done (${weekPct}%)
-          </div>
-        </div>
-
-        ${isWeekFree ? `
-          <ul class="milestones-list">
-            ${week.milestones.map(m => {
-              const isChecked = !!planState[m.id];
-              return `
-                <li class="milestone-item ${isChecked ? 'checked' : ''}" id="item-${m.id}">
-                  <input type="checkbox" class="milestone-checkbox" id="chk-${m.id}" ${isChecked ? 'checked' : ''} onchange="toggleMilestone('${m.id}')">
-                  <div class="milestone-content">
-                    <div class="milestone-day">${m.day} • [${m.ncertRef}]</div>
-                    <div class="milestone-text">${m.task}</div>
-                  </div>
-                </li>
-              `;
-            }).join('')}
-          </ul>
-        ` : `
-          <div style="padding: 1.5rem; text-align: center; background: rgba(15, 23, 42, 0.6);">
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem;">
-              🔒 Week ${week.weekNumber} daily checkpoints and revision trackers are part of the full curriculum.
-            </p>
-            <button class="btn-unlock-course" onclick="openPaywallModal('Week ${week.weekNumber} Study Plan')">
-              <span>✨</span> Unlock 8-Week Roadmap @ ₹9
-            </button>
-          </div>
-        `}
-      </div>
-    `;
-  }).join('');
-}
-
-window.toggleMilestone = function(id) {
-  const planState = JSON.parse(localStorage.getItem('bpsc_study_plan_state') || '{}');
-  planState[id] = !planState[id];
-  localStorage.setItem('bpsc_study_plan_state', JSON.stringify(planState));
-
-  const item = document.getElementById(`item-${id}`);
-  if (item) item.classList.toggle('checked', planState[id]);
-
-  initStudyTracker();
-  updateGlobalStats();
-};
-
-window.resetStudyPlan = function() {
-  if (confirm("Are you sure you want to reset all 8-Week checkpoints?")) {
-    localStorage.removeItem('bpsc_study_plan_state');
-    initStudyTracker();
-    updateGlobalStats();
-  }
-};
-
-// -------------------------------------------------------------
-// Quick Revision Cheat Sheets
-// -------------------------------------------------------------
-function initCheatSheets() {
-  const container = document.getElementById('cheatsheets-container');
-  if (!container) return;
-
-  const unlocked = isUnlocked();
-
-  container.innerHTML = CHEATSHEETS_DATA.map((cs, idx) => {
-    // Cheat sheet 1 is free preview; rest require unlock
-    const isCsFree = idx === 0 || unlocked;
-
-    return `
-      <div class="cheatsheet-card">
-        <div class="cheatsheet-header">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="badge-tier tier-1" style="margin-bottom: 0.35rem;">${cs.category}</span>
-            ${idx === 0 ? '<span class="badge-free-preview">🟢 Free Preview</span>' : (!unlocked ? '<span class="badge-locked-unit">🔒 Unlock @ ₹9</span>' : '<span class="badge-free-preview">✓ Unlocked</span>')}
-          </div>
-          <h3>${cs.title}</h3>
-          <p>${cs.summary}</p>
-        </div>
-
-        ${isCsFree ? `
-          <div class="cheatsheet-body">
-            ${cs.cards.map(card => `
-              <div class="subcard">
-                <div class="subcard-title">${card.title}</div>
-                ${card.code ? `<pre class="code-block"><code>${escapeHtml(card.code)}</code></pre>` : ''}
-                ${card.table ? renderCheatTable(card.table) : ''}
-                ${card.explanation ? `<div class="code-explanation"><strong>💡 Exam Insight:</strong> ${card.explanation}</div>` : ''}
-              </div>
-            `).join('')}
-          </div>
-        ` : `
-          <div style="padding: 2rem; text-align: center; background: rgba(15, 23, 42, 0.6);">
-            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">
-              🔒 Master Cheat Sheet for <strong>${cs.title}</strong> is locked. Unlock all revision cheat sheets for ₹9.
-            </p>
-            <button class="btn-unlock-course" onclick="openPaywallModal('${cs.title}')">
-              <span>✨</span> Unlock All Cheat Sheets @ ₹9
-            </button>
-          </div>
-        `}
-      </div>
-    `;
-  }).join('');
-}
-
-function renderCheatTable(table) {
-  if (!table || table.length === 0) return '';
-  const keys = Object.keys(table[0]);
-  return `
-    <table class="data-table">
-      <thead>
-        <tr>${keys.map(k => `<th>${k.toUpperCase()}</th>`).join('')}</tr>
-      </thead>
-      <tbody>
-        ${table.map(row => `
-          <tr>${keys.map(k => `<td>${row[k]}</td>`).join('')}</tr>
-        `).join('')}
-      </tbody>
-    </table>
-  `;
-}
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-// -------------------------------------------------------------
-// Interactive BPSC Pattern Quiz Engine (Freemium: Q1-Q3 Free)
-// -------------------------------------------------------------
-let currentQuestionIndex = 0;
-let userAnswers = {};
-let quizSubmitted = false;
-let negativeMarking = 0.33; // Default 1/3 negative marking
-
-function initQuizEngine() {
-  const negToggle = document.getElementById('chk-neg-marking');
-  if (negToggle) {
-    negToggle.addEventListener('change', (e) => {
-      negativeMarking = e.target.checked ? 0.33 : 0.0;
-      const label = document.getElementById('neg-marking-label');
-      if (label) label.textContent = e.target.checked ? "Negative Marking (1/3 mark deduction)" : "No Negative Marking (0 mark deduction)";
-    });
-  }
-  loadQuestion(0);
-}
-
-function loadQuestion(index) {
-  currentQuestionIndex = index;
-  const q = QUIZ_QUESTIONS[index];
-  const container = document.getElementById('quiz-question-container');
-  if (!container || !q) return;
-
-  const unlocked = isUnlocked();
-  // Questions beyond index 2 (Q4+) require unlock
-  const canAttempt = index < 3 || unlocked;
-
-  if (!canAttempt) {
-    container.innerHTML = `
-      <div style="padding: 2.5rem 1.5rem; text-align: center; background: var(--bg-tertiary); border-radius: var(--radius-sm); border: 2px dashed rgba(245, 158, 11, 0.4);">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔒</div>
-        <h3 style="font-size: 1.25rem; font-weight: 800; color: #fbbf24; margin-bottom: 0.5rem;">
-          Diagnostic Mock Test Question ${index + 1} Locked
-        </h3>
-        <p style="color: var(--text-muted); font-size: 0.92rem; max-width: 480px; margin: 0 auto 1.25rem auto;">
-          Questions 1 to 3 were free diagnostic samples. Unlock Questions 4 to ${QUIZ_QUESTIONS.length} plus all future full-length 80-question BPSC mocks for only ₹9.
-        </p>
-        <button class="btn-unlock-course" onclick="openPaywallModal('Full Mock Test')">
-          <span>✨</span> Unlock Full Mock Test Bank @ ₹9
-        </button>
-      </div>
-    `;
-
-    const prevBtn = document.getElementById('btn-quiz-prev');
-    const nextBtn = document.getElementById('btn-quiz-next');
-    const submitBtn = document.getElementById('btn-quiz-submit');
-    if (prevBtn) prevBtn.disabled = false;
-    if (nextBtn) nextBtn.style.display = 'none';
-    if (submitBtn) submitBtn.style.display = 'none';
-    return;
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'warm';
+    const isCurrentlyWarm = currentTheme === 'warm' || currentTheme === 'light';
+    const newTheme = isCurrentlyWarm ? 'dark' : 'warm';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem(STORAGE_KEY_THEME, newTheme);
+    updateThemeUI(newTheme);
   }
 
-  const savedAnswer = userAnswers[q.id];
+  // Escape HTML Helper
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 
-  container.innerHTML = `
-    <div class="quiz-question-box">
-      <div class="quiz-question-header">
-        <span class="quiz-question-num">Question ${index + 1} of ${QUIZ_QUESTIONS.length} ${index < 3 ? '(Free Sample)' : ''}</span>
-        <span class="badge-tier tier-1">${q.unit}</span>
-      </div>
-      <div class="quiz-question-text">${q.question}</div>
-      <div class="quiz-options-list">
-        ${q.options.map((opt, optIndex) => {
-          let btnClass = 'quiz-option-btn';
-          if (savedAnswer === optIndex) btnClass += ' selected';
-          if (quizSubmitted) {
-            if (optIndex === q.correctAnswer) btnClass += ' correct';
-            else if (savedAnswer === optIndex && savedAnswer !== q.correctAnswer) btnClass += ' wrong';
+  // Highlight Matching Search Text
+  function highlightText(text, query) {
+    if (!query) return escapeHtml(text);
+    const escapedText = escapeHtml(text);
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    return escapedText.replace(regex, '<mark style="background:rgba(251,191,36,0.3); color:inherit; padding:0 2px; border-radius:3px;">$1</mark>');
+  }
+
+  // Calculate Overall Progress
+  function updateMasterProgress() {
+    let totalTopics = 0;
+    let totalCompleted = 0;
+
+    SYLLABUS_DATA.forEach(unit => {
+      unit.chapters.forEach((chapter, chIdx) => {
+        chapter.topics.forEach((topic, tIdx) => {
+          totalTopics++;
+          const topicId = `topic-${unit.id}-ch${chIdx}-t${tIdx}`;
+          if (completedTopics.has(topicId)) {
+            totalCompleted++;
           }
-          const letters = ['(A)', '(B)', '(C)', '(D)', '(E)'];
-          return `
-            <button class="${btnClass}" ${quizSubmitted ? 'disabled' : ''} onclick="selectQuizOption('${q.id}', ${optIndex})">
-              <span class="option-prefix">${letters[optIndex]}</span>
-              <span>${opt}</span>
-            </button>
-          `;
-        }).join('')}
-      </div>
-
-      ${quizSubmitted ? `
-        <div class="quiz-explanation-box">
-          <strong style="color: var(--accent-primary);">💡 Detailed Solution & Explanation:</strong><br>
-          ${q.explanation}
-        </div>
-      ` : ''}
-    </div>
-  `;
-
-  const prevBtn = document.getElementById('btn-quiz-prev');
-  const nextBtn = document.getElementById('btn-quiz-next');
-  const submitBtn = document.getElementById('btn-quiz-submit');
-
-  if (prevBtn) prevBtn.disabled = index === 0;
-  if (nextBtn) {
-    if (index === QUIZ_QUESTIONS.length - 1) {
-      nextBtn.style.display = 'none';
-      if (submitBtn) submitBtn.style.display = 'inline-flex';
-    } else {
-      nextBtn.style.display = 'inline-flex';
-      if (submitBtn) submitBtn.style.display = quizSubmitted ? 'none' : 'inline-flex';
-    }
-  }
-}
-
-window.selectQuizOption = function(qId, optIndex) {
-  if (quizSubmitted) return;
-  userAnswers[qId] = optIndex;
-  loadQuestion(currentQuestionIndex);
-};
-
-window.prevQuizQuestion = function() {
-  if (currentQuestionIndex > 0) loadQuestion(currentQuestionIndex - 1);
-};
-
-window.nextQuizQuestion = function() {
-  if (currentQuestionIndex < QUIZ_QUESTIONS.length - 1) loadQuestion(currentQuestionIndex + 1);
-};
-
-window.submitQuiz = function() {
-  quizSubmitted = true;
-
-  let correctCount = 0;
-  let wrongCount = 0;
-  let unattemptedCount = 0;
-
-  QUIZ_QUESTIONS.forEach(q => {
-    const ans = userAnswers[q.id];
-    if (ans === undefined) {
-      unattemptedCount++;
-    } else if (ans === q.correctAnswer) {
-      correctCount++;
-    } else {
-      wrongCount++;
-    }
-  });
-
-  const finalScore = (correctCount * 1.0) - (wrongCount * negativeMarking);
-  const roundedScore = Math.max(0, Math.round(finalScore * 100) / 100);
-
-  localStorage.setItem('bpsc_quiz_best_score', correctCount.toString());
-  updateGlobalStats();
-
-  const scoreModal = document.getElementById('quiz-score-modal');
-  const scoreSummary = document.getElementById('quiz-score-summary');
-  if (scoreModal && scoreSummary) {
-    scoreSummary.innerHTML = `
-      <div style="text-align: center; margin-bottom: 1.5rem;">
-        <div style="font-size: 3rem; font-weight: 800; color: ${roundedScore >= 6 ? 'var(--accent-emerald)' : 'var(--accent-amber)'};">
-          ${roundedScore} / ${QUIZ_QUESTIONS.length}
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">
-          ${roundedScore >= 6 ? '🎉 Outstanding Preparation! You are in the Merit Cutoff Zone.' : 'Keep practicing! Focus on Tier 1 (Python, DBMS, Networks).'}
-        </p>
-      </div>
-      <table class="data-table">
-        <tr><td><strong>Total Questions</strong></td><td>${QUIZ_QUESTIONS.length}</td></tr>
-        <tr><td><strong>Correct Answers (+1.0)</strong></td><td style="color: var(--accent-emerald); font-weight: 700;">+${correctCount}</td></tr>
-        <tr><td><strong>Wrong Answers (-${negativeMarking.toFixed(2)})</strong></td><td style="color: var(--accent-rose); font-weight: 700;">-${(wrongCount * negativeMarking).toFixed(2)}</td></tr>
-        <tr><td><strong>Unattempted</strong></td><td>${unattemptedCount}</td></tr>
-        <tr><td><strong>Calculated Marks</strong></td><td style="font-weight: 800; color: var(--accent-primary);">${roundedScore} Marks</td></tr>
-      </table>
-    `;
-    scoreModal.style.display = 'flex';
-    scoreModal.classList.add('open');
-  }
-
-  loadQuestion(currentQuestionIndex);
-};
-
-window.restartQuiz = function() {
-  userAnswers = {};
-  quizSubmitted = false;
-  currentQuestionIndex = 0;
-  const scoreModal = document.getElementById('quiz-score-modal');
-  if (scoreModal) {
-    scoreModal.style.display = 'none';
-    scoreModal.classList.remove('open');
-  }
-  loadQuestion(0);
-};
-
-window.closeScoreModal = function() {
-  const scoreModal = document.getElementById('quiz-score-modal');
-  if (scoreModal) {
-    scoreModal.style.display = 'none';
-    scoreModal.classList.remove('open');
-  }
-};
-
-// -------------------------------------------------------------
-// 💳 Razorpay ₹9 Paywall, Success Screen & Cross-Device Restore
-// -------------------------------------------------------------
-function initPaywallEvents() {
-  if (isUnlocked()) {
-    console.log("User has full unlocked access.");
-  }
-
-  // Close modals on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closePaywallModal();
-      closeRestoreModal();
-      closeSuccessModal();
-      closeScoreModal();
-      if (window.closeAdminAnalyticsModal) window.closeAdminAnalyticsModal();
-    }
-  });
-
-  // Close modal when clicking directly on backdrop overlay
-  document.querySelectorAll('.modal-overlay, .modal-backdrop').forEach(overlay => {
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        overlay.classList.remove('open');
-        overlay.style.display = 'none';
-      }
+        });
+      });
     });
-  });
-}
 
-window.openPaywallModal = function(sourceTitle = "Full Course") {
-  const modal = document.getElementById('paywall-checkout-modal');
-  const sourceTextEl = document.getElementById('paywall-source-context');
-  if (sourceTextEl) {
-    sourceTextEl.textContent = `Target: ${sourceTitle}`;
+    const percent = totalTopics > 0 ? Math.round((totalCompleted / totalTopics) * 100) : 0;
+    if (masterPercent) masterPercent.textContent = `${percent}%`;
+    if (masterTopicCount) masterTopicCount.textContent = `${totalCompleted} of ${totalTopics} topics prepared`;
+    if (masterProgressBar) masterProgressBar.style.width = `${percent}%`;
   }
-  if (modal) {
-    modal.style.display = 'flex';
-    modal.classList.add('open');
-  }
-  if (window.telemetryTrackScreen) {
-    window.telemetryTrackScreen('tab-paywall');
-  }
-};
 
-window.closePaywallModal = function() {
-  const modal = document.getElementById('paywall-checkout-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    modal.classList.remove('open');
-  }
-};
+  // Update Individual Unit Progress Pill
+  function updateUnitProgress(unitId) {
+    const unit = SYLLABUS_DATA.find(u => u.id === unitId);
+    if (!unit) return;
 
-window.openRestoreModal = function() {
-  closePaywallModal();
-  const modal = document.getElementById('restore-access-modal');
-  if (modal) {
-    const msgEl = document.getElementById('restore-status-msg');
-    if (msgEl) msgEl.innerHTML = '';
-    modal.style.display = 'flex';
-    modal.classList.add('open');
-  }
-  if (window.telemetryTrackAction) {
-    window.telemetryTrackAction('restore_modal_opened');
-  }
-};
+    let unitTotal = 0;
+    let unitCompleted = 0;
 
-window.promptAdminAnalytics = function() {
-  const code = prompt("🔒 Enter Admin Passcode to view Visitor & Drop-off Analytics:");
-  if (!code) return;
-  const cleanCode = code.trim().toUpperCase();
-  if (cleanCode === 'ADMIN2026' || cleanCode === 'TEACHER2026' || cleanCode === 'ADMIN') {
-    if (window.openAdminAnalyticsModal) {
-      window.openAdminAnalyticsModal();
-    }
-  } else {
-    alert("❌ Invalid Admin Passcode.");
-  }
-};
-
-window.closeRestoreModal = function() {
-  const modal = document.getElementById('restore-access-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    modal.classList.remove('open');
-  }
-};
-
-window.closeSuccessModal = function() {
-  const modal = document.getElementById('payment-success-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    modal.classList.remove('open');
-  }
-};
-
-// Record payment to backend database (payments_db.json)
-async function recordPaymentToBackend(paymentRecord) {
-  try {
-    await fetch('/api/record-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(paymentRecord)
+    unit.chapters.forEach((chapter, chIdx) => {
+      chapter.topics.forEach((topic, tIdx) => {
+        unitTotal++;
+        const topicId = `topic-${unit.id}-ch${chIdx}-t${tIdx}`;
+        if (completedTopics.has(topicId)) {
+          unitCompleted++;
+        }
+      });
     });
-  } catch (e) {
-    console.warn("Backend recording offline (using localStorage fallback):", e);
-  }
-}
 
-// Show Payment Confirmation & Success Screen
-function showPaymentSuccessModal(paymentId, candidateName, phone) {
-  closePaywallModal();
-  const modal = document.getElementById('payment-success-modal');
-  if (!modal) return;
-
-  const idEl = document.getElementById('success-payment-id-display');
-  const nameEl = document.getElementById('success-candidate-name');
-  const phoneEl = document.getElementById('success-candidate-phone');
-
-  if (idEl) idEl.textContent = paymentId;
-  if (nameEl) nameEl.textContent = candidateName;
-  if (phoneEl) phoneEl.textContent = phone;
-
-  modal.style.display = 'flex';
-  modal.classList.add('open');
-}
-
-window.copyPaymentIdToClipboard = function() {
-  const idEl = document.getElementById('success-payment-id-display');
-  const btn = document.getElementById('btn-copy-payment-id');
-  if (!idEl) return;
-
-  const textToCopy = idEl.textContent.trim();
-  navigator.clipboard.writeText(textToCopy).then(() => {
-    if (btn) {
-      btn.innerHTML = '<span>✓</span> Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.innerHTML = '<span>📋</span> Copy ID';
-        btn.classList.remove('copied');
-      }, 2500);
-    }
-  }).catch(() => {
-    alert(`Payment ID: ${textToCopy}`);
-  });
-};
-
-// Live Razorpay credentials (Production Key from LibraryBPSC)
-const RAZORPAY_LIVE_KEY = 'rzp_live_TDeXjTGJZV2T7v';
-const RAZORPAY_FALLBACK_LINK = 'https://rzp.io/rzp/f8vkVi7Y';
-
-// Clean up any stale test mock keys from browser storage
-try {
-  const cachedKey = localStorage.getItem('bpsc_rzp_key');
-  if (cachedKey && cachedKey.startsWith('rzp_test_')) {
-    localStorage.removeItem('bpsc_rzp_key');
-  }
-} catch (e) {}
-
-function loadRazorpayScript() {
-  return new Promise((resolve) => {
-    if (typeof Razorpay !== 'undefined') {
-      resolve(true);
-      return;
-    }
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
-}
-
-window.startRazorpayPayment = async function() {
-  const nameInput = document.getElementById('pay-name');
-  const phoneInput = document.getElementById('pay-phone');
-  const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "BPSC Computer Teacher Aspirant";
-  const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "";
-
-  const payBtn = document.querySelector('.btn-razorpay-pay');
-  const originalBtnContent = payBtn ? payBtn.innerHTML : '';
-  if (payBtn) {
-    payBtn.disabled = true;
-    payBtn.innerHTML = '<span>⏳ Opening Razorpay Secure Checkout...</span>';
-  }
-
-  const isLoaded = await loadRazorpayScript();
-  if (!isLoaded || typeof Razorpay === 'undefined') {
-    if (payBtn) {
-      payBtn.disabled = false;
-      payBtn.innerHTML = originalBtnContent;
-    }
-    alert("Unable to load Razorpay checkout popup. Please check your internet connection or use the Direct Payment link below.");
-    return;
-  }
-
-  // Strictly use verified Live Production Key
-  const rzpKey = window.RAZORPAY_KEY_ID || RAZORPAY_LIVE_KEY;
-
-  const options = {
-    key: rzpKey,
-    amount: 900, // 900 paise = Rs 9
-    currency: "INR",
-    name: "BPSC TRE 4.0 Computer Teacher",
-    description: "Lifetime Full Access — All 12 Units, 24 NCERT Notes & Mock Tests",
-    image: "assets/logo.jpg",
-    prefill: {
-      name: candidateName,
-      contact: candidatePhone,
-      email: ""
-    },
-    notes: {
-      exam: "BPSC TRE 4.0 Computer Teacher",
-      access: "Lifetime Full Access (₹9)"
-    },
-    theme: {
-      color: "#0284c7"
-    },
-    handler: function(response) {
-      if (payBtn) {
-        payBtn.disabled = false;
-        payBtn.innerHTML = originalBtnContent;
+    const pill = document.getElementById(`progress-pill-${unitId}`);
+    if (pill) {
+      const pct = unitTotal > 0 ? Math.round((unitCompleted / unitTotal) * 100) : 0;
+      pill.textContent = `${unitCompleted}/${unitTotal} (${pct}%)`;
+      if (pct === 100) {
+        pill.style.background = 'var(--tier-3-bg)';
+        pill.style.color = 'var(--tier-3-color)';
+        pill.style.borderColor = 'var(--tier-3-border)';
+      } else {
+        pill.style.background = 'var(--bg-tertiary)';
+        pill.style.color = 'var(--text-muted)';
+        pill.style.borderColor = 'var(--border-color)';
       }
-      const paymentId = response.razorpay_payment_id || `pay_${Date.now()}`;
-      
-      // Save locally
-      localStorage.setItem('bpsc_candidate_name', candidateName);
-      if (candidatePhone) localStorage.setItem('bpsc_phone', candidatePhone);
-      setUnlocked(true, paymentId);
+    }
+  }
 
-      // Record to backend DB
-      recordPaymentToBackend({
-        payment_id: paymentId,
-        name: candidateName,
-        phone: candidatePhone,
-        amount: 900,
-        timestamp: new Date().toISOString()
+  // Render Syllabus Dashboard
+  function renderDashboard() {
+    if (!unitsContainer || !Array.isArray(SYLLABUS_DATA)) return;
+
+    unitsContainer.innerHTML = '';
+    const q = searchQuery.trim().toLowerCase();
+    let visibleCount = 0;
+
+    SYLLABUS_DATA.forEach(unit => {
+      // Filter Evaluation
+      let matchesFilter = true;
+      if (currentFilter === 'tier-1') matchesFilter = unit.tier === 'Tier 1';
+      else if (currentFilter === 'tier-2') matchesFilter = unit.tier === 'Tier 2';
+      else if (currentFilter === 'tier-3') matchesFilter = unit.tier === 'Tier 3';
+      else if (currentFilter === 'ncert-11') matchesFilter = unit.ncertRef.includes('Class 11');
+      else if (currentFilter === 'ncert-12') matchesFilter = unit.ncertRef.includes('Class 12');
+
+      if (!matchesFilter) return;
+
+      // Search Evaluation
+      let matchesSearch = true;
+      let matchedInTopics = false;
+
+      if (q) {
+        const inUnitTitle = unit.title.toLowerCase().includes(q);
+        const inSummary = unit.summary.toLowerCase().includes(q);
+        const inNcert = unit.ncertRef.toLowerCase().includes(q);
+        const inTre = unit.treTag.toLowerCase().includes(q);
+
+        matchedInTopics = unit.chapters.some(ch =>
+          ch.title.toLowerCase().includes(q) ||
+          ch.topics.some(t => t.toLowerCase().includes(q))
+        );
+
+        matchesSearch = inUnitTitle || inSummary || inNcert || inTre || matchedInTopics;
+      }
+
+      if (!matchesSearch) return;
+
+      visibleCount++;
+
+      // Create Unit Card
+      const card = document.createElement('div');
+      card.className = `unit-card ${unit.tierClass}`;
+      card.id = `card-${unit.id}`;
+
+      // Open automatically if there's an active search or if allExpanded is true
+      if (q.length > 0 || allExpanded) {
+        card.classList.add('open');
+      }
+
+      // Unit Number & Header
+      const header = document.createElement('div');
+      header.className = 'unit-header';
+      header.setAttribute('role', 'button');
+      header.setAttribute('tabindex', '0');
+      header.setAttribute('aria-expanded', card.classList.contains('open'));
+
+      // Calculate unit progress numbers
+      let unitTotal = 0;
+      let unitCompleted = 0;
+      unit.chapters.forEach((chapter, chIdx) => {
+        chapter.topics.forEach((topic, tIdx) => {
+          unitTotal++;
+          const topicId = `topic-${unit.id}-ch${chIdx}-t${tIdx}`;
+          if (completedTopics.has(topicId)) unitCompleted++;
+        });
+      });
+      const unitPct = unitTotal > 0 ? Math.round((unitCompleted / unitTotal) * 100) : 0;
+
+      header.innerHTML = `
+        <div class="unit-title-group">
+          <div class="unit-number-badge">${unit.unitNumber}</div>
+          <div class="unit-text-meta">
+            <div class="unit-top-badges">
+              <span class="badge-tag badge-${unit.tierClass}">${unit.tier}</span>
+              <span class="badge-tag badge-weightage">${escapeHtml(unit.weightage)}</span>
+              <span class="badge-tag badge-tre">${escapeHtml(unit.treTag)}</span>
+            </div>
+            <h2 class="unit-heading">${highlightText(unit.title, q)}</h2>
+            <div class="unit-summary">
+              📖 ${highlightText(unit.ncertRef, q)} • ${highlightText(unit.summary, q)}
+            </div>
+          </div>
+        </div>
+        <div class="unit-controls">
+          <span class="unit-progress-pill" id="progress-pill-${unit.id}">${unitCompleted}/${unitTotal} (${unitPct}%)</span>
+          <span class="chevron-icon">▼</span>
+        </div>
+      `;
+
+      // Header Toggle Event
+      header.addEventListener('click', () => {
+        card.classList.toggle('open');
+        header.setAttribute('aria-expanded', card.classList.contains('open'));
       });
 
-      // Show Payment Confirmation & Success Screen
-      showPaymentSuccessModal(paymentId, candidateName, candidatePhone);
-    },
-    modal: {
-      ondismiss: function() {
-        console.log("Razorpay checkout window closed.");
-        if (payBtn) {
-          payBtn.disabled = false;
-          payBtn.innerHTML = originalBtnContent;
+      // Unit Body
+      const body = document.createElement('div');
+      body.className = 'unit-body';
+
+      // Pedagogy Note
+      let pedagogyHtml = '';
+      if (unit.pedagogyTip) {
+        pedagogyHtml = `
+          <div class="pedagogy-callout">
+            <div>💡</div>
+            <div>${highlightText(unit.pedagogyTip, q)}</div>
+          </div>
+        `;
+      }
+
+      // Chapters Container
+      let chaptersHtml = '';
+      unit.chapters.forEach((chapter, chIdx) => {
+        let topicsHtml = '';
+        chapter.topics.forEach((topic, tIdx) => {
+          const topicId = `topic-${unit.id}-ch${chIdx}-t${tIdx}`;
+          const isChecked = completedTopics.has(topicId);
+
+          // If searching, check if this specific topic matched
+          const topicMatches = !q || topic.toLowerCase().includes(q) || chapter.title.toLowerCase().includes(q);
+
+          topicsHtml += `
+            <li class="topic-item ${isChecked ? 'completed' : ''}" style="${!topicMatches && q ? 'opacity:0.4;' : ''}">
+              <input type="checkbox"
+                     class="topic-checkbox"
+                     id="${topicId}"
+                     data-unit-id="${unit.id}"
+                     ${isChecked ? 'checked' : ''}
+                     aria-label="${escapeHtml(topic)}">
+              <label for="${topicId}" class="topic-text">
+                ${highlightText(topic, q)}
+              </label>
+            </li>
+          `;
+        });
+
+        chaptersHtml += `
+          <div class="chapter-block">
+            <div class="chapter-title">
+              <span>${highlightText(chapter.title, q)}</span>
+              <span style="font-size:0.75rem; font-weight:600; color:var(--text-muted);">${chapter.topics.length} Subtopics</span>
+            </div>
+            <ul class="topics-checklist">
+              ${topicsHtml}
+            </ul>
+          </div>
+        `;
+      });
+
+      body.innerHTML = pedagogyHtml + chaptersHtml;
+      card.appendChild(header);
+      card.appendChild(body);
+      unitsContainer.appendChild(card);
+    });
+
+    // Update Counter
+    if (visibleUnitsCount) {
+      visibleUnitsCount.textContent = `Showing ${visibleCount} of 12 Units`;
+    }
+
+    // Toggle Empty State
+    if (noResultsState) {
+      if (visibleCount === 0) {
+        noResultsState.style.display = 'block';
+        unitsContainer.style.display = 'none';
+      } else {
+        noResultsState.style.display = 'none';
+        unitsContainer.style.display = 'flex';
+      }
+    }
+
+    // Bind Topic Checkboxes
+    document.querySelectorAll('.topic-checkbox').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        const id = e.target.id;
+        const unitId = e.target.getAttribute('data-unit-id');
+        const parentItem = e.target.closest('.topic-item');
+
+        if (e.target.checked) {
+          completedTopics.add(id);
+          if (parentItem) parentItem.classList.add('completed');
+        } else {
+          completedTopics.delete(id);
+          if (parentItem) parentItem.classList.remove('completed');
+        }
+
+        saveTopics();
+        updateUnitProgress(unitId);
+        updateMasterProgress();
+      });
+    });
+
+    updateMasterProgress();
+  }
+
+  // Event Listeners Setup
+  function setupEventListeners() {
+    // Search Input
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (searchClearBtn) {
+          searchClearBtn.style.display = searchQuery ? 'block' : 'none';
+        }
+        renderDashboard();
+      });
+    }
+
+    // Search Clear Button
+    if (searchClearBtn) {
+      searchClearBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchQuery = '';
+          searchClearBtn.style.display = 'none';
+          searchInput.focus();
+          renderDashboard();
+        }
+      });
+    }
+
+    // Reset Search Button (in Empty State)
+    if (resetSearchBtn) {
+      resetSearchBtn.addEventListener('click', () => {
+        searchQuery = '';
+        currentFilter = 'all';
+        if (searchInput) {
+          searchInput.value = '';
+          if (searchClearBtn) searchClearBtn.style.display = 'none';
+        }
+        document.querySelectorAll('.filter-pill').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
+        });
+        renderDashboard();
+      });
+    }
+
+    // Filter Pills
+    if (filterPillsContainer) {
+      filterPillsContainer.addEventListener('click', (e) => {
+        const pill = e.target.closest('.filter-pill');
+        if (!pill) return;
+
+        if (pill.classList.contains('active')) {
+          // If already active, toggle off to view all units
+          pill.classList.remove('active');
+          currentFilter = 'all';
+        } else {
+          document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentFilter = pill.getAttribute('data-filter') || 'all';
+        }
+        renderDashboard();
+      });
+    }
+
+    // Toggle All (Expand/Collapse)
+    if (toggleAllBtn) {
+      toggleAllBtn.addEventListener('click', () => {
+        allExpanded = !allExpanded;
+        if (toggleAllText) toggleAllText.textContent = allExpanded ? 'Collapse All' : 'Expand All';
+        if (toggleAllIcon) toggleAllIcon.textContent = allExpanded ? '📁' : '📂';
+
+        document.querySelectorAll('.unit-card').forEach(card => {
+          if (allExpanded) {
+            card.classList.add('open');
+          } else {
+            card.classList.remove('open');
+          }
+        });
+      });
+    }
+
+    // Print Button
+    if (printBtn) {
+      printBtn.addEventListener('click', () => {
+        // Expand all before printing
+        document.querySelectorAll('.unit-card').forEach(card => card.classList.add('open'));
+        window.print();
+      });
+    }
+
+    // Theme Toggle
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+
+    // Reset Progress
+    if (resetProgressBtn) {
+      resetProgressBtn.addEventListener('click', () => {
+        if (completedTopics.size === 0) {
+          alert('Tracker is already empty. Check topics as you study to track progress!');
+          return;
+        }
+        const confirmReset = confirm(`Are you sure you want to reset your checklist progress (${completedTopics.size} topics marked)?`);
+        if (confirmReset) {
+          completedTopics.clear();
+          saveTopics();
+          renderDashboard();
+        }
+      });
+    }
+
+    // Cutoff Modal Open & Close
+    const openCutoffModal = (e) => {
+      e.preventDefault();
+      if (cutoffModal) cutoffModal.classList.add('open');
+    };
+
+    const closeCutoffModal = () => {
+      if (cutoffModal) cutoffModal.classList.remove('open');
+    };
+
+    if (cutoffBtn) cutoffBtn.addEventListener('click', openCutoffModal);
+    if (footerCutoffLink) footerCutoffLink.addEventListener('click', openCutoffModal);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeCutoffModal);
+
+    if (cutoffModal) {
+      cutoffModal.addEventListener('click', (e) => {
+        if (e.target === cutoffModal) closeCutoffModal();
+      });
+    }
+
+    // PDF Modal Setup
+    if (closePdfModalBtn) closePdfModalBtn.addEventListener('click', closePdfModal);
+    if (pdfModal) {
+      pdfModal.addEventListener('click', (e) => {
+        if (e.target === pdfModal) closePdfModal();
+      });
+    }
+
+    // NCERT Filters Bar
+    if (ncertFilterBar) {
+      ncertFilterBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-ncert-filter');
+        if (!btn) return;
+        ncertFilterBar.querySelectorAll('.btn-ncert-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter') || 'all';
+        renderNcertLibrary(filter);
+      });
+    }
+
+    // CheatSheet Filter Bar (Legacy fallback)
+    const cheatsheetFilterBar = document.getElementById('cheatsheetFilterBar');
+    if (cheatsheetFilterBar) {
+      cheatsheetFilterBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-ncert-filter');
+        if (!btn) return;
+        cheatsheetFilterBar.querySelectorAll('.btn-ncert-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter') || 'all';
+        renderCheatSheets(filter);
+      });
+    }
+
+    // Smooth Scroll for NCERT Nav Button
+    if (ncertMenuBtn) {
+      ncertMenuBtn.addEventListener('click', (e) => {
+        const target = document.getElementById('ncertSection');
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (cutoffModal && cutoffModal.classList.contains('open')) closeCutoffModal();
+        if (pdfModal && pdfModal.classList.contains('open')) closePdfModal();
+      }
+    });
+  }
+
+  // -------------------------------------------------------------
+  // NCERT Digital Companion Library Controller
+  // -------------------------------------------------------------
+  const ncertCardsContainer = document.getElementById('ncertCardsContainer');
+  const ncertFilterBar = document.getElementById('ncertFilterBar');
+  const pdfModal = document.getElementById('pdfModal');
+  const pdfModalTitle = document.getElementById('pdfModalTitle');
+  const pdfModalIframe = document.getElementById('pdfModalIframe');
+  const pdfModalExternalLink = document.getElementById('pdfModalExternalLink');
+  const closePdfModalBtn = document.getElementById('closePdfModalBtn');
+  const ncertMenuBtn = document.getElementById('ncertMenuBtn');
+
+  function openPdfModal(pdfPath, title) {
+    if (!pdfModal || !pdfModalIframe) return;
+    pdfModalTitle.textContent = title;
+    pdfModalIframe.src = pdfPath;
+    if (pdfModalExternalLink) pdfModalExternalLink.href = pdfPath;
+    pdfModal.classList.add('open');
+  }
+
+  function closePdfModal() {
+    if (!pdfModal || !pdfModalIframe) return;
+    pdfModal.classList.remove('open');
+    pdfModalIframe.src = '';
+  }
+
+  function renderNcertLibrary(filter = 'all') {
+    if (!ncertCardsContainer || typeof NCERT_DATA === 'undefined') return;
+
+    let chapters = [];
+    if (filter === 'all' || filter === 'class11') {
+      NCERT_DATA.class11.chapters.forEach(ch => chapters.push({ ...ch, classTag: 'Class 11' }));
+    }
+    if (filter === 'all' || filter === 'class12') {
+      NCERT_DATA.class12.chapters.forEach(ch => chapters.push({ ...ch, classTag: 'Class 12' }));
+    }
+    if (filter === 'critical') {
+      [...NCERT_DATA.class11.chapters, ...NCERT_DATA.class12.chapters].forEach(ch => {
+        if (ch.relevance === 'Critical' || ch.relevance === 'High') {
+          chapters.push({ ...ch, classTag: ch.fileName.startsWith('k') ? 'Class 11' : 'Class 12' });
+        }
+      });
+    }
+
+    ncertCardsContainer.innerHTML = chapters.map(ch => {
+      let relBadgeClass = 'badge-relevance-low';
+      if (ch.relevance === 'Critical') relBadgeClass = 'badge-relevance-critical';
+      else if (ch.relevance === 'High') relBadgeClass = 'badge-relevance-high';
+      else if (ch.relevance === 'Medium') relBadgeClass = 'badge-relevance-medium';
+
+      return `
+        <div class="ncert-card">
+          <div class="ncert-card-top">
+            <div class="ncert-card-header" style="justify-content:flex-end;">
+              <span class="badge-relevance ${relBadgeClass}">${escapeHtml(ch.relevance)}</span>
+            </div>
+            <h3 class="ncert-chapter-title">Ch. ${ch.chapterNumber}: ${escapeHtml(ch.title)}</h3>
+            <div class="ncert-focus-box">
+              <strong>💡 BPSC Exam Focus:</strong> ${escapeHtml(ch.bpscFocus)}
+            </div>
+          </div>
+          <div class="ncert-card-footer">
+            <span class="ncert-class-tag">${escapeHtml(ch.classTag)}</span>
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <button class="btn-preview-pdf" data-pdf="${ch.pdfPath}" data-title="Ch. ${ch.chapterNumber}: ${escapeHtml(ch.title)}" title="Read right here">
+                👁️ View
+              </button>
+              <a href="${ch.pdfPath}" target="_blank" class="btn-open-pdf" title="Open in new tab / download">
+                📖 PDF ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Bind Quick View buttons
+    ncertCardsContainer.querySelectorAll('.btn-preview-pdf').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const path = btn.getAttribute('data-pdf');
+        const title = btn.getAttribute('data-title');
+        openPdfModal(path, title);
+      });
+    });
+  }
+
+  // -------------------------------------------------------------
+  // NCERT Computer Science Master Handbook & Book Reader Controller
+  // -------------------------------------------------------------
+  const bookReaderWrapper = document.getElementById('bookReaderWrapper');
+  const bookDesk = document.getElementById('bookDesk');
+  const bookTocSidebar = document.getElementById('bookTocSidebar');
+  const bookTocList = document.getElementById('bookTocList');
+  const tocBackdrop = document.getElementById('tocBackdrop');
+  const btnToggleToc = document.getElementById('btnToggleToc');
+  const btnCloseToc = document.getElementById('btnCloseToc');
+  const bookPageContent = document.getElementById('bookPageContent');
+  const bookPageTurner = document.getElementById('bookPageTurner');
+  const btnPrevChapter = document.getElementById('btnPrevChapter');
+  const btnNextChapter = document.getElementById('btnNextChapter');
+  const prevChapterTitle = document.getElementById('prevChapterTitle');
+  const nextChapterTitle = document.getElementById('nextChapterTitle');
+  const pageNumberIndicator = document.getElementById('pageNumberIndicator');
+  const chkChapterCompleted = document.getElementById('chkChapterCompleted');
+  const readerCurrentLabel = document.getElementById('readerCurrentLabel');
+  const readerProgressBar = document.getElementById('readerProgressBar');
+  const readerProgressPercent = document.getElementById('readerProgressPercent');
+  const tocCompletedCount = document.getElementById('tocCompletedCount');
+  const btnResetReadProgress = document.getElementById('btnResetReadProgress');
+  const btnFontDec = document.getElementById('btnFontDec');
+  const btnFontReset = document.getElementById('btnFontReset');
+  const btnFontInc = document.getElementById('btnFontInc');
+  const btnModeBook = document.getElementById('btnModeBook');
+  const btnModeFeed = document.getElementById('btnModeFeed');
+
+  const BOOK_READER_STATE_KEY = 'bpsc_book_reader_state_v2';
+
+  let bookState = {
+    currentChapter: 0,
+    viewMode: 'book',
+    theme: 'dark',
+    fontSize: 'md',
+    completedChapters: {}
+  };
+
+  function loadBookState() {
+    try {
+      const saved = localStorage.getItem(BOOK_READER_STATE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        bookState = { ...bookState, ...parsed };
+      }
+    } catch (e) {
+      console.warn('Could not load book reader state', e);
+    }
+  }
+
+  function saveBookState() {
+    try {
+      localStorage.setItem(BOOK_READER_STATE_KEY, JSON.stringify(bookState));
+    } catch (e) {
+      console.warn('Could not save book reader state', e);
+    }
+  }
+
+  function applyTheme(theme) {
+    bookState.theme = theme;
+    if (bookReaderWrapper) {
+      bookReaderWrapper.classList.remove('reader-theme-dark', 'reader-theme-sepia', 'reader-theme-paper');
+      bookReaderWrapper.classList.add(`reader-theme-${theme}`);
+    }
+    document.querySelectorAll('.btn-reader-theme').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
+    });
+    saveBookState();
+  }
+
+  function applyFontSize(size) {
+    bookState.fontSize = size;
+    if (bookReaderWrapper) {
+      bookReaderWrapper.classList.remove('font-size-sm', 'font-size-md', 'font-size-lg');
+      bookReaderWrapper.classList.add(`font-size-${size}`);
+    }
+    if (btnFontDec) btnFontDec.classList.toggle('active', size === 'sm');
+    if (btnFontReset) btnFontReset.classList.toggle('active', size === 'md');
+    if (btnFontInc) btnFontInc.classList.toggle('active', size === 'lg');
+    saveBookState();
+  }
+
+  function applyViewMode(mode) {
+    bookState.viewMode = mode;
+    if (btnModeBook) btnModeBook.classList.toggle('active', mode === 'book');
+    if (btnModeFeed) btnModeFeed.classList.toggle('active', mode === 'feed');
+    if (bookPageTurner) {
+      bookPageTurner.style.display = mode === 'book' ? 'flex' : 'none';
+    }
+    renderBookContent();
+    renderBookToc();
+    saveBookState();
+  }
+
+  function openMobileToc() {
+    if (bookTocSidebar) bookTocSidebar.classList.add('open');
+    if (tocBackdrop) tocBackdrop.classList.add('open');
+  }
+
+  function closeMobileToc() {
+    if (bookTocSidebar) bookTocSidebar.classList.remove('open');
+    if (tocBackdrop) tocBackdrop.classList.remove('open');
+  }
+
+  function updateTocFilterButtons() {
+    const tocFilterPills = document.getElementById('tocFilterPills');
+    if (!tocFilterPills) return;
+    const currentFilter = bookState.tocClassFilter || '11';
+    tocFilterPills.querySelectorAll('.btn-toc-filter').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-class') === currentFilter);
+    });
+  }
+
+  function renderBookToc() {
+    if (!bookTocList || typeof CHEATSHEETS_DATA === 'undefined') return;
+
+    if (!bookState.tocClassFilter || bookState.tocClassFilter === 'all') {
+      const curCs = CHEATSHEETS_DATA[bookState.currentChapter] || CHEATSHEETS_DATA[0];
+      bookState.tocClassFilter = String(curCs ? curCs.classLevel || 11 : 11);
+    }
+
+    const filterClass = bookState.tocClassFilter;
+
+    let html = '';
+    let lastClassLevel = null;
+
+    CHEATSHEETS_DATA.forEach((cs, idx) => {
+      const cls = cs.classLevel || 12;
+      if (filterClass !== String(cls)) {
+        return;
+      }
+
+      // Add section header if class changes
+      if (cls !== lastClassLevel) {
+        lastClassLevel = cls;
+        const icon = cls === 11 ? '📘' : '📙';
+        html += `
+          <div class="toc-group-header">
+            <span>${icon}</span> NCERT Class ${cls} Computer Science
+          </div>
+        `;
+      }
+
+      const isActive = bookState.viewMode === 'book' && bookState.currentChapter === idx;
+      const isCompleted = !!bookState.completedChapters[cs.id];
+      const chNum = cs.chapterNumber || (idx + 1);
+      const numStr = chNum.toString().padStart(2, '0');
+      const cleanTitle = cs.title.replace(/^Class \d+ Chapter \d+ — /, '').replace(/^Chapter \d+ — /, '');
+
+      html += `
+        <div class="toc-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-index="${idx}" title="${escapeHtml(cs.title)}">
+          <span class="toc-num">Ch ${numStr}</span>
+          <span class="toc-title">${escapeHtml(cleanTitle)}</span>
+          <span class="toc-status-icon">${isCompleted ? '✓' : '○'}</span>
+        </div>
+      `;
+    });
+
+    bookTocList.innerHTML = html;
+    updateTocFilterButtons();
+    updateProgressUI();
+  }
+
+  function renderSingleChapter(cs, idx) {
+    const isCompleted = !!bookState.completedChapters[cs.id];
+    const cls = cs.classLevel || 12;
+    const chNum = cs.chapterNumber || (idx + 1);
+    const numStr = chNum.toString().padStart(2, '0');
+    const classIcon = cls === 11 ? '📘' : '📙';
+
+    let cardsHtml = cs.cards.map((card, cIdx) => {
+      let codeHtml = '';
+      if (card.code) {
+        codeHtml = `
+          <div class="book-code-wrapper">
+            <button class="btn-copy-code" data-copy-id="code-${idx}-${cIdx}" title="Copy note text to clipboard">Copy</button>
+            <pre class="code-block book-code-surface" id="code-${idx}-${cIdx}"><code>${escapeHtml(card.code)}</code></pre>
+          </div>
+        `;
+      }
+
+      let tableHtml = '';
+      if (card.table && Array.isArray(card.table)) {
+        tableHtml = `
+          <div style="overflow-x:auto; margin-bottom:1rem;">
+            <table class="data-table" style="margin:0;">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Best Time</th>
+                  <th>Average Time</th>
+                  <th>Worst Time</th>
+                  <th>Space</th>
+                  <th>Stable</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${card.table.map(row => `
+                  <tr>
+                    <td><strong>${escapeHtml(row.name)}</strong></td>
+                    <td><code>${escapeHtml(row.best)}</code></td>
+                    <td><code>${escapeHtml(row.avg)}</code></td>
+                    <td><code style="color:var(--tier-1-color, #ef4444); font-weight:700;">${escapeHtml(row.worst)}</code></td>
+                    <td><code>${escapeHtml(row.space)}</code></td>
+                    <td>${escapeHtml(row.stable)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      let explHtml = '';
+      if (card.explanation) {
+        explHtml = `
+          <div class="book-callout book-callout-insight">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <div class="callout-title">Exam Recall &amp; Memory Anchor</div>
+              <div class="callout-text">${escapeHtml(card.explanation)}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <article class="book-subcard">
+          <h3 class="book-subcard-title">${escapeHtml(card.title)}</h3>
+          ${codeHtml}
+          ${tableHtml}
+          ${explHtml}
+        </article>
+      `;
+    }).join('');
+
+    return `
+      <section class="book-chapter-container" data-chapter-id="${cs.id}">
+        <header class="book-chapter-header">
+          <div class="chapter-number-pill">${classIcon} NCERT Class ${cls} • Chapter ${numStr}</div>
+          <h2 class="book-chapter-title">${escapeHtml(cs.title)}</h2>
+          <div class="book-chapter-meta">
+            <span class="book-meta-badge">${escapeHtml(cs.category)}</span>
+            <span>⏱️ ~4 min read</span>
+            <span>•</span>
+            <span>${cs.cards.length} Core Study Sections</span>
+          </div>
+          <p class="book-chapter-summary">${escapeHtml(cs.summary)}</p>
+        </header>
+
+        <div class="book-chapter-body">
+          ${cardsHtml}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderBookContent() {
+    if (!bookPageContent || typeof CHEATSHEETS_DATA === 'undefined') return;
+
+    if (bookState.viewMode === 'book') {
+      const idx = Math.min(Math.max(0, bookState.currentChapter), CHEATSHEETS_DATA.length - 1);
+      const cs = CHEATSHEETS_DATA[idx];
+      bookPageContent.innerHTML = renderSingleChapter(cs, idx);
+      updatePageTurnerUI();
+    } else {
+      // Feed mode (all chapters)
+      bookPageContent.innerHTML = CHEATSHEETS_DATA.map((cs, idx) => renderSingleChapter(cs, idx)).join('<div style="height:2.5rem; border-bottom: 2px dashed var(--reader-border); margin-bottom: 2.5rem;"></div>');
+      if (readerCurrentLabel) {
+        readerCurrentLabel.textContent = `Continuous Reading (All 12 Chapters)`;
+      }
+    }
+  }
+
+  function goToChapter(index) {
+    if (typeof CHEATSHEETS_DATA === 'undefined' || index < 0 || index >= CHEATSHEETS_DATA.length) return;
+    bookState.currentChapter = index;
+    const targetCs = CHEATSHEETS_DATA[index];
+    if (targetCs && targetCs.classLevel) {
+      bookState.tocClassFilter = String(targetCs.classLevel);
+    }
+    if (bookState.viewMode !== 'book') {
+      applyViewMode('book');
+    } else {
+      renderBookContent();
+    }
+    renderBookToc();
+    saveBookState();
+
+    if (bookReaderWrapper) {
+      bookReaderWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    closeMobileToc();
+  }
+
+  function updatePageTurnerUI() {
+    if (typeof CHEATSHEETS_DATA === 'undefined') return;
+    const total = CHEATSHEETS_DATA.length;
+    const current = bookState.currentChapter;
+    const currentCs = CHEATSHEETS_DATA[current];
+    if (!currentCs) return;
+
+    const currentCls = currentCs.classLevel || 12;
+    const currentNum = currentCs.chapterNumber || (current + 1);
+
+    if (readerCurrentLabel) {
+      readerCurrentLabel.textContent = `Class ${currentCls} • Ch ${currentNum} (${current + 1} of ${total})`;
+    }
+    if (pageNumberIndicator) {
+      pageNumberIndicator.textContent = `Chapter ${current + 1} of ${total}`;
+    }
+
+    if (btnPrevChapter) {
+      btnPrevChapter.disabled = current <= 0;
+      if (prevChapterTitle) {
+        if (current > 0) {
+          const prevCs = CHEATSHEETS_DATA[current - 1];
+          const prevCls = prevCs.classLevel || 12;
+          const cleanPrev = prevCs.title.replace(/^Class \d+ Chapter \d+ — /, '').replace(/^Chapter \d+ — /, '');
+          prevChapterTitle.textContent = `C${prevCls} Ch${prevCs.chapterNumber || current}: ${cleanPrev}`;
+        } else {
+          prevChapterTitle.textContent = 'Beginning';
         }
       }
     }
-  };
 
-  try {
-    const rzp = new Razorpay(options);
-    rzp.on('payment.failed', function(response) {
-      if (payBtn) {
-        payBtn.disabled = false;
-        payBtn.innerHTML = originalBtnContent;
+    if (btnNextChapter) {
+      btnNextChapter.disabled = current >= total - 1;
+      if (nextChapterTitle) {
+        if (current < total - 1) {
+          const nextCs = CHEATSHEETS_DATA[current + 1];
+          const nextCls = nextCs.classLevel || 12;
+          const cleanNext = nextCs.title.replace(/^Class \d+ Chapter \d+ — /, '').replace(/^Chapter \d+ — /, '');
+          nextChapterTitle.textContent = `C${nextCls} Ch${nextCs.chapterNumber || (current + 2)}: ${cleanNext}`;
+        } else {
+          nextChapterTitle.textContent = 'Complete';
+        }
       }
-      const errDescription = response?.error?.description || 'Transaction was canceled or failed.';
-      alert(`❌ Payment Failed: ${errDescription}\nYou can also use the direct link below.`);
+    }
+
+    if (chkChapterCompleted && currentCs) {
+      chkChapterCompleted.checked = !!bookState.completedChapters[currentCs.id];
+    }
+  }
+
+  function updateProgressUI() {
+    if (typeof CHEATSHEETS_DATA === 'undefined') return;
+    const total = CHEATSHEETS_DATA.length;
+    const completedKeys = Object.keys(bookState.completedChapters).filter(k => bookState.completedChapters[k]);
+    const completedCount = completedKeys.length;
+    const percent = Math.round((completedCount / total) * 100);
+
+    const displayPercent = completedCount > 0 ? percent : Math.round(((bookState.currentChapter + 1) / total) * 100);
+
+    if (readerProgressBar) {
+      readerProgressBar.style.width = `${displayPercent}%`;
+    }
+    if (readerProgressPercent) {
+      readerProgressPercent.textContent = `${displayPercent}%`;
+    }
+    if (tocCompletedCount) {
+      tocCompletedCount.textContent = `${completedCount}/${total} Chapters Revised`;
+    }
+  }
+
+  function toggleCurrentChapterCompleted(isCompleted) {
+    if (typeof CHEATSHEETS_DATA === 'undefined') return;
+    const currentCs = CHEATSHEETS_DATA[bookState.currentChapter];
+    if (!currentCs) return;
+
+    if (isCompleted) {
+      bookState.completedChapters[currentCs.id] = true;
+    } else {
+      delete bookState.completedChapters[currentCs.id];
+    }
+    saveBookState();
+    renderBookToc();
+    updateProgressUI();
+  }
+
+  function initBookReader() {
+    loadBookState();
+
+    applyTheme(bookState.theme || 'dark');
+    applyFontSize(bookState.fontSize || 'md');
+    applyViewMode(bookState.viewMode || 'book');
+
+    renderBookToc();
+    renderBookContent();
+
+    // Event listeners for Book Reader
+    if (btnToggleToc) {
+      btnToggleToc.addEventListener('click', () => {
+        if (bookTocSidebar && bookTocSidebar.classList.contains('open')) {
+          closeMobileToc();
+        } else {
+          openMobileToc();
+        }
+      });
+    }
+
+    if (btnCloseToc) {
+      btnCloseToc.addEventListener('click', closeMobileToc);
+    }
+
+    if (tocBackdrop) {
+      tocBackdrop.addEventListener('click', closeMobileToc);
+    }
+
+    if (bookTocList) {
+      bookTocList.addEventListener('click', (e) => {
+        const item = e.target.closest('.toc-item');
+        if (!item) return;
+        const index = parseInt(item.getAttribute('data-index'), 10);
+        if (!isNaN(index)) {
+          goToChapter(index);
+        }
+      });
+    }
+
+    if (btnPrevChapter) {
+      btnPrevChapter.addEventListener('click', () => {
+        if (bookState.currentChapter > 0) {
+          goToChapter(bookState.currentChapter - 1);
+        }
+      });
+    }
+
+    if (btnNextChapter) {
+      btnNextChapter.addEventListener('click', () => {
+        if (typeof CHEATSHEETS_DATA !== 'undefined' && bookState.currentChapter < CHEATSHEETS_DATA.length - 1) {
+          goToChapter(bookState.currentChapter + 1);
+        }
+      });
+    }
+
+    if (chkChapterCompleted) {
+      chkChapterCompleted.addEventListener('change', (e) => {
+        toggleCurrentChapterCompleted(e.target.checked);
+      });
+    }
+
+    // Themes
+    document.querySelectorAll('.btn-reader-theme').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.getAttribute('data-theme');
+        if (theme) applyTheme(theme);
+      });
     });
-    rzp.open();
-  } catch (err) {
-    console.error("Razorpay Error:", err);
-    if (payBtn) {
-      payBtn.disabled = false;
-      payBtn.innerHTML = originalBtnContent;
+
+    // Font Sizing
+    if (btnFontDec) btnFontDec.addEventListener('click', () => applyFontSize('sm'));
+    if (btnFontReset) btnFontReset.addEventListener('click', () => applyFontSize('md'));
+    if (btnFontInc) btnFontInc.addEventListener('click', () => applyFontSize('lg'));
+
+    // View Modes
+    if (btnModeBook) btnModeBook.addEventListener('click', () => applyViewMode('book'));
+    if (btnModeFeed) btnModeFeed.addEventListener('click', () => applyViewMode('feed'));
+
+    // TOC Class Filter (All / Class 11 / Class 12)
+    const tocFilterPills = document.getElementById('tocFilterPills');
+    if (tocFilterPills) {
+      tocFilterPills.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-toc-filter');
+        if (!btn) return;
+        tocFilterPills.querySelectorAll('.btn-toc-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        bookState.tocClassFilter = btn.getAttribute('data-class') || 'all';
+        renderBookToc();
+        saveBookState();
+      });
     }
-    alert("Failed to initialize Razorpay checkout. Please use the Direct Payment link below.");
-  }
-};
 
-window.simulatePaymentSuccess = function() {
-  const nameInput = document.getElementById('pay-name');
-  const phoneInput = document.getElementById('pay-phone');
-  const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "BPSC Computer Teacher Aspirant";
-  const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "9876543210";
-  
-  // Realistic Razorpay style ID e.g. pay_Px892k...
-  const randomSuffix = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6);
-  const mockPaymentId = `pay_${randomSuffix}`;
+    // Reset Reading Checkmarks
+    if (btnResetReadProgress) {
+      btnResetReadProgress.addEventListener('click', () => {
+        if (confirm('Reset your revision checkmarks for all 14 chapters?')) {
+          bookState.completedChapters = {};
+          saveBookState();
+          renderBookToc();
+          updatePageTurnerUI();
+          updateProgressUI();
+        }
+      });
+    }
 
-  localStorage.setItem('bpsc_candidate_name', candidateName);
-  localStorage.setItem('bpsc_phone', candidatePhone);
-  setUnlocked(true, mockPaymentId);
+    // Keyboard Arrow navigation
+    document.addEventListener('keydown', (e) => {
+      const cheatsheetPane = document.getElementById('tab-cheatsheet');
+      if (!cheatsheetPane || !cheatsheetPane.classList.contains('active')) return;
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
 
-  // Record in backend DB
-  recordPaymentToBackend({
-    payment_id: mockPaymentId,
-    name: candidateName,
-    phone: candidatePhone,
-    amount: 900,
-    timestamp: new Date().toISOString()
-  });
-
-  // Show Payment Confirmation & Success Screen
-  showPaymentSuccessModal(mockPaymentId, candidateName, candidatePhone);
-};
-
-window.applyActivationCode = function() {
-  const codeInput = document.getElementById('activation-passcode-input');
-  if (!codeInput) return;
-  const code = codeInput.value.trim().toUpperCase();
-
-  if (code === 'TEACHER2026' || code === 'BPSC4' || code === 'FREE9' || code === 'ADMIN') {
-    const passId = `CODE_${code}_${Date.now()}`;
-    setUnlocked(true, passId);
-    closePaywallModal();
-    alert(`🎉 Activation Passcode Accepted!\nAll 12 Units, 24 NCERT Notes & Full Mock Tests are now permanently UNLOCKED.`);
-  } else {
-    alert("❌ Invalid Activation Code. Please enter 'TEACHER2026' or pay ₹9 via Razorpay.");
-  }
-};
-
-// -------------------------------------------------------------
-// Cross-Device Instant Verification & Restoration Flow
-// -------------------------------------------------------------
-window.submitRestorePayment = async function() {
-  const inputEl = document.getElementById('restore-query-input');
-  const statusEl = document.getElementById('restore-status-msg');
-  if (!inputEl) return;
-
-  const query = inputEl.value.trim();
-  if (!query) {
-    if (statusEl) statusEl.innerHTML = '<span style="color: var(--accent-rose);">⚠️ Please enter your Payment ID or 10-digit Mobile Number.</span>';
-    return;
-  }
-
-  if (statusEl) statusEl.innerHTML = '<span style="color: var(--accent-primary);">⏳ Verifying your payment record...</span>';
-
-  // 1. Try backend API verification first
-  let verified = false;
-  let candidateName = "BPSC Verified Teacher Aspirant";
-  let paymentId = query;
-  let phone = query;
-
-  try {
-    const res = await fetch('/api/restore-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: query })
+      if (e.key === 'ArrowRight') {
+        if (bookState.viewMode === 'book' && typeof CHEATSHEETS_DATA !== 'undefined' && bookState.currentChapter < CHEATSHEETS_DATA.length - 1) {
+          e.preventDefault();
+          goToChapter(bookState.currentChapter + 1);
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (bookState.viewMode === 'book' && bookState.currentChapter > 0) {
+          e.preventDefault();
+          goToChapter(bookState.currentChapter - 1);
+        }
+      }
     });
-    const data = await res.json();
-    if (data.success && data.record) {
-      verified = true;
-      candidateName = data.record.name || candidateName;
-      paymentId = data.record.payment_id || paymentId;
-      phone = data.record.phone || phone;
+
+    // Copy note code buttons delegation
+    document.addEventListener('click', (e) => {
+      const copyBtn = e.target.closest('.btn-copy-code');
+      if (!copyBtn) return;
+      const targetId = copyBtn.getAttribute('data-copy-id');
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+
+      navigator.clipboard.writeText(targetEl.innerText).then(() => {
+        const origText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied! ✓';
+        copyBtn.style.color = '#10b981';
+        setTimeout(() => {
+          copyBtn.textContent = origText;
+          copyBtn.style.color = '';
+        }, 1600);
+      }).catch(err => {
+        console.warn('Copy failed', err);
+      });
+    });
+  }
+
+  // Backward compatibility alias
+  function renderCheatSheets(filter = 'all') {
+    initBookReader();
+  }
+
+  // -------------------------------------------------------------
+  // Marathon (Day 1 to Day 10) Controller
+  // -------------------------------------------------------------
+  const marathonDaysContainer = document.getElementById('marathonDaysContainer');
+  const marathonFilterBar = document.getElementById('marathonFilterBar');
+  const marathonProgressBar = document.getElementById('marathonProgressBar');
+  const marathonProgressText = document.getElementById('marathonProgressText');
+  const marathonDaysLabel = document.getElementById('marathonDaysLabel');
+  const btnResetMarathon = document.getElementById('btnResetMarathon');
+
+  const MARATHON_STORAGE_KEY = 'bpsc_marathon_completed_days';
+
+  function getCompletedDays() {
+    try {
+      const data = localStorage.getItem(MARATHON_STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
     }
-  } catch (err) {
-    console.log("Backend offline or static hosting, trying resilient verification...");
   }
 
-  // 2. Resilient Fallback verification (for GitHub Pages / static hosting):
-  // Check if query is a valid Razorpay ID (starts with pay_ and length >= 10)
-  // OR a valid 10-digit Indian mobile number (e.g. 9876543210)
-  // OR an activation code
-  if (!verified) {
-    const isPayId = /^pay_[A-Za-z0-9_]{6,30}$/i.test(query);
-    const isPhone = /^[6-9]\d{9}$/.test(query);
-    const isPasscode = (query.toUpperCase() === 'TEACHER2026' || query.toUpperCase() === 'BPSC4');
+  function setDayCompleted(dayId, isCompleted) {
+    let completed = getCompletedDays();
+    if (isCompleted) {
+      if (!completed.includes(dayId)) completed.push(dayId);
+    } else {
+      completed = completed.filter(id => id !== dayId);
+    }
+    try {
+      localStorage.setItem(MARATHON_STORAGE_KEY, JSON.stringify(completed));
+    } catch (e) {}
+    updateMarathonProgressUI();
+  }
 
-    if (isPayId || isPhone || isPasscode) {
-      verified = true;
-      if (isPayId) paymentId = query;
-      if (isPhone) phone = query;
-      if (isPasscode) paymentId = `CODE_${query.toUpperCase()}`;
+  function updateMarathonProgressUI() {
+    if (typeof MARATHON_DATA === 'undefined') return;
+    const totalDays = MARATHON_DATA.length;
+    const completed = getCompletedDays();
+    const completedCount = completed.filter(id => MARATHON_DATA.some(d => d.dayId === id)).length;
+    const percent = totalDays > 0 ? Math.round((completedCount / totalDays) * 100) : 0;
+
+    if (marathonDaysLabel) {
+      if (totalDays === 1) {
+        marathonDaysLabel.textContent = `${MARATHON_DATA[0].title}`;
+      } else {
+        marathonDaysLabel.textContent = `Day 1 to Day ${totalDays}`;
+      }
+    }
+    if (marathonProgressText) {
+      const dayWord = totalDays === 1 ? 'Day' : 'Days';
+      marathonProgressText.textContent = `${completedCount} / ${totalDays} ${dayWord} Completed (${percent}%)`;
+    }
+    if (marathonProgressBar) {
+      marathonProgressBar.style.width = `${percent}%`;
     }
   }
 
-  if (verified) {
-    localStorage.setItem('bpsc_candidate_name', candidateName);
-    localStorage.setItem('bpsc_phone', phone);
-    setUnlocked(true, paymentId);
-    closeRestoreModal();
+  function renderMarathonFilterBar(currentFilter = 'all') {
+    if (!marathonFilterBar || typeof MARATHON_DATA === 'undefined') return;
 
-    alert(`🎉 Access Restored Successfully!\n\nWelcome back, ${candidateName}!\nPayment ID: ${paymentId}\nAll Units 2–12, 24 NCERT Notes & Full Mock Tests are now UNLOCKED on this device.`);
-  } else {
-    if (statusEl) {
-      statusEl.innerHTML = `
-        <div style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); color: #fb7185; font-size: 0.84rem; text-align: left;">
-          ❌ <strong>Verification Failed:</strong><br>
-          No record matched "${escapeHtml(query)}".<br>
-          • Ensure you enter your exact <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code> from your SMS/WhatsApp receipt) or registered <strong>10-digit mobile number</strong>.<br>
-          • If you haven't purchased yet, you can unlock full access for just ₹9!
-        </div>
-      `;
-    }
-  }
-};
-
-window.lockCourseAgain = function() {
-  if (confirm("Reset to Free Preview Mode (Unit 1 Free, Units 2-12 locked)?")) {
-    setUnlocked(false);
-    alert("Course reset to Free Preview mode.");
-  }
-};
-
-// -------------------------------------------------------------
-// Daily Master Notes & Day-Wise Series Manager
-// -------------------------------------------------------------
-let currentActiveDay = 1;
-
-function initDailyNotes() {
-  renderDailyDaysBar();
-  renderDailyNoteContent(currentActiveDay);
-}
-
-function renderDailyDaysBar() {
-  const bar = document.getElementById('daily-days-bar');
-  if (!bar || typeof DAILY_NOTES_DATA === 'undefined') return;
-
-  bar.innerHTML = DAILY_NOTES_DATA.map(note => {
-    const isActive = note.dayNumber === currentActiveDay;
-    return `
-      <button class="day-pill-btn ${isActive ? 'active' : ''}" onclick="selectDailyNote(${note.dayNumber})">
-        <span>📅</span> ${escapeHtml(note.dayLabel)}: ${escapeHtml(note.title.replace('TRE 4.0 Computer Science — ', ''))}
+    const totalDays = MARATHON_DATA.length;
+    let html = `
+      <button class="btn-marathon-filter ${currentFilter === 'all' ? 'active' : ''}" data-filter="all">
+        All Days (1–${totalDays})
       </button>
     `;
-  }).join('');
-}
 
-function renderDailyNoteContent(dayNumber) {
-  const contentArea = document.getElementById('daily-note-content-area');
-  if (!contentArea || typeof DAILY_NOTES_DATA === 'undefined') return;
+    MARATHON_DATA.forEach(day => {
+      const isActive = currentFilter === day.dayId ? 'active' : '';
+      html += `
+        <button class="btn-marathon-filter ${isActive}" data-filter="${day.dayId}">
+          ${escapeHtml(day.badge || `Day ${day.dayNumber}`)}: ${escapeHtml(day.title)}
+        </button>
+      `;
+    });
 
-  const note = (typeof getDailyNote === 'function') ? getDailyNote(dayNumber) : DAILY_NOTES_DATA[0];
-  if (!note) return;
+    marathonFilterBar.innerHTML = html;
 
-  currentActiveDay = dayNumber;
-  contentArea.innerHTML = note.htmlContent;
-  renderDailyDaysBar();
-}
+    marathonFilterBar.querySelectorAll('.btn-marathon-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter') || 'all';
+        renderMarathonFilterBar(filter);
+        renderMarathonCards(filter);
+      });
+    });
+  }
 
-window.selectDailyNote = function(dayNumber) {
-  renderDailyNoteContent(dayNumber);
-};
+  function renderMarathonCards(filter = 'all') {
+    if (!marathonDaysContainer || typeof MARATHON_DATA === 'undefined') return;
 
-window.openDailyNote = function(dayNumber) {
-  switchTab('tab-daily');
-  renderDailyNoteContent(dayNumber);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-window.checkDailyOption = function(btn, isCorrect, feedbackText) {
-  const card = btn.closest('.daily-q-card');
-  if (!card) return;
-
-  const allBtns = card.querySelectorAll('.daily-opt-btn');
-  allBtns.forEach(b => {
-    b.disabled = true;
-    b.classList.remove('correct', 'incorrect');
-  });
-
-  const feedbackEl = card.querySelector('.daily-q-feedback');
-
-  if (isCorrect) {
-    btn.classList.add('correct');
-    if (feedbackEl) {
-      feedbackEl.className = 'daily-q-feedback show good';
-      feedbackEl.innerHTML = `<strong>✓ Correct!</strong> ${escapeHtml(feedbackText)}`;
+    const completed = getCompletedDays();
+    let daysToRender = MARATHON_DATA;
+    if (filter !== 'all') {
+      daysToRender = MARATHON_DATA.filter(d => d.dayId === filter);
     }
-  } else {
-    btn.classList.add('incorrect');
-    const correctIdx = parseInt(card.getAttribute('data-correct'), 10);
-    if (!isNaN(correctIdx) && allBtns[correctIdx]) {
-      allBtns[correctIdx].classList.add('correct');
+
+    marathonDaysContainer.innerHTML = daysToRender.map((day, dIdx) => {
+      const isCompleted = completed.includes(day.dayId);
+
+      // 1. Targets Table
+      let targetsHtml = '';
+      if (day.targets && Array.isArray(day.targets)) {
+        targetsHtml = `
+          <div class="marathon-targets-box">
+            <div class="marathon-targets-lead">Today we focus on only three targets so you actually retain them:</div>
+            <div style="overflow-x:auto;">
+              <table class="marathon-targets-table">
+                <thead>
+                  <tr>
+                    <th>Section</th>
+                    <th>Topic</th>
+                    <th>Goal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${day.targets.map(t => `
+                    <tr>
+                      <td><strong>${escapeHtml(t.section)}</strong></td>
+                      <td>${escapeHtml(t.topic)}</td>
+                      <td><span class="badge-tag badge-tier-2" style="font-size:0.75rem;">${escapeHtml(t.goal)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }
+
+      // 2. Intro Note / Context
+      let introHtml = '';
+      if (day.introNote) {
+        introHtml = `
+          <div class="book-callout book-callout-insight" style="margin-bottom: 1.5rem; border-left-color: var(--accent-primary);">
+            <div class="callout-icon">📌</div>
+            <div class="callout-content" style="flex:1;">
+              <div class="callout-title">BPSC &amp; NCERT Foundation Context</div>
+              <div class="callout-text" style="line-height:1.6; margin-top:0.25rem;">${escapeHtml(day.introNote)}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 3. Parts (Part III CS, Part II GS, Part I English)
+      let partsHtml = '';
+      if (day.parts && Array.isArray(day.parts)) {
+        partsHtml = day.parts.map((part, pIdx) => {
+          const sectionsHtml = (part.sections || []).map((sec, sIdx) => {
+            const blocksHtml = (sec.blocks || []).map((block, bIdx) => {
+              const blockId = `code-m-${day.dayId}-p${pIdx}-s${sIdx}-b${bIdx}`;
+              if (block.type === 'text') {
+                return `<div class="book-prose-para" style="margin-bottom:0.85rem; white-space:pre-line; line-height:1.65; color:var(--text-secondary); font-size:0.95rem;">${escapeHtml(block.content)}</div>`;
+              } else if (block.type === 'diagram') {
+                return `
+                  <div class="book-code-wrapper" style="margin: 0.85rem 0;">
+                    <button class="btn-copy-code" data-copy-id="${blockId}" title="Copy note text">Copy Note</button>
+                    <pre class="code-block book-code-surface" id="${blockId}"><code>${escapeHtml(block.content)}</code></pre>
+                  </div>
+                `;
+              } else if (block.type === 'callout') {
+                return `
+                  <div class="book-callout book-callout-insight" style="margin: 0.85rem 0;">
+                    <div class="callout-icon">${escapeHtml(block.icon || '💡')}</div>
+                    <div class="callout-content" style="flex:1;">
+                      <div class="callout-title">${escapeHtml(block.title)}</div>
+                      ${block.content ? `<div class="callout-text" style="white-space:pre-line; margin-top:0.25rem; font-size:0.92rem; line-height:1.55;">${escapeHtml(block.content)}</div>` : ''}
+                      ${block.diagram ? `
+                        <div class="book-code-wrapper" style="margin: 0.5rem 0 0.2rem;">
+                          <button class="btn-copy-code" data-copy-id="${blockId}-dia" title="Copy note text">Copy Note</button>
+                          <pre class="code-block book-code-surface" id="${blockId}-dia" style="margin:0; font-size:0.88em; padding:0.75rem 1rem;"><code>${escapeHtml(block.diagram)}</code></pre>
+                        </div>
+                      ` : ''}
+                    </div>
+                  </div>
+                `;
+              }
+              return '';
+            }).join('');
+
+            return `
+              <article class="book-subcard" style="margin-bottom: 1.5rem;">
+                <h3 class="book-subcard-title">${escapeHtml(sec.title)}</h3>
+                <div class="book-subcard-body">
+                  ${blocksHtml}
+                </div>
+              </article>
+            `;
+          }).join('');
+
+          return `
+            <div class="marathon-part-container" style="margin-bottom: 2rem;">
+              <div class="marathon-part-divider">
+                <span class="marathon-part-pill">📖 ${escapeHtml(part.title)}</span>
+              </div>
+              ${sectionsHtml}
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 4. Day 1 Test (Interactive 10 Questions)
+      let testHtml = '';
+      if (day.test && Array.isArray(day.test.questions)) {
+        const optionLetters = ['A', 'B', 'C', 'D', 'E'];
+        const qListHtml = day.test.questions.map((q, qIndex) => {
+          return `
+            <div class="marathon-q-item" data-qid="${q.id}" data-correct="${q.correctAnswer}">
+              <div class="marathon-q-header">
+                <span class="marathon-q-num">Question ${qIndex + 1} of ${day.test.questions.length}</span>
+                <span class="badge-tag badge-tier-1" style="font-size:0.72rem;">BPSC TRE Exam Pattern</span>
+              </div>
+              <div class="marathon-q-text">${escapeHtml(q.question)}</div>
+              <div class="marathon-options-grid">
+                ${q.options.map((opt, optIdx) => `
+                  <button type="button" class="marathon-option-btn" data-opt-idx="${optIdx}">
+                    <span class="marathon-option-label">(${optionLetters[optIdx] || optIdx})</span>
+                    <span class="marathon-option-text">${escapeHtml(opt)}</span>
+                  </button>
+                `).join('')}
+              </div>
+              <div class="marathon-q-explanation" id="expl-${q.id}">
+                <strong>💡 Solution &amp; Explanation:</strong>
+                <div style="margin-top:0.35rem; white-space:pre-line;">${escapeHtml(q.explanation)}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        testHtml = `
+          <div class="marathon-test-card" id="test-${day.dayId}">
+            <div class="marathon-test-header">
+              <div>
+                <h3 class="marathon-test-title">
+                  <span>📝</span> ${escapeHtml(day.test.title)}
+                </h3>
+                <div class="marathon-test-sub">${escapeHtml(day.test.subtitle)}</div>
+              </div>
+              <div class="marathon-score-badge" id="score-badge-${day.dayId}">
+                <span>🎯 Solved: <span class="solved-count">0</span> / ${day.test.questions.length}</span>
+              </div>
+            </div>
+            <div class="marathon-questions-list">
+              ${qListHtml}
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="marathon-day-card marathon-book-style ${isCompleted ? 'day-completed' : ''}" id="card-${day.dayId}">
+          <header class="marathon-day-header marathon-book-header">
+            <div class="marathon-day-title-wrap">
+              <div class="marathon-day-badge-row">
+                <span class="marathon-day-badge">${escapeHtml(day.badge)}</span>
+                <span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">⏱️ ${escapeHtml(day.targetTime)}</span>
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">📝 ${day.test ? day.test.questions.length : 0} MCQs Test</span>
+              </div>
+              <h3 class="marathon-day-title" style="font-size:1.5rem;">${escapeHtml(day.title)}</h3>
+              <p class="marathon-day-desc" style="font-style:italic;">${escapeHtml(day.summary)}</p>
+            </div>
+            <div class="marathon-day-actions">
+              <button class="btn-day-complete ${isCompleted ? 'completed' : ''}" data-day-id="${day.dayId}">
+                <span>${isCompleted ? '✓' : '○'}</span>
+                <span>${isCompleted ? 'Day Completed' : 'Mark Day Complete'}</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="marathon-day-body marathon-book-body">
+            ${targetsHtml}
+            ${introHtml}
+            ${partsHtml}
+            ${testHtml}
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding-top:1.5rem; margin-top:1rem; border-top:1px solid var(--border-color);">
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="font-size:1.25rem;">🏁</span>
+                <span style="font-weight:700; font-size:0.92rem; color:var(--text-primary);">Completed Day 1 Study &amp; Solved Test?</span>
+              </div>
+              <button class="btn-day-complete ${isCompleted ? 'completed' : ''}" data-day-id="${day.dayId}">
+                <span>${isCompleted ? '✓' : '○'}</span>
+                <span>${isCompleted ? 'Day Completed' : 'Mark Day Complete'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Attach Day Completion toggle handlers
+    marathonDaysContainer.querySelectorAll('.btn-day-complete').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dayId = btn.getAttribute('data-day-id');
+        const isNowCompleted = !btn.classList.contains('completed');
+
+        marathonDaysContainer.querySelectorAll(`.btn-day-complete[data-day-id="${dayId}"]`).forEach(b => {
+          b.classList.toggle('completed', isNowCompleted);
+          b.innerHTML = `<span>${isNowCompleted ? '✓' : '○'}</span> <span>${isNowCompleted ? 'Day Completed' : 'Mark Day Complete'}</span>`;
+        });
+
+        const card = document.getElementById(`card-${dayId}`);
+        if (card) {
+          card.classList.toggle('day-completed', isNowCompleted);
+        }
+        setDayCompleted(dayId, isNowCompleted);
+      });
+    });
+
+    // Attach Option Click Handlers for interactive checking
+    marathonDaysContainer.querySelectorAll('.marathon-q-item').forEach(qItem => {
+      const correctIdx = parseInt(qItem.getAttribute('data-correct'), 10);
+      const qId = qItem.getAttribute('data-qid');
+      const explBox = document.getElementById(`expl-${qId}`);
+      const optionBtns = qItem.querySelectorAll('.marathon-option-btn');
+
+      optionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selectedIdx = parseInt(btn.getAttribute('data-opt-idx'), 10);
+
+          // Disable options to lock answer
+          optionBtns.forEach(b => b.disabled = true);
+
+          if (selectedIdx === correctIdx) {
+            btn.classList.add('opt-correct');
+            const label = btn.querySelector('.marathon-option-label');
+            if (label) label.innerHTML += ' ✓';
+          } else {
+            btn.classList.add('opt-wrong');
+            const label = btn.querySelector('.marathon-option-label');
+            if (label) label.innerHTML += ' ✗';
+
+            // Highlight the correct one
+            const correctBtn = optionBtns[correctIdx];
+            if (correctBtn) {
+              correctBtn.classList.add('opt-correct');
+              const cLabel = correctBtn.querySelector('.marathon-option-label');
+              if (cLabel) cLabel.innerHTML += ' ✓ (Correct Answer)';
+            }
+          }
+
+          if (explBox) {
+            explBox.classList.add('show');
+          }
+
+          // Update solved count in score badge
+          const testCard = qItem.closest('.marathon-test-card');
+          if (testCard) {
+            const answeredCount = testCard.querySelectorAll('.marathon-option-btn:disabled').length / 5;
+            const solvedSpan = testCard.querySelector('.solved-count');
+            if (solvedSpan) {
+              solvedSpan.textContent = Math.round(answeredCount);
+            }
+          }
+        });
+      });
+    });
+  }
+
+  // Reset Marathon streak handler
+  if (btnResetMarathon) {
+    btnResetMarathon.addEventListener('click', () => {
+      if (confirm('Reset your Marathon progress and streak?')) {
+        try {
+          localStorage.removeItem(MARATHON_STORAGE_KEY);
+        } catch (e) {}
+        updateMarathonProgressUI();
+        renderMarathonCards('all');
+        renderMarathonFilterBar('all');
+      }
+    });
+  }
+
+  // -------------------------------------------------------------
+  // Navigation Tabs Controller (tre4ct.aiwazir.com style)
+  // -------------------------------------------------------------
+  function switchTab(tabId) {
+    const navButtons = document.querySelectorAll('.nav-tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    navButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+    });
+
+    tabPanes.forEach(pane => {
+      pane.classList.toggle('active', pane.id === tabId);
+    });
+
+    // Update URL hash smoothly
+    const hashName = tabId.replace('tab-', '');
+    if (history.replaceState) {
+      history.replaceState(null, null, `#${hashName}`);
+    } else {
+      window.location.hash = hashName;
     }
-    if (feedbackEl) {
-      feedbackEl.className = 'daily-q-feedback show bad';
-      feedbackEl.innerHTML = `<strong>❌ Incorrect.</strong> ${escapeHtml(feedbackText)}`;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Expose switchTab globally for inline buttons & onclick events
+  window.switchTab = switchTab;
+
+  function scrollToBlueprint(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    switchTab('tab-dashboard');
+    setTimeout(() => {
+      const el = document.getElementById('blueprintSection');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 120);
+  }
+  window.scrollToBlueprint = scrollToBlueprint;
+
+  function initNavigation() {
+    const navButtons = document.querySelectorAll('.nav-tab-btn');
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTabId = btn.getAttribute('data-tab');
+        if (targetTabId) {
+          switchTab(targetTabId);
+        }
+      });
+    });
+
+    // Handle hash on initial page load (e.g. #syllabus, #ncert, #blueprint)
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'blueprint' || hash === 'blueprintSection') {
+      scrollToBlueprint();
+    } else if (hash) {
+      const targetPane = document.getElementById(`tab-${hash}`);
+      if (targetPane) {
+        switchTab(`tab-${hash}`);
+      }
     }
   }
-};
 
-window.shareDailyOnWhatsApp = function(dayNumber) {
-  const note = typeof getDailyNote === 'function' ? getDailyNote(dayNumber) : null;
-  const title = note ? note.title : 'TRE 4.0 Computer Science — Number System';
-  const text = `🎯 *${title}* (BPSC TRE 4.0 Daily Master Notes)\n\n⚡ *Key White-Paper Tricks:*\n• B O D H → 2, 8, 10, 16\n• TO Decimal → Multiply & Add\n• FROM Decimal → Divide & Reverse\n• Octal = 3 bits, Hex = 4 bits\n• Valid Digit Rule: Digit must always be strictly smaller than Base!\n\nRead full daily capsule & solve practice MCQs:\n👉 https://tre4ct.aiwazir.com/`;
-  
-  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
-};
+  // Initialization
+  function init() {
+    initTheme();
+    loadSavedTopics();
+    renderDashboard();
+    renderNcertLibrary('all');
+    renderCheatSheets('all');
+    renderMarathonFilterBar('all');
+    renderMarathonCards('all');
+    updateMarathonProgressUI();
+    setupEventListeners();
+    initNavigation();
+  }
 
+  // Run on DOM Ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
