@@ -724,10 +724,10 @@ Hashing
     ]
   },
   {
-    id: "data-stats-concepts",
-    title: "Data, Information & Statistical Measures",
-    category: "NCERT Class 11: Data Representation",
-    summary: "What is Data & Information, Primary vs Secondary Data, Data Processing, Statistical Measures (Mean, Median, Mode, Range), and Interview Traps.",
+    id: "ch7-data-stats",
+    title: "Chapter 7 — Understanding Data & Statistical Measures",
+    category: "NCERT Class 11: Chapter 7",
+    summary: "7.1 What is Data & Information, Primary vs Secondary Data, Data Processing, Statistical Measures (Mean, Median, Mode, Range), and Interview Traps.",
     cards: [
       {
         title: "Data, Information & Data Processing",
