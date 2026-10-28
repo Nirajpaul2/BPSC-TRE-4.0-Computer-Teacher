@@ -1,11 +1,11 @@
-// BPSC TRE 4.0 Computer Science — NCERT Master Cheat Sheets (Class 11 & Class 12)
+// BPSC TRE 4.0 Computer Science — NCERT Master Cheat Sheets (Class 11: 2 Chapters | Class 12: 12 Chapters)
 
 const CHEATSHEETS_DATA = [
   {
     "id": "c11-ch5-python-intro",
     "classLevel": 11,
-    "chapterNumber": 5,
-    "title": "Class 11 — Getting Started with Python",
+    "chapterNumber": 1,
+    "title": "Class 11 Chapter 1 — Getting Started with Python",
     "category": "NCERT Class 11: Python Basics",
     "summary": "What is a Program, Python Interpreter, Interactive vs Script Mode, Variables as Object References, id(), Python Data Types, and List vs Tuple vs Set vs Dictionary.",
     "cards": [
@@ -34,8 +34,8 @@ const CHEATSHEETS_DATA = [
   {
     "id": "c11-ch6-flow-of-control",
     "classLevel": 11,
-    "chapterNumber": 6,
-    "title": "Class 11 — Flow of Control & Loops",
+    "chapterNumber": 2,
+    "title": "Class 11 Chapter 2 — Flow of Control & Loops",
     "category": "NCERT Class 11: Control Flow",
     "summary": "Differences to Remember (if vs for, for vs while, break vs continue, if vs while), and 6 Practice Output Questions.",
     "cards": [
@@ -53,8 +53,8 @@ const CHEATSHEETS_DATA = [
   },
   {
     "id": "ch1-exception-handling",
-    "title": "Class 11 Chapter 1 — Exception Handling in Python",
-    "category": "NCERT Class 11: Python",
+    "title": "Class 12 Chapter 1 — Exception Handling in Python",
+    "category": "NCERT Class 12: Python",
     "summary": "1.2 Syntax Errors, 1.3 Exceptions, 1.5 Raising Exceptions, 1.6 Handling Exceptions, 1.7 finally Clause.",
     "cards": [
       {
@@ -73,13 +73,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "finally is normally used for cleanup work."
       }
     ],
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 1
   },
   {
     "id": "ch2-file-handling",
-    "title": "Class 11 Chapter 2 — File Handling in Python",
-    "category": "NCERT Class 11: Python",
+    "title": "Class 12 Chapter 2 — File Handling in Python",
+    "category": "NCERT Class 12: Python",
     "summary": "2.1 Introduction to Files, 2.2 Types of Files, 2.3 Opening/Closing, 2.6 Setting Offsets, 2.8 Pickle Module.",
     "cards": [
       {
@@ -98,13 +98,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "pickle.dump → SAVE OBJECT (object → file) | pickle.load → RESTORE OBJECT (file → object)"
       }
     ],
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 2
   },
   {
     "id": "ch3-stack",
-    "title": "Class 11 Chapter 3 — Stack",
-    "category": "NCERT Class 11: Data Structures",
+    "title": "Class 12 Chapter 3 — Stack",
+    "category": "NCERT Class 12: Data Structures",
     "summary": "3.1 Definition, 3.3 Operations on Stack (Push, Pop, Peek, Overflow), and Final Mental Map.",
     "cards": [
       {
@@ -118,13 +118,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "Then mentally speak: Exception Handling → Detect and safely handle runtime problems. | File Handling → Store and retrieve persistent data. | Stack → LIFO structure where push and pop happen at the top."
       }
     ],
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 3
   },
   {
     "id": "ch4-queue",
-    "title": "Class 11 Chapter 4 — Queue",
-    "category": "NCERT Class 11: Data Structures",
+    "title": "Class 12 Chapter 4 — Queue",
+    "category": "NCERT Class 12: Data Structures",
     "summary": "4.1 Linear Queue (FIFO), 4.2 Enqueue/Dequeue Operations, 4.4 Deque (Double-Ended Queue).",
     "cards": [
       {
@@ -138,13 +138,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "Memory: Deque = Queue with two doors."
       }
     ],
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 4
   },
   {
     "id": "ch5-sorting",
-    "title": "Class 11 Chapter 5 — Sorting",
-    "category": "NCERT Class 11: Algorithms",
+    "title": "Class 12 Chapter 5 — Sorting",
+    "category": "NCERT Class 12: Algorithms",
     "summary": "Mental Picture of cards, 5.1 Sorting, 5.2 Bubble, 5.3 Selection, 5.4 Insertion, 5.5 Complexity & Active Recall.",
     "cards": [
       {
@@ -173,13 +173,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "Ultimate memory: Bubble = neighbour, Selection = minimum, Insertion = cards."
       }
     ],
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 5
   },
   {
     "id": "ch6-searching",
-    "title": "Class 11 Chapter 6 — Searching",
-    "category": "NCERT Class 11: Algorithms",
+    "title": "Class 12 Chapter 6 — Searching",
+    "category": "NCERT Class 12: Algorithms",
     "summary": "Mental Picture, 6.2 Linear Search, 6.3 Binary Search, 6.4 Hashing & Collisions, Final Mental Map.",
     "cards": [
       {
@@ -208,15 +208,15 @@ const CHEATSHEETS_DATA = [
         "explanation": "Your final three memory sentences are: Queue = First In, First Out. | Sorting = Bubble compares neighbours, Selection finds the minimum, Insertion places the next item correctly. | Searching = Linear checks one by one, Binary halves a sorted search space, Hashing calculates where to look."
       }
     ],
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 6
   },
   {
     "id": "ch7-data-stats",
-    "classLevel": 11,
+    "classLevel": 12,
     "chapterNumber": 7,
-    "title": "Class 11 Chapter 7 — Understanding Data & Statistical Measures",
-    "category": "NCERT Class 11: Understanding Data",
+    "title": "Class 12 Chapter 7 — Understanding Data & Statistical Measures",
+    "category": "NCERT Class 12: Data Representation",
     "summary": "7.1 What is Data & Information, Primary vs Secondary Data, Data Processing, Statistical Measures (Mean, Median, Mode, Range), and Interview Traps.",
     "cards": [
       {
@@ -239,7 +239,7 @@ const CHEATSHEETS_DATA = [
   {
     "id": "ch8-dbms",
     "title": "Class 12 Chapter 8 — Database Concepts",
-    "category": "NCERT Class 11/12: Databases",
+    "category": "NCERT Class 12: Databases",
     "summary": "8.1 Introduction, 8.3 DBMS & CRUD, 8.4 Relational Data Model (Tables, Attributes, Tuples), 8.5 Keys, Follow-Up Questions, and White-Paper Mental Map.",
     "cards": [
       {
@@ -269,7 +269,7 @@ const CHEATSHEETS_DATA = [
   {
     "id": "ch9-sql",
     "title": "Class 12 Chapter 9 — Structured Query Language (SQL)",
-    "category": "NCERT Class 11/12: SQL",
+    "category": "NCERT Class 12: SQL",
     "summary": "MySQL Data Types & Constraints, 9.4 DDL (CREATE, ALTER, DROP), 9.5 DML (INSERT), 9.6 Query (SELECT), 9.7 UPDATE & DELETE, 9.8 Functions, and SQL Memory Pipeline.",
     "cards": [
       {
