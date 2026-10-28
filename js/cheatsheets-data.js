@@ -5,7 +5,7 @@ const CHEATSHEETS_DATA = [
     "id": "c11-ch5-python-intro",
     "classLevel": 11,
     "chapterNumber": 5,
-    "title": "Class 11 Chapter 5 — Getting Started with Python",
+    "title": "Class 11 — Getting Started with Python",
     "category": "NCERT Class 11: Python Basics",
     "summary": "What is a Program, Python Interpreter, Interactive vs Script Mode, Variables as Object References, id(), Python Data Types, and List vs Tuple vs Set vs Dictionary.",
     "cards": [
@@ -35,7 +35,7 @@ const CHEATSHEETS_DATA = [
     "id": "c11-ch6-flow-of-control",
     "classLevel": 11,
     "chapterNumber": 6,
-    "title": "Class 11 Chapter 6 — Flow of Control & Loops",
+    "title": "Class 11 — Flow of Control & Loops",
     "category": "NCERT Class 11: Control Flow",
     "summary": "Differences to Remember (if vs for, for vs while, break vs continue, if vs while), and 6 Practice Output Questions.",
     "cards": [
@@ -52,34 +52,9 @@ const CHEATSHEETS_DATA = [
     ]
   },
   {
-    "id": "ch7-data-stats",
-    "classLevel": 11,
-    "chapterNumber": 7,
-    "title": "Class 11 Chapter 7 — Understanding Data & Statistical Measures",
-    "category": "NCERT Class 11: Understanding Data",
-    "summary": "7.1 What is Data & Information, Primary vs Secondary Data, Data Processing, Statistical Measures (Mean, Median, Mode, Range), and Interview Traps.",
-    "cards": [
-      {
-        "title": "Data, Information & Data Processing",
-        "code": "What is data?\nRaw facts and observations.\n\nWhat is information?\nProcessed data that has meaning.\n\nPrimary vs secondary data?\n\nPrimary → collected directly\nSecondary → already collected\n\nWhat is data processing?\nTransforming raw data into useful information.",
-        "explanation": "Data = Raw facts and observations | Information = Processed data that has meaning | Primary = Collected directly, Secondary = Already collected."
-      },
-      {
-        "title": "Statistical Measures: Mean, Median, Mode & Range",
-        "code": "Mean? Sum divided by number of values.\n\nMedian? Middle value after sorting.\n\nMode? Most frequent value.\n\nRange? Maximum minus minimum.",
-        "explanation": "Mean = sum / count | Median = middle value after sorting | Mode = most frequent | Range = max - min."
-      },
-      {
-        "title": "⚠️ INTERVIEW TRAPS & Core Summary",
-        "code": "⚠️ INTERVIEW TRAPS\n\nTrap 1 — Data and information are identical\nNo.\n\nData\n→ raw\n\nInformation\n→ processed + meaningful\n\n────────────────────────────────────────────────────────\nTrap 2 — Median can be found without considering order\nYou first need the values arranged in order.\n\n────────────────────────────────────────────────────────\nTrap 3 — Mean and median are always equal\nNo.\n\nExample:\n\n1, 2, 100\nMedian: 2\n\nMean:\n\n103 / 3 ≈ 34.33\nVery different.\n\n────────────────────────────────────────────────────────\nTrap 4 — Mode means largest number\nNo.\n\nMode means most frequent, not greatest.\n\n────────────────────────────────────────────────────────\nSUMMARY MEMORY:\nData → raw facts\nInformation → processed meaningful data\nPrimary → collected directly\nMean → sum / count\nMedian → middle\nMode → most frequent\nRange → max - min",
-        "explanation": "Interview traps: Median always requires sorting first; Mean & Median can differ wildly; Mode is most frequent, NOT largest."
-      }
-    ]
-  },
-  {
     "id": "ch1-exception-handling",
-    "title": "Class 12 Chapter 1 — Exception Handling in Python",
-    "category": "NCERT Class 12: Python",
+    "title": "Class 11 Chapter 1 — Exception Handling in Python",
+    "category": "NCERT Class 11: Python",
     "summary": "1.2 Syntax Errors, 1.3 Exceptions, 1.5 Raising Exceptions, 1.6 Handling Exceptions, 1.7 finally Clause.",
     "cards": [
       {
@@ -94,17 +69,17 @@ const CHEATSHEETS_DATA = [
       },
       {
         "title": "1.6 Handling Exceptions & 1.7 finally Clause",
-        "code": "1.6 Handling Exceptions\nWe normally use:\n\ntry:\n    ...\nexcept:\n    ...\n\ntry:\n    number = int(input(\"Enter number: \"))\n\nexcept ValueError:\n    print(\"Invalid number\")\n\nelse:\n    print(\"Valid number:\", number)\n\n────────────────────────────────────────────────────────\n1.7 finally Clause\nfinally is normally used for cleanup work.\n\ntry:\n    print(\"Processing\")\n\nexcept Exception:\n    print(\"Something failed\")\n\nfinally:\n    print(\"Cleanup\")",
+        "code": "1.6 Handling Exceptions\nWe normally use:\n\ntry:\n    ...\nexcept:\n    ...\n\ntry:\n    number = int(input(\"Enter number: \"))\n\nexcept ValueError:\n    print(\"Invalid number\")\n\nelse:\n    print(\"Valid number:\", number)\n\n────────────────────────────────────────────────────────\n1.7 finally Clause\nfinally is normally used for cleanup work.\n\ntry:\n    print(\"Processing\")\n\nexcept Exception:\n    print(\"Something failed\")\n\nfinally:\n    print(\"Cleanup\")\n\n────────────────────────────────────────────────────────\n// Mental picture:\n           try\n          /   \\\n       Good   Error\n         \\     /\n          \\   /\n         finally\n            ↓\n          Cleanup\n\n────────────────────────────────────────────────────────\n🔥 FOLLOW-UP QUESTIONS\nWhat is the difference between syntax error and exception?\nSyntax error\n→ invalid Python grammar\n\nException\n→ problem during execution",
         "explanation": "finally is normally used for cleanup work."
       }
     ],
-    "classLevel": 12,
+    "classLevel": 11,
     "chapterNumber": 1
   },
   {
     "id": "ch2-file-handling",
-    "title": "Class 12 Chapter 2 — File Handling in Python",
-    "category": "NCERT Class 12: Python",
+    "title": "Class 11 Chapter 2 — File Handling in Python",
+    "category": "NCERT Class 11: Python",
     "summary": "2.1 Introduction to Files, 2.2 Types of Files, 2.3 Opening/Closing, 2.6 Setting Offsets, 2.8 Pickle Module.",
     "cards": [
       {
@@ -114,7 +89,7 @@ const CHEATSHEETS_DATA = [
       },
       {
         "title": "2.3 Opening/Closing & 2.6 Setting Offsets",
-        "code": "2.3 Opening and Closing a Text File\nUse: open()\n\nfile = open(\"notes.txt\", \"r\")\n\n// Then\n\nfile.close()\n\nCommon modes:\nr → Read\nw → Write/overwrite\na → Append\n\n────────────────────────────────────────────────────────\n2.6 Setting Offsets in a File\nA file has a current position.\n\ntell(): Tells the current file position.\n\nseek(): Moves the file position.",
+        "code": "2.3 Opening and Closing a Text File\nUse: open()\n\nfile = open(\"notes.txt\", \"r\")\n\n// Then\n\nfile.close()\n\nCommon modes:\nr → Read\nw → Write/overwrite\na → Append\n\n────────────────────────────────────────────────────────\n2.6 Setting Offsets in a File\nA file has a current position.\n\ntell(): Tells the current file position.\n\nseek(): Moves the file position.\n\nposition = file.tell() //tell()\nfile.seek(0) //seek()",
         "explanation": "Quick memory: open → OPEN | read → READ | write → WRITE | tell → WHERE? | seek → MOVE | close → CLOSE"
       },
       {
@@ -123,38 +98,38 @@ const CHEATSHEETS_DATA = [
         "explanation": "pickle.dump → SAVE OBJECT (object → file) | pickle.load → RESTORE OBJECT (file → object)"
       }
     ],
-    "classLevel": 12,
+    "classLevel": 11,
     "chapterNumber": 2
   },
   {
     "id": "ch3-stack",
-    "title": "Class 12 Chapter 3 — Stack",
-    "category": "NCERT Class 12: Data Structures",
+    "title": "Class 11 Chapter 3 — Stack",
+    "category": "NCERT Class 11: Data Structures",
     "summary": "3.1 Definition, 3.3 Operations on Stack (Push, Pop, Peek, Overflow), and Final Mental Map.",
     "cards": [
       {
         "title": "3.1 Definition & 3.3 Operations on Stack",
-        "code": "A stack is a linear data structure.\n\nInsertion and deletion happen at one end called:\n\nTOP\n\n────────────────────────────────────────────────────────\n3.3 Operations on Stack\nImportant operations:\n\nPush\nPop\nPeek/Top\nOverflow\nTraditionally means trying to push beyond fixed capacity.",
+        "code": "A stack is a linear data structure.\n\nInsertion and deletion happen at one end called:\n\nTOP\n\n────────────────────────────────────────────────────────\n3.3 Operations on Stack\nImportant operations:\n\nPush\nPop\nPeek/Top\nOverflow\nTraditionally means trying to push beyond fixed capacity.\n\n────────────────────────────────────────────────────────\nPrefix and postfix:\nInfix   → A + B\nPrefix  → + A B\nPostfix → A B +",
         "explanation": "Stack → LIFO structure where push and pop happen at the top."
       },
       {
         "title": "Final Mental Map (Python → Exception, File, Stack)",
-        "code": "              PYTHON\n                 |\n     ┌───────────┼────────────┐\n     ↓           ↓            ↓\n EXCEPTION      FILE         STACK\n HANDLING     HANDLING\n     |           |            |\n try          open()         LIFO\n except       read()          |\n else         write()      push/pop\n finally      close()         |\n raise        seek()        Expression\n              tell()       Processing\n                |             |\n              pickle     Infix → Postfix\n                              ↓\n                       Postfix Evaluation",
+        "code": "              PYTHON\n                 |\n     ┌───────────┼────────────┐\n     ↓           ↓            ↓\n EXCEPTION      FILE         STACK\n HANDLING     HANDLING\n     |           |            |\n try          open()         LIFO\n except       read()          |\n else         write()      push/pop\n finally      close()         |\n raise        seek()        Expression\n              tell()       Processing\n                |             |\n              pickle     Infix → Postfix\n                              ↓\n                       Postfix Evaluation\n\n────────────────────────────────────────────────────────\n// Then mentally speak:\nException Handling\n→ Detect and safely handle runtime problems.\n\nFile Handling\n→ Store and retrieve persistent data.\n\nStack\n→ LIFO structure where push and pop happen at the top.",
         "explanation": "Then mentally speak: Exception Handling → Detect and safely handle runtime problems. | File Handling → Store and retrieve persistent data. | Stack → LIFO structure where push and pop happen at the top."
       }
     ],
-    "classLevel": 12,
+    "classLevel": 11,
     "chapterNumber": 3
   },
   {
     "id": "ch4-queue",
-    "title": "Class 12 Chapter 4 — Queue",
-    "category": "NCERT Class 12: Data Structures",
+    "title": "Class 11 Chapter 4 — Queue",
+    "category": "NCERT Class 11: Data Structures",
     "summary": "4.1 Linear Queue (FIFO), 4.2 Enqueue/Dequeue Operations, 4.4 Deque (Double-Ended Queue).",
     "cards": [
       {
         "title": "4.1 Concept & 4.2 Operations on Queue",
-        "code": "A Queue is a linear data structure in which insertion and deletion happen at opposite ends.\n\nDeletion                       Insertion\n   ↓                              ↓\n FRONT                          REAR\n\n[10] [20] [30] [40]\n\nThe element that enters first leaves first.\n\n────────────────────────────────────────────────────────\n4.2 Operations on Queue\nThe two most important operations are:\n\nENQUEUE\n→ Add element at REAR\n\nDEQUEUE\n→ Remove element from FRONT\n\n// Example:\n\nInitially:\n[10] [20] [30]\n\nEnqueue 40:\n[10] [20] [30] [40]\n\nDequeue:\n10 leaves\n[20] [30] [40]",
+        "code": "A Queue is a linear data structure in which insertion and deletion happen at opposite ends.\n\nDeletion                       Insertion\n   ↓                              ↓\n FRONT                          REAR\n\n[10] [20] [30] [40]\n\nThe element that enters first leaves first.\n\n────────────────────────────────────────────────────────\n4.2 Operations on Queue\nThe two most important operations are:\n\nENQUEUE\n→ Add element at REAR\n\nDEQUEUE\n→ Remove element from FRONT\n\n// Example:\n\nInitially:\n[10] [20] [30]\n\nEnqueue 40:\n[10] [20] [30] [40]\n\nDequeue:\n10 leaves\n[20] [30] [40]\n\nUnderflow\n→ dequeue from empty queue\n\nOverflow\n→ add beyond capacity in fixed-size queue\n\n// Example:\nInitially:\n[10] [20] [30]\n\nEnqueue 40:\n[10] [20] [30] [40]\n\nDequeue:\n10 leaves\n[20] [30] [40]",
         "explanation": "Queue = First In, First Out (FIFO)."
       },
       {
@@ -163,13 +138,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "Memory: Deque = Queue with two doors."
       }
     ],
-    "classLevel": 12,
+    "classLevel": 11,
     "chapterNumber": 4
   },
   {
     "id": "ch5-sorting",
-    "title": "Class 12 Chapter 5 — Sorting",
-    "category": "NCERT Class 12: Algorithms",
+    "title": "Class 11 Chapter 5 — Sorting",
+    "category": "NCERT Class 11: Algorithms",
     "summary": "Mental Picture of cards, 5.1 Sorting, 5.2 Bubble, 5.3 Selection, 5.4 Insertion, 5.5 Complexity & Active Recall.",
     "cards": [
       {
@@ -198,13 +173,13 @@ const CHEATSHEETS_DATA = [
         "explanation": "Ultimate memory: Bubble = neighbour, Selection = minimum, Insertion = cards."
       }
     ],
-    "classLevel": 12,
+    "classLevel": 11,
     "chapterNumber": 5
   },
   {
     "id": "ch6-searching",
-    "title": "Class 12 Chapter 6 — Searching",
-    "category": "NCERT Class 12: Algorithms",
+    "title": "Class 11 Chapter 6 — Searching",
+    "category": "NCERT Class 11: Algorithms",
     "summary": "Mental Picture, 6.2 Linear Search, 6.3 Binary Search, 6.4 Hashing & Collisions, Final Mental Map.",
     "cards": [
       {
@@ -233,8 +208,33 @@ const CHEATSHEETS_DATA = [
         "explanation": "Your final three memory sentences are: Queue = First In, First Out. | Sorting = Bubble compares neighbours, Selection finds the minimum, Insertion places the next item correctly. | Searching = Linear checks one by one, Binary halves a sorted search space, Hashing calculates where to look."
       }
     ],
-    "classLevel": 12,
+    "classLevel": 11,
     "chapterNumber": 6
+  },
+  {
+    "id": "ch7-data-stats",
+    "classLevel": 11,
+    "chapterNumber": 7,
+    "title": "Class 11 Chapter 7 — Understanding Data & Statistical Measures",
+    "category": "NCERT Class 11: Understanding Data",
+    "summary": "7.1 What is Data & Information, Primary vs Secondary Data, Data Processing, Statistical Measures (Mean, Median, Mode, Range), and Interview Traps.",
+    "cards": [
+      {
+        "title": "Data, Information & Data Processing",
+        "code": "What is data?\nRaw facts and observations.\n\nWhat is information?\nProcessed data that has meaning.\n\nPrimary vs secondary data?\n\nPrimary → collected directly\nSecondary → already collected\n\nWhat is data processing?\nTransforming raw data into useful information.",
+        "explanation": "Data = Raw facts and observations | Information = Processed data that has meaning | Primary = Collected directly, Secondary = Already collected."
+      },
+      {
+        "title": "Statistical Measures: Mean, Median, Mode & Range",
+        "code": "Mean? Sum divided by number of values.\n\nMedian? Middle value after sorting.\n\nMode? Most frequent value.\n\nRange? Maximum minus minimum.",
+        "explanation": "Mean = sum / count | Median = middle value after sorting | Mode = most frequent | Range = max - min."
+      },
+      {
+        "title": "⚠️ INTERVIEW TRAPS & Core Summary",
+        "code": "⚠️ INTERVIEW TRAPS\n\nTrap 1 — Data and information are identical\nNo.\n\nData\n→ raw\n\nInformation\n→ processed + meaningful\n\n────────────────────────────────────────────────────────\nTrap 2 — Median can be found without considering order\nYou first need the values arranged in order.\n\n────────────────────────────────────────────────────────\nTrap 3 — Mean and median are always equal\nNo.\n\nExample:\n\n1, 2, 100\nMedian: 2\n\nMean:\n\n103 / 3 ≈ 34.33\nVery different.\n\n────────────────────────────────────────────────────────\nTrap 4 — Mode means largest number\nNo.\n\nMode means most frequent, not greatest.\n\n────────────────────────────────────────────────────────\nSUMMARY MEMORY:\nData → raw facts\nInformation → processed meaningful data\nPrimary → collected directly\nMean → sum / count\nMedian → middle\nMode → most frequent\nRange → max - min",
+        "explanation": "Interview traps: Median always requires sorting first; Mean & Median can differ wildly; Mode is most frequent, NOT largest."
+      }
+    ]
   },
   {
     "id": "ch8-dbms",
