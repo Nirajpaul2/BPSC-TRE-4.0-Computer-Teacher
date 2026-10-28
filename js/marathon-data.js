@@ -1068,6 +1068,600 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 3,
+    "dayId": "day-3",
+    "badge": "Day 03",
+    "title": "TRE 4.0 — Day 3",
+    "unit": "Part III (CS) • Part II (GS) • Part I (Hindi)",
+    "targetTime": "15–18 mins read + test",
+    "summary": "Today we study: Boolean Algebra + De Morgan + K-map basics (Part III CS), Ratio & Proportion (Part II GS), and Hindi Vocabulary (Part I Hindi).",
+    "targets": [
+      {
+        "section": "Part III",
+        "topic": "Boolean Algebra + De Morgan + K-map basics",
+        "goal": "Expression simplification & K-map grouping"
+      },
+      {
+        "section": "Part II",
+        "topic": "Ratio & Proportion",
+        "goal": "Direct/inverse proportion & difference methods"
+      },
+      {
+        "section": "Part I",
+        "topic": "Hindi Vocabulary",
+        "goal": "पर्यायवाची, विलोम & अनेक शब्दों के लिए एक शब्द"
+      }
+    ],
+    "introNote": "These are directly relevant to your previous papers. TRE 3.0 asked what De Morgan’s theorem is used for,     BPSC TRE3.0 question paper by c… while your Bihar STET paper begins with a K-map simplification question followed by PLA.     f4bc06d5-5757-40ca-b90b-f5ee42d…",
+    "parts": [
+      {
+        "partId": "d3-part-3",
+        "title": "Part III — Boolean Algebra",
+        "sections": [
+          {
+            "title": "🧠 White-paper picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Think of Boolean Algebra as mathematics where there are only two people:\n0 = OFF\n1 = ON\n\nAnd only three basic actions:\nAND → .\nOR  → +\nNOT → '\n\nSo mentally draw:"
+              },
+              {
+                "type": "diagram",
+                "content": "        BOOLEAN WORLD\n\n          0      1\n          OFF    ON\n\n       AND   OR   NOT\n        .     +    '"
+              }
+            ]
+          },
+          {
+            "title": "1. Most important Boolean rules",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Don't try to memorize a huge table. Divide them into little families."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Rule A — 0 and 1",
+                "content": "A + 0 = A\nA . 1 = A\n\nMemory:\n0 does nothing to OR.\n1 does nothing to AND.\n\nExample:\n1 + 0 = 1\n0 . 1 = 0"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Rule B — Dominating values",
+                "content": "A + 1 = 1\nA . 0 = 0\n\nMemory trick:\nOR sees 1 → 1 wins\n\nAND sees 0 → 0 wins\n\nWhite paper:\nOR  + 1  → 1\nAND . 0  → 0"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Rule C — Same input twice",
+                "content": "A + A = A\nA . A = A\n\nMemory:\nSame + Same = Same"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Rule D — Opposite input",
+                "content": "A + A' = 1\nA . A' = 0\n\nMental picture:\nA      A'\nON     OFF\n\nThey are opposites.\n\nMemory:\nOpposites OR → 1\n\nOpposites AND → 0\n\nThis is extremely useful in simplification."
+              }
+            ]
+          },
+          {
+            "title": "2. Double NOT",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "(A')' = A\n\nMental picture:\nA\n↓ NOT\nA'\n↓ NOT\nA"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "Two NOTs cancel."
+              }
+            ]
+          },
+          {
+            "title": "3. Absorption Law",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Very useful for MCQs.\nA + AB = A\n\nand\nA(A+B) = A"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "White-paper picture:",
+                "content": "A is already present\n      ↓\nExtra AB adds nothing\n\nSo:\nBig A eats small AB.\n\nThis is my recommended memory trick:\nA + AB\n↓\nA eats AB\n↓\nA"
+              }
+            ]
+          },
+          {
+            "title": "4. De Morgan's Law — VERY IMPORTANT",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "There are only two formulas.\n(A + B)' = A' . B'\n\nand\n(A . B)' = A' + B'\n\nThis looks difficult until you use one simple trick."
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "White-paper memory trick",
+                "diagram": "Imagine the NOT bar breaking the bracket:\n        NOT bar\n           ↓\n       (A + B)'\n           ↓\n     break bracket\n           ↓\n        A' . B'\n\nWhen the bar enters:\nEvery variable gets NOT\n\nAND\n\nthe sign changes\n\n+  ↔  ."
+              },
+              {
+                "type": "text",
+                "content": "That's the entire De Morgan law.\n\nOne-line memory\nBreak the bar → flip everything.\n\nOr mentally:\n+ changes to .\n. changes to +\n\nA changes to A'\nB changes to B'\n\nExample\nSimplify:\n(A + B)'\n\nStep 1: NOT A\nA → A'\n\nStep 2: NOT B\nB → B'\n\nStep 3: Change OR to AND\n+ → .\n\nAnswer:\nA'B'\n\nAnother:\n(AB)'\n\nBreak the bar:\nA → A'\nB → B'\n. → +\n\nTherefore:\nA' + B'"
+              },
+              {
+                "type": "callout",
+                "icon": "📝",
+                "title": "TRE memory page",
+                "diagram": "DE MORGAN\n\n(A+B)' = A'B'\n\n(AB)'  = A'+B'\n\nBAR ENTERS →\nvariables flip\noperator flips"
+              },
+              {
+                "type": "text",
+                "content": "TRE 3.0 specifically tested De Morgan as a technique for simplifying Boolean expressions.     BPSC TRE3.0 question paper by c…"
+              }
+            ]
+          },
+          {
+            "title": "5. K-map — don't fear it",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "K-map means:\nKarnaugh Map\n\nIts job is simply:\nMake a big Boolean expression SMALL."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nHuge expression\n      ↓\n   K-MAP\n      ↓\nSmall expression"
+              },
+              {
+                "type": "text",
+                "content": "That's all you need to understand first.\n\nYour STET paper directly asked K-map simplification in Question 1.     f4bc06d5-5757-40ca-b90b-f5ee42d…\n\nNumber of K-map boxes\nThis is easy.\n\nIf variables = n:\nCells = 2ⁿ\n\nTherefore:\n2 variables → 2² = 4 cells\n\n3 variables → 2³ = 8 cells\n\n4 variables → 2⁴ = 16 cells"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory",
+                "diagram": "Variables\n    ↓\n  power\n    ↓\n   2ⁿ\n    ↓\nK-map cells"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "K-map ordering — important trap",
+                "content": "Normal binary order:\n00  01  10  11\n\nK-map does NOT use that order.\n\nIt normally uses Gray-code order:\n00 → 01 → 11 → 10\n\nWhy?\n\nOnly one bit changes between adjacent cells.\n\nWhite-paper trick:\n00\n ↓\n01\n ↓\n11\n ↓\n10\n\nCheck:\n00 → 01   one bit changes\n01 → 11   one bit changes\n11 → 10   one bit changes\n\nMemory:\nK-map neighbours change only ONE bit."
+              }
+            ]
+          },
+          {
+            "title": "6. How do we group K-map cells?",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "For SOP simplification, usually group 1s.\n\nAllowed group sizes:\n1\n2\n4\n8\n16\n...\n\nNotice:\nPowers of 2 only.\n\nNot allowed:\n3 ❌\n5 ❌\n6 ❌\n7 ❌"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\nK-MAP GROUPS\n\n1 → 2 → 4 → 8 → 16\n       powers of 2"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Important strategy",
+                "content": "Make the BIGGEST group possible.\n\nPrefer:\ngroup of 8\n\nover two groups of 4, if possible.\n\nPrefer:\n4\n\nover two groups of 2.\n\nMemory:\nK-map loves BIG groups."
+              }
+            ]
+          },
+          {
+            "title": "7. Diagonal cells?",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "No."
+              },
+              {
+                "type": "diagram",
+                "content": "1   0\n0   1"
+              },
+              {
+                "type": "text",
+                "content": "Those two 1s are diagonal.\n\nYou cannot group them together."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Memory:",
+                "content": "K-map walks straight, not diagonally."
+              }
+            ]
+          },
+          {
+            "title": "8. Edges are neighbours!",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is an exam trap.\n\nK-map behaves as if it is wrapped around:\nLEFT EDGE ←→ RIGHT EDGE\n\nTOP EDGE\n   ↕\nBOTTOM EDGE\n\nImagine wrapping the K-map like a paper cylinder."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture\n┌─────────────┐\n│             │\n│   K-MAP     │\n│             │\n└─────────────┘\n\n← bend the paper →\n\nleft touches right\ntop touches bottom"
+              }
+            ]
+          },
+          {
+            "title": "9. Don't Care — X",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 specifically asked the purpose of a don't-care condition.\n\nThink:\nX = I don't care whether\n    you treat me as 0 or 1\n\nYou may use X as 1 if it helps make a bigger group.\n\nOr ignore it."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "X is your helper, not your boss.\n\nExample:\n1  1  X  X\n\nYou can treat the X values as 1 and make a group of 4.\n\nIf they don't help, ignore them."
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "K-map 30-second memory page",
+                "diagram": "Draw this mentally:\n             K-MAP\n               ↓\n      Simplify Boolean Expression\n\nVariables → Cells\n\n2 → 4\n3 → 8\n4 → 16\n\nORDER:\n00 01 11 10\n\nGROUP:\n1,2,4,8,16\n\nBIGGEST GROUP FIRST\n\nNo diagonal ❌\nEdges touch ✅\nDon't Care X = use if helpful\n\nThat's enough for Day 3. We'll solve full 3-variable and 4-variable K-maps in a later practice session."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d3-part-2",
+        "title": "Part II — Ratio & Proportion",
+        "sections": [
+          {
+            "title": "🧠 Mental picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This deserves attention because TRE 3.0 asked a direct 2:5 ratio problem, and also asked inverse proportion.     BPSC TRE3.0 question paper by c…     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "Imagine two brothers receiving chocolates:\nA : B\n2 : 3\n\nA → 🍫🍫\n\nB → 🍫🍫🍫\n\nRatio means:\nComparison of two quantities."
+              }
+            ]
+          },
+          {
+            "title": "1. Ratio method",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Suppose:\nBoys : Girls = 2 : 3\n\nTotal students = 50.\n\nMental white-paper:\n2 : 3\n↓   ↓\n\nTotal parts = 2+3 = 5\n\nOne part:\n50 ÷ 5 = 10\n\nTherefore:\nBoys  = 2×10 = 20\nGirls = 3×10 = 30"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "diagram": "Ratio → Add → Divide → Multiply\n\n2 : 3\n ↓\n2+3=5\n ↓\nTotal ÷ 5\n ↓\nmultiply"
+              }
+            ]
+          },
+          {
+            "title": "2. Difference-based ratio",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is especially important because TRE asked this style.\n\nSuppose:\nTwo numbers = 2 : 5\n\nDifference = 66"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\n2 parts        5 parts\n■■             ■■■■■\n\nDifference = 3 parts\n\nSo:\n5 - 2 = 3 parts\n\n3 parts = 66\n\n1 part = 22\n\nNumbers:\n2×22 = 44\n5×22 = 110\n\nTherefore:\n44 and 110"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper trick",
+                "content": "If the question gives difference:\nSubtract ratio numbers first.\n\n2 : 5\n  ↓\n5-2 = 3\n\nTRE 3.0 used exactly this structure.     BPSC TRE3.0 question paper by c…"
+              }
+            ]
+          },
+          {
+            "title": "3. Direct proportion",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine:\nMore items → More cost\n\nExample:\n2 pens = ₹20\n4 pens = ₹40\n\nBoth increase together.\n\nSo:\nDirect = Same direction ↑↑"
+              },
+              {
+                "type": "diagram",
+                "content": "White paper:\nx ↑\ny ↑\n\nDIRECT\n\nMathematically:\ny/x = constant"
+              }
+            ]
+          },
+          {
+            "title": "4. Inverse proportion",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine workers completing a job:\nWorkers ↑\nDays ↓\n\nMore workers means fewer days.\n\nSo:\nInverse = Opposite directions ↑↓"
+              },
+              {
+                "type": "diagram",
+                "content": "White paper:\nx ↑\ny ↓\n\nINVERSE\n\nImportant formula:\nx × y = constant\n\nTRE 3.0 directly asked this relation.     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Inverse → Multiply stays same."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d3-part-1",
+        "title": "Part I — Hindi Vocabulary",
+        "sections": [
+          {
+            "title": "1. पर्यायवाची",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Today, keep this light.\n\nMeaning:\nSame meaning, different word"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nसूर्य\n ↙ ↓ ↘\nरवि भानु दिनकर"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "एक अर्थ — कई नाम = पर्यायवाची\n\nExamples:\nसूर्य → रवि\nचंद्रमा → शशि\nपृथ्वी → धरती\nजल → नीर\nअग्नि → अनल\nआकाश → नभ"
+              }
+            ]
+          },
+          {
+            "title": "2. विलोम",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Meaning:\nOpposite meaning"
+              },
+              {
+                "type": "diagram",
+                "content": "दिन ↔ रात\nलाभ ↔ हानि\nसुख ↔ दुःख\nनया ↔ पुराना\nआदि ↔ अंत"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Mental trick:",
+                "content": "विलोम = उल्टा"
+              }
+            ]
+          },
+          {
+            "title": "3. एक शब्द",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Instead of writing a whole sentence, use one word."
+              },
+              {
+                "type": "diagram",
+                "content": "जो कभी न मरे\n      ↓\n    अमर\n\nजो सब जानता हो\n      ↓\n   सर्वज्ञ\n\nजिसका कोई शत्रु न हो\n      ↓\n   अजातशत्रु"
+              },
+              {
+                "type": "callout",
+                "icon": "📝",
+                "title": "White-paper memory:",
+                "diagram": "LONG SENTENCE\n      ↓\n   ONE WORD"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 3 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d3-q1",
+          "question": "Q1. According to De Morgan: (A+B)' = ?",
+          "options": [
+            "A'+B'",
+            "A'B'",
+            "AB",
+            "A+B",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "De Morgan's first theorem: (A + B)' = A' · B' (Break the bar, flip operator + to ·, invert variables). Correct: (B) A'B'."
+        },
+        {
+          "id": "m-d3-q2",
+          "question": "Q2. (AB)' = ?",
+          "options": [
+            "A'B'",
+            "A+B",
+            "A'+B'",
+            "AB",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "De Morgan's second theorem: (A · B)' = A' + B' (Break the bar, flip operator · to +, invert variables). Correct: (C) A'+B'."
+        },
+        {
+          "id": "m-d3-q3",
+          "question": "Q3. A + A' = ?",
+          "options": [
+            "A",
+            "0",
+            "1",
+            "A'",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Complementarity Law (Opposites OR): Since one must be 1 and the other 0, 1 + 0 = 1. Therefore A + A' = 1. Correct: (C) 1."
+        },
+        {
+          "id": "m-d3-q4",
+          "question": "Q4. A.A' = ?",
+          "options": [
+            "0",
+            "1",
+            "A",
+            "A'",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Complementarity Law (Opposites AND): Since one must be 0, 1 · 0 = 0. Therefore A · A' = 0. Correct: (A) 0."
+        },
+        {
+          "id": "m-d3-q5",
+          "question": "Q5. Simplify: A + AB",
+          "options": [
+            "AB",
+            "B",
+            "A",
+            "A+B",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Absorption Law: A + AB = A(1 + B) = A(1) = A ('A eats AB'). Correct: (C) A."
+        },
+        {
+          "id": "m-d3-q6",
+          "question": "Q6. A 4-variable K-map has:",
+          "options": [
+            "4 cells",
+            "8 cells",
+            "16 cells",
+            "32 cells",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "For n variables, number of cells = 2ⁿ. For n = 4: 2⁴ = 16 cells. Correct: (C) 16 cells."
+        },
+        {
+          "id": "m-d3-q7",
+          "question": "Q7. Correct K-map ordering is:",
+          "options": [
+            "00, 01, 10, 11",
+            "00, 10, 01, 11",
+            "00, 01, 11, 10",
+            "11, 10, 00, 01",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "K-map uses Gray code ordering so that adjacent cells differ by only one single bit: 00 → 01 → 11 → 10. Correct: (C) 00, 01, 11, 10."
+        },
+        {
+          "id": "m-d3-q8",
+          "question": "Q8. Which is NOT a valid K-map group size?",
+          "options": [
+            "2",
+            "4",
+            "6",
+            "8",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "K-map cells can only be grouped in powers of 2 (1, 2, 4, 8, 16...). Group size 6 is illegal. Correct: (C) 6."
+        },
+        {
+          "id": "m-d3-q9",
+          "question": "Q9. In a K-map, don't-care X:",
+          "options": [
+            "Must always be 0",
+            "Must always be 1",
+            "May be used when it helps simplification",
+            "Must form its own group",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Don't Care condition (X) is optional: you can treat it as 1 if it helps form a larger group, or ignore it as 0 if not needed. Correct: (C) May be used when it helps simplification."
+        },
+        {
+          "id": "m-d3-q10",
+          "question": "Q10. Two numbers are in ratio 3:5. Their sum is 64. Smaller number is:",
+          "options": [
+            "16",
+            "24",
+            "32",
+            "40",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Total parts = 3 + 5 = 8. One part = 64 ÷ 8 = 8. Smaller number = 3 × 8 = 24. (Larger number = 5 × 8 = 40). Correct: (B) 24."
+        },
+        {
+          "id": "m-d3-q11",
+          "question": "Q11. Ages are in ratio 4:3. Their difference is 6 years. Elder age is:",
+          "options": [
+            "18",
+            "20",
+            "24",
+            "30",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Difference in parts = 4 - 3 = 1 part = 6 years. Elder age = 4 parts = 4 × 6 = 24 years. Younger = 3 × 6 = 18. Correct: (C) 24."
+        },
+        {
+          "id": "m-d3-q12",
+          "question": "Q12. If x and y are inversely proportional:",
+          "options": [
+            "x+y = constant",
+            "x-y = constant",
+            "xy = constant",
+            "x/y = constant",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "For inverse proportion, as x increases y decreases such that their product remains constant: x · y = k (constant). Correct: (C) xy = constant."
+        },
+        {
+          "id": "m-d3-q13",
+          "question": "Q13. “जल” का पर्यायवाची है:",
+          "options": [
+            "अग्नि",
+            "नीर",
+            "नभ",
+            "पवन",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "जल के पर्यायवाची शब्द: पानी, नीर, तोय, वारि, सलिल आदि हैं। Correct: (B) नीर."
+        },
+        {
+          "id": "m-d3-q14",
+          "question": "Q14. “लाभ” का विलोम है:",
+          "options": [
+            "धन",
+            "सुख",
+            "हानि",
+            "आय",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "लाभ का विलोम शब्द 'हानि' है। Correct: (C) हानि."
+        },
+        {
+          "id": "m-d3-q15",
+          "question": "Q15. “जो कभी न मरे” के लिए एक शब्द है:",
+          "options": [
+            "अजर",
+            "अमर",
+            "नश्वर",
+            "जीवित",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "जो कभी न मरे उसे 'अमर' कहते हैं। (जो कभी वृद्ध न हो = अजर). Correct: (B) अमर."
+        }
+      ]
+    }
   }
 ];
 
