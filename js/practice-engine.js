@@ -182,7 +182,7 @@
               <div class="practice-stat-icon" style="background:#fef3c7; color:#f59e0b;">🔒</div>
               <div>
                 <div class="practice-stat-val" style="color:#f59e0b;">27 Locked</div>
-                <div class="practice-stat-lbl">4,050 Qs (70% Paywall @ ₹299)</div>
+                <div class="practice-stat-lbl">4,050 Qs (<s style="opacity:0.75;">₹999</s> ₹299 • 70% OFF)</div>
               </div>
             </div>
             <div class="practice-stat-card" style="border-left: 3px solid #ef4444;">
@@ -222,7 +222,7 @@
 
       let statusBadge = '<span class="practice-status-badge badge-free" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; font-weight:800;">🟢 FREE TEST</span>';
       if (isLocked) {
-        statusBadge = '<span class="practice-status-badge badge-locked" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; font-weight:800;">🔒 LOCKED (₹299)</span>';
+        statusBadge = '<span class="practice-status-badge badge-locked" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; font-weight:800;">🔒 LOCKED (<s style="opacity:0.75; font-size:0.74rem;">₹999</s> ₹299 <span class="discount-sticker-pill" style="font-size:0.62rem; padding:1px 4px;">70% OFF</span>)</span>';
       } else if (result) {
         statusBadge = '<span class="practice-status-badge badge-completed">Completed</span>';
       } else if (inProgress) {
@@ -237,7 +237,7 @@
       if (isLocked) {
         actionButtons = `
           <button class="btn-practice-act btn-practice-locked" onclick="window.openPaywallModal('Practice Set ${setMeta.title}')">
-            🔒 Unlock for ₹299
+            🔒 Unlock for <s style="opacity:0.75; font-size:0.8rem; text-decoration:line-through;">₹999</s> <strong>₹299</strong> <span class="discount-sticker-pill" style="font-size:0.65rem; padding:1px 5px;">70% OFF</span>
           </button>
         `;
       } else if (!isAvailable) {
