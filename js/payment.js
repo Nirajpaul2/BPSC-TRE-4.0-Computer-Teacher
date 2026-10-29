@@ -57,7 +57,9 @@
     return (num % 2 === 0 && num <= 40);
   };
 
-  // Practice Sets: Alternative process (like Marathon): Set 1 allow, Set 2 block, Set 3 allow, Set 4 block...
+  // Practice Sets Gating: Even sets (2, 4, 6, ...) + specific odd sets [5, 11, 17, 23, 29, 35, 37]
+  const EXTRA_LOCKED_SETS = new Set([5, 11, 17, 23, 29, 35, 37]);
+
   window.isPracticeSetLocked = function (setId) {
     if (window.isCourseUnlocked()) return false;
     let setNum = 0;
@@ -68,9 +70,8 @@
       if (!match) return false;
       setNum = parseInt(match[0], 10);
     }
-    // Odd sets (1, 3, 5, ..., 39) are Free (20 sets = 3,000 Questions)
-    // Even sets (2, 4, 6, ..., 40) are Blocked (20 sets = 3,000 Questions)
-    return (setNum % 2 === 0);
+    // Even sets (20 sets) + specific odd sets (7 sets) = 27 sets blocked (~70% paywall)
+    return (setNum % 2 === 0) || EXTRA_LOCKED_SETS.has(setNum);
   };
 
   // 3. Script Loader for Razorpay Checkout SDK
@@ -201,7 +202,7 @@
         exam: "BPSC TRE 4.0 Computer Teacher",
         access: "Lifetime Pass (₹299)",
         marathon: "20 Blocked Days Unlocked (All 43 Days)",
-        practice_sets: "20 Blocked Sets Unlocked (All 40 Sets / 6,000 Qs Total)"
+        practice_sets: "27 Blocked Sets Unlocked (All 40 Sets / 6,000 Qs Total)"
       },
       theme: {
         color: "#0284c7"

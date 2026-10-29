@@ -155,7 +155,7 @@
       <div class="practice-hub">
         <header class="practice-header">
           <div class="practice-top-highlight">
-            <span class="red-bullet-pulse">●</span> Practice Sets (<span class="tab-red-mark">60000 Q</span>) • Alternative Gating: 20 Free Tests + 20 Premium Tests
+            <span class="red-bullet-pulse">●</span> Practice Sets (<span class="tab-red-mark">60000 Q</span>) • 13 Free Tests + 27 Premium Tests (70% Paywall)
           </div>
           <h2 class="practice-title"><span>📝</span> BPSC TRE Computer Science Practice Sets</h2>
           <p class="practice-subtitle">
@@ -174,15 +174,15 @@
             <div class="practice-stat-card" style="border-left: 3px solid #10b981;">
               <div class="practice-stat-icon" style="background:#dcfce7; color:#10b981;">🟢</div>
               <div>
-                <div class="practice-stat-val" style="color:#10b981;">20 Free</div>
-                <div class="practice-stat-lbl">3,000 Free Qs (Odd Sets)</div>
+                <div class="practice-stat-val" style="color:#10b981;">13 Free</div>
+                <div class="practice-stat-lbl">1,950 Free Qs (Full Tests)</div>
               </div>
             </div>
             <div class="practice-stat-card" style="border-left: 3px solid #f59e0b;">
               <div class="practice-stat-icon" style="background:#fef3c7; color:#f59e0b;">🔒</div>
               <div>
-                <div class="practice-stat-val" style="color:#f59e0b;">20 Locked</div>
-                <div class="practice-stat-lbl">3,000 Qs (Even Sets @ ₹299)</div>
+                <div class="practice-stat-val" style="color:#f59e0b;">27 Locked</div>
+                <div class="practice-stat-lbl">4,050 Qs (70% Paywall @ ₹299)</div>
               </div>
             </div>
             <div class="practice-stat-card" style="border-left: 3px solid #ef4444;">
@@ -199,8 +199,8 @@
         <div class="practice-filter-bar">
           <div class="practice-filter-pills">
             <button class="btn-practice-filter ${engineState.hubFilter === 'all' ? 'active' : ''}" data-filter="all">All Sets (40)</button>
-            <button class="btn-practice-filter ${engineState.hubFilter === 'free' ? 'active' : ''}" data-filter="free" style="color:#10b981; font-weight:700;">🟢 Free Sets (20)</button>
-            <button class="btn-practice-filter ${engineState.hubFilter === 'locked' ? 'active' : ''}" data-filter="locked" style="color:#ef4444; font-weight:700;">🔒 Premium Sets (20)</button>
+            <button class="btn-practice-filter ${engineState.hubFilter === 'free' ? 'active' : ''}" data-filter="free" style="color:#10b981; font-weight:700;">🟢 Free Sets (13)</button>
+            <button class="btn-practice-filter ${engineState.hubFilter === 'locked' ? 'active' : ''}" data-filter="locked" style="color:#ef4444; font-weight:700;">🔒 Premium Sets (27)</button>
             <button class="btn-practice-filter ${engineState.hubFilter === 'completed' ? 'active' : ''}" data-filter="completed">Completed (${completedCount})</button>
             <button class="btn-practice-filter ${engineState.hubFilter === 'in_progress' ? 'active' : ''}" data-filter="in_progress">In Progress</button>
             <button class="btn-practice-filter ${engineState.hubFilter === 'not_started' ? 'active' : ''}" data-filter="not_started">Not Started</button>
