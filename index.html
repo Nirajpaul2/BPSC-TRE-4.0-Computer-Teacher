@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/practice.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2224%22>💻</text></svg>">
+  <!-- Razorpay Standard Checkout SDK (Option A Jamstack) -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -30,6 +32,12 @@
         </a>
 
         <div class="nav-actions">
+          <button class="btn btn-primary btn-unlock-header" id="btnHeaderUnlock" onclick="window.openPaywallModal('Header CTA')" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a; font-weight:800; border:none; padding:0.45rem 0.85rem; font-size:0.82rem; border-radius:var(--radius-sm); display:inline-flex; align-items:center; gap:0.35rem; cursor:pointer; box-shadow:0 2px 8px rgba(245,158,11,0.35);" title="Unlock Full Course for ₹299">
+            <span>💎</span> <span class="hide-mobile">Unlock</span> (₹299)
+          </button>
+          <button class="btn btn-outline" id="btnHeaderRestore" onclick="window.openRestoreModal()" title="Restore previous purchase on another device" style="font-size:0.8rem; padding:0.45rem 0.75rem;">
+            <span>🔄</span> <span class="hide-mobile">Restore</span>
+          </button>
           <button class="btn btn-outline" id="themeToggleBtn" aria-label="Toggle Theme" title="Switch between Warm Light &amp; Night Mode">
             <span id="themeIcon">☀️</span>
             <span class="hide-mobile" id="themeLabel">Warm Light</span>
@@ -635,8 +643,177 @@
       <a href="#practice" class="footer-link" onclick="switchTab('tab-practice'); return false;">Practice Sets (<span class="tab-red-mark">60000 Q</span>)</a>
       <span>•</span>
       <a href="https://bpsc.bihar.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">BPSC Official Portal</a>
+      <span>•</span>
+      <a href="javascript:void(0)" class="footer-link" onclick="window.openPaywallModal('Footer'); return false;" style="color:#f59e0b; font-weight:700;">💎 Unlock Full Course (₹299)</a>
+      <span>•</span>
+      <a href="javascript:void(0)" class="footer-link" onclick="window.openRestoreModal(); return false;">🔄 Restore Access</a>
+      <span>•</span>
+      <a href="javascript:void(0)" class="footer-link" onclick="window.lockCourseAgain(); return false;" style="color:var(--text-muted);" title="Test locking mechanism">🔁 Reset to Preview Mode</a>
     </div>
   </footer>
+
+  <!-- ========================================================
+       PAYWALL & RESTORATION MODALS (Option A Jamstack)
+       ======================================================== -->
+
+  <!-- 💳 Razorpay ₹299 Paywall Checkout Modal -->
+  <div class="modal-overlay" id="paywall-checkout-modal" style="display: none;">
+    <div class="modal-content" style="max-width: 560px; text-align: center;">
+      <div class="modal-header">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 0.75rem;">
+          <span style="font-size: 1.6rem;">💎</span>
+          <span style="font-size: 1.15rem; font-weight:800;">BPSC TRE 4.0 Full Access Pass</span>
+        </div>
+        <button class="btn-close-modal" onclick="closePaywallModal()">&times;</button>
+      </div>
+
+      <div class="price-tag-ribbon">
+        <span class="current-price">₹299</span>
+        <span class="original-price">₹999</span>
+        <span class="discount-badge">70% OFF • LIFETIME ACCESS</span>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Complete full access to all 43 Marathon Days, 40 Practice Sets (6,000 Questions), and BPSC Exam Tools.
+      </p>
+
+      <ul class="paywall-features-list">
+        <li><span style="color: #10b981; font-weight:bold;">✓</span> <strong>All 43 Marathon Days Unlocked:</strong> Release all 20 alternatively locked days (complete 43-day crash course).</li>
+        <li><span style="color: #10b981; font-weight:bold;">✓</span> <strong>All 40 Practice Sets Unlocked (6,000 Qs):</strong> Release the 28 locked sets (4,200 domain questions) with full explanations.</li>
+        <li><span style="color: #10b981; font-weight:bold;">✓</span> <strong>All 12 Syllabus Units &amp; NCERT Handbook:</strong> Complete Class 11 &amp; 12 chapters and cheatsheets.</li>
+        <li><span style="color: #10b981; font-weight:bold;">✓</span> <strong>Verified Candidate Digital Pass:</strong> Issued with your official Transaction ID.</li>
+        <li><span style="color: #10b981; font-weight:bold;">✓</span> <strong>1-Time Payment • Free Lifetime Updates:</strong> All future notes, tests, and mock papers included.</li>
+      </ul>
+
+      <!-- Aspirant Form -->
+      <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem; text-align: left;">
+        <div style="margin-bottom: 0.75rem;">
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Candidate Name (for Digital Pass):</label>
+          <input type="text" id="pay-name" placeholder="Enter your full name" onkeydown="if(event.key==='Enter') startRazorpayPayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">WhatsApp / Mobile Number:</label>
+          <input type="tel" id="pay-phone" placeholder="10-digit mobile number" onkeydown="if(event.key==='Enter') startRazorpayPayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem; box-sizing: border-box;">
+        </div>
+      </div>
+
+      <!-- Razorpay Checkout Action -->
+      <button class="btn-razorpay-pay" onclick="startRazorpayPayment()">
+        <span>🔒 Pay ₹299 with Razorpay</span>
+        <span style="font-size: 0.82rem; opacity: 0.85;">(UPI / QR / Cards / NetBanking)</span>
+      </button>
+
+      <!-- Direct Fallback Payment Link -->
+      <div style="margin-top: 0.75rem; text-align: center; font-size: 0.82rem;">
+        <span style="color: var(--text-muted);">Popup blocked? </span>
+        <a href="https://rzp.io/rzp/f8vkVi7Y" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); font-weight: 600; text-decoration: underline;">
+          Pay via Direct Razorpay Link ↗
+        </a>
+      </div>
+
+      <!-- Dev/Test Simulation & Passcode Section -->
+      <div style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-primary); border: 1px dashed var(--border-color); border-radius: var(--radius-sm); text-align: left;">
+        <details>
+          <summary style="font-size: 0.78rem; color: var(--text-muted); cursor: pointer; font-weight: 600;">
+            🔑 Have an Activation Passcode or Localhost Test Mode?
+          </summary>
+          <div style="margin-top: 0.65rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <input type="text" id="activation-passcode-input" placeholder="Passcode (e.g. TEACHER2026)" style="flex: 1; min-width: 180px; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.4rem 0.6rem; border-radius: 4px; font-size: 0.82rem;">
+            <button onclick="applyActivationCode()" style="background: var(--accent-primary); color: white; border: none; padding: 0.4rem 0.85rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; cursor: pointer;">Apply Code</button>
+            <button onclick="simulatePaymentSuccess()" style="background: #10b981; color: #0f172a; border: none; padding: 0.4rem 0.85rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; cursor: pointer;" title="Instant Test Unlock without deduction">⚡ Test Mode Unlock</button>
+          </div>
+        </details>
+      </div>
+
+      <!-- Already Paid Cross-Device Restore Trigger in Modal -->
+      <div style="margin-top: 0.85rem; padding: 0.75rem; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center;">
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+          Already paid ₹299 on another phone, laptop or browser?
+        </div>
+        <button class="btn-restore-nav" onclick="openRestoreModal()" style="font-size: 0.82rem; padding: 0.35rem 0.85rem; width: 100%; justify-content: center;">
+          <span>🔄</span> Restore Access via Payment ID or Phone
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Confirmation & Success Screen Modal -->
+  <div class="modal-overlay" id="payment-success-modal" style="display: none;">
+    <div class="modal-content" style="max-width: 520px; text-align: center;">
+      <div class="modal-header" style="justify-content: flex-end; border-bottom: none; padding-bottom: 0;">
+        <button class="btn-close-modal" onclick="closeSuccessModal()">&times;</button>
+      </div>
+      
+      <div style="width:64px; height:64px; border-radius:50%; background:rgba(16,185,129,0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem; border:2px solid #10b981;">✓</div>
+      
+      <h2 style="font-size: 1.45rem; font-weight: 800; color: #10b981; margin-bottom: 0.35rem;">
+        Payment Successful!
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">
+        Welcome to the <strong>BPSC TRE 4.0 Computer Teacher</strong> Lifetime Pass. All 43 Marathon Days and 40 Practice Sets (6,000 Questions) are now permanently unlocked!
+      </p>
+
+      <!-- Digital Receipt Card -->
+      <div class="success-receipt-card" style="background:var(--bg-primary); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:1rem; margin-bottom:1.25rem; text-align:left;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; font-size:0.85rem;">
+          <span style="color:var(--text-muted);">Payment ID:</span>
+          <span style="display:flex; align-items:center; gap:0.4rem;">
+            <code id="success-payment-id-display" style="color:var(--accent-primary); font-weight:700; background:var(--bg-tertiary); padding:0.2rem 0.4rem; border-radius:4px;">pay_...</code>
+            <button onclick="copyPaymentIdToClipboard()" id="btn-copy-payment-id" style="background:var(--bg-secondary); border:1px solid var(--border-color); font-size:0.75rem; padding:0.2rem 0.4rem; border-radius:4px; cursor:pointer;">📋 Copy</button>
+          </span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.85rem;">
+          <span style="color:var(--text-muted);">Candidate:</span>
+          <span id="success-candidate-name" style="font-weight:700; color:var(--text-main);">Teacher Aspirant</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.85rem;">
+          <span style="color:var(--text-muted);">Amount Paid:</span>
+          <span style="font-weight:800; color:#10b981;">₹299.00 INR</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+          <span style="color:var(--text-muted);">Access Level:</span>
+          <span style="font-weight:700; color:var(--accent-primary);">⭐ Lifetime Full Pass</span>
+        </div>
+      </div>
+
+      <button class="btn-razorpay-pay" onclick="closeSuccessModal()" style="background:#10b981; color:#0f172a; font-weight:800;">
+        🚀 Start Studying Now
+      </button>
+    </div>
+  </div>
+
+  <!-- Cross-Device Restoration Modal -->
+  <div class="modal-overlay" id="restore-access-modal" style="display: none;">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.5rem;">🔄</span>
+          <h2 style="font-size: 1.25rem; margin: 0; font-weight:800;">Restore Full Course Access</h2>
+        </div>
+        <button class="btn-close-modal" onclick="closeRestoreModal()">&times;</button>
+      </div>
+
+      <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5;">
+        If you previously paid ₹299 on another phone, tablet, or laptop, enter your <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code>) or <strong>10-digit Mobile Number</strong> or <strong>Activation Code</strong> to restore full access.
+      </p>
+
+      <div style="margin-bottom: 1rem;">
+        <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
+          Payment ID / Mobile Number / Passcode:
+        </label>
+        <input type="text" id="restore-query-input" placeholder="e.g. pay_Q810a9X... or 9876543210" onkeydown="if(event.key==='Enter') submitRestorePayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem; box-sizing: border-box;">
+      </div>
+
+      <div id="restore-status-msg" style="margin-bottom: 1rem; font-size: 0.84rem;"></div>
+
+      <button class="btn-razorpay-pay" onclick="submitRestorePayment()" style="background:var(--accent-primary); color:white; font-weight:700;">
+        <span>🔍 Verify &amp; Restore Access</span>
+      </button>
+
+      <div style="margin-top: 1rem; text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+        Haven't purchased yet? <a href="javascript:void(0)" onclick="closeRestoreModal(); openPaywallModal('From Restore');" style="color: var(--accent-primary); text-decoration: underline; font-weight: 600;">Unlock All for ₹299</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="js/syllabus-data.js"></script>
@@ -646,6 +823,7 @@
   <script src="js/practice-data/set-manifest.js"></script>
   <script src="js/practice-data/set-01.js"></script>
   <script src="js/practice-engine.js"></script>
+  <script src="js/payment.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

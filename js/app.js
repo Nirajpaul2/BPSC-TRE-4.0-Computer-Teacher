@@ -1487,13 +1487,51 @@
       `;
     }
 
+    const isDayLocked = typeof window.isMarathonDayLocked === 'function' && window.isMarathonDayLocked(day.dayNumber);
+
+    let dayBodyHtml = '';
+    if (isDayLocked) {
+      dayBodyHtml = `
+        <div class="marathon-day-body marathon-book-body">
+          ${targetsHtml}
+          <div class="locked-paywall-banner">
+            <div style="font-size:3rem; margin-bottom:0.75rem;">🔒</div>
+            <h3 style="font-size:1.45rem; font-weight:800; color:var(--text-primary); margin-bottom:0.5rem;">
+              Day ${day.dayNumber} is Locked (Premium Marathon Pass)
+            </h3>
+            <p style="max-width:580px; margin:0 auto 1.25rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
+              This high-yield day features detailed white-paper memory maps, BPSC concept breakdowns, and full exam-level practice questions. 
+              Unlock all <strong>20 Locked Marathon Days</strong> and <strong>28 Practice Sets (4,200 Questions)</strong> with the BPSC TRE 4.0 Full Lifetime Pass!
+            </p>
+            <div style="display:flex; gap:0.75rem; justify-content:center; align-items:center; flex-wrap:wrap; margin-bottom:1rem;">
+              <button class="btn-unlock-course" onclick="window.openPaywallModal('Marathon Day ${day.dayNumber}')">
+                ⚡ Unlock All Course Content for ₹299
+              </button>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-muted);">
+              Already paid? <a href="javascript:void(0)" onclick="window.openRestoreModal()" style="color:var(--accent-primary); text-decoration:underline; font-weight:600;">Restore Access</a> via Payment ID or Phone Number.
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      dayBodyHtml = `
+        <div class="marathon-day-body marathon-book-body">
+          ${targetsHtml}
+          ${introHtml}
+          ${partsHtml}
+          ${testHtml}
+        </div>
+      `;
+    }
+
     return `
       <div class="marathon-day-card marathon-book-style ${isCompleted ? 'day-completed' : ''}" id="card-${day.dayId}" style="${isSingleView ? '' : 'margin-bottom:3rem; padding-bottom:2rem; border-bottom:2px dashed var(--reader-border);'}">
         <header class="marathon-day-header marathon-book-header">
           <div class="marathon-day-title-wrap">
             <div class="marathon-day-badge-row">
               <span class="marathon-day-badge">${escapeHtml(day.badge)}</span>
-              <span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>
+              ${isDayLocked ? '<span class="badge-tag" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5;">🔒 Premium Day (Locked)</span>' : `<span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>`}
               <span style="font-size:0.78rem; color:var(--reader-text-muted); font-weight:600;">⏱️ ${escapeHtml(day.targetTime)}</span>
               <span style="font-size:0.78rem; color:var(--reader-text-muted); font-weight:600;">📝 ${day.test ? day.test.questions.length : 0} MCQs Test</span>
             </div>
@@ -1502,12 +1540,7 @@
           </div>
         </header>
 
-        <div class="marathon-day-body marathon-book-body">
-          ${targetsHtml}
-          ${introHtml}
-          ${partsHtml}
-          ${testHtml}
-        </div>
+        ${dayBodyHtml}
       </div>
     `;
   }
@@ -1540,12 +1573,15 @@
       const actualIndex = MARATHON_DATA.findIndex(d => d.dayId === day.dayId);
       const isActive = marathonState.viewMode === 'book' && actualIndex === marathonState.currentDay;
       const isCompleted = completed.includes(day.dayId);
+      const isLocked = typeof window.isMarathonDayLocked === 'function' && window.isMarathonDayLocked(day.dayNumber);
+
+      const statusIcon = isLocked ? '<span style="color:#f59e0b;" title="Premium Locked (₹299)">🔒</span>' : (isCompleted ? '✓' : '○');
 
       html += `
-        <div class="toc-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-day-index="${actualIndex}">
+        <div class="toc-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''} ${isLocked ? 'toc-locked' : ''}" data-day-index="${actualIndex}">
           <span class="toc-num">${escapeHtml(day.badge || `Day ${day.dayNumber}`)}</span>
           <span class="toc-title" title="${escapeHtml(day.title)}">${escapeHtml(day.title.replace(/^TRE 4\.0 —\s*/, ''))}</span>
-          <span class="toc-status-icon">${isCompleted ? '✓' : '○'}</span>
+          <span class="toc-status-icon">${statusIcon}</span>
         </div>
       `;
     });
@@ -1900,6 +1936,10 @@
     setupEventListeners();
     initNavigation();
   }
+
+  // Expose render hooks for dynamic unlock updates
+  window.renderMarathonToc = renderMarathonToc;
+  window.renderMarathonContent = renderMarathonContent;
 
   // Run on DOM Ready
   if (document.readyState === 'loading') {

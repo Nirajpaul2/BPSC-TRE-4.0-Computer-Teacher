@@ -212,9 +212,12 @@
       const result = results[setMeta.id];
       const inProgress = inProgressStates[setMeta.id];
       const isAvailable = setMeta.isAvailable || !!practiceDataRegistry[setMeta.id];
+      const isLocked = typeof window.isPracticeSetLocked === 'function' && window.isPracticeSetLocked(setMeta.id);
 
-      let statusBadge = '<span class="practice-status-badge badge-not-started">Not Started</span>';
-      if (result) {
+      let statusBadge = '<span class="practice-status-badge badge-not-started">Free Preview</span>';
+      if (isLocked) {
+        statusBadge = '<span class="practice-status-badge badge-locked" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5;">🔒 Premium (₹299)</span>';
+      } else if (result) {
         statusBadge = '<span class="practice-status-badge badge-completed">Completed</span>';
       } else if (inProgress) {
         statusBadge = '<span class="practice-status-badge badge-in-progress">In Progress</span>';
@@ -225,7 +228,13 @@
         : `<span class="practice-score-value" style="color:var(--text-muted); font-weight:600;">-- / 150</span>`;
 
       let actionButtons = '';
-      if (!isAvailable) {
+      if (isLocked) {
+        actionButtons = `
+          <button class="btn-practice-act btn-practice-locked" onclick="window.openPaywallModal('Practice Set ${setMeta.title}')">
+            🔒 Unlock for ₹299
+          </button>
+        `;
+      } else if (!isAvailable) {
         actionButtons = `<button class="btn-practice-act btn-practice-result" disabled style="opacity:0.6; cursor:not-allowed;">🔒 Coming Soon</button>`;
       } else if (result) {
         actionButtons = `
@@ -244,7 +253,7 @@
       }
 
       html += `
-        <div class="practice-card">
+        <div class="practice-card ${isLocked ? 'is-locked' : ''}">
           <div class="practice-card-header">
             <div class="practice-card-title">${setMeta.title}</div>
             ${statusBadge}
@@ -1254,7 +1263,19 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
 
+    renderApp: function () {
+      renderApp();
+    },
+
     startInstruction: function (setId) {
+      if (typeof window.isPracticeSetLocked === 'function' && window.isPracticeSetLocked(setId)) {
+        if (typeof window.openPaywallModal === 'function') {
+          window.openPaywallModal(`Practice Set ${setId}`);
+        } else {
+          alert("This Practice Set is locked. Please unlock the full course for ₹299.");
+        }
+        return;
+      }
       ensureSetLoaded(setId, function () {
         engineState.selectedSetId = setId;
         engineState.view = 'instructions';
@@ -1264,6 +1285,12 @@
     },
 
     startExamNow: function (setId) {
+      if (typeof window.isPracticeSetLocked === 'function' && window.isPracticeSetLocked(setId)) {
+        if (typeof window.openPaywallModal === 'function') {
+          window.openPaywallModal(`Practice Set ${setId}`);
+        }
+        return;
+      }
       ensureSetLoaded(setId, function (set) {
         if (!set) return;
         engineState.selectedSetId = setId;
@@ -1283,6 +1310,12 @@
     },
 
     resumeExam: function (setId) {
+      if (typeof window.isPracticeSetLocked === 'function' && window.isPracticeSetLocked(setId)) {
+        if (typeof window.openPaywallModal === 'function') {
+          window.openPaywallModal(`Practice Set ${setId}`);
+        }
+        return;
+      }
       ensureSetLoaded(setId, function (set) {
         const saved = getSavedStates()[setId];
         if (!set || !saved) {
