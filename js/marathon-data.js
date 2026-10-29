@@ -23601,6 +23601,535 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 43,
+    "dayId": "day-43",
+    "badge": "Day 43",
+    "title": "TRE 4.0 — Day 43",
+    "unit": "Part III (CS) • 🔥 Final Revision II: Python + Networks + Security + Software Engineering + TOC + AI/IoT + Web",
+    "targetTime": "20 mins recall + 40 mins test",
+    "summary": "Comprehensive Final Revision Module II synthesizing high-yield concepts across 7 subject sheets: Sheet 1 — Python Rapid Recall (String immutable, List [] mutable, Tuple () immutable, Dict key:value, Set {} unique/unordered, operators // % **, range(start, stop) with stop excluded, break vs continue, slice [start:stop:step], single-element tuple (10,), dict get() safe lookup, functions def/return/params vs args, exception handling try/except/finally/raise, and file handling r/w/a modes with tell() & seek()); Sheet 2 — Networks (Switch L2/MAC vs Router L3/IP, OSI 7-layer hierarchy, SMTP send mail, DNS name to IP, DHCP auto IP config, ARP IPv4 to MAC, HTTP/HTTPS, TCP connection-oriented 3-way handshake vs UDP connectionless, IPv4 32 bits & CIDR /24); Sheet 3 — Security (Virus host-dependent, Worm network self-replication, Trojan disguise, Ransomware encryption & ransom, Phishing social engineering, Firewall packet filtering, Antivirus, Authentication identity vs Authorization permissions); Sheet 4 — Software Engineering (Waterfall sequential, Agile iterative & customer feedback, Spiral risk analysis, Functional vs Non-functional requirements, Verification building product right vs Validation building right product, UISA testing hierarchy); Sheet 5 — Compiler + TOC (Compiler whole program translation vs Interpreter statement-by-statement, Lexical tokens, Syntax grammar/AST, Semantic meaning, DFA exactly one transition per symbol, Kleene * zero or more, union |); Sheet 6 — AI / ML / IoT / Cloud (AI simulation of intelligence, ML data-driven learning, Supervised Decision Tree, Unsupervised K-means clustering, Reinforcement rewards/penalties, IoT MQTT protocol, Big Data 5 Vs & Veracity trustworthiness, Cloud SPI model IaaS/PaaS/SaaS); Sheet 7 — Web / E-Commerce (HTML structure, CSS presentation, JavaScript behavior, B2B/B2C/C2C/C2B models, Amazon B2C, Adobe Flash multimedia authoring); Master Traps; and 40 Practice Test questions with answer keys and full explanations.",
+    "targets": [
+      {
+        "section": "Part III – CS (Python & Networks)",
+        "topic": "Sequences, Operators, Slicing, Files, OSI Layers, Switch vs Router & Protocols",
+        "goal": "Recall Python mutability rules, range() stop exclusion, file modes, OSI layer mappings, and core protocol mappings (SMTP, DNS, DHCP, ARP)"
+      },
+      {
+        "section": "Part III – CS (Security, SE, TOC & Emerging Tech)",
+        "topic": "Threats, SDLC Models, Verification vs Validation, Compiler Phases, ML Paradigms, Cloud SPI & Web Triad",
+        "goal": "Solidify malware classifications, Waterfall/Agile/Spiral, V&V criteria, DFA transitions, Decision Tree vs K-means, and HTML/CSS/JS roles"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "🧠 Sheet 1 — Python Rapid Recall",
+        "content": "\n<div class=\"callout callout-tip\">\n  <strong>🔥 Rapid Recall Rule:</strong> See the question &rarr; recognize the core concept &rarr; answer with 100% confidence within seconds. No new theory; pure retention!\n</div>\n\n<h3>1. Python Built-in Collections</h3>\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>Data Type</th><th>Syntax</th><th>Ordered?</th><th>Mutable?</th><th>Key Characteristics</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>String</strong></td><td><code>\"text\"</code> / <code>'text'</code></td><td>Yes</td><td><strong>No (Immutable)</strong></td><td>Sequence of Unicode characters; indexed, sliceable.</td></tr>\n    <tr><td><strong>List</strong></td><td><code>[1, 2, 3]</code></td><td>Yes</td><td><strong>Yes (Mutable)</strong></td><td>Dynamic array; supports <code>append()</code>, <code>extend()</code>, <code>pop()</code>, <code>insert()</code>.</td></tr>\n    <tr><td><strong>Tuple</strong></td><td><code>(1, 2, 3)</code></td><td>Yes</td><td><strong>No (Immutable)</strong></td><td>Protected sequence; cannot be modified after creation. <em>Trap:</em> Single-element tuple requires trailing comma <code>(10,)</code>.</td></tr>\n    <tr><td><strong>Dictionary</strong></td><td><code>{\"k\": \"v\"}</code></td><td>Insertion order (3.7+)</td><td><strong>Yes (Mutable)</strong></td><td>Key-value mapping. Keys must be immutable (hashable). <code>dict.get(k)</code> returns <code>None</code> if absent.</td></tr>\n    <tr><td><strong>Set</strong></td><td><code>{1, 2, 3}</code></td><td>No</td><td><strong>Yes (Mutable)</strong></td><td>Collection of <strong>unique</strong>, unordered elements; eliminates duplicates automatically.</td></tr>\n  </tbody>\n</table>\n\n<h3>2. Python Arithmetic Operators</h3>\n<ul>\n  <li><code>/</code> &rarr; <strong>True Division:</strong> Always returns a floating-point result (e.g., <code>13 / 4 = 3.25</code>).</li>\n  <li><code>//</code> &rarr; <strong>Floor Division:</strong> Truncates toward negative infinity to return an integer quotient (e.g., <code>17 // 5 = 3</code>, <code>13 // 4 = 3</code>).</li>\n  <li><code>%</code> &rarr; <strong>Modulus (Remainder):</strong> (e.g., <code>17 % 5 = 2</code>, <code>13 % 4 = 1</code>).</li>\n  <li><code>**</code> &rarr; <strong>Exponentiation (Power):</strong> (e.g., <code>2 ** 4 = 16</code>, <code>3 ** 2 = 9</code>).</li>\n</ul>\n\n<h3>3. Flow Control, Slicing & Sequence Functions</h3>\n<ul>\n  <li><strong><code>range(start, stop[, step])</code>:</strong> Generates integers up to, but <strong>excluding</strong> the stop value.\n    <br>&bull; <code>range(5)</code> &rarr; <code>0, 1, 2, 3, 4</code>\n    <br>&bull; <code>range(2, 6)</code> &rarr; <code>2, 3, 4, 5</code> (Stop value 6 is strictly excluded!)\n  </li>\n  <li><strong><code>break</code> vs. <code>continue</code>:</strong>\n    <br>&bull; <strong><code>break</code>:</strong> Immediately terminates the loop and exits. (Memory: <em>Break = Bye!</em>)\n    <br>&bull; <strong><code>continue</code>:</strong> Skips the rest of the current iteration and jumps to the next iteration. (Memory: <em>Continue = Skip!</em>)\n  </li>\n  <li><strong>String & List Slicing:</strong> <code>s[start:stop:step]</code>\n    <br>&bull; In <code>\"PYTHON\"[1:4]</code>: Indices 1, 2, 3 &rarr; <code>'YTH'</code> (Index 4 is excluded!).\n    <br>&bull; Reverse sequence: <code>s[::-1]</code>\n  </li>\n  <li><strong>Functions:</strong>\n    <br>&bull; <code>print()</code> outputs text to standard console; <code>return</code> transfers control and sends value(s) back to caller (returns <code>None</code> if omitted).\n    <br>&bull; <em>Parameter:</em> Variable defined in function signature. <em>Argument:</em> Concrete value passed at call site.\n  </li>\n  <li><strong>Exception Handling:</strong> <code>try</code> (risky code) &rarr; <code>except</code> (handles specific error) &rarr; <code>finally</code> (always executes) &rarr; <code>raise</code> (deliberately throws). Division by zero raises <code>ZeroDivisionError</code>.</li>\n  <li><strong>File Modes & Methods:</strong>\n    <br>&bull; <code>'r'</code>: Read (default); <code>'w'</code>: Overwrite/truncate; <code>'a'</code>: <strong>Append</strong> to end of file.\n    <br>&bull; <code>read()</code>: All content; <code>readline()</code>: Single line; <code>readlines()</code>: List of lines; <code>tell()</code>: Current byte position; <code>seek(offset)</code>: Move file pointer.\n  </li>\n</ul>\n"
+      },
+      {
+        "heading": "🧠 Sheet 2 — Computer Networks Rapid Recall",
+        "content": "\n<h3>1. Networking Hardware & OSI Layer Mapping</h3>\n<div class=\"code-block-wrap\">\n  <div class=\"code-header\"><span>Core Devices & Layer Association</span></div>\n  <pre><code>Layer 7: Application    &rarr; HTTP, HTTPS, SMTP, DNS, DHCP, FTP, Telnet\nLayer 6: Presentation   &rarr; Encryption (SSL/TLS), Compression, Encoding\nLayer 5: Session        &rarr; Dialog control, Session checkpoints\nLayer 4: Transport      &rarr; TCP (segments), UDP (datagrams), Port Numbers\nLayer 3: Network        &rarr; ROUTER, IP Addresses, Packets, Routing algorithms\nLayer 2: Data Link      &rarr; SWITCH, BRIDGE, MAC Addresses (48-bit), Frames, ARP\nLayer 1: Physical       &rarr; HUB, REPEATER, Cables, Bits, Voltages</code></pre>\n</div>\n\n<ul>\n  <li><strong>Switch:</strong> Operates at <strong>Layer 2</strong>; connects devices within the <strong>same LAN</strong> using hardware <strong>MAC addresses</strong>.</li>\n  <li><strong>Router:</strong> Operates at <strong>Layer 3</strong>; connects <strong>different networks/subnets</strong> using logical <strong>IP addresses</strong>.</li>\n  <li><strong>Key Application Protocols:</strong>\n    <br>&bull; <strong>SMTP:</strong> Sends outgoing emails (Port 25/587).\n    <br>&bull; <strong>DNS:</strong> Maps domain names to IP addresses (Port 53).\n    <br>&bull; <strong>DHCP:</strong> Automatically assigns dynamic IP configuration to hosts (Port 67/68).\n    <br>&bull; <strong>ARP:</strong> Resolves logical <strong>IPv4 address &rarr; physical MAC address</strong>.\n  </li>\n  <li><strong>TCP vs. UDP:</strong>\n    <br>&bull; <strong>TCP:</strong> Connection-oriented, reliable, ordered delivery, 3-way handshake (<code>SYN &rarr; SYN-ACK &rarr; ACK</code>).\n    <br>&bull; <strong>UDP:</strong> Connectionless, unreliable, low overhead, no handshake; ideal for streaming/gaming/DNS.\n  </li>\n  <li><strong>IPv4 & Subnetting:</strong> 32-bit address. A <code>/24</code> subnet mask allocates 24 network bits and 8 host bits ($\text{Total addresses} = 2^8 = 256$, usable $= 254$).</li>\n</ul>\n"
+      },
+      {
+        "heading": "🧠 Sheet 3 & 4 — Network Security & Software Engineering",
+        "content": "\n<h3>Sheet 3 — Network Security</h3>\n<ul>\n  <li><strong>Malware Taxonomies:</strong>\n    <br>&bull; <strong>Virus:</strong> Malicious program that attaches to a host file and reproduces upon host execution.\n    <br>&bull; <strong>Worm:</strong> Standalone self-replicating malware that spreads across networks without human intervention or host files.\n    <br>&bull; <strong>Trojan Horse:</strong> Disguises itself as legitimate or desirable software to deceive users into installing it.\n    <br>&bull; <strong>Ransomware:</strong> Encrypts victim data or locks systems and demands ransom payment for the key.\n    <br>&bull; <strong>Phishing:</strong> Deceptive social engineering via spoofed emails or fake websites to steal credentials.\n  </li>\n  <li><strong>Network Defenses:</strong>\n    <br>&bull; <strong>Firewall:</strong> Monitors, inspects, and filters incoming/outgoing network traffic based on security rule sets.\n    <br>&bull; <strong>Authentication:</strong> <em>\"Who are you?\"</em> (verifying user identity via passwords/biometrics).\n    <br>&bull; <strong>Authorization:</strong> <em>\"What are you allowed to do?\"</em> (granting access rights and permissions).\n  </li>\n</ul>\n\n<h3>Sheet 4 — Software Engineering</h3>\n<ul>\n  <li><strong>SDLC Process Models:</strong>\n    <br>&bull; <strong>Waterfall:</strong> Strictly sequential, linear phases; requirements must be fixed upfront; no backward iteration.\n    <br>&bull; <strong>Agile:</strong> Iterative development with continuous customer feedback and rapid incremental delivery sprints.\n    <br>&bull; <strong>Spiral Model:</strong> Risk-driven iterative model featuring explicit <strong>Risk Analysis</strong> in every cycle.\n  </li>\n  <li><strong>Requirements Engineering:</strong>\n    <br>&bull; <em>Functional Requirements:</em> WHAT the system must perform (features, inputs, outputs, calculations).\n    <br>&bull; <em>Non-Functional Requirements:</em> HOW WELL the system performs (speed, scalability, security, reliability).\n  </li>\n  <li><strong>Verification vs. Validation:</strong>\n    <br>&bull; <strong>Verification:</strong> <em>\"Are we building the product RIGHT?\"</em> (Reviews, static code checks, specification conformance).\n    <br>&bull; <strong>Validation:</strong> <em>\"Are we building the RIGHT product?\"</em> (Testing dynamic software against real user expectations).\n  </li>\n  <li><strong>Testing Progression (UISA):</strong> <code>Unit Testing</code> (individual functions) &rarr; <code>Integration Testing</code> (combined modules) &rarr; <code>System Testing</code> (complete integrated system) &rarr; <code>Acceptance Testing</code> (end-user validation).</li>\n</ul>\n"
+      },
+      {
+        "heading": "🧠 Sheet 5, 6 & 7 — Compiler/TOC, AI/IoT/Cloud & Web Tech",
+        "content": "\n<h3>Sheet 5 — Compiler & Theory of Computation (TOC)</h3>\n<ul>\n  <li><strong>Compiler vs. Interpreter:</strong>\n    <br>&bull; <strong>Compiler:</strong> Translates the <strong>entire source program</strong> into machine/object code at once.\n    <br>&bull; <strong>Interpreter:</strong> Translates and executes instructions <strong>statement by statement</strong> line-by-line.\n  </li>\n  <li><strong>Compiler Front-End Phases:</strong>\n    <br>&bull; <em>Lexical Analysis:</em> Scans characters and outputs a stream of <strong>Tokens</strong>.\n    <br>&bull; <em>Syntax Analysis:</em> Validates token sequences against context-free <strong>grammar/rules</strong> (produces Parse Tree).\n    <br>&bull; <em>Semantic Analysis:</em> Verifies semantic consistency, type checking, and scope resolution.\n  </li>\n  <li><strong>TOC Formalisms:</strong>\n    <br>&bull; <strong>DFA (Deterministic Finite Automaton):</strong> For every state and input symbol, there is <strong>exactly one next state</strong> ($delta: Q \times Sigma \to Q$).\n    <br>&bull; <strong>Regular Expressions:</strong> Kleene star <code>*</code> means <strong>zero or more occurrences</strong>; <code>|</code> means logical OR / alternation.\n  </li>\n</ul>\n\n<h3>Sheet 6 — AI, Machine Learning, IoT & Cloud</h3>\n<ul>\n  <li><strong>Machine Learning (ML):</strong> A subfield of Artificial Intelligence focusing on algorithms that learn patterns from training data.\n    <br>&bull; <strong>Supervised Learning:</strong> Uses labeled datasets (e.g., <strong>Decision Tree</strong>, Linear Regression, SVM).\n    <br>&bull; <strong>Unsupervised Learning:</strong> Unlabeled data; discovers hidden patterns or clusters (e.g., <strong>K-means clustering</strong>).\n    <br>&bull; <strong>Reinforcement Learning:</strong> Agent learns optimal behaviors through rewards and penalties.\n  </li>\n  <li><strong>IoT & Big Data:</strong>\n    <br>&bull; <strong>MQTT:</strong> Lightweight publish/subscribe messaging protocol optimized for constrained IoT networks.\n    <br>&bull; <strong>Big Data 5 Vs:</strong> Volume (scale), Velocity (speed), Variety (forms), <strong>Veracity (trustworthiness / data quality)</strong>, Value (business usefulness).\n  </li>\n  <li><strong>Cloud Computing (SPI Service Models):</strong>\n    <br>&bull; <strong>IaaS:</strong> Raw infrastructure (VMs, storage, networks, e.g., AWS EC2, GCP Compute Engine).\n    <br>&bull; <strong>PaaS:</strong> Managed development and deployment platform/environment (e.g., Heroku, Google App Engine).\n    <br>&bull; <strong>SaaS:</strong> Fully managed ready-to-use software applications (e.g., Google Docs, Gmail, Office 365).\n  </li>\n</ul>\n\n<h3>Sheet 7 — Web Technologies & E-Commerce</h3>\n<ul>\n  <li><strong>Front-End Web Triad:</strong>\n    <br>&bull; <strong>HTML:</strong> Defines the <strong>structure</strong> and content of the web page.\n    <br>&bull; <strong>CSS:</strong> Defines the visual <strong>style</strong> and presentation (layout, colors, fonts).\n    <br>&bull; <strong>JavaScript:</strong> Defines dynamic <strong>behavior</strong> and interactivity.\n  </li>\n  <li><strong>E-Commerce Business Models:</strong>\n    <br>&bull; <strong>B2B:</strong> Business to Business (e.g., Alibaba wholesale).\n    <br>&bull; <strong>B2C:</strong> Business to Consumer (e.g., <strong>Amazon</strong>, Flipkart - direct retail).\n    <br>&bull; <strong>C2C:</strong> Consumer to Consumer (e.g., eBay, OLX).\n    <br>&bull; <strong>C2B:</strong> Consumer to Business (e.g., freelance platforms, influencer marketing).\n  </li>\n  <li><strong>Multimedia:</strong> In BPSC TRE 3.0 Q150, <strong>Adobe Flash</strong> was the designated answer as a multimedia-authoring tool.</li>\n</ul>\n"
+      },
+      {
+        "heading": "⚠️ Day 43 Master Traps & Rapid Exam Anchors",
+        "content": "\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>Concept</th><th>Trap / Mistake</th><th>Exam Anchor / Correct Rule</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>List vs. Tuple</strong></td><td>Which can be modified?</td><td><strong>List is mutable</strong> <code>[]</code>; <strong>Tuple is immutable</strong> <code>()</code>.</td></tr>\n    <tr><td><strong>One-Element Tuple</strong></td><td>Writing <code>(10)</code></td><td><code>(10)</code> is an integer; <code>(10,)</code> with comma is a tuple.</td></tr>\n    <tr><td><strong>range() Stop Value</strong></td><td>Including the end number</td><td>The stop argument is strictly <strong>excluded</strong> (<code>range(2, 6) &rarr; 2,3,4,5</code>).</td></tr>\n    <tr><td><strong>Floor Division</strong></td><td>Thinking <code>//</code> gives float</td><td><code>17 // 5 = 3</code> (integer floor); <code>17 % 5 = 2</code> (remainder).</td></tr>\n    <tr><td><strong>DNS vs. ARP</strong></td><td>Confusing mapping directions</td><td><strong>DNS: Domain &rarr; IP</strong>; <strong>ARP: IPv4 &rarr; MAC</strong>.</td></tr>\n    <tr><td><strong>Switch vs. Router</strong></td><td>Layer / Address confusion</td><td><strong>Switch: L2 / MAC / Same LAN</strong>; <strong>Router: L3 / IP / Different networks</strong>.</td></tr>\n    <tr><td><strong>Verification vs. Validation</strong></td><td>Reversing the question</td><td>Verification: <em>\"Are we building the product RIGHT?\"</em>; Validation: <em>\"Are we building the RIGHT product?\"</em></td></tr>\n    <tr><td><strong>ML Classification</strong></td><td>Decision Tree vs. K-means</td><td><strong>Decision Tree is Supervised</strong>; <strong>K-means is Unsupervised</strong> clustering.</td></tr>\n    <tr><td><strong>Big Data Veracity</strong></td><td>Mixing Volume with Veracity</td><td><strong>Veracity</strong> specifically denotes data <strong>trustworthiness, truthfulness, and accuracy</strong>.</td></tr>\n    <tr><td><strong>Web Triad</strong></td><td>Assigning style to HTML</td><td><strong>HTML = Structure</strong>, <strong>CSS = Style</strong>, <strong>JavaScript = Behavior</strong>.</td></tr>\n  </tbody>\n</table>\n"
+      }
+    ],
+    "test": {
+      "title": "Day 43 Final Revision Test: 40 High-Yield Questions (Python + Networks + Security + SE + TOC + AI/IoT + Web)",
+      "passingScore": 32,
+      "questions": [
+        {
+          "question": "Q1. Which Python collection is mutable?",
+          "options": [
+            "A. Tuple",
+            "B. List",
+            "C. String",
+            "D. More than one of the above",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In Python, lists are mutable (elements can be added, removed, or modified in place). Strings and tuples are immutable. Correct: (B)."
+        },
+        {
+          "question": "Q2. Which is an immutable Python sequence?",
+          "options": [
+            "A. List",
+            "B. Tuple",
+            "C. Dictionary",
+            "D. Set",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Tuples and strings are ordered immutable sequences. Lists, dictionaries, and sets are mutable. Correct: (B)."
+        },
+        {
+          "question": "Q3. What is the value of the Python expression: 17 // 5?",
+          "options": [
+            "A. 2",
+            "B. 3",
+            "C. 3.4",
+            "D. 4",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The // operator performs floor division, rounding down to the nearest integer. 17 / 5 = 3.4, so 17 // 5 = 3. Correct: (B)."
+        },
+        {
+          "question": "Q4. What is the value of the Python expression: 17 % 5?",
+          "options": [
+            "A. 2",
+            "B. 3",
+            "C. 5",
+            "D. 12",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The % operator computes the modulus (remainder). 17 divided by 5 is 3 with a remainder of 2. Correct: (A)."
+        },
+        {
+          "question": "Q5. What sequence of numbers is generated by range(2, 6)?",
+          "options": [
+            "A. 2, 3, 4, 5",
+            "B. 2, 3, 4, 5, 6",
+            "C. 1, 2, 3, 4, 5",
+            "D. 2, 4, 6",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "range(start, stop) generates numbers from start up to stop - 1. Therefore, range(2, 6) yields 2, 3, 4, 5. Correct: (A)."
+        },
+        {
+          "question": "Q6. The continue statement in a Python loop normally:",
+          "options": [
+            "A. Exits the entire loop",
+            "B. Skips the remainder of the current iteration",
+            "C. Stops the program",
+            "D. Returns from every function",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "continue skips the remaining statements inside the current iteration and advances the loop to the next iteration. Correct: (B)."
+        },
+        {
+          "question": "Q7. What is the output of the string slice: \"PYTHON\"[1:4]?",
+          "options": [
+            "A. PYT",
+            "B. YTH",
+            "C. YTHO",
+            "D. THO",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In \"PYTHON\", index 1 is \"Y\", 2 is \"T\", 3 is \"H\", and index 4 (\"O\") is excluded, yielding \"YTH\". Correct: (B)."
+        },
+        {
+          "question": "Q8. Which syntax correctly creates a one-element tuple in Python?",
+          "options": [
+            "A. (10)",
+            "B. [10]",
+            "C. (10,)",
+            "D. {10:}",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A single-item tuple must include a trailing comma (10,); otherwise, parentheses are evaluated as a standard grouping operator for integer 10. Correct: (C)."
+        },
+        {
+          "question": "Q9. A Python function sends a value back to its caller mainly using:",
+          "options": [
+            "A. print",
+            "B. return",
+            "C. break",
+            "D. continue",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The return statement terminates function execution and transfers control and the specified value back to the caller. Correct: (B)."
+        },
+        {
+          "question": "Q10. Which standard file mode opens a file for appending data to the end?",
+          "options": [
+            "A. r",
+            "B. w",
+            "C. a",
+            "D. x only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The \"a\" (append) mode opens a file for writing without truncating existing content, placing the file pointer at the end. Correct: (C)."
+        },
+        {
+          "question": "Q11. Which networking device connects different networks and routes packets between them?",
+          "options": [
+            "A. Switch",
+            "B. Router",
+            "C. Repeater",
+            "D. Hub",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A router operates at OSI Layer 3 (Network Layer) to connect distinct networks and forward IP packets based on logical addressing. Correct: (B)."
+        },
+        {
+          "question": "Q12. A network switch is primarily associated with:",
+          "options": [
+            "A. IP and Layer 3",
+            "B. MAC and Layer 2",
+            "C. TCP and Layer 4",
+            "D. HTTP and Layer 7 only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A network switch operates at Layer 2 (Data Link Layer) and forwards frames within a local network using physical MAC addresses. Correct: (B)."
+        },
+        {
+          "question": "Q13. Which layer of the OSI model performs logical packet routing?",
+          "options": [
+            "A. Physical",
+            "B. Data Link",
+            "C. Network",
+            "D. Transport",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Network Layer (Layer 3) handles logical IP addressing, path determination, and packet routing. Correct: (C)."
+        },
+        {
+          "question": "Q14. Which application-layer protocol is used to send email?",
+          "options": [
+            "A. DNS",
+            "B. SMTP",
+            "C. ARP",
+            "D. DHCP",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending outgoing emails across networks. Correct: (B)."
+        },
+        {
+          "question": "Q15. The Domain Name System (DNS) primarily maps:",
+          "options": [
+            "A. Domain name -> IP address",
+            "B. IPv4 address -> MAC address",
+            "C. Port -> Process ID",
+            "D. MAC -> Domain",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DNS resolves human-readable domain names (such as www.google.com) into numerical IP addresses. Correct: (A)."
+        },
+        {
+          "question": "Q16. The Address Resolution Protocol (ARP) is best remembered as mapping:",
+          "options": [
+            "A. Name -> IP",
+            "B. IPv4 -> MAC",
+            "C. IP allocation",
+            "D. Email sending",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "ARP translates a known 32-bit IPv4 address into its physical 48-bit MAC address on a local area network. Correct: (B)."
+        },
+        {
+          "question": "Q17. The Transmission Control Protocol (TCP) is primarily:",
+          "options": [
+            "A. Connection-oriented",
+            "B. Always connectionless",
+            "C. A routing device",
+            "D. A file system",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TCP is a connection-oriented Transport Layer protocol that establishes a 3-way handshake to guarantee reliable delivery. Correct: (A)."
+        },
+        {
+          "question": "Q18. A fraudulent website designed to mimic a bank and steal user credentials is an example of:",
+          "options": [
+            "A. Paging",
+            "B. Phishing",
+            "C. Multiplexing",
+            "D. Scheduling",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Phishing is a social engineering cyberattack where attackers impersonate legitimate institutions to steal credentials. Correct: (B)."
+        },
+        {
+          "question": "Q19. Which software development life cycle (SDLC) model is strictly sequential?",
+          "options": [
+            "A. Waterfall",
+            "B. Agile",
+            "C. Spiral",
+            "D. Reinforcement",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Waterfall model is a linear sequential model where each phase must finish before the next begins. Correct: (A)."
+        },
+        {
+          "question": "Q20. Which SDLC model is especially characterized by explicit risk analysis in every cycle?",
+          "options": [
+            "A. Agile",
+            "B. Spiral",
+            "C. Waterfall only",
+            "D. FCFS",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Spiral model combines iterative development with explicit risk assessment and mitigation at each spiral phase. Correct: (B)."
+        },
+        {
+          "question": "Q21. In software engineering, Verification asks which fundamental question?",
+          "options": [
+            "A. Are we building the product right?",
+            "B. Are we building the right product?",
+            "C. Is the database normalized?",
+            "D. Is the router configured?",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Verification evaluates static development artifacts to answer: \"Are we building the product right?\" (conformance to specification). Correct: (A)."
+        },
+        {
+          "question": "Q22. In software engineering, Validation asks which fundamental question?",
+          "options": [
+            "A. Are we building the product right?",
+            "B. Are we building the right product?",
+            "C. Is compilation complete?",
+            "D. Is memory fragmented?",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Validation evaluates the dynamic system to answer: \"Are we building the right product?\" (satisfying customer needs). Correct: (B)."
+        },
+        {
+          "question": "Q23. Testing a single independent software component or function in isolation is known as:",
+          "options": [
+            "A. Unit testing",
+            "B. Integration testing",
+            "C. System testing",
+            "D. Acceptance testing",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Unit testing verifies individual units, procedures, or methods in isolation from other modules. Correct: (A)."
+        },
+        {
+          "question": "Q24. A compiler normally translates:",
+          "options": [
+            "A. The entire source program",
+            "B. Only one statement at a time",
+            "C. Only comments",
+            "D. Only SQL",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A compiler translates the entire high-level source program as a whole into equivalent machine or object code. Correct: (A)."
+        },
+        {
+          "question": "Q25. The Lexical Analysis phase of a compiler primarily produces:",
+          "options": [
+            "A. Tokens",
+            "B. IP addresses",
+            "C. Processes",
+            "D. Pages",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The lexical analyzer (scanner) reads characters and groups them into meaningful token units (lexemes). Correct: (A)."
+        },
+        {
+          "question": "Q26. Syntax analysis in a compiler is primarily concerned with:",
+          "options": [
+            "A. Grammar / structure",
+            "B. Physical memory",
+            "C. IP routing",
+            "D. Database keys",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Syntax analysis checks token sequences against formal grammar rules to construct a parse tree or abstract syntax tree (AST). Correct: (A)."
+        },
+        {
+          "question": "Q27. In a Deterministic Finite Automaton (DFA), each state and input-symbol combination has:",
+          "options": [
+            "A. Exactly one next state",
+            "B. Exactly two next states",
+            "C. No transitions",
+            "D. Infinite mandatory transitions",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "By definition, a DFA has exactly one deterministic transition for each state and input alphabet symbol (delta: Q x Sigma -> Q). Correct: (A)."
+        },
+        {
+          "question": "Q28. In formal languages and regular expressions, the Kleene star (*) operator denotes:",
+          "options": [
+            "A. Exactly one occurrence",
+            "B. Zero or more occurrences",
+            "C. One or more only",
+            "D. Logical AND",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Kleene star (*) represents zero or more repetitions of the preceding element, including the empty string epsilon. Correct: (B)."
+        },
+        {
+          "question": "Q29. Machine Learning (ML) is best described as:",
+          "options": [
+            "A. An area/subfield of AI using data to learn",
+            "B. A network topology",
+            "C. A file system",
+            "D. A CPU scheduler",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Machine Learning is a specialized branch of AI that enables systems to learn from data patterns without explicit rule programming. Correct: (A)."
+        },
+        {
+          "question": "Q30. Which algorithm is a supervised-learning algorithm tested in TRE 3.0?",
+          "options": [
+            "A. Decision Tree",
+            "B. K-means",
+            "C. Reinforcement Learning",
+            "D. MQTT",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Decision Tree is a supervised machine learning algorithm trained on labeled data for classification and regression. Correct: (A)."
+        },
+        {
+          "question": "Q31. The K-means algorithm is primarily associated with:",
+          "options": [
+            "A. Supervised classification",
+            "B. Unsupervised clustering",
+            "C. Network routing",
+            "D. Operating systems",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "K-means is an unsupervised learning algorithm that partitions unlabelled data points into K geometric clusters. Correct: (B)."
+        },
+        {
+          "question": "Q32. Which lightweight messaging protocol is strongly associated with IoT communications?",
+          "options": [
+            "A. MQTT",
+            "B. NTFS",
+            "C. FAT32",
+            "D. SQL",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MQTT (Message Queuing Telemetry Transport) is a lightweight publish-subscribe protocol designed for resource-constrained IoT devices. Correct: (A)."
+        },
+        {
+          "question": "Q33. Which of the 5 Vs of Big Data represents data trustworthiness and accuracy?",
+          "options": [
+            "A. Volume",
+            "B. Variety",
+            "C. Veracity",
+            "D. Velocity",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Veracity refers to the quality, integrity, authenticity, and trustworthiness of the collected big data. Correct: (C)."
+        },
+        {
+          "question": "Q34. Which cloud service model provides a managed development and deployment platform?",
+          "options": [
+            "A. IaaS",
+            "B. PaaS",
+            "C. SaaS",
+            "D. DNS",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "PaaS (Platform as a Service) delivers cloud-hosted runtime environments, frameworks, and tools for building and hosting applications. Correct: (B)."
+        },
+        {
+          "question": "Q35. Which cloud service model provides ready-to-use software applications over the Internet?",
+          "options": [
+            "A. IaaS",
+            "B. PaaS",
+            "C. SaaS",
+            "D. ARP",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "SaaS (Software as a Service) delivers complete end-user applications hosted in the cloud (such as Google Workspace or Office 365). Correct: (C)."
+        },
+        {
+          "question": "Q36. HTML primarily defines which aspect of a web page?",
+          "options": [
+            "A. Structure of a web page",
+            "B. Styling only",
+            "C. Database schema",
+            "D. Routing",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "HTML (HyperText Markup Language) establishes the structural semantic foundation and content markup of web pages. Correct: (A)."
+        },
+        {
+          "question": "Q37. CSS primarily controls which aspect of a web page?",
+          "options": [
+            "A. Structure",
+            "B. Styling / presentation",
+            "C. Database transactions",
+            "D. CPU scheduling",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CSS (Cascading Style Sheets) specifies visual presentation, layouts, colors, fonts, and responsiveness. Correct: (B)."
+        },
+        {
+          "question": "Q38. In e-commerce classifications, B2C stands for:",
+          "options": [
+            "A. Business to Consumer",
+            "B. Business to Computer",
+            "C. Browser to Client",
+            "D. Binary to Character",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "B2C stands for Business to Consumer, referring to direct commercial transactions between businesses and individual retail buyers. Correct: (A)."
+        },
+        {
+          "question": "Q39. In BPSC TRE 3.0, which company was identified as a classic B2C e-commerce platform?",
+          "options": [
+            "A. Amazon",
+            "B. Google",
+            "C. C++",
+            "D. MQTT",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Amazon is a globally recognized B2C e-commerce retailer selling consumer goods directly to the public. Correct: (A)."
+        },
+        {
+          "question": "Q40. The multimedia-authoring-tool answer tested in BPSC TRE 3.0 is:",
+          "options": [
+            "A. Microsoft Word",
+            "B. Adobe Photoshop",
+            "C. Adobe Flash",
+            "D. MySQL",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In BPSC TRE 3.0 Q150, Adobe Flash was designated as the intended multimedia authoring software tool. Correct: (C)."
+        }
+      ]
+    }
   }
 ];
 
