@@ -1,5 +1,5 @@
-// BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 31 comprehensive notes, target topics, interactive checkpoints, and explanations
+// BPSC TRE 4.0 Computer Science Marathon Data
+// Daily comprehensive study modules + tests
 
 const MARATHON_DATA = [
   {
@@ -17912,13 +17912,603 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 32,
+    "dayId": "day-32",
+    "badge": "Day 32",
+    "title": "TRE 4.0 — Day 32",
+    "unit": "Part III (CS) • Computer Networks: LAN/MAN/WAN, Devices, IP/MAC, OSI Model, Transport Protocols & Topologies",
+    "targetTime": "20–25 mins read + 25 mins test",
+    "summary": "Computer Networks Core Foundations (TRE 3.0 & TRE 2.0 Paper-Backed Focus): Network Definition & Scale (LAN local, MAN metropolitan/city, WAN country/world/Internet), Network Devices (Switch for same LAN via MAC addresses, Router for multiple networks via IP addresses, Hub broadcast/unintelligent, Bridge Data Link segmentation, Repeater Physical layer signal regeneration, Modem modulation/demodulation), Addressing & Subnetting (MAC 48-bit hardware/NIC address vs IP 32-bit logical network address, Subnet Mask network ID vs host ID separation), OSI 7-Layer Reference Model ('All People Seem To Need Data Processing': Physical, Data Link, Network, Transport, Session, Presentation, Application; routing/packet forwarding at Network layer [TRE 3.0 trap note]), Transport & Application Protocols (TCP connection-oriented 3-way handshake SYN/SYN-ACK/ACK vs UDP connectionless, Socket communication endpoint, SMTP mail sending, HTTP/HTTPS web, FTP file transfer, DNS name-to-IP, DHCP auto IP config, ARP IPv4-to-MAC), Transmission Media & Topologies (Wired: twisted pair, coaxial, optical fiber [highest speed/capacity]; Wireless: radio, microwave, infrared; Topologies: Star central switch, Bus backbone, Ring token circle, Mesh redundant links), Day 32 White-Paper Master Sheet, and 25-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "LAN, MAN, WAN & Network Devices",
+        "goal": "Master scales (LAN/MAN/WAN), Switch (same LAN/MAC), Router (inter-network/IP), Hub (broadcast), Repeater (signal regeneration)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Addressing, Subnetting & OSI Model",
+        "goal": "Differentiate MAC (hardware) vs IP (logical), Subnet Mask network separation, 7 OSI layers, and packet routing at Network layer"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Protocols, Media & Topologies",
+        "goal": "Recall TCP 3-way handshake vs UDP, Socket IPC, SMTP, DNS, DHCP, ARP, Optical fiber speed, and Star/Bus/Ring/Mesh topologies"
+      }
+    ],
+    "introNote": "Today begins a high-value networking block. Your TRE 3.0 paper directly asks about router, OSI routing/forwarding, switch, SMTP, and subnet mask. TRE 2.0 also directly tests wireless media, switched networks, TCP, sockets, and optical fiber. These anchor today's core curriculum, with LAN/MAN/WAN, topologies, detailed OSI layers, MAC/IP comparison, and DNS/DHCP/ARP expanding standard exam-tested networking foundations.",
+    "parts": [
+      {
+        "title": "Part III — Network Fundamentals, Geographical Scales & Core Hardware Devices",
+        "sections": [
+          {
+            "title": "1. What is a Computer Network? & 2. LAN, MAN, WAN Scale Hierarchy",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Connected Computers",
+                "content": "Imagine three computers:\nPC-1 ───── PC-2\n  \\         /\n   \\       /\n     PC-3\n\nThey can:\n• Share data\n• Share printer\n• Communicate\n• Access Internet"
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nComputer Network = two or more connected devices that communicate and share resources.\n\n2. LAN, MAN, WAN\nThink in increasing geographical size:\nLAN\n ↓\nMAN\n ↓\nWAN\n\n• LAN — Local Area Network\nSmall area: Room, Office, School, Building.\nExample: Computer Lab → LAN.\nMemory: L = Local = small.\n\n• MAN — Metropolitan Area Network\nLarger than LAN. Usually covers: City / metropolitan area.\nMemory: M = Metro = City.\n\n• WAN — Wide Area Network\nHuge geographical area: Cities, States, Countries, Continents.\nThe Internet is the classic example of a very large WAN-like network."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Scale Memory Anchor",
+                "content": "LAN → Building\nMAN → City\nWAN → Country/World"
+              }
+            ]
+          },
+          {
+            "title": "3. Switch, 4. Router & Switch vs Router Comparison",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. Switch (Directly relevant to TRE 3.0)\nThe paper asks which device connects multiple devices within the same LAN, with Switch among the options."
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental Picture: Switch in a Local Lab",
+                "content": "Your library has multiple computers:\nPC1 ─┐\nPC2 ─┤\nPC3 ─┼── SWITCH\nPC4 ─┤\nPC5 ─┘\n\nSimple concept:\nSwitch connects devices inside a LAN.\nAt basic exam level, a switch forwards frames using MAC addresses.\nMemory: SWITCH = Same network"
+              },
+              {
+                "type": "text",
+                "content": "4. Router (TRE 3.0 Core Anchor)\nTRE 3.0 asks the primary function of a router.\nRelevant concept: Router connects multiple networks.\n\nMental layout:\nLAN A\n  │\n  │\nROUTER\n  │\n  │\nLAN B / Internet\n\nMemory: ROUTER = Route between networks"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Switch vs Router Core Comparison",
+                "content": "SWITCH → devices in same LAN (uses MAC addresses)\nROUTER → different networks (uses IP addresses)\n\nImagine:\nInside house → Switch\nHouse to Internet → Router"
+              }
+            ]
+          },
+          {
+            "title": "5. Hub, 6. Bridge, 7. Repeater & 8. Modem",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "5. Hub (Standard Expansion)\nA hub is much less intelligent than a switch.\nSuppose A sends data:\n        HUB\n       / | \\\n      A  B  C\nHub tends to repeat/broadcast incoming signals out all other ports.\nMental: Hub shouts to everyone.\nSwitch: Switch tries to send to the intended destination.\nMemory: HUB → ALL | SWITCH → TARGET\n\n6. Bridge\nA bridge connects/segments LAN portions.\nMental:\nLAN Segment A\n     │\n   BRIDGE\n     │\nLAN Segment B\nAt a basic conceptual level, bridge and switch operate around the Data Link Layer. (Do not spend too much time on bridge internals).\n\n7. Repeater\nRepeater regenerates/repeats a weakened signal over distances.\nMental:\nWeak signal → REPEATER → Strong/regenerated signal\nMemory: Repeater = Repeat signal (Physical layer).\n\n8. Modem\nModem historically stands for: Modulator–Demodulator.\nIt converts signals as required for a communication medium (analog ↔ digital).\nFor exam memory: MODEM → communication conversion.\nDo not confuse: Router ≠ Modem."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Network Addressing: MAC vs IP, and Subnet Masking",
+        "sections": [
+          {
+            "title": "9. MAC Address, 10. IP Address & 11. MAC vs IP Comparison",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — MAC Address",
+                "content": "Think of a device's network-interface identity.\nLaptop NIC → MAC Address\n\nBasic memory: MAC = hardware/network-interface address (48-bit physical address).\nUsed heavily at the local network/Data Link level."
+              },
+              {
+                "type": "text",
+                "content": "10. IP Address\nThink of a logical network address:\nDevice → IP Address\nExample format: 192.168.1.10 for IPv4-style notation.\nMemory: MAC → local/interface identity | IP → logical network address.\n\n11. MAC vs IP Comparison\nThink of sending a parcel:\n• IP → Which network/location? (Logical destination)\n• MAC → Which interface/device locally? (Physical delivery)"
+              },
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "MAC vs IP Exam Comparison Table",
+                "content": "Feature           | MAC Address                | IP Address\n------------------|----------------------------|-------------------------\nLayer Association | Data Link Layer (Layer 2)   | Network Layer (Layer 3)\nDelivery Scope    | Local network delivery     | Routing across networks\nAddress Nature    | Hardware/interface address | Logical routing address"
+              }
+            ]
+          },
+          {
+            "title": "12. Subnet Mask (TRE 3.0 Core Anchor)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is a direct TRE 3.0 topic.\nThe paper asks the purpose of a subnet mask; the relevant idea is identifying the network portion of an IP address."
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental Picture: Subnet Mask Partition",
+                "content": "Suppose IP: 192.168.1.25\nSubnet mask conceptually helps separate: NETWORK | HOST\n\nThink:\nIP ADDRESS\n┌────────────┬───────┐\n│  NETWORK   │ HOST  │\n└────────────┴───────┘\n       ↑\n subnet mask helps identify this split"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Subnet Mask Memory Anchor",
+                "content": "Subnet Mask = Network part detector"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — The 7-Layer OSI Reference Model & Layer Functions",
+        "sections": [
+          {
+            "title": "13. OSI Model Overview & 7-Layer Mnemonic",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "The ISO OSI (Open Systems Interconnection) reference model consists of exactly seven layers:\n7 — Application\n6 — Presentation\n5 — Session\n4 — Transport\n3 — Network\n2 — Data Link\n1 — Physical"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Memory Sentence (From Layer 7 → 1)",
+                "content": "All People Seem To Need Data Processing\n\nA → Application (Layer 7)\nP → Presentation (Layer 6)\nS → Session (Layer 5)\nT → Transport (Layer 4)\nN → Network (Layer 3)\nD → Data Link (Layer 2)\nP → Physical (Layer 1)"
+              }
+            ]
+          },
+          {
+            "title": "14. Physical Layer & 15. Data Link Layer",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "14. Physical Layer (Layer 1)\nThink:\nBITS → wire / fiber / signal\nDeals with physical transmission concepts, raw bit streams, cables, and repeaters.\nMemory: Physical = Bits + medium.\n\n15. Data Link Layer (Layer 2)\nThink:\nFRAMES | MAC | SWITCH\nHandles node-to-node framing, hardware addressing, and local flow/error control.\nBasic exam memory: Data Link = Frame + MAC + Switch."
+              }
+            ]
+          },
+          {
+            "title": "16. Network Layer (Crucial Routing Layer & TRE 3.0 Trap)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is crucial. The Network Layer (Layer 3) is responsible for routing and forwarding packets.\n\nThink:\nPACKET → ROUTER → BEST PATH\nMemory: Network Layer = Router + IP + Packet."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "TRE 3.0 Exam Trap: Routing Layer",
+                "content": "TRE 3.0 asks: Which OSI layer performs routing and forwarding?\n\nVisible choices printed in paper:\n• Data Link\n• Transport\n• Physical\n• More than one\n• None\n\nNetwork Layer is missing from the visible choices! Standard networking universally assigns routing and forwarding to the Network Layer, so among those printed options the paper logically forces \"None of the above\".\n\nDo NOT memorize Data Link or Transport as the routing layer!"
+              }
+            ]
+          },
+          {
+            "title": "17. Transport Layer: TCP, 3-Way Handshake & UDP",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "17. Transport Layer (Layer 4)\nThink: PROCESS ↔ PROCESS communication (end-to-end).\nImportant protocols: TCP and UDP.\nMemory: Transport = TCP/UDP.\n\n18. TCP (Transmission Control Protocol)\nTRE 2.0 directly tests TCP and lists these key properties:\n• connection-oriented\n• uses a three-way handshake\n• receives application data as a continuous byte stream."
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental Picture: Telephone Call",
+                "content": "Telephone call analogy:\nConnect first → Communicate → Close\nMemory: TCP = Connection + Reliable delivery concept"
+              },
+              {
+                "type": "callout",
+                "icon": "🤝",
+                "title": "19. TCP Three-Way Handshake",
+                "content": "Client                          Server\n\n SYN   ─────────────────────────→\n\n       ←───────────────────────── SYN-ACK\n\n ACK   ─────────────────────────→\n\nMemory: SYN → SYN-ACK → ACK\n3 messages → connection established!"
+              },
+              {
+                "type": "text",
+                "content": "20. UDP (User Datagram Protocol)\nContrast:\n• TCP → connection-oriented, reliability mechanisms, acknowledgment overhead.\n• UDP → connectionless, lower overhead, no handshake, best-effort.\n\nMental analogy:\nTCP → phone call\nUDP → postcard\nDon't overcomplicate today."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Network Protocols, IPC Sockets, Transmission Media & Topologies",
+        "sections": [
+          {
+            "title": "High-Yield Application Protocols: SMTP, HTTP/HTTPS, FTP, DNS, DHCP & ARP",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "21. SMTP (Direct TRE 3.0 Question)\nProtocol used to send email over the Internet → SMTP (Simple Mail Transfer Protocol).\nMemory: S = Send → SMTP | SMTP = SEND MAIL.\n\n22. HTTP / HTTPS\n• HTTP → HyperText Transfer Protocol for web communication.\n• HTTPS → HTTP + security/encryption via TLS/SSL.\nMemory: S in HTTPS = Secure.\n\n23. FTP\nFTP → File Transfer Protocol.\nMemory: F = File.\n\n24. DNS (Domain Name System)\nThink phonebook:\ngoogle.com ───(DNS)───→ IP address\nMemory: DNS = Domain Name → IP.\n\n25. DHCP (Dynamic Host Configuration Protocol)\nThink automatic IP assignment:\nNew device joins network → DHCP → gets IP configuration automatically.\nMemory: DHCP = Give IP automatically.\n\n26. ARP (Address Resolution Protocol)\nStandard networking concept:\nIPv4 Address ───(ARP)───→ MAC Address\nMemory: ARP = IPv4 → MAC.\n(This is worth remembering carefully because some reproduced answer keys can contain errors)."
+              }
+            ]
+          },
+          {
+            "title": "27. Socket (TRE 2.0 Anchor) & 28–29. Transmission Media (Wired vs Wireless)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "27. Socket (TRE 2.0 Anchor)\nTRE 2.0 asks: An endpoint of an inter-process communication flow across a computer network is called what?\nRelevant answer: Socket.\n\nMental layout:\nApplication → SOCKET → Network\nMemory: Socket = communication endpoint (IP + Port)."
+              },
+              {
+                "type": "callout",
+                "icon": "📡",
+                "title": "28. Transmission Media: Wired vs Wireless",
+                "content": "Two broad mental groups:\n\nWIRED (Guided):\n├── Twisted Pair\n├── Coaxial\n└── Optical Fiber\n\nWIRELESS (Unguided):\n├── Radio waves\n├── Microwaves\n└── Infrared\n\nTRE 2.0 directly lists radio waves, microwaves, and infrared as wireless transmission possibilities."
+              },
+              {
+                "type": "text",
+                "content": "29. Optical Fiber (TRE 2.0 Anchor)\nTRE 2.0 asks which among Coaxial, Twisted Pair, and Optical Fiber provides the highest transmission speed.\nRelevant answer: Optical Fiber.\nMemory: Fiber = fastest among those three (uses light pulses through glass/plastic core)."
+              }
+            ]
+          },
+          {
+            "title": "30. Network Topologies: Star, Bus, Ring & Mesh",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Remember four standard topologies:\n\n• Star Topology:\nAll devices connect to a central device (hub/switch).\n        PC\n         |\nPC ─── SWITCH ─── PC\n         |\n        PC\nMemory: STAR = center\n\n• Bus Topology:\nOne main communication backbone cable.\nPC ─ PC ─ PC ─ PC\n=================\n    backbone\nMemory: BUS = one backbone\n\n• Ring Topology:\nDevices form a closed loop; token circulates.\nA ─ B\n|   |\nD ─ C\nMemory: RING = circle\n\n• Mesh Topology:\nMany point-to-point interconnections across nodes:\nA────B\n|\\  /|\n| \\/ |\n| /\\ |\n|/  \\|\nC────D\nHigh redundancy and fault tolerance, but requires more physical cabling and ports.\nMemory: MESH = many connections"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 32 White-Paper Master Sheet & Rapid Recall",
+        "sections": [
+          {
+            "title": "White-Paper Mental Diagram & High-Yield Summary",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 32 White-Paper Master Sheet",
+                "content": "Close the lesson and mentally draw:\n\nNETWORK SIZE:\nLAN → Building\nMAN → City\nWAN → World\n\nDEVICES:\nHub → everyone (broadcast)\nSwitch → same LAN (MAC)\nRouter → networks (IP)\nRepeater → regenerate signal\n\nOSI 7 LAYERS:\n7 Application\n6 Presentation\n5 Session\n4 Transport\n3 Network\n2 Data Link\n1 Physical\n\nKEY LAYERS:\nNETWORK LAYER → IP, Packet, Router, Routing\nDATA LINK → MAC, Frame, Switch\nTRANSPORT → TCP / UDP\n\nPROTOCOL MAPPINGS:\nSMTP → Send Email\nHTTP → Web\nHTTPS → Secure Web\nFTP → File Transfer\nDNS → Name → IP\nDHCP → Automatic IP\nARP → IPv4 → MAC"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 32 Checkpoint Test",
+      "subtitle": "Computer Networks: LAN/MAN/WAN, Devices, IP/MAC, OSI Layers, TCP/UDP & Protocols",
+      "questions": [
+        {
+          "id": "m-d32-q1",
+          "question": "Q1. A LAN normally covers:",
+          "options": [
+            "A relatively small/local area",
+            "Entire world only",
+            "Multiple countries only",
+            "A continent only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "LAN (Local Area Network) covers a relatively small and localized geographic area such as a room, office, laboratory, school, or single building. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q2",
+          "question": "Q2. A MAN is most closely associated with:",
+          "options": [
+            "One CPU register",
+            "Metropolitan/city-sized area",
+            "One room only",
+            "Entire Internet only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "MAN (Metropolitan Area Network) connects computers and facilities spanning a metropolitan or city-sized area. Correct: (B)."
+        },
+        {
+          "id": "m-d32-q3",
+          "question": "Q3. Which network generally covers the widest geographical area?",
+          "options": [
+            "LAN",
+            "MAN",
+            "WAN",
+            "PAN only",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "WAN (Wide Area Network) spans broad geographical areas including multiple cities, states, countries, continents, or the entire globe (e.g. the Internet). Correct: (C)."
+        },
+        {
+          "id": "m-d32-q4",
+          "question": "Q4. According to TRE 3.0, the primary role of a router is:",
+          "options": [
+            "Connect multiple networks",
+            "Store database records",
+            "Compile programs",
+            "Perform sorting",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In BPSC TRE 3.0, the primary function of a router is directly identified as connecting multiple different networks and forwarding/routing packets between them. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q5",
+          "question": "Q5. Which device is commonly used to connect multiple devices within the same LAN?",
+          "options": [
+            "Router",
+            "Switch",
+            "Modem only",
+            "Compiler",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Switch connects multiple computers/devices within the same local area network (LAN) and directs frames using local MAC addresses. Correct: (B)."
+        },
+        {
+          "id": "m-d32-q6",
+          "question": "Q6. Which statement is correct?",
+          "options": [
+            "Hub intelligently routes packets between networks",
+            "Router connects networks",
+            "Switch is a programming language",
+            "Repeater stores databases",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "\"Router connects networks\" is the fundamental exam-tested fact. Hubs repeat signals to all ports unintelligently, switches connect within LANs, and repeaters regenerate signals. Correct: (B)."
+        },
+        {
+          "id": "m-d32-q7",
+          "question": "Q7. A repeater is primarily used to:",
+          "options": [
+            "Regenerate/repeat a signal",
+            "Send email",
+            "Assign database keys",
+            "Sort packets",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A repeater operates at the Physical Layer to amplify and regenerate weakened or attenuated signals over long transmission distances. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q8",
+          "question": "Q8. Which is most closely associated with local network-interface addressing?",
+          "options": [
+            "MAC address",
+            "SQL",
+            "URL only",
+            "Python tuple",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A MAC (Media Access Control) address is the 48-bit physical/hardware address burned into a network interface card (NIC) for local Data Link layer communication. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q9",
+          "question": "Q9. Which is a logical network address used in routing?",
+          "options": [
+            "IP address",
+            "Variable name",
+            "File offset",
+            "Boolean expression",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "An IP address (such as IPv4 or IPv6) is a logical network layer address used by routers to navigate data across networks. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q10",
+          "question": "Q10. The purpose of a subnet mask is mainly to identify:",
+          "options": [
+            "Network portion of an IP address",
+            "Email password",
+            "MAC manufacturer only",
+            "File-system type",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "As directly tested in TRE 3.0, the purpose of a subnet mask is to split an IP address and identify which part represents the Network ID and which part represents the Host ID. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q11",
+          "question": "Q11. How many layers are in the OSI model?",
+          "options": [
+            "4",
+            "5",
+            "7",
+            "8",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The ISO OSI (Open Systems Interconnection) reference model contains exactly 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application. Correct: (C)."
+        },
+        {
+          "id": "m-d32-q12",
+          "question": "Q12. Routing and forwarding packets belong to the:",
+          "options": [
+            "Physical Layer",
+            "Data Link Layer",
+            "Network Layer",
+            "Presentation Layer",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Network Layer (Layer 3) is responsible for routing, logical addressing, and forwarding packets toward their destination across networks. Correct: (C)."
+        },
+        {
+          "id": "m-d32-q13",
+          "question": "Q13. A router is most strongly associated with which OSI layer?",
+          "options": [
+            "Network Layer",
+            "Physical Layer only",
+            "Presentation Layer",
+            "Session Layer",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A router inspects IP packet headers to make routing decisions, making it a Layer 3 (Network Layer) networking device. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q14",
+          "question": "Q14. A switch and MAC addresses are most closely associated with:",
+          "options": [
+            "Data Link Layer",
+            "Application Layer only",
+            "Presentation Layer",
+            "Session Layer",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Standard switches and MAC addresses operate at Layer 2 (Data Link Layer), handling framing and hardware addressing within a local network segment. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q15",
+          "question": "Q15. TCP and UDP belong mainly to:",
+          "options": [
+            "Transport Layer",
+            "Physical Layer",
+            "Presentation Layer",
+            "Data Link Layer",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are the two primary transport protocols residing at Layer 4 (Transport Layer). Correct: (A)."
+        },
+        {
+          "id": "m-d32-q16",
+          "question": "Q16. Which statement about TCP matches the TRE 2.0 question?",
+          "options": [
+            "TCP is connection-oriented",
+            "TCP uses a three-way handshake",
+            "More than one of the above",
+            "TCP is always connectionless",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Both statements are true: TCP is a connection-oriented transport protocol and establishes its connection via a three-way handshake (SYN, SYN-ACK, ACK). Therefore, (C) More than one of the above is the correct BPSC answer. Correct: (C)."
+        },
+        {
+          "id": "m-d32-q17",
+          "question": "Q17. Which protocol is used to send email?",
+          "options": [
+            "FTP",
+            "SMTP",
+            "HTTP",
+            "ARP",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SMTP (Simple Mail Transfer Protocol) is specifically used to send/push email messages across the Internet (directly tested in TRE 3.0). Correct: (B)."
+        },
+        {
+          "id": "m-d32-q18",
+          "question": "Q18. DNS primarily maps:",
+          "options": [
+            "Domain name → IP address",
+            "IP → password",
+            "MAC → username",
+            "File → process",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DNS (Domain Name System) translates human-readable domain names (e.g., google.com) into machine-routable IP addresses. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q19",
+          "question": "Q19. DHCP is mainly used to:",
+          "options": [
+            "Automatically provide IP configuration",
+            "Transfer web pages",
+            "Send email",
+            "Resolve IPv4 to MAC",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DHCP (Dynamic Host Configuration Protocol) dynamically and automatically provides client devices with IP addresses, subnet masks, default gateways, and DNS settings. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q20",
+          "question": "Q20. ARP is best remembered as:",
+          "options": [
+            "IPv4 address → MAC address",
+            "Domain → IP",
+            "Email → FTP",
+            "MAC → password",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "ARP (Address Resolution Protocol) resolves a known logical IPv4 address into its corresponding physical hardware MAC address on a local network segment. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q21",
+          "question": "Q21. An endpoint of network inter-process communication is called:",
+          "options": [
+            "Stack",
+            "Socket",
+            "Queue",
+            "Array",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In network programming and specifically tested in BPSC TRE 2.0, an endpoint of an inter-process communication flow across a network is called a Socket (combination of IP address and port number). Correct: (B)."
+        },
+        {
+          "id": "m-d32-q22",
+          "question": "Q22. Which are wireless transmission media?",
+          "options": [
+            "Radio waves",
+            "Microwaves",
+            "Infrared",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Radio waves, microwaves, and infrared are all unbounded/wireless transmission media directly cited in BPSC TRE 2.0. Hence, (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d32-q23",
+          "question": "Q23. Among the following, which generally provides the highest transmission speed/capacity in the TRE 2.0 question?",
+          "options": [
+            "Twisted pair",
+            "Coaxial cable",
+            "Optical fiber",
+            "All exactly equal",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Optical fiber carries data using light pulses through glass or plastic cores, offering vastly higher bandwidth and speed than twisted-pair and coaxial cables (tested in TRE 2.0). Correct: (C)."
+        },
+        {
+          "id": "m-d32-q24",
+          "question": "Q24. Which topology has a central connecting device?",
+          "options": [
+            "Star",
+            "Ring",
+            "Bus",
+            "Mesh only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In a Star topology, all individual computers and peripheral nodes connect directly to a central hub or switch. Correct: (A)."
+        },
+        {
+          "id": "m-d32-q25",
+          "question": "Q25. Which memory mapping is correct?",
+          "options": [
+            "SMTP → Send email",
+            "DNS → Domain to IP",
+            "ARP → IPv4 to MAC",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three associations are correct: SMTP is used to send email, DNS maps domain names to IP addresses, and ARP maps IPv4 addresses to MAC hardware addresses. Therefore, (D) More than one of the above is correct. Correct: (D)."
+        }
+      ]
+    }
   }
 ];
 
-// Expose globally for browser environment
-if (typeof window !== 'undefined') {
-  window.MARATHON_DATA = MARATHON_DATA;
-}
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { MARATHON_DATA };
 }
