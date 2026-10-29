@@ -1522,7 +1522,9 @@
     if (filter === 'w1') {
       daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber <= 7);
     } else if (filter === 'w2') {
-      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 7);
+      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 7 && d.dayNumber <= 14);
+    } else if (filter === 'w3') {
+      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 14);
     }
 
     let html = '';

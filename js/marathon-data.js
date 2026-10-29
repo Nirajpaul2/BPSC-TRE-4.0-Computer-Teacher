@@ -8590,6 +8590,582 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 15,
+    "dayId": "day-15",
+    "badge": "Day 15",
+    "title": "TRE 4.0 — Day 15",
+    "unit": "Part III (CS) • DBMS Foundation, Keys, Normalization & SQL • Bihar Geography & Articles",
+    "targetTime": "15–18 mins read + 20 mins test",
+    "summary": "Today we start DBMS, an essential Part III exam area: Database definitions, DBMS features, RDBMS, Tables/Rows/Columns, Primary/Foreign/Super Keys, Metadata, Redundancy, Normalization (1NF, 2NF, 3NF), Basic SQL (CRUD) and ACID properties.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "DBMS, Table, Keys, Normalization, SQL",
+        "goal": "Primary/Foreign/Super Keys, 1NF/2NF/3NF, CRUD SQL commands, Metadata & ACID properties"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Bihar Geography quick facts",
+        "goal": "Rohtas (paddy production) and Bhagalpur ('Silk City' textile production)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "a, an, the revision",
+        "goal": "Article choice based on sound ('an actress', 'a university', 'an hour')"
+      }
+    ],
+    "introNote": "Today we start DBMS, which is a very important Part III area. TRE 2.0 contains a long DBMS block covering database definition, DBMS features, metadata, keys, SQL and normalization, while TRE 3.0 directly tests Primary Key, 2NF and INSERT.",
+    "parts": [
+      {
+        "partId": "part-d15-dbms-basics",
+        "title": "Part III — DBMS Architecture & Fundamentals",
+        "sections": [
+          {
+            "title": "1. What is a Database? & 2. DBMS",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. What is a Database?\n\n🧠 MENTAL PICTURE\nImagine your library has 500 students."
+              },
+              {
+                "type": "diagram",
+                "content": "Without a database:\nPaper 1 → Rahul\nPaper 2 → Aman\nPaper 3 → Ravi\nPaper 4 → Fee details\nPaper 5 → Attendance\n...\nMESS 😵\n\nWith Database:\n        DATABASE\n           ↓\n┌────────────────────────┐\n│ Student details        │\n│ Phone                  │\n│ Seat                   │\n│ Batch                  │\n│ Fee                    │\n│ Attendance             │\n└────────────────────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory sentence",
+                "content": "Database = Organized Data\n\nTRE 2.0 defines a database through the correct idea of an organized collection of data/information that can be accessed, updated and managed."
+              },
+              {
+                "type": "text",
+                "content": "2. DBMS (Database Management System)\n\nThink of the system architecture:\nUSER → DBMS → DATABASE\n\nThe DBMS manages access to data."
+              },
+              {
+                "type": "diagram",
+                "content": "         USER / APP\n             ↓\n        ┌─────────┐\n        │  DBMS   │\n        └─────────┘\n             ↓\n        ┌─────────┐\n        │DATABASE │\n        └─────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Memory trick",
+                "content": "DBMS = Manager of Database\n\nTRE 2.0 tests features such as reducing duplication/redundancy and supporting ACID, and also asks about metadata and DBMS's interface role. Examples appearing in the TRE paper include Microsoft Access and IBM Db2."
+              }
+            ]
+          },
+          {
+            "title": "3. RDBMS & 4. Table, Row and Column",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. RDBMS\nRDBMS means: Relational Database Management System.\n\nThe standard CS idea is that data is organized into tables and relationships can exist between those tables."
+              },
+              {
+                "type": "diagram",
+                "content": "STUDENT TABLE\n\nID   Name    Seat\n-----------------\n1    Ravi     10\n2    Aman     15\n3    Neha     20\n\nThink: RDBMS = Database made of related tables"
+              },
+              {
+                "type": "text",
+                "content": "4. Table, Row and Column\nStandard DBMS terminology:"
+              },
+              {
+                "type": "diagram",
+                "content": "             COLUMNS\n          ↓      ↓      ↓\n\n        ID     Name    Seat\n       --------------------\nROW →   1      Ravi     10\nROW →   2      Aman     15\nROW →   3      Neha     20"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Exam Memory Terms",
+                "content": "ROW    → Record / Tuple\nCOLUMN → Attribute / Field\nTABLE  → Relation\n\nFor exam:\nRow = one complete record\nColumn = one property"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d15-keys-meta",
+        "title": "Part III — Keys, Metadata & Redundancy",
+        "sections": [
+          {
+            "title": "5. Primary Key, 6. Foreign Key & 7. Superkey",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "5. Primary Key — VERY IMPORTANT\nTRE 3.0 directly asks this.\n\nA Primary Key uniquely identifies each record in a table."
+              },
+              {
+                "type": "diagram",
+                "content": "StudentID    Name\n-----------------\n101          Ravi\n102          Aman\n103          Neha\n\nStudentID is a good Primary Key.\nWhy?\n101 → Ravi only\n102 → Aman only\n103 → Neha only"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Memory trick",
+                "content": "Primary Key = Identity Card\nJust as one Aadhaar/employee/student ID identifies one person/record.\n\n⚠️ Primary Key trap: Primary Key must be UNIQUE and cannot be NULL.\nFor exam memory: Primary Key → UNIQUE record identification"
+              },
+              {
+                "type": "text",
+                "content": "6. Foreign Key\nThis is standard DBMS expansion and prepares you for relationship questions."
+              },
+              {
+                "type": "diagram",
+                "content": "STUDENT TABLE\nStudentID   Name\n101         Ravi\n102         Aman\n     ↑\n     │ link\n     │\nFOREIGN KEY (StudentID in PAYMENT)\nPaymentID   StudentID\n1           101\n2           102"
+              },
+              {
+                "type": "callout",
+                "icon": "🔗",
+                "title": "Key Connection",
+                "content": "Primary Key = identifies\nForeign Key = connects"
+              },
+              {
+                "type": "text",
+                "content": "7. Superkey\nTRE 2.0 asks: a set of one or more attributes that collectively uniquely identifies a record. Its relevant option is Superkey.\n\nExample: StudentID can uniquely identify a student. Or StudentID + Phone also uniquely identifies the same record. Both can be superkeys.\n\nMemory: Superkey = any attribute combination capable of unique identification"
+              }
+            ]
+          },
+          {
+            "title": "8. Metadata & 9. Redundancy",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "8. Metadata\nTRE 2.0 directly asks: “What is information about data called?”\nAnswer concept: Metadata"
+              },
+              {
+                "type": "diagram",
+                "content": "Suppose data is: \"Niraj\"\n\nMetadata could describe:\nColumn Name → student_name\nType        → VARCHAR\nMax Length  → 100\n\nSo: Metadata = Data about Data"
+              },
+              {
+                "type": "text",
+                "content": "9. Redundancy\nRedundancy means: Same data unnecessarily repeated."
+              },
+              {
+                "type": "diagram",
+                "content": "ID    Name      City\n1     Ravi      Patna\n2     Ravi      Patna\n3     Ravi      Patna\n\nIf the same information is unnecessarily duplicated:\nMore storage + more chances of inconsistency"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "TRE 2.0 Exam Point",
+                "content": "Duplicate data → Redundancy\nDifferent copies disagree → Inconsistency\n\nTRE 2.0 specifically asks what happens when the same piece of data is stored in two places: it can waste storage and create data inconsistency when one copy changes."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d15-norm-sql",
+        "title": "Part III — Normalization, SQL & ACID",
+        "sections": [
+          {
+            "title": "10. Normalization, 11. 1NF, 12. 2NF & 13. 3NF",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. Normalization\n🧠 MENTAL PICTURE\nImagine a messy cupboard: Books + Clothes + Shoes + Papers → MESS\nYou organize: Books to Shelf 1, Clothes to Shelf 2, Shoes to Shelf 3.\n\nNormalization = Organize database tables to reduce unnecessary redundancy and anomalies.\nTRE 2.0 asks which normal form is generally considered adequate for designing a normal RDBMS and includes 3NF as the relevant option."
+              },
+              {
+                "type": "diagram",
+                "content": "1NF (First Normal Form)\nEach cell should contain a single/atomic value.\n\nBad:\nStudent   Phones\n----------------------\nRavi      9876, 8765   ❌\n\nBetter:\nStudent   Phone\n----------------\nRavi      9876\nRavi      8765\n\nMemory: 1NF = One cell → One value"
+              },
+              {
+                "type": "diagram",
+                "content": "2NF (Second Normal Form)\nTRE 3.0 directly asks which normal form ensures non-prime attributes are fully functionally dependent on the primary key: 2NF.\n\nMemory: 2NF = Full dependency on complete key (No partial dependency)"
+              },
+              {
+                "type": "diagram",
+                "content": "3NF (Third Normal Form)\nFor exam-level memory: 3NF removes transitive dependency:\n\nPrimary Key → B → C\nIf C depends indirectly through B, 3NF removes it."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Memory sequence (Write this on your white sheet)",
+                "content": "1NF → Atomic\n2NF → Full dependency\n3NF → No transitive dependency"
+              }
+            ]
+          },
+          {
+            "title": "14. SQL, 15. Commands & 16. ACID",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "14. SQL\nSQL = Structured Query Language.\nYou use SQL to communicate with relational databases.\nUSER → SQL COMMAND → DATABASE"
+              },
+              {
+                "type": "diagram",
+                "content": "SELECT → Read data\nSELECT * FROM Student;\nMemory: SELECT = See\n\nINSERT → Add a new row (TRE 3.0 directly asks this)\nINSERT INTO Student VALUES (101, 'Ravi');\nMemory: INSERT = Add\n\nUPDATE → Change existing data\nUPDATE Student SET name = 'Aman' WHERE id = 101;\nMemory: UPDATE = Change\n\nDELETE → Remove rows (TRE 2.0 directly tests this syntax)\nDELETE FROM Student WHERE id = 101;\nMemory: DELETE = Remove"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "CRUD Mapping",
+                "content": "Create → INSERT\nRead   → SELECT\nUpdate → UPDATE\nDelete → DELETE"
+              },
+              {
+                "type": "text",
+                "content": "16. ACID Properties\nTRE 2.0 includes support for ACID property as a DBMS feature."
+              },
+              {
+                "type": "diagram",
+                "content": "A → Atomicity   (All or nothing)\nC → Consistency (Database remains in valid state)\nI → Isolation   (Transactions do not interfere)\nD → Durability  (Committed changes survive crashes/power off)\n\n🧠 Bank-transfer picture:\nAccount A (-100) → Account B (+100)\nA transaction should not stop halfway and leave money lost!\n\nACID = safe/reliable database transactions"
+              }
+            ]
+          },
+          {
+            "title": "Day 15 DBMS Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "DATABASE\n→ organized data\n\nDBMS\n→ manages database\n\nRDBMS\n→ tables + relationships\n\nROW\n→ record\n\nCOLUMN\n→ attribute\n\nPRIMARY KEY\n→ uniquely identifies\n\nFOREIGN KEY\n→ connects tables\n\nSUPERKEY\n→ one/more attributes uniquely identify\n\nMETADATA\n→ data about data\n\nREDUNDANCY\n→ duplicate data\n\nNORMALIZATION\n1NF → Atomic\n2NF → Full dependency\n3NF → No transitive dependency\n\nSQL\nSELECT → Read\nINSERT → Add\nUPDATE → Change\nDELETE → Remove\n\nACID\nA Atomicity\nC Consistency\nI Isolation\nD Durability"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d15-gs-bihar",
+        "title": "Part II — General Studies: Bihar Geography",
+        "sections": [
+          {
+            "title": "Bihar Geography Quick Facts",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 includes Bihar-specific questions on paddy production and silk textile production. For today's exam memory, using standard Bihar GK:"
+              },
+              {
+                "type": "diagram",
+                "content": "Rohtas\n  ↓\nImportant paddy/rice-producing district\n\nBHAGALPUR\n  ↓\nSILK\n\n🧠 Memory trick: Bhagalpur = Silk City"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Common Exam Patterns",
+                "content": "• Bihar + Agriculture (Paddy in Rohtas)\n• Bihar + District-based questions\n• Bihar + Industry/textile (Silk in Bhagalpur)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d15-english-articles",
+        "title": "Part I — English: Articles Revision",
+        "sections": [
+          {
+            "title": "Rules for a, an, and the",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 starts with article questions involving students and actress."
+              },
+              {
+                "type": "diagram",
+                "content": "A   → consonant sound\nAN  → vowel sound\nTHE → specific\n\nExamples:\nan actress ✅\nan hour ✅\n\na university ✅\na European ✅"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Core Rule",
+                "content": "Article depends on SOUND, not merely first letter.\nhour → starts with vowel SOUND\nuniversity → starts with \"you\" SOUND"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 15 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d15-q1",
+          "question": "Q1. A database is best described as:",
+          "options": [
+            "Random collection of programs",
+            "Organized collection of data/information",
+            "Only a collection of images",
+            "Operating system files only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A database is an organized collection of data or information that can be easily accessed, managed, and updated. Correct: (B) Organized collection of data/information."
+        },
+        {
+          "id": "m-d15-q2",
+          "question": "Q2. DBMS stands for:",
+          "options": [
+            "Data Backup Management Service",
+            "Database Management System",
+            "Digital Base Management Software",
+            "Database Memory System",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "DBMS stands for Database Management System. Correct: (B) Database Management System."
+        },
+        {
+          "id": "m-d15-q3",
+          "question": "Q3. In a relational database, a row is commonly called:",
+          "options": [
+            "Attribute",
+            "Record",
+            "Database",
+            "Schema only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In RDBMS terminology, a row represents a single complete entity instance, called a Record (or Tuple). Correct: (B) Record."
+        },
+        {
+          "id": "m-d15-q4",
+          "question": "Q4. A column in a table normally represents:",
+          "options": [
+            "Attribute/field",
+            "Complete database",
+            "Transaction only",
+            "Query result only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A column in a table represents a specific characteristic, property, or Field/Attribute. Correct: (A) Attribute/field."
+        },
+        {
+          "id": "m-d15-q5",
+          "question": "Q5. Which key uniquely identifies each record in a table?",
+          "options": [
+            "Foreign Key",
+            "Primary Key",
+            "Duplicate Key",
+            "Null Key",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Primary Key uniquely identifies each row/record in a table and cannot contain NULL values. Correct: (B) Primary Key."
+        },
+        {
+          "id": "m-d15-q6",
+          "question": "Q6. A Foreign Key is mainly used to:",
+          "options": [
+            "Delete every table",
+            "Establish a relationship between tables",
+            "Sort a table only",
+            "Encrypt data",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Foreign Key points to the Primary Key of another table, creating a relational link/connection between them. Correct: (B) Establish a relationship between tables."
+        },
+        {
+          "id": "m-d15-q7",
+          "question": "Q7. A set of one or more attributes capable of uniquely identifying a record is:",
+          "options": [
+            "Superkey",
+            "Queue",
+            "Metadata",
+            "Transaction",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In relational theory, any superset of attributes that uniquely identifies a record is called a Superkey. Correct: (A) Superkey."
+        },
+        {
+          "id": "m-d15-q8",
+          "question": "Q8. Information describing other data is called:",
+          "options": [
+            "Raw data",
+            "Metadata",
+            "Redundancy",
+            "Tuple",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Metadata is defined as data about data (providing descriptive context like types, schemas, and constraints). Correct: (B) Metadata."
+        },
+        {
+          "id": "m-d15-q9",
+          "question": "Q9. Storing unnecessary copies of the same data is called:",
+          "options": [
+            "Normalization",
+            "Redundancy",
+            "Isolation",
+            "Atomicity",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Data redundancy is the unnecessary duplication of data within a database, which wastes storage and leads to inconsistency. Correct: (B) Redundancy."
+        },
+        {
+          "id": "m-d15-q10",
+          "question": "Q10. Which normal form is best remembered as:\nOne cell → one atomic value",
+          "options": [
+            "1NF",
+            "2NF",
+            "3NF",
+            "4NF",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "First Normal Form (1NF) mandates that all attributes contain only atomic (indivisible) single values. Correct: (A) 1NF."
+        },
+        {
+          "id": "m-d15-q11",
+          "question": "Q11. Which normal form ensures full functional dependency on the complete primary key?",
+          "options": [
+            "1NF",
+            "2NF",
+            "3NF",
+            "BCNF only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Second Normal Form (2NF) requires 1NF and guarantees that all non-prime attributes are fully functionally dependent on the complete primary key (no partial dependency). Correct: (B) 2NF."
+        },
+        {
+          "id": "m-d15-q12",
+          "question": "Q12. Which is the memory rule for 3NF?",
+          "options": [
+            "Atomic values",
+            "No partial dependency only",
+            "No transitive dependency",
+            "No Primary Key",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Third Normal Form (3NF) requires 2NF and ensures there is no transitive dependency of non-prime attributes on candidate keys. Correct: (C) No transitive dependency."
+        },
+        {
+          "id": "m-d15-q13",
+          "question": "Q13. Which SQL command retrieves data?",
+          "options": [
+            "INSERT",
+            "DELETE",
+            "SELECT",
+            "UPDATE",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The SELECT statement is used to query and retrieve data from one or more database tables. Correct: (C) SELECT."
+        },
+        {
+          "id": "m-d15-q14",
+          "question": "Q14. Which SQL command adds a new row?",
+          "options": [
+            "ADD",
+            "INSERT",
+            "SELECT",
+            "UPDATE",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The INSERT INTO command inserts new records/rows into a table. Correct: (B) INSERT."
+        },
+        {
+          "id": "m-d15-q15",
+          "question": "Q15. Which SQL command modifies existing rows?",
+          "options": [
+            "UPDATE",
+            "SELECT",
+            "CREATE",
+            "DROP",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The UPDATE command modifies existing data in table rows according to specified conditions. Correct: (A) UPDATE."
+        },
+        {
+          "id": "m-d15-q16",
+          "question": "Q16. Which SQL command removes selected rows?",
+          "options": [
+            "REMOVE",
+            "ERASE",
+            "DELETE",
+            "CLEAR",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The DELETE FROM command removes existing records from a table. Correct: (C) DELETE."
+        },
+        {
+          "id": "m-d15-q17",
+          "question": "Q17. In ACID, A stands for:",
+          "options": [
+            "Access",
+            "Atomicity",
+            "Attribute",
+            "Availability",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A stands for Atomicity, guaranteeing that all transaction operations either succeed completely or are completely rolled back (all-or-nothing). Correct: (B) Atomicity."
+        },
+        {
+          "id": "m-d15-q18",
+          "question": "Q18. In ACID, D stands for:",
+          "options": [
+            "Data",
+            "Dependency",
+            "Durability",
+            "Database",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "D stands for Durability, ensuring committed transaction results persist permanently even through power failure or system crashes. Correct: (C) Durability."
+        },
+        {
+          "id": "m-d15-q19",
+          "question": "Q19. Which Bihar city/district is famously associated with the silk industry?",
+          "options": [
+            "Bhagalpur",
+            "Rohtas",
+            "Gaya",
+            "Bhojpur",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bhagalpur is universally recognized as the 'Silk City' of Bihar, renowned for its heritage Tussar silk weaving. Correct: (A) Bhagalpur."
+        },
+        {
+          "id": "m-d15-q20",
+          "question": "Q20. The TRE 3.0 paper asks Bihar district-based questions mainly in which type of area here?",
+          "options": [
+            "Agriculture and textile production",
+            "Only space technology",
+            "Only computers",
+            "Only international relations",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TRE GS sections focus heavily on state geography, agriculture (paddy in Rohtas) and local cottage/textile industries (silk in Bhagalpur). Correct: (A) Agriculture and textile production."
+        },
+        {
+          "id": "m-d15-q21",
+          "question": "Q21. Choose the correct article:\n\n“She is ___ actress.”",
+          "options": [
+            "a",
+            "an",
+            "the",
+            "no article",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'actress' begins with a vowel sound /æ/, requiring the indefinite article 'an'. Correct: (B) an."
+        },
+        {
+          "id": "m-d15-q22",
+          "question": "Q22. Choose the correct phrase:",
+          "options": [
+            "an university",
+            "a university",
+            "a hour",
+            "an European",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'university' begins with the consonant glide sound /juː/, requiring 'a' ('a university'). 'hour' begins with vowel sound /aʊ/ ('an hour'), and 'European' begins with /juː/ ('a European'). Correct: (B) a university."
+        }
+      ]
+    }
   }
 ];
 
