@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 29 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 30 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -16794,6 +16794,447 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "In Python, the 'raise' keyword is used to trigger/throw an exception manually. Correct: (B) raise."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 30,
+    "dayId": "day-30",
+    "badge": "Day 30",
+    "title": "TRE 4.0 — Day 30",
+    "unit": "Part III (CS) • Python Modules (math, random), File Handling (Modes, read/readline/readlines, tell/seek, with) & 20-Q Test",
+    "targetTime": "15–18 mins read + 20 mins test",
+    "summary": "Python Standard Modules & File Handling (NCERT Class XI kecs107 & Class XII lecs1ps): Modules (reusable Python files, import vs from...import, module.function()), math module (sqrt returns float, factorial, floor vs ceil with negative numbers trap, gcd, pow), random module (random() float [0.0, 1.0), randint(a, b) inclusive integers), File Handling Lifecycle (Open, Read/Write, Close), File Access Modes (r read, w write/wipe, a append, x exclusive create, b binary), Reading methods: read() whole content, readline() single line, readlines() list of lines, Writing methods: write(), Append behavior, with open(...) context manager automatic closure, File Offsets: tell() current pointer position vs seek() reposition pointer, Text vs Binary files, pickle serialization overview, and 20-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Python Modules & File Handling",
+        "goal": "Master math methods (sqrt, floor/ceil negative trap, factorial), random.random() vs randint(), file modes (r, w, a), read() vs readline() vs readlines(), and tell() vs seek()"
+      },
+      {
+        "section": "NCERT Class XII",
+        "topic": "File Offsets & Context Managers",
+        "goal": "Setting file pointer offsets with seek(), tracking position with tell(), and safe file operations via 'with open(...) as f:'"
+      }
+    ],
+    "introNote": "Today remains Python-first. No C++.\n\nYour uploaded NCERT Class XI material directly defines a module as a Python file containing definitions/functions, explains import, module.function(), and specifically covers the built-in math, random, and statistics modules (kecs107).\n\nYour Class XII NCERT source explicitly has Chapter 2: File Handling in Python, including opening/closing text files, writing, reading, setting file offsets, traversing files, and the pickle module (lecs1ps).",
+    "parts": [
+      {
+        "title": "Part III — Python Modules: Architecture, import Patterns & math Module (NCERT kecs107)",
+        "sections": [
+          {
+            "title": "1. What is a Module?, 2. import & 3–4. Module Syntax vs from...import",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. What is a Module?\n🧠 MENTAL PICTURE: Toolbox of pre-built functions\nTOOLBOX: math\n├── sqrt()\n├── floor()\n├── ceil()\n├── factorial()\n└── gcd()\n\nNCERT Definition:\nA module is a Python file (.py) containing reusable definitions, functions, and variables that speeds up program development (kecs107)."
+              },
+              {
+                "type": "diagram",
+                "content": "2. import vs from ... import:\n\n• Option 1: import module\n  import math\n  print(math.sqrt(100))  # Must use module.function() prefix\n  Output: 10.0\n\n• Option 2: from module import function\n  from math import sqrt\n  print(sqrt(81))        # Call function directly without module prefix\n  Output: 9.0"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Import Memory Rule",
+                "content": "import math          → call as math.sqrt()\nfrom math import sqrt → call as sqrt()"
+              }
+            ]
+          },
+          {
+            "title": "5. math.sqrt(), 6. factorial() & 7–8. floor() vs ceil() [Traps!]",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "5. math.sqrt(x)\nReturns the square root of x as a FLOAT:\nimport math\nprint(math.sqrt(144))  # Output: 12.0\nprint(math.sqrt(81))   # Output: 9.0\n\n6. math.factorial(x)\nComputes x!:\nprint(math.factorial(5))  # 5 × 4 × 3 × 2 × 1 = 120"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "7–8. floor() vs ceil() (Major Exam Trap with Negative Numbers)",
+                "content": "• floor(x): Greatest integer ≤ x (goes DOWN/LEFT on number line)\n  floor(4.9)  → 4\n  floor(-4.5) → -5  (NOT -4!)\n\n• ceil(x): Smallest integer ≥ x (goes UP/RIGHT on number line)\n  ceil(4.1)   → 5\n  ceil(9.2)   → 10\n  ceil(-9.7)  → -9  (NOT -10!)"
+              },
+              {
+                "type": "diagram",
+                "content": "Number Line Direction:\n          -5   -4   -3 ... 4    5\n           ◄────              ────►\n         floor(-4.5)=-5      ceil(4.1)=5\n\nMemory:\nFLOOR ↓ (Down / Left)\nCEIL  ↑ (Up / Right)"
+              }
+            ]
+          },
+          {
+            "title": "9. math.gcd(), 10. math.pow() & 11–12. random Module",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "9. math.gcd(a, b)\nReturns Greatest Common Divisor:\nimport math\nprint(math.gcd(12, 18))  # Output: 6\n\n10. math.pow(x, y)\nComputes xʸ and always returns a FLOAT:\nprint(math.pow(3, 2))    # Output: 9.0\n(Contrast: 3 ** 2 produces integer 9)"
+              },
+              {
+                "type": "diagram",
+                "content": "11–12. random Module (NCERT kecs107):\nimport random\n\n• random.random():\n  Returns a random float in range [0.0, 1.0) (0.0 ≤ val < 1.0)\n  Unpredictable output (e.g. 0.6533...)\n\n• random.randint(a, b):\n  Returns a random integer between a and b INCLUSIVE (a ≤ val ≤ b)\n  Example: random.randint(1, 6) simulates a dice roll (1, 2, 3, 4, 5, or 6)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — File Handling: Lifecycle, Modes & Methods (NCERT Class XII lecs1ps)",
+        "sections": [
+          {
+            "title": "13. Lifecycle, 14. open() & 15. File Modes (r, w, a, x, b)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "13. File Handling Lifecycle\n🧠 MENTAL PICTURE:\nOPEN FILE ──> READ / WRITE DATA ──> CLOSE FILE\n\n14. open() Function:\nf = open(\"student.txt\", \"r\")\nReturns a file object/stream used to access data on disk."
+              },
+              {
+                "type": "diagram",
+                "content": "15. Important File Access Modes:\n\nMode │ Purpose │ Description / Behavior\n─────┼─────────┼────────────────────────────────────────────────────────\nr    │ Read    │ Default. File must exist; opens at beginning for reading\nw    │ Write   │ Creates file; TRUNCATES/WIPES existing content!\na    │ Append  │ Opens for writing at end; preserves existing content\nx    │ Create  │ Exclusive creation; fails (FileExistsError) if file exists\nb    │ Binary  │ Binary mode modifier (e.g. rb, wb) for non-text bytes"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Mode Memory Anchors",
+                "content": "r → READ (must exist)\nw → WRITE + WIPE old contents\na → APPEND at the end\nx → EXCLUSIVE new file creation"
+              }
+            ]
+          },
+          {
+            "title": "16–18. Reading Files: read(), readline() & readlines()",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Suppose file contains:\nRavi\nAman\nSita\n\n• f.read():\n  Reads entire file content as a single STRING:\n  \"Ravi\\nAman\\nSita\\n\"\n\n• f.readline():\n  Reads ONE line up to and including newline (\\n):\n  First call: \"Ravi\\n\"\n  Second call: \"Aman\\n\"\n\n• f.readlines():\n  Reads all remaining lines and returns a LIST of strings:\n  ['Ravi\\n', 'Aman\\n', 'Sita\\n']"
+              },
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "Reading Methods Distinction",
+                "content": "read()      → Full text as String\nreadline()  → Single line as String\nreadlines() → All lines as List of strings"
+              }
+            ]
+          },
+          {
+            "title": "19–22. Writing, Append Mode, close() & with open(...) Context",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "19. write()\nf = open(\"data.txt\", \"w\")\nf.write(\"Hello\")\nf.close()\n# Writes string to file. Remember: 'w' truncates existing data first!\n\n20. Append Mode ('a'):\nf = open(\"data.txt\", \"a\")\nf.write(\" World\")\nf.close()\n# Appends without deleting existing text.\n\n21. close():\nReleases system resources and ensures all buffered output data is flushed and written to disk."
+              },
+              {
+                "type": "callout",
+                "icon": "✨",
+                "title": "22. with open(...) Context Manager",
+                "content": "with open(\"data.txt\", \"r\") as f:\n    content = f.read()\n\n# File is automatically closed when the with block exits, even if exceptions occur!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — File Offsets, Types & Serialization (tell, seek, Text vs Binary, pickle)",
+        "sections": [
+          {
+            "title": "23. tell() [Current Offset] & 24. seek() [Reposition Pointer]",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your NCERT Class XII File Handling chapter explicitly includes Setting Offsets in a File (lecs1ps).\n\n23. f.tell()\nReturns the current byte position of the file read/write pointer.\nMemory: tell() = \"Tell me where the pointer is currently located\"\n\n24. f.seek(offset)\nMoves/repositions the file pointer to the specified byte offset.\nExample: f.seek(0) resets the pointer back to the beginning of the file.\nMemory: seek() = \"Seek/Go to this location in the file\""
+              },
+              {
+                "type": "diagram",
+                "content": "Pointer Offsets Visualization:\nPosition:  0   1   2   3   4   5\nBytes:     H   e   l   l   o  \\n\n\nf.read(2)  → returns \"He\"\nf.tell()   → returns 2\nf.seek(0)  → moves pointer back to index 0"
+              }
+            ]
+          },
+          {
+            "title": "25. Text vs Binary Files & 26. pickle Serialization Overview",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "25. Text vs Binary Files (NCERT lecs1ps):\n• Text File: Sequence of human-readable characters/lines (.txt, .csv); lines end with EOL (\\n).\n• Binary File: Stores data in raw bytes exactly as represented in memory (images, audio, .dat).\n\n26. pickle Module (Binary Serialization):\nUsed to serialize (pickle) and deserialize (unpickle) complex Python data structures (lists, dicts, objects) to and from binary files.\n• pickle.dump(obj, f): Serializes and writes object to binary file.\n• pickle.load(f): Reads and deserializes object from binary file."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 30 White-Paper Master Sheet & Recall",
+        "sections": [
+          {
+            "title": "Day 30 White-Paper Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "🧠 Day 30 White-Paper Master Sheet\nDraw and mentally verify:\n\nMODULE\n→ reusable Python file\nimport math             → math.sqrt(81) = 9.0\nfrom math import sqrt   → sqrt(81) = 9.0\n\nMATH FUNCTIONS\n• sqrt(x)      → float root (81 → 9.0)\n• factorial(5) → 120\n• floor(4.9)=4 │ floor(-4.5)=-5 (DOWN ↓)\n• ceil(4.1)=5  │ ceil(-9.7)=-9  (UP ↑)\n• gcd(12, 18)  → 6\n• pow(3, 2)    → 9.0\n\nRANDOM\n• random.random()    → 0.0 ≤ x < 1.0\n• random.randint(a,b)→ a ≤ int ≤ b\n\nFILE HANDLING\nOPEN → WORK → CLOSE\n• r (Read) │ w (Write/Wipe) │ a (Append) │ x (Create)\n• read()      → full string\n• readline()  → one line\n• readlines() → list of lines\n• tell()      → current position\n• seek(pos)   → move position\n• with open() → automatic close"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 30 Checkpoint Test",
+      "subtitle": "20 Questions: Modules, math, random, File Modes, read/readline/readlines & seek/tell",
+      "questions": [
+        {
+          "id": "m-d30-q1",
+          "question": "Q1. A Python module is best described as:",
+          "options": [
+            "A CPU register",
+            "A Python file containing reusable definitions/code",
+            "A database row",
+            "A memory page",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Python module is a file containing Python code, functions, classes, and statements intended for reuse across programs. Correct: (B) A Python file containing reusable definitions/code."
+        },
+        {
+          "id": "m-d30-q2",
+          "question": "Q2. Which statement imports the math module?",
+          "options": [
+            "include math",
+            "using math",
+            "import math",
+            "open math",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In Python, modules are brought into scope using the 'import' statement: import math. Correct: (C) import math."
+        },
+        {
+          "id": "m-d30-q3",
+          "question": "Q3. After:\nimport math\n\nwhich is correct?",
+          "options": [
+            "sqrt.math(25)",
+            "math.sqrt(25)",
+            "math->sqrt(25)",
+            "math:sqrt(25)",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "When a module is imported using 'import math', its functions must be accessed using the dot notation module.function(): math.sqrt(25). Correct: (B) math.sqrt(25)."
+        },
+        {
+          "id": "m-d30-q4",
+          "question": "Q4. What is the output?\nimport math\nprint(math.sqrt(81))",
+          "options": [
+            "8",
+            "9.0",
+            "81",
+            "9.81",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "math.sqrt() calculates the square root and always returns a floating-point value: 9.0. Correct: (B) 9.0."
+        },
+        {
+          "id": "m-d30-q5",
+          "question": "Q5. What is:\nmath.factorial(5)",
+          "options": [
+            "25",
+            "60",
+            "120",
+            "125",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "math.factorial(5) evaluates 5! = 5 × 4 × 3 × 2 × 1 = 120. Correct: (C) 120."
+        },
+        {
+          "id": "m-d30-q6",
+          "question": "Q6. What is:\nmath.floor(4.8)",
+          "options": [
+            "4",
+            "5",
+            "4.8",
+            "3",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "math.floor(x) returns the greatest integer less than or equal to x: math.floor(4.8) = 4. Correct: (A) 4."
+        },
+        {
+          "id": "m-d30-q7",
+          "question": "Q7. What is:\nmath.floor(-4.5)",
+          "options": [
+            "-4",
+            "-5",
+            "4",
+            "5",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The greatest integer less than or equal to -4.5 is -5 (moving left/down on the number line). Correct: (B) -5."
+        },
+        {
+          "id": "m-d30-q8",
+          "question": "Q8. math.ceil(9.2) gives:",
+          "options": [
+            "9",
+            "10",
+            "9.2",
+            "8",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "math.ceil(x) returns the smallest integer greater than or equal to x: math.ceil(9.2) = 10. Correct: (B) 10."
+        },
+        {
+          "id": "m-d30-q9",
+          "question": "Q9. random.random() primarily returns:",
+          "options": [
+            "Always 0",
+            "An unpredictable floating-point value around the range 0 to below 1",
+            "Only integer 1–100",
+            "A string",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "random.random() returns a random pseudo-floating-point value in the half-open interval [0.0, 1.0). Correct: (B) An unpredictable floating-point value around the range 0 to below 1."
+        },
+        {
+          "id": "m-d30-q10",
+          "question": "Q10. Which file mode is normally used for reading?",
+          "options": [
+            "r",
+            "w",
+            "a",
+            "x",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The 'r' mode opens a file for read-only access (file must already exist). Correct: (A) r."
+        },
+        {
+          "id": "m-d30-q11",
+          "question": "Q11. Which mode appends data at the end?",
+          "options": [
+            "r",
+            "w",
+            "a",
+            "rb only",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The 'a' mode opens a file for appending, positioning the write pointer at the end of the file. Correct: (C) a."
+        },
+        {
+          "id": "m-d30-q12",
+          "question": "Q12. Opening an existing file using w generally:",
+          "options": [
+            "Only reads it",
+            "Preserves all content and writes only at end",
+            "Truncates/replaces existing contents",
+            "Always gives an error",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Opening an existing file in 'w' mode truncates (erases) all existing contents before writing. Correct: (C) Truncates/replaces existing contents."
+        },
+        {
+          "id": "m-d30-q13",
+          "question": "Q13. Which method reads one line?",
+          "options": [
+            "read()",
+            "readline()",
+            "readlines()",
+            "write()",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "readline() reads a single line from the file up to the newline character. Correct: (B) readline()."
+        },
+        {
+          "id": "m-d30-q14",
+          "question": "Q14. Which method normally returns file lines as a list?",
+          "options": [
+            "read()",
+            "readline()",
+            "readlines()",
+            "tell()",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "readlines() reads all lines from the file and returns them as a list of strings. Correct: (C) readlines()."
+        },
+        {
+          "id": "m-d30-q15",
+          "question": "Q15. Which method writes a string to a file?",
+          "options": [
+            "read()",
+            "write()",
+            "seek()",
+            "tell()",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The write() method writes a specified string to the file stream. Correct: (B) write()."
+        },
+        {
+          "id": "m-d30-q16",
+          "question": "Q16. tell() is used to determine:",
+          "options": [
+            "File name only",
+            "Current file position",
+            "Number of Python functions",
+            "File password",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The tell() method returns the current byte position/offset of the file read/write pointer. Correct: (B) Current file position."
+        },
+        {
+          "id": "m-d30-q17",
+          "question": "Q17. seek() is used to:",
+          "options": [
+            "Move/change the file position",
+            "Delete Python",
+            "Import a module",
+            "Read a dictionary",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The seek(offset) method repositions the file pointer to the specified byte offset. Correct: (A) Move/change the file position."
+        },
+        {
+          "id": "m-d30-q18",
+          "question": "Q18. Which statement imports only sqrt from math?",
+          "options": [
+            "import math.sqrt",
+            "from math import sqrt",
+            "include math sqrt",
+            "math import sqrt from",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The syntax 'from math import sqrt' imports only the sqrt identifier into the current namespace. Correct: (B) from math import sqrt."
+        },
+        {
+          "id": "m-d30-q19",
+          "question": "Q19. What is the output?\nfrom math import sqrt\nx = sqrt(49)\nprint(x)",
+          "options": [
+            "49",
+            "24.5",
+            "7.0",
+            "7²",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "sqrt(49) returns 7.0 as a float. Correct: (C) 7.0."
+        },
+        {
+          "id": "m-d30-q20",
+          "question": "Q20. Which matching is correct?",
+          "options": [
+            "r → Read",
+            "w → Write",
+            "a → Append",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three mode associations are correct: 'r' for reading, 'w' for writing, and 'a' for appending. Correct: (D) More than one of the above."
         }
       ]
     }
