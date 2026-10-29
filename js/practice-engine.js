@@ -1190,6 +1190,50 @@
       .replace(/'/g, '&#039;');
   }
 
+  // On-demand lazy script loader for practice sets
+  function ensureSetLoaded(setId, callback) {
+    if (practiceDataRegistry[setId]) {
+      callback(practiceDataRegistry[setId]);
+      return;
+    }
+    const numStr = setId.replace('set-', '');
+    const globalVarName = 'PRACTICE_SET_' + numStr;
+    if (typeof window !== 'undefined' && window[globalVarName]) {
+      registerPracticeSet(window[globalVarName]);
+      callback(practiceDataRegistry[setId]);
+      return;
+    }
+
+    const existingScript = document.querySelector(`script[src*="${setId}.js"]`);
+    if (existingScript) {
+      existingScript.addEventListener('load', () => {
+        if (typeof window !== 'undefined' && window[globalVarName]) {
+          registerPracticeSet(window[globalVarName]);
+        }
+        callback(practiceDataRegistry[setId]);
+      });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `js/practice-data/${setId}.js`;
+    script.async = true;
+    script.onload = function () {
+      if (typeof window !== 'undefined' && window[globalVarName]) {
+        registerPracticeSet(window[globalVarName]);
+      }
+      if (practiceDataRegistry[setId]) {
+        callback(practiceDataRegistry[setId]);
+      } else {
+        alert('Could not initialize practice set ' + setId);
+      }
+    };
+    script.onerror = function () {
+      alert('Failed to load practice data for ' + setId + '. Please check network connection.');
+    };
+    document.head.appendChild(script);
+  }
+
   // --------------------------------------------------------------------------
   // Public Global Controller API
   // --------------------------------------------------------------------------
@@ -1211,67 +1255,74 @@
     },
 
     startInstruction: function (setId) {
-      engineState.selectedSetId = setId;
-      engineState.view = 'instructions';
-      renderApp();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      ensureSetLoaded(setId, function () {
+        engineState.selectedSetId = setId;
+        engineState.view = 'instructions';
+        renderApp();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     },
 
     startExamNow: function (setId) {
-      const set = practiceDataRegistry[setId];
-      if (!set) return;
+      ensureSetLoaded(setId, function (set) {
+        if (!set) return;
+        engineState.selectedSetId = setId;
+        engineState.activeSet = set;
+        engineState.currentQIndex = 0;
+        engineState.userAnswers = {};
+        engineState.statusMap = {};
+        engineState.timeRemaining = set.durationMinutes * 60;
+        engineState.timeTakenSeconds = 0;
+        engineState.view = 'exam';
 
-      engineState.selectedSetId = setId;
-      engineState.activeSet = set;
-      engineState.currentQIndex = 0;
-      engineState.userAnswers = {};
-      engineState.statusMap = {};
-      engineState.timeRemaining = set.durationMinutes * 60;
-      engineState.timeTakenSeconds = 0;
-      engineState.view = 'exam';
-
-      saveActiveState();
-      renderApp();
-      startTimer();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+        saveActiveState();
+        renderApp();
+        startTimer();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     },
 
     resumeExam: function (setId) {
-      const set = practiceDataRegistry[setId];
-      const saved = getSavedStates()[setId];
-      if (!set || !saved) {
-        this.startInstruction(setId);
-        return;
-      }
+      ensureSetLoaded(setId, function (set) {
+        const saved = getSavedStates()[setId];
+        if (!set || !saved) {
+          window.PracticeEngine.startInstruction(setId);
+          return;
+        }
 
-      engineState.selectedSetId = setId;
-      engineState.activeSet = set;
-      engineState.currentQIndex = saved.currentQIndex || 0;
-      engineState.userAnswers = saved.userAnswers || {};
-      engineState.statusMap = saved.statusMap || {};
-      engineState.timeRemaining = saved.timeRemaining || set.durationMinutes * 60;
-      engineState.timeTakenSeconds = (set.durationMinutes * 60) - engineState.timeRemaining;
-      engineState.view = 'exam';
+        engineState.selectedSetId = setId;
+        engineState.activeSet = set;
+        engineState.currentQIndex = saved.currentQIndex || 0;
+        engineState.userAnswers = saved.userAnswers || {};
+        engineState.statusMap = saved.statusMap || {};
+        engineState.timeRemaining = saved.timeRemaining || set.durationMinutes * 60;
+        engineState.timeTakenSeconds = (set.durationMinutes * 60) - engineState.timeRemaining;
+        engineState.view = 'exam';
 
-      renderApp();
-      startTimer();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+        renderApp();
+        startTimer();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     },
 
     viewResult: function (setId) {
-      engineState.selectedSetId = setId;
-      engineState.lastResult = getSavedResults()[setId];
-      engineState.view = 'result';
-      renderApp();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      ensureSetLoaded(setId, function () {
+        engineState.selectedSetId = setId;
+        engineState.lastResult = getSavedResults()[setId];
+        engineState.view = 'result';
+        renderApp();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     },
 
     viewReview: function (setId) {
-      engineState.selectedSetId = setId;
-      engineState.lastResult = getSavedResults()[setId];
-      engineState.view = 'review';
-      renderApp();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      ensureSetLoaded(setId, function () {
+        engineState.selectedSetId = setId;
+        engineState.lastResult = getSavedResults()[setId];
+        engineState.view = 'review';
+        renderApp();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     },
 
     setReviewFilter: function (filter) {

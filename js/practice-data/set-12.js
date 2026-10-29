@@ -1,0 +1,2448 @@
+// BPSC TRE 4.0 Computer Science — Practice Set 12 Data
+// 150 Questions: 30 Language (8 English + 22 Hindi) + 40 GS + 80 CS
+
+const PRACTICE_SET_12 = {
+  "id": "set-12",
+  "number": 12,
+  "title": "BPSC TRE Computer Science — Practice Set 12",
+  "badge": "Practice Set 12",
+  "totalQuestions": 150,
+  "marks": 150,
+  "durationMinutes": 150,
+  "sections": [
+    {
+      "id": "part1",
+      "name": "Part I: Language",
+      "count": 30,
+      "marks": 30,
+      "description": "8 English + 22 Hindi (Qualifying 30% = 9 Marks)"
+    },
+    {
+      "id": "part2",
+      "name": "Part II: General Studies",
+      "count": 40,
+      "marks": 40,
+      "description": "Math, General Science, Bihar History, Geography & GK"
+    },
+    {
+      "id": "part3",
+      "name": "Part III: Computer Science",
+      "count": 80,
+      "marks": 80,
+      "description": "Full PGT Computer Science Curriculum (80 Questions)"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "Ten kilometers ______ a significant distance to cover on foot.",
+      "options": [
+        "A. is",
+        "B. are",
+        "C. were",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A definite distance taken as a single unit takes a singular verb."
+    },
+    {
+      "num": 2,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "He is proficient ______ writing complex relational database queries.",
+      "options": [
+        "A. in",
+        "B. at",
+        "C. with",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Proficient' takes preposition 'in'."
+    },
+    {
+      "num": 3,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "Choose the word most nearly SIMILAR in meaning (Synonym) to:\nTRANSIENT",
+      "options": [
+        "A. Ephemeral and fleeting",
+        "B. Permanent",
+        "C. Eternal",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Transient' means lasting only for a short time."
+    },
+    {
+      "num": 4,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "Choose the word most nearly OPPOSITE in meaning (Antonym) to:\nEXONERATE",
+      "options": [
+        "A. Convict / Inculpate",
+        "B. Acquit",
+        "C. Absolve",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Exonerate' means absolve from blame; opposite is convict."
+    },
+    {
+      "num": 5,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "What is the meaning of the idiom:\n\"Cry over spilt milk\"?",
+      "options": [
+        "A. Complain about something that cannot be undone",
+        "B. Waste dairy products",
+        "C. Weep uncontrollably",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Means regretting a past loss that cannot be altered."
+    },
+    {
+      "num": 6,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "Identify the segment containing a grammatical ERROR:\n\"Between you and I (A) / the new operating system (B) / has severe kernel flaws (C).\"",
+      "options": [
+        "A. Between you and I",
+        "B. the new operating system",
+        "C. has severe kernel flaws",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prepositions take objective pronouns: 'Between you and me'."
+    },
+    {
+      "num": 7,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "Convert the following sentence to PASSIVE VOICE:\n\"The team wrote clean, maintainable Python scripts.\"",
+      "options": [
+        "A. Clean, maintainable Python scripts were written by the team.",
+        "B. Clean, maintainable Python scripts have been written.",
+        "C. Clean, maintainable Python scripts are written.",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Past simple passive: were + V3."
+    },
+    {
+      "num": 8,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "English Grammar & Vocabulary",
+      "question": "Convert the following into INDIRECT SPEECH:\nThe engineer said, \"The server crashed due to an unhandled kernel panic.\"",
+      "options": [
+        "A. The engineer said that the server had crashed due to an unhandled kernel panic.",
+        "B. The engineer told the server crashed.",
+        "C. The engineer said that the server crashed.",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Simple past 'crashed' changes to past perfect 'had crashed'."
+    },
+    {
+      "num": 9,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'वन + औषधि' का सही संधि रूप क्या होगा?",
+      "options": [
+        "A. वनौषधि",
+        "B. वनोषधि",
+        "C. वनौषधी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "अ + औ = औ (वृद्धि स्वर संधि)"
+    },
+    {
+      "num": 10,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'उत् + चारण' का सही संधि-युक्त शब्द क्या है?",
+      "options": [
+        "A. उच्चारण",
+        "B. उतचारण",
+        "C. उदचारण",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "त् + च् = च्च"
+    },
+    {
+      "num": 11,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'निः + चल' का सही संधि रूप क्या है?",
+      "options": [
+        "A. निश्चल",
+        "B. निचल",
+        "C. निसचल",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "विसर्ग + च/छ = श्"
+    },
+    {
+      "num": 12,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'आनंदमग्न' सामासिक पद में कौन-सा समास है?",
+      "options": [
+        "A. तत्पुरुष समास",
+        "B. द्वंद्व समास",
+        "C. कर्मधारय समास",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "आनंद में मग्न = अधिकरण तत्पुरुष"
+    },
+    {
+      "num": 13,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'तिरंगा' में कौन-सा समास है?",
+      "options": [
+        "A. द्विगु समास",
+        "B. तत्पुरुष समास",
+        "C. कर्मधारय समास",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "तीन रंगों का समाहार = द्विगु समास।"
+    },
+    {
+      "num": 14,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "निम्नलिखित में से कौन-सा शब्द 'आँख' का पर्यायवाची है?",
+      "options": [
+        "A. नयन",
+        "B. नेत्र",
+        "C. चक्षु",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "लोचन, नयन, नेत्र, चक्षु, दृग सभी 'आँख' के पर्यायवाची हैं।"
+    },
+    {
+      "num": 15,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "निम्नलिखित में से कौन-सा शब्द 'समुद्र' का पर्यायवाची शब्द है?",
+      "options": [
+        "A. जलधि",
+        "B. पयोधि",
+        "C. रत्नाकर",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "सागर, सिंधु, जलधि, पयोधि, रत्नाकर, वारिधि सभी 'समुद्र' के पर्यायवाची हैं।"
+    },
+    {
+      "num": 16,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'स्थावर' शब्द का सही विलोम क्या होगा?",
+      "options": [
+        "A. जंगम",
+        "B. गतिशील",
+        "C. अस्थिर",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'स्थावर' का विलोम 'जंगम' होता है।"
+    },
+    {
+      "num": 17,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'आयात' का सही विलोम शब्द क्या होगा?",
+      "options": [
+        "A. निर्यात",
+        "B. प्रसार",
+        "C. बिक्री",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'आयात' का विलोम 'निर्यात' होता है।"
+    },
+    {
+      "num": 18,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'जो कभी वृद्ध न हो' वाक्यांश के लिए एक उपयुक्त शब्द है:",
+      "options": [
+        "A. अजर",
+        "B. अमर",
+        "C. युवा",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "जिस पर बुढ़ापा न आए, वह 'अजर' है।"
+    },
+    {
+      "num": 19,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'जो तत्काल कविता रच दे' के लिए एक शब्द क्या होगा?",
+      "options": [
+        "A. आशुकवि",
+        "B. महाकवि",
+        "C. गीतकार",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "बिना पूर्व-तैयारी के तत्काल काव्य रचना करने वाला 'आशुकवि' कहलाता है।"
+    },
+    {
+      "num": 20,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'उल्लू सीधा करना' मुहावरे का सही अर्थ क्या है?",
+      "options": [
+        "A. अपना स्वार्थ सिद्ध करना",
+        "B. पक्षी पालना",
+        "C. मूर्ख बनाना",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "किसी युक्ति से अपना निजी मतलब निकालना।"
+    },
+    {
+      "num": 21,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'ईंट से ईंट बजाना' मुहावरे का उपयुक्त अर्थ क्या है?",
+      "options": [
+        "A. समूल विनाश अथवा विध्वंस कर देना",
+        "B. भवन निर्माण करना",
+        "C. संगीत बजाना",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "विरोधी शक्ति को पूरी तरह तहस-नहस करना।"
+    },
+    {
+      "num": 22,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'आसमान से गिरा खजूर में अटका' लोकोक्ति का सही भावार्थ क्या है?",
+      "options": [
+        "A. एक संकट से निकलकर दूसरे नए संकट में फँस जाना",
+        "B. पेड़ से गिरना",
+        "C. दुर्घटना होना",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "एक विपत्ति टलते ही दूसरी में आ पड़ना।"
+    },
+    {
+      "num": 23,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "शब्द समूह (ग्राम, गाँव, देहात) में से 'तत्सम' शब्द कौन-सा है?",
+      "options": [
+        "A. ग्राम",
+        "B. गाँव",
+        "C. देहात",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'ग्राम' तत्सम शब्द है, इसका तद्भव 'गाँव' है।"
+    },
+    {
+      "num": 24,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "शब्द समूह (दूध, दुग्ध, पय) में से 'तद्भव' शब्द कौन-सा है?",
+      "options": [
+        "A. दूध",
+        "B. दुग्ध",
+        "C. पय",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'दूध' तद्भव शब्द है, इसका तत्सम 'दुग्ध' है।"
+    },
+    {
+      "num": 25,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "दिए गए विकल्पों (अंत्याक्षरी, अंताक्षरी, अन्त्याक्षरी) में से शुद्ध वर्तनी वाला शब्द कौन-सा है?",
+      "options": [
+        "A. अंत्याक्षरी",
+        "B. अंताक्षरी",
+        "C. अन्त्याक्षरी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "शुद्ध रूप 'अंत्याक्षरी' है।"
+    },
+    {
+      "num": 26,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "निम्नलिखित शब्द रूपों (जाज्वल्यमान, जाज्वलमान, जज्वल्यमान) में से मानक शुद्ध वर्तनी का चयन कीजिए:",
+      "options": [
+        "A. जाज्वल्यमान",
+        "B. जाज्वलमान",
+        "C. जज्वल्यमान",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "चमकता हुआ हेतु शुद्ध शब्द 'जाज्वल्यमान' है।"
+    },
+    {
+      "num": 27,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "निम्नलिखित में से शुद्ध वाक्य का चयन कीजिए:\n(मूल अशुद्ध वाक्य: 'वहाँ भारी भरकम भीड़ जमा थी')",
+      "options": [
+        "A. वहाँ भारी भीड़ जमा थी।",
+        "B. वहाँ विशाल भीड़ जमा थी।",
+        "C. वहाँ बहुत भीड़ थी।",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "भीड़ के लिए 'भारी भीड़' या 'बहुत भीड़' मानक है; 'भारी भरकम' अनुचित है।"
+    },
+    {
+      "num": 28,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "वाक्य: 'भूखे को भोजन दो' में रेखांकित/प्रयुक्त कारक कौन-सा है?",
+      "options": [
+        "A. संप्रदान कारक",
+        "B. कर्म कारक",
+        "C. करण कारक",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "देने के अर्थ में संप्रदान कारक प्रयुक्त होता है।"
+    },
+    {
+      "num": 29,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'धाता' का व्याकरणिक लिंग अथवा वचन क्या है?",
+      "options": [
+        "A. धात्री",
+        "B. धाताइन",
+        "C. धाती",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'धाता' का स्त्रीलिंग 'धात्री' होता है।"
+    },
+    {
+      "num": 30,
+      "section": "part1",
+      "sectionName": "Part I: Language",
+      "topic": "Hindi Language & Grammar",
+      "question": "'यामा' काव्य संग्रह हेतु ज्ञानपीठ पुरस्कार किसे प्राप्त हुआ था?",
+      "options": [
+        "A. महादेवी वर्मा",
+        "B. सुभद्रा कुमारी चौहान",
+        "C. मन्नू भंडारी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "1982 में महादेवी वर्मा को 'यामा' पर ज्ञानपीठ पुरस्कार प्रदान किया गया।"
+    },
+    {
+      "num": 31,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "दो संख्याओं 34 तथा 51 का महत्तम समापवर्तक (HCF) 17 है। इन दोनों संख्याओं का लघुत्तम समापवर्त्य (LCM) क्या होगा?",
+      "options": [
+        "A. 102",
+        "B. 116",
+        "C. 92",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "दो संख्याओं का गुणनफल = HCF × LCM => LCM = (34 × 51) / 17 = 102."
+    },
+    {
+      "num": 32,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "एक विक्रेता किसी वस्तु को ₹640 में खरीदकर 10% के लाभ पर बेचता है। उस वस्तु का विक्रय मूल्य (Selling Price) क्या होगा?",
+      "options": [
+        "A. ₹704",
+        "B. ₹729",
+        "C. ₹684",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "विक्रय मूल्य = CP × (100 + लाभ%) / 100 = ₹640 × 110 / 100 = ₹704."
+    },
+    {
+      "num": 33,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "₹4440 की कुल धनराशि को A, B और C के मध्य 3 : 5 : 4 के अनुपात में विभाजित किया जाता है। B का भाग कितना होगा?",
+      "options": [
+        "A. ₹1850",
+        "B. ₹1895",
+        "C. ₹1820",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "कुल अनुपात = 3+5+4 = 12. B का हिस्सा = (5/12) × ₹4440 = ₹1850."
+    },
+    {
+      "num": 34,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "₹5200 की मूलधन राशि पर 9% वार्षिक साधारण ब्याज की दर से 4 वर्षों में कितना साधारण ब्याज (SI) प्राप्त होगा?",
+      "options": [
+        "A. ₹1872",
+        "B. ₹1907",
+        "C. ₹1847",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "साधारण ब्याज = (P × R × T) / 100 = (5200 × 9 × 4) / 100 = ₹1872."
+    },
+    {
+      "num": 35,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "A किसी कार्य को 14 दिन में तथा B उसी कार्य को 18 दिन में कर सकता है। दोनों मिलकर उस कार्य को कितने दिनों में समाप्त करेंगे?",
+      "options": [
+        "A. 7.9 दिन",
+        "B. 10.4 दिन",
+        "C. 5.9 दिन",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "कुल कार्य = LCM(14, 18) = 126. A की क्षमता = 9, B की क्षमता = 7. संयुक्त समय = 126 / 16 = 7.9 दिन."
+    },
+    {
+      "num": 36,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "310 मीटर लंबी एक ट्रेन 108 किमी/घंटा की नियत गति से चल रही है। पटरी किनारे खड़े एक खंभे को पार करने में उसे कितना समय लगेगा?",
+      "options": [
+        "A. 10.3 सेकंड",
+        "B. 13.5 सेकंड",
+        "C. 7.8 सेकंड",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "चाल = 108 × (5/18) = 30 मी/से. समय = दूरी / चाल = 310 / 30 = 10.3 सेकंड."
+    },
+    {
+      "num": 37,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "एक वृत्ताकार मैदान की त्रिज्या (Radius) 84 मीटर है। उस मैदान का कुल क्षेत्रफल कितना होगा? (माना π = 22/7)",
+      "options": [
+        "A. 22176 वर्ग मीटर",
+        "B. 22330 वर्ग मीटर",
+        "C. 22088 वर्ग मीटर",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "वृत्त का क्षेत्रफल = π r² = (22/7) × 84 × 84 = 22176 वर्ग मीटर."
+    },
+    {
+      "num": 38,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Elementary Mathematics & Reasoning",
+      "question": "दी गई अंक श्रृंखला में प्रश्नचिह्न (?) के स्थान पर अगला पद ज्ञात कीजिए: 25, 38, 51, 64, 77, ?",
+      "options": [
+        "A. 90",
+        "B. 103",
+        "C. 87",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "यह समांतर श्रेणी (AP) है जिसमें प्रत्येक पद पिछले पद में +13 जोड़ने पर प्राप्त होता है। अतः अगला पद = 77 + 13 = 90."
+    },
+    {
+      "num": 39,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "गाड़ियों की हेडलाइट तथा टॉर्च में प्रकाश का समानांतर पुंज प्राप्त करने हेतु किस दर्पण का उपयोग होता है?",
+      "options": [
+        "A. अवतल दर्पण (Concave Mirror)",
+        "B. उत्तल दर्पण",
+        "C. समतल दर्पण",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "बल्ब को अवतल परावर्तक के फोकस पर रखने से परावर्तित किरणें अनंत तक समानांतर पुंज के रूप में जाती हैं।"
+    },
+    {
+      "num": 40,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "प्रत्येक क्रिया के बराबर एवं विपरीत दिशा में प्रतिक्रिया होती है, यह न्यूटन का कौन-सा नियम है?",
+      "options": [
+        "A. तृतीय गति नियम (Third Law of Motion)",
+        "B. प्रथम नियम",
+        "C. द्वितीय नियम",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "दो वस्तुओं की पारस्परिक अंतःक्रिया में बल सदैव युग्मों में (Action-Reaction pairs) में कार्य करते हैं।"
+    },
+    {
+      "num": 41,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "ध्वनि की तीव्रता का स्तर मापने की सामान्य इकाई क्या है?",
+      "options": [
+        "A. डेसिबल (Decibel - dB)",
+        "B. हर्ट्ज",
+        "C. पास्कल",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "अलेक्जेंडर ग्राहम बेल के नाम पर बेल का दसवां भाग डेसिबल ध्वनि स्तर मापने का पैमाना है।"
+    },
+    {
+      "num": 42,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "विद्युत ऊर्जा की व्यावसायिक इकाई (Commercial Unit - 1 Unit) क्या होती है?",
+      "options": [
+        "A. किलोवाट-घंटा (1 kWh = 3.6 × 10⁶ जूल)",
+        "B. वाट-घंटा",
+        "C. मेगावाट",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "1 यूनिट बिजली = 1 किलोवाट का उपकरण 1 घंटे चलने पर व्यय ऊर्जा = 3.6 × 10⁶ J।"
+    },
+    {
+      "num": 43,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "टमाटर और पालक में कौन-सा अम्ल प्रमुख रूप से पाया जाता है जो पथरी (Kidney Stone) का कारण बन सकता है?",
+      "options": [
+        "A. ऑक्जेलिक अम्ल (Oxalic Acid)",
+        "B. सिट्रिक अम्ल",
+        "C. एसिटिक अम्ल",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ऑक्जेलिक अम्ल कैल्शियम के साथ मिलकर अघुलनशील कैल्शियम ऑक्सालेट की पथरी बनाता है।"
+    },
+    {
+      "num": 44,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "कांसा (Bronze) किसकी मिश्र धातु है?",
+      "options": [
+        "A. तांबा और टिन (Cu: 88% + Sn: 12%)",
+        "B. तांबा और जिंक",
+        "C. सीसा और टिन",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "कांसा तांबे और टिन का मिश्र धातु है जिसका उपयोग मूर्तियां व सिक्के बनाने में होता है।"
+    },
+    {
+      "num": 45,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "दलदली भूमि और धान के खेतों से कौन-सी ग्रीनहाउस गैस उत्सर्जित होती है?",
+      "options": [
+        "A. मीथेन (Methane / Marsh Gas)",
+        "B. क्लोरोफ्लोरोकार्बन",
+        "C. नाइट्रोजन",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "दलदली क्षेत्रों में वनस्पतियों के सड़ने से मीथेन (मार्श गैस) उत्पन्न होती है।"
+    },
+    {
+      "num": 46,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "जीवाश्मों, प्राचीन काष्ठ और पुरातात्विक नमूनों की आयु निर्धारित करने में किसका उपयोग होता है?",
+      "options": [
+        "A. कार्बन डेटिंग (कार्बन-14 समस्थानिक)",
+        "B. यूरेनियम डेटिंग",
+        "C. कोबाल्ट-60",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "विलार्ड लिब्बी द्वारा खोजी गई C-14 रेडियोधर्मी क्षय विधि जीवाश्मों की काल-गणना करती है।"
+    },
+    {
+      "num": 47,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "कोशिका के केंद्रक (Nucleus) की खोज 1831 में किस वैज्ञानिक ने की थी?",
+      "options": [
+        "A. रॉबर्ट ब्राउन (Robert Brown)",
+        "B. रॉबर्ट हुक",
+        "C. पुरकिंजे",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "रॉबर्ट ब्राउन ने आर्किड की जड़ों की कोशिकाओं में गोलाकार केंद्रक की खोज की।"
+    },
+    {
+      "num": 48,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "मानव शरीर का 'रक्त बैंक' (Blood Bank) तथा RBC का 'कब्रिस्तान' (Graveyard) किसे कहा जाता है?",
+      "options": [
+        "A. प्लीहा / तिल्ली (Spleen)",
+        "B. यकृत",
+        "C. हृदय",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "प्लीहा अतिरिक्त रक्त का संचय करती है और मृत RBC का भक्षण कर हीमोग्लोबिन रीसायकल करती है।"
+    },
+    {
+      "num": 49,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "मनुष्य के वृक्क में रक्त का परापरासरण व निस्पंदन (Ultrafiltration) किस संरचना में होता है?",
+      "options": [
+        "A. बोमन संपुट तथा ग्लोमेरुलस (Malpighian Body)",
+        "B. हेनले का लूप",
+        "C. संग्रह नलिका",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "केशिका गुच्छ (ग्लोमेरुलस) के उच्च रक्तदाब द्वारा जल, यूरिया, लवण बोमन संपुट में छन जाते हैं।"
+    },
+    {
+      "num": 50,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "General Science",
+      "question": "मलेरिया की अचूक प्राकृतिक औषधि 'कुनैन' (Quinine) किस पौधे की छाल से प्राप्त होती है?",
+      "options": [
+        "A. सिनकोना वृक्ष (Cinchona Tree)",
+        "B. यूकेलिप्टस",
+        "C. नीम",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "सिनकोना की छाल से निष्कर्षित एल्कलॉइड कुनैन मलेरिया ज्वर का पारंपरिक उपचार है।"
+    },
+    {
+      "num": 51,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "23 अप्रैल 1858 को कुंवर सिंह ने जगदीशपुर के समीप किस ब्रिटिश कमांडर की सेना को धूल चटाई थी?",
+      "options": [
+        "A. कैप्टन ली ग्रांड (Le Grand)",
+        "B. जनरल डगलस",
+        "C. मेजर आयर",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ली ग्रांड की सेना को परास्त कर कुंवर सिंह ने जगदीशपुर महल पर पुनः विजय पताका फहराई।"
+    },
+    {
+      "num": 52,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "गांधीजी ने चंपारण प्रवास के दौरान 14 नवंबर 1917 को अपना पहला बुनियादी ग्रामीण विद्यालय कहाँ स्थापित किया था?",
+      "options": [
+        "A. बड़हरवा लखनसेन ग्राम (ढाका, पूर्वी चंपारण)",
+        "B. भितिहरवा",
+        "C. मोतिहारी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "बड़हरवा लखनसेन में गांधीजी ने बबन गोखले और अवंतिकाबाई गोखले की मदद से प्रथम बुनियादी स्कूल खोला।"
+    },
+    {
+      "num": 53,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "1936 के लखनऊ अखिल भारतीय किसान सम्मेलन में कांग्रेस के किस शीर्ष नेता ने भाग लेकर किसानों को संबोधित किया था?",
+      "options": [
+        "A. पंडित जवाहरलाल नेहरू",
+        "B. सुभाष चंद्र बोस",
+        "C. सरदार पटेल",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "नेहरू ने कांग्रेस के 1936 लखनऊ अधिवेशन के साथ ही किसान सभा को संबोधित किया था।"
+    },
+    {
+      "num": 54,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "बिहार में विदेशी वस्त्रों और शराब की दुकानों पर पिकेटिंग का नेतृत्व करने वाले 'नशाबंदी आंदोलन' के प्रमुख केंद्र कौन-से थे?",
+      "options": [
+        "A. पटना, मुजफ्फरपुर, गया और भागलपुर",
+        "B. केवल चंपारण",
+        "C. रांची",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ताड़ी और शराब की दुकानों पर धरना देने से सरकारी आबकारी राजस्व में भारी गिरावट आई।"
+    },
+    {
+      "num": 55,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "हजारीबाग जेल में बंद रहते हुए डॉ. राजेंद्र प्रसाद ने कैदियों के कल्याण हेतु क्या शुरू किया था?",
+      "options": [
+        "A. सूत कातना और हिंदी/संस्कृत की कक्षाएं चलाना",
+        "B. हड़ताल",
+        "C. किताबें लिखना",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "जेल के अंदर ही चर्खा संघ और शिक्षण कार्य प्रारंभ हो गया।"
+    },
+    {
+      "num": 56,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "1942 के आंदोलन में बिहार के किस जिले में जगलाल चौधरी के नेतृत्व में समानांतर सरकार का गठन हुआ था?",
+      "options": [
+        "A. सारण (Saran)",
+        "B. पटना",
+        "C. गया",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "जगलाल चौधरी ने जनता की अदालतें स्थापित कर अंग्रेजी थानों पर तिरंगा फहराया।"
+    },
+    {
+      "num": 57,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "भारतीय राष्ट्रीय कांग्रेस का बिहार (अविभाजित) में तीसरा अधिवेशन (53वाँ अधिवेशन, मार्च 1940) कहाँ संपन्न हुआ था?",
+      "options": [
+        "A. रामगढ़ (Ramgarh, तत्कालीन बिहार, वर्तमान झारखंड)",
+        "B. गया",
+        "C. पटना",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "दामोदर नदी के तट पर रामगढ़ में विशाल 53वाँ राष्ट्रीय अधिवेशन आयोजित हुआ।"
+    },
+    {
+      "num": 58,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "द्वितीय बौद्ध संगीति (Second Buddhist Council, 383 ई.पू.) कहाँ और किस शासक के संरक्षण में संपन्न हुई?",
+      "options": [
+        "A. वैशाली (Vaishali) में, शिशुनाग वंश के राजा कालाशोक (काकवर्ण) के समय (अध्यक्ष: साबाकामी)",
+        "B. राजगृह",
+        "C. कश्मीर",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "वैशाली में बौद्ध संघ पहली बार स्थविर और महासांघिक दो संप्रदायों में विभाजित हुआ।"
+    },
+    {
+      "num": 59,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "1793 में लॉर्ड कॉर्नवालिस द्वारा बिहार और बंगाल में कौन-सी स्थायी भू-राजस्व प्रणाली लागू की गई?",
+      "options": [
+        "A. स्थायी बंदोबस्त / जमींदारी व्यवस्था (Permanent Settlement)",
+        "B. रैयतवाड़ी",
+        "C. महालवाड़ी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "जमींदारों को जमीन का स्थायी मालिक बनाकर 10/11 भाग कंपनी को और 1/11 भाग जमींदार को तय हुआ।"
+    },
+    {
+      "num": 60,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Indian National Movement & Bihar History",
+      "question": "रवींद्रनाथ टैगोर द्वारा स्वदेशी आंदोलन के दौरान लिखा गया कौन-सा गीत बाद में बांग्लादेश का राष्ट्रगान बना?",
+      "options": [
+        "A. 'आमार शोनार बांला' (Amar Shonar Bangla)",
+        "B. वंदे मातरम",
+        "C. जन गण मन",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "टैगोर विश्व के एकमात्र कवि हैं जिनके लिखे गीत दो संप्रभु राष्ट्रों (भारत और बांग्लादेश) के राष्ट्रगान बने।"
+    },
+    {
+      "num": 61,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Geography & Environment",
+      "question": "पुनपुन नदी (Punpun River) का गंगा में संगम बिहार के किस स्थान पर होता है?",
+      "options": [
+        "A. फतुहा (Fatuha, पटना जिला)",
+        "B. बाढ़",
+        "C. मोकामा",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "पलामू के पठार से निकलने वाली पुनपुन नदी फतुहा के पास गंगा में मिलती है।"
+    },
+    {
+      "num": 62,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Geography & Environment",
+      "question": "राजगीर में स्थित वन्यजीव अभयारण्य का क्या नाम है जहाँ ग्लास ब्रिज और जू सफारी स्थापित हैं?",
+      "options": [
+        "A. पंत वन्यजीव अभयारण्य (Pant Wildlife Sanctuary / राजगीर)",
+        "B. संजय गांधी पार्क",
+        "C. भीमबांध",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "राजगीर की पांच पहाड़ियों के बीच यह सुरक्षित वन क्षेत्र है।"
+    },
+    {
+      "num": 63,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Geography & Environment",
+      "question": "गंगा के उत्तरी मैदान में पाई जाने वाली पुरानी जलोढ़ मिट्टी (Old Alluvium) को क्या कहते हैं?",
+      "options": [
+        "A. बांगर मिट्टी (Bhangar Soil)",
+        "B. खादर मिट्टी",
+        "C. लाल मिट्टी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "जहाँ प्रतिवर्ष बाढ़ का पानी नहीं पहुँच पाता, वह ऊंचे मैदानों की परिपक्व बांगर मिट्टी कहलाती है।"
+    },
+    {
+      "num": 64,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Geography & Environment",
+      "question": "भारत और श्रीलंका को भौगोलिक रूप से कौन-सा जलडमरूमध्य अलग करता है?",
+      "options": [
+        "A. पाक जलडमरूमध्य तथा मन्नार की खाड़ी (Palk Strait)",
+        "B. मलक्का जलडमरूमध्य",
+        "C. बेरिंग जलडमरूमध्य",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "राम सेतु (एडम्स ब्रिज) और पाक जलडमरूमध्य दोनों देशों के मध्य स्थित हैं।"
+    },
+    {
+      "num": 65,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Geography & Environment",
+      "question": "विश्व जैव विविधता दिवस (International Day for Biological Diversity) कब मनाया जाता है?",
+      "options": [
+        "A. 22 मई (22nd May)",
+        "B. 22 मार्च",
+        "C. 5 जून",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "जैव विविधता के संरक्षण और सतत उपयोग हेतु 22 मई को यह दिवस मनाते हैं।"
+    },
+    {
+      "num": 66,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Current Affairs & Bihar GK",
+      "question": "ग्रामीण क्षेत्रों में आवागमन सुगम बनाने हेतु तिपहिया या चारपहिया व्यावसायिक वाहन खरीदने पर 50% अनुदान देने वाली योजना:",
+      "options": [
+        "A. मुख्यमंत्री ग्राम परिवहन योजना (MGPY)",
+        "B. सड़क सुरक्षा",
+        "C. ग्रामीण बस योजना",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "SC, ST और EBC वर्ग के बेरोजगारों को यात्री वाहन खरीदने हेतु ₹1 लाख तक का अनुदान मिलता है।"
+    },
+    {
+      "num": 67,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Current Affairs & Bihar GK",
+      "question": "बिहार के प्राथमिक स्वास्थ्य केंद्रों में नवजात शिशु और प्रसूता माता की देखभाल हेतु कार्यरत महिला कार्यकर्ताओं को क्या कहते हैं?",
+      "options": [
+        "A. 'ममता' कार्यकर्ता (Mamta Workers)",
+        "B. आशा",
+        "C. एएनएम",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "अस्पतालों में संस्थागत प्रसव के बाद माता और शिशु की शुरुआती देखरेख ममता दीदियां करती हैं।"
+    },
+    {
+      "num": 68,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Current Affairs & Bihar GK",
+      "question": "2011 की जनगणना के अनुसार बिहार का 'शिशु लिंगानुपात' (Child Sex Ratio - 0 से 6 वर्ष) कितना है?",
+      "options": [
+        "A. 935 (राष्ट्रीय औसत 919 से बेहतर)",
+        "B. 918",
+        "C. 945",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "बिहार का बाल लिंगानुपात सामान्य लिंगानुपात (918) से बेहतर 935 है।"
+    },
+    {
+      "num": 69,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Current Affairs & Bihar GK",
+      "question": "बिहार के पुराने कपड़ों को जोड़कर बारीक कढ़ाई (कसीदाकारी) से बनाई जाने वाली किस कला को जीआई टैग प्राप्त है?",
+      "options": [
+        "A. सुजनी कढ़ाई (Sujani Embroidery, मुजफ्फरपुर)",
+        "B. कांथा",
+        "C. चिकनकारी",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "महिलाएं नवजात शिशु के लिए कपड़ों पर सामाजिक संदेशों और कहानियों की सिलाई करती हैं।"
+    },
+    {
+      "num": 70,
+      "section": "part2",
+      "sectionName": "Part II: General Studies",
+      "topic": "Current Affairs & Bihar GK",
+      "question": "भारतीय अंतरिक्ष अनुसंधान संगठन (ISRO) के वर्तमान अध्यक्ष कौन हैं जिनके नेतृत्व में चंद्रयान-3 और आदित्य-एल1 सफल हुए?",
+      "options": [
+        "A. एस. सोमनाथ (S. Somanath)",
+        "B. के. सिवन",
+        "C. ए.एस. किरण कुमार",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "प्रख्यात रॉकेट वैज्ञानिक एस. सोमनाथ अंतरिक्ष विभाग के सचिव और इसरो के प्रमुख हैं।"
+    },
+    {
+      "num": 71,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "A hardwired control unit is typically characterized by which of the following compared to microprogrammed control?",
+      "options": [
+        "A. Faster execution speed but rigid and difficult to modify",
+        "B. Slower execution speed but flexible",
+        "C. Uses control memory (ROM)",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Hardwired control uses fixed combinational logic circuits for maximum operational frequency, whereas microprogrammed uses ROM."
+    },
+    {
+      "num": 72,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "What is a 'Cache Hit'?",
+      "options": [
+        "A. When requested data is found immediately in the cache memory",
+        "B. When requested data is not present in cache",
+        "C. A physical collision on the memory bus",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A Cache Hit occurs when the processor queries the cache for a memory address and the data word is present in a valid cache line."
+    },
+    {
+      "num": 73,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "Which addressing mode has no explicit address field because the operand is defined implicitly by the opcode itself (e.g., CLC, NOP, RET)?",
+      "options": [
+        "A. Implied (Implicit) Addressing Mode",
+        "B. Direct Addressing Mode",
+        "C. Relative Addressing Mode",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In Implied Addressing, the opcode itself specifies both the operation and the operand register (e.g., Clear Carry Flag)."
+    },
+    {
+      "num": 74,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "When data forwarding cannot completely eliminate a hazard (such as a Load followed immediately by an ALU use), what must the pipeline do?",
+      "options": [
+        "A. Insert a pipeline stall (bubble)",
+        "B. Crash the program",
+        "C. Discard the result",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A Load-Use data hazard requires inserting at least 1 pipeline stall cycle (bubble) because data is not available until after the memory stage."
+    },
+    {
+      "num": 75,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "In Distributed Bus Arbitration, how is bus ownership allocated?",
+      "options": [
+        "A. All requesting devices collaborate using unique priority IDs and shared control lines without a central arbiter",
+        "B. Only the CPU arbitrates",
+        "C. The operating system kernel resolves it",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Distributed arbitration assigns each master a priority code; devices compare codes on shared priority lines to elect the highest master."
+    },
+    {
+      "num": 76,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "What is a Non-Maskable Interrupt (NMI)?",
+      "options": [
+        "A. A critical hardware interrupt that CANNOT be disabled or ignored by software and must be serviced immediately",
+        "B. A low-priority mouse interrupt",
+        "C. An interrupt generated by user math",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "NMI is reserved for catastrophic system events such as parity memory errors, bus timeouts, or impending power failures."
+    },
+    {
+      "num": 77,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "What is the major disadvantage of a Fully Associative cache?",
+      "options": [
+        "A. High hardware complexity and power consumption because every single tag comparator must compare in parallel",
+        "B. High conflict misses",
+        "C. Inability to use SRAM",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A fully associative cache with M lines requires M parallel tag comparators implemented in expensive content-addressable memory (CAM)."
+    },
+    {
+      "num": 78,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Architecture & Organization",
+      "question": "In Flynn's Taxonomy, what does SIMD represent?",
+      "options": [
+        "A. Single Instruction stream, Multiple Data streams (vector processors and modern GPU shader cores)",
+        "B. Serial Instruction Multi Disk",
+        "C. Shared Internal Memory Design",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "SIMD executes a single machine instruction across multiple data elements concurrently (e.g., vector arithmetic, AVX instructions, GPUs)."
+    },
+    {
+      "num": 79,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "Convert the binary number (1001011)₂ to its equivalent hexadecimal representation:",
+      "options": [
+        "A. (4B)₁₆",
+        "B. (4D)₁₆",
+        "C. (4A)₁₆",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Grouping the bits of (1001011)₂ into 4-bit nibbles from right to left gives (4B)₁₆ (decimal 75)."
+    },
+    {
+      "num": 80,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "What is the 8-bit 2's complement representation of the decimal integer -35?",
+      "options": [
+        "A. 11011101",
+        "B. 11011111",
+        "C. 11011010",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Positive magnitude 35 in 8-bit binary is 00100011. Inverting all bits gives 1's complement 11011100; adding 1 yields 2's complement 11011101."
+    },
+    {
+      "num": 81,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "What is the minimum number of 2-input NAND gates required to implement a 2-input XNOR gate?",
+      "options": [
+        "A. 5 NAND gates",
+        "B. 4 gates",
+        "C. 6 gates",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An XNOR gate requires 5 NAND gates (or an XOR gate followed by a NAND-inverter)."
+    },
+    {
+      "num": 82,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "The Distributive Law of OR over AND in Boolean algebra states that: A + (B · C) =",
+      "options": [
+        "A. (A + B) · (A + C)",
+        "B. A · B + C",
+        "C. A + B + C",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Unlike conventional elementary algebra, in Boolean algebra OR distributes over AND: A + BC = (A + B)(A + C)."
+    },
+    {
+      "num": 83,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "The four corner cells of a 4-variable K-map (cells m0, m2, m8, m10) can be combined into a single group of 4 to yield which term?",
+      "options": [
+        "A. B' · D'",
+        "B. A' · C'",
+        "C. A · C",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "m0=0000, m2=0010, m8=1000, m10=1010. A changes (0/1), C changes (0/1). B is 0 and D is 0 in all four: term is B'D'."
+    },
+    {
+      "num": 84,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "What is a Multiplexer (MUX)?",
+      "options": [
+        "A. A combinational data selector that routes one of 2ⁿ data inputs to a single output line based on n select lines",
+        "B. A circuit that splits one input to many outputs",
+        "C. An arithmetic multiplier",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A MUX functions as a digitally controlled rotary switch: n select lines choose which of the 2ⁿ input channels connects to the output."
+    },
+    {
+      "num": 85,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "In a Master-Slave JK Flip-Flop, when is data transferred from the Master stage to the Slave output stage?",
+      "options": [
+        "A. On the trailing (falling) edge of the clock pulse (since the slave's clock is inverted)",
+        "B. On the leading rising edge",
+        "C. Continuously during high level",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The master responds to J and K while clock is HIGH; on the falling edge, the slave clock becomes active and transfers the master's state to Q."
+    },
+    {
+      "num": 86,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Digital Logic & Number Systems",
+      "question": "What is a Ring Counter?",
+      "options": [
+        "A. A circular shift register with the serial output of the last flip-flop connected directly back to the serial input of the first flip-flop",
+        "B. A counter with a circular PCB",
+        "C. A counter that rings a buzzer",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In an n-bit ring counter, a single circulating 1-bit circulates through n flip-flops (e.g., 1000 -> 0100 -> 0010 -> 0001 -> 1000)."
+    },
+    {
+      "num": 87,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "Which of the following is a dynamically typed programming language?",
+      "options": [
+        "A. Python",
+        "B. C++",
+        "C. Java",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In Python, variable types are inferred and bound to objects at runtime dynamically rather than declared statically at compile time."
+    },
+    {
+      "num": 88,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What is the output of ~5 (bitwise NOT) in Python?",
+      "options": [
+        "A. -6 (formula: ~x = -(x + 1))",
+        "B. -5",
+        "C. 4",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Bitwise NOT inverts all bits in 2's complement: ~x = -(x + 1). For x = 5: -(5 + 1) = -6."
+    },
+    {
+      "num": 89,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What is structural pattern matching in Python 3.10+?",
+      "options": [
+        "A. The match ... case statement for pattern matching on structures and types",
+        "B. A regex engine",
+        "C. A file globbing feature",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Python 3.10 introduced match/case syntax, allowing sophisticated pattern matching with guards and sequence destructuring."
+    },
+    {
+      "num": 90,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What will be printed by the following code?\nfor i in range(3):\n    if i == 5:\n        break\nelse:\n    print('Completed')",
+      "options": [
+        "A. 'Completed' (since break was never encountered)",
+        "B. Nothing",
+        "C. '5'",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The loop runs for i=0, 1, 2 without hitting break; upon normal termination, the else block executes."
+    },
+    {
+      "num": 91,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "Are Python strings mutable or immutable?",
+      "options": [
+        "A. Immutable (cannot be modified in-place after creation)",
+        "B. Mutable",
+        "C. Mutable only if ASCII",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Strings are strictly immutable in Python; attempting s[0] = 'X' raises a TypeError."
+    },
+    {
+      "num": 92,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What does str.index(sub) return if the substring 'sub' is NOT found in the string?",
+      "options": [
+        "A. Raises ValueError: substring not found",
+        "B. -1",
+        "C. None",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Unlike find(), the index() method raises a ValueError exception when the substring is missing."
+    },
+    {
+      "num": 93,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What does list.remove(x) do in Python?",
+      "options": [
+        "A. Removes the FIRST occurrence of value 'x' from the list in-place, or raises ValueError if not found",
+        "B. Removes all occurrences of x",
+        "C. Returns the index",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "remove(val) searches from left to right, removes the first match, and stops; if val is absent, raises ValueError."
+    },
+    {
+      "num": 94,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "How does Python swap the values of two variables a and b in a single statement without using a temporary variable?",
+      "options": [
+        "A. a, b = b, a (uses tuple packing on the right and tuple unpacking on the left)",
+        "B. swap(a, b)",
+        "C. a = b; b = a",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "a, b = b, a constructs a tuple (b, a) in memory and unpacks it simultaneously into a and b."
+    },
+    {
+      "num": 95,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What does the dict.values() method return in Python 3?",
+      "options": [
+        "A. A dynamic dict_values view object of the dictionary values",
+        "B. A static list of values",
+        "C. A set of values",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "dict.values() returns a dynamic view providing a window into the dictionary's values."
+    },
+    {
+      "num": 96,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What does set.clear() do?",
+      "options": [
+        "A. Removes all elements from the set in-place, leaving an empty set()",
+        "B. Deletes the variable",
+        "C. Fills with 0",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "clear() empties the set in-place."
+    },
+    {
+      "num": 97,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What is the LEGB rule for variable scope resolution in Python?",
+      "options": [
+        "A. Local -> Enclosing (nonlocal) -> Global -> Built-in",
+        "B. Logical -> Extended -> Global -> Binary",
+        "C. Loop -> Execution -> Global -> Base",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Python resolves names in order: Local function scope, Enclosing nested function scope, Global module scope, and finally Built-in namespace."
+    },
+    {
+      "num": 98,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What does the functools.reduce() function do?",
+      "options": [
+        "A. Applies a two-argument function cumulatively to the items of an iterable from left to right to reduce the iterable to a SINGLE value",
+        "B. Shrinks list memory",
+        "C. Deletes elements",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "reduce(lambda a, b: a + b, [1, 2, 3, 4]) calculates (((1 + 2) + 3) + 4) = 10."
+    },
+    {
+      "num": 99,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What does the file.readline() method return?",
+      "options": [
+        "A. A single line from the file as a string, including the trailing newline character '\\n' (or '' at EOF)",
+        "B. The whole file",
+        "C. A list of lines",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "readline() reads one line up to and including '\\n'; returning an empty string '' indicates End-Of-File (EOF)."
+    },
+    {
+      "num": 100,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Python Programming",
+      "question": "What built-in exception is raised when attempting to access a list index that does not exist (e.g. [1, 2][5])?",
+      "options": [
+        "A. IndexError: list index out of range",
+        "B. KeyError",
+        "C. ValueError",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "IndexError occurs when a sequence subscript is out of range."
+    },
+    {
+      "num": 101,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Object-Oriented Programming (OOP)",
+      "question": "What method actually allocates the memory for a new object before __init__ initializes it?",
+      "options": [
+        "A. __new__(cls, *args, **kwargs)",
+        "B. __init__",
+        "C. __alloc__",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "__new__ is the true static constructor that allocates and returns the raw uninitialized instance; __init__ then initializes it."
+    },
+    {
+      "num": 102,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Object-Oriented Programming (OOP)",
+      "question": "What exception is typically raised inside a property setter if an invalid value is supplied (e.g. negative age)?",
+      "options": [
+        "A. ValueError (e.g. raise ValueError('Age cannot be negative'))",
+        "B. TypeError",
+        "C. AttributeError",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Setters raise ValueError when assigned values violate business logic constraints."
+    },
+    {
+      "num": 103,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Object-Oriented Programming (OOP)",
+      "question": "How can you inspect the Method Resolution Order of a class in Python?",
+      "options": [
+        "A. ClassName.mro() or ClassName.__mro__",
+        "B. ClassName.get_mro()",
+        "C. ClassName.order()",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Dog.mro() returns a list of classes in exact lookup sequence, ending with <class 'object'>."
+    },
+    {
+      "num": 104,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Object-Oriented Programming (OOP)",
+      "question": "What constraint is enforced on the return value of the __len__() method?",
+      "options": [
+        "A. It MUST return a non-negative integer (int >= 0), raising TypeError or ValueError otherwise",
+        "B. It can return any float",
+        "C. It can return negative numbers",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Python enforces that __len__ returns an integer; returning floats or negative numbers raises an exception."
+    },
+    {
+      "num": 105,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Object-Oriented Programming (OOP)",
+      "question": "What does the ABC.register() class method do?",
+      "options": [
+        "A. Registers a class as a virtual subclass of the ABC, making isinstance(sub, ABC) return True without MRO inheritance",
+        "B. Registers with operating system",
+        "C. Instantiates the class",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Registration enables non-invasive duck-typing validation: collections.abc.Sequence.register(MyCustomSequence)."
+    },
+    {
+      "num": 106,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What is the time complexity of searching an unsorted array of size n for a specific element (Linear Search)?",
+      "options": [
+        "A. O(n) linear time",
+        "B. O(1)",
+        "C. O(log n)",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In an unsorted array, every element must be inspected in the worst case."
+    },
+    {
+      "num": 107,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "Why is Postfix expression evaluation widely favored by compilers and virtual machines (like JVM)?",
+      "options": [
+        "A. It can be evaluated in a single linear pass using a simple operand stack without parentheses or operator precedence rules",
+        "B. It takes fewer bytes",
+        "C. It uses no registers",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Postfix eliminates operator precedence and parentheses; an operand stack evaluates RPN in O(n) time cleanly."
+    },
+    {
+      "num": 108,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What is a Deque (Double-Ended Queue)?",
+      "options": [
+        "A. A generalized queue where insertion and deletion can be performed at BOTH the front AND the rear ends in O(1) time",
+        "B. A queue with two separate arrays",
+        "C. A sorted queue",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Deques allow push_front, pop_front, push_back, and pop_back all in O(1) time."
+    },
+    {
+      "num": 109,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What is the time complexity to EXTRACT (delete) the root element (Min or Max) from a Binary Heap?",
+      "options": [
+        "A. O(log n) worst-case time (requires sift-down / heapify along the tree height)",
+        "B. O(1)",
+        "C. O(n)",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Extract swaps the root with the last leaf, decrements heap size, and sinks (heapifies down) in O(log n) time."
+    },
+    {
+      "num": 110,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "In Floyd's Cycle Detection algorithm, what happens if the linked list has NO cycle?",
+      "options": [
+        "A. The fast pointer (or fast.next) reaches NULL/None and the algorithm terminates returning False",
+        "B. The pointers loop forever",
+        "C. A NullPointerException is thrown",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In an acyclic list, the fast pointer reaches the terminal NULL node."
+    },
+    {
+      "num": 111,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What happens if a loop condition `while curr != NULL:` is used to traverse a Circular Linked List?",
+      "options": [
+        "A. An Infinite Loop occurs (because the list contains no NULL pointers)",
+        "B. It stops at the tail",
+        "C. Raises AttributeError",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The pointer cycles indefinitely through the nodes because NULL is never encountered."
+    },
+    {
+      "num": 112,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "A binary tree of height 3 (with root at height 0) can have at most how many total nodes?",
+      "options": [
+        "A. 15 nodes (2³⁺¹ - 1 = 2⁴ - 1 = 15)",
+        "B. 8 nodes",
+        "C. 16 nodes",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Max nodes = 1 + 2 + 4 + 8 = 15 nodes."
+    },
+    {
+      "num": 113,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "Can an arbitrary binary tree be uniquely reconstructed given ONLY its Preorder and Postorder traversals?",
+      "options": [
+        "A. No, Preorder and Postorder ALONE cannot uniquely reconstruct a general binary tree (unless it is a strict/full binary tree)",
+        "B. Yes, always",
+        "C. Only if height > 3",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "If a node has only one child, Preorder and Postorder cannot determine whether it is a left or right child."
+    },
+    {
+      "num": 114,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "When deleting a node with ONE child from a BST, how is deletion handled?",
+      "options": [
+        "A. Bypass the node by linking its parent directly to its single child",
+        "B. Delete the child as well",
+        "C. Rotate tree",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The parent adopts the single grandchild directly."
+    },
+    {
+      "num": 115,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What is the Time Complexity of both BFS and DFS when using an Adjacency List representation?",
+      "options": [
+        "A. O(V + E) linear time (every vertex and edge is examined a constant number of times)",
+        "B. O(V²)",
+        "C. O(E log V)",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "With adjacency lists, BFS and DFS visit every vertex once and inspect each incident edge once, running in O(V + E) time."
+    },
+    {
+      "num": 116,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What is the Time Complexity of Merge Sort in Best, Average, and Worst cases?",
+      "options": [
+        "A. O(n log n) in ALL cases (Best, Average, and Worst)",
+        "B. Best: O(n); Worst: O(n²)",
+        "C. O(n²)",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Tree depth is log2(n) and each level does O(n) merging work: T(n) = 2T(n/2) + O(n) = O(n log n) unconditionally."
+    },
+    {
+      "num": 117,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Data Structures & Algorithms",
+      "question": "What is Big-Theta Notation (Θ) in asymptotic analysis?",
+      "options": [
+        "A. Defines an Asymptotic Tight Bound: f(n) = Θ(g(n)) if and only if f(n) = O(g(n)) AND f(n) = Ω(g(n))",
+        "B. Strict upper bound only",
+        "C. Loose bound",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Big-Theta sandwiches the function between c1 * g(n) and c2 * g(n), describing exact growth rate."
+    },
+    {
+      "num": 118,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What is Metadata in DBMS terminology?",
+      "options": [
+        "A. Data about data (structural descriptions of database objects, column types, constraints, and relationships)",
+        "B. Deleted data records",
+        "C. Encrypted backups",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Metadata describes schema structures: e.g. table names, column datatypes, primary keys, and foreign key references."
+    },
+    {
+      "num": 119,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "Are the columns (attributes) in a formal relation ordered?",
+      "options": [
+        "A. No, attributes are identified by name, so their column sequence has no theoretical significance",
+        "B. Yes, ordered alphabetically",
+        "C. Ordered by size",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Because attributes are named, reordering columns in a schema does not change relation semantics."
+    },
+    {
+      "num": 120,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "Can a table have multiple Foreign Keys?",
+      "options": [
+        "A. Yes, a table can have as many foreign keys as needed, referencing different parent tables",
+        "B. No, at most one foreign key is allowed",
+        "C. At most two",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An Orders table may have Customer_ID referencing Customers, and Employee_ID referencing Employees."
+    },
+    {
+      "num": 121,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What is a Composite Attribute in the ER Model?",
+      "options": [
+        "A. An attribute that can be divided into smaller sub-components (e.g. Address divided into Street, City, State, ZIP)",
+        "B. An attribute storing integers",
+        "C. A multivalued attribute",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Composite attributes form an attribute hierarchy of sub-parts."
+    },
+    {
+      "num": 122,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What is the Rename operator (ρ) used for in Relational Algebra?",
+      "options": [
+        "A. Renames a relation and/or its attribute names (e.g. ρ_{S(A, B, C)}(R))",
+        "B. Deletes a table",
+        "C. Changes primary keys",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Greek letter rho (ρ) renames relations and columns to resolve naming ambiguities in self-joins."
+    },
+    {
+      "num": 123,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What is a Prime Attribute in relational database normalization?",
+      "options": [
+        "A. An attribute that is a member of AT LEAST ONE candidate key of the relation",
+        "B. An attribute whose ID is a prime number",
+        "C. An attribute that is never null",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Attributes participating in any candidate key are called Prime attributes; all other attributes are Non-prime."
+    },
+    {
+      "num": 124,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What does the 'ON DELETE CASCADE' clause on a foreign key definition do?",
+      "options": [
+        "A. When a parent row is deleted, automatically deletes all associated child rows referencing that parent",
+        "B. Rejects parent deletion",
+        "C. Sets child foreign keys to NULL",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ON DELETE CASCADE propagates deletions from the referenced parent table to all dependent rows in the child table."
+    },
+    {
+      "num": 125,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What is the default sort order of the SQL ORDER BY clause if neither ASC nor DESC is specified?",
+      "options": [
+        "A. ASC (Ascending)",
+        "B. DESC (Descending)",
+        "C. Random",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ORDER BY defaults to ascending order (A to Z, lowest number to highest)."
+    },
+    {
+      "num": 126,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "Which query finds departments having more than 5 employees?",
+      "options": [
+        "A. SELECT dept_id, COUNT(*) FROM emp GROUP BY dept_id HAVING COUNT(*) > 5;",
+        "B. SELECT dept_id FROM emp WHERE COUNT(*) > 5 GROUP BY dept_id;",
+        "C. SELECT dept_id FROM emp HAVING COUNT(*) > 5;",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Filtering on aggregate count must be done using 'HAVING COUNT(*) > 5' after 'GROUP BY dept_id'."
+    },
+    {
+      "num": 127,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Database Management Systems & SQL",
+      "question": "What is a Database Transaction?",
+      "options": [
+        "A. A logical unit of work comprising one or more database operations that MUST either completely succeed or completely fail as an indivisible whole",
+        "B. A single SELECT query",
+        "C. A database backup",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Transactions encapsulate multi-step modifications to ensure database integrity under concurrent access and system crashes."
+    },
+    {
+      "num": 128,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What is an Orphan Process in Unix/Linux?",
+      "options": [
+        "A. A running process whose parent process has terminated before it; it is adopted by the 'init' (PID 1) process",
+        "B. A process with no CPU access",
+        "C. A process that cannot use RAM",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "When a parent dies before its child, the orphan child is automatically re-parented to init/systemd (PID 1), which periodically reaps it."
+    },
+    {
+      "num": 129,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What is the primary role of the Short-Term Scheduler (CPU Scheduler)?",
+      "options": [
+        "A. Selects a process from the Ready Queue in memory and allocates the CPU to it for execution (runs extremely frequently, in milliseconds)",
+        "B. Loads programs from disk",
+        "C. Kills inactive processes",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The short-term scheduler executes frequently (every 10-100 ms) to pick the next ready process for CPU execution."
+    },
+    {
+      "num": 130,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "In Round Robin scheduling, what happens if the Time Quantum is set extremely SMALL (e.g. 1 microsecond)?",
+      "options": [
+        "A. CPU efficiency plummets because the vast majority of CPU time is wasted on Context Switch overhead (Processor Sharing)",
+        "B. Throughput doubles",
+        "C. Waiting time becomes 0",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Excessively small quanta cause massive context switching overhead, converting CPU time into pure administrative waste."
+    },
+    {
+      "num": 131,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What is Inter-Process Communication (IPC)?",
+      "options": [
+        "A. Mechanisms provided by the OS that allow independent processes to communicate, exchange data, and synchronize actions",
+        "B. Transferring files over the web",
+        "C. Printing documents",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "IPC bridges isolated process address spaces using shared memory, message queues, pipes, or network sockets."
+    },
+    {
+      "num": 132,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What does the atomic hardware instruction 'Compare-and-Swap' (CAS) do?",
+      "options": [
+        "A. Tests if a memory location holds an expected value; if true, updates it to a new value; returns the original value atomically",
+        "B. Swaps two process PIDs",
+        "C. Reverses a string",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CAS(ptr, expected, new_val) underpins lock-free data structures by verifying no concurrent modification occurred before committing an update."
+    },
+    {
+      "num": 133,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What is Deadlock Prevention?",
+      "options": [
+        "A. Designing system protocols and resource request constraints that guarantee at least ONE of the four Coffman conditions can NEVER hold",
+        "B. Terminating deadlocked processes",
+        "C. Rebooting the OS every hour",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prevention structurally eliminates the possibility of deadlock by negating Mutual Exclusion, Hold & Wait, No Preemption, or Circular Wait."
+    },
+    {
+      "num": 134,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What is Paging in operating systems?",
+      "options": [
+        "A. A non-contiguous memory management scheme that divides physical memory into fixed-size Frames and logical memory into same-sized Pages",
+        "B. Saving web pages to disk",
+        "C. Printing documents",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Paging completely eliminates external fragmentation by allowing a process's physical memory pages to reside anywhere in available RAM frames."
+    },
+    {
+      "num": 135,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "Does FIFO page replacement suffer from Belady's Anomaly?",
+      "options": [
+        "A. Yes, FIFO is the classic algorithm that demonstrates Belady's Anomaly for certain reference strings",
+        "B. No, FIFO never suffers from it",
+        "C. Only with 1 frame",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Belady proved in 1969 that FIFO can incur 10 faults with 4 frames compared to 9 faults with 3 frames on reference string: 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5."
+    },
+    {
+      "num": 136,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Operating Systems",
+      "question": "What is the SCAN (Elevator) Disk Scheduling Algorithm?",
+      "options": [
+        "A. The disk arm starts at one end, sweeps toward the other end servicing requests along the way, reverses direction at the boundary, and sweeps back",
+        "B. Jumps randomly across tracks",
+        "C. Services only even tracks",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Like a building elevator, SCAN moves continuously in one direction until reaching the end track, then reverses direction, eliminating starvation."
+    },
+    {
+      "num": 137,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "In which network topology are devices connected in a closed circular loop where signals circulate unidirectionally through each node?",
+      "options": [
+        "A. Ring Topology (e.g. Token Ring, FDDI)",
+        "B. Star Topology",
+        "C. Mesh Topology",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In Ring topology, packets pass sequentially from station to station around the loop; each node regenerates and forwards the token/signal."
+    },
+    {
+      "num": 138,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "What is the Protocol Data Unit (PDU) at the Data Link Layer (Layer 2)?",
+      "options": [
+        "A. Frames",
+        "B. Packets",
+        "C. Segments",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Data Link layer encapsulates network packets into Frames with headers (MAC addresses) and trailers (FCS/CRC)."
+    },
+    {
+      "num": 139,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "What is the length (in bits) of the Frame Check Sequence (FCS) produced by the standard CRC-32 polynomial?",
+      "options": [
+        "A. 32 bits (4 bytes)",
+        "B. 16 bits",
+        "C. 64 bits",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CRC-32 (used in Ethernet and ZIP archives) produces a 32-bit check sequence capable of detecting all single, double, odd, and burst errors $\\le 32$ bits."
+    },
+    {
+      "num": 140,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "After how many consecutive collisions does standard Ethernet abort transmission and report a network failure?",
+      "options": [
+        "A. 16 collisions (backoff range stops doubling at $k=10$, and aborts after 16 failed attempts)",
+        "B. 5 collisions",
+        "C. 100 collisions",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ethernet permits up to 16 attempts; after 16 failed retries, the frame is dropped and an error is flagged."
+    },
+    {
+      "num": 141,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "How many usable host IP addresses are available in a /26 subnet?",
+      "options": [
+        "A. 62 usable hosts ($h = 32 - 26 = 6\text{ host bits}; 2^6 - 2 = 64 - 2 = 62$)",
+        "B. 64 usable hosts",
+        "C. 30 usable hosts",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "With 6 host bits: total addresses $= 2^6 = 64$; usable host addresses $= 64 - 2 = 62$."
+    },
+    {
+      "num": 142,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "What is the Count-to-Infinity Problem in Distance Vector routing?",
+      "options": [
+        "A. A routing loop condition where two or more routers slowly increment hop counts to an unreachable destination up to infinity (16 in RIP)",
+        "B. A timer counting indefinitely",
+        "C. A CPU clock loop",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "When a link fails, neighbors exchange outdated routing vectors, bouncing packets back and forth while incrementing metrics toward infinity."
+    },
+    {
+      "num": 143,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "Why does TCP use a Three-Way Handshake instead of a Two-Way Handshake?",
+      "options": [
+        "A. To prevent old, delayed duplicate connection requests from incorrectly opening phantom connections on the server",
+        "B. To make connections slower",
+        "C. Because 3 is a lucky number",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A 3-way handshake ensures both sides agree on active sequence numbers; old delayed SYNs are rejected with an RST packet."
+    },
+    {
+      "num": 144,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "What does the 'Time to Live' (TTL) in a DNS record indicate?",
+      "options": [
+        "A. The duration (in seconds) that intermediate DNS resolvers and client caches are permitted to cache the record before asking authoritative servers again",
+        "B. The expiration of the domain ownership",
+        "C. The ping latency",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "DNS TTL dictates caching duration: low TTL allows rapid IP updates during migrations; high TTL reduces server query load."
+    },
+    {
+      "num": 145,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "What is an IP Router and at which OSI layer does it operate?",
+      "options": [
+        "A. A Network Layer (Layer 3) device that connects disparate networks, inspects IP headers, and forwards packets along optimal paths using routing tables",
+        "B. A Layer 2 MAC switch",
+        "C. A Layer 1 repeater",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Routers separate broadcast domains and make forwarding decisions based on destination IP addresses and routing algorithms."
+    },
+    {
+      "num": 146,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Computer Networks & Network Security",
+      "question": "What is Asymmetric Key Cryptography (Public Key Cryptography)?",
+      "options": [
+        "A. An encryption system that uses a MATHEMATICALLY LINKED KEY PAIR: a Public Key (freely shared) and a Private Key (kept secret)",
+        "B. A system using identical keys",
+        "C. A system with no passwords",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Invented by Diffie and Hellman; data encrypted with the Public Key can ONLY be decrypted by the corresponding Private Key."
+    },
+    {
+      "num": 147,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Software Engineering, Compiler & TOC",
+      "question": "What is the Agile Methodology in software engineering?",
+      "options": [
+        "A. An iterative and incremental approach centered on collaborative cross-functional teams, rapid customer feedback, and adaptive responses to change",
+        "B. A rigid sequential documentation model",
+        "C. A model that forbids customer communication",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Agile values working software over comprehensive documentation and responding to change over following a rigid plan (Agile Manifesto)."
+    },
+    {
+      "num": 148,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Software Engineering, Compiler & TOC",
+      "question": "What is Black-Box Testing (Functional / Behavioral Testing)?",
+      "options": [
+        "A. Testing software functionality WITHOUT any knowledge of internal code structure, algorithms, or implementation details",
+        "B. Testing by looking at source code",
+        "C. Testing with monitor turned off",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Black-box tests focus purely on inputs and observed outputs based on specifications (Equivalence Partitioning, Boundary Value Analysis)."
+    },
+    {
+      "num": 149,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Software Engineering, Compiler & TOC",
+      "question": "What is the primary role of the Semantic Analysis phase in a compiler?",
+      "options": [
+        "A. Enforces semantic rules that cannot be captured by CFGs: performs Type Checking, Scope Resolution, and Variable Declaration verification",
+        "B. Scans characters into tokens",
+        "C. Translates to assembly code",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Semantic analysis verifies logical validity: e.g. checking whether variables were declared before use and operands are type-compatible."
+    },
+    {
+      "num": 150,
+      "section": "part3",
+      "sectionName": "Part III: Computer Science",
+      "topic": "Software Engineering, Compiler & TOC",
+      "question": "What is the Halting Problem in computer science, and who proved it undecidable?",
+      "options": [
+        "A. The problem of determining whether an arbitrary program will eventually halt or run forever on a given input; Alan Turing proved it is UNDECIDABLE",
+        "B. The problem of CPU overheating",
+        "C. The problem of low battery",
+        "D. More than one of the above",
+        "E. None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Turing proved in 1936 via diagonalization that no general algorithm can ever exist that decides whether arbitrary programs halt."
+    }
+  ]
+};
+
+if (typeof window !== 'undefined') {
+  window.PRACTICE_SET_12 = PRACTICE_SET_12;
+  if (window.PracticeEngine && window.PracticeEngine.registerSet) {
+    window.PracticeEngine.registerSet(PRACTICE_SET_12);
+  }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { PRACTICE_SET_12 };
+}
