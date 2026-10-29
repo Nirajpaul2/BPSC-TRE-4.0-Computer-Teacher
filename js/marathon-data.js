@@ -11275,6 +11275,723 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 20,
+    "dayId": "day-20",
+    "badge": "Day 20",
+    "title": "TRE 4.0 — Day 20",
+    "unit": "Part III (CS) • DBMS Full Revision + 50-Question Master Checkpoint (Days 15–19)",
+    "targetTime": "25–30 mins recall + 45–50 mins test",
+    "summary": "Today is revision + testing only. No new major DBMS topic. The goal is to verify that Days 15–19 are permanently mastered across Database Basics, Keys, Normalization, SQL, Transactions, ACID, Constraints, ER Model, and Indexing.",
+    "targets": [
+      {
+        "section": "Step 1 — Recall",
+        "topic": "10-Minute White-Paper Mental Map",
+        "goal": "Reconstruct Database definitions, Keys, 1NF/2NF/3NF, SQL flow, ACID, ER model, and Indexing without looking"
+      },
+      {
+        "section": "Part III — CS (DBMS Block)",
+        "topic": "50-Question Comprehensive Checkpoint Test",
+        "goal": "Score 40+/50 across Sections A to G without consulting reference notes"
+      }
+    ],
+    "introNote": "Today is revision + testing only. No new major DBMS topic.\n\nYour uploaded TRE 2.0 paper directly tests database definition/types/features, ACID support, metadata, Superkey, DELETE, catalogs and schemas, Hierarchical DBMS, HAVING, and redundancy/inconsistency. TRE 3.0 directly tests DBMS type, Primary Key, 2NF, and INSERT.\n\nThe ER model, JOINs, transaction commands, architecture, and indexing/B+ Tree questions below are standard expansion from Days 16–19; I did not find those exact topics in the retrieved TRE excerpts.",
+    "parts": [
+      {
+        "partId": "part-d20-recall",
+        "title": "🧠 10-Minute White-Paper Revision",
+        "sections": [
+          {
+            "title": "Days 15–19 Master White-Paper Recall",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Before attempting the test, close your notes and mentally write the core pillars:"
+              },
+              {
+                "type": "diagram",
+                "content": "DATABASE\n→ organized data\n\nDBMS\n→ manages database\n\nRDBMS\n→ tables\n\nThen:\nROW → Record\nCOLUMN → Attribute\n\nPRIMARY KEY\n→ unique identity\n\nFOREIGN KEY\n→ connects tables\n\nSUPERKEY\n→ one or more attributes that uniquely identify"
+              },
+              {
+                "type": "diagram",
+                "content": "METADATA\n→ data about data\n\nREDUNDANCY\n→ duplicate data\n\nINCONSISTENCY\n→ copies disagree\n\nNormalization:\n1NF → Atomic\n2NF → No Partial Dependency → Full dependency\n3NF → No Transitive Dependency"
+              },
+              {
+                "type": "diagram",
+                "content": "SQL:\nSELECT → Read\nINSERT → Add\nUPDATE → Change\nDELETE → Remove\n\nWHERE → filter rows\nGROUP BY → create groups\nHAVING → filter groups\n\nTransactions:\nACID\nA → All or nothing\nC → Correct state\nI → Independent\nD → Durable\n\nCommands:\nCOMMIT → Save\nROLLBACK → Undo\nSAVEPOINT → Checkpoint\n\nDELETE → rows\nTRUNCATE → all rows, table stays\nDROP → table gone"
+              },
+              {
+                "type": "diagram",
+                "content": "ER:\nENTITY → Thing\nATTRIBUTE → Property\nRELATIONSHIP → Connection\n\n1:1\n1:M\nM:N\n\nArchitecture:\nExternal → View\nConceptual → Design\nInternal → Storage\n\nIndex:\nINDEX → Faster lookup\n\nB-Tree → balanced multi-way\nB+ Tree → data entries at leaves, leaves linked\n\nPrimary Key → Identity\nIndex → Performance"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Self-Check Benchmark",
+                "content": "If you can reconstruct around 80% without looking, your entire DBMS foundation is rock-solid and exam-ready."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 20 — 50 Question Test",
+      "subtitle": "Rules: No notes. Try to finish in 45–50 minutes.",
+      "questions": [
+        {
+          "id": "m-d20-q1",
+          "question": "Q1. A database is best described as:",
+          "options": [
+            "Random collection of programs",
+            "Organized collection of data that can be accessed and managed",
+            "Only a collection of images",
+            "Only operating-system files",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A database is an organized collection of data or information that can be easily accessed, managed, and updated. Correct: (B) Organized collection of data that can be accessed and managed."
+        },
+        {
+          "id": "m-d20-q2",
+          "question": "Q2. DBMS stands for:",
+          "options": [
+            "Database Management System",
+            "Data Memory System",
+            "Digital Base Management Service",
+            "Database Machine Software",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DBMS stands for Database Management System. Correct: (A) Database Management System."
+        },
+        {
+          "id": "m-d20-q3",
+          "question": "Q3. Which of the following is a DBMS example appearing in your TRE paper?",
+          "options": [
+            "Microsoft Access",
+            "Google Search",
+            "WhatsApp",
+            "Chrome",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Microsoft Access (along with IBM Db2) is a relational database management system tested in TRE papers. Correct: (A) Microsoft Access."
+        },
+        {
+          "id": "m-d20-q4",
+          "question": "Q4. Which is not a typical DBMS feature according to the TRE question?",
+          "options": [
+            "Reduced duplication/redundancy",
+            "ACID support",
+            "Single-user access only",
+            "Data management",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Modern enterprise DBMSs provide multi-user concurrent access with isolation, not single-user access only. Correct: (C) Single-user access only."
+        },
+        {
+          "id": "m-d20-q5",
+          "question": "Q5. Information about data is called:",
+          "options": [
+            "Transaction",
+            "Metadata",
+            "Relation",
+            "Query",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Metadata is defined as data about data (schemas, column definitions, constraints). Correct: (B) Metadata."
+        },
+        {
+          "id": "m-d20-q6",
+          "question": "Q6. Unnecessary repetition of the same data is called:",
+          "options": [
+            "Isolation",
+            "Redundancy",
+            "Cardinality",
+            "Durability",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Data redundancy is the unnecessary duplication of the same information in multiple places. Correct: (B) Redundancy."
+        },
+        {
+          "id": "m-d20-q7",
+          "question": "Q7. If two copies of the same information are changed differently, the problem is:",
+          "options": [
+            "Data inconsistency",
+            "Normalization",
+            "Atomicity",
+            "Indexing",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "When redundant data copies disagree after partial updates, it causes data inconsistency. Correct: (A) Data inconsistency."
+        },
+        {
+          "id": "m-d20-q8",
+          "question": "Q8. In a relational table, a row represents:",
+          "options": [
+            "Attribute",
+            "Record",
+            "Database",
+            "Schema only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A row in a relational table represents a single Record (or Tuple). Correct: (B) Record."
+        },
+        {
+          "id": "m-d20-q9",
+          "question": "Q9. A column normally represents:",
+          "options": [
+            "Attribute/field",
+            "Complete transaction",
+            "Database server",
+            "Record set only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A column represents an Attribute, Field, or property of the entity. Correct: (A) Attribute/field."
+        },
+        {
+          "id": "m-d20-q10",
+          "question": "Q10. Which model is easiest to visualize as a tree structure?",
+          "options": [
+            "Hierarchical DBMS",
+            "Relational DBMS",
+            "Stack DBMS",
+            "Sequential DBMS",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A hierarchical database organizes data in an inverted tree-like structure with parent-child relationships. Correct: (A) Hierarchical DBMS."
+        },
+        {
+          "id": "m-d20-q11",
+          "question": "Q11. A Primary Key is used to:",
+          "options": [
+            "Uniquely identify each record",
+            "Sort records only",
+            "Store passwords only",
+            "Delete tables",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Primary Key uniquely identifies each row in a relation and cannot contain NULL values. Correct: (A) Uniquely identify each record."
+        },
+        {
+          "id": "m-d20-q12",
+          "question": "Q12. Which statement about a Primary Key is correct?",
+          "options": [
+            "Duplicate values are normally allowed freely",
+            "It identifies rows uniquely",
+            "It is used only for arithmetic",
+            "It must always be a person's name",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Primary Keys must satisfy uniqueness and non-null constraints to guarantee entity integrity. Correct: (B) It identifies rows uniquely."
+        },
+        {
+          "id": "m-d20-q13",
+          "question": "Q13. A Foreign Key mainly:",
+          "options": [
+            "Connects related tables",
+            "Deletes databases",
+            "Replaces SQL",
+            "Sorts arrays",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Foreign Key establishes a relationship between tables by referencing the Primary Key of another table. Correct: (A) Connects related tables."
+        },
+        {
+          "id": "m-d20-q14",
+          "question": "Q14. A set of one or more attributes that collectively uniquely identifies a record is called:",
+          "options": [
+            "Foreign Key",
+            "Superkey",
+            "Metadata",
+            "View",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Any superset of attributes whose values uniquely identify records in a table is a Superkey. Correct: (B) Superkey."
+        },
+        {
+          "id": "m-d20-q15",
+          "question": "Q15. Which is the best memory rule?",
+          "options": [
+            "Primary Key → Identity",
+            "Primary Key → Backup",
+            "Primary Key → Transaction rollback",
+            "Primary Key → Query optimizer",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Primary Key serves as the core Identity Card for records in a table. Correct: (A) Primary Key → Identity."
+        },
+        {
+          "id": "m-d20-q16",
+          "question": "Q16. A → B means:",
+          "options": [
+            "B determines A only",
+            "A determines B",
+            "A equals B",
+            "A deletes B",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A → B denotes a functional dependency where knowing the value of A uniquely determines the value of B. Correct: (B) A determines B."
+        },
+        {
+          "id": "m-d20-q17",
+          "question": "Q17. A dependency on only part of a composite key is:",
+          "options": [
+            "Full dependency",
+            "Partial dependency",
+            "Transitive dependency",
+            "Multilevel indexing",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "When a non-prime attribute depends on a proper subset (part) of a composite candidate key, it is a Partial Dependency. Correct: (B) Partial dependency."
+        },
+        {
+          "id": "m-d20-q18",
+          "question": "Q18. Which pattern represents transitive dependency?",
+          "options": [
+            "A → B → C",
+            "A = A",
+            "A + B",
+            "A ← A",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Transitive dependency occurs when A determines B, and B determines C, creating an indirect dependency A → C through B: A → B → C. Correct: (A) A → B → C."
+        },
+        {
+          "id": "m-d20-q19",
+          "question": "Q19. 1NF mainly requires:",
+          "options": [
+            "Atomic values",
+            "No Primary Key",
+            "No tables",
+            "No Foreign Keys",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "First Normal Form (1NF) disallows multivalued or composite attributes; every cell must contain an atomic (indivisible) value. Correct: (A) Atomic values."
+        },
+        {
+          "id": "m-d20-q20",
+          "question": "Q20. TRE 3.0 associates full functional dependency on the Primary Key with:",
+          "options": [
+            "1NF",
+            "2NF",
+            "3NF",
+            "4NF",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Second Normal Form (2NF) mandates that all non-prime attributes are fully functionally dependent on the complete primary key (no partial dependency). Correct: (B) 2NF."
+        },
+        {
+          "id": "m-d20-q21",
+          "question": "Q21. 2NF primarily removes:",
+          "options": [
+            "Partial dependency",
+            "Transitive dependency",
+            "Primary Key",
+            "Tables",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "2NF eliminates partial dependencies where non-prime attributes depend on only a part of a composite key. Correct: (A) Partial dependency."
+        },
+        {
+          "id": "m-d20-q22",
+          "question": "Q22. 3NF is best remembered as removing:",
+          "options": [
+            "Atomicity",
+            "Transitive dependency",
+            "Foreign Keys",
+            "SQL commands",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "3NF eliminates transitive dependencies (non-prime attributes determining other non-prime attributes). Correct: (B) Transitive dependency."
+        },
+        {
+          "id": "m-d20-q23",
+          "question": "Q23. Which normalization sequence is correct?",
+          "options": [
+            "1NF Atomic → 2NF No Partial → 3NF No Transitive",
+            "1NF No Transitive → 2NF Atomic → 3NF Partial",
+            "1NF Partial → 2NF Transitive → 3NF Atomic",
+            "All are identical",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "1NF enforces atomic values; 2NF removes partial dependency; 3NF removes transitive dependency. Correct: (A) 1NF Atomic → 2NF No Partial → 3NF No Transitive."
+        },
+        {
+          "id": "m-d20-q24",
+          "question": "Q24. Which SQL command reads data?",
+          "options": [
+            "SELECT",
+            "INSERT",
+            "DELETE",
+            "DROP",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SELECT queries and retrieves data records from database tables. Correct: (A) SELECT."
+        },
+        {
+          "id": "m-d20-q25",
+          "question": "Q25. TRE 3.0 asks which command adds new rows. The correct command is:",
+          "options": [
+            "ADD",
+            "INSERT",
+            "CREATE",
+            "ALTER",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "INSERT INTO inserts new records/rows into an existing table. Correct: (B) INSERT."
+        },
+        {
+          "id": "m-d20-q26",
+          "question": "Q26. Which command modifies existing rows?",
+          "options": [
+            "UPDATE",
+            "SELECT",
+            "DROP",
+            "CREATE",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "UPDATE modifies existing values within table records according to criteria. Correct: (A) UPDATE."
+        },
+        {
+          "id": "m-d20-q27",
+          "question": "Q27. Which command removes rows?",
+          "options": [
+            "DELETE",
+            "INSERT",
+            "ALTER",
+            "CREATE",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DELETE removes specified rows from a table while keeping the table definition. Correct: (A) DELETE."
+        },
+        {
+          "id": "m-d20-q28",
+          "question": "Q28. Which clause filters individual rows?",
+          "options": [
+            "WHERE",
+            "HAVING",
+            "GROUP BY",
+            "COMMIT",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The WHERE clause filters individual rows before grouping occurs. Correct: (A) WHERE."
+        },
+        {
+          "id": "m-d20-q29",
+          "question": "Q29. Which clause forms groups?",
+          "options": [
+            "WHERE",
+            "GROUP BY",
+            "HAVING",
+            "DELETE",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "GROUP BY summarizes rows sharing common values into distinct groups. Correct: (B) GROUP BY."
+        },
+        {
+          "id": "m-d20-q30",
+          "question": "Q30. TRE 2.0 asks which clause applies predicates after groups have been created. It is:",
+          "options": [
+            "WHERE",
+            "HAVING",
+            "INSERT",
+            "DROP",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "HAVING applies conditions to summarized groups after GROUP BY execution. Correct: (B) HAVING."
+        },
+        {
+          "id": "m-d20-q31",
+          "question": "Q31. Which is correct?",
+          "options": [
+            "WHERE → rows, HAVING → groups",
+            "WHERE → groups, HAVING → rows",
+            "Both always mean exactly the same thing",
+            "Neither filters anything",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "WHERE filters rows before grouping; HAVING filters groups after grouping. Correct: (A) WHERE → rows, HAVING → groups."
+        },
+        {
+          "id": "m-d20-q32",
+          "question": "Q32. Which aggregate function counts rows?",
+          "options": [
+            "AVG()",
+            "COUNT()",
+            "SUM()",
+            "MAX()",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "COUNT() returns the total count of matching records. Correct: (B) COUNT()."
+        },
+        {
+          "id": "m-d20-q33",
+          "question": "Q33. Which JOIN normally returns matching rows from both tables?",
+          "options": [
+            "INNER JOIN",
+            "LEFT JOIN",
+            "RIGHT JOIN",
+            "CROSS DELETE",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "INNER JOIN produces only matching records from both relations (set intersection). Correct: (A) INNER JOIN."
+        },
+        {
+          "id": "m-d20-q34",
+          "question": "Q34. LEFT JOIN keeps:",
+          "options": [
+            "All rows from the left plus matches",
+            "Only right rows",
+            "Only unmatched right rows",
+            "No rows",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "LEFT JOIN retains all rows from the left table and appends matching columns from the right table (unmatched right columns become NULL). Correct: (A) All rows from the left plus matches."
+        },
+        {
+          "id": "m-d20-q35",
+          "question": "Q35. In ACID, Atomicity means:",
+          "options": [
+            "All or nothing",
+            "Sorted data",
+            "Faster indexing",
+            "Metadata storage",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Atomicity guarantees that all steps of a transaction either execute completely, or are completely aborted (all-or-nothing). Correct: (A) All or nothing."
+        },
+        {
+          "id": "m-d20-q36",
+          "question": "Q36. Consistency means:",
+          "options": [
+            "Database remains in a valid state",
+            "Every query uses an index",
+            "Every transaction is deleted",
+            "Every table has one row",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Consistency ensures the transaction transforms the database from one valid state to another, preserving all integrity rules. Correct: (A) Database remains in a valid state."
+        },
+        {
+          "id": "m-d20-q37",
+          "question": "Q37. Isolation means:",
+          "options": [
+            "Concurrent transactions should not improperly interfere",
+            "Data is permanently stored",
+            "No tables exist",
+            "Every key is unique",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Isolation ensures concurrent transaction executions execute independently without observing intermediate uncommitted states of others. Correct: (A) Concurrent transactions should not improperly interfere."
+        },
+        {
+          "id": "m-d20-q38",
+          "question": "Q38. Durability means:",
+          "options": [
+            "Committed changes persist",
+            "Changes are always rolled back",
+            "Tables cannot change",
+            "Rows remain unsorted",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Durability guarantees that committed modifications survive subsequent crashes or power outages permanently. Correct: (A) Committed changes persist."
+        },
+        {
+          "id": "m-d20-q39",
+          "question": "Q39. COMMIT means:",
+          "options": [
+            "Save transaction changes",
+            "Undo transaction",
+            "Drop table",
+            "Remove schema",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "COMMIT makes all modifications performed during the current transaction permanent on disk. Correct: (A) Save transaction changes."
+        },
+        {
+          "id": "m-d20-q40",
+          "question": "Q40. ROLLBACK means:",
+          "options": [
+            "Undo uncommitted transaction changes",
+            "Permanently save",
+            "Create a table",
+            "Add an index",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "ROLLBACK aborts the transaction and reverts all uncommitted modifications. Correct: (A) Undo uncommitted transaction changes."
+        },
+        {
+          "id": "m-d20-q41",
+          "question": "Q41. CREATE, ALTER, DROP, and TRUNCATE are commonly classified as:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Commands modifying database or table structure belong to Data Definition Language (DDL). Correct: (A) DDL."
+        },
+        {
+          "id": "m-d20-q42",
+          "question": "Q42. INSERT, UPDATE, and DELETE are commonly classified as:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Commands manipulating data records within tables belong to Data Manipulation Language (DML). Correct: (B) DML."
+        },
+        {
+          "id": "m-d20-q43",
+          "question": "Q43. GRANT and REVOKE belong to:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Commands administering user security permissions and access rights belong to Data Control Language (DCL). Correct: (C) DCL."
+        },
+        {
+          "id": "m-d20-q44",
+          "question": "Q44. COMMIT, ROLLBACK, and SAVEPOINT belong to:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Commands managing transactional boundaries and undo points belong to Transaction Control Language (TCL). Correct: (D) TCL."
+        },
+        {
+          "id": "m-d20-q45",
+          "question": "Q45. Which constraint prevents NULL values?",
+          "options": [
+            "NOT NULL",
+            "CHECK",
+            "FOREIGN KEY",
+            "DROP",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The NOT NULL constraint enforces that a column cannot accept missing or NULL values. Correct: (A) NOT NULL."
+        },
+        {
+          "id": "m-d20-q46",
+          "question": "Q46. In an ER model:",
+          "options": [
+            "Entity = thing, Attribute = property",
+            "Entity = property, Attribute = transaction",
+            "Entity = index only",
+            "Attribute = database server",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "An Entity is a distinguishable real-world object/concept; an Attribute is a characteristic property of that entity. Correct: (A) Entity = thing, Attribute = property."
+        },
+        {
+          "id": "m-d20-q47",
+          "question": "Q47. Students enrolling in many courses, while each course has many students, is:",
+          "options": [
+            "1:1",
+            "1:M",
+            "M:N",
+            "0:1",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A student takes many courses, and a course has many students: Many-to-Many (M:N) relationship. Correct: (C) M:N."
+        },
+        {
+          "id": "m-d20-q48",
+          "question": "Q48. Which distinction is correct?",
+          "options": [
+            "Schema = structure; Instance = current data",
+            "Schema = current data; Instance = structure",
+            "Both are always identical",
+            "Neither belongs to DBMS",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Schema defines the static architectural structure/blueprint; an Instance is the dynamic population of actual data at a given point in time. Correct: (A) Schema = structure; Instance = current data."
+        },
+        {
+          "id": "m-d20-q49",
+          "question": "Q49. A B+ Tree is best remembered as:",
+          "options": [
+            "Balanced tree with indexed data entries at leaf level and linked leaves",
+            "Stack with FIFO behavior",
+            "Queue with LIFO behavior",
+            "Hash table without keys",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A B+ Tree stores all data references at the leaf level, and its leaf nodes are linked sequentially for efficient range scans. Correct: (A) Balanced tree with indexed data entries at leaf level and linked leaves."
+        },
+        {
+          "id": "m-d20-q50",
+          "question": "Q50. Which is the best distinction?",
+          "options": [
+            "Primary Key → identity; Index → performance",
+            "Primary Key → performance only; Index → identity only",
+            "Both mean exactly the same thing",
+            "Index uniquely defines ACID",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Primary Key is a logical integrity constraint providing unique identification; Index is a physical data structure built to accelerate query lookup performance. Correct: (A) Primary Key → identity; Index → performance."
+        }
+      ]
+    }
   }
 ];
 
