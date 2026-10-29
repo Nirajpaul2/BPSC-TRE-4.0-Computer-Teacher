@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 27 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 28 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -15918,6 +15918,455 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "In 'hour', the letter 'h' is silent and it begins with the vowel sound /aʊə/, requiring the article 'an': 'an hour'. Correct: (B) an hour."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 28,
+    "dayId": "day-28",
+    "badge": "Day 28",
+    "title": "TRE 4.0 — Day 28",
+    "unit": "Part III (CS) • Python Core Data Structures: Strings, Lists, Tuples, Dictionaries, Sets & 20-Q Test",
+    "targetTime": "15–18 mins read + 20 mins test",
+    "summary": "Python Core Data Structures (NCERT Class XI Chapters 8 & 10 kecs108/kecs110): Strings (ordered, indexed, immutable sequence; indexing 0 to -1, slicing [start:end], reverse [::-1], len(), methods: lower(), upper(), strip(), replace(), split() string to list, join() list to string, membership in/not in); Lists (mutable sequence, append(), pop(), remove(value) vs pop(index)); Tuples (immutable sequence, single-element tuple trap (10,) vs (10), count(), index()); Dictionaries (key-value mapping, keys must be unique, get(key) safe access, keys(), values(), items(), update(), clear() vs del); Sets (unordered collection of unique values, deduplication); Master Collection Comparison Table; and 20-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Python Strings & Collections Deep Dive",
+        "goal": "Master String immutability & methods (strip, replace, split, join), List mutability & methods (append, pop, remove), Tuple single-element syntax (10,), Dict methods (get, keys, values, items, update, clear), and Set uniqueness"
+      },
+      {
+        "section": "Memory Anchor",
+        "topic": "Master Collection Mutability",
+        "goal": "Strings & Tuples = Immutable; Lists, Dicts & Sets = Mutable"
+      }
+    ],
+    "introNote": "Today remains Python-first. No C++.\n\nYour NCERT material directly covers Python strings as immutable sequences, indexing/slicing, string methods, tuples, dictionaries, sets, and dictionary methods such as keys(), values(), items(), get(), update() and clear() (kecs108 / kecs110).",
+    "parts": [
+      {
+        "title": "Part III — Python Strings: Immutability, Slicing & Core Methods (NCERT kecs108)",
+        "sections": [
+          {
+            "title": "1. String Architecture, 2. Immutability & 3. 0-based & Negative Indexing",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. String\n🧠 MENTAL PICTURE: Think of a string as a row of boxes:\n\"PYTHON\"\n\nNCERT defines a string as an ordered sequence of characters where indexing begins at 0 (kecs108)."
+              },
+              {
+                "type": "diagram",
+                "content": "Positive Index:   0   1   2   3   4   5\nCharacters:       P   Y   T   H   O   N\nNegative Index:  -6  -5  -4  -3  -2  -1\n\nMemory:\nSTRING → characters, ordered, indexed, immutable"
+              },
+              {
+                "type": "callout",
+                "icon": "🔒",
+                "title": "2. String is Immutable (NCERT kecs108)",
+                "content": "Immutable means: Cannot modify individual characters in-place after creation.\n\nname = \"Python\"\nname[0] = \"J\"  ❌\n\nThis raises: TypeError: 'str' object does not support item assignment\nTo change a string, create a new string object."
+              },
+              {
+                "type": "text",
+                "content": "3. String Indexing\nx = \"PYTHON\"\nprint(x[0])   # Output: P (first character)\nprint(x[-1])  # Output: N (last character)\n\nMemory: 0 → first, -1 → last (identical to lists)"
+              }
+            ]
+          },
+          {
+            "title": "4. Slicing, 5. Reverse [::-1], 6. len() & 7. Core Methods",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. String Slicing (NCERT kecs108)\nSyntax: string[start:end]\nRule: start is INCLUDED, end is EXCLUDED.\n\ns = \"PYTHON\"\nprint(s[1:4])  # Takes indices 1, 2, 3 (Y, T, H) → Output: YTH\n\n5. Reverse a String:\ns = \"PYTHON\"\nprint(s[::-1])  # Output: NOHTYP\nMemory: [::-1] = reverse sequence\n\n6. len()\ns = \"Python\"\nprint(len(s))   # Output: 6"
+              },
+              {
+                "type": "callout",
+                "icon": "🧰",
+                "title": "7. High-Value String Methods",
+                "content": "• lower(): \"HELLO\".lower() → \"hello\"\n• upper(): \"hello\".upper() → \"HELLO\"\n• strip(): Removes leading and trailing whitespace:\n  \"  Hello  \".strip() → \"Hello\"\n  (NCERT also distinguishes lstrip() for left, rstrip() for right)"
+              }
+            ]
+          },
+          {
+            "title": "8. replace(), 9. split() [String → List], 10. join() & 11. in / not in",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "8. replace(old, new)\ns = \"Hello World\"\nprint(s.replace(\"World\", \"India\"))  # Output: Hello India\n\n9. split()\nConverts a string into a list of words/substrings using a delimiter (default: whitespace):\ns = \"India is great\"\nprint(s.split())  # Output: ['India', 'is', 'great']\n\n🧠 Mental Picture: String → List\n\"India is great\"  ──split()──>  ['India', 'is', 'great']"
+              },
+              {
+                "type": "text",
+                "content": "10. join()\nOpposite of split(): joins a list/sequence of strings into a single string using a separator:\nprint(\"-\".join(\"ABC\"))  # Output: A-B-C\nprint(\" \".join(['India', 'is', 'great']))  # Output: India is great\n\n11. String Membership (in / not in):\nprint(\"Py\" in \"Python\")    # Output: True\nprint(\"Java\" in \"Python\")  # Output: False"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Lists & Tuples: Mutability Differences & Operations (NCERT kecs105/110)",
+        "sections": [
+          {
+            "title": "12–14. List Mutability & High-Yield Operations (append, pop, remove)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "12. List\na = [10, 20, 30]\nEnclosed in square brackets [ ], ordered, indexed, mutable.\n\n13. List is Mutable (Big Contrast!):\na = [10, 20, 30]\na[1] = 100\nprint(a)  # Output: [10, 100, 30] ✅ Allowed!\n\nSummary of Mutability:\n• STRING → Immutable\n• TUPLE  → Immutable\n• LIST   → Mutable\n• DICT   → Mutable"
+              },
+              {
+                "type": "diagram",
+                "content": "14. High-Yield List Operations:\n\n• append(item): Add one item to the tail\n  a = [10, 20]\n  a.append(30)  → [10, 20, 30]\n\n• pop([index]): Removes & returns item (default: last item)\n  a = [10, 20, 30]\n  x = a.pop()   → x = 30, a = [10, 20]\n\n• remove(value): Removes the first occurrence of a specific VALUE\n  a = [10, 20, 30]\n  a.remove(20)  → a = [10, 30]"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "pop() vs remove() Distinction",
+                "content": "remove(val) → Removes by VALUE\npop(idx)    → Removes by INDEX/POSITION (returns the popped item)"
+              }
+            ]
+          },
+          {
+            "title": "15. Tuples, 16. Single-Element Trap & 17. Tuple Functions",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "15. Tuple\nt = (10, 20, 30)\nEnclosed in parentheses ( ), ordered sequence, indexed from 0.\nMost important feature: Tuple is IMMUTABLE."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "16. Single-Element Tuple Trap (NCERT kecs110)",
+                "content": "x = (10)   → This is just an integer (10)!\nx = (10,)  → This is a single-element TUPLE.\n\nNCERT explicitly notes: A single-element tuple requires a trailing comma!\n(10)  → int\n(10,) → tuple"
+              },
+              {
+                "type": "text",
+                "content": "17. Tuple Functions (NCERT kecs108):\nt = (10, 20, 30, 20)\n• len(t)       → 4\n• t.count(20)  → 2 (frequency of value 20)\n• t.index(30)  → 2 (index of first occurrence of 30)\n• sum(t), min(t), max(t), sorted(t)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Dictionaries & Sets: Hash Mappings & Unique Collections (NCERT kecs110)",
+        "sections": [
+          {
+            "title": "18–20. Dictionary Structure, Access & get() Safe Lookup",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "18. Dictionary\n🧠 MENTAL PICTURE: Phone Contacts (Name → Number)\nRavi → 9876, Aman → 9123\n\nstudent = {\n    \"name\": \"Ravi\",\n    \"marks\": 90\n}\n\nNCERT defines a dictionary as an associative mapping between keys and values; keys must be unique and of immutable types (kecs110)."
+              },
+              {
+                "type": "text",
+                "content": "19. Accessing Values:\nstudent = {\"name\": \"Ravi\", \"marks\": 90}\nprint(student[\"name\"])   # Output: Ravi\n# If key missing with [ ]: raises KeyError!\n\n20. get(key) Method (Safe Lookup):\nd = {\"name\": \"Ravi\", \"age\": 20}\nprint(d.get(\"age\"))   # Output: 20\nprint(d.get(\"city\"))  # Output: None (does NOT crash with KeyError!)\n\nMemory: get(key) → retrieves value safely without error."
+              }
+            ]
+          },
+          {
+            "title": "21–25. keys(), values(), items(), update() & clear() vs del",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Dictionary Methods (NCERT kecs110):\nd = {\"name\": \"Ravi\", \"age\": 20}\n\n• d.keys()   → dict_keys(['name', 'age'])      (All keys: K)\n• d.values() → dict_values(['Ravi', 20])        (All values: V)\n• d.items()  → [('name','Ravi'), ('age',20)]    (Key-Value pairs: K+V)\n\n• update():\n  a = {\"name\": \"Ravi\"}\n  b = {\"age\": 20}\n  a.update(b)  → a becomes {\"name\": \"Ravi\", \"age\": 20}\n\n• clear() vs del:\n  d.clear() → empties dictionary to {}\n  del d     → deletes dictionary object from memory entirely"
+              },
+              {
+                "type": "callout",
+                "icon": "🔑",
+                "title": "Dict Memory Trio",
+                "content": "keys()   → K (Keys only)\nvalues() → V (Values only)\nitems()  → K + V (Pairs as tuples)"
+              }
+            ]
+          },
+          {
+            "title": "26. Sets & 27. Master Collection Comparison Table",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "26. Set\nNCERT describes a set as an unordered collection of unique elements enclosed in curly braces { } (kecs105).\n\ns = {1, 2, 2, 3}\nprint(s)  # Conceptually: {1, 2, 3} (duplicate 2 removed automatically)\n\nMemory: Set = Unordered + Unique (duplicates eliminated)"
+              },
+              {
+                "type": "diagram",
+                "content": "🔥 27. Master Python Collection Comparison Table:\n\nType       │ Symbol   │ Mutable? │ Key Idea\n───────────┼──────────┼──────────┼──────────────────────────────────────\nString     │ \" \" / ' '│ No       │ Immutable sequence of characters\nList       │ [ ]      │ Yes      │ Ordered, editable sequence\nTuple      │ ( )      │ No       │ Ordered, fixed sequence\nDictionary │ {k: v}   │ Yes      │ Key-value associative mapping\nSet        │ {values} │ Yes      │ Unordered, unique elements only"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 28 White-Paper Master Sheet & Recall",
+        "sections": [
+          {
+            "title": "Day 28 White-Paper Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "🧠 Day 28 White-Paper Master Sheet\nDraw and mentally verify:\n\nSTRING\n→ immutable\n→ index: 0 first, -1 last\n→ slice: [start:end] (end excluded)\n→ [::-1] reverse\nMethods: lower(), upper(), strip(), replace(), split(), join()\n\nLIST [ ]\n→ mutable\n→ append(x) (tail), pop() (last/index), remove(val) (by value)\n\nTUPLE ( )\n→ immutable\n→ (10,) single tuple with comma\n→ count(), index()\n\nDICTIONARY {k:v}\n→ get(key) safe access\n→ keys(), values(), items()\n→ update(), clear()\n\nSET { }\n→ unique elements (no duplicates)\n→ unordered"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 28 Checkpoint Test",
+      "subtitle": "20 Questions: Strings, Lists, Tuples, Dictionaries, Sets & NCERT Python Methods",
+      "questions": [
+        {
+          "id": "m-d28-q1",
+          "question": "Q1. What is the output?\ns = \"PYTHON\"\nprint(s[0])",
+          "options": [
+            "Y",
+            "P",
+            "N",
+            "0",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Python strings use 0-based indexing. s[0] accesses the first character 'P'. Correct: (B) P."
+        },
+        {
+          "id": "m-d28-q2",
+          "question": "Q2. What is the output?\ns = \"PYTHON\"\nprint(s[-1])",
+          "options": [
+            "P",
+            "Y",
+            "N",
+            "-1",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Negative index -1 accesses the last character of the string, which is 'N'. Correct: (C) N."
+        },
+        {
+          "id": "m-d28-q3",
+          "question": "Q3. What happens?\ns = \"Python\"\ns[0] = \"J\"",
+          "options": [
+            "Jython",
+            "Python",
+            "Error because strings are immutable",
+            "J",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Strings in Python are immutable; individual characters cannot be reassigned in-place. This raises a TypeError. Correct: (C) Error because strings are immutable."
+        },
+        {
+          "id": "m-d28-q4",
+          "question": "Q4. What is the output?\ns = \"PYTHON\"\nprint(s[1:4])",
+          "options": [
+            "PYT",
+            "YTH",
+            "YTHO",
+            "THO",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Slicing s[1:4] includes indices 1, 2, and 3 ('Y', 'T', 'H') while excluding index 4. Output: 'YTH'. Correct: (B) YTH."
+        },
+        {
+          "id": "m-d28-q5",
+          "question": "Q5. What is the output?\nprint(\"ABC\"[::-1])",
+          "options": [
+            "ABC",
+            "CBA",
+            "BAC",
+            "ACB",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Slice step -1 reverses the sequence: \"ABC\"[::-1] produces \"CBA\". Correct: (B) CBA."
+        },
+        {
+          "id": "m-d28-q6",
+          "question": "Q6. What does strip() primarily remove?",
+          "options": [
+            "All letters",
+            "Leading and trailing spaces",
+            "Only middle spaces",
+            "Numbers",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The strip() method removes leading and trailing whitespace characters from both ends of the string. Correct: (B) Leading and trailing spaces."
+        },
+        {
+          "id": "m-d28-q7",
+          "question": "Q7. What is the result?\n\"Hello World\".replace(\"World\",\"India\")",
+          "options": [
+            "Hello World India",
+            "Hello India",
+            "India World",
+            "Error",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "replace(old, new) replaces occurrences of 'World' with 'India', returning 'Hello India'. Correct: (B) Hello India."
+        },
+        {
+          "id": "m-d28-q8",
+          "question": "Q8. split() commonly converts a string into a:",
+          "options": [
+            "Integer",
+            "List of parts",
+            "Dictionary",
+            "Set only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "split() breaks a string by a delimiter (default: whitespace) and returns a list of substrings. Correct: (B) List of parts."
+        },
+        {
+          "id": "m-d28-q9",
+          "question": "Q9. Which Python structure is mutable?",
+          "options": [
+            "String",
+            "Tuple",
+            "List",
+            "More than one of A and B",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Lists are mutable (elements can be added, updated, or removed in place). Strings and Tuples are immutable. Correct: (C) List."
+        },
+        {
+          "id": "m-d28-q10",
+          "question": "Q10. What is the output?\na = [10,20]\na.append(30)\nprint(a)",
+          "options": [
+            "[30,10,20]",
+            "[10,20,30]",
+            "[10,20]",
+            "Error",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "append() inserts the value at the end of the list: [10, 20, 30]. Correct: (B) [10,20,30]."
+        },
+        {
+          "id": "m-d28-q11",
+          "question": "Q11. After:\na = [10,20,30]\nx = a.pop()\nWhat is x?",
+          "options": [
+            "10",
+            "20",
+            "30",
+            "[10,20]",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "By default, pop() removes and returns the last element from the list, so x = 30. Correct: (C) 30."
+        },
+        {
+          "id": "m-d28-q12",
+          "question": "Q12. Which removes a specified value from a list?",
+          "options": [
+            "remove()",
+            "append()",
+            "join()",
+            "keys()",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "remove(val) searches for the specified value and removes its first occurrence from the list. Correct: (A) remove()."
+        },
+        {
+          "id": "m-d28-q13",
+          "question": "Q13. Which is a single-element tuple?",
+          "options": [
+            "(10)",
+            "[10]",
+            "(10,)",
+            "{10:}",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In Python, a single-element tuple requires a trailing comma: (10,). Without the comma, (10) evaluates as a parenthesized integer. Correct: (C) (10,)."
+        },
+        {
+          "id": "m-d28-q14",
+          "question": "Q14. What is the output?\nt = (10,20,30,20)\nprint(t.count(20))",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "count(x) returns the number of times element x appears in the tuple. 20 appears twice. Correct: (B) 2."
+        },
+        {
+          "id": "m-d28-q15",
+          "question": "Q15. A dictionary primarily stores:",
+          "options": [
+            "Characters only",
+            "Key-value pairs",
+            "Unique numbers only",
+            "Immutable sequences only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A dictionary is an associative data structure storing key-value pairs mapping unique keys to values. Correct: (B) Key-value pairs."
+        },
+        {
+          "id": "m-d28-q16",
+          "question": "Q16. What is the output?\nd = {\"name\":\"Ravi\", \"marks\":90}\nprint(d[\"marks\"])",
+          "options": [
+            "Ravi",
+            "marks",
+            "90",
+            "name",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Accessing d[\"marks\"] looks up the value associated with key 'marks', which is 90. Correct: (C) 90."
+        },
+        {
+          "id": "m-d28-q17",
+          "question": "Q17. What does d.keys() return conceptually?",
+          "options": [
+            "Dictionary values",
+            "Dictionary keys",
+            "Only first item",
+            "Dictionary length",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "d.keys() returns a view object displaying all the keys of the dictionary. Correct: (B) Dictionary keys."
+        },
+        {
+          "id": "m-d28-q18",
+          "question": "Q18. What does d.items() provide?",
+          "options": [
+            "Keys only",
+            "Values only",
+            "Key-value pairs",
+            "Only dictionary size",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "d.items() returns a view of key-value pairs formatted as (key, value) tuple pairs. Correct: (C) Key-value pairs."
+        },
+        {
+          "id": "m-d28-q19",
+          "question": "Q19. A set is best remembered as:",
+          "options": [
+            "Ordered duplicate-only collection",
+            "Unique unordered collection",
+            "Key-value mapping",
+            "Immutable string",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A set is an unordered collection of unique elements where duplicates are automatically eliminated. Correct: (B) Unique unordered collection."
+        },
+        {
+          "id": "m-d28-q20",
+          "question": "Q20. Which memory rule is correct?",
+          "options": [
+            "List → immutable; Tuple → mutable",
+            "String → mutable; Set → immutable",
+            "List → mutable; Tuple → immutable",
+            "Dictionary → immutable",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Lists are mutable (can be altered in-place), whereas Tuples and Strings are immutable. Correct: (C) List → mutable; Tuple → immutable."
         }
       ]
     }
