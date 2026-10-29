@@ -1,0 +1,8 @@
+# robots.txt for BPSC TRE 4.0 Computer Science Prep Hub (https://tre4ct.aiwazir.com)
+User-agent: *
+Allow: /
+Disallow: /notes/
+Disallow: /analytics_db.json
+Disallow: /payments_db.json
+
+Sitemap: https://tre4ct.aiwazir.com/sitemap.xml

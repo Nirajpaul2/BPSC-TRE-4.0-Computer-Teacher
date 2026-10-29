@@ -3372,5 +3372,64 @@ pre.code-block {
   color: #475569 !important;
 }
 
+/* ==========================================================================
+   SEO FAQ ACCORDION STYLES
+   ========================================================================== */
+.faq-accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.15rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.faq-item[open] {
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary .faq-icon {
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.faq-item[open] summary .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-content {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+
 
 
