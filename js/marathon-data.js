@@ -19071,6 +19071,508 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 34,
+    "dayId": "day-34",
+    "badge": "Day 34",
+    "title": "TRE 4.0 — Day 34",
+    "unit": "Part III (CS) • Data Communication: Simplex/Duplex Modes, Guided/Unguided Media, Multiplexing (FDM/TDM) & Switching",
+    "targetTime": "20–25 mins read + 25 mins test",
+    "summary": "Data Communication Fundamentals (TRE 2.0 Paper-Backed Core & NCERT Class XII): Data Communication Definition & 5 Components (Sender, Message, Medium, Receiver, Protocol [SMMRP]), Transmission Modes (Simplex one-way [keyboard-to-computer TRE 2.0], Half-Duplex turn-based [walkie-talkie], Full-Duplex simultaneous [telephone]), Transmission Media (Guided: Twisted pair copper, Coaxial shielded, Optical fiber light pulses [highest speed TRE 2.0]; Unguided: Radio waves, Microwaves line-of-sight/satellite, Infrared TV remote [TRE 2.0 wireless media]), Multiplexing Techniques (FDM frequency division vs TDM time slots, TDM frame terminology trap), Switching Techniques (Circuit Switching dedicated path vs Packet Switching shared network packets & reassembly), Channel Performance (Bandwidth capacity vs Bit rate bps), TRE 2.0 TCP & Socket Review, Day 34 White-Paper Master Sheet & 8 Exam Traps, and 25-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Components & Communication Modes",
+        "goal": "Master the 5 components (SMMRP) and differentiate Simplex (one-way), Half-Duplex (turn-based), and Full-Duplex (simultaneous)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Transmission Media (Guided vs Unguided)",
+        "goal": "Compare Twisted Pair, Coaxial, and Optical Fiber (highest speed), plus wireless media (Radio, Microwave, Infrared)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Multiplexing & Switching Techniques",
+        "goal": "Contrast FDM (frequency) vs TDM (time slots), TDM frame structure, and Circuit Switching (dedicated) vs Packet Switching (shared)"
+      }
+    ],
+    "introNote": "Today has several direct TRE 2.0 anchors. The paper asks: computer-to-keyboard communication type, wireless media, TDM, TCP, socket, and the fastest transmission medium. Your NCERT Class XII syllabus also explicitly includes data communication components, capacity, types of communication, switching techniques, transmission media, mobile technologies and protocols.",
+    "parts": [
+      {
+        "title": "Part III — Data Communication Foundations & Transmission Modes",
+        "sections": [
+          {
+            "title": "1. Data Communication & 2. Five Basic Components (SMMRP)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Sending a Message",
+                "content": "Imagine sending a WhatsApp message:\nYOU → Message → Network → FRIEND\n\nFor communication, think of five things:\n• SENDER\n• MESSAGE\n• MEDIUM\n• RECEIVER\n• PROTOCOL\n\nMemory mnemonic: S M M R P"
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nData communication = transfer of data between devices through a communication medium.\n\nFive Basic Components:\n1. Sender — Device that creates and transmits data (computer, workstation, phone).\n2. Message — Information or data to be communicated (text, number, audio, video).\n3. Medium — Physical transmission path over which message travels (cables, radio waves).\n4. Receiver — Device that receives the transmitted message.\n5. Protocol — Set of rules that governs data communication (without a protocol, two devices may be connected but cannot communicate)."
+              }
+            ]
+          },
+          {
+            "title": "3–6. Direction of Communication: Simplex, Half-Duplex & Full-Duplex",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Three fundamental communication directions:\n• Simplex\n• Half-Duplex\n• Full-Duplex\n\n4. Simplex (Direct TRE 2.0 Anchor)\nOne-way road: A ─────────→ B (Only one side can send).\nClassic Example: Keyboard ─────→ Computer.\nTRE 2.0 directly asks for the communication mode between a computer and keyboard; the textbook answer is Simplex.\nMemory: Simplex = ONE direction.\n\n5. Half-Duplex\nBoth sides can communicate, but NOT simultaneously.\nMental: A ─────→ B, then A ←───── B.\nClassic Example: Walkie-talkie (One person speaks: \"Over\", then the other speaks).\nMemory: Half-duplex = BOTH, but ONE AT A TIME.\n\n6. Full-Duplex\nBoth sides can communicate at the same time.\nMental: A ←────────→ B.\nClassic Conceptual Example: Telephone conversation.\nMemory: Full-duplex = BOTH simultaneously."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Simplex vs Half vs Full Comparison",
+                "content": "SIMPLEX:\nA ─────→ B (ONE WAY: Keyboard → PC)\n\nHALF DUPLEX:\nA ─────→ B\nA ←───── B (BOTH, one at a time: Walkie-talkie)\n\nFULL DUPLEX:\nA ←────→ B (BOTH AT SAME TIME: Telephone)\n\nWhite-paper sentence: Simplex ONE, Half TURN, Full TOGETHER"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Transmission Media: Guided (Wired) vs Unguided (Wireless)",
+        "sections": [
+          {
+            "title": "7–11. Guided / Wired Media: Twisted Pair, Coaxial & Optical Fiber",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Transmission media are divided into:\nTRANSMISSION MEDIA\n  ├── GUIDED / WIRED (bounded)\n  └── UNGUIDED / WIRELESS (unbounded)\n\n8. Guided / Wired Media (High-Yield Three):\n• Twisted Pair: Two insulated copper wires twisted together to reduce crosstalk/interference. Cheap, flexible, easy to install, common in LANs. Lower bandwidth and more susceptible to electromagnetic interference (EMI) than fiber.\n• Coaxial Cable: Central copper conductor surrounded by dielectric insulation, metallic shield, and outer jacket. Better shielding against EMI, historically common in cable TV and early Ethernet.\n• Optical Fiber: Transmits data as LIGHT pulses through glass or plastic cores."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Optical Fiber (Direct TRE 2.0 Anchor)",
+                "content": "Key exam facts:\n• Uses LIGHT reflection (Total Internal Reflection)\n• Highest bandwidth & highest transmission speed\n• Long-distance transmission with low attenuation\n• Completely immune to electromagnetic interference (EMI)\n\nTRE 2.0 directly asks which among coaxial, twisted pair, and optical fiber provides the highest transmission speed: Optical Fiber.\nMemory: Fiber = LIGHT = FASTEST"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Wired Media Speed Order",
+                "content": "Twisted Pair  (Lowest cost, moderate speed)\n     ↓\nCoaxial Cable (Moderate speed, good shielding)\n     ↓\nOptical Fiber (Highest speed, light transmission, highest bandwidth)"
+              }
+            ]
+          },
+          {
+            "title": "12–15. Unguided / Wireless Media: Radio, Microwave & Infrared",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 2.0 directly lists Radio waves, Microwaves, and Infrared as wireless transmission media possibilities.\n\n13. Radio Waves\n• Omnidirectional antennas emitting electromagnetic waves in all directions.\n• Penetrable through walls, useful for wireless multicasting, radio, and mobile communications.\nMemory: Radio = wireless electromagnetic transmission.\n\n14. Microwave\n• Directional line-of-sight communication between towers (terrestrial microwave).\n• Also used for satellite communication links where signals travel to orbiting satellites.\nMemory: Microwave → directional / satellite-type communication.\n\n15. Infrared\n• Extremely high frequency, cannot penetrate solid walls.\n• Used for short-range, line-of-sight local communication.\nClassic Example: TV remote control.\nMemory: Infrared = remote control / short-range."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Multiplexing & Switching Techniques",
+        "sections": [
+          {
+            "title": "16–18. Multiplexing: FDM vs TDM & The TRE 2.0 TDM Trap",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Multiplexing Road Sharing",
+                "content": "Imagine four people needing to use one shared road:\nA ─┐\nB ─┤\nC ─┼── ONE COMMUNICATION CHANNEL\nD ─┘\nMultiplexing allows multiple signals or data streams to share a single transmission channel."
+              },
+              {
+                "type": "text",
+                "content": "17. FDM — Frequency Division Multiplexing\n• Divides the channel bandwidth into distinct non-overlapping frequency bands.\n• Different users transmit simultaneously on separate frequency carriers.\nMental: Channel = | F1 | F2 | F3 | F4 | (Like separate lanes on a highway).\nMemory: FDM → Frequency divided.\n\n18. TDM — Time Division Multiplexing\n• Divides the channel time into discrete time slots.\n• Users transmit on the entire frequency band, but taking sequential turns.\nMental: TIME → | A | B | C | A | B | C | (Same lane, different turns).\nMemory: TDM → Time slots."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Important TRE 2.0 TDM Terminology Trap",
+                "content": "TRE 2.0 Q147 asks about TDM slot division.\nStandard networking textbook terminology is universally:\nTDM FRAME\n  ↓ is divided into\nTIME SLOTS\n\n(A TDM frame contains multiple time slots assigned to different users, NOT the reverse).\nMemory: Frame contains Time Slots | FDM = Frequency lanes, TDM = Time turns."
+              }
+            ]
+          },
+          {
+            "title": "19–21. Switching: Circuit Switching vs Packet Switching",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "19. Switching Concepts\nTechniques used to route information from source to destination across multiple network nodes.\n\n20. Circuit Switching\n• A dedicated, physical communication path is established prior to data transfer and reserved for the duration of the session.\n• Classic example: Traditional public switched telephone network (PSTN).\nMemory: Circuit = Dedicated path.\n\n21. Packet Switching\n• Messages are broken down into discrete smaller units called packets.\n• Packets travel independently through shared network links, potentially taking different routes, and are reassembled at the destination.\n• Classic example: Modern Internet (IP) networking.\nMemory: Packet switching = Break → Send → Reassemble."
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "Circuit Switching vs Packet Switching Comparison",
+                "content": "Feature           | Circuit Switching               | Packet Switching\n──────────────────|─────────────────────────────────|───────────────────────────────\nPath Type         | Dedicated physical path         | Shared, dynamic network links\nSetup Phase       | Pre-established connection call | No pre-reserved dedicated path\nResource Usage    | Reserved (wasted during pauses) | Highly efficient dynamic sharing\nClassic Analogy   | Traditional telephone network   | Modern Internet (IP packets)\nWhite-Paper Note  | Dedicated road                  | Shared road + small packets"
+              }
+            ]
+          },
+          {
+            "title": "22–25. Channel Metrics & TRE 2.0 TCP / Socket Anchors",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "22. Bandwidth\n• Data-carrying capacity of a communication channel.\n• Mental: Small pipe = less data; Big pipe = more data.\nMemory: Bandwidth = capacity.\n\n23. Bit Rate\n• The number of bits transmitted per second.\n• Expressed in: bps, Kbps, Mbps, Gbps.\nMemory: Bit rate = bits / second.\n\n24. TCP Anchor (Direct TRE 2.0 Question)\nTRE 2.0 tests TCP properties with \"More than one of the above\":\n• Connection-oriented\n• 3-Way Handshake (SYN → SYN-ACK → ACK)\n• Stream of application bytes.\n\n25. Socket Anchor (Direct TRE 2.0 Question)\nTRE 2.0 directly asks for an endpoint of an inter-process communication flow across a network: Socket (IP + Port)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 34 White-Paper Master Sheet & Exam Traps",
+        "sections": [
+          {
+            "title": "Day 34 White-Paper Master Sheet & 8 Critical Traps",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 34 White-Paper Master Sheet",
+                "content": "DATA COMMUNICATION:\nSender → Message → Medium → Receiver (governed by Protocol)\n\nDIRECTION OF COMMUNICATION:\n• Simplex      → One way (Keyboard → Computer)\n• Half-Duplex  → Both ways, one at a time (Walkie-talkie)\n• Full-Duplex  → Both ways simultaneously (Telephone)\n\nTRANSMISSION MEDIA:\n• Guided/Wired:   Twisted Pair → Coaxial → Optical Fiber (LIGHT, fastest)\n• Unguided/Radio: Radio waves, Microwaves (directional/satellite), Infrared (TV remote)\n\nMULTIPLEXING:\n• FDM → Divide Frequency bands (parallel lanes)\n• TDM → Divide Time slots (Frame contains Time Slots)\n\nSWITCHING:\n• Circuit Switching → Dedicated path (Telephone)\n• Packet Switching  → Packets + shared network (Internet)\n\nPERFORMANCE:\n• Bandwidth = Channel capacity\n• Bit rate  = Bits per second (bps)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "8 Critical Day 34 Exam Traps",
+                "content": "1. Keyboard → Computer in TRE 2.0 is Simplex (one-way only).\n2. Half-duplex is NOT one-way: both communicate, but one at a time.\n3. Full-duplex = both directions simultaneously.\n4. Optical fiber is faster than twisted pair and coaxial in TRE 2.0.\n5. Radio, microwave, and infrared are all wireless media.\n6. FDM = Frequency; TDM = Time.\n7. Standard TDM: A Frame contains Time Slots.\n8. Circuit switching = dedicated path; Packet switching = shared network."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 34 Checkpoint Test",
+      "subtitle": "Data Communication, Duplex Modes, Media, FDM/TDM Multiplexing & Switching",
+      "questions": [
+        {
+          "id": "m-d34-q1",
+          "question": "Q1. Data communication mainly refers to:",
+          "options": [
+            "Transfer of data between communicating devices",
+            "Sorting an array",
+            "Database normalization",
+            "Compilation only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Data communication is the exchange/transfer of data between devices across a transmission medium. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q2",
+          "question": "Q2. Which is a basic component of data communication?",
+          "options": [
+            "Sender",
+            "Receiver",
+            "Medium",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "The five core components are Sender, Message, Medium, Receiver, and Protocol (SMMRP). Therefore, (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d34-q3",
+          "question": "Q3. In simplex transmission, communication occurs:",
+          "options": [
+            "In one direction only",
+            "In both directions simultaneously",
+            "In both directions one at a time",
+            "Without any medium",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Simplex mode is unidirectional: information travels in one direction only from sender to receiver. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q4",
+          "question": "Q4. In the basic TRE 2.0 model, keyboard-to-computer communication is:",
+          "options": [
+            "Simplex",
+            "Half-duplex",
+            "Full-duplex",
+            "Multiplex",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In textbook networking and as tested in TRE 2.0, keyboard-to-computer communication is the classic example of Simplex transmission. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q5",
+          "question": "Q5. Walkie-talkie communication is a common example of:",
+          "options": [
+            "Simplex",
+            "Half-duplex",
+            "Full-duplex",
+            "FDM only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In walkie-talkie communication, both parties can transmit and receive, but only one party can speak at a time (Half-duplex). Correct: (B)."
+        },
+        {
+          "id": "m-d34-q6",
+          "question": "Q6. A normal telephone conversation is a conceptual example of:",
+          "options": [
+            "Simplex",
+            "Half-duplex",
+            "Full-duplex",
+            "TDM only",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A telephone conversation allows both parties to speak and hear each other simultaneously (Full-duplex). Correct: (C)."
+        },
+        {
+          "id": "m-d34-q7",
+          "question": "Q7. Which matching is correct?",
+          "options": [
+            "Simplex → one way",
+            "Half-duplex → both directions, one at a time",
+            "Full-duplex → both directions simultaneously",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three matchings are definitionally correct. Hence (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d34-q8",
+          "question": "Q8. Which is guided/wired transmission media?",
+          "options": [
+            "Twisted pair",
+            "Coaxial cable",
+            "Optical fiber",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Twisted pair, coaxial cable, and optical fiber are all physical/guided transmission media. Correct: (D)."
+        },
+        {
+          "id": "m-d34-q9",
+          "question": "Q9. Which uses light to transmit information?",
+          "options": [
+            "Twisted pair",
+            "Optical fiber",
+            "Coaxial cable",
+            "Radio only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Optical fiber transmits digital information as pulses of light through high-purity glass or plastic fibers via total internal reflection. Correct: (B)."
+        },
+        {
+          "id": "m-d34-q10",
+          "question": "Q10. Among twisted pair, coaxial and optical fiber, the TRE 2.0 paper's highest-speed choice is:",
+          "options": [
+            "Twisted pair",
+            "Coaxial",
+            "Optical fiber",
+            "All identical",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Optical fiber provides vastly higher transmission speed, bandwidth, and resistance to interference compared to electrical copper cables. Correct: (C)."
+        },
+        {
+          "id": "m-d34-q11",
+          "question": "Q11. Which are wireless media?",
+          "options": [
+            "Radio waves",
+            "Microwaves",
+            "Infrared",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Radio waves, microwaves, and infrared are all unbounded wireless transmission media directly tested in TRE 2.0. Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d34-q12",
+          "question": "Q12. Which is commonly associated with a TV remote-control example?",
+          "options": [
+            "Infrared",
+            "Optical fiber",
+            "Twisted pair",
+            "Coaxial",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TV remote controls use Infrared signals for short-range, line-of-sight communication. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q13",
+          "question": "Q13. FDM stands for:",
+          "options": [
+            "Frequency Division Multiplexing",
+            "Frame Data Multiplexing",
+            "Full Duplex Modulation",
+            "Frequency Data Mapping",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "FDM stands for Frequency Division Multiplexing, where the total bandwidth is divided into separate frequency sub-bands. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q14",
+          "question": "Q14. TDM stands for:",
+          "options": [
+            "Transmission Data Mode",
+            "Time Division Multiplexing",
+            "Total Data Multiplexing",
+            "Time Duplex Method",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "TDM stands for Time Division Multiplexing, where multiple signals share a channel by taking designated time slots. Correct: (B)."
+        },
+        {
+          "id": "m-d34-q15",
+          "question": "Q15. FDM separates users mainly by:",
+          "options": [
+            "Time",
+            "Frequency",
+            "IP address",
+            "MAC address",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "FDM separates user channels by allocating distinct frequency ranges. Correct: (B)."
+        },
+        {
+          "id": "m-d34-q16",
+          "question": "Q16. TDM separates channel use mainly by:",
+          "options": [
+            "Frequency bands",
+            "Time slots",
+            "IP addresses",
+            "Optical wavelength only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "TDM separates signals by allocating discrete time slices or slots in round-robin fashion. Correct: (B)."
+        },
+        {
+          "id": "m-d34-q17",
+          "question": "Q17. In standard TDM terminology:",
+          "options": [
+            "Frames contain time slots",
+            "Time slots contain frames",
+            "There are no frames",
+            "TDM means frequency division",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In standard computer network literature, a TDM frame consists of multiple discrete time slots assigned to different senders. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q18",
+          "question": "Q18. Circuit switching is best remembered as:",
+          "options": [
+            "Dedicated communication path",
+            "Every bit follows a different protocol",
+            "Database locking",
+            "No connection ever exists",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Circuit switching establishes and reserves a dedicated end-to-end physical communication path between sender and receiver for the entire duration of the call. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q19",
+          "question": "Q19. Packet switching involves:",
+          "options": [
+            "Breaking data into packets",
+            "Sending packets through a shared network",
+            "Reassembling received information",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In packet switching, data is chunked into discrete packets, transmitted independently over shared network routes, and reassembled at the destination. Correct: (D)."
+        },
+        {
+          "id": "m-d34-q20",
+          "question": "Q20. Which is most closely associated with Internet communication?",
+          "options": [
+            "Packet switching",
+            "Only dedicated circuit switching",
+            "Bubble sort",
+            "Paging",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Internet is fundamentally a packet-switched network operating on the TCP/IP protocol suite. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q21",
+          "question": "Q21. Bandwidth is best understood at basic exam level as:",
+          "options": [
+            "Communication-channel capacity",
+            "Number of CPU registers",
+            "Database table size only",
+            "Number of Python loops",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bandwidth represents the maximum data-carrying capacity or frequency range of a communication channel. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q22",
+          "question": "Q22. Mbps is a unit related to:",
+          "options": [
+            "Data rate",
+            "Voltage",
+            "File name",
+            "IP class only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Mbps (Megabits per second) is a standard unit of digital transmission speed or data rate. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q23",
+          "question": "Q23. Which statement about TCP matches the TRE 2.0 paper?",
+          "options": [
+            "It is connection-oriented",
+            "It uses a three-way handshake",
+            "More than one of the above",
+            "It is purely connectionless",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In TRE 2.0, TCP is tested as both connection-oriented and utilizing a 3-way handshake, making (C) More than one of the above the correct answer. Correct: (C)."
+        },
+        {
+          "id": "m-d34-q24",
+          "question": "Q24. An endpoint of network inter-process communication is called:",
+          "options": [
+            "Socket",
+            "Stack",
+            "Queue",
+            "Frame",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In network programming and tested in TRE 2.0, the endpoint of an inter-process communication link is a Socket. Correct: (A)."
+        },
+        {
+          "id": "m-d34-q25",
+          "question": "Q25. Which master memory rule is correct?",
+          "options": [
+            "FDM → Frequency, TDM → Time",
+            "Simplex → simultaneous two-way",
+            "Optical fiber → electrical copper only",
+            "Packet switching → dedicated path only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "FDM divides frequency and TDM divides time. Simplex is one-way, optical fiber uses light, and packet switching uses shared paths. Correct: (A)."
+        }
+      ]
+    }
   }
 ];
 
