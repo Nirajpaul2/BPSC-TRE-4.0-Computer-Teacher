@@ -23072,6 +23072,535 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 42,
+    "dayId": "day-42",
+    "badge": "Day 42",
+    "title": "TRE 4.0 — Day 42",
+    "unit": "Part III (CS) • 🔥 Final Revision I: Digital Logic + DSA + DBMS + Operating System",
+    "targetTime": "20 mins recall + 40 mins test",
+    "summary": "Comprehensive Final Revision Module I synthesizing four core high-yield pillars frequently tested in BPSC TRE 2.0/3.0: Sheet A — Digital Logic (Basic/Universal gates, 2^n truth table rows, 4-input OR 16 rows, binary bitwise AND, Half/Full Adder, SR/JK/D/T flip-flops, MUX/DEMUX 2^n to n, BCD 4-bit per digit, Gray code 1-bit difference, PLA); Sheet B — Data Structures (Array O(1) random index access, Stack LIFO & call stack/undo, Queue FIFO, Tree traversals NLR/LNR/LRN, BST sorted inorder, Heap Max/Min & Priority Queue, Graph BFS Queue / DFS Stack, Spanning Tree V-1 edges, Linear vs Binary search, Bubble/Selection/Insertion/Merge sort); Sheet C — DBMS (Relational model Row=Record/Col=Attribute, Primary/Foreign/Super keys, 1NF/2NF/3NF normal forms, SQL CRUD, WHERE vs HAVING, Aggregates, ACID properties, Transaction control); Sheet D — Operating System (Process states, PCB, Scheduling FCFS/SJF/RR/Priority, Paging Virtual vs Frame Physical, Offset bits 4 KB = 2^12 to 12 bits, TLB associative cache, Thrashing excessive paging, Internal vs External fragmentation, Thread shared vs private memory, FCFS disk head calculation 640 cylinders); High-Yield Traps; and 40 Practice Test questions with answer keys and full explanations.",
+    "targets": [
+      {
+        "section": "Part III – CS (Digital Logic & DSA)",
+        "topic": "Gates, Adders, Flip-Flops, Arrays, Stacks, Queues, Trees & Graphs",
+        "goal": "Solidify truth table rows (2^n), universal gates, half/full adder equations, flip-flop states, array O(1) index access, BST inorder sorted sequence, and graph traversal primitives"
+      },
+      {
+        "section": "Part III – CS (DBMS & Operating System)",
+        "topic": "Relational Model, Normalization, SQL, Paging, TLB, Thrashing, Threads & Disk Scheduling",
+        "goal": "Master primary/foreign keys, 1NF/2NF/3NF dependencies, WHERE vs HAVING, virtual page vs physical frame, 4 KB 12-bit offset, TLB associative cache, and FCFS disk head movement"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "🧠 Phase 1 — 10-Minute White-Paper Recall: Sheet A — Digital Logic",
+        "content": "\n<div class=\"callout callout-tip\">\n  <strong>🔥 10-Minute White-Paper Recall:</strong> Before attempting the test, mentally reproduce these 4 foundational recall sheets. These four areas represent the largest cluster of recurring questions in BPSC TRE papers.\n</div>\n\n<h3>1. Basic Logic Gates & Truth Table Capacity</h3>\n<p>Logic gates perform fundamental Boolean operations on binary inputs:</p>\n<ul>\n  <li><strong>AND:</strong> Output is 1 only when <strong>ALL</strong> inputs are 1.</li>\n  <li><strong>OR:</strong> Output is 1 when <strong>ANY</strong> input is 1.</li>\n  <li><strong>NOT:</strong> Unary inverter; reverses 0 &harr; 1.</li>\n  <li><strong>XOR:</strong> Output is 1 when inputs are <strong>DIFFERENT</strong> (odd parity: $0 \\oplus 1 = 1$, $1 \\oplus 0 = 1$, $0 \\oplus 0 = 0$, $1 \\oplus 1 = 0$).</li>\n  <li><strong>XNOR:</strong> Output is 1 when inputs are <strong>SAME</strong> ($0 \\odot 0 = 1$, $1 \\odot 1 = 1$).</li>\n  <li><strong>Universal Gates:</strong> <code>NAND</code> and <code>NOR</code> (can implement any Boolean logic without other gates).</li>\n</ul>\n\n<div class=\"code-block-wrap\">\n  <div class=\"code-header\"><span>Truth Table Row Formula & PYQ Example</span></div>\n  <pre><code>Number of inputs = n  &rarr;  Number of truth-table rows = 2^n\n\nTRE 3.0 Direct PYQ:\n4-input OR gate truth table rows:\n2^4 = 16 rows\n\nBinary Bitwise AND (TRE 3.0 PYQ):\n  1010\n& 1100\n------\n  1000  (Only the MSB has 1 in both inputs)</code></pre>\n</div>\n\n<h3>2. Adders</h3>\n<ul>\n  <li><strong>Half Adder:</strong> Adds 2 binary inputs ($A, B$). Produces:\n    <br>&bull; $\\text{Sum} = A \\oplus B$\n    <br>&bull; $\\text{Carry} = A \\cdot B$\n  </li>\n  <li><strong>Full Adder:</strong> Adds 3 binary inputs ($A, B, C_{in}$). Produces:\n    <br>&bull; $\\text{Sum} = A \\oplus B \\oplus C_{in}$\n    <br>&bull; $\\text{Carry} = (A \\cdot B) + (C_{in} \\cdot (A \\oplus B))$\n  </li>\n  <li><strong>Memory Anchor:</strong> Half Adder = 2 inputs; Full Adder = 3 inputs (can be built using 2 Half Adders + 1 OR gate).</li>\n</ul>\n\n<h3>3. Flip-Flops (Sequential Circuits)</h3>\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>Flip-Flop Type</th><th>Inputs</th><th>Key Characteristic & Behavior</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>SR Flip-Flop</strong></td><td>S (Set), R (Reset)</td><td><code>00</code> Hold, <code>01</code> Reset (0), <code>10</code> Set (1), <code>11</code> Invalid / Forbidden state</td></tr>\n    <tr><td><strong>JK Flip-Flop</strong></td><td>J (Set), K (Reset)</td><td><code>00</code> Hold, <code>01</code> Reset, <code>10</code> Set, <strong><code>11</code> Toggle</strong> (eliminates SR invalid condition)</td></tr>\n    <tr><td><strong>D Flip-Flop</strong></td><td>D (Data)</td><td>Outputs whatever data bit arrives at D on clock edge (Delay / Data storage)</td></tr>\n    <tr><td><strong>T Flip-Flop</strong></td><td>T (Toggle)</td><td><code>T=0</code> Hold state, <strong><code>T=1</code> Toggle</strong> (inverts previous state on clock)</td></tr>\n  </tbody>\n</table>\n\n<h3>4. Multiplexers (MUX), Demultiplexers (DEMUX), BCD & Gray Code</h3>\n<ul>\n  <li><strong>MUX (Data Selector):</strong> Many inputs &rarr; ONE output. If there are $2^n$ data inputs, it requires $n$ selection lines.\n    <br><em>Example:</em> $8:1 \\text{ MUX} \\implies 2^3:1 \\implies 3 \\text{ selection lines}$.\n  </li>\n  <li><strong>DEMUX (Data Distributor):</strong> ONE input &rarr; many outputs ($1:2^n$ requires $n$ selection lines).</li>\n  <li><strong>BCD (Binary Coded Decimal):</strong> Encodes each decimal digit separately into 4 binary bits.\n    <br><em>Example:</em> Decimal $25 \\implies 2 \\to 0010$, $5 \\to 0101 \\implies 0010\\ 0101$ (Notice: Not ordinary binary $11001_2 = 25$).\n  </li>\n  <li><strong>Gray Code:</strong> Unit-distance code where successive/adjacent decimal values differ by <strong>only 1 bit</strong> (prevents transient glitches in mechanical encoders).</li>\n  <li><strong>PLA (Programmable Logic Array):</strong> Built using programmable <code>AND</code> array followed by a programmable <code>OR</code> array.</li>\n</ul>\n"
+      },
+      {
+        "heading": "🧠 Phase 1 — 10-Minute White-Paper Recall: Sheet B — Data Structures & Algorithms",
+        "content": "\n<h3>1. Linear Data Structures: Array, Stack & Queue</h3>\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>Data Structure</th><th>Mechanism</th><th>Operations & Characteristics</th><th>High-Yield BPSC Exam Facts</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><strong>Array</strong></td>\n      <td>Contiguous memory allocation</td>\n      <td>Index-based access</td>\n      <td><strong>TRE 3.0 Highlight:</strong> Major advantage is <strong>$O(1)$ random access</strong> using index <code>arr[i]</code>. Insertion/deletion in middle takes $O(n)$ due to shifts.</td>\n    </tr>\n    <tr>\n      <td><strong>Stack</strong></td>\n      <td>LIFO (Last In, First Out)</td>\n      <td><code>push()</code>, <code>pop()</code>, <code>peek()</code> / <code>top()</code></td>\n      <td>Used in function call stacks, recursion, undo operations, parenthesis matching, backtracking, and expression conversion (Infix &rarr; Postfix).</td>\n    </tr>\n    <tr>\n      <td><strong>Queue</strong></td>\n      <td>FIFO (First In, First Out)</td>\n      <td><code>enqueue()</code> at Rear, <code>dequeue()</code> at Front</td>\n      <td>Used in CPU job scheduling, printer spooling, buffer queues. Dequeue from empty queue causes <strong>Underflow</strong>; enqueue into full queue causes <strong>Overflow</strong>.</td>\n    </tr>\n  </tbody>\n</table>\n\n<h3>2. Non-Linear Data Structures: Trees, Heaps & Graphs</h3>\n<ul>\n  <li><strong>Binary Tree Traversals:</strong>\n    <br>&bull; <strong>Preorder:</strong> Node &rarr; Left &rarr; Right (N L R)\n    <br>&bull; <strong>Inorder:</strong> Left &rarr; Node &rarr; Right (L N R)\n    <br>&bull; <strong>Postorder:</strong> Left &rarr; Right &rarr; Node (L R N)\n  </li>\n  <li><strong>Binary Search Tree (BST):</strong> For every node: $\\text{Left Subtree} &lt; \\text{Node} &lt; \\text{Right Subtree}$.\n    <br>&bull; <strong>Crucial Property:</strong> The <strong>Inorder traversal</strong> of a BST produces elements in strictly <strong>ascending sorted order</strong>!\n  </li>\n  <li><strong>Binary Heap:</strong>\n    <br>&bull; <strong>Max Heap:</strong> Parent $\\ge$ Children (Maximum element always at Root).\n    <br>&bull; <strong>Min Heap:</strong> Parent $\\le$ Children (Minimum element always at Root).\n    <br>&bull; Standard efficient backing data structure for <strong>Priority Queues</strong>.\n  </li>\n  <li><strong>Graph Traversals:</strong>\n    <br>&bull; <strong>Breadth-First Search (BFS):</strong> Level-by-level exploration using a <strong>Queue</strong>.\n    <br>&bull; <strong>Depth-First Search (DFS):</strong> Explores deepest branch first using a <strong>Stack</strong> (or recursion).\n  </li>\n  <li><strong>Spanning Tree:</strong> A subgraph connecting all $V$ vertices without any cycles. It contains exactly <strong>$V - 1$ edges</strong> (e.g., 10 vertices &rarr; 9 edges).</li>\n</ul>\n\n<h3>3. Searching & Sorting Algorithms Complexity</h3>\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>Algorithm</th><th>Best Time</th><th>Average / Worst</th><th>Requirements / Core Mechanism</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>Linear Search</strong></td><td>$O(1)$</td><td>$O(n)$</td><td>Works on unsorted or sorted arrays; sequential scan.</td></tr>\n    <tr><td><strong>Binary Search</strong></td><td>$O(1)$</td><td>$O(\\log n)$</td><td><strong>Mandatory prerequisite:</strong> Data must be <strong>sorted</strong>! Divide & conquer.</td></tr>\n    <tr><td><strong>Bubble Sort</strong></td><td>$O(n)$ (optimized)</td><td>$O(n^2)$</td><td>Repeated adjacent element comparisons and swaps.</td></tr>\n    <tr><td><strong>Selection Sort</strong></td><td>$O(n^2)$</td><td>$O(n^2)$</td><td>Repeatedly finds minimum element from unsorted sublist.</td></tr>\n    <tr><td><strong>Insertion Sort</strong></td><td>$O(n)$</td><td>$O(n^2)$</td><td>Picks elements one-by-one and inserts into sorted position (like playing cards).</td></tr>\n    <tr><td><strong>Merge Sort</strong></td><td>$O(n \\log n)$</td><td>$O(n \\log n)$</td><td>Divide & conquer; recursive splitting and merging; stable.</td></tr>\n  </tbody>\n</table>\n"
+      },
+      {
+        "heading": "🧠 Phase 1 — 10-Minute White-Paper Recall: Sheet C — Database Management Systems (DBMS)",
+        "content": "\n<h3>1. Relational Model Fundamentals & Keys</h3>\n<ul>\n  <li><strong>Table / Relation:</strong> 2-dimensional grid representing an entity set.\n    <br>&bull; <strong>Row:</strong> Tuple or Record (a single entity instance).\n    <br>&bull; <strong>Column:</strong> Attribute or Field (a property/characteristic).\n  </li>\n  <li><strong>Primary Key:</strong> Uniquely identifies each record/row in a table. Cannot contain duplicate or <code>NULL</code> values. (Direct TRE 3.0 PYQ).</li>\n  <li><strong>Candidate Key:</strong> A minimal superkey with no redundant attributes capable of serving as primary key.</li>\n  <li><strong>Foreign Key:</strong> An attribute in one table that references the primary key of another table, establishing a valid relational link and enforcing referential integrity.</li>\n  <li><strong>Super Key:</strong> Any set of attributes that uniquely identifies a record within a relation.</li>\n</ul>\n\n<h3>2. Database Normalization (The Anchor Rules)</h3>\n<div class=\"code-block-wrap\">\n  <div class=\"code-header\"><span>3-Step Mental Normalization Anchor</span></div>\n  <pre><code>1NF  &rarr;  ATOMIC values only (No repeating groups or multi-valued attributes)\n2NF  &rarr;  1NF + NO PARTIAL DEPENDENCY (Non-prime attributes must be fully functionally dependent on the entire primary key)\n3NF  &rarr;  2NF + NO TRANSITIVE DEPENDENCY (Non-prime attribute cannot depend on another non-prime attribute: X &rarr; Y &rarr; Z)\n\nTRE 3.0 PYQ Anchor:\n\"Which normal form requires non-prime attributes to be fully functionally dependent on primary key?\"\nAnswer: 2NF.</code></pre>\n</div>\n\n<h3>3. SQL Commands & Filtering Rules</h3>\n<ul>\n  <li><strong>DML / CRUD Operations:</strong>\n    <br>&bull; <code>SELECT</code>: Reads/queries records.\n    <br>&bull; <code>INSERT</code>: Adds a new record/row into a table (Direct TRE 3.0 PYQ).\n    <br>&bull; <code>UPDATE</code>: Modifies existing values in records.\n    <br>&bull; <code>DELETE</code>: Removes specific rows from a table.\n  </li>\n  <li><strong>WHERE vs. HAVING:</strong>\n    <br>&bull; <strong><code>WHERE</code>:</strong> Filters individual rows <em>before</em> any grouping takes place. Cannot use aggregate functions directly in basic WHERE.\n    <br>&bull; <strong><code>GROUP BY</code>:</strong> Groups rows sharing common values into summary rows.\n    <br>&bull; <strong><code>HAVING</code>:</strong> Filters grouped summary rows <em>after</em> grouping. Operates with aggregate functions (e.g., <code>HAVING COUNT(*) > 5</code>).\n  </li>\n  <li><strong>Standard Aggregate Functions:</strong> <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MAX()</code>, <code>MIN()</code>.</li>\n</ul>\n\n<h3>4. ACID Properties & Transaction Control</h3>\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>ACID Property</th><th>Meaning & Rule</th><th>TCL Command</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>Atomicity</strong></td><td>\"All or Nothing\" — either all transaction operations execute successfully, or none do.</td><td><code>ROLLBACK</code> (undoes uncommitted changes on failure)</td></tr>\n    <tr><td><strong>Consistency</strong></td><td>Transaction moves the database from one valid consistent state to another, preserving all integrity constraints.</td><td>Integrity constraints / Triggers</td></tr>\n    <tr><td><strong>Isolation</strong></td><td>Concurrent transactions execute independently without interference, appearing serial.</td><td>Concurrency control / Locks</td></tr>\n    <tr><td><strong>Durability</strong></td><td>Once committed, changes survive permanently even in the event of system crashes.</td><td><code>COMMIT</code> (permanently persists changes to disk)</td></tr>\n  </tbody>\n</table>\n"
+      },
+      {
+        "heading": "🧠 Phase 1 — 10-Minute White-Paper Recall: Sheet D — Operating System",
+        "content": "\n<h3>1. Process States & Process Control Block (PCB)</h3>\n<p>Lifecycle transitions: <code>New</code> &rarr; <code>Ready</code> &harr; <code>Running</code> &rarr; <code>Terminated</code> (with <code>Waiting / Blocked</code> for I/O events).</p>\n<p><strong>PCB (Process Control Block):</strong> Data structure maintaining process metadata including PID, process state, Program Counter (PC), CPU registers, memory limits, and open file lists.</p>\n\n<h3>2. CPU Scheduling</h3>\n<ul>\n  <li><strong>FCFS (First-Come, First-Served):</strong> Non-preemptive, simple FIFO queue, suffers from Convoy Effect.</li>\n  <li><strong>SJF (Shortest Job First):</strong> Optimal minimum average waiting time; risks starvation for long processes.</li>\n  <li><strong>Round Robin (RR):</strong> Preemptive, cyclic allocation governed by a fixed <strong>Time Quantum</strong>.</li>\n  <li><strong>Priority Scheduling:</strong> CPU assigned to highest priority process (aging prevents indefinite starvation).</li>\n</ul>\n\n<h3>3. Memory Management: Paging, Offset Bits & TLB</h3>\n<ul>\n  <li><strong>Paging (TRE 3.0 Definition):</strong> A page is a <strong>fixed-size block of virtual memory</strong>.\n    <br>&bull; <strong>Virtual Memory:</strong> Divided into fixed-size <strong>Pages</strong>.\n    <br>&bull; <strong>Physical Memory (RAM):</strong> Divided into equal fixed-size <strong>Frames</strong>.\n    <br>&bull; <strong>Internal Fragmentation:</strong> Can occur within the last page/frame.\n  </li>\n  <li><strong>Page Offset Bits Calculation:</strong>\n    <br>$$\\text{Offset Bits } n = \\log_2(\\text{Page Size in Bytes})$$\n    <br>&bull; $1\\text{ KB} = 1024\\text{ B} = 2^{10} \\implies 10\\text{ offset bits}$\n    <br>&bull; $2\\text{ KB} = 2048\\text{ B} = 2^{11} \\implies 11\\text{ offset bits}$\n    <br>&bull; $4\\text{ KB} = 4096\\text{ B} = 2^{12} \\implies 12\\text{ offset bits}$ (Direct TRE 3.0 PYQ!)\n    <br>&bull; $8\\text{ KB} = 8192\\text{ B} = 2^{13} \\implies 13\\text{ offset bits}$\n  </li>\n  <li><strong>TLB (Translation Lookaside Buffer):</strong> A high-speed hardware <strong>associative cache</strong> storing recent page-table translations to avoid double memory access per virtual address.</li>\n  <li><strong>Thrashing:</strong> A severe performance collapse caused by <strong>excessive paging activity</strong> (page-in and page-out). The operating system spends almost all its time swapping pages rather than executing application code.</li>\n  <li><strong>Paging vs. Segmentation:</strong>\n    <br>&bull; <strong>Paging:</strong> Fixed-size blocks; hardware-oriented; causes <em>internal fragmentation</em>.\n    <br>&bull; <strong>Segmentation:</strong> Variable-size logical blocks (code, stack, heap); programmer-oriented; causes <em>external fragmentation</em>.\n  </li>\n</ul>\n\n<h3>4. Threads & Disk Scheduling</h3>\n<ul>\n  <li><strong>Threads of Same Process:</strong> Share the <strong>code section, data section, heap</strong>, and open files.\n    <br>&bull; Each thread maintains its own private: <strong>Program Counter (PC), Registers, and Stack</strong> (Direct TRE 3.0 PYQ).\n  </li>\n  <li><strong>FCFS Disk Scheduling Calculation (TRE 3.0 Direct PYQ):</strong>\n    <br>Request queue: <code>98, 183, 37, 122, 14, 124, 65, 67</code>, Initial head position: <code>53</code>.\n    <br>$$\\begin{aligned}\n    \\text{Total Head Movement} &= |98 - 53| + |183 - 98| + |37 - 183| + |122 - 37| + |14 - 122| + |124 - 14| + |65 - 124| + |67 - 65| \\\\\n    &= 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 \\\\\n    &= 640\\text{ cylinders}\n    \\end{aligned}$$\n  </li>\n</ul>\n"
+      },
+      {
+        "heading": "⚠️ Day 42 High-Yield Traps & Quick Memory Anchors",
+        "content": "\n<table class=\"marathon-table\">\n  <thead>\n    <tr><th>Concept</th><th>Trap / Confusing Angle</th><th>Exam Anchor / Correct Rule</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>Universal Gates</strong></td><td>Mixing AND/OR with NAND/NOR</td><td><strong>NAND</strong> and <strong>NOR</strong> are universal; AND/OR/NOT are basic.</td></tr>\n    <tr><td><strong>Truth Table Rows</strong></td><td>Confusing $2n$ with $2^n$</td><td>$n$ inputs have $2^n$ rows (4 inputs $\\to 2^4 = 16$ rows).</td></tr>\n    <tr><td><strong>Stack vs. Queue</strong></td><td>LIFO vs FIFO reversal</td><td>Stack is <strong>LIFO</strong> (Push/Pop); Queue is <strong>FIFO</strong> (Enqueue rear, Dequeue front).</td></tr>\n    <tr><td><strong>BST Inorder</strong></td><td>Which traversal gives sorted order?</td><td><strong>Inorder</strong> traversal ($L \\to N \\to R$) of a BST always yields sorted ascending sequence.</td></tr>\n    <tr><td><strong>Binary Search</strong></td><td>Can it run on unsorted arrays?</td><td>No! Binary search strictly requires <strong>sorted data</strong>; complexity is $O(\\log n)$.</td></tr>\n    <tr><td><strong>Normal Forms</strong></td><td>2NF vs. 3NF dependency types</td><td><strong>2NF removes Partial</strong> functional dependency; <strong>3NF removes Transitive</strong> dependency.</td></tr>\n    <tr><td><strong>WHERE vs. HAVING</strong></td><td>Can WHERE filter aggregate results?</td><td>No. <strong>WHERE</strong> filters rows before grouping; <strong>HAVING</strong> filters groups after aggregation.</td></tr>\n    <tr><td><strong>Paging Memory Units</strong></td><td>Virtual vs. Physical naming</td><td>Virtual Memory unit is <strong>Page</strong>; Physical Memory (RAM) unit is <strong>Frame</strong>.</td></tr>\n    <tr><td><strong>4 KB Offset</strong></td><td>Calculation error</td><td>$4\\text{ KB} = 4096 = 2^{12} \\implies$ <strong>12 offset bits</strong>.</td></tr>\n    <tr><td><strong>TLB Architecture</strong></td><td>What kind of hardware structure is it?</td><td>TRE 3.0 specifies TLB as an <strong>Associative Cache</strong>.</td></tr>\n    <tr><td><strong>Thrashing</strong></td><td>CPU bottleneck or memory?</td><td>Caused by <strong>excessive paging activity</strong> when RAM is overcommitted.</td></tr>\n    <tr><td><strong>Thread Sharing</strong></td><td>Do threads share stack?</td><td>No! Threads share <strong>code and data</strong>; each thread has its <strong>own Stack and Registers</strong>.</td></tr>\n  </tbody>\n</table>\n"
+      }
+    ],
+    "test": {
+      "title": "Day 42 Final Revision Test: 40 High-Yield Questions (Digital Logic + DSA + DBMS + OS)",
+      "passingScore": 32,
+      "questions": [
+        {
+          "question": "Q1. A truth table for a circuit with 4 binary inputs contains:",
+          "options": [
+            "A. 4 rows",
+            "B. 8 rows",
+            "C. 16 rows",
+            "D. 32 rows",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "For n binary inputs, the truth table contains 2^n rows. For 4 inputs, 2^4 = 16 rows. Correct: (C)."
+        },
+        {
+          "question": "Q2. Which gates are universal gates?",
+          "options": [
+            "A. AND and OR",
+            "B. NAND and NOR",
+            "C. XOR and XNOR",
+            "D. AND and XOR",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "NAND and NOR gates are universal gates because any Boolean function can be implemented using solely NAND or solely NOR gates. Correct: (B)."
+        },
+        {
+          "question": "Q3. The result of bitwise operation: 1010 AND 1100 is:",
+          "options": [
+            "A. 1000",
+            "B. 1110",
+            "C. 1010",
+            "D. 0110",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bitwise AND: 1 AND 1 = 1, 0 AND 1 = 0, 1 AND 0 = 0, 0 AND 0 = 0. Therefore, 1010 AND 1100 = 1000. Correct: (A)."
+        },
+        {
+          "question": "Q4. An XOR gate produces an output of 1 when its inputs are:",
+          "options": [
+            "A. Both 0 only",
+            "B. Both 1 only",
+            "C. Different",
+            "D. Same",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "XOR (Exclusive OR) outputs 1 if and only if the inputs are different (odd number of 1s: 0 XOR 1 = 1, 1 XOR 0 = 1). Correct: (C)."
+        },
+        {
+          "question": "Q5. The Sum output of a half adder is represented by:",
+          "options": [
+            "A. A AND B",
+            "B. A XOR B",
+            "C. A OR B",
+            "D. A NAND B",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a half adder, Sum = A XOR B, and Carry = A AND B. Correct: (B)."
+        },
+        {
+          "question": "Q6. An 8-to-1 multiplexer requires how many selection lines?",
+          "options": [
+            "A. 2",
+            "B. 3",
+            "C. 4",
+            "D. 8",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A 2^n to 1 multiplexer requires n select lines. Since 8 = 2^3, it requires 3 selection lines. Correct: (B)."
+        },
+        {
+          "question": "Q7. In a JK flip-flop, the input condition J = 1, K = 1 causes the output to:",
+          "options": [
+            "A. Hold previous state",
+            "B. Reset to 0",
+            "C. Set to 1",
+            "D. Toggle",
+            "E. None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In a JK flip-flop, J=1 and K=1 toggles the output state on each clock pulse. Correct: (D)."
+        },
+        {
+          "question": "Q8. BCD representation of decimal number 25 is:",
+          "options": [
+            "A. 11001",
+            "B. 0010 0101",
+            "C. 0101 0010",
+            "D. 11111",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "BCD encodes each decimal digit separately in 4 bits: 2 = 0010, 5 = 0101, yielding 0010 0101. (11001 is standard binary). Correct: (B)."
+        },
+        {
+          "question": "Q9. Adjacent values in Gray code differ by:",
+          "options": [
+            "A. 1 bit",
+            "B. 2 bits",
+            "C. 4 bits",
+            "D. All bits",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Gray code is a unit-distance code where successive numbers differ in exactly one bit position. Correct: (A)."
+        },
+        {
+          "question": "Q10. A PLA (Programmable Logic Array) commonly uses programmable combinations of:",
+          "options": [
+            "A. AND and OR gates",
+            "B. XOR and XNOR only",
+            "C. NOT and MUX only",
+            "D. Registers only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A PLA contains a programmable array of AND gates followed by a programmable array of OR gates. Correct: (A)."
+        },
+        {
+          "question": "Q11. The major advantage of an array highlighted in TRE 3.0 is:",
+          "options": [
+            "A. O(1) insertion everywhere",
+            "B. Random access using index",
+            "C. Different data types in every position",
+            "D. No fixed organization",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Arrays allocate contiguous memory locations, allowing O(1) constant-time direct random access via indexing. Correct: (B)."
+        },
+        {
+          "question": "Q12. A stack follows which ordering principle?",
+          "options": [
+            "A. FIFO",
+            "B. LIFO",
+            "C. Random order",
+            "D. Priority only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A stack is a Last In, First Out (LIFO) data structure where insertions and deletions happen at the top. Correct: (B)."
+        },
+        {
+          "question": "Q13. A queue follows which ordering principle?",
+          "options": [
+            "A. LIFO",
+            "B. FIFO",
+            "C. FILO only",
+            "D. Random selection",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A queue is a First In, First Out (FIFO) data structure where items are enqueued at the rear and dequeued at the front. Correct: (B)."
+        },
+        {
+          "question": "Q14. The execution of recursion typically utilizes which internal data structure?",
+          "options": [
+            "A. Queue",
+            "B. Stack",
+            "C. Heap only",
+            "D. Hash table",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Recursive function calls push activation records (stack frames) onto the system call stack. Correct: (B)."
+        },
+        {
+          "question": "Q15. Breadth-First Search (BFS) on a graph typically uses:",
+          "options": [
+            "A. Stack",
+            "B. Queue",
+            "C. Binary heap only",
+            "D. Array only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "BFS explores vertices level by level, maintaining unvisited adjacent nodes in a FIFO queue. Correct: (B)."
+        },
+        {
+          "question": "Q16. Depth-First Search (DFS) commonly uses:",
+          "options": [
+            "A. Queue only",
+            "B. Stack / recursion",
+            "C. Hashing only",
+            "D. Priority queue only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "DFS explores branches to maximum depth before backtracking, relying on a stack or recursion. Correct: (B)."
+        },
+        {
+          "question": "Q17. In a Binary Search Tree (BST), values larger than a node are placed in its:",
+          "options": [
+            "A. Left subtree",
+            "B. Right subtree",
+            "C. Parent only",
+            "D. Root only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a BST, keys smaller than the node go to the left subtree, and keys larger go to the right subtree. Correct: (B)."
+        },
+        {
+          "question": "Q18. Which traversal of a Binary Search Tree produces values in ascending sorted order?",
+          "options": [
+            "A. Preorder",
+            "B. Inorder",
+            "C. Postorder",
+            "D. Level order only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inorder traversal (Left -> Node -> Right) visits BST nodes in monotonically increasing (sorted) order. Correct: (B)."
+        },
+        {
+          "question": "Q19. A spanning tree containing 10 vertices contains exactly how many edges?",
+          "options": [
+            "A. 8 edges",
+            "B. 9 edges",
+            "C. 10 edges",
+            "D. 11 edges",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A spanning tree connecting V vertices contains exactly V - 1 edges. For V = 10, edges = 10 - 1 = 9. Correct: (B)."
+        },
+        {
+          "question": "Q20. Binary search strictly requires the data to be:",
+          "options": [
+            "A. Sorted",
+            "B. Randomized",
+            "C. Encrypted",
+            "D. Duplicated",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Binary search repeatedly divides the search interval in half, which is valid only if elements are sorted. Correct: (A)."
+        },
+        {
+          "question": "Q21. In a relational database, a Primary Key is used to:",
+          "options": [
+            "A. Uniquely identify a record",
+            "B. Only sort records",
+            "C. Only connect to Internet",
+            "D. Store duplicate values",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A primary key uniquely identifies each record/tuple in a relation and cannot contain NULL or duplicates. Correct: (A)."
+        },
+        {
+          "question": "Q22. Which key is generally used to establish a relationship between tables?",
+          "options": [
+            "A. Foreign key",
+            "B. Primary memory",
+            "C. Supercomputer key",
+            "D. Cache key",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A foreign key in a child table references the primary key of a parent table to establish relationships and referential integrity. Correct: (A)."
+        },
+        {
+          "question": "Q23. First Normal Form (1NF) primarily requires:",
+          "options": [
+            "A. Atomic values",
+            "B. No partial dependency",
+            "C. No transitive dependency",
+            "D. No primary key",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "1NF requires all attribute values in every row to be atomic (indivisible) with no repeating groups or arrays. Correct: (A)."
+        },
+        {
+          "question": "Q24. Second Normal Form (2NF) eliminates:",
+          "options": [
+            "A. Partial dependency",
+            "B. Transitive dependency only",
+            "C. Atomicity",
+            "D. Foreign keys",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "2NF requires the relation to be in 1NF and have no partial dependencies (non-prime attributes must depend on the full candidate key). Correct: (A)."
+        },
+        {
+          "question": "Q25. Third Normal Form (3NF) is primarily associated with removing:",
+          "options": [
+            "A. Transitive dependency",
+            "B. Every foreign key",
+            "C. Every candidate key",
+            "D. Atomic values",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "3NF requires 2NF plus no transitive dependencies (no non-prime attribute should depend transitively on a candidate key). Correct: (A)."
+        },
+        {
+          "question": "Q26. Which SQL command adds a new row to a table?",
+          "options": [
+            "A. CREATE",
+            "B. INSERT",
+            "C. ADD",
+            "D. SELECT",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "INSERT INTO table_name VALUES (...) adds new rows/tuples into a relational table. Correct: (B)."
+        },
+        {
+          "question": "Q27. Which SQL clause filters individual rows before grouping?",
+          "options": [
+            "A. WHERE",
+            "B. HAVING",
+            "C. GROUP BY",
+            "D. COMMIT",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The WHERE clause filters individual rows before any GROUP BY operations occur. Correct: (A)."
+        },
+        {
+          "question": "Q28. Which SQL clause filters groups after grouping and aggregation?",
+          "options": [
+            "A. WHERE",
+            "B. HAVING",
+            "C. INSERT",
+            "D. UPDATE",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The HAVING clause filters aggregated groups produced by GROUP BY (e.g., HAVING COUNT(*) > 2). Correct: (B)."
+        },
+        {
+          "question": "Q29. Which ACID property ensures that a transaction behaves as an all-or-nothing unit of work?",
+          "options": [
+            "A. Atomicity",
+            "B. Consistency",
+            "C. Isolation",
+            "D. Durability",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Atomicity ensures that all operations in a transaction complete successfully, or all changes are rolled back. Correct: (A)."
+        },
+        {
+          "question": "Q30. Which SQL TCL command permanently saves a transaction's completed changes to disk?",
+          "options": [
+            "A. ROLLBACK",
+            "B. COMMIT",
+            "C. SELECT",
+            "D. DROP",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "COMMIT permanently writes all changes made in the transaction to the database. Correct: (B)."
+        },
+        {
+          "question": "Q31. In memory management, a \"page\" in paging is:",
+          "options": [
+            "A. A fixed-size block of virtual memory",
+            "B. A variable-size physical segment",
+            "C. A CPU register",
+            "D. A file-system directory",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In paging, virtual memory is partitioned into fixed-size contiguous blocks called pages. Correct: (A)."
+        },
+        {
+          "question": "Q32. The corresponding fixed-size block in physical memory (RAM) is called a:",
+          "options": [
+            "A. Segment",
+            "B. Frame",
+            "C. Page table",
+            "D. Process",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Physical memory is divided into fixed-size blocks called frames, having the identical size as virtual pages. Correct: (B)."
+        },
+        {
+          "question": "Q33. A page size of 4 KB requires how many offset bits?",
+          "options": [
+            "A. 10",
+            "B. 11",
+            "C. 12",
+            "D. 14",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "4 KB = 4096 bytes = 2^12 bytes. Therefore, 12 bits are required for the page offset. Correct: (C)."
+        },
+        {
+          "question": "Q34. The Translation Lookaside Buffer (TLB) primarily caches:",
+          "options": [
+            "A. Page-table translations",
+            "B. SQL tables",
+            "C. Source code",
+            "D. File names",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The TLB is a fast hardware memory cache that stores recent virtual page number to physical frame number mappings. Correct: (A)."
+        },
+        {
+          "question": "Q35. TRE 3.0 describes a TLB as typically being an:",
+          "options": [
+            "A. Associative cache",
+            "B. Hard disk",
+            "C. Sequential file",
+            "D. Stack",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A TLB is typically designed as associative memory (content-addressable cache) allowing parallel key comparison. Correct: (A)."
+        },
+        {
+          "question": "Q36. Thrashing in an operating system is caused by:",
+          "options": [
+            "A. Excessive paging activity",
+            "B. Fast CPU clock",
+            "C. Too many registers",
+            "D. SQL joins",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Thrashing occurs when the OS spends more time swapping pages in and out of secondary storage than executing instructions. Correct: (A)."
+        },
+        {
+          "question": "Q37. Which memory management technique uses fixed-size memory blocks?",
+          "options": [
+            "A. Paging",
+            "B. Segmentation",
+            "C. Both always use variable-size blocks",
+            "D. Neither",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Paging divides memory into fixed-size units (pages and frames). Segmentation divides memory into variable-sized logical units. Correct: (A)."
+        },
+        {
+          "question": "Q38. Which memory management technique uses variable-sized logical memory divisions?",
+          "options": [
+            "A. Paging",
+            "B. Segmentation",
+            "C. TLB",
+            "D. Cache only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Segmentation partitions memory into variable-length logical units reflecting programmer code/data modules. Correct: (B)."
+        },
+        {
+          "question": "Q39. Threads belonging to the same process generally share:",
+          "options": [
+            "A. Code and data sections",
+            "B. Program counter only",
+            "C. Thread ID",
+            "D. Stack only",
+            "E. None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Threads of the same process share code, data sections, and OS resources, while keeping their own registers, program counter, and stack. Correct: (A)."
+        },
+        {
+          "question": "Q40. For the TRE 3.0 FCFS disk queue (98, 183, 37, 122, 14, 124, 65, 67) starting at cylinder 53, the total head movement was:",
+          "options": [
+            "A. 620",
+            "B. 630",
+            "C. 640",
+            "D. 650",
+            "E. None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Total movement = |98-53| + |183-98| + |37-183| + |122-37| + |14-122| + |124-14| + |65-124| + |67-65| = 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640. Correct: (C)."
+        }
+      ]
+    }
   }
 ];
 
