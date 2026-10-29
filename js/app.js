@@ -1494,22 +1494,57 @@
       dayBodyHtml = `
         <div class="marathon-day-body marathon-book-body">
           ${targetsHtml}
-          <div class="locked-paywall-banner">
-            <div style="font-size:3rem; margin-bottom:0.75rem;">🔒</div>
-            <h3 style="font-size:1.45rem; font-weight:800; color:var(--text-primary); margin-bottom:0.5rem;">
-              Day ${day.dayNumber} is Locked (Premium Marathon Pass)
-            </h3>
-            <p style="max-width:580px; margin:0 auto 1.25rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
-              This high-yield day features detailed white-paper memory maps, BPSC concept breakdowns, and full exam-level practice questions. 
-              Unlock all <strong>20 Locked Marathon Days</strong> and <strong>28 Practice Sets (4,200 Questions)</strong> with the BPSC TRE 4.0 Full Lifetime Pass!
-            </p>
-            <div style="display:flex; gap:0.75rem; justify-content:center; align-items:center; flex-wrap:wrap; margin-bottom:1rem;">
-              <button class="btn-unlock-course" onclick="window.openPaywallModal('Marathon Day ${day.dayNumber}')">
-                ⚡ Unlock All Course Content for ₹299
-              </button>
+          ${introHtml}
+          
+          <div class="marathon-locked-preview-wrapper" style="position:relative; margin-top:1.5rem; min-height:420px;">
+            <!-- Blurred preview placeholder background -->
+            <div class="marathon-preview-blur" style="filter: blur(6px); opacity: 0.35; pointer-events: none; user-select: none;">
+              <div class="book-subcard" style="margin-bottom: 1.5rem;">
+                <h3 class="book-subcard-title">1. Core Concept Architecture &amp; White-Paper Mindmaps</h3>
+                <div class="book-prose-para">Full concept mental maps, deep dive logic tables, dry runs, and BPSC previous year question connections...</div>
+                <div class="book-code-wrapper" style="margin: 0.85rem 0;">
+                  <pre class="code-block book-code-surface"><code># Full High-Yield Concept &amp; Memory Retention Map
+def bpsc_concept_solver():
+    return "Premium Access Required"</code></pre>
+                </div>
+              </div>
+              <div class="marathon-test-card" style="opacity:0.6;">
+                <h3 class="marathon-test-title"><span>📝</span> ${escapeHtml(day.test ? day.test.title : 'Chapter Test')}</h3>
+                <div class="marathon-test-sub">${day.test ? day.test.questions.length : 10} Real Exam Simulation Questions &amp; Detailed Explanations</div>
+              </div>
             </div>
-            <div style="font-size:0.82rem; color:var(--text-muted);">
-              Already paid? <a href="javascript:void(0)" onclick="window.openRestoreModal()" style="color:var(--accent-primary); text-decoration:underline; font-weight:600;">Restore Access</a> via Payment ID or Phone Number.
+
+            <!-- Centered Locked Gate Floating Card -->
+            <div class="marathon-locked-gate" style="position: absolute; top: 10px; left: 0; right: 0; display: flex; justify-content: center; z-index: 5;">
+              <div class="marathon-locked-card" style="background: rgba(15, 23, 42, 0.94); border: 2px solid #f59e0b; border-radius: 12px; padding: 2rem 1.75rem; max-width: 580px; width: 100%; text-align: center; box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.25);">
+                <div style="font-size: 2.8rem; margin-bottom: 0.5rem; text-shadow: 0 0 15px rgba(245, 158, 11, 0.5);">🔒</div>
+                <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem;">
+                  BPSC TRE 4.0 PREMIUM MARATHON CHAPTER
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #f8fafc; margin: 0 0 0.5rem;">
+                  Day ${day.dayNumber}: Full Material is Locked
+                </h3>
+                <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.55; margin: 0 0 1.25rem;">
+                  This chapter contains complete deep-dive breakdowns, white-paper mindmaps, and <strong>${day.test ? day.test.questions.length : 10} interactive MCQs</strong> with step-by-step explanations.
+                </p>
+                <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.25rem; font-size: 0.78rem;">
+                  <span style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; padding: 0.25rem 0.6rem; border-radius: 4px;">✓ 20 Alternative Marathon Days</span>
+                  <span style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; padding: 0.25rem 0.6rem; border-radius: 4px;">✓ 20 Alternative Practice Sets (3,000 Qs)</span>
+                </div>
+                <div style="display: flex; align-items: baseline; justify-content: center; gap: 0.65rem; margin-bottom: 1.25rem;">
+                  <span style="font-size: 2.2rem; font-weight: 900; color: #10b981; line-height: 1;">₹299</span>
+                  <span style="font-size: 1.1rem; color: #94a3b8; text-decoration: line-through;">₹999</span>
+                  <span style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">70% OFF</span>
+                </div>
+                <button class="btn-unlock-course" onclick="window.openPaywallModal('Marathon Day ${day.dayNumber}')" style="width: 100%; justify-content: center; padding: 0.85rem 1.25rem; font-size: 1.05rem;">
+                  ⚡ Unlock All 43 Days &amp; 40 Practice Sets for ₹299
+                </button>
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                  <span>Already purchased? <a href="javascript:void(0)" onclick="window.openRestoreModal()" style="color: #38bdf8; text-decoration: underline;">Restore Access</a></span>
+                  <span>•</span>
+                  <a href="https://rzp.io/rzp/f8vkVi7Y" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline;">Direct Razorpay Link ↗</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1517,6 +1552,16 @@
     } else {
       dayBodyHtml = `
         <div class="marathon-day-body marathon-book-body">
+          <div class="marathon-free-unblocked-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 95, 70, 0.12)); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <span style="font-size: 1.2rem;">🟢</span>
+              <div>
+                <strong style="color: #10b981; font-size: 0.92rem;">FREE CHAPTER (UNBLOCKED)</strong>
+                <div style="font-size: 0.8rem; color: var(--reader-text-secondary);">Full notes, white-paper mindmaps, and interactive MCQ test are 100% free!</div>
+              </div>
+            </div>
+            <span style="background: #10b981; color: #0f172a; font-weight: 800; font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px; letter-spacing: 0.05em;">100% FREE PREVIEW</span>
+          </div>
           ${targetsHtml}
           ${introHtml}
           ${partsHtml}
@@ -1531,7 +1576,8 @@
           <div class="marathon-day-title-wrap">
             <div class="marathon-day-badge-row">
               <span class="marathon-day-badge">${escapeHtml(day.badge)}</span>
-              ${isDayLocked ? '<span class="badge-tag" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5;">🔒 Premium Day (Locked)</span>' : `<span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>`}
+              ${isDayLocked ? '<span class="badge-tag" style="background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; font-weight:800;">🔒 PREMIUM CHAPTER (LOCKED)</span>' : '<span class="badge-tag" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; font-weight:800;">🟢 FREE CHAPTER (UNBLOCKED)</span>'}
+              <span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>
               <span style="font-size:0.78rem; color:var(--reader-text-muted); font-weight:600;">⏱️ ${escapeHtml(day.targetTime)}</span>
               <span style="font-size:0.78rem; color:var(--reader-text-muted); font-weight:600;">📝 ${day.test ? day.test.questions.length : 0} MCQs Test</span>
             </div>
@@ -1552,7 +1598,11 @@
     const filter = marathonState.tocFilter || 'all';
 
     let daysToDisplay = MARATHON_DATA;
-    if (filter === 'w1') {
+    if (filter === 'free') {
+      daysToDisplay = MARATHON_DATA.filter(d => !(typeof window.isMarathonDayLocked === 'function' && window.isMarathonDayLocked(d.dayNumber)));
+    } else if (filter === 'locked') {
+      daysToDisplay = MARATHON_DATA.filter(d => (typeof window.isMarathonDayLocked === 'function' && window.isMarathonDayLocked(d.dayNumber)));
+    } else if (filter === 'w1') {
       daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber <= 7);
     } else if (filter === 'w2') {
       daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 7 && d.dayNumber <= 14);
@@ -1575,13 +1625,16 @@
       const isCompleted = completed.includes(day.dayId);
       const isLocked = typeof window.isMarathonDayLocked === 'function' && window.isMarathonDayLocked(day.dayNumber);
 
-      const statusIcon = isLocked ? '<span style="color:#f59e0b;" title="Premium Locked (₹299)">🔒</span>' : (isCompleted ? '✓' : '○');
+      const lockBadge = isLocked 
+        ? '<span class="toc-badge-pill pill-locked">🔒 LOCKED</span>' 
+        : '<span class="toc-badge-pill pill-free">🟢 FREE</span>';
 
       html += `
-        <div class="toc-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''} ${isLocked ? 'toc-locked' : ''}" data-day-index="${actualIndex}">
+        <div class="toc-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''} ${isLocked ? 'toc-item-locked' : 'toc-item-free'}" data-day-index="${actualIndex}">
           <span class="toc-num">${escapeHtml(day.badge || `Day ${day.dayNumber}`)}</span>
           <span class="toc-title" title="${escapeHtml(day.title)}">${escapeHtml(day.title.replace(/^TRE 4\.0 —\s*/, ''))}</span>
-          <span class="toc-status-icon">${statusIcon}</span>
+          ${lockBadge}
+          ${isCompleted ? '<span class="toc-status-icon" style="color:#10b981; font-weight:bold; margin-left:0.25rem;">✓</span>' : ''}
         </div>
       `;
     });

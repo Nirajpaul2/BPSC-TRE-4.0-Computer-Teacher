@@ -3286,4 +3286,91 @@ pre.code-block {
   transform: translateY(-1px);
 }
 
+/* ==========================================================================
+   Enhanced Marathon Blocked vs Unblocked Styles
+   ========================================================================== */
+.toc-item.toc-item-free {
+  border-left: 3px solid #10b981;
+}
+
+.toc-item.toc-item-locked {
+  border-left: 3px solid #f59e0b;
+}
+
+.toc-badge-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: 4px;
+  line-height: 1.2;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+  margin-left: auto;
+}
+
+.toc-badge-pill.pill-free {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.toc-badge-pill.pill-locked {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+[data-theme="dark"] .toc-badge-pill.pill-free {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+}
+
+[data-theme="dark"] .toc-badge-pill.pill-locked {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+}
+
+.marathon-locked-preview-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.marathon-locked-gate {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+  padding: 0 1rem;
+}
+
+.marathon-locked-card {
+  background: rgba(15, 23, 42, 0.94);
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  max-width: 580px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+[data-theme="light"] .marathon-locked-card {
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.15), 0 0 25px rgba(245, 158, 11, 0.2);
+}
+
+[data-theme="light"] .marathon-locked-card h3 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .marathon-locked-card p {
+  color: #475569 !important;
+}
+
+
 
