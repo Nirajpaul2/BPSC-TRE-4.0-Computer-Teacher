@@ -6,3 +6,4 @@ analytics_db.json
 .vscode/
 .idea/
 *.zip
+.wrangler/
