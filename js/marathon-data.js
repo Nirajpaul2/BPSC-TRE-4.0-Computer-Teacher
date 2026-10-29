@@ -7873,9 +7873,730 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 14,
+    "dayId": "day-14",
+    "badge": "Day 14",
+    "title": "TRE 4.0 — Day 14",
+    "unit": "Part III (CS) • DSA Weekly Revision + 50-Question Master Test (Days 8–13)",
+    "targetTime": "25–30 mins recall + 45–50 mins test",
+    "summary": "Today we do not start a new major CS topic. The goal is to verify whether Days 8–13 are actually stored in memory: Array, Linked List, Stack, Queue, Binary Tree, BST, Heap, Hash Table, Graph, Searching, Sorting & Big-O Complexity.",
+    "targets": [
+      {
+        "section": "Step 1 — Recall",
+        "topic": "10-Minute White-Paper Mental Map",
+        "goal": "Reconstruct Array, Linked List, Stack, Queue, Tree/BST, Heap, Hashing, Graph, Searching, Sorting & Big-O"
+      },
+      {
+        "section": "Part III — CS (DSA Block)",
+        "topic": "50-Question Master Revision Test",
+        "goal": "Score 40+/50 across Sections A to I without consulting notes"
+      }
+    ],
+    "introNote": "Today we do not start a new major CS topic. The goal is to verify whether Days 8–13 are actually stored in memory.\n\nYour uploaded TRE 2.0 paper heavily tests Stack, Queue, Circular Queue, Binary Tree, Priority Queue/Binary Heap, recursion, Deque and Merge Sort. TRE 3.0 adds BST, traversal, Binary Search, Big-O, Merge Sort and Spanning Tree questions. Your STET paper also directly tests DFS → Stack, directed graphs and hashing/collision handling.",
+    "parts": [
+      {
+        "partId": "part-d14-recall",
+        "title": "🧠 10-Minute White-Paper Recall",
+        "sections": [
+          {
+            "title": "Days 8–13 Master White-Paper Recall",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Before the test, close your notes and mentally reproduce the complete DSA landscape from Days 8 to 13:"
+              },
+              {
+                "type": "diagram",
+                "content": "ARRAY\n→ contiguous/indexed\n→ direct access\n\nLINKED LIST\n→ Data + Link\n→ HEAD\n→ NULL\n\n\nSTACK\n→ LIFO\n→ PUSH / POP\n→ Recursion\n→ Expression conversion\n\n\nQUEUE\n→ FIFO\n→ ENQUEUE at REAR\n→ DEQUEUE from FRONT\n\nCircular Queue\n→ Ring Buffer\n\nPriority Queue\n→ Binary Heap"
+              },
+              {
+                "type": "diagram",
+                "content": "TREE\n→ Parent / Child\n\nBinary Tree\n→ max 2 children\n\nBST\n→ LEFT < ROOT < RIGHT\n\nPRE   → NLR\nIN    → LNR\nPOST  → LRN\n\nBST Inorder\n→ sorted"
+              },
+              {
+                "type": "diagram",
+                "content": "MAX HEAP\n→ biggest at root\n\nMIN HEAP\n→ smallest at root\n\n\nHASH\nKey → Hash Function → Index\n\nCollision\n→ two keys same index\n\nChaining\n→ Linked List\n\nLinear Probing\n→ next empty slot"
+              },
+              {
+                "type": "diagram",
+                "content": "GRAPH\n→ Vertices + Edges\n\nBFS → Queue\nDFS → Stack\n\nSpanning Tree\n→ N vertices\n→ N - 1 edges\n\n\nSEARCH\nLinear → O(n)\nBinary → O(log n)\n\nSORT\nBubble    → neighbours\nSelection → minimum\nInsertion → cards\nMerge     → Divide & Conquer\n\nBig-O\n→ upper bound"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Self-Check Benchmark",
+                "content": "If you can reconstruct around 80% without looking, your DSA foundation is moving well."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 14 — 50 Question Test",
+      "subtitle": "Rules: No notes. Try to finish in 45–50 minutes.",
+      "questions": [
+        {
+          "id": "m-d14-q1",
+          "question": "Q1. Which best describes an Array?",
+          "options": [
+            "Elements connected only by pointers",
+            "Indexed collection of elements",
+            "Always a non-linear structure",
+            "Always follows FIFO",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An array is a linear data structure containing contiguous memory elements accessed by numerical indices. Correct: (B) Indexed collection of elements."
+        },
+        {
+          "id": "m-d14-q2",
+          "question": "Q2. In a zero-indexed Array, the fifth element is normally:",
+          "options": [
+            "a[5]",
+            "a[4]",
+            "a[3]",
+            "a[6]",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In zero-based indexing: 1st is a[0], 2nd is a[1], 3rd is a[2], 4th is a[3], and 5th is a[4]. Correct: (B) a[4]."
+        },
+        {
+          "id": "m-d14-q3",
+          "question": "Q3. A major advantage of an Array is:",
+          "options": [
+            "Random access using index",
+            "LIFO operation",
+            "Automatic priority ordering",
+            "No memory usage",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Arrays provide O(1) constant-time random direct access using mathematical index offsets (Base + i * element_size). Correct: (A) Random access using index."
+        },
+        {
+          "id": "m-d14-q4",
+          "question": "Q4. A node in a Singly Linked List normally contains:",
+          "options": [
+            "Only data",
+            "Data and next link",
+            "Front and rear",
+            "Key and hash function only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A singly linked list node contains two fields: Data (the value) and Next (pointer/link to next node). Correct: (B) Data and next link."
+        },
+        {
+          "id": "m-d14-q5",
+          "question": "Q5. The final node of a normal Singly Linked List generally points to:",
+          "options": [
+            "HEAD",
+            "ROOT",
+            "NULL",
+            "FRONT",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The next pointer of the terminal node is set to NULL to indicate the end of the list. Correct: (C) NULL."
+        },
+        {
+          "id": "m-d14-q6",
+          "question": "Q6. Stack follows:",
+          "options": [
+            "FIFO",
+            "LIFO",
+            "Priority order",
+            "Random order",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Stack operates on Last-In, First-Out (LIFO) order. Correct: (B) LIFO."
+        },
+        {
+          "id": "m-d14-q7",
+          "question": "Q7. Adding an element to a Stack is called:",
+          "options": [
+            "Pop",
+            "Push",
+            "Dequeue",
+            "Traverse",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "PUSH inserts an element onto the top of the stack. Pop removes it. Correct: (B) Push."
+        },
+        {
+          "id": "m-d14-q8",
+          "question": "Q8. Removing an element from an empty Stack causes:",
+          "options": [
+            "Overflow",
+            "Underflow",
+            "Collision",
+            "Deadlock",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Attempting to pop from an empty stack (Top == -1) causes an Underflow condition. Correct: (B) Underflow."
+        },
+        {
+          "id": "m-d14-q9",
+          "question": "Q9. Which data structure is normally used for recursion?",
+          "options": [
+            "Queue",
+            "Stack",
+            "Heap",
+            "Graph",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Call Stack stores activation records (return addresses, parameters, local variables) during recursive function calls. Correct: (B) Stack."
+        },
+        {
+          "id": "m-d14-q10",
+          "question": "Q10. Which data structure is commonly used to convert infix expressions to prefix/postfix?",
+          "options": [
+            "Stack",
+            "Queue",
+            "Hash Table",
+            "Heap",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Stacks are used to manage operator precedence and parentheses during infix-to-postfix and infix-to-prefix conversions. Correct: (A) Stack."
+        },
+        {
+          "id": "m-d14-q11",
+          "question": "Q11. Prefix form of:\n\nA+B\n\nis:",
+          "options": [
+            "AB+",
+            "+AB",
+            "A+B",
+            "BA+",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In prefix (Polish notation), the operator precedes the operands: +AB. Correct: (B) +AB."
+        },
+        {
+          "id": "m-d14-q12",
+          "question": "Q12. Prefix form of:\n\nA+B*C\n\nis:",
+          "options": [
+            "ABC*+",
+            "+A*BC",
+            "*+ABC",
+            "AB+C*",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Multiplication has higher precedence: (B*C) becomes *BC. Then addition: A + (*BC) becomes +A*BC. Correct: (B) +A*BC."
+        },
+        {
+          "id": "m-d14-q13",
+          "question": "Q13. Queue follows:",
+          "options": [
+            "LIFO",
+            "FIFO",
+            "FILO only",
+            "Random order",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Queue is a First-In, First-Out (FIFO) data structure. Correct: (B) FIFO."
+        },
+        {
+          "id": "m-d14-q14",
+          "question": "Q14. Insertion in a normal Queue takes place at:",
+          "options": [
+            "Front",
+            "Rear",
+            "Middle",
+            "Top",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Enqueue (insertion) occurs at the REAR end of the queue. Correct: (B) Rear."
+        },
+        {
+          "id": "m-d14-q15",
+          "question": "Q15. Deletion from a normal Queue takes place at:",
+          "options": [
+            "Rear",
+            "Front",
+            "Middle",
+            "Top",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Dequeue (deletion) occurs at the FRONT end of the queue. Correct: (B) Front."
+        },
+        {
+          "id": "m-d14-q16",
+          "question": "Q16. Another name for Circular Queue is:",
+          "options": [
+            "Tree Buffer",
+            "Ring Buffer",
+            "Linear Stack",
+            "Heap Buffer",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A circular queue is also known as a Ring Buffer because the end wraps around to the beginning. Correct: (B) Ring Buffer."
+        },
+        {
+          "id": "m-d14-q17",
+          "question": "Q17. The main reason for using a Circular Queue is to:",
+          "options": [
+            "Convert FIFO into LIFO",
+            "Reuse freed positions efficiently",
+            "Remove the need for a rear pointer",
+            "Sort the Queue automatically",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a linear array queue, empty front slots left after dequeue cannot be reused without expensive shifts; a circular queue reuses freed positions using modulo wrap-around. Correct: (B) Reuse freed positions efficiently."
+        },
+        {
+          "id": "m-d14-q18",
+          "question": "Q18. A Deque allows:",
+          "options": [
+            "Operations only at Front",
+            "Operations only at Rear",
+            "Insertion/deletion at both ends",
+            "Only Stack operations",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A Deque (Double-Ended Queue) allows insertions and deletions at both Front and Rear ends. Correct: (C) Insertion/deletion at both ends."
+        },
+        {
+          "id": "m-d14-q19",
+          "question": "Q19. Which structure is strongly associated with implementing a Priority Queue?",
+          "options": [
+            "Binary Heap",
+            "Stack",
+            "Circular Linked List only",
+            "Simple Queue only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Binary Heap provides O(log n) insertion and extraction of highest/lowest priority elements, making it the canonical implementation for Priority Queues. Correct: (A) Binary Heap."
+        },
+        {
+          "id": "m-d14-q20",
+          "question": "Q20. The topmost node in a Tree is:",
+          "options": [
+            "Leaf",
+            "Root",
+            "Child",
+            "Edge",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The topmost entry node with no parent is the Root. Correct: (B) Root."
+        },
+        {
+          "id": "m-d14-q21",
+          "question": "Q21. A node having no children is called:",
+          "options": [
+            "Root",
+            "Leaf",
+            "Parent",
+            "Sibling",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A node with degree 0 (no children) is called a Leaf or terminal node. Correct: (B) Leaf."
+        },
+        {
+          "id": "m-d14-q22",
+          "question": "Q22. A Binary Tree node can have at most:",
+          "options": [
+            "1 child",
+            "2 children",
+            "3 children",
+            "4 children",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a binary tree, every node has at most 2 children (Left child and Right child). Correct: (B) 2 children."
+        },
+        {
+          "id": "m-d14-q23",
+          "question": "Q23. In a BST, values smaller than the root normally go to:",
+          "options": [
+            "Right subtree",
+            "Left subtree",
+            "Either side randomly",
+            "Root only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "BST Rule: Left Subtree < Root < Right Subtree. Keys smaller than root belong to the Left subtree. Correct: (B) Left subtree."
+        },
+        {
+          "id": "m-d14-q24",
+          "question": "Q24. Values greater than a BST node normally belong to:",
+          "options": [
+            "Left subtree",
+            "Right subtree",
+            "Both necessarily",
+            "Neither",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "All keys strictly greater than a node belong to its Right subtree. Correct: (B) Right subtree."
+        },
+        {
+          "id": "m-d14-q25",
+          "question": "Q25. Preorder traversal is:",
+          "options": [
+            "LNR",
+            "LRN",
+            "NLR",
+            "RNL",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Preorder traversal visits Node -> Left -> Right (NLR). Correct: (C) NLR."
+        },
+        {
+          "id": "m-d14-q26",
+          "question": "Q26. Inorder traversal is:",
+          "options": [
+            "NLR",
+            "LNR",
+            "LRN",
+            "RNL",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inorder traversal visits Left -> Node -> Right (LNR). Correct: (B) LNR."
+        },
+        {
+          "id": "m-d14-q27",
+          "question": "Q27. Postorder traversal is:",
+          "options": [
+            "NLR",
+            "LNR",
+            "LRN",
+            "NRL",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Postorder traversal visits Left -> Right -> Node (LRN). Correct: (C) LRN."
+        },
+        {
+          "id": "m-d14-q28",
+          "question": "Use this BST:\n        20\n       /  \\\n     10    30\n    / \\    / \\\n   5  15  25 35\n\nQ28. Its Inorder traversal is:",
+          "options": [
+            "20,10,5,15,30,25,35",
+            "5,10,15,20,25,30,35",
+            "5,15,10,25,35,30,20",
+            "35,30,25,20,15,10,5",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inorder traversal (Left, Node, Right) of any valid BST always yields values in strictly ascending sorted order: 5, 10, 15, 20, 25, 30, 35. Correct: (B) 5,10,15,20,25,30,35."
+        },
+        {
+          "id": "m-d14-q29",
+          "question": "Q29. The number of distinct BSTs possible using 4 distinct keys is:",
+          "options": [
+            "4",
+            "8",
+            "14",
+            "24",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Given by the 4th Catalan number: C_4 = (1/5) * (8! / (4! * 4!)) = (1/5) * 70 = 14. Correct: (C) 14."
+        },
+        {
+          "id": "m-d14-q30",
+          "question": "Q30. In a Max Heap, the root contains:",
+          "options": [
+            "Smallest value",
+            "Largest value",
+            "Median value",
+            "Random value",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a Max Heap, every parent is greater than or equal to its children, ensuring the Root contains the largest value. Correct: (B) Largest value."
+        },
+        {
+          "id": "m-d14-q31",
+          "question": "Q31. In a Min Heap, the root contains:",
+          "options": [
+            "Largest value",
+            "Smallest value",
+            "Last inserted value always",
+            "Average value",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a Min Heap, every parent is less than or equal to its children, ensuring the Root contains the smallest value. Correct: (B) Smallest value."
+        },
+        {
+          "id": "m-d14-q32",
+          "question": "Q32. Which statement best distinguishes Heap from BST?",
+          "options": [
+            "Heap requires Left < Root < Right",
+            "Heap primarily enforces parent-child priority",
+            "Heap cannot be a binary structure",
+            "BST always stores the largest value at root",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Heap enforces a vertical parent-child ordering relationship without horizontal ordering between siblings. A BST enforces total horizontal ordering (Left < Root < Right). Correct: (B) Heap primarily enforces parent-child priority."
+        },
+        {
+          "id": "m-d14-q33",
+          "question": "Q33. A Hash Function primarily converts:",
+          "options": [
+            "Key → Index",
+            "Index → Stack",
+            "Queue → Tree",
+            "Heap → Graph",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A hash function maps a search Key into an array Index: key → hash(key) → index. Correct: (A) Key → Index."
+        },
+        {
+          "id": "m-d14-q34",
+          "question": "Q34. When two keys map to the same Hash Table index, this is called:",
+          "options": [
+            "Overflow",
+            "Collision",
+            "Underflow",
+            "Traversal",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A collision occurs when two distinct keys yield the exact same table slot: h(k1) == h(k2). Correct: (B) Collision."
+        },
+        {
+          "id": "m-d14-q35",
+          "question": "Q35. Separate Chaining normally resolves collisions using:",
+          "options": [
+            "Linked Lists",
+            "Only Stacks",
+            "Only Queues",
+            "Registers",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Separate Chaining maintains a Linked List at each bucket index to store all colliding keys. Correct: (A) Linked Lists."
+        },
+        {
+          "id": "m-d14-q36",
+          "question": "Q36. Linear Probing handles collision by:",
+          "options": [
+            "Deleting the key",
+            "Checking subsequent available slots",
+            "Creating a Tree immediately",
+            "Sorting the keys first",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In open addressing with Linear Probing, collisions are resolved by sequentially checking subsequent table slots: (h(k) + i) % m until an empty slot is located. Correct: (B) Checking subsequent available slots."
+        },
+        {
+          "id": "m-d14-q37",
+          "question": "Q37. Using:\n\nh(key) = key % 10\n\nkey 52 maps initially to:",
+          "options": [
+            "Index 0",
+            "Index 2",
+            "Index 5",
+            "Index 52",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "h(52) = 52 % 10 = 2. It maps initially to Index 2. Correct: (B) Index 2."
+        },
+        {
+          "id": "m-d14-q38",
+          "question": "Q38. Using the same function, which pair collides?",
+          "options": [
+            "21 and 42",
+            "23 and 53",
+            "11 and 24",
+            "17 and 28",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "23 % 10 = 3 and 53 % 10 = 3. Both keys map to the same index 3, causing a collision. Correct: (B) 23 and 53."
+        },
+        {
+          "id": "m-d14-q39",
+          "question": "Q39. A Graph consists mainly of:",
+          "options": [
+            "Vertices and edges",
+            "Front and rear",
+            "Push and Pop",
+            "Rows only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Graph G = (V, E) is defined by a set of Vertices (nodes) and Edges (connecting lines). Correct: (A) Vertices and edges."
+        },
+        {
+          "id": "m-d14-q40",
+          "question": "Q40. Which traversal is typically associated with a Queue?",
+          "options": [
+            "DFS",
+            "BFS",
+            "Inorder",
+            "Postorder",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Breadth-First Search (BFS) traverses nodes level by level using a FIFO Queue. Correct: (B) BFS."
+        },
+        {
+          "id": "m-d14-q41",
+          "question": "Q41. Which traversal is typically associated with a Stack?",
+          "options": [
+            "BFS",
+            "DFS",
+            "Level-order only",
+            "Hashing",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Depth-First Search (DFS) traverses deeply along each branch using a LIFO Stack (or recursion). Correct: (B) DFS."
+        },
+        {
+          "id": "m-d14-q42",
+          "question": "Q42. A Spanning Tree of a graph with 10 vertices contains:",
+          "options": [
+            "10 edges",
+            "9 edges",
+            "11 edges",
+            "20 edges",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A spanning tree on N connected vertices always contains exactly N - 1 edges without cycles. 10 - 1 = 9 edges. Correct: (B) 9 edges."
+        },
+        {
+          "id": "m-d14-q43",
+          "question": "Q43. A Tree can be described as a connected graph having:",
+          "options": [
+            "Many mandatory cycles",
+            "No cycles",
+            "No vertices",
+            "Only one node always",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "By definition, a tree is a connected, acyclic (no cycles) undirected graph. Correct: (B) No cycles."
+        },
+        {
+          "id": "m-d14-q44",
+          "question": "Q44. Linear Search normally has worst-case complexity:",
+          "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In the worst case (target at end or absent), Linear Search compares all n elements: O(n). Correct: (C) O(n)."
+        },
+        {
+          "id": "m-d14-q45",
+          "question": "Q45. Binary Search normally requires:",
+          "options": [
+            "Unsorted data",
+            "Sorted data",
+            "A Stack",
+            "A Hash collision",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Binary Search requires the array to be in Sorted order to discard half the search space at each comparison. Correct: (B) Sorted data."
+        },
+        {
+          "id": "m-d14-q46",
+          "question": "Q46. Standard Binary Search complexity is:\n\n(Exam trap: TRE 3.0 paper's displayed choices omitted O(log n); the standard result remains O(log n))",
+          "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n log n)",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Binary Search halves the search space at each step, yielding O(log n) time complexity. (In TRE 3.0 where log n was omitted from choices, 'None of the above' was correct). Correct: (B) O(log n)."
+        },
+        {
+          "id": "m-d14-q47",
+          "question": "Q47. Which algorithm mainly compares neighbouring elements repeatedly?",
+          "options": [
+            "Selection Sort",
+            "Bubble Sort",
+            "Binary Search",
+            "DFS",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Bubble Sort repeatedly compares adjacent elements and swaps them if out of order. Correct: (B) Bubble Sort."
+        },
+        {
+          "id": "m-d14-q48",
+          "question": "Q48. Which algorithm is best remembered as:\n“Select the minimum and place it correctly”",
+          "options": [
+            "Selection Sort",
+            "Bubble Sort",
+            "Insertion Sort",
+            "BFS",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Selection Sort repeatedly scans the unsorted subarray, selects the minimum element, and places it at the front. Correct: (A) Selection Sort."
+        },
+        {
+          "id": "m-d14-q49",
+          "question": "Q49. Merge Sort belongs to:",
+          "options": [
+            "Greedy only",
+            "Divide and Conquer",
+            "Hashing",
+            "Dynamic Programming only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Merge Sort recursively splits the array into halves, sorts them, and merges them: Divide and Conquer paradigm. Correct: (B) Divide and Conquer."
+        },
+        {
+          "id": "m-d14-q50",
+          "question": "Q50. Big-O is used in your TRE 3.0 paper in the sense of:",
+          "options": [
+            "Lower-bound growth",
+            "Upper-bound growth",
+            "Exact running time only",
+            "Average case only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Big-O notation denotes the asymptotic upper bound of an algorithm's growth rate / execution time. Correct: (B) Upper-bound growth."
+        }
+      ]
+    }
   }
 ];
 
+// Expose globally for browser environment
+if (typeof window !== 'undefined') {
+  window.MARATHON_DATA = MARATHON_DATA;
+}
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = MARATHON_DATA;
+  module.exports = { MARATHON_DATA };
 }
