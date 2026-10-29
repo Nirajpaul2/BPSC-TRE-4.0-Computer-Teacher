@@ -1662,6 +1662,608 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 4,
+    "dayId": "day-4",
+    "badge": "Day 04",
+    "title": "TRE 4.0 — Day 4",
+    "unit": "Part III (CS) • Part II (GS) • Part I (Hindi)",
+    "targetTime": "15–18 mins read + test",
+    "summary": "Today we move one step deeper into Digital Electronics: Half/Full Adder, MUX/DEMUX & Flip-Flops (CS), Algebra: identities, exponents & quadratic roots (GS), and संधि vs समास basics (Hindi).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Half Adder + Full Adder + MUX/DEMUX + Flip-Flop",
+        "goal": "Combinational & sequential circuit mastery"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Algebra: identities, exponents, equation from roots",
+        "goal": "Quick formula recall & quadratic roots"
+      },
+      {
+        "section": "Part I – Hindi",
+        "topic": "संधि vs समास basics",
+        "goal": "Distinction & classification rules"
+      }
+    ],
+    "introNote": "These are worth studying: TRE 3.0 directly asked Half-Adder outputs,     BPSC TRE3.0 question paper by c… the number of select lines in an 8-to-1 MUX,     BPSC TRE3.0 question paper by c… and a negative-level-triggered flip-flop question.     BPSC TRE3.0 question paper by c…",
+    "parts": [
+      {
+        "partId": "d4-part-3",
+        "title": "Part III — Digital Electronics",
+        "sections": [
+          {
+            "title": "1. Half Adder",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "🧠 White-paper picture\nImagine you want to add two binary digits:"
+              },
+              {
+                "type": "diagram",
+                "content": "     A\n     B\n   ----\n   Sum\n+ Carry\n\nA Half Adder takes:\n2 INPUTS\n   ↓\nA     B\n \\   /\n HALF ADDER\n    ↓ ↓\n   S   C\n Sum Carry"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Half Adder = 2 inputs → 2 outputs\n\nOutputs = SUM + CARRY\n\nTRE 3.0 directly asked this.     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "text",
+                "content": "Half Adder truth table\nThink like normal addition:\n0 + 0 = 0\n0 + 1 = 1\n1 + 0 = 1\n1 + 1 = 10\n\nNow split 10:\n10\n↑↑\nCS\n\nSo:"
+              },
+              {
+                "type": "diagram",
+                "content": "A\tB\tSum\tCarry\n0\t0\t0\t0\n0\t1\t1\t0\n1\t0\t1\t0\n1\t1\t0\t1"
+              },
+              {
+                "type": "text",
+                "content": "Look carefully.\n\nSUM column:\n0\n1\n1\n0\n\nThat's XOR.\n\nCarry:\n0\n0\n0\n1\n\nThat's AND.\n\nTherefore:\nSUM   = A XOR B\nCARRY = A AND B"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Best white-paper trick",
+                "diagram": "HALF ADDER\n\nSUM   → XOR → DIFFERENT\nCARRY → AND → BOTH 1\n\nYou do not need to blindly memorize the truth table."
+              }
+            ]
+          },
+          {
+            "title": "2. Full Adder",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Why do we need a Full Adder?\n\nHalf Adder can add only:\nA + B\n\nBut when adding larger binary numbers, a previous column can send us a carry.\n\nSo we need:\nA\nB\nCin   ← previous carry"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental picture",
+                "diagram": "HALF ADDER\nA + B\n  ↓\nNo previous carry\n\nFULL ADDER\nA + B + Cin\n      ↑\nprevious carry allowed"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory sentence",
+                "content": "Half = 2 inputs\n\nFull = 3 inputs"
+              },
+              {
+                "type": "text",
+                "content": "Full Adder inputs:\nA\nB\nCin\n\nOutputs:\nSUM\nCout"
+              },
+              {
+                "type": "callout",
+                "icon": "📝",
+                "title": "Very useful exam distinction",
+                "diagram": "Half Adder\n2 inputs\nA, B\n↓\nSum + Carry\n\nversus\nFull Adder\n3 inputs\nA, B, Cin\n↓\nSum + Carry-out"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory",
+                "content": "FULL means Carry-In is included."
+              }
+            ]
+          },
+          {
+            "title": "3. MUX — Multiplexer",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "MUX sounds difficult, but the concept is simple.\n\nImagine four roads reaching one gate."
+              },
+              {
+                "type": "diagram",
+                "content": "I0 ─────┐\nI1 ─────┤\nI2 ─────┤──► MUX ───► ONE OUTPUT\nI3 ─────┘\n             ↑\n          SELECT"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "diagram": "MUX = MANY → ONE\n\nMany inputs\n     ↓\n   MUX\n     ↓\nOne output\n\nThink of a TV remote:\n\nMany channels exist.\n\nYou select one."
+              },
+              {
+                "type": "text",
+                "content": "Select lines\nThis is very important.\n\nFormula:\nInputs = 2ⁿ\n\nn = number of select lines\n\nSo:\n2-to-1 MUX\n2 = 2¹\n→ 1 select line\n\n4-to-1 MUX\n4 = 2²\n→ 2 select lines\n\n8-to-1 MUX\n8 = 2³\n→ 3 select lines\n\n16-to-1 MUX\n16 = 2⁴\n→ 4 select lines"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "White-paper trick",
+                "diagram": "MUX INPUTS\n\n2  → 1 select\n4  → 2\n8  → 3\n16 → 4\n32 → 5\n\nTRE 3.0 directly asked how many select lines an 8-to-1 MUX requires.     BPSC TRE3.0 question paper by c…\n\nAnswer:\n3"
+              }
+            ]
+          },
+          {
+            "title": "4. DEMUX",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "DEMUX is simply the opposite direction.\n\nMUX:\nMANY\n ↓\n ONE\n\nDEMUX:\n ONE\n ↓\nMANY\n\nPicture:"
+              },
+              {
+                "type": "diagram",
+                "content": "                  ┌── O0\nONE INPUT ─► DEMUX├── O1\n                  ├── O2\n                  └── O3\n                      ↑\n                   SELECT"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "MUX = Many → One\n\nDEMUX = One → Many\n\nImagine:\nMUX   = Collector\nDEMUX = Distributor\n\nThis is an excellent quick-memory pair."
+              }
+            ]
+          },
+          {
+            "title": "5. Flip-Flop",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Now imagine a tiny memory box."
+              },
+              {
+                "type": "diagram",
+                "content": "       ┌───────────┐\nInput →│ FLIP-FLOP │→ Output\n       │ remembers │\n       └───────────┘"
+              },
+              {
+                "type": "text",
+                "content": "A flip-flop can store:\n1 bit\n\nThat means:\n0\nOR\n1"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Flip-Flop = 1-bit memory"
+              },
+              {
+                "type": "text",
+                "content": "Why is clock important?\nImagine a school bell.\n\nStudents change periods when the bell tells them.\n\nSimilarly:\nInput changes\n    ↓\nClock says GO\n    ↓\nFlip-Flop changes state"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\nDATA\n ↓\n[FLIP-FLOP]\n     ↑\n   CLOCK"
+              }
+            ]
+          },
+          {
+            "title": "6. SR Flip-Flop",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "SR:\nS = SET\nR = RESET\n\nMental picture:\nSET   → store 1\nRESET → store 0"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "S = Set = 1\n\nR = Reset = 0"
+              },
+              {
+                "type": "text",
+                "content": "Basic SR behaviour:"
+              },
+              {
+                "type": "diagram",
+                "content": "S\tR\tMeaning\n0\t0\tNo change\n0\t1\tReset\n1\t0\tSet\n1\t1\tInvalid/forbidden in basic SR"
+              },
+              {
+                "type": "callout",
+                "icon": "📝",
+                "title": "White-paper:",
+                "content": "S R\n0 0 → MEMORY\n0 1 → RESET\n1 0 → SET\n1 1 → PROBLEM\n\nVery easy."
+              }
+            ]
+          },
+          {
+            "title": "7. JK Flip-Flop",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "JK improves the problematic 11 condition of SR.\n\nThink:\nSR:\n11 → Problem ❌\n\nJK:\n11 → Toggle ✅\n\nToggle means:\n0 → 1\n1 → 0"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "JK fixes SR's 11 problem.\n\nBasic JK:\n00 → No change\n01 → Reset\n10 → Set\n11 → Toggle"
+              }
+            ]
+          },
+          {
+            "title": "8. D Flip-Flop",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "D is probably the easiest.\nD = DATA\n\nWhatever D contains gets stored.\nD=0 → Q=0\nD=1 → Q=1"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "D = Data goes Directly"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\nD ─────► Q\n\nat the active clock event."
+              }
+            ]
+          },
+          {
+            "title": "9. T Flip-Flop",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "T:\nT = Toggle\n\nT=0 → No change\nT=1 → Toggle"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\nT = 0\n→ STAY\n\nT = 1\n→ FLIP"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Best memory",
+                "content": "T = 1 → Turn it around"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "One-page Flip-Flop memory",
+                "diagram": "Mentally draw this:\n          FLIP-FLOPS\n              ↓\n          store 1 bit\n\nSR → Set / Reset\nJK → SR fixed; 11 = Toggle\nD  → Data directly\nT  → Toggle\n\nAnd:\nD = DATA\nT = TOGGLE\n\nThese two should become instant."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d4-part-2",
+        "title": "Part II — Algebra",
+        "sections": [
+          {
+            "title": "1. Three identities you must know",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE has used elementary algebra, including constructing a quadratic equation from given roots. TRE 2.0 asked for the equation whose roots were -1 and 4.     BPSC TRE3.0 question paper by c…\n\nDon't memorize ten at once.\n\nStart with:\n(a+b)² = a² + 2ab + b²\n\n(a-b)² = a² - 2ab + b²\n\n(a+b)(a-b) = a²-b²"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "White-paper trick",
+                "content": "For:\n(a+b)²\n\nthink:\nFIRST²\n  +\n2 × FIRST × SECOND\n  +\nSECOND²\n\nSo:\n(a+b)²\n\n= a²\n+ 2ab\n+ b²\n\nMemory sentence:\nSquare → First², double-middle, Last²."
+              }
+            ]
+          },
+          {
+            "title": "2. Exponents",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Basic rule:\naᵐ × aⁿ = aᵐ⁺ⁿ\n\nMemory:\nSame base + multiplication → ADD powers\n\nExample:\n2³ × 2⁴\n= 2⁷\n\nDivision:\naᵐ ÷ aⁿ = aᵐ⁻ⁿ\n\nMemory:\nSame base + division → SUBTRACT powers\n\nAnd:\n(aᵐ)ⁿ = aᵐⁿ\n\nMemory:\nPower on power → multiply powers"
+              }
+            ]
+          },
+          {
+            "title": "3. Equation from roots",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is particularly useful for TRE.\n\nSuppose roots are:\nα and β\n\nFormula:\nx² - (α+β)x + αβ = 0\n\nThis looks complicated, so use the white-paper trick:"
+              },
+              {
+                "type": "diagram",
+                "content": "ROOTS\n ↓\nSUM\n ↓\nput MINUS before x\n\nPRODUCT\n ↓\nput at END\n\nSo:\nx² − SUM·x + PRODUCT = 0"
+              },
+              {
+                "type": "text",
+                "content": "Example: roots -1 and 4\nSum:\n-1 + 4 = 3\n\nProduct:\n-1 × 4 = -4\n\nNow:\nx² - SUM·x + PRODUCT = 0\n\nTherefore:\nx² - 3x - 4 = 0\n\nYou can also mentally factor it:\n(x+1)(x-4)=0\n\nwhich gives:\nx=-1\nx=4"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "White-paper memory",
+                "diagram": "ROOTS\n ↓\nSUM      PRODUCT\n ↓          ↓\n -x         end\n\nx² - SUMx + PRODUCT = 0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d4-part-1",
+        "title": "Part I — Hindi: संधि vs समास",
+        "sections": [
+          {
+            "title": "🧠 White-paper picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Today first understand the difference. Don't memorize every subtype yet."
+              },
+              {
+                "type": "diagram",
+                "content": "संधि\nवर्ण + वर्ण\n   ↓\nध्वनि/अक्षर में परिवर्तन\n\nThink:\nLetters meet and change.\n\nExample:\nविद्या + आलय\n     ↓\nविद्यालय"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "संधि = अक्षरों की शादी\n\nWhen letters meet, their form/sound may change."
+              },
+              {
+                "type": "diagram",
+                "content": "समास\nशब्द + शब्द\n     ↓\n छोटा रूप\n\nExample:\nराजा का पुत्र\n      ↓\n   राजपुत्र"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "समास = शब्दों की Short Form\n\nSo:\nसंधि → LETTERS change\nसमास → WORDS shorten\n\nThis is your most important distinction today."
+              }
+            ]
+          },
+          {
+            "title": "Main Sandhi & Samas categories",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Main Sandhi categories\nFor now remember only:\nसंधि\n ├─ स्वर\n ├─ व्यंजन\n └─ विसर्ग\n\nMemory:\nस्वर – व्यंजन – विसर्ग\n\nDon't go deep today; we'll practice identification later."
+              },
+              {
+                "type": "text",
+                "content": "Main Samas categories\nYou will eventually need:\nअव्ययीभाव\nतत्पुरुष\nकर्मधारय\nद्वंद्व\nद्विगु\nबहुव्रीहि\n\nBut today remember only three easy patterns."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "द्वंद्व",
+                "content": "Both words are equally important.\nमाता-पिता\n=\nमाता और पिता\n\nMemory:\nद्वंद्व = AND"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "तत्पुरुष",
+                "content": "Hidden कारक relation.\nराजपुत्र\n=\nराजा का पुत्र\n\nMemory:\nतत्पुरुष = का/के/की/को/से hidden"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "कर्मधारय",
+                "content": "One word describes another.\nनीलकमल\n=\nनीला कमल\n\nMemory:\nकर्मधारय = विशेषण + संज्ञा"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Day 4 white-paper revision page",
+                "diagram": "Before stopping today, mentally reproduce:\nHALF ADDER\n2 inputs\nSum = XOR\nCarry = AND\n\nFULL ADDER\nA + B + Carry-In\n\nMUX\nMany → One\n2ⁿ inputs → n select lines\n\nDEMUX\nOne → Many\n\nFLIP-FLOP\n1-bit memory\n\nSR → Set/Reset\nJK → 11 Toggle\nD  → Data\nT  → Toggle\n\nThen:\nALGEBRA\n\n(a+b)² = a²+2ab+b²\n\nSame base:\n× → ADD powers\n÷ → SUBTRACT powers\n\nRoots:\nx² - SUMx + PRODUCT = 0\n\nAnd Hindi:\nसंधि = letters join/change\nसमास = words become short"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 4 Test",
+      "subtitle": "No looking above.",
+      "questions": [
+        {
+          "id": "m-d4-q1",
+          "question": "Q1. Outputs of a Half Adder are:",
+          "options": [
+            "Difference and Borrow",
+            "Sum and Carry",
+            "Sum and Difference",
+            "Carry and Borrow",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Half Adder takes 2 single-bit inputs (A, B) and generates 2 outputs: SUM and CARRY. Correct: (B) Sum and Carry."
+        },
+        {
+          "id": "m-d4-q2",
+          "question": "Q2. In a Half Adder, SUM is produced by:",
+          "options": [
+            "AND",
+            "OR",
+            "XOR",
+            "XNOR",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "SUM = A ⊕ B (A XOR B), giving 1 only when inputs are different (0+1=1, 1+0=1). Correct: (C) XOR."
+        },
+        {
+          "id": "m-d4-q3",
+          "question": "Q3. Half-Adder Carry is:",
+          "options": [
+            "A+B",
+            "A XOR B",
+            "A.B",
+            "A'B",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "CARRY = A · B (A AND B), giving 1 only when both inputs are 1 (1+1=10, carry 1). Correct: (C) A.B."
+        },
+        {
+          "id": "m-d4-q4",
+          "question": "Q4. A Full Adder has how many basic input bits?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A Full Adder accepts 3 inputs: A, B, and Cin (Carry-in from the previous column). Correct: (C) 3."
+        },
+        {
+          "id": "m-d4-q5",
+          "question": "Q5. A 16-to-1 MUX requires:",
+          "options": [
+            "2 select lines",
+            "3 select lines",
+            "4 select lines",
+            "16 select lines",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Formula: Inputs = 2ⁿ where n is select lines. 16 = 2⁴ ⇒ 4 select lines required. Correct: (C) 4 select lines."
+        },
+        {
+          "id": "m-d4-q6",
+          "question": "Q6. A Multiplexer performs:",
+          "options": [
+            "One input → many outputs",
+            "Many inputs → one output",
+            "Many inputs → many outputs",
+            "One input → one output only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "MUX (Data Selector / Collector) selects one output line from many input data lines (Many → One). Correct: (B) Many inputs → one output."
+        },
+        {
+          "id": "m-d4-q7",
+          "question": "Q7. A flip-flop normally stores:",
+          "options": [
+            "1 byte",
+            "1 bit",
+            "4 bits",
+            "8 bits",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A flip-flop is a basic bistable multivibrator that stores exactly 1 bit of binary information (0 or 1). Correct: (B) 1 bit."
+        },
+        {
+          "id": "m-d4-q8",
+          "question": "Q8. In JK flip-flop, J=1, K=1 generally means:",
+          "options": [
+            "Reset",
+            "Set",
+            "Toggle",
+            "No change",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In a JK flip-flop, the 11 input condition produces a Toggle state (Q toggles from 0→1 or 1→0), resolving the forbidden state of SR. Correct: (C) Toggle."
+        },
+        {
+          "id": "m-d4-q9",
+          "question": "Q9. In a T flip-flop, T=0 means:",
+          "options": [
+            "Toggle",
+            "Reset always",
+            "Set always",
+            "No change",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In a T (Toggle) flip-flop, T=0 maintains the previous state (No change/Stay), while T=1 causes a toggle/flip. Correct: (D) No change."
+        },
+        {
+          "id": "m-d4-q10",
+          "question": "Q10. (a+b)² equals:",
+          "options": [
+            "a²+b²",
+            "a²+2ab+b²",
+            "a²-2ab+b²",
+            "a²-b²",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "(a+b)² = a² + 2ab + b² (First² + 2×First×Second + Second²). Correct: (B) a²+2ab+b²."
+        },
+        {
+          "id": "m-d4-q11",
+          "question": "Q11. 2³ × 2⁵ =",
+          "options": [
+            "2⁸",
+            "4⁸",
+            "2¹⁵",
+            "2²",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Exponent product rule: aᵐ × aⁿ = aᵐ⁺ⁿ. For base 2: 2³ × 2⁵ = 2³⁺⁵ = 2⁸. Correct: (A) 2⁸."
+        },
+        {
+          "id": "m-d4-q12",
+          "question": "Q12. If roots are 2 and 5, the quadratic equation is:",
+          "options": [
+            "x²+7x+10=0",
+            "x²-7x+10=0",
+            "x²-3x+10=0",
+            "x²+3x-10=0",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Quadratic equation from roots: x² - (Sum of roots)x + (Product of roots) = 0. Sum = 2+5 = 7, Product = 2×5 = 10 ⇒ x² - 7x + 10 = 0. Correct: (B) x²-7x+10=0."
+        },
+        {
+          "id": "m-d4-q13",
+          "question": "Q13. “माता-पिता” किस समास का उदाहरण है?",
+          "options": [
+            "तत्पुरुष",
+            "द्वंद्व",
+            "कर्मधारय",
+            "बहुव्रीहि",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "माता-पिता = माता और पिता। दोनों पद प्रधान होने के कारण यह 'द्वंद्व समास' है। Correct: (B) द्वंद्व."
+        },
+        {
+          "id": "m-d4-q14",
+          "question": "Q14. “राजपुत्र” का विग्रह है:",
+          "options": [
+            "राजा और पुत्र",
+            "राजा जैसा पुत्र",
+            "राजा का पुत्र",
+            "राजा में पुत्र",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "राजपुत्र का सही समास-विग्रह 'राजा का पुत्र' (सम्बन्ध तत्पुरुष समास) है। Correct: (C) राजा का पुत्र."
+        },
+        {
+          "id": "m-d4-q15",
+          "question": "Q15. संधि में मुख्यतः क्या जुड़ते/बदलते हैं?",
+          "options": [
+            "वाक्य",
+            "अनुच्छेद",
+            "वर्ण/ध्वनियाँ",
+            "केवल संज्ञाएँ",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "दो समीपवर्ती वर्णों (ध्वनियों) के मेल से जो विकार (परिवर्तन) होता है, उसे 'संधि' कहते हैं। Correct: (C) वर्ण/ध्वनियाँ."
+        }
+      ]
+    }
   }
 ];
 
