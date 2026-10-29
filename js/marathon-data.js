@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 30 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 31 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -17235,6 +17235,680 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 3,
           "explanation": "All three mode associations are correct: 'r' for reading, 'w' for writing, and 'a' for appending. Correct: (D) More than one of the above."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 31,
+    "dayId": "day-31",
+    "badge": "Day 31",
+    "title": "TRE 4.0 — Day 31",
+    "unit": "Part III (CS) • 🐍 Python Full Milestone Revision & 40-Question Comprehensive Checkpoint Test",
+    "targetTime": "20–25 mins read + 35 mins test",
+    "summary": "Python Comprehensive Milestone Revision & 40-Question Checkpoint (NCERT Class XI & XII): Python Fundamentals (interpreted high-level, case-sensitive, identifier rules), Operators (arithmetic / vs // vs %, power **, comparison == vs =, logical and/or/not, membership in/not in), Control Structures (if/elif/else, indentation blocks, range(start, stop, step) [stop excluded], break vs continue), Strings (indexing 0 to -1, slicing [start:end], reverse [::-1], strip, split), Collections (List [ ] mutable, Tuple ( ) immutable with (10,) single-element trap, Dict {k:v} key membership & get(), Set { } unique elements), Functions & Scope (def, parameters vs arguments, return tuples, local vs global, variable shadowing, global keyword), Modules (math.sqrt returns float, floor/ceil negative number traps, factorial, random.random range [0.0, 1.0)), Exception Handling (try/except/finally/raise, ZeroDivisionError), File Handling (modes r, w, a, x, read, readline, readlines, tell, seek), and 40-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Python Comprehensive Revision (40 MCQs)",
+        "goal": "Consolidate Python syntax, collections mutability, string slicing, scope rules, math/random functions, exception handling, and file operations"
+      },
+      {
+        "section": "NCERT Coverage",
+        "topic": "Class XI & XII Alignment",
+        "goal": "Verify full recall of Python core curriculum from NCERT Chapters kecs105, kecs107, kecs108, kecs110 and lecs1ps"
+      }
+    ],
+    "introNote": "Today there is no new Python theory and no C++.\n\nThe revision is based on your NCERT Python material: Python keywords/identifiers and script execution, functions and return, tuples/dictionaries, modules such as math and random, plus the Class XII sections on exception handling and file handling (kecs105, kecs107, lecs1ps).\n\nThe questions below are original PYQ-style practice based on those source topics; I am not claiming they are verbatim BPSC TRE questions.",
+    "parts": [
+      {
+        "title": "Part III — Python Language Architecture, Identifiers & Data Collections",
+        "sections": [
+          {
+            "title": "Python Fundamentals & Valid Identifier Rules",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "PYTHON ARCHITECTURE\n• High-level, interpreted, dynamically typed, case-sensitive language.\n• Script files have the extension: .py\n\nIDENTIFIER RULES (NCERT kecs105):\n• Must begin with a letter (A-Z, a-z) or an underscore (_).\n• Cannot begin with a digit (e.g. '1marks' is INVALID; 'marks1' and '_marks' are VALID).\n• Cannot contain special characters or spaces (only alphanumeric and _).\n• Cannot be a reserved Python keyword (e.g. if, for, while, def, class, return)."
+              },
+              {
+                "type": "callout",
+                "icon": "🏷️",
+                "title": "Identifier Memory Anchor",
+                "content": "Letter or _ first | Digits allowed inside/end | No special characters | No keywords"
+              }
+            ]
+          },
+          {
+            "title": "The 4 Core Collections & Mutability Master Recall",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Collection │ Syntax   │ Mutability │ Key Characteristic\n───────────┼──────────┼────────────┼──────────────────────────────────────\nString     │ \" \"      │ Immutable  │ Ordered sequence of characters\nList       │ [ ]      │ Mutable    │ Ordered, editable sequence\nTuple      │ ( )      │ Immutable  │ Ordered, fixed sequence; (10,) comma!\nDictionary │ {k: v}   │ Mutable    │ Key-to-value hash lookup table\nSet        │ {values} │ Mutable    │ Unordered unique items; deduplicated"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Deduplication & Single-Element Traps",
+                "content": "• Set Deduplication: s = {1, 2, 2, 3} automatically becomes {1, 2, 3}.\n• Single-Element Tuple: (10) is an integer; (10,) is a tuple!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Operators, Comparisons & Control Flow",
+        "sections": [
+          {
+            "title": "Arithmetic, Relational & Logical Operators",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Operator │ Name            │ Example / Behavior\n─────────┼─────────────────┼────────────────────────────────────────\n/        │ Normal Division │ 13 / 4 → 3.25 (always returns float)\n//       │ Floor Division  │ 13 // 4 → 3 (integer quotient, rounds down)\n%        │ Modulo          │ 13 % 4 → 1 (remainder: 13 = 4*3 + 1)\n**       │ Exponentiation  │ 2 ** 4 → 16 (2⁴)\n==       │ Equal to        │ Comparison: True/False (contrast with = assign)\n!=       │ Not equal to    │ Comparison: True/False\nand      │ Logical AND     │ True only if ALL are true (True and False → False)\nor       │ Logical OR      │ True if ANY is true (True or False → True)\nnot      │ Logical NOT     │ Inverts boolean value (not True → False)\nin       │ Membership      │ 20 in [10, 20, 30] → True"
+              }
+            ]
+          },
+          {
+            "title": "Conditional Branching & Loop Controls",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "BRANCHING & INDENTATION\n• if / elif / else: Evaluates sequentially; first matching true block runs and terminates selection.\n• Indentation: Leading whitespace denotes code block ownership; no curly braces { }.\n\nLOOPS & range(start, stop, step):\n• Stop value is always EXCLUDED!\n• range(2, 7, 2) produces: 2, 4, 6 (stops before 7)\n\nLOOP CONTROLS:\n• break: Completely terminates the loop immediately (Exit Door 🚪).\n• continue: Skips remainder of current iteration and advances to next turn (Skip Button ⏭️)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Strings, Functions & Variable Scope",
+        "sections": [
+          {
+            "title": "String Slicing, Reversal & Core String Methods",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "s = \"PYTHON\"\nIndex:    0   1   2   3   4   5\nChar:     P   Y   T   H   O   N\nNeg:     -6  -5  -4  -3  -2  -1\n\n• Slicing s[1:4]: indices 1, 2, 3 ('Y', 'T', 'H') → \"YTH\" (end 4 excluded)\n• Reversal s[::-1]: \"ABC\"[::-1] → \"CBA\"\n• strip(): Removes leading and trailing whitespace\n• split(): \"India is great\".split() → ['India', 'is', 'great'] (String to List)"
+              }
+            ]
+          },
+          {
+            "title": "Functions, Parameters vs Arguments & Scope",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "📦",
+                "title": "Parameters vs Arguments & return",
+                "content": "• Parameter: Variable in definition header (def add(a, b))\n• Argument: Value passed during function call (add(10, 20))\n• return: Sends value/control back to caller (default is None)\n• Multiple returns: return 10, 20 packages and returns a TUPLE (10, 20)"
+              },
+              {
+                "type": "text",
+                "content": "SCOPE & THE global KEYWORD\n• Local Variable: Declared inside function; inaccessible outside (causes NameError).\n• Global Variable: Declared outside; readable across functions.\n• Shadowing: Local variable hides/shadows global variable of same name.\n• global x: Explicitly instructs Python to modify the module-level variable."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Modules, Exceptions & File Handling",
+        "sections": [
+          {
+            "title": "Standard Modules: math & random",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "math Module:\n• math.sqrt(49)      → 7.0 (always returns float)\n• math.floor(-4.5)   → -5  (moves DOWN/LEFT on number line)\n• math.ceil(9.2)     → 10  (moves UP/RIGHT on number line)\n• math.factorial(5)  → 120 (5! = 120)\n• math.gcd(12, 18)   → 6\n\nrandom Module:\n• random.random()    → Random float in [0.0, 1.0)\n• random.randint(a,b)→ Random integer from a to b inclusive"
+              }
+            ]
+          },
+          {
+            "title": "Exception Handling & File Handling",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "EXCEPTION HANDLING (NCERT Class XII Chapter 1):\n• try: Encloses code that may raise an exception.\n• except: Handles matching error (e.g. ZeroDivisionError for 10 / 0).\n• finally: Always executes for guaranteed cleanup.\n• raise: Intentionally triggers an exception.\n\nFILE HANDLING (NCERT Class XII Chapter 2):\n• Modes: 'r' (Read), 'w' (Write / wipe), 'a' (Append at end), 'x' (Exclusive create)\n• Reading: read() full text, readline() one line, readlines() list of line strings\n• Offsets: tell() returns current pointer byte offset; seek(pos) repositions pointer"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 31 White-Paper Master Sheet & Recall",
+        "sections": [
+          {
+            "title": "5-Minute White-Paper Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "🧠 Day 31 White-Paper Master Sheet\nMentally reproduce:\n\nPYTHON\nHigh-level, Interpreted, Case-sensitive, .py\n\nCOLLECTIONS\nList       [ ]   Mutable\nTuple      ( )   Immutable  ((10,) single tuple)\nDictionary {K:V} Mutable    (get() safe lookup)\nSet        { }   Mutable    (Unique, deduplicated)\nString           Immutable\n\nOPERATORS\n/  → float div    // → floor div    % → remainder    ** → power\n== → compare      =  → assign       in → membership\n\nCONTROL\nrange(start, stop, step) [stop EXCLUDED]\nbreak → EXIT LOOP 🚪 | continue → SKIP TURN ⏭️\n\nSTRINGS\n0 → first, -1 → last, [start:end] (end excluded), [::-1] → reverse\nstrip(), split() (str → list), join() (list → str)\n\nFUNCTIONS & SCOPE\ndef, parameters (header), arguments (call), return (tuple)\nLOCAL (inside) vs GLOBAL (outside) | global x modifies global\n\nMODULES & EXCEPTIONS\nmath.sqrt() float | math.floor(-4.5) = -5 | math.factorial(5) = 120\nrandom.random() [0, 1) | try / except / finally / raise\n\nFILES\nr (read), w (write/wipe), a (append)\nread(), readline(), readlines() (list)\ntell() (where pointer is), seek(pos) (move pointer)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 31 Milestone Checkpoint Test",
+      "subtitle": "40 Comprehensive NCERT Python Questions: Fundamentals, Operators, Loops, Strings, Collections, Scope, Modules, Exceptions & Files",
+      "questions": [
+        {
+          "id": "m-d31-q1",
+          "question": "Q1. Python is primarily described in your NCERT material as:",
+          "options": [
+            "Assembly language",
+            "Machine language",
+            "Interpreted high-level language",
+            "Database language",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Python is an interpreted, high-level, dynamically typed programming language. Correct: (C) Interpreted high-level language."
+        },
+        {
+          "id": "m-d31-q2",
+          "question": "Q2. Which is an invalid Python identifier?",
+          "options": [
+            "marks1",
+            "_marks",
+            "1marks",
+            "total_marks",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Python identifiers cannot begin with a digit. Therefore, '1marks' is invalid. Correct: (C) 1marks."
+        },
+        {
+          "id": "m-d31-q3",
+          "question": "Q3. Which represents a list?",
+          "options": [
+            "(10,20,30)",
+            "[10,20,30]",
+            "{\"a\":10}",
+            "\"10,20,30\"",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Python lists are constructed using square brackets [ ]. Correct: (B) [10,20,30]."
+        },
+        {
+          "id": "m-d31-q4",
+          "question": "Q4. Which is immutable?",
+          "options": [
+            "List",
+            "Dictionary",
+            "Tuple",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Tuples cannot be altered after creation and are strictly immutable. Correct: (C) Tuple."
+        },
+        {
+          "id": "m-d31-q5",
+          "question": "Q5. What is the main property of:\ns = {1, 2, 2, 3}",
+          "options": [
+            "Duplicate 2 must remain twice",
+            "Set eliminates duplicate entries",
+            "It is a dictionary",
+            "It is a tuple",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A set automatically removes duplicate elements, resulting conceptually in {1, 2, 3}. Correct: (B) Set eliminates duplicate entries."
+        },
+        {
+          "id": "m-d31-q6",
+          "question": "Q6. What is the result?\n13 // 4",
+          "options": [
+            "3",
+            "3.25",
+            "1",
+            "4",
+            "Error"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The floor division operator // discards the fractional part and returns the integer quotient 3. Correct: (A) 3."
+        },
+        {
+          "id": "m-d31-q7",
+          "question": "Q7. What is:\n13 % 4",
+          "options": [
+            "4",
+            "3",
+            "1",
+            "0",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The modulo operator % returns the remainder: 13 = 4 * 3 + 1, so the remainder is 1. Correct: (C) 1."
+        },
+        {
+          "id": "m-d31-q8",
+          "question": "Q8. What is:\n2 ** 4",
+          "options": [
+            "8",
+            "16",
+            "6",
+            "24",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The ** operator computes exponentiation: 2 ** 4 = 2⁴ = 16. Correct: (B) 16."
+        },
+        {
+          "id": "m-d31-q9",
+          "question": "Q9. What is the output?\nprint(True and False)",
+          "options": [
+            "True",
+            "False",
+            "1",
+            "0",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Logical 'and' requires both operands to be True; True and False evaluates to False. Correct: (B) False."
+        },
+        {
+          "id": "m-d31-q10",
+          "question": "Q10. What is the output?\na = [10, 20, 30]\nprint(20 in a)",
+          "options": [
+            "20",
+            "True",
+            "False",
+            "1",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The membership operator 'in' evaluates to True because 20 is an element of list a. Correct: (B) True."
+        },
+        {
+          "id": "m-d31-q11",
+          "question": "Q11. What is the output?\nx = 70\n\nif x >= 80:\n    print(\"A\")\nelif x >= 60:\n    print(\"B\")\nelse:\n    print(\"C\")",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "70",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "70 >= 80 is False; the elif condition 70 >= 60 is True, printing 'B' and terminating the construct. Correct: (B) B."
+        },
+        {
+          "id": "m-d31-q12",
+          "question": "Q12. Which values are generated?\nrange(2, 7, 2)",
+          "options": [
+            "2,4,6",
+            "2,4,6,8",
+            "2,3,4,5,6",
+            "0,2,4,6",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "range(start, stop, step) starts at 2, steps by 2, and excludes the stop value 7: 2, 4, 6. Correct: (A) 2,4,6."
+        },
+        {
+          "id": "m-d31-q13",
+          "question": "Q13. What is the output?\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)",
+          "options": [
+            "0 1 2",
+            "0 1 2 3",
+            "1 2 3",
+            "0 1 2 4",
+            "Error"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The loop prints 0, 1, 2. When i reaches 3, the break statement terminates the loop before printing 3. Output: 0 1 2. Correct: (A) 0 1 2."
+        },
+        {
+          "id": "m-d31-q14",
+          "question": "Q14. What is the output?\nfor i in range(5):\n    if i == 2:\n        continue\n    print(i)",
+          "options": [
+            "0 1 2 3 4",
+            "0 1 3 4",
+            "0 1",
+            "2 3 4",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "When i is 2, continue skips the rest of the loop body. The values 0, 1, 3, 4 are printed. Correct: (B) 0 1 3 4."
+        },
+        {
+          "id": "m-d31-q15",
+          "question": "Q15. What is the output?\ns = \"PYTHON\"\nprint(s[1:4])",
+          "options": [
+            "PYT",
+            "YTH",
+            "YTHO",
+            "THO",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Slicing s[1:4] includes indices 1, 2, and 3 ('Y', 'T', 'H') and excludes index 4. Output: 'YTH'. Correct: (B) YTH."
+        },
+        {
+          "id": "m-d31-q16",
+          "question": "Q16. What is the output?\nprint(\"ABC\"[::-1])",
+          "options": [
+            "ABC",
+            "BAC",
+            "CBA",
+            "ACB",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The slice step -1 reverses the string sequence: 'CBA'. Correct: (C) CBA."
+        },
+        {
+          "id": "m-d31-q17",
+          "question": "Q17. strip() mainly removes:",
+          "options": [
+            "All characters",
+            "Leading and trailing whitespace",
+            "Only middle spaces",
+            "Only digits",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "strip() trims leading and trailing whitespace from both ends of the string. Correct: (B) Leading and trailing whitespace."
+        },
+        {
+          "id": "m-d31-q18",
+          "question": "Q18. What does this commonly return?\n\"India is great\".split()",
+          "options": [
+            "Integer",
+            "List of words",
+            "Tuple only",
+            "Dictionary",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "split() breaks a string by whitespace and returns a list of substrings: ['India', 'is', 'great']. Correct: (B) List of words."
+        },
+        {
+          "id": "m-d31-q19",
+          "question": "Q19. What is the output?\na = [10, 20]\na.append(30)\nprint(a)",
+          "options": [
+            "[30,10,20]",
+            "[10,20,30]",
+            "[10,20]",
+            "Error",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "append() adds the value 30 to the tail of the list: [10, 20, 30]. Correct: (B) [10,20,30]."
+        },
+        {
+          "id": "m-d31-q20",
+          "question": "Q20. What is x?\na = [10,20,30]\nx = a.pop()",
+          "options": [
+            "10",
+            "20",
+            "30",
+            "[10,20]",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "By default, pop() removes and returns the last element of the list, which is 30. Correct: (C) 30."
+        },
+        {
+          "id": "m-d31-q21",
+          "question": "Q21. Which is a single-element tuple?",
+          "options": [
+            "(10)",
+            "[10]",
+            "(10,)",
+            "{10}",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A single-element tuple must contain a trailing comma: (10,). Correct: (C) (10,)."
+        },
+        {
+          "id": "m-d31-q22",
+          "question": "Q22. What is the output?\nt = (10,20,10,30,10)\n\nprint(t.count(10))",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "count(10) returns the frequency of element 10 in the tuple, which is 3. Correct: (C) 3."
+        },
+        {
+          "id": "m-d31-q23",
+          "question": "Q23. What is the output?\nd = {\"name\":\"Ravi\"}\nprint(d.get(\"age\"))",
+          "options": [
+            "0",
+            "False",
+            "None",
+            "Error",
+            "age"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The get() method returns None if the specified key does not exist in the dictionary, avoiding a KeyError. Correct: (C) None."
+        },
+        {
+          "id": "m-d31-q24",
+          "question": "Q24. Consider:\nstateCapital = {\n    \"Bihar\": \"Patna\",\n    \"Rajasthan\": \"Jaipur\"\n}\nprint(\"Bihar\" in stateCapital)\n\nOutput?",
+          "options": [
+            "Bihar",
+            "Patna",
+            "True",
+            "False",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Using the 'in' operator on a dictionary checks whether the key exists. Since 'Bihar' is a valid key, it returns True. Correct: (C) True."
+        },
+        {
+          "id": "m-d31-q25",
+          "question": "Q25. In:\ndef add(a, b):\n    return a+b\n\na and b are:",
+          "options": [
+            "Arguments",
+            "Parameters",
+            "Modules",
+            "Global variables",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Variables listed in the function definition header are formal parameters. Correct: (B) Parameters."
+        },
+        {
+          "id": "m-d31-q26",
+          "question": "Q26. What is the output?\ndef test():\n    return 10, 20\nprint(test())",
+          "options": [
+            "10",
+            "[10,20]",
+            "(10,20)",
+            "20",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Multiple comma-separated values in a return statement are returned as a tuple: (10, 20). Correct: (C) (10,20)."
+        },
+        {
+          "id": "m-d31-q27",
+          "question": "Q27. What is the output?\nx = 10\ndef test():\n    x = 20\n    print(x)\ntest()\nprint(x)",
+          "options": [
+            "10 20",
+            "20 10",
+            "20 20",
+            "10 10",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inside test(), local x = 20 shadows the global variable and prints 20. Outside, global x remains 10 and prints 10. Output: 20 10. Correct: (B) 20 10."
+        },
+        {
+          "id": "m-d31-q28",
+          "question": "Q28. What is the output?\nx = 5\ndef change():\n    global x\n    x = 10\nchange()\nprint(x)",
+          "options": [
+            "5",
+            "10",
+            "15",
+            "None",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The global statement explicitly binds x inside change() to the module-level global variable, reassigning it to 10. Correct: (B) 10."
+        },
+        {
+          "id": "m-d31-q29",
+          "question": "Q29. What is the output?\nimport math\nprint(math.sqrt(49))",
+          "options": [
+            "7",
+            "7.0",
+            "49",
+            "24.5",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "math.sqrt() calculates the square root and returns a float: 7.0. Correct: (B) 7.0."
+        },
+        {
+          "id": "m-d31-q30",
+          "question": "Q30. What is:\nmath.floor(-4.5)",
+          "options": [
+            "-4",
+            "-5",
+            "4",
+            "5",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "math.floor(x) returns the greatest integer less than or equal to x. For -4.5, it rounds down to -5. Correct: (B) -5."
+        },
+        {
+          "id": "m-d31-q31",
+          "question": "Q31. What is:\nmath.factorial(5)",
+          "options": [
+            "25",
+            "60",
+            "100",
+            "120",
+            "Error"
+          ],
+          "correctAnswer": 3,
+          "explanation": "5! = 5 × 4 × 3 × 2 × 1 = 120. Correct: (D) 120."
+        },
+        {
+          "id": "m-d31-q32",
+          "question": "Q32. random.random() is used to obtain:",
+          "options": [
+            "A predictable integer only",
+            "A random floating-point value in its standard range",
+            "A string",
+            "A file",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "random.random() generates a pseudo-random float in the standard range [0.0, 1.0). Correct: (B) A random floating-point value in its standard range."
+        },
+        {
+          "id": "m-d31-q33",
+          "question": "Q33. What exception normally occurs?\n10 / 0",
+          "options": [
+            "NameError",
+            "TypeError",
+            "ZeroDivisionError",
+            "KeyError",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Division by zero raises a ZeroDivisionError in Python. Correct: (C) ZeroDivisionError."
+        },
+        {
+          "id": "m-d31-q34",
+          "question": "Q34. What is the output?\ntry:\n    print(10 // 2)\nexcept:\n    print(\"Error\")\nfinally:\n    print(\"Done\")",
+          "options": [
+            "5 only",
+            "Done only",
+            "5 followed by Done",
+            "Error followed by Done",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "10 // 2 prints 5. No exception occurs so except is bypassed. The finally block always executes, printing 'Done'. Output: 5 followed by Done. Correct: (C) 5 followed by Done."
+        },
+        {
+          "id": "m-d31-q35",
+          "question": "Q35. Which mode is primarily used for reading a text file?",
+          "options": [
+            "r",
+            "w",
+            "a",
+            "x",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The 'r' mode opens an existing file for read operations. Correct: (A) r."
+        },
+        {
+          "id": "m-d31-q36",
+          "question": "Q36. Opening an existing file in w mode normally:",
+          "options": [
+            "Only reads it",
+            "Appends at the end",
+            "Replaces/truncates existing content before writing",
+            "Converts it to a tuple",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Opening an existing file in 'w' mode truncates/erases its existing content. Correct: (C) Replaces/truncates existing content before writing."
+        },
+        {
+          "id": "m-d31-q37",
+          "question": "Q37. Which mode adds new data at the end of an existing file?",
+          "options": [
+            "r",
+            "w",
+            "a",
+            "x",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The 'a' (append) mode positions the write pointer at the end of the file, preserving earlier content. Correct: (C) a."
+        },
+        {
+          "id": "m-d31-q38",
+          "question": "Q38. Which reads one line from a text file?",
+          "options": [
+            "read()",
+            "readline()",
+            "readlines()",
+            "write()",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "readline() reads a single line up to and including the newline character. Correct: (B) readline()."
+        },
+        {
+          "id": "m-d31-q39",
+          "question": "Q39. tell() is associated with:",
+          "options": [
+            "Current file position",
+            "Closing a file",
+            "Creating a dictionary",
+            "Importing a module",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "tell() returns the current byte position/offset of the file read/write pointer. Correct: (A) Current file position."
+        },
+        {
+          "id": "m-d31-q40",
+          "question": "Q40. seek() is used to:",
+          "options": [
+            "Change/move the file position",
+            "Delete a file automatically",
+            "Read only one line",
+            "Import math",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "seek(offset) repositions the file pointer to the specified byte offset. Correct: (A) Change/move the file position."
         }
       ]
     }
