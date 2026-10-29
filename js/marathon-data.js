@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 25 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 26 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -14990,6 +14990,451 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "'early' begins with the vowel sound /ɜː/, requiring 'an': 'an early morning walk'. Correct: (B) an early morning walk."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 26,
+    "dayId": "day-26",
+    "badge": "Day 26",
+    "title": "TRE 4.0 — Day 26",
+    "unit": "Part III (CS) • Python Programming: Dynamic Typing, Collections (List, Tuple, Dict, Set), Slicing, Loops, Functions & 20-Q Checkpoint",
+    "targetTime": "15–18 mins read + 20 mins test",
+    "summary": "New Programming Priority Shift: Python (70%), Generic OOP (20%), C++/Java facts (10%). Fundamental Python architecture: High-level, interpreted, dynamically typed; Four Core Collections: List [ ] (mutable, ordered), Tuple ( ) (immutable, fixed), Dictionary {k:v} (key-value mapping), Set { } (unique values); Indexing (0-based & negative -1 as last); Slicing syntax a[start:end] (start included, end excluded) and reverse shortcut [::-1]; List operations: append(), pop(), len(); Loops & ranges: range(n) (0 to n-1), range(start, stop); Functions (def, return); Line-by-line mental tracing strategy for output MCQs; and 20 targeted checkpoint MCQs.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Python Core & 4 Collections",
+        "goal": "Master dynamic typing, List vs Tuple mutability, Dict vs Set, negative indexing, slicing ([start:end] & [::-1]), append/pop, range(n), and def functions"
+      },
+      {
+        "section": "Exam Strategy",
+        "topic": "Programming Priority Realignment",
+        "goal": "Focus on Python (70%) + Generic OOP (20%), deprecating obscure C++ syntax memorization in favor of high-yield exam patterns"
+      }
+    ],
+    "introNote": "New programming priority:\nPython → 70% | Generic OOP → 20% | C++ / Java language facts → 10%\n\nNo more spending entire days memorizing obscure C++ syntax.\nWe retain only transferable OOP concepts and focus heavily on Python syntax, collections, slicing, and line-by-line output prediction matching recent STET and TRE trends.",
+    "parts": [
+      {
+        "title": "Part III — Python Language Architecture & Core Data Types",
+        "sections": [
+          {
+            "title": "1. What is Python? & 2. Variables (Dynamic Typing)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. What is Python?\n\n🧠 MENTAL PICTURE\nImagine talking to the computer almost like simple English:"
+              },
+              {
+                "type": "diagram",
+                "content": "name = \"Ravi\"\nage = 20\nprint(name)\n\nNo:\nint, char*, semicolon (;), or header files (#include) needed for basic code."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Simple Concept: Python Definition",
+                "content": "Python is a:\n• High-level\n• Interpreted\n• Dynamically typed\n• General-purpose language\n\nFor exam memory:\nPython = Simple syntax + dynamic typing + interpreted execution"
+              },
+              {
+                "type": "text",
+                "content": "2. Variables\nIn Python:\nx = 10\nname = \"Ravi\"\nprice = 20.5\n\nYou don't normally write: int x = 10\nPython determines the variable type automatically at runtime."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental tracing:\nx = 10  →  Python sees 10  →  automatically types as int"
+              }
+            ]
+          },
+          {
+            "title": "3. Important Python Data Types & The Four Collections",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Memorize these fundamental data types first:\nint, float, str, bool, list, tuple, dict, set\n\nExample:\nx = 10         # int\ny = 10.5       # float\nname = \"Ravi\"  # str\nflag = True    # bool"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "The Four Collections (Extremely Important for Output MCQs)",
+                "content": "LIST       →  [ ]          (Square brackets)\nTUPLE      →  ( )          (Parentheses)\nDICTIONARY →  {key: value} (Key-value pairs in curly braces)\nSET        →  { }          (Unique values in curly braces)"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper recall:\n[ ]      LIST\n( )      TUPLE\n{K:V}    DICTIONARY\n{ }      SET (unique concept)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Lists, Tuples, Dictionaries & Sets in Depth",
+        "sections": [
+          {
+            "title": "4–6. List, 0-based & Negative Indexing, Mutability",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. List\n🧠 MENTAL PICTURE: A flexible shopping bag\na = [10, 20, 30]\n\nIndex: 0   1   2\nValue: 10  20  30\n\nSo: print(a[0]) → Output: 10\nMemory: Python indexing starts at 0"
+              },
+              {
+                "type": "diagram",
+                "content": "5. Negative Indexing (Very Important):\na = [10, 20, 30, 40]\n\nPositive index:   0    1    2    3\nValues:          10   20   30   40\nNegative index:  -4   -3   -2   -1\n\nprint(a[-1])  →  Output: 40\nprint(a[-2])  →  Output: 30\n\nMemory: -1 = last element"
+              },
+              {
+                "type": "callout",
+                "icon": "✏️",
+                "title": "6. List is Mutable",
+                "content": "Mutable means: Can be changed in-place.\n\nExample:\na = [10, 20, 30]\na[1] = 99\nprint(a)\n\nOutput: [10, 99, 30]\n\nMemory: LIST = Change allowed (Mutable)"
+              }
+            ]
+          },
+          {
+            "title": "7–9. Tuple, Dictionary & Set Master Comparison",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "7. Tuple\nt = (10, 20, 30)\nLooks similar to list, but: Tuple is immutable!\n\nThis fails with TypeError:\nt[1] = 99  ❌\nTuple elements cannot normally be modified after creation."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "List vs Tuple Mental Picture",
+                "content": "LIST  [ ] → Mutable   (editable notebook)\nTUPLE ( ) → Immutable (printed certificate)"
+              },
+              {
+                "type": "text",
+                "content": "8. Dictionary\nStores KEY → VALUE pairs:\nstudent = {\n  \"name\": \"Ravi\",\n  \"age\": 20\n}\n\nAccess:\nprint(student[\"name\"]) → Output: Ravi\n\n🧠 Mental picture: Phone contacts (Ravi → 9876543210, Aman → 9123456789)\nMemory: Dictionary = Key : Value\n\n9. Set\nStores unique elements only:\ns = {1, 2, 2, 3}\nDuplicate 2 is automatically discarded: {1, 2, 3}\nMemory: SET = Unique values (unordered collection)"
+              },
+              {
+                "type": "diagram",
+                "content": "🔥 Python Collection Master Table:\n\nType       │ Syntax   │ Mutable? │ Main Idea\n───────────┼──────────┼──────────┼──────────────────────────────────────\nList       │ [ ]      │ Yes      │ Ordered sequence, editable\nTuple      │ ( )      │ No       │ Fixed / immutable sequence\nDictionary │ {k: v}   │ Yes      │ Key-value lookup table\nSet        │ {values} │ Yes      │ Unique values, duplicates eliminated"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Slicing, List Methods, Loops & Functions",
+        "sections": [
+          {
+            "title": "10–11. Slicing Syntax & Slicing Shortcuts",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. Slicing\nSyntax:\na[start : end]\n\nImportant Rule: start is INCLUDED, end is EXCLUDED!\n\nExample:\na = [10, 20, 30, 40, 50]\nprint(a[1:4])\n\nTake:\nIndex 1 → 20\nIndex 2 → 30\nIndex 3 → 40\nStop before index 4!\n\nOutput: [20, 30, 40]"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "11. Slicing Shortcuts",
+                "content": "a = [10, 20, 30, 40, 50]\n\n• From beginning:       a[:3]   → [10, 20, 30]\n• From index 2 to end:  a[2:]   → [30, 40, 50]\n• Reverse sequence:     a[::-1] → [50, 40, 30, 20, 10]\n\n🔥 Memory: [::-1] = reverse sequence"
+              }
+            ]
+          },
+          {
+            "title": "12–17. append(), pop(), len(), range(), Loops & Functions",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "12. append()\nAdds one item to the end of the list:\na = [10, 20]\na.append(30)\nprint(a)  →  [10, 20, 30]\nMemory: append = add at end\n\n13. pop()\nRemoves and returns an item (by default, the last item):\na = [10, 20, 30]\nx = a.pop()\nprint(x)  →  30\nprint(a)  →  [10, 20]\n\n14. len()\na = [10, 20, 30, 40]\nprint(len(a))  →  4\nMemory: len = number of elements\n\n15. for Loop & range(stop)\nfor i in range(3):\n    print(i)\nOutput: 0  1  2\nWhy not 3? Because stop is excluded: range(n) produces 0 to n-1.\n\n16. range(start, stop)\nfor i in range(2, 5):\n    print(i)\nOutput: 2  3  4 (stop index 5 excluded)\n\n17. Function\ndef add(a, b):\n    return a + b\n\nprint(add(2, 3))  →  5\nMemory: def = define function | return = send result back"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — MCQ Problem Solving Strategy, Traps & White-Paper Sheet",
+        "sections": [
+          {
+            "title": "18. Output Method, Traps & Syllabus Strategy",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "18. Python Output Question Method\nDon't mentally run the entire code all at once!\nDraw variables line-by-line.\n\nExample:\nx = 5\ny = 2\nx = x + y\ny = x - y\nprint(x, y)\n\nTracing:\nInitially: x = 5, y = 2\nLine 3:    x = 5 + 2 = 7\nLine 4:    y = 7 - 2 = 5\nPrint:     7 5"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Python Traps Checklist",
+                "content": "• [ ]  → List (Mutable)\n• ( )  → Tuple (Immutable)\n• Index starts at 0; -1 is the last element\n• Slicing [start:end] → end is EXCLUDED\n• range(n) → 0 to n-1 (n is EXCLUDED)\n• [::-1] → Reverse\n• Dict → Key : Value\n• Set → Unique values (duplicates eliminated)"
+              },
+              {
+                "type": "text",
+                "content": "What We Will NOT Spend Much Time On:\nWe will avoid long lessons on obscure C++ trivia (rank(), is_array(), anonymous classes, new vs malloc corner cases, inline trivia).\nWe retain only transferable OOP concepts:\nClass / Object, Inheritance, Encapsulation, Abstraction, Polymorphism, Constructor, Overloading vs Overriding."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Day 26 White-Paper Master Sheet\nDraw only this:\n\nPYTHON\nint, float, str, bool\n\nCOLLECTIONS:\nLIST   [ ]      Mutable\nTUPLE  ( )      Immutable\nDICT   {k: v}   Key:Value\nSET    { }      Unique\n\nINDEX:\n0  → first\n-1 → last\n\nSLICE:\n[start:end] → start included, end excluded\n[::-1]      → reverse\n\nOPERATIONS:\nappend() → add at end\npop()    → remove last\nlen()    → count items\nrange(n) → 0 to n-1\ndef      → define function"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 26 Checkpoint Test",
+      "subtitle": "20 Questions: Python Basics, Data Types, Collections, Slicing & Line-by-Line Execution",
+      "questions": [
+        {
+          "id": "m-d26-q1",
+          "question": "Q1. Which represents a Python list?",
+          "options": [
+            "(10,20,30)",
+            "[10,20,30]",
+            "{10:20}",
+            "\"10,20,30\"",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In Python, lists are defined using square brackets [ ]. Correct: (B) [10,20,30]."
+        },
+        {
+          "id": "m-d26-q2",
+          "question": "Q2. Which represents a tuple?",
+          "options": [
+            "[1,2,3]",
+            "(1,2,3)",
+            "{1,2,3}",
+            "{1:2}",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In Python, tuples are defined using parentheses ( ). Correct: (B) (1,2,3)."
+        },
+        {
+          "id": "m-d26-q3",
+          "question": "Q3. Which collection is immutable?",
+          "options": [
+            "List",
+            "Tuple",
+            "Dictionary",
+            "Set",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Tuples are immutable; once created, their elements cannot be modified, added, or removed. Correct: (B) Tuple."
+        },
+        {
+          "id": "m-d26-q4",
+          "question": "Q4. What is the output?\na = [10,20,30]\nprint(a[0])",
+          "options": [
+            "0",
+            "10",
+            "20",
+            "30",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Python uses 0-based indexing, so a[0] returns the first element, which is 10. Correct: (B) 10."
+        },
+        {
+          "id": "m-d26-q5",
+          "question": "Q5. What is the output?\na = [10,20,30]\nprint(a[-1])",
+          "options": [
+            "10",
+            "20",
+            "30",
+            "-1",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Negative indexing in Python accesses elements from the end; a[-1] is the last element, which is 30. Correct: (C) 30."
+        },
+        {
+          "id": "m-d26-q6",
+          "question": "Q6. What is the output?\na = [10,20,30,40,50]\nprint(a[1:4])",
+          "options": [
+            "[10,20,30,40]",
+            "[20,30,40]",
+            "[20,30,40,50]",
+            "[10,20,30]",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Slicing a[1:4] includes index 1, 2, and 3 while excluding index 4. The elements are 20, 30, and 40. Correct: (B) [20,30,40]."
+        },
+        {
+          "id": "m-d26-q7",
+          "question": "Q7. In Python slicing a[2:5], index 5 is:",
+          "options": [
+            "Included",
+            "Excluded",
+            "Included twice",
+            "Invalid",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In Python slice notation [start:stop], the start index is included and the stop index is excluded. Correct: (B) Excluded."
+        },
+        {
+          "id": "m-d26-q8",
+          "question": "Q8. What does this generally do?\na[::-1]",
+          "options": [
+            "Deletes a",
+            "Reverses the sequence",
+            "Sorts ascending",
+            "Returns first item",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Slice notation with step -1 (a[::-1]) reverses the sequence. Correct: (B) Reverses the sequence."
+        },
+        {
+          "id": "m-d26-q9",
+          "question": "Q9. What is the output?\na = [1,2]\na.append(3)\nprint(a)",
+          "options": [
+            "[1,2]",
+            "[3,1,2]",
+            "[1,2,3]",
+            "Error",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The append() method appends an element to the end of the list, resulting in [1, 2, 3]. Correct: (C) [1,2,3]."
+        },
+        {
+          "id": "m-d26-q10",
+          "question": "Q10. What is the output?\nprint(len([5,10,15,20]))",
+          "options": [
+            "3",
+            "4",
+            "5",
+            "20",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The len() function returns the total count of elements in the collection, which is 4. Correct: (B) 4."
+        },
+        {
+          "id": "m-d26-q11",
+          "question": "Q11. Which structure stores key-value pairs?",
+          "options": [
+            "List",
+            "Tuple",
+            "Dictionary",
+            "String",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A Dictionary stores data in key-value pairs enclosed in curly braces {key: value}. Correct: (C) Dictionary."
+        },
+        {
+          "id": "m-d26-q12",
+          "question": "Q12. A set is especially useful when you want:",
+          "options": [
+            "Duplicate values only",
+            "Unique values",
+            "Key-value pairs only",
+            "Immutable sequence only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Set is an unordered collection of unique elements that automatically eliminates duplicates. Correct: (B) Unique values."
+        },
+        {
+          "id": "m-d26-q13",
+          "question": "Q13. What does range(4) generate conceptually?",
+          "options": [
+            "1,2,3,4",
+            "0,1,2,3",
+            "0,1,2,3,4",
+            "1,2,3",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "range(n) generates integers starting from 0 up to n-1. Therefore, range(4) generates 0, 1, 2, 3. Correct: (B) 0,1,2,3."
+        },
+        {
+          "id": "m-d26-q14",
+          "question": "Q14. What is the output?\nfor i in range(3): print(i)",
+          "options": [
+            "1 2 3",
+            "0 1 2",
+            "0 1 2 3",
+            "3 2 1",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "range(3) produces 0, 1, 2. The loop prints these values sequentially. Correct: (B) 0 1 2."
+        },
+        {
+          "id": "m-d26-q15",
+          "question": "Q15. Which keyword defines a Python function?",
+          "options": [
+            "func",
+            "function",
+            "def",
+            "define",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The def keyword is used to define functions in Python. Correct: (C) def."
+        },
+        {
+          "id": "m-d26-q16",
+          "question": "Q16. What is the output?\ndef add(a,b): return a+b\nprint(add(3,4))",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "34",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The function add(3, 4) executes return 3 + 4, which computes and returns 7. Correct: (C) 7."
+        },
+        {
+          "id": "m-d26-q17",
+          "question": "Q17. What is the output?\na = [10,20,30]\na[1] = 50\nprint(a)",
+          "options": [
+            "[10,20,30]",
+            "[10,50,30]",
+            "Error",
+            "[50,20,30]",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Lists are mutable in Python. Assigning a[1] = 50 replaces 20 with 50, resulting in [10, 50, 30]. Correct: (B) [10,50,30]."
+        },
+        {
+          "id": "m-d26-q18",
+          "question": "Q18. What happens here?\nt = (10,20,30)\nt[1] = 50",
+          "options": [
+            "Tuple becomes (10,50,30)",
+            "Error because tuple is immutable",
+            "Tuple becomes list",
+            "50 is appended",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Tuples are immutable; item assignment raises a TypeError at runtime. Correct: (B) Error because tuple is immutable."
+        },
+        {
+          "id": "m-d26-q19",
+          "question": "Q19. Which is correct?",
+          "options": [
+            "List → immutable; Tuple → mutable",
+            "List → mutable; Tuple → immutable",
+            "Both are always immutable",
+            "Both are dictionaries",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A List is mutable (can be changed in-place), whereas a Tuple is immutable (cannot be modified after creation). Correct: (B) List → mutable; Tuple → immutable."
+        },
+        {
+          "id": "m-d26-q20",
+          "question": "Q20. For Python output questions, the safest method is:",
+          "options": [
+            "Guess from final line",
+            "Execute code mentally line-by-line",
+            "Ignore variable changes",
+            "Treat Python exactly like C++",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Tracing variables step-by-step and executing code line-by-line avoids logic traps and yields accurate output predictions. Correct: (B) Execute code mentally line-by-line."
         }
       ]
     }
