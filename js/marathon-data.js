@@ -11992,6 +11992,493 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 21,
+    "dayId": "day-21",
+    "badge": "Day 21",
+    "title": "TRE 4.0 — Day 21",
+    "unit": "Part III (CS) • Process, Program, PCB, Process States, Context Switch, CPU Scheduling • Profit/Loss, Ratio & English",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Today we begin Operating Systems: Program vs Process, PCB contents, Process State transitions (New, Ready, Running, Waiting, Terminated), Context Switching overhead, CPU Scheduling algorithms (FCFS, SJF, Round Robin, Priority), Preemption, Thread resource sharing, and TRE FCFS disk head calculation.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Process, Program, PCB, Process States, Context Switch, CPU Scheduling",
+        "goal": "Master Process vs Program, PCB components, State transitions, Context Switch overhead, Scheduling algorithms, and Thread code/data sharing"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Profit/Loss + Ratio",
+        "goal": "Marked up 10% then discounted 10% (-1% loss shortcut) and ratio difference calculation (44 & 110)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Comprehension + Articles",
+        "goal": "Passage scan technique and article rule ('an early morning walk')"
+      }
+    ],
+    "introNote": "Today we start Operating Systems.\n\nYour TRE 3.0 paper has a substantial OS block: it asks about types of OS, paging/segmentation, file systems, interrupts, pages, page offset, segment base, thrashing, TLB, file operations, FCFS disk scheduling, and threads.\n\nProcess/Program, PCB, process states, context switching and CPU-scheduling details below are standard OS expansion for your TRE preparation; those exact questions were not present in the retrieved paper block.",
+    "parts": [
+      {
+        "partId": "part-d21-process-pcb",
+        "title": "Part III — Process, PCB & State Transitions",
+        "sections": [
+          {
+            "title": "1. Program vs Process & 2. Process Memory Structure",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Program vs Process\n\n🧠 MENTAL PICTURE\nImagine a recipe book:\nRecipe written in book → PROGRAM (passive instructions stored on disk)\nRecipe being cooked in kitchen → PROCESS (program currently executing in memory)\n\nExample:\nchrome.exe on disk → PROGRAM\nYou double-click and open Chrome → PROCESS\n\nMemory: PROGRAM → Stored | PROCESS → Running"
+              },
+              {
+                "type": "diagram",
+                "content": "2. What does a Process contain?\n\nPROCESS\n  │\n  ├── Code section (Text)\n  ├── Data section (Global & static variables)\n  ├── Stack (Local variables, return addresses)\n  ├── Heap (Dynamically allocated memory)\n  ├── Registers\n  └── Program Counter (Address of next instruction)"
+              },
+              {
+                "type": "callout",
+                "icon": "📇",
+                "title": "3. PCB — Process Control Block (Process Information Card)",
+                "content": "Every student in an examination hall has an ID card. Similarly, the OS maintains a PCB for each running process containing:\n• Process ID (PID)\n• Process State (New, Ready, Running, Waiting, Terminated)\n• Program Counter (PC)\n• CPU Registers\n• CPU Scheduling Information (priority, queue pointers)\n• Memory-management information (page tables, base/limit registers)\n• I/O status information\n\nMemory: PCB tells OS everything needed to manage a process."
+              }
+            ]
+          },
+          {
+            "title": "4. Process States & 5. READY vs WAITING Trap",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "4. Process State Lifecycle\n\n              admitted\n   NEW ----------------→ READY\n                           │\n                           │ scheduler dispatch\n                           ↓\n                        RUNNING\n                        /      \\\n                       /        \\\n             I/O wait ↓          ↓ exit/finish\n                   WAITING    TERMINATED\n                       │\n                       │ I/O complete\n                       ↓\n                     READY\n\n• NEW        : Process is being created (Birth)\n• READY      : Ready to run, waiting for CPU assignment\n• RUNNING    : Currently executing on CPU\n• WAITING    : Blocked, waiting for I/O completion or an event\n• TERMINATED : Process has finished execution"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "5. READY vs WAITING (Major Exam Trap)",
+                "content": "• READY   → Everything available EXCEPT the CPU (actively waiting for CPU).\n• WAITING → Cannot run even if the CPU is completely idle because it is waiting for an I/O event or signal.\n\nMemory: Ready wants CPU | Waiting wants event/IO"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d21-cpu-scheduling",
+        "title": "Part III — Context Switching & CPU Scheduling Algorithms",
+        "sections": [
+          {
+            "title": "6. CPU Scheduler & 7. Context Switching Overhead",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. CPU Scheduler\nWhen multiple processes reside in the READY QUEUE, the CPU Scheduler selects which process gets the CPU core next.\nMemory: Scheduler = chooses next process"
+              },
+              {
+                "type": "diagram",
+                "content": "7. Context Switching\nSuppose the CPU switches from P1 to P2:\n\nP1 RUNNING\n     ↓\nSAVE P1 state to PCB1\n     ↓\nLOAD P2 state from PCB2\n     ↓\nP2 RUNNING\n\nMemory: Context Switch = SAVE old + LOAD new\n\n⚠️ Important Exam Fact:\nContext switching does not perform useful application work; it is pure PURE SCHEDULING OVERHEAD."
+              }
+            ]
+          },
+          {
+            "title": "8. CPU Scheduling Algorithms & 13. Preemption",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "8. Core CPU Scheduling Algorithms\n\n9. FCFS (First Come, First Served)\n• Ticket counter order: P1 → P2 → P3\n• Simple, queue-based, typically non-preemptive\n\n10. SJF (Shortest Job First)\n• P1 (10ms), P2 (2ms), P3 (5ms) → Chooses P2 first\n• Selects the process with the smallest CPU burst time (optimal average waiting time)\n\n11. Round Robin (RR)\n• Time-sharing: Each process receives a fixed time slice (Time Quantum)\n• Cyclic execution: P1 → P2 → P3 → P1\n• Preemptive scheduling\n\n12. Priority Scheduling\n• Process with highest priority allocated CPU first"
+              },
+              {
+                "type": "callout",
+                "icon": "⏱️",
+                "title": "13. Preemptive vs Non-Preemptive",
+                "content": "• NON-PREEMPTIVE: Once allocated, process retains CPU until completion or voluntary wait (e.g. basic FCFS).\n• PREEMPTIVE    : OS can forcibly take the CPU away (e.g. Round Robin timer interrupt, priority preemption)."
+              }
+            ]
+          },
+          {
+            "title": "14. Threads & 15. TRE 3.0 Disk Calculation",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧵",
+                "title": "14. Thread — Source-Backed TRE 3.0 Point",
+                "content": "TRE 3.0 directly asks what a thread shares with other peer threads in the same process:\n\n✅ SHARED     : Code section, Data section, Address space, OS resources / files\n❌ NOT SHARED : Thread ID, Program Counter (PC), CPU Registers, Call Stack\n\nMemory: Threads share the house (code & data), but have their own desk (registers & stack)."
+              },
+              {
+                "type": "diagram",
+                "content": "15. TRE 3.0 FCFS Disk-Scheduling Question\n\nRequests: 98, 183, 37, 122, 14, 124, 65, 67\nInitial head position: 53\nPrinciple: Follow requests strictly in arrival order (no reordering)!\n\n53 → 98  = 45\n98 → 183 = 85\n183 → 37 = 146\n37 → 122 = 85\n122 → 14 = 108\n14 → 124 = 110\n124 → 65 = 59\n65 → 67  = 2\n\nTotal Head Movements = 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640"
+              },
+              {
+                "type": "diagram",
+                "content": "Day 21 White-Paper Master Sheet\n\nPROGRAM       → Passive instructions on disk\nPROCESS       → Active program in execution\n\nPCB           → Process info (PID, State, PC, Registers)\n\nSTATES        → NEW → READY → RUNNING → WAITING → READY\n                RUNNING → TERMINATED\nREADY         → Waiting for CPU\nWAITING       → Waiting for event/I/O\n\nCONTEXT SWITCH→ Save old + Load new (Overhead)\n\nSCHEDULING:\nFCFS          → First arrival (Queue)\nSJF           → Shortest CPU burst\nROUND ROBIN   → Time quantum (Preemptive)\nPRIORITY      → Priority rank\n\nTHREADS       → Share Code & Data sections"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d21-gs-math",
+        "title": "Part II — General Studies: Profit/Loss & Ratio",
+        "sections": [
+          {
+            "title": "Direct TRE 3.0 Math Patterns",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "1. Profit/Loss Discount Pattern (TRE 3.0 Exact Pattern)\nMarked 10% above CP and 10% discount given:\nAssume CP = ₹100 → MP = ₹110 → Discount 10% of 110 = ₹11 → SP = ₹99\nLoss = ₹100 - ₹99 = ₹1 (1% Loss)\n\nShortcut Formula: +x% followed by -x% gives x²/100 % Loss\nFor x = 10: 10²/100 = 100/100 = 1% Loss"
+              },
+              {
+                "type": "diagram",
+                "content": "2. Ratio Difference Problem\nTwo numbers in ratio 2:5 differ by 66:\nDifference in ratio units = 5 - 2 = 3 parts\n3 parts = 66 → 1 part = 22\nNumbers: 2 × 22 = 44 and 5 × 22 = 110"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d21-english",
+        "title": "Part I — English: Comprehension & Articles",
+        "sections": [
+          {
+            "title": "Comprehension Technique & Articles",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Comprehension Strategy:\nQuestion → Keyword → Scan Passage → Match → Answer\n\nArticle Sound Rule:\n\"early\" begins with vowel sound /ɜː/:\n\"You should go for an early morning walk.\""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 21 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d21-q1",
+          "question": "Q1. A program is best described as:",
+          "options": [
+            "A program currently executing",
+            "A passive set of instructions",
+            "PCB only",
+            "CPU register only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A program is a passive entity (such as an executable file stored on disk) containing instructions waiting to be loaded. Correct: (B) A passive set of instructions."
+        },
+        {
+          "id": "m-d21-q2",
+          "question": "Q2. A process is:",
+          "options": [
+            "A program in execution",
+            "A database table",
+            "Only source code stored on disk",
+            "A compiler",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A process is an active program currently in execution with its own address space, stack, registers, and program counter. Correct: (A) A program in execution."
+        },
+        {
+          "id": "m-d21-q3",
+          "question": "Q3. PCB stands for:",
+          "options": [
+            "Process Control Block",
+            "Program CPU Buffer",
+            "Process Central Bus",
+            "Program Control Base",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "PCB stands for Process Control Block. Correct: (A) Process Control Block."
+        },
+        {
+          "id": "m-d21-q4",
+          "question": "Q4. Which information can normally be stored in a PCB?",
+          "options": [
+            "Process state",
+            "Program counter",
+            "CPU registers",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "A PCB stores comprehensive process data including PID, process state, program counter, CPU registers, memory limits, and open file lists. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d21-q5",
+          "question": "Q5. A process waiting to receive the CPU is normally in:",
+          "options": [
+            "Running state",
+            "Ready state",
+            "Terminated state",
+            "New state only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A process that has all required resources and is only waiting to be allocated CPU execution time resides in the Ready state. Correct: (B) Ready state."
+        },
+        {
+          "id": "m-d21-q6",
+          "question": "Q6. A process waiting for an I/O operation is normally:",
+          "options": [
+            "Ready",
+            "Running",
+            "Waiting/Blocked",
+            "Terminated",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "When a process cannot continue until an I/O device finishes or a signal arrives, it enters the Waiting (or Blocked) state. Correct: (C) Waiting/Blocked."
+        },
+        {
+          "id": "m-d21-q7",
+          "question": "Q7. Which process currently possesses the CPU?",
+          "options": [
+            "Ready process",
+            "Running process",
+            "Waiting process",
+            "Terminated process",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The process actively executing instructions on the CPU is in the Running state. Correct: (B) Running process."
+        },
+        {
+          "id": "m-d21-q8",
+          "question": "Q8. Which statement is correct?",
+          "options": [
+            "Ready waits for I/O",
+            "Waiting always has CPU",
+            "Ready waits for CPU",
+            "Terminated waits for CPU",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A Ready process is fully prepared to execute and is waiting exclusively for CPU scheduling dispatch. Correct: (C) Ready waits for CPU."
+        },
+        {
+          "id": "m-d21-q9",
+          "question": "Q9. A context switch primarily involves:",
+          "options": [
+            "Save old process state and load another",
+            "Delete all processes",
+            "Format disk",
+            "Compile a program",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Context switching stores the state (context) of the currently running process into its PCB and restores the saved state of another process. Correct: (A) Save old process state and load another."
+        },
+        {
+          "id": "m-d21-q10",
+          "question": "Q10. Context switching is generally considered:",
+          "options": [
+            "CPU scheduling overhead",
+            "Database normalization",
+            "File encryption",
+            "Cache memory",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "During a context switch, the CPU performs no useful computational user work; hence, context switching time represents pure system overhead. Correct: (A) CPU scheduling overhead."
+        },
+        {
+          "id": "m-d21-q11",
+          "question": "Q11. FCFS stands for:",
+          "options": [
+            "First CPU First Stop",
+            "First Come First Served",
+            "Fastest Come Fastest Served",
+            "First Context First Schedule",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "FCFS stands for First Come, First Served. Correct: (B) First Come First Served."
+        },
+        {
+          "id": "m-d21-q12",
+          "question": "Q12. SJF selects:",
+          "options": [
+            "Process with shortest CPU burst",
+            "Process with largest PID",
+            "Process with most memory",
+            "Last arriving process",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Shortest Job First (SJF) schedules the process possessing the shortest predicted/actual next CPU burst time. Correct: (A) Process with shortest CPU burst."
+        },
+        {
+          "id": "m-d21-q13",
+          "question": "Q13. Round Robin scheduling is strongly associated with:",
+          "options": [
+            "Time quantum",
+            "B+ Tree",
+            "Foreign Key",
+            "Hash collision",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Round Robin defines a fixed time slice or Time Quantum per process turn. Correct: (A) Time quantum."
+        },
+        {
+          "id": "m-d21-q14",
+          "question": "Q14. Which scheduling algorithm gives processes turns repeatedly using time slices?",
+          "options": [
+            "FCFS",
+            "Round Robin",
+            "SJF only",
+            "DFS",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Round Robin cyclically allocates the CPU to each process in the ready queue for a defined time slice. Correct: (B) Round Robin."
+        },
+        {
+          "id": "m-d21-q15",
+          "question": "Q15. Preemptive scheduling means:",
+          "options": [
+            "CPU can be taken from a running process",
+            "Running process can never lose CPU",
+            "Every process immediately terminates",
+            "No scheduler is required",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In preemptive scheduling, the OS kernel can interrupt and deallocate the CPU from an executing process (e.g. on time slice expiration or high-priority arrival). Correct: (A) CPU can be taken from a running process."
+        },
+        {
+          "id": "m-d21-q16",
+          "question": "Q16. Which is a typical non-preemptive algorithm in its basic form?",
+          "options": [
+            "FCFS",
+            "Round Robin",
+            "None can be non-preemptive",
+            "Paging",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In basic First Come First Served (FCFS), once a process gets the CPU, it holds it until termination or I/O request. Correct: (A) FCFS."
+        },
+        {
+          "id": "m-d21-q17",
+          "question": "Q17. According to your TRE 3.0 question, threads in the same process share:",
+          "options": [
+            "Thread ID",
+            "Program counter",
+            "Code section and data section",
+            "Individual stack",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Threads of a common process share their code section, data section, and OS resources, while keeping private stacks, registers, and program counters. Correct: (C) Code section and data section."
+        },
+        {
+          "id": "m-d21-q18",
+          "question": "Q18. In the TRE FCFS disk-scheduling problem, the disk head begins at 53. What principle must you follow?",
+          "options": [
+            "Sort requests ascending first",
+            "Follow requests in arrival order",
+            "Always move toward zero",
+            "Always choose closest request",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "FCFS disk scheduling serves I/O requests strictly in the exact order they arrive without reordering. Correct: (B) Follow requests in arrival order."
+        },
+        {
+          "id": "m-d21-q19",
+          "question": "Q19. For requests:\n\n98, 183, 37, 122, 14, 124, 65, 67\n\nstarting from 53, FCFS total head movement is:",
+          "options": [
+            "620",
+            "630",
+            "640",
+            "650",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "|53-98| + |98-183| + |183-37| + |37-122| + |122-14| + |14-124| + |124-65| + |65-67| = 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640. Correct: (C) 640."
+        },
+        {
+          "id": "m-d21-q20",
+          "question": "Q20. Which is listed in TRE 3.0 as an operating-system type?",
+          "options": [
+            "Real-time OS",
+            "Embedded OS",
+            "Network OS",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "TRE 3.0 specifically presents Real-time OS, Embedded OS, and Network OS as valid operating system types. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d21-q21",
+          "question": "Q21. An item is marked 10% above cost price and then sold at a 10% discount. Result:",
+          "options": [
+            "1% gain",
+            "1% loss",
+            "No gain/no loss",
+            "10% loss",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CP=100 → MP=110 → Discount=11 → SP=99. Net loss = 1%. Shortcut: 10²/100 = 1% loss. Correct: (B) 1% loss."
+        },
+        {
+          "id": "m-d21-q22",
+          "question": "Q22. Two numbers are in the ratio 2:5 and their difference is 66. They are:",
+          "options": [
+            "22 and 88",
+            "44 and 110",
+            "66 and 132",
+            "33 and 99",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Difference = 5x - 2x = 3x = 66 → x = 22. First = 2(22) = 44, Second = 5(22) = 110. Correct: (B) 44 and 110."
+        },
+        {
+          "id": "m-d21-q23",
+          "question": "Q23. If cost price is ₹100, increased by 10% and then decreased by 10%, the final value is:",
+          "options": [
+            "₹100",
+            "₹101",
+            "₹99",
+            "₹90",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "100 + 10% = 110. 110 - 10% (11) = 99. Correct: (C) ₹99."
+        },
+        {
+          "id": "m-d21-q24",
+          "question": "Q24. Choose the correct article:\n\n“You should go for ___ early morning walk.”",
+          "options": [
+            "a",
+            "an",
+            "the",
+            "no article",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'early' begins with the vowel sound /ɜː/, taking the indefinite article 'an': 'an early morning walk'. Correct: (B) an."
+        },
+        {
+          "id": "m-d21-q25",
+          "question": "Q25. For comprehension questions, the safest strategy is:",
+          "options": [
+            "Answer from personal knowledge",
+            "Question → keyword → scan passage → match",
+            "Read options only",
+            "Guess without reading passage",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Targeted scanning: Identify the keyword in the question, scan the reading passage for that term, match the textual fact, and select the correct option. Correct: (B) Question → keyword → scan passage → match."
+        }
+      ]
+    }
   }
 ];
 
