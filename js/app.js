@@ -1935,6 +1935,15 @@ def bpsc_concept_solver():
       window.location.hash = hashName;
     }
 
+    // Send virtual pageview to Google Analytics 4 (GA4)
+    if (typeof gtag === 'function') {
+      gtag('event', 'page_view', {
+        page_title: document.title + ' — ' + hashName,
+        page_location: window.location.href,
+        page_path: window.location.pathname + '#' + hashName
+      });
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 

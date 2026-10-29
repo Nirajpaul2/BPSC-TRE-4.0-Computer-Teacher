@@ -37,6 +37,21 @@
         month: 'short',
         year: 'numeric'
       }));
+
+      // Track conversion in Google Analytics 4 (GA4)
+      if (typeof gtag === 'function') {
+        gtag('event', 'purchase', {
+          transaction_id: paymentId,
+          value: 299,
+          currency: 'INR',
+          items: [{
+            item_id: 'bpsc_tre4_cs_full_pass',
+            item_name: 'BPSC TRE 4.0 CS Lifetime Full Pass',
+            price: 299,
+            quantity: 1
+          }]
+        });
+      }
     } else {
       localStorage.removeItem(STORAGE_UNLOCKED);
       localStorage.removeItem(STORAGE_PAYMENT_ID);
@@ -105,6 +120,20 @@
     modal.classList.add('open');
     if (nameInput) {
       setTimeout(() => { nameInput.focus(); }, 150);
+    }
+
+    // Track checkout initiation in Google Analytics 4 (GA4)
+    if (typeof gtag === 'function') {
+      gtag('event', 'begin_checkout', {
+        value: 299,
+        currency: 'INR',
+        items: [{
+          item_id: 'bpsc_tre4_cs_full_pass',
+          item_name: 'BPSC TRE 4.0 CS Lifetime Full Pass',
+          price: 299,
+          quantity: 1
+        }]
+      });
     }
   };
 
