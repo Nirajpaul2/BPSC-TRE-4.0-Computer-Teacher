@@ -20897,6 +20897,440 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 38,
+    "dayId": "day-38",
+    "badge": "Day 38",
+    "title": "TRE 4.0 — Day 38",
+    "unit": "Part III (CS) • Theory of Computation & Compiler Basics: Phases, DFA/NFA, Regex & Chomsky Hierarchy",
+    "targetTime": "20–25 mins read + 20 mins test",
+    "summary": "Theory of Computation & Compiler Foundations (TRE 2.0 Paper-Backed Core & NCERT kecs104/kecs105): Language Processors (Compiler whole program translation to machine code [TRE 2.0 Anchor] vs Interpreter line-by-line statement execution [NCERT kecs105]), Compiler Phases (Lexical Analysis produces tokens, Syntax Analysis builds parse trees checking grammar, Semantic Analysis verifies meaning/types, Intermediate Code, Code Optimization for efficiency, Code Generation creates target code), Theory of Computation Foundations (Alphabet Σ, Strings, Empty String ε [length 0] vs Empty Set ∅, Formal Languages), Finite Automata (DFA deterministic single transition per symbol vs NFA multiple transitions/ε-moves; Equivalence: DFA ≡ NFA recognizes Regular Languages), Regular Expressions (Union |, Concatenation, Kleene Star * [zero or more occurrences], (0|1)* binary language), Formal Grammars G = (V, T, P, S), Chomsky Hierarchy (Type 0 Unrestricted, Type 1 Context-Sensitive, Type 2 Context-Free, Type 3 Regular [0 U, 1 CS, 2 CF, 3 R]), Day 38 White-Paper Master Sheet & Traps, and 20-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Compiler vs Interpreter & Compiler Phases",
+        "goal": "Master Compiler (whole program) vs Interpreter (line by line), and the 3 core phases: Lexical (Tokens), Syntax (Structure), Semantic (Meaning)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Automata Theory: DFA, NFA & Equivalence",
+        "goal": "Distinguish DFA (single next state) vs NFA (multiple states), understand ε-moves, and know both recognize Regular Languages"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Regex, Formal Grammars & Chomsky Hierarchy",
+        "goal": "Master Kleene star (* = 0 or more), grammar tuples G=(V,T,P,S), and Chomsky hierarchy (Type 2 = CFG, Type 3 = Regular)"
+      }
+    ],
+    "introNote": "Today covers a compact, high-scoring section for Computer Science exams. Your TRE 2.0 paper directly asks about a compiler: translating a high-level source program into machine language, including translation of the entire source program. NCERT similarly distinguishes an interpreter (processing statements one by one) from a compiler (translating the whole source code into object code). DFA/NFA, regular expressions, and formal grammar represent standard high-yield TOC expansion.",
+    "parts": [
+      {
+        "title": "Part III — Language Processors & Compiler Phases (TRE 2.0 Anchor)",
+        "sections": [
+          {
+            "title": "1–2. Compiler vs Interpreter & Source Code Definition",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "⚙️",
+                "title": "MENTAL PICTURE — Compiler vs Interpreter",
+                "content": "Compiler:\nSOURCE PROGRAM ───(Compiler)───→ OBJECT / MACHINE CODE (Whole Program at once)\n\nInterpreter:\nLine 1 → Translate → Execute\nLine 2 → Translate → Execute\nLine 3 → Translate → Execute (Statement by Statement)\n\nNCERT explicitly provides this whole-program vs statement-by-statement distinction."
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\n• Compiler: Translates the entire high-level source program into machine language object code in one single process before execution (TRE 2.0 Anchor).\n• Interpreter: Translates and executes high-level source code line by line, statement by statement at runtime (Python is described by NCERT as an interpreted language).\n\n2. Source Code (NCERT kecs105)\nA computer program written by a programmer in a human-readable high-level programming language is called Source Code.\nExample:\nx = 10\nprint(x)\nThis human-readable text is source code, which must be translated into binary machine code for the CPU to execute."
+              }
+            ]
+          },
+          {
+            "title": "3–8. The Six Compiler Phases: Lexical, Syntax, Semantic, Optimizer & Generator",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🔄",
+                "title": "Compiler Pipeline Architecture",
+                "content": "SOURCE CODE\n    ↓\n1. Lexical Analysis   (Scanner  → Generates Tokens)\n    ↓\n2. Syntax Analysis    (Parser   → Builds Parse Tree based on Grammar)\n    ↓\n3. Semantic Analysis  (Type & Context Checker → Verifies Meaning)\n    ↓\n4. Intermediate Code  (Generates machine-independent 3-Address Code)\n    ↓\n5. Code Optimization  (Enhances execution speed & reduces resource use)\n    ↓\n6. Code Generation    (Produces Target Assembly / Machine Code)\n    ↓\nTARGET MACHINE CODE"
+              },
+              {
+                "type": "text",
+                "content": "4. Lexical Analysis (Scanner)\nReads the source character stream and groups them into meaningful minimal language units called Tokens.\nCode: x = a + 10;\nTokens generated: [ID: x], [ASSIGN: =], [ID: a], [PLUS: +], [CONST: 10], [SEMICOLON: ;].\nMemory: Lexical = Word / Token level.\n\n5. Syntax Analysis (Parser - NCERT kecs104)\nChecks whether the sequence of tokens conforms to the formal grammatical rules of the programming language, constructing a Parse Tree.\nMemory: Syntax = Grammatical Structure.\n\n6. Semantic Analysis\nValidates that statements have logical meaning and type consistency (e.g. catches errors like assigning a string to an integer variable in statically typed languages).\nMemory: Semantic = Meaning & Type consistency."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "The Core Compiler Triad",
+                "content": "• LEXICAL ANALYSIS  → Tokens (Keywords, Identifiers, Operators)\n• SYNTAX ANALYSIS   → Structure (Parse Tree, Grammar Rules)\n• SEMANTIC ANALYSIS → Meaning (Type compatibility, Scope validation)"
+              },
+              {
+                "type": "text",
+                "content": "7. Code Optimization\nImproves the intermediate representation to make the resulting program run faster, consume less memory, or use fewer CPU cycles, without altering the program's computed output.\n\n8. Code Generation\nTranslates the optimized intermediate representation into the target machine's instruction set architecture (native machine code or assembly code)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Theory of Computation: Alphabets, Strings, DFA & NFA",
+        "sections": [
+          {
+            "title": "9–13. Alphabets (Σ), Strings, Empty String (ε) & Formal Languages",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Automaton String Processing",
+                "content": "Input: 1 0 1 1 0 1 ───→ [ AUTOMATON ] ───→ ACCEPT or REJECT\n\nCore formal definitions:\n• Alphabet (Σ): A non-empty, finite set of symbols (e.g. Σ = {0, 1} or Σ = {a, b}).\n• String: A finite sequence of symbols chosen from Σ (e.g. 101, 11001).\n• Empty String (ε): The unique string containing 0 symbols; length |ε| = 0.\n• Formal Language: A set of strings over a given alphabet Σ."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Exam Trap: ε vs ∅",
+                "content": "• ε (Epsilon) = The Empty String (a string with zero symbols; length = 0).\n• ∅ (Empty Set) = A language containing ZERO strings; |∅| = 0.\nThey are mathematically distinct!"
+              }
+            ]
+          },
+          {
+            "title": "14–19. Finite Automata: DFA vs NFA & Equivalence",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "14. Finite Automaton (FA)\nAn abstract computing machine consisting of a finite set of states, an input alphabet, transition functions, an initial start state (q0), and a set of accepting/final states (F).\n\n15. DFA (Deterministic Finite Automaton)\nFor every state and input symbol, there is EXACTLY ONE next state.\nTransition function: δ: Q × Σ → Q.\nMental: At every junction, input 0 or 1 has strictly ONE road.\nMemory: D = Deterministic = Exactly ONE transition.\n\n16. NFA (Nondeterministic Finite Automaton)\nFor a given state and symbol, the machine may transition to zero, one, or MULTIPLE possible next states.\nTransition function: δ: Q × (Σ ∪ {ε}) → 2^Q.\nMemory: N = Nondeterministic = Multiple choices or ε-transitions possible."
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "DFA vs NFA Comparison & Equivalence Theorem",
+                "content": "Feature            | DFA                                  | NFA\n───────────────────|──────────────────────────────────────|───────────────────────────────\nNext State Choice  | Strictly ONE next state              | Zero, one, or MULTIPLE states\nε-Transitions      | Not allowed                          | Allowed in ε-NFA\nDeterminism        | Deterministic                        | Nondeterministic\nLanguage Class     | Recognizes Regular Languages         | Recognizes Regular Languages\n\nCRUCIAL THEOREM:\nDFA and NFA have EQUIVALENT expressive power (DFA ≡ NFA). Every NFA can be converted to an equivalent DFA via Subset Construction."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Classic State Construction Anchors",
+                "content": "• Language: All binary strings ending in 1\n  Minimal DFA requires 2 states: q0 (last symbol not 1) and q1* (last symbol is 1).\n\n• Language: All binary strings ending in 101\n  Minimal DFA requires 4 states tracking progress: (Matched nothing, Matched \"1\", Matched \"10\", Matched \"101\"*)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Regular Expressions, Formal Grammars & The Chomsky Hierarchy",
+        "sections": [
+          {
+            "title": "20–22. Regular Expressions & Regular Languages",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "A Regular Expression (Regex) is an algebraic notation defining a regular language.\n\nCore Operators:\n• Union / Alternation (`|` or `+`): a|b means \"a OR b\".\n• Concatenation: ab means \"a followed by b\".\n• Kleene Star (`*`): a* means \"zero or more occurrences of a\" (generates ε, a, aa, aaa, ...).\n\nHigh-Yield Examples:\n• a|b → {a, b}\n• (0|1)* → The set of ALL binary strings of any length, including the empty string ε.\n\nFundamental TOC Triangle:\nDFA ≡ NFA ≡ Regular Expression ──(All Define)──→ REGULAR LANGUAGES"
+              }
+            ]
+          },
+          {
+            "title": "23–26. Formal Grammars (VTPS) & The Chomsky Hierarchy",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "23. Formal Grammar Definition\nA formal grammar generates the strings of a language and is defined by the 4-tuple:\nG = (V, T, P, S)\n• V: Finite set of Variables / Non-terminal symbols (e.g. S, A, B)\n• T: Finite set of Terminal symbols (the alphabet: a, b, 0, 1)\n• P: Finite set of Production rules (e.g. S → aS | b)\n• S: Start symbol (S ∈ V)\n\nMemory mnemonic: V T P S."
+              },
+              {
+                "type": "callout",
+                "icon": "👑",
+                "title": "25. The Chomsky Hierarchy (Exam Level)",
+                "content": "Level   | Grammar Type              | Automaton Machine        | Language Class\n────────|───────────────────────────|──────────────────────────|─────────────────────────────\nType 0  | Unrestricted Grammar      | Turing Machine           | Recursively Enumerable\nType 1  | Context-Sensitive Grammar | Linear Bounded Automaton | Context-Sensitive Language\nType 2  | Context-Free Grammar      | Pushdown Automaton (PDA) | Context-Free Language (CFL)\nType 3  | Regular Grammar           | Finite Automaton (FA)    | Regular Language\n\nMemory trick: 0 U, 1 CS, 2 CF, 3 R\nMost important: Type 2 = Context-Free (Parsers) | Type 3 = Regular (Lexers)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 38 White-Paper Master Sheet & BPSC/STET Traps",
+        "sections": [
+          {
+            "title": "Day 38 White-Paper Master Sheet & Traps",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 38 White-Paper Master Sheet",
+                "content": "TRANSLATORS:\n• Compiler    → Whole source program at once into machine code (TRE 2.0)\n• Interpreter → Line by line, statement by statement execution\n\nCOMPILER PHASES:\n• Lexical   → Tokens\n• Syntax    → Parse tree / Grammatical structure\n• Semantic  → Meaning & Type consistency\n• Intermediate Code → Machine-independent IR\n• Optimization → Speed & resource efficiency\n• Code Gen  → Target machine language\n\nTOC ESSENTIALS:\n• Alphabet Σ → Set of symbols\n• String    → Sequence of symbols\n• ε         → Empty string (length 0)\n• ∅         → Empty set (no strings)\n\nAUTOMATA & REGEX:\n• DFA  → Strictly ONE transition per (state, symbol)\n• NFA  → Multiple transitions or ε-moves\n• DFA ≡ NFA ≡ Regex → REGULAR LANGUAGES\n• Kleene * → ZERO or more occurrences\n\nCHOMSKY HIERARCHY:\nType 0 → Unrestricted | Type 1 → Context-Sensitive | Type 2 → Context-Free | Type 3 → Regular (0 U, 1 CS, 2 CF, 3 R)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "5 Critical BPSC/STET Traps",
+                "content": "1. Compiler translates the WHOLE program; Interpreter translates line-by-line.\n2. Lexical = Tokens; Syntax = Structure; Semantic = Meaning.\n3. DFA has strictly ONE transition per (state, symbol); NFA allows multiple.\n4. ε is the empty STRING; ∅ is the empty SET.\n5. Kleene Star (*) means ZERO or more (not one or more)."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 38 Checkpoint Test",
+      "subtitle": "Theory of Computation & Compiler Basics: Phases, DFA/NFA, Regex & Chomsky Hierarchy",
+      "questions": [
+        {
+          "id": "m-d38-q1",
+          "question": "Q1. A compiler generally translates:",
+          "options": [
+            "One line and executes it immediately",
+            "The entire source program",
+            "Only database queries",
+            "Only comments",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "As directly tested in TRE 2.0 and defined in NCERT, a compiler translates the entire high-level source program into machine language before execution. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q2",
+          "question": "Q2. An interpreter generally processes:",
+          "options": [
+            "The entire source program only before execution",
+            "Statements one by one",
+            "Only machine code",
+            "Only HTML",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An interpreter translates and executes source code line by line, statement by statement at runtime. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q3",
+          "question": "Q3. A program written in a high-level programming language is called:",
+          "options": [
+            "Source code",
+            "MAC address",
+            "Packet",
+            "Page table",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A computer program written in high-level human-readable code is known as Source Code (NCERT kecs105). Correct: (A)."
+        },
+        {
+          "id": "m-d38-q4",
+          "question": "Q4. Which compiler phase primarily creates tokens?",
+          "options": [
+            "Lexical analysis",
+            "Syntax analysis",
+            "Code generation",
+            "Optimization",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Lexical Analyzer (Scanner) reads the character stream and converts it into meaningful language units called Tokens. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q5",
+          "question": "Q5. Which compiler phase checks grammatical program structure?",
+          "options": [
+            "Semantic analysis",
+            "Syntax analysis",
+            "Code generation",
+            "Linking only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Syntax Analyzer (Parser) verifies that the token stream satisfies the formal grammatical rules of the programming language. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q6",
+          "question": "Q6. Semantic analysis is most closely associated with:",
+          "options": [
+            "Meaning/type consistency",
+            "Breaking input into tokens",
+            "Physical network transmission",
+            "Sorting arrays",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Semantic analysis validates the logical meaning of statements, checking type compatibility, scope declarations, and semantic consistency. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q7",
+          "question": "Q7. The lexical analyzer's output is mainly:",
+          "options": [
+            "Tokens",
+            "IP addresses",
+            "Frames",
+            "Processes",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The primary output of the lexical analysis phase is a stream of tokens passed to the syntax analyzer. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q8",
+          "question": "Q8. A DFA is:",
+          "options": [
+            "Deterministic Finite Automaton",
+            "Dynamic File Algorithm",
+            "Data Frame Architecture",
+            "Digital Function Array",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DFA stands for Deterministic Finite Automaton. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q9",
+          "question": "Q9. For every state and input symbol, a DFA has:",
+          "options": [
+            "Exactly one next transition/state",
+            "Always three states",
+            "No transition",
+            "Unlimited required transitions",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In a DFA, for each state and each input symbol from the alphabet, there is uniquely and deterministically exactly one transition to a next state. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q10",
+          "question": "Q10. NFA stands for:",
+          "options": [
+            "Network Function Algorithm",
+            "Nondeterministic Finite Automaton",
+            "Normal File Access",
+            "Numeric Function Array",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "NFA stands for Nondeterministic Finite Automaton. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q11",
+          "question": "Q11. DFA and NFA recognize:",
+          "options": [
+            "Regular languages",
+            "Only context-sensitive languages",
+            "Machine code only",
+            "SQL only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Both DFA and NFA have identical expressive capability and precisely recognize the family of Regular Languages. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q12",
+          "question": "Q12. ε usually denotes:",
+          "options": [
+            "Empty string",
+            "Empty set",
+            "Final state only",
+            "Compiler",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In formal language theory, ε (epsilon) represents the empty string, whose length is zero. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q13",
+          "question": "Q13. ∅ denotes:",
+          "options": [
+            "Empty string",
+            "Empty set",
+            "Kleene star",
+            "Start state",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "∅ denotes the empty set (a language containing zero strings), distinct from the empty string ε. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q14",
+          "question": "Q14. In regular expressions, * means:",
+          "options": [
+            "Exactly one occurrence",
+            "Zero or more occurrences",
+            "Exactly two occurrences",
+            "Logical AND",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Kleene star (*) operator denotes zero or more repetitions of the preceding element or subexpression. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q15",
+          "question": "Q15. a|b means:",
+          "options": [
+            "a followed by b",
+            "a or b",
+            "only a repeated",
+            "empty language",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In regular expressions, the vertical bar (|) denotes alternation/union: \"a or b\". Correct: (B)."
+        },
+        {
+          "id": "m-d38-q16",
+          "question": "Q16. (0|1)* represents:",
+          "options": [
+            "Only 0",
+            "Only 1",
+            "All binary strings including ε",
+            "Strings of length exactly 2",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "(0|1)* generates all possible finite binary strings of any length (including the zero-length empty string ε). Correct: (C)."
+        },
+        {
+          "id": "m-d38-q17",
+          "question": "Q17. In G = (V,T,P,S), S usually represents:",
+          "options": [
+            "Start symbol",
+            "Stack",
+            "State table",
+            "Semantic analyzer",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In a 4-tuple formal grammar G = (V, T, P, S), S designates the unique Start Symbol (S ∈ V). Correct: (A)."
+        },
+        {
+          "id": "m-d38-q18",
+          "question": "Q18. Type-2 grammar in the Chomsky hierarchy is:",
+          "options": [
+            "Regular grammar",
+            "Context-free grammar",
+            "Context-sensitive grammar",
+            "Unrestricted only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In the Chomsky hierarchy, Type-2 grammars are Context-Free Grammars (CFGs), which generate Context-Free Languages parsed by Pushdown Automata. Correct: (B)."
+        },
+        {
+          "id": "m-d38-q19",
+          "question": "Q19. Type-3 grammar is:",
+          "options": [
+            "Regular grammar",
+            "Context-free grammar",
+            "Unrestricted grammar",
+            "Context-sensitive grammar",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Type-3 grammars are Regular Grammars, which generate Regular Languages recognized by Finite Automata. Correct: (A)."
+        },
+        {
+          "id": "m-d38-q20",
+          "question": "Q20. Which matching is correct?",
+          "options": [
+            "Lexical → Tokens",
+            "Syntax → Structure/Grammar",
+            "Semantic → Meaning",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three matchings are core compiler design definitions. Hence (D) More than one of the above is the correct choice. Correct: (D)."
+        }
+      ]
+    }
   }
 ];
 
