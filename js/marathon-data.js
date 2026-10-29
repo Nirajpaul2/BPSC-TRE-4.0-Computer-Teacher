@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 28 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 29 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -16367,6 +16367,433 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 2,
           "explanation": "Lists are mutable (can be altered in-place), whereas Tuples and Strings are immutable. Correct: (C) List → mutable; Tuple → immutable."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 29,
+    "dayId": "day-29",
+    "badge": "Day 29",
+    "title": "TRE 4.0 — Day 29",
+    "unit": "Part III (CS) • Python Functions: Parameters vs Arguments, return (Tuples), Scope (Local/Global), Recursion & Exception Handling (try/except/finally/raise) • 20-Q Test",
+    "targetTime": "15–18 mins read + 20 mins test",
+    "summary": "Python Functions, Scope & Exception Handling (NCERT Class XI Chapter 7 kecs107): Functions (modularity and reusability, def keyword, call syntax), Parameters (function definition header) vs Arguments (actual values passed), return statement (sends control and value back, default None), Multiple Return Values packed as Tuples (return a+b, a-b -> (14, 6)), Default Parameters, Positional vs Keyword Arguments, Local vs Global Variables, Variable Shadowing (local hides global), global keyword to modify global state, Recursion (function calling itself) & Base Case termination, Factorial recursion trace, Exception Handling: try (risky code), except (error handling), finally (guaranteed cleanup), raise (explicit exception trigger), Standard Exceptions (ZeroDivisionError, NameError, TypeError, ValueError), and 20-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Python Functions, Scope & Exceptions",
+        "goal": "Master parameters vs arguments, return tuples, local vs global scope & the global keyword, recursion base cases, and try/except/finally/raise"
+      },
+      {
+        "section": "Exam Strategy",
+        "topic": "Output-Based Function Tracing",
+        "goal": "Trace function calls with stack frames, default arguments, shadowed variables, and exception branches line-by-line"
+      }
+    ],
+    "introNote": "Today remains Python-first.\n\nYour uploaded NCERT Function chapter directly covers user-defined functions, arguments vs parameters, default parameters, return, multiple return values through a tuple, local/global variables, scope, modules, and import (kecs107).\n\nException handling (try, except, finally, raise) is standard Python expansion based on keywords identified in NCERT (kecs105).",
+    "parts": [
+      {
+        "title": "Part III — Functions Architecture, Parameters vs Arguments & return Values (NCERT kecs107)",
+        "sections": [
+          {
+            "title": "1. Why Functions?, 2. Defining Functions (def) & 3. Parameters vs Arguments",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Why Functions?\n🧠 MENTAL PICTURE:\nImagine repeatedly calculating: length × breadth\nInstead of rewriting the code everywhere, create a reusable tool:\n\nlength, breadth ──> [ area() ] ──> result\n\nNCERT emphasizes functions for modularity, reusability and reduced code redundancy (kecs107)."
+              },
+              {
+                "type": "diagram",
+                "content": "2. Defining & Calling Functions:\n\ndef greet():\n    print(\"Hello\")\n\ngreet()  # Function call\n\nMemory:\ndef    → DEFINE function\nname() → CALL function"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "3. Parameter vs Argument (Common Exam Trap)",
+                "content": "def add(a, b):       # a, b are PARAMETERS (placeholders in function header)\n    return a + b\n\nadd(10, 20)          # 10, 20 are ARGUMENTS (actual values passed)\n\nNCERT Definition:\n• Parameter: Variable in function header receiving input.\n• Argument: Value provided during the function call."
+              }
+            ]
+          },
+          {
+            "title": "4. return, 5. print() vs return & 6. Default Return (None)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. return Statement\nreturn terminates function execution and passes control and values back to the caller (NCERT kecs107).\n\ndef add(a, b):\n    return a + b\n\nx = add(2, 3)\nprint(x)  # Output: 5"
+              },
+              {
+                "type": "diagram",
+                "content": "5. print() vs return (Fundamental Concept):\n\nOperation │ print()                           │ return\n──────────┼───────────────────────────────────┼─────────────────────────────────\nAction    │ Displays output to screen/console │ Sends calculated value to caller\nResult    │ Returns None to program           │ Value can be stored in variable\nAnalogy   │ SHOW 📺                           │ GIVE BACK 🎁"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "6. No Explicit return → None",
+                "content": "If a Python function finishes without hitting a return statement, it implicitly returns None.\n\ndef hello():\n    print(\"Hi\")\n\nx = hello()  # prints \"Hi\"\nprint(x)     # Output: None"
+              }
+            ]
+          },
+          {
+            "title": "7. Multiple Return Values (Tuple), 8. Defaults & 9–10. Positional vs Keyword",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "7. Multiple Return Values\nNCERT explicitly states: Multiple values in Python are returned packaged as a TUPLE (kecs107).\n\ndef calc(a, b):\n    return a + b, a - b\n\nx = calc(10, 4)\nprint(x)  # Output: (14, 6)  ← A Tuple!\n\nMemory: Many returns → TUPLE"
+              },
+              {
+                "type": "diagram",
+                "content": "8. Default Parameters (NCERT kecs107):\ndef greet(name=\"Student\"):\n    print(\"Hello\", name)\n\ngreet()         → Output: Hello Student (uses default)\ngreet(\"Ravi\")   → Output: Hello Ravi    (overrides default)\n\n9. Positional Arguments:\ndef subtract(a, b): return a - b\nsubtract(10, 3) → a=10, b=3 → Output: 7 (order/position decides)\n\n10. Keyword Arguments:\nsubtract(b=3, a=10) → a=10, b=3 → Output: 7 (parameter names decide)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Scope: Local vs Global Variables, Shadowing & the global Keyword (NCERT kecs107)",
+        "sections": [
+          {
+            "title": "11. Local Variables (Scope & NameError) & 12. Global Variables",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "11. Local Variable\nDefined inside a function/block; exists only during that function's execution.\n\ndef test():\n    x = 10\n    print(x)\n\ntest()     # prints 10\nprint(x)   # ❌ NameError: name 'x' is not defined (NCERT kecs107)\n\nMemory: LOCAL = inside the room only\n\n12. Global Variable\nDefined outside all functions; accessible throughout the module file.\n\nx = 100\ndef show():\n    print(x)\nshow()     # Output: 100"
+              }
+            ]
+          },
+          {
+            "title": "13. Variable Shadowing, 14. global Keyword & 15. Tracing",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "13. Local Hides Global (Variable Shadowing):\nx = 10          # Global\n\ndef test():\n    x = 20      # Local x shadows global x inside test()\n    print(x)\n\ntest()          # Output: 20\nprint(x)        # Output: 10 (Global x remains unchanged!)\n\n14. global Keyword (Modifying Global State):\nx = 10\ndef change():\n    global x    # Informs Python to use the module-level x\n    x = 50\nchange()\nprint(x)        # Output: 50 (Global x was updated!)"
+              },
+              {
+                "type": "callout",
+                "icon": "🔑",
+                "title": "Scope Memory Anchor",
+                "content": "• Without 'global': assigning inside a function creates a new LOCAL variable.\n• With 'global x': assigning modifies the existing GLOBAL variable."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Recursion & Exception Handling (try, except, finally, raise)",
+        "sections": [
+          {
+            "title": "16. Recursion Basics, 17. Base Case & 18. Factorial Tracing",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "16. Recursion Basics\n🧠 MENTAL PICTURE: Two mirrors facing each other.\nRecursion occurs when a function calls itself directly or indirectly.\n\n17. Base Case (Halting Condition):\nEvery recursive function MUST have a base case to terminate recursion.\nWithout a base case, it recurses indefinitely until hitting RecursionError (stack overflow).\n\n18. Factorial Example:\ndef fact(n):\n    if n == 0:        # BASE CASE\n        return 1\n    return n * fact(n - 1)\n\nTracing fact(3):\n3 × fact(2)\n3 × (2 × fact(1))\n3 × (2 × (1 × fact(0)))\n3 × 2 × 1 × 1 = 6"
+              }
+            ]
+          },
+          {
+            "title": "19–21. Exception Handling: try, except & finally",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "19. Exceptions\nAn exception is a runtime error that interrupts the normal program flow if unhandled.\n\n20. try / except Structure:\ntry:\n    x = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")\n\nOutput: Cannot divide by zero\n\n21. finally Block:\nThe finally block ALWAYS runs, whether an exception occurred or not (used for closing files, freeing resources).\n\ntry:\n    print(10 // 2)   # Output: 5\nexcept:\n    print(\"Error\")\nfinally:\n    print(\"Done\")    # Output: Done"
+              },
+              {
+                "type": "callout",
+                "icon": "🛡️",
+                "title": "Exception Handling Blocks",
+                "content": "try     → Enclose risky code\nexcept  → Catch and handle specific error\nfinally → Always executes at the end (cleanup)\nraise   → Manually trigger an exception"
+              }
+            ]
+          },
+          {
+            "title": "22. Common Exceptions, 23. raise & 24. Function Exception Tracing",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Common Built-in Exceptions in Python:\n\nException Name     │ Typical Trigger Cause\n───────────────────┼────────────────────────────────────────────────────────────\nZeroDivisionError  │ Dividing any number by 0 (e.g. 10 / 0)\nNameError          │ Referencing undefined variable (e.g. local variable outside)\nTypeError          │ Incompatible types in operation (e.g. '5' + 5, t[0] = 1)\nValueError         │ Right type but inappropriate value (e.g. int('hello'))\nIndexError         │ Sequence index out of range (e.g. [1, 2][5])\nKeyError           │ Dictionary key not found in d[key]\n\n23. raise Keyword:\nage = -5\nif age < 0:\n    raise ValueError(\"Age cannot be negative\")"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 29 White-Paper Master Sheet & Recall",
+        "sections": [
+          {
+            "title": "Day 29 White-Paper Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "🧠 Day 29 White-Paper Master Sheet\nDraw and mentally verify:\n\nFUNCTION\ndef name(parameters):\n    return result\n\n• parameter = placeholder in definition\n• argument  = actual value passed in call\n• return    = sends result back (default: None)\n• multiple returns → TUPLE\n\nSCOPE\n• LOCAL   → inside function\n• GLOBAL  → outside function\n• global keyword → modify global variable inside function\n\nRECURSION\n• function calls itself\n• BASE CASE → mandatory stopping condition\n\nEXCEPTIONS\n• try     → risky code\n• except  → handle error\n• finally → executes always\n• raise   → trigger exception manually\n• ZeroDivisionError, NameError, TypeError, ValueError"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 29 Checkpoint Test",
+      "subtitle": "20 Questions: Functions, Parameters, return Tuples, Scope, Recursion & Exceptions",
+      "questions": [
+        {
+          "id": "m-d29-q1",
+          "question": "Q1. Which keyword defines a Python function?",
+          "options": [
+            "func",
+            "function",
+            "def",
+            "define",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In Python, functions are defined using the 'def' keyword. Correct: (C) def."
+        },
+        {
+          "id": "m-d29-q2",
+          "question": "Q2. In:\ndef add(a, b):\n    return a+b\n\na and b are:",
+          "options": [
+            "Arguments",
+            "Parameters",
+            "Global variables",
+            "Modules",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Variables listed in the function definition header (a, b) are parameters (formal parameters). Correct: (B) Parameters."
+        },
+        {
+          "id": "m-d29-q3",
+          "question": "Q3. In:\nadd(10, 20)\n\n10 and 20 are:",
+          "options": [
+            "Parameters",
+            "Arguments",
+            "Functions",
+            "Keywords",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The actual values passed into a function when calling it are arguments. Correct: (B) Arguments."
+        },
+        {
+          "id": "m-d29-q4",
+          "question": "Q4. What is the output?\ndef add(a, b):\n    return a + b\nprint(add(3, 4))",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "34",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "add(3, 4) executes return 3 + 4, which yields 7. Correct: (C) 7."
+        },
+        {
+          "id": "m-d29-q5",
+          "question": "Q5. return primarily:",
+          "options": [
+            "Prints only",
+            "Sends value/control back to caller",
+            "Creates a loop",
+            "Imports module",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The return statement terminates execution of the function and sends control and resulting value(s) back to the caller. Correct: (B) Sends value/control back to caller."
+        },
+        {
+          "id": "m-d29-q6",
+          "question": "Q6. Multiple values returned from a Python function are commonly represented as a:",
+          "options": [
+            "String",
+            "Integer",
+            "Tuple",
+            "Set only",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "NCERT explicitly notes that returning multiple comma-separated expressions packages them as a tuple. Correct: (C) Tuple."
+        },
+        {
+          "id": "m-d29-q7",
+          "question": "Q7. What is the output?\ndef test():\n    return 10, 20\nprint(test())",
+          "options": [
+            "10",
+            "20",
+            "(10, 20)",
+            "[10,20]",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Returning multiple values packs them into a tuple: (10, 20). Correct: (C) (10, 20)."
+        },
+        {
+          "id": "m-d29-q8",
+          "question": "Q8. What is the output?\ndef greet(name=\"Student\"):\n    print(name)\ngreet()",
+          "options": [
+            "name",
+            "Student",
+            "None only",
+            "Error",
+            "Nothing"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Because no argument is passed during the call greet(), Python uses the default parameter value \"Student\". Correct: (B) Student."
+        },
+        {
+          "id": "m-d29-q9",
+          "question": "Q9. A variable defined inside a function is usually:",
+          "options": [
+            "Global",
+            "Local",
+            "Module",
+            "Keyword",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Variables declared inside a function have local scope and cannot be accessed outside that function. Correct: (B) Local."
+        },
+        {
+          "id": "m-d29-q10",
+          "question": "Q10. What happens?\ndef test():\n    x = 10\ntest()\nprint(x)",
+          "options": [
+            "Prints 10",
+            "Prints 0",
+            "NameError",
+            "Prints None",
+            "Nothing"
+          ],
+          "correctAnswer": 2,
+          "explanation": "x is a local variable inside test(). Accessing x outside raises NameError: name 'x' is not defined. Correct: (C) NameError."
+        },
+        {
+          "id": "m-d29-q11",
+          "question": "Q11. What is the output?\nx = 10\ndef test():\n    x = 20\n    print(x)\ntest()\nprint(x)",
+          "options": [
+            "10 20",
+            "20 10",
+            "20 20",
+            "10 10",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inside test(), local x = 20 shadows global x and prints 20. Outside test(), global x remains 10 and prints 10. Output is 20 followed by 10. Correct: (B) 20 10."
+        },
+        {
+          "id": "m-d29-q12",
+          "question": "Q12. Which keyword allows a function to explicitly modify a global variable?",
+          "options": [
+            "local",
+            "external",
+            "global",
+            "public",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The 'global' keyword explicitly binds a variable inside a function to the module's global scope, allowing reassignment. Correct: (C) global."
+        },
+        {
+          "id": "m-d29-q13",
+          "question": "Q13. What is the output?\nx = 5\ndef change():\n    global x\n    x = 10\nchange()\nprint(x)",
+          "options": [
+            "5",
+            "10",
+            "15",
+            "Error",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The global statement inside change() causes x = 10 to modify the global variable, so print(x) prints 10. Correct: (B) 10."
+        },
+        {
+          "id": "m-d29-q14",
+          "question": "Q14. Recursion means:",
+          "options": [
+            "Function calls itself",
+            "Function has no parameters",
+            "Loop always terminates",
+            "Variable becomes global",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Recursion is a programming technique in which a function calls itself directly or indirectly to solve a smaller instance of the problem. Correct: (A) Function calls itself."
+        },
+        {
+          "id": "m-d29-q15",
+          "question": "Q15. The condition that stops recursion is commonly called:",
+          "options": [
+            "Main condition",
+            "Base case",
+            "Global case",
+            "Exception case",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The base case provides the termination condition that prevents infinite recursive calls. Correct: (B) Base case."
+        },
+        {
+          "id": "m-d29-q16",
+          "question": "Q16. Which block contains code that may produce an exception?",
+          "options": [
+            "if",
+            "try",
+            "for",
+            "def",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Risky code that might raise an exception is placed inside a 'try' block. Correct: (B) try."
+        },
+        {
+          "id": "m-d29-q17",
+          "question": "Q17. Which block handles a matching exception?",
+          "options": [
+            "except",
+            "finally",
+            "return",
+            "while",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The 'except' block intercepts and handles the exception raised inside the try block. Correct: (A) except."
+        },
+        {
+          "id": "m-d29-q18",
+          "question": "Q18. What exception normally occurs for:\n10 / 0",
+          "options": [
+            "NameError",
+            "TypeError",
+            "ZeroDivisionError",
+            "ValueError",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Dividing a number by zero in Python raises a ZeroDivisionError. Correct: (C) ZeroDivisionError."
+        },
+        {
+          "id": "m-d29-q19",
+          "question": "Q19. What is the output?\ntry:\n    print(10 // 2)\nexcept:\n    print(\"Error\")\nfinally:\n    print(\"Done\")",
+          "options": [
+            "5 only",
+            "Done only",
+            "5 then Done",
+            "Error then Done",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "10 // 2 evaluates to 5 without errors. The except block is skipped. The finally block always executes, printing 'Done'. Output is 5 then Done. Correct: (C) 5 then Done."
+        },
+        {
+          "id": "m-d29-q20",
+          "question": "Q20. Which keyword can intentionally trigger an exception?",
+          "options": [
+            "throw",
+            "raise",
+            "error",
+            "catch",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In Python, the 'raise' keyword is used to trigger/throw an exception manually. Correct: (B) raise."
         }
       ]
     }

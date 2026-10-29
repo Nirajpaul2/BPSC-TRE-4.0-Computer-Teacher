@@ -1526,7 +1526,9 @@
     } else if (filter === 'w3') {
       daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 14 && d.dayNumber <= 21);
     } else if (filter === 'w4') {
-      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 21);
+      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 21 && d.dayNumber <= 28);
+    } else if (filter === 'w5') {
+      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 28);
     }
 
     let html = '';
