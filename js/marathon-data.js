@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 26 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 27 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -15435,6 +15435,489 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "Tracing variables step-by-step and executing code line-by-line avoids logic traps and yields accurate output predictions. Correct: (B) Execute code mentally line-by-line."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 27,
+    "dayId": "day-27",
+    "badge": "Day 27",
+    "title": "TRE 4.0 — Day 27",
+    "unit": "Part III (CS) • Python Operators (/ vs // vs %), Control Flow (if/elif/else), Loops (for, while, range), break/continue • GS (% Change) • English (Articles)",
+    "targetTime": "15–18 mins read + 20 mins test",
+    "summary": "Python Control Structures & Operators (NCERT Class XI Chapters 5 & 6 kecs105/kecs106): Arithmetic Operators (+, -, *, /, // floor division, % modulus, ** exponentiation), Comparison/Relational Operators (== vs = assignment, !=, >, <, >=, <=), Logical Operators (and, or, not in lowercase), Membership Operators (in, not in), Conditional Flow (if, if...else, if/elif/else, indentation blocks), Loops: for loop with range(start, stop, step) [stop excluded, negative step backward], while loop & infinite loop dangers, Loop control statements: break (exit loop completely) vs continue (skip current iteration), line-by-line variable tracing table method, operator precedence, GS Successive % Change (+10% then -10% -> 1% loss), and English Articles ('an hour').",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Python Operators & Control Flow",
+        "goal": "Master / vs // vs %, == vs =, and/or/not, in/not in, if/elif/else indentation, range(start, stop, step), while loops, break vs continue, and line-by-line variable tracing"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Successive Percentage Change",
+        "goal": "+x% then -x% net change formula: x²/100 % loss (+10% & -10% gives 1% loss)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Articles (Vowel Sound Rule)",
+        "goal": "Silent 'h' in 'an hour' vs consonant glide /juː/ in 'a university'"
+      }
+    ],
+    "introNote": "Today is 100% Python for Computer Science—no C++ questions.\n\nYour uploaded NCERT Class XI Python chapters directly cover arithmetic/relational/logical operators, if/elif/else, for, while, range(), break, continue, nested loops, and output-based exercises (kecs105 / kecs106).",
+    "parts": [
+      {
+        "title": "Part III — Python Operators: Arithmetic (/ vs // vs %), Relational & Logical",
+        "sections": [
+          {
+            "title": "1. Python Operators & 2. Division (/), Floor Division (//) & Modulus (%)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Python Operators\n🧠 MENTAL PICTURE: Think of a calculator\n5 + 2, 5 - 2, 5 * 2, 5 / 2\n\nPython has essential operators tested heavily in MCQs:\n+   Addition\n-   Subtraction\n*   Multiplication\n/   Normal division (always float in Python 3)\n//  Floor division (quotient without fractional part)\n%   Remainder / Modulus\n**  Power / Exponentiation\n\nNCERT explicitly lists these arithmetic operators (kecs105)."
+              },
+              {
+                "type": "diagram",
+                "content": "2. / vs // vs % (Major Python Trap):\nSuppose: a = 13, b = 4\n\n• Normal division (/):\n  print(13 / 4)  → Output: 3.25\n\n• Floor division (//):\n  print(13 // 4) → Output: 3\n  (For positive numbers: strips decimal part down)\n\n• Modulus (%):\n  print(13 % 4)  → Output: 1\n  (because 13 = 4 × 3 + 1, remainder is 1)"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Division Memory Rule",
+                "content": "/  → quotient with decimal (float)\n// → floor quotient (integer for integer operands)\n%  → remainder"
+              }
+            ]
+          },
+          {
+            "title": "3. Power (**), 4. Relational Operators (== vs =) & 5. Logical Operators",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. ** Power (Exponentiation)\nprint(2 ** 3)  → means 2³ → Output: 8\nprint(2 ** 4)  → means 2⁴ → Output: 16\nMemory: Two stars (**) = Power\n\n4. Relational Operators (Produce True or False):\n==  equal\n!=  not equal\n>   greater\n<   smaller\n>=  greater or equal\n<=  smaller or equal"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "= vs == (Crucial Distinction)",
+                "content": "x = 10   → Assignment (PUT VALUE into variable x)\nx == 10  → Comparison (ASK QUESTION: is x equal to 10?)"
+              },
+              {
+                "type": "text",
+                "content": "5. Logical Operators\nPython uses lowercase words: and, or, not (NCERT kecs105).\n\n• and: Both conditions must be True.\n  True and True   → True\n  True and False  → False\n  Memory: AND = ALL must be true\n\n• or: At least one condition must be True.\n  True or False   → True\n  False or False  → False\n  Memory: OR = ANY true suffices\n\n• not: Inverts truth value.\n  not True   → False\n  not False  → True\n  Memory: NOT = reverse"
+              }
+            ]
+          },
+          {
+            "title": "6. Membership Operators (in, not in) & 19. Operator Precedence",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. Membership Operators\nPython provides in and not in to test membership in a sequence (string, list, tuple, etc.).\n\nExample:\na = [10, 20, 30]\nprint(20 in a)  → Output: True\nprint(50 in a)  → Output: False\nprint(50 not in a) → Output: True\n\nMemory: in = present in sequence?\n\n19. Operator Precedence (Basic Exam Level):\n1. ** (Exponentiation)\n2. * , / , // , % (Multiplication, Division, Floor Div, Modulo)\n3. + , - (Addition, Subtraction)\n4. == , != , > , < , >= , <= (Comparisons)\n5. not , and , or (Logical operators)\n\nExample:\nprint(2 + 3 * 4)\nFirst 3 × 4 = 12, then 2 + 12 = 14 → Output: 14"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Control Flow: Conditional Branches & Indentation Rules",
+        "sections": [
+          {
+            "title": "7–9. if, if...else & if / elif / else Multi-Way Selection",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "7. if Statement\n🧠 MENTAL PICTURE: Traffic signal (IF RED → STOP)\n\nage = 20\nif age >= 18:\n    print(\"Eligible\")\nOutput: Eligible\n\n8. if...else Statement\nage = 15\nif age >= 18:\n    print(\"Eligible\")\nelse:\n    print(\"Not Eligible\")\nOutput: Not Eligible"
+              },
+              {
+                "type": "diagram",
+                "content": "9. if / elif / else (NCERT kecs106):\nWhen multiple conditions must be checked, elif chains evaluate sequentially.\nOnce a condition becomes True, its block runs and the selection terminates.\n\nmarks = 75\nif marks >= 80:\n    print(\"A\")\nelif marks >= 60:\n    print(\"B\")\nelse:\n    print(\"C\")\n\nTrace:\nmarks >= 80 (75 >= 80) → False\nmarks >= 60 (75 >= 60) → True → Prints \"B\" and terminates\nOutput: B"
+              },
+              {
+                "type": "callout",
+                "icon": "🚦",
+                "title": "Branching Memory Anchor",
+                "content": "IF\n ↓ false\nELIF\n ↓ false\nELSE"
+              }
+            ]
+          },
+          {
+            "title": "10. Python Indentation & Block Structure",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. Python Indentation\nPython uses indentation (whitespace/spaces) to identify code blocks and nesting.\nNCERT explicitly emphasizes that inconsistent or missing indentation causes syntax errors (IndentationError).\n\nCorrect:\nif x > 5:\n    print(\"Yes\")\n\nIncorrect:\nif x > 5:\nprint(\"Yes\")   ❌ (SyntaxError / IndentationError)"
+              },
+              {
+                "type": "callout",
+                "icon": "📐",
+                "title": "Indentation Rule",
+                "content": "Python uses spaces to show ownership and scope of code blocks instead of curly braces { }."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Loops: for, while, range() & Loop Control (break vs continue)",
+        "sections": [
+          {
+            "title": "11–13. for Loop, range(start, stop, step) & Negative Step",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "11. for Loop\nUsed to iterate over a sequence (list, tuple, string) or range.\n\nfor i in range(3):\n    print(i)\nOutput:\n0\n1\n2\n\n12. range() Function\nSyntax: range(start, stop, step)\n• start defaults to 0\n• step defaults to 1\n• STOP is always EXCLUDED!\n\nExamples:\n• range(5)         → 0, 1, 2, 3, 4\n• range(2, 6)      → 2, 3, 4, 5\n• range(0, 10, 2)  → 0, 2, 4, 6, 8"
+              },
+              {
+                "type": "callout",
+                "icon": "🔄",
+                "title": "13. Negative Step (Countdown)",
+                "content": "for i in range(5, 0, -1):\n    print(i)\n\nOutput:\n5\n4\n3\n2\n1\n(0 is excluded!)\n\nMemory: Negative step → counts backward down to stop + 1."
+              }
+            ]
+          },
+          {
+            "title": "14–17. while Loop, Infinite Loops, break vs continue & Tracing",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "14. while Loop\nRepeats as long as its condition remains True. If false initially, its body executes zero times (NCERT kecs106).\n\nx = 1\nwhile x <= 3:\n    print(x)\n    x += 1\nOutput: 1  2  3\n\n15. Infinite Loop\nIf the loop variable is not updated, the condition never becomes False:\nx = 1\nwhile x <= 5:\n    print(x)  # Infinite loop! x never changes.\nMemory: while loop requires a guaranteed termination path."
+              },
+              {
+                "type": "diagram",
+                "content": "🔥 break vs continue (NCERT kecs106):\n\nStatement │ Effect                                │ Mental Analogy\n──────────┼───────────────────────────────────────┼───────────────────\nbreak     │ Terminates loop completely            │ Exit Door 🚪\ncontinue  │ Skips rest of current iteration only  │ Skip Button ⏭️"
+              },
+              {
+                "type": "text",
+                "content": "16. break Example:\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)\nTrace: i=0 (print 0), i=1 (print 1), i=2 (print 2), i=3 (break!)\nOutput: 0  1  2\n\n17. continue Example:\nfor i in range(5):\n    if i == 2:\n        continue\n    print(i)\nTrace: 2 is skipped!\nOutput: 0  1  3  4"
+              },
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "18. Output-Tracing Rule (Make a Tiny Table)",
+                "content": "x = 0\nfor i in range(1, 4):\n    x = x + i\nprint(x)\n\nTrace Table:\ni   x\n─────\n1   1\n2   3\n3   6\n\nOutput: 6\nRule: Never guess output. Trace variables line-by-line."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 27 White-Paper Master Sheet & Recall",
+        "sections": [
+          {
+            "title": "White-Paper Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "🧠 Day 27 White-Paper Master Sheet\nMemorize only this:\n\nPYTHON OPERATORS:\n/   → division (float)\n//  → floor division (integer quotient)\n%   → remainder\n**  → power (exponentiation)\n\n=   → assignment\n==  → comparison equality\n\nand → ALL true\nor  → ANY true\nnot → reverse\nin  → membership test\n\nBRANCHING:\nif / elif / else\nIndentation shows block ownership!\n\nLOOPS:\nrange(start, stop, step)  [STOP EXCLUDED]\nfor   → iterate sequence / range\nwhile → repeat while condition true\n\nLOOP CONTROL:\nbreak    → EXIT loop completely 🚪\ncontinue → SKIP current iteration ⏭️"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part II — General Studies: Successive Percentage Change",
+        "sections": [
+          {
+            "title": "+10% then -10% Successive Change Formula",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Exam Problem:\nIf a quantity increases by 10% and then decreases by 10%, what is the net result?\n\nStep-by-Step Calculation:\nLet original value = 100\n1. Increase by 10%:\n   100 + 10 = 110\n2. Decrease by 10%:\n   10% of 110 = 11\n   110 - 11 = 99\n\nNet result:\n100 → 99 = 1% loss"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Successive % Formula Shortcut",
+                "content": "When a value increases by x% and then decreases by x%:\nNet Change = x² / 100 % Loss\n\nFor 10%:\n10² / 100 % = 100 / 100 % = 1% Loss"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part I — English: Articles (Vowel Sound Rule)",
+        "sections": [
+          {
+            "title": "'an hour' (Silent H) vs 'a university' (/juː/)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Articles depend on pronunciation and initial SOUND, not alphabet spelling alone.\n\n• 'an hour': The 'h' is silent; it begins with the vowel sound /aʊə/. Therefore, it takes 'an'.\n• 'a university': Begins with the consonant glide sound /juː/. Therefore, it takes 'a'.\n• 'an actress': Begins with the vowel sound /æ/. Therefore, it takes 'an'."
+              },
+              {
+                "type": "callout",
+                "icon": "📖",
+                "title": "Article Vowel Sound Anchor",
+                "content": "• an hour (silent h)\n• an honest man (silent h)\n• an airport (/eə/)\n• an early morning walk (/ɜː/)\n• a university (/juː/)\n• a European (/juː/)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 27 Checkpoint Test",
+      "subtitle": "20 Questions: Operators, if/elif/else, Loops, range(), break/continue & General Studies",
+      "questions": [
+        {
+          "id": "m-d27-q1",
+          "question": "Q1. What is the result of:\n13 // 4",
+          "options": [
+            "3",
+            "3.25",
+            "1",
+            "4",
+            "Error"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The floor division operator // returns the integer quotient, discarding the fractional part. 13 // 4 evaluates to 3. Correct: (A) 3."
+        },
+        {
+          "id": "m-d27-q2",
+          "question": "Q2. What is:\n13 % 4",
+          "options": [
+            "3",
+            "4",
+            "1",
+            "0",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The modulo operator % returns the remainder of division: 13 = 4 * 3 + 1, so the remainder is 1. Correct: (C) 1."
+        },
+        {
+          "id": "m-d27-q3",
+          "question": "Q3. What is:\n2 ** 4",
+          "options": [
+            "6",
+            "8",
+            "16",
+            "24",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The ** operator computes exponentiation: 2 ** 4 = 2⁴ = 16. Correct: (C) 16."
+        },
+        {
+          "id": "m-d27-q4",
+          "question": "Q4. Which operator tests equality?",
+          "options": [
+            "=",
+            "==",
+            "!=",
+            ":=",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "== is the relational equality operator used to compare two values, whereas = is the assignment operator. Correct: (B) ==."
+        },
+        {
+          "id": "m-d27-q5",
+          "question": "Q5. What is the output?\nprint(10 > 5 and 3 < 2)",
+          "options": [
+            "True",
+            "False",
+            "10",
+            "5",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "10 > 5 is True, but 3 < 2 is False. In an and expression, both must be True. True and False evaluates to False. Correct: (B) False."
+        },
+        {
+          "id": "m-d27-q6",
+          "question": "Q6. What is the output?\nprint(10 > 5 or 3 < 2)",
+          "options": [
+            "True",
+            "False",
+            "10",
+            "3",
+            "Error"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In an or expression, if either operand is True, the entire expression evaluates to True. Here 10 > 5 is True. Correct: (A) True."
+        },
+        {
+          "id": "m-d27-q7",
+          "question": "Q7. What is the output?\nprint(20 in [10, 20, 30])",
+          "options": [
+            "20",
+            "True",
+            "False",
+            "1",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The membership operator in tests whether 20 is present in the list [10, 20, 30]. Since it is, it returns True. Correct: (B) True."
+        },
+        {
+          "id": "m-d27-q8",
+          "question": "Q8. What is the output?\nx = 10\nif x > 5:\n    print(\"A\")\nelse:\n    print(\"B\")",
+          "options": [
+            "A",
+            "B",
+            "10",
+            "Nothing",
+            "Error"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Since x = 10 and 10 > 5 is True, the if block executes and prints 'A'. Correct: (A) A."
+        },
+        {
+          "id": "m-d27-q9",
+          "question": "Q9. What is the output?\nx = 70\nif x >= 80:\n    print(\"A\")\nelif x >= 60:\n    print(\"B\")\nelse:\n    print(\"C\")",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "70",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "70 >= 80 is False. The next condition 70 >= 60 is True, so 'B' is printed and the branch terminates. Correct: (B) B."
+        },
+        {
+          "id": "m-d27-q10",
+          "question": "Q10. range(5) represents:",
+          "options": [
+            "1,2,3,4,5",
+            "0,1,2,3,4",
+            "0,1,2,3,4,5",
+            "1,2,3,4",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "range(5) starts at 0 and stops before 5: 0, 1, 2, 3, 4. Correct: (B) 0,1,2,3,4."
+        },
+        {
+          "id": "m-d27-q11",
+          "question": "Q11. range(2,6) represents:",
+          "options": [
+            "2,3,4,5",
+            "2,3,4,5,6",
+            "1,2,3,4,5",
+            "3,4,5,6",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "range(2, 6) starts at 2 and stops before 6: 2, 3, 4, 5. Correct: (A) 2,3,4,5."
+        },
+        {
+          "id": "m-d27-q12",
+          "question": "Q12. What is the output?\nfor i in range(0, 6, 2):\n    print(i)",
+          "options": [
+            "0 1 2 3 4 5",
+            "0 2 4",
+            "2 4 6",
+            "0 2 4 6",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "range(0, 6, 2) starts at 0, steps by 2, and stops before 6. The values are 0, 2, 4. Correct: (B) 0 2 4."
+        },
+        {
+          "id": "m-d27-q13",
+          "question": "Q13. What is the output?\nx = 1\nwhile x <= 3:\n    print(x)\n    x += 1",
+          "options": [
+            "0 1 2",
+            "1 2 3",
+            "1 2 3 4",
+            "Infinite loop",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The loop starts with x=1, prints 1 (x becomes 2), prints 2 (x becomes 3), prints 3 (x becomes 4, which fails 4 <= 3). Output: 1 2 3. Correct: (B) 1 2 3."
+        },
+        {
+          "id": "m-d27-q14",
+          "question": "Q14. What does break do?",
+          "options": [
+            "Skips only current iteration",
+            "Terminates the current loop",
+            "Restarts Python",
+            "Creates a loop",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The break statement terminates the execution of the innermost enclosing loop immediately. Correct: (B) Terminates the current loop."
+        },
+        {
+          "id": "m-d27-q15",
+          "question": "Q15. What does continue do?",
+          "options": [
+            "Terminates the entire loop",
+            "Skips the current iteration and moves to the next",
+            "Stops the program",
+            "Returns from a function",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The continue statement skips the remaining statements in the current iteration and proceeds to the next iteration of the loop. Correct: (B) Skips the current iteration and moves to the next."
+        },
+        {
+          "id": "m-d27-q16",
+          "question": "Q16. What is the output?\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)",
+          "options": [
+            "0 1 2",
+            "0 1 2 3",
+            "1 2 3",
+            "0 1 2 4",
+            "Error"
+          ],
+          "correctAnswer": 0,
+          "explanation": "For i=0, 1, 2, it prints 0, 1, 2. When i=3, the break statement triggers, exiting the loop before 3 is printed. Output: 0 1 2. Correct: (A) 0 1 2."
+        },
+        {
+          "id": "m-d27-q17",
+          "question": "Q17. What is the output?\nfor i in range(5):\n    if i == 2:\n        continue\n    print(i)",
+          "options": [
+            "0 1 2 3 4",
+            "0 1 3 4",
+            "0 1",
+            "2 3 4",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "When i=2, continue executes, skipping print(2). The values printed are 0, 1, 3, 4. Correct: (B) 0 1 3 4."
+        },
+        {
+          "id": "m-d27-q18",
+          "question": "Q18. What is the output?\nx = 0\nfor i in range(1,4):\n    x += i\nprint(x)",
+          "options": [
+            "3",
+            "4",
+            "6",
+            "10",
+            "Error"
+          ],
+          "correctAnswer": 2,
+          "explanation": "range(1, 4) produces i = 1, 2, 3. Tracing: x = 0 + 1 = 1; x = 1 + 2 = 3; x = 3 + 3 = 6. Output is 6. Correct: (C) 6."
+        },
+        {
+          "id": "m-d27-q19",
+          "question": "Q19. If a quantity increases by 10% and then decreases by 10%, the result is:",
+          "options": [
+            "1% gain",
+            "1% loss",
+            "No change",
+            "10% loss",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Using the successive formula x² / 100 % loss: 10² / 100 % = 1% loss (e.g. 100 -> 110 -> 99, a net 1% loss). Correct: (B) 1% loss."
+        },
+        {
+          "id": "m-d27-q20",
+          "question": "Q20. Choose the correct phrase:",
+          "options": [
+            "a hour",
+            "an hour",
+            "an university",
+            "a actress",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In 'hour', the letter 'h' is silent and it begins with the vowel sound /aʊə/, requiring the article 'an': 'an hour'. Correct: (B) an hour."
         }
       ]
     }
