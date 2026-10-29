@@ -9166,6 +9166,576 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 16,
+    "dayId": "day-16",
+    "badge": "Day 16",
+    "title": "TRE 4.0 — Day 16",
+    "unit": "Part III (CS) • Functional Dependency + Normalization + SQL (WHERE, GROUP BY, HAVING, JOIN) • Geography & Hindi",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Today we go one level deeper into DBMS: Functional Dependency, Determinants, Full vs Partial vs Transitive Dependency, Normalization (1NF, 2NF, 3NF), SQL Filtering (WHERE vs HAVING), GROUP BY, Aggregates, and JOIN basics (INNER, LEFT, RIGHT).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Functional Dependency, 1NF/2NF/3NF, WHERE, GROUP BY, HAVING, Aggregates, JOIN",
+        "goal": "Master Full vs Partial vs Transitive dependency, SQL execution flow (WHERE → GROUP BY → HAVING), and JOIN types"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Bihar/Indian Geography",
+        "goal": "Dry-point settlements (flood prevention) and Bhagalpur silk production"
+      },
+      {
+        "section": "Part I – Hindi",
+        "topic": "पर्यायवाची",
+        "goal": "जल (नीर), नभ (आकाश), अनल (अग्नि), रवि (सूर्य), खग/विहंग (पक्षी)"
+      }
+    ],
+    "introNote": "Your TRE 3.0 paper explicitly tests 2NF as full functional dependency on the primary key, while TRE 2.0 asks about 3NF and separately asks which clause applies conditions after groups are created — HAVING.\n\nThe detailed examples of functional dependency, JOIN, aggregate functions, and SQL execution below are standard DBMS expansion to prepare you for related MCQs; those details are not all stated verbatim in the uploaded papers.",
+    "parts": [
+      {
+        "partId": "part-d16-fd-norm",
+        "title": "Part III — Functional Dependency & Normalization",
+        "sections": [
+          {
+            "title": "1. Functional Dependency, 2. Determinant & 3. Full Dependency",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Functional Dependency\n\n🧠 MENTAL PICTURE\nImagine this table:\nStudentID    Name       City\n----------------------------\n101          Ravi       Patna\n102          Aman       Gaya\n103          Neha       Patna\n\nIf I know: StudentID = 101, I can determine: Name = Ravi.\nSo we write: StudentID → Name\nRead it as: StudentID determines Name.\nThis is a Functional Dependency."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory rule",
+                "content": "A → B means: knowing A determines B"
+              },
+              {
+                "type": "text",
+                "content": "2. Determinant\nIn: StudentID → Name\nStudentID is the: Determinant (the left-hand side attribute that determines the value of others)."
+              },
+              {
+                "type": "diagram",
+                "content": "StudentID\n    ↓ determines\n   Name"
+              },
+              {
+                "type": "text",
+                "content": "3. Full Functional Dependency\nSuppose the Primary Key is composite: (StudentID, SubjectID)\n\nTable:\nStudentID   SubjectID   Marks\n-----------------------------\n101         CS          80\n101         Maths       70\n102         CS          85\n\nTo know Marks, we need both:\nStudentID + SubjectID → Marks\nNeither part alone is enough. That's: Full Functional Dependency."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Memory & TRE 3.0 Exam Phrase",
+                "content": "FULL = entire composite key needed\n\nTRE 3.0 directly uses this phrase when testing 2NF (all non-prime attributes are fully functionally dependent on the primary key)."
+              }
+            ]
+          },
+          {
+            "title": "4. Partial Dependency & 5. Transitive Dependency",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. Partial Dependency\nNow suppose (StudentID, SubjectID) is the composite key.\nBut: StudentID → StudentName\nYou don't need SubjectID to know the student's name.\nOnly part of the key determines it. That's: Partial Dependency."
+              },
+              {
+                "type": "diagram",
+                "content": "Composite Key: (StudentID + SubjectID)\n\n       StudentID\n           ↓\n      StudentName\n\nOnly PART used → PARTIAL DEPENDENCY"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Memory trick",
+                "content": "Partial = depends on part of composite key"
+              },
+              {
+                "type": "text",
+                "content": "5. Transitive Dependency\nConsider:\nStudentID → DepartmentID\nDepartmentID → DepartmentName\n\nTherefore indirectly: StudentID → DepartmentName\nThis indirect dependency is: Transitive Dependency."
+              },
+              {
+                "type": "diagram",
+                "content": "StudentID\n    ↓\nDepartmentID\n    ↓\nDepartmentName\n\nA → B → C = Transitive\n(A reaches C through B)"
+              }
+            ]
+          },
+          {
+            "title": "6. 1NF, 7. 2NF & 8. 3NF Rules",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Normalization Master Sequence",
+                "content": "1NF → Atomic\n2NF → Remove Partial Dependency\n3NF → Remove Transitive Dependency\n\nThis is your main Day 16 white-paper line."
+              },
+              {
+                "type": "diagram",
+                "content": "6. 1NF (First Normal Form)\nRule: One cell → one atomic value\n\nBad:\nStudent     Phones\n-------------------------\nRavi        9876, 8765   ❌ (Multivalued)\n\nBetter:\nStudent     Phone\n------------------\nRavi        9876\nRavi        8765         ✅ (Atomic)\n\nMemory: 1NF = ONE value per cell"
+              },
+              {
+                "type": "diagram",
+                "content": "7. 2NF (Second Normal Form)\nRequirements: Must already be in 1NF + No partial dependency.\n\nTRE 3.0 phrases 2NF as every non-prime attribute being fully functionally dependent on the primary key.\n\nMemory: 2NF → FULL key dependency → NO PARTIAL\n\n⚠️ Very important trap:\nPartial dependency matters especially when you have a COMPOSITE KEY.\nIf the Primary Key has only one attribute, there cannot be dependency on just \"part\" of that single attribute in the usual 2NF sense."
+              },
+              {
+                "type": "diagram",
+                "content": "8. 3NF (Third Normal Form)\nRequirements: Must be in 2NF + No transitive dependency.\n\nPrimary Key → B → C  ❌ (Remove indirect dependency)\n\nMemory: 3NF = No third-person dependency (KEY → B → C is avoided)\n\nTRE 2.0 includes 3NF as the normal form considered adequate for a normal RDBMS in its question set."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "1NF vs 2NF vs 3NF Memory Staircase",
+                "content": "1 = Atomic\n2 = Partial gone\n3 = Transitive gone"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d16-sql-flow",
+        "title": "Part III — SQL Filtering, Aggregates & JOIN Basics",
+        "sections": [
+          {
+            "title": "9. SELECT, 10. WHERE, 11. Aggregates, 12. GROUP BY & 13. HAVING",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Use this sample table:\nSTUDENT\nID   Name    City      Marks\n----------------------------\n1    Ravi    Patna      80\n2    Aman    Gaya       70\n3    Neha    Patna      90\n4    Rahul   Gaya       60"
+              },
+              {
+                "type": "diagram",
+                "content": "9. SELECT → Show data\nSELECT * FROM Student;\nMemory: SELECT = See\n\n10. WHERE → Filter individual rows\nSELECT * FROM Student WHERE City = 'Patna';\nResult:\n1 Ravi Patna 80\n3 Neha Patna 90\n\nMemory: WHERE filters individual ROWS"
+              },
+              {
+                "type": "callout",
+                "icon": "📊",
+                "title": "11. Aggregate Functions (CASMM)",
+                "content": "C → COUNT() : number of records\nA → AVG()   : average value\nS → SUM()   : total sum\nM → MAX()   : maximum value\nM → MIN()   : minimum value\n\nExample: SELECT AVG(Marks) FROM Student;"
+              },
+              {
+                "type": "diagram",
+                "content": "12. GROUP BY → Make groups\nSuppose we want average marks per city:\nSELECT City, AVG(Marks) FROM Student GROUP BY City;\n\n13. HAVING → Filter groups (TRE 2.0 Question)\nSELECT City, AVG(Marks)\nFROM Student\nGROUP BY City\nHAVING AVG(Marks) > 75;\n\nTRE 2.0 asks which clause applies predicates after groups have been established, allowing aggregate functions → HAVING."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "WHERE vs HAVING (Favorite Exam Trap)",
+                "content": "WHERE  → filters individual ROWS (before grouping)\nHAVING → filters GROUPED results (after grouping)\n\nVisual Execution Flow:\nTable Data → WHERE (filter rows) → GROUP BY (form groups) → HAVING (filter groups)"
+              }
+            ]
+          },
+          {
+            "title": "14. JOIN Basics (INNER, LEFT, RIGHT)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "14. JOIN\nSuppose we have:\nSTUDENT (1 Ravi, 2 Aman) and PAYMENT (1 Fee ₹1000, 2 Fee ₹1200).\nWe need to connect the tables: JOIN = Combine related tables."
+              },
+              {
+                "type": "diagram",
+                "content": "STUDENT             PAYMENT\n1 Ravi  ─────────── 1 ₹1000\n2 Aman  ─────────── 2 ₹1200\n             ↑\n            JOIN"
+              },
+              {
+                "type": "diagram",
+                "content": "15. INNER JOIN\nReturns matching records from both tables (Intersection).\nTable A ∩ Table B\nMemory: INNER = intersection / common matches only\n\n16. LEFT JOIN\nKeeps ALL records from LEFT table plus matching data from right.\nUnmatched right attributes become NULL.\nMemory: LEFT JOIN = Left table is VIP\n\n17. RIGHT JOIN\nKeeps ALL records from RIGHT table plus matching data from left.\nMemory: RIGHT JOIN = Right table is VIP"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "JOIN Triad for TRE",
+                "content": "INNER → Matching only\nLEFT  → All Left + matches\nRIGHT → All Right + matches"
+              }
+            ]
+          },
+          {
+            "title": "Day 16 DBMS Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "FUNCTIONAL DEPENDENCY\nA → B (A determines B)\n\nFULL DEPENDENCY\n→ whole composite key needed\n\nPARTIAL\n→ part of composite key\n\nTRANSITIVE\n→ A → B → C\n\nNORMALIZATION\n1NF → Atomic\n2NF → No Partial\n3NF → No Transitive\n\nSQL\nSELECT → See\nWHERE → Filter rows\nGROUP BY → Make groups\nHAVING → Filter groups\n\nCOUNT, SUM, AVG, MAX, MIN\n\nJOIN\nINNER → matching only\nLEFT  → all LEFT\nRIGHT → all RIGHT"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d16-geography",
+        "title": "Part II — General Studies: Geography",
+        "sections": [
+          {
+            "title": "Dry-point Settlements & Bhagalpur Silk",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 3.0 GS paper includes questions on dry-point settlements, Bihar paddy production, and Bihar silk-textile production."
+              },
+              {
+                "type": "diagram",
+                "content": "Dry-point Settlement\nImagine a flood-prone plain:\n~~~~ WATER ~~~~\n       /\\   ← higher dry land\n      /  \\\n    houses\n\nPeople build settlements on slightly higher/drier ground to avoid flooding.\nMemory: Dry-point settlement → higher dry place inside a wet/flood-prone region"
+              },
+              {
+                "type": "diagram",
+                "content": "BHAGALPUR\n    ↓\n   SILK\n\nThe TRE 3.0 paper asks which Bihar district has maximum silk-textile production:\nBhagalpur → Silk ('Silk City')"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d16-hindi",
+        "title": "Part I — Hindi: पर्यायवाची",
+        "sections": [
+          {
+            "title": "महत्वपूर्ण पर्यायवाची शब्द",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "🧠 Mental picture:\nONE MEANING → many words → पर्यायवाची"
+              },
+              {
+                "type": "diagram",
+                "content": "जल   → नीर\nनभ   → आकाश\nअनल  → अग्नि\nरवि   → सूर्य / भानु\nखग   → पक्षी / विहंग"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "स्मरण सूत्र",
+                "content": "जल = नीर | अग्नि = अनल | आकाश = नभ | सूर्य = रवि | पक्षी = खग / विहंग"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 16 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d16-q1",
+          "question": "Q1. If attribute A determines attribute B, it is written as:",
+          "options": [
+            "A + B",
+            "A → B",
+            "A = B",
+            "A / B",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Functional dependency from A to B is formally denoted by an arrow: A → B (read as 'A determines B'). Correct: (B) A → B."
+        },
+        {
+          "id": "m-d16-q2",
+          "question": "Q2. In StudentID → Name, the determinant is:",
+          "options": [
+            "Name",
+            "StudentID",
+            "Both always",
+            "Database",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In any functional dependency X → Y, the left-hand side attribute (X) that determines the value of other attributes is called the determinant. Correct: (B) StudentID."
+        },
+        {
+          "id": "m-d16-q3",
+          "question": "Q3. A non-key attribute depending on only part of a composite key is called:",
+          "options": [
+            "Full dependency",
+            "Partial dependency",
+            "Transitive dependency",
+            "Multivalued dependency only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "When a non-prime attribute depends on a proper subset (part) of a composite candidate key, it is a Partial Dependency. Correct: (B) Partial dependency."
+        },
+        {
+          "id": "m-d16-q4",
+          "question": "Q4. Which pattern best represents transitive dependency?",
+          "options": [
+            "A → B → C",
+            "A = A",
+            "A + B",
+            "A ← A",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Transitive dependency occurs when A functionally determines B, and B determines C, creating an indirect dependency A → C through B: A → B → C. Correct: (A) A → B → C."
+        },
+        {
+          "id": "m-d16-q5",
+          "question": "Q5. 1NF primarily requires:",
+          "options": [
+            "No tables",
+            "Atomic values",
+            "No Primary Key",
+            "Only one row",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "First Normal Form (1NF) disallows composite or multi-valued attributes; each cell must hold an atomic (indivisible) value. Correct: (B) Atomic values."
+        },
+        {
+          "id": "m-d16-q6",
+          "question": "Q6. 2NF removes:",
+          "options": [
+            "Atomicity",
+            "Partial dependency",
+            "Tables",
+            "Primary Keys",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Second Normal Form (2NF) requires 1NF and completely eliminates partial functional dependencies on composite keys. Correct: (B) Partial dependency."
+        },
+        {
+          "id": "m-d16-q7",
+          "question": "Q7. 3NF mainly removes:",
+          "options": [
+            "Partial dependency only",
+            "Transitive dependency",
+            "Primary Key",
+            "Foreign Key",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Third Normal Form (3NF) requires 2NF and completely eliminates transitive dependencies on primary/candidate keys. Correct: (B) Transitive dependency."
+        },
+        {
+          "id": "m-d16-q8",
+          "question": "Q8. Which sequence is correct?",
+          "options": [
+            "1NF → no transitive, 2NF → atomic, 3NF → partial",
+            "1NF → atomic, 2NF → no partial, 3NF → no transitive",
+            "1NF → partial, 2NF → transitive, 3NF → atomic",
+            "All are identical",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The standard normalization sequence: 1NF enforces atomic values, 2NF eliminates partial dependency, and 3NF eliminates transitive dependency. Correct: (B) 1NF → atomic, 2NF → no partial, 3NF → no transitive."
+        },
+        {
+          "id": "m-d16-q9",
+          "question": "Q9. Which SQL clause filters individual rows?",
+          "options": [
+            "HAVING",
+            "WHERE",
+            "GROUP BY",
+            "JOIN",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The WHERE clause applies boolean conditions to filter individual rows before any groupings are formed. Correct: (B) WHERE."
+        },
+        {
+          "id": "m-d16-q10",
+          "question": "Q10. Which SQL clause creates groups?",
+          "options": [
+            "WHERE",
+            "GROUP BY",
+            "HAVING",
+            "DELETE",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The GROUP BY clause collapses rows sharing identical values in specified columns into summary groups. Correct: (B) GROUP BY."
+        },
+        {
+          "id": "m-d16-q11",
+          "question": "Q11. After groups have been formed, which clause is used to apply a condition to those groups?",
+          "options": [
+            "WHERE",
+            "SELECT",
+            "HAVING",
+            "INSERT",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The HAVING clause applies filter predicates specifically to summarized groups after GROUP BY evaluation, supporting aggregate functions. Correct: (C) HAVING."
+        },
+        {
+          "id": "m-d16-q12",
+          "question": "Q12. Which aggregate function returns the number of records?",
+          "options": [
+            "SUM()",
+            "COUNT()",
+            "AVG()",
+            "MAX()",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "COUNT() returns the total count/number of records matching the query criteria. Correct: (B) COUNT()."
+        },
+        {
+          "id": "m-d16-q13",
+          "question": "Q13. Which function calculates the average?",
+          "options": [
+            "AVG()",
+            "COUNT()",
+            "SUM()",
+            "MIN()",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "AVG() computes the mathematical mean/average of a numeric column. Correct: (A) AVG()."
+        },
+        {
+          "id": "m-d16-q14",
+          "question": "Q14. Which is the best memory rule?",
+          "options": [
+            "WHERE filters groups; HAVING filters rows",
+            "WHERE filters rows; HAVING filters groups",
+            "Both always do exactly the same thing",
+            "Neither filters anything",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "WHERE filters rows before aggregation; HAVING filters groups after aggregation. Correct: (B) WHERE filters rows; HAVING filters groups."
+        },
+        {
+          "id": "m-d16-q15",
+          "question": "Q15. A JOIN is primarily used to:",
+          "options": [
+            "Delete a database",
+            "Combine related data from tables",
+            "Sort only one column",
+            "Create a CPU process",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SQL JOIN operations combine columns from two or more related tables based on common matching attributes. Correct: (B) Combine related data from tables."
+        },
+        {
+          "id": "m-d16-q16",
+          "question": "Q16. INNER JOIN normally returns:",
+          "options": [
+            "All rows from left only",
+            "Matching rows from both tables",
+            "All rows from right only",
+            "No matching rows",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "INNER JOIN produces only those rows that have matching values in both joined tables (set intersection). Correct: (B) Matching rows from both tables."
+        },
+        {
+          "id": "m-d16-q17",
+          "question": "Q17. LEFT JOIN normally keeps:",
+          "options": [
+            "Only unmatched right rows",
+            "All rows from the left table plus matches",
+            "Only common rows",
+            "Only right rows",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "LEFT JOIN retains all rows from the left table, along with matching rows from the right table (unmatched right columns become NULL). Correct: (B) All rows from the left table plus matches."
+        },
+        {
+          "id": "m-d16-q18",
+          "question": "Q18. RIGHT JOIN normally keeps:",
+          "options": [
+            "All rows from the right table plus matches",
+            "Only left rows",
+            "No records",
+            "Only Primary Keys",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "RIGHT JOIN retains all rows from the right table, along with matching rows from the left table. Correct: (A) All rows from the right table plus matches."
+        },
+        {
+          "id": "m-d16-q19",
+          "question": "Q19. Which SQL sequence best matches the conceptual filtering flow discussed today?",
+          "options": [
+            "HAVING → WHERE → GROUP BY",
+            "WHERE → GROUP BY → HAVING",
+            "GROUP BY → DELETE → WHERE",
+            "INSERT → HAVING → WHERE",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The logical processing sequence is: WHERE (filter rows) → GROUP BY (form groups) → HAVING (filter groups). Correct: (B) WHERE → GROUP BY → HAVING."
+        },
+        {
+          "id": "m-d16-q20",
+          "question": "Q20. Which normal form is directly associated in TRE 3.0 with full functional dependency on the primary key?",
+          "options": [
+            "1NF",
+            "2NF",
+            "3NF",
+            "4NF",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "TRE 3.0 explicitly tests 2NF as ensuring that non-prime attributes are fully functionally dependent on the primary key. Correct: (B) 2NF."
+        },
+        {
+          "id": "m-d16-q21",
+          "question": "Q21. A dry-point settlement is typically located:",
+          "options": [
+            "On relatively higher/drier land in a flood-prone or wet region",
+            "At the deepest point of a river",
+            "Only inside deserts",
+            "Only on sea beaches",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In human geography, dry-point settlements are established on elevated, drier knolls, river terraces, or mounds within low-lying or flood-prone marshes to escape periodic inundation. Correct: (A) On relatively higher/drier land in a flood-prone or wet region."
+        },
+        {
+          "id": "m-d16-q22",
+          "question": "Q22. Which Bihar place is strongly associated with silk?",
+          "options": [
+            "Bhagalpur",
+            "Rohtas",
+            "Gaya",
+            "Bhojpur",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bhagalpur is the renowned 'Silk City' of Bihar, leading in Tussar silk production. Correct: (A) Bhagalpur."
+        },
+        {
+          "id": "m-d16-q23",
+          "question": "Q23. “जल” का पर्यायवाची है:",
+          "options": [
+            "अनल",
+            "नीर",
+            "नभ",
+            "खग",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'जल' के प्रमुख पर्यायवाची शब्द हैं: नीर, वारि, तोय, पानी, सलिल। Correct: (B) नीर।"
+        },
+        {
+          "id": "m-d16-q24",
+          "question": "Q24. “अग्नि” का पर्यायवाची है:",
+          "options": [
+            "अनल",
+            "नीर",
+            "रवि",
+            "खग",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 0,
+          "explanation": "'अग्नि' के पर्यायवाची शब्द हैं: अनल, पावक, आग, दहन, हुताशन। ('अनिल' हवा का होता है, 'अनल' आग का)। Correct: (A) अनल।"
+        },
+        {
+          "id": "m-d16-q25",
+          "question": "Q25. “पक्षी” का पर्यायवाची है:",
+          "options": [
+            "रवि",
+            "नीर",
+            "विहंग",
+            "अनल",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 2,
+          "explanation": "'पक्षी' के प्रमुख पर्यायवाची हैं: विहंग, खग, चिड़िया, पखेरू, द्विज। Correct: (C) विहंग।"
+        }
+      ]
+    }
   }
 ];
 
