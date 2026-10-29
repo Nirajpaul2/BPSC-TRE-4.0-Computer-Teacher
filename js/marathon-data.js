@@ -21331,6 +21331,512 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 39,
+    "dayId": "day-39",
+    "badge": "Day 39",
+    "title": "TRE 4.0 — Day 39",
+    "unit": "Part III (CS) • Emerging Technologies: AI, Machine Learning, IoT, Big Data (5 Vs) & Cloud Computing",
+    "targetTime": "20–25 mins read + 25 mins test",
+    "summary": "Emerging Technologies High-Yield Foundations (TRE 3.0 Paper-Backed Core & NCERT Class XI kecs103): Artificial Intelligence (Simulation of human intelligence; Subfields in TRE 3.0: Machine Learning, Robotics, NLP), Machine Learning Models (Learning from data without explicit rules; Supervised learning with labeled data e.g. Decision Tree [TRE 3.0], Unsupervised clustering e.g. K-means, Reinforcement reward-based learning), Internet of Things (Networked smart devices with sensors & connectivity; Short-range communication Bluetooth/Wi-Fi [TRE 3.0]; MQTT lightweight publish/subscribe protocol [TRE 3.0]), Big Data 5 Vs (Volume amount, Velocity speed of generation, Variety structured/semi/unstructured, Veracity trustworthiness/quality, Value business utility), Cloud Computing (Remote on-demand Internet resources; SPI Service Models: IaaS raw hardware, PaaS developer platform, SaaS ready-to-use software like Google Docs; Grid Computing), Day 39 White-Paper Master Sheet & Traps, and 25-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "AI, ML Paradigms & Algorithms",
+        "goal": "Differentiate AI vs ML, and master Supervised (Decision Tree), Unsupervised (K-means), and Reinforcement learning"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Internet of Things (IoT) & MQTT",
+        "goal": "Master smart sensors, short-range wireless media (Bluetooth/Wi-Fi), and the MQTT lightweight messaging protocol (TRE 3.0)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Big Data (5 Vs) & Cloud Services (SPI)",
+        "goal": "Memorize the 5 Vs (Volume, Velocity, Variety, Veracity, Value) and Cloud service models (IaaS, PaaS, SaaS)"
+      }
+    ],
+    "introNote": "Emerging Technologies is a compact, high-scoring section for BPSC TRE. Your TRE 3.0 paper directly asks about IoT short-range communication, MQTT, AI subfields, and a supervised-learning algorithm. NCERT Class XI kecs103 provides a dedicated Emerging Trends chapter comprehensively covering AI, Machine Learning, Big Data, IoT, Cloud Computing, Grid Computing, and Blockchain.",
+    "parts": [
+      {
+        "title": "Part III — Artificial Intelligence & Machine Learning (TRE 3.0 Anchors)",
+        "sections": [
+          {
+            "title": "1–5. AI Foundations, Subfields (TRE 3.0) & AI vs ML Relationship",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Intelligent Machine vs Traditional Machine",
+                "content": "Traditional Machine:\nINPUT → Fixed Pre-programmed Rules → OUTPUT\n\nIntelligent AI System:\nINPUT → Observe / Learn / Adapt / Decide → OUTPUT\n\nNCERT defines AI as simulating human intelligence in machines (learning, reasoning, problem solving)."
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nArtificial Intelligence (AI) = engineering intelligent machines that can simulate human cognitive capabilities.\n\n2. AI Subfields (Direct TRE 3.0 Question)\nTRE 3.0 asks which is a subfield of AI and lists:\n• Machine Learning (ML)\n• Robotics\n• Natural Language Processing (NLP)\nAll three are prominent subfields of AI (answer: More than one of the above).\n\n3. Machine Learning (ML - NCERT kecs103)\nA subsystem of AI where algorithms learn from historical data to build models and make predictions without being explicitly programmed with static rules.\nMemory: ML = Learn from Data.\n\n4. AI vs ML Relationship\n• AI is the broad overarching discipline.\n• ML is a specific subset of AI focused on learning from data.\n\n5. Training Data vs Testing Data\n• Training Data: Used to train/fit the model (learn patterns).\n• Testing Data: Used to evaluate and assess model performance on unseen data.\nMemory: Train = Learn | Test = Check."
+              }
+            ]
+          },
+          {
+            "title": "6–8. Learning Paradigms: Supervised (Decision Tree), Unsupervised (K-means) & Reinforcement",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🎯",
+                "title": "Supervised Learning (Direct TRE 3.0 Anchor)",
+                "content": "Model receives training data with KNOWN LABELS / ANSWERS:\nIMAGE: 🐶 → LABEL: Dog\nIMAGE: 🐱 → LABEL: Cat\n\nTRE 3.0 lists Decision Tree, K-means Clustering, and Reinforcement Learning.\nAmong these, Decision Tree is the classic supervised learning algorithm.\nMemory: Supervised = Teacher gives labeled answers (Decision Tree)."
+              },
+              {
+                "type": "text",
+                "content": "7. Unsupervised Learning\nAlgorithms analyze unlabeled data to discover hidden patterns, groupings, or clusters without external guidance.\nClassic Example: K-means Clustering.\nMemory: Unsupervised = No teacher / No labels.\n\n8. Reinforcement Learning\nAn autonomous agent interacts with an environment and learns an optimal policy through trial-and-error using Reward and Penalty signals.\nMemory: Reinforcement = Reward / Penalty feedback."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Three ML Paradigms Summary",
+                "content": "• SUPERVISED   → Labeled Data (Decision Tree, Linear Regression, SVM)\n• UNSUPERVISED → Unlabeled Data / Clustering (K-means Clustering, PCA)\n• REINFORCEMENT→ Agent + Environment + Reward/Penalty feedback"
+              }
+            ]
+          },
+          {
+            "title": "9–10. NLP & Robotics (NCERT kecs103)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "9. Natural Language Processing (NLP)\nDeals with interactions between computers and humans using natural human languages (written or spoken).\nNCERT Examples: Predictive typing, spell checking, sentiment analysis, speech-to-text recognition, and machine translation (e.g. Google Translate).\nMemory: NLP = Human Language + Computer Understanding.\n\n10. Robotics\nField of engineering and computer science focused on designing, constructing, and operating programmable physical machines (robots) capable of executing complex physical tasks using sensors, actuators, and computer algorithms."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Internet of Things (IoT) & Messaging Protocols (TRE 3.0 Anchors)",
+        "sections": [
+          {
+            "title": "11–13. IoT Concepts, Smart Sensors & Connected Architecture",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🌐",
+                "title": "MENTAL PICTURE — The Internet of Things",
+                "content": "Smart Bulb ─┐\nSmart AC   ─┼── INTERNET ─── Smart Phone App / Cloud Dashboard\nSmart Lock ─┘\n\nNCERT defines IoT as an interconnected network of physical objects (\"things\") embedded with electronics, software, sensors, actuators, and network connectivity, enabling them to collect and exchange data."
+              },
+              {
+                "type": "text",
+                "content": "12. IoT Device Architecture\nCombines: Sensor (inputs) + Microcontroller/Hardware + Software + Network Connectivity.\n\n13. Smart Sensors (NCERT kecs103)\nSmart sensors detect changes in the physical environment, convert physical signals into digital data, process it internally, and transmit it across the network.\nExamples: Temperature sensor, motion sensor (PIR), light sensor (LDR), accelerometer, gyroscope.\nMemory: Sensor = Senses the physical world."
+              }
+            ]
+          },
+          {
+            "title": "14–15. IoT Communication & The MQTT Protocol (Direct TRE 3.0 Anchors)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "14. IoT Communication Technologies (TRE 3.0 Anchor)\nTRE 3.0 asks about wireless technologies for short-range IoT communication:\n• Bluetooth: Short-range, low power personal area network (PAN) standard.\n• Wi-Fi: Local area network (WLAN) offering higher data throughput.\n• 4G/5G LTE: Wide-area cellular network connectivity."
+              },
+              {
+                "type": "callout",
+                "icon": "📡",
+                "title": "15. MQTT Protocol (Direct TRE 3.0 Anchor)",
+                "content": "TRE 3.0 directly tests IoT messaging protocols: MQTT.\n\n• Full Name: Message Queuing Telemetry Transport\n• Architecture: Lightweight Publish / Subscribe messaging pattern\n• Best suited for: Resource-constrained devices and low-bandwidth, high-latency, or unreliable networks\nMemory: IoT Messaging Protocol = MQTT"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Big Data (The 5 Vs) & Cloud Computing Models (NCERT kecs103)",
+        "sections": [
+          {
+            "title": "16–23. Big Data Characteristics — The 5 Vs & Data Analytics",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "📊",
+                "title": "The 5 Vs of Big Data (NCERT kecs103)",
+                "content": "1. VOLUME   → The sheer amount and size of data (Terabytes, Petabytes, Exabytes).\n2. VELOCITY → The exceptional speed at which data is generated, collected, and processed.\n3. VARIETY  → The diverse forms of data (Structured tables, Semi-structured JSON/XML, Unstructured video/text).\n4. VERACITY → The trustworthiness, quality, cleanliness, and accuracy of data (handling noise/bias).\n5. VALUE    → The meaningful business insights and practical utility extracted through analysis.\n\nMemory: Volume (How much) | Velocity (How fast) | Variety (What types) | Veracity (Can I trust it?) | Value (Is it useful?)"
+              },
+              {
+                "type": "text",
+                "content": "23. Data Analytics (NCERT kecs103)\nThe systematic computational analysis of data to discover, interpret, and communicate meaningful patterns and support informed decision-making."
+              }
+            ]
+          },
+          {
+            "title": "24–30. Cloud Computing Architecture & Service Models (IaaS, PaaS, SaaS)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "24. Cloud Computing Definition (NCERT kecs103)\nDelivering computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet (\"the cloud\") with on-demand access and pay-as-you-go pricing.\n\nKey Benefits:\n• On-demand self-service\n• Broad network access from anywhere\n• Resource pooling & rapid elasticity\n• Cost effectiveness (eliminates upfront infrastructure expenditure)."
+              },
+              {
+                "type": "callout",
+                "icon": "☁️",
+                "title": "Three Cloud Service Models (SPI: IaaS, PaaS, SaaS)",
+                "content": "• IaaS (Infrastructure as a Service):\n  Provides raw computing resources (Virtual Machines, Storage, Networks, OS).\n  User manages OS and applications. (e.g., AWS EC2, Google Compute Engine).\n  Restaurant analogy: Rented kitchen equipment.\n\n• PaaS (Platform as a Service):\n  Provides a ready-to-use development and deployment runtime environment.\n  Developers write code without worrying about servers/OS. (e.g., Google App Engine, Heroku).\n  Restaurant analogy: Fully equipped kitchen with gas and ingredients.\n\n• SaaS (Software as a Service):\n  Complete application software delivered over the web via browser or app.\n  (e.g., Google Docs, Microsoft Office 365, Dropbox).\n  Restaurant analogy: Ready meal served at the table."
+              },
+              {
+                "type": "text",
+                "content": "30. Grid Computing (NCERT kecs103 Bonus)\nA distributed computing architecture where geographically dispersed computer systems pool their processing and storage resources together to solve large-scale scientific or computational problems.\nMemory: Grid = Geographically distributed computers solving one massive problem."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 39 White-Paper Master Sheet & Exam Traps",
+        "sections": [
+          {
+            "title": "Day 39 White-Paper Master Sheet & Traps",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 39 White-Paper Master Sheet",
+                "content": "ARTIFICIAL INTELLIGENCE:\n• AI  → Imitating human intelligence\n• ML  → Subsystem of AI that learns from data\n• NLP → Human language understanding\n• Robotics → Programmable machines with smart sensors\n\nML PARADIGMS:\n• Supervised   → Labeled data (Decision Tree [TRE 3.0])\n• Unsupervised → Unlabeled data / clustering (K-means)\n• Reinforcement→ Trial-and-error + Reward/Penalty\n\nINTERNET OF THINGS (IoT):\n• Architecture: Sensors + Hardware + Connectivity\n• Short-range: Bluetooth / Wi-Fi [TRE 3.0]\n• Protocol: MQTT (Message Queuing Telemetry Transport) [TRE 3.0]\n\nBIG DATA (5 Vs):\n• Volume (Amount) | Velocity (Speed) | Variety (Types) | Veracity (Trustworthiness) | Value (Usefulness)\n\nCLOUD COMPUTING (SPI):\n• IaaS → Infrastructure (Raw hardware/VMs)\n• PaaS → Platform (Developer runtime)\n• SaaS → Software (End-user apps like Google Docs)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "6 Critical BPSC Exam Traps",
+                "content": "1. AI ≠ ML: AI is the broad umbrella; ML is a subset.\n2. Decision Tree is Supervised (labeled); K-means is Unsupervised (clustering).\n3. MQTT is the lightweight IoT messaging protocol (TRE 3.0).\n4. Veracity = Trustworthiness / Quality (NOT volume or variety).\n5. Variety = Data types (Structured, Semi-Structured, Unstructured).\n6. SaaS delivers ready-to-use application software (e.g., Google Docs)."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 39 Checkpoint Test",
+      "subtitle": "Emerging Technologies: AI, Machine Learning, IoT, Big Data (5 Vs) & Cloud Computing",
+      "questions": [
+        {
+          "id": "m-d39-q1",
+          "question": "Q1. Artificial Intelligence primarily attempts to:",
+          "options": [
+            "Simulate intelligent human-like capabilities in machines",
+            "Increase hard-disk capacity only",
+            "Replace every database",
+            "Create only websites",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "AI focuses on simulating natural human intelligence in machines, including learning, reasoning, and problem solving (NCERT kecs103). Correct: (A)."
+        },
+        {
+          "id": "m-d39-q2",
+          "question": "Q2. Machine Learning is best described as:",
+          "options": [
+            "A subsystem/area of AI that learns from data",
+            "A network cable",
+            "An operating system",
+            "A database key",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Machine Learning is a specialized subfield of AI that uses algorithms to learn patterns from data and make predictions without static rule coding. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q3",
+          "question": "Q3. Which were presented as AI-related areas in TRE 3.0?",
+          "options": [
+            "Machine Learning",
+            "Robotics",
+            "Natural Language Processing",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In BPSC TRE 3.0, Machine Learning, Robotics, and Natural Language Processing were all recognized as key subfields/branches of AI. Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d39-q4",
+          "question": "Q4. Supervised learning generally uses:",
+          "options": [
+            "Labeled training examples",
+            "No data",
+            "Only IP addresses",
+            "Only assembly language",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Supervised learning trains models using labeled datasets where each input is paired with the correct output/label. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q5",
+          "question": "Q5. Which is a supervised-learning algorithm in the TRE 3.0 question?",
+          "options": [
+            "Decision Tree",
+            "K-means Clustering",
+            "Reinforcement Learning",
+            "FTP",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In TRE 3.0, Decision Tree is the cited supervised-learning algorithm (used for classification and regression on labeled data). Correct: (A)."
+        },
+        {
+          "id": "m-d39-q6",
+          "question": "Q6. K-means is most closely associated with:",
+          "options": [
+            "Unsupervised clustering",
+            "Supervised classification only",
+            "Operating systems",
+            "Network routing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "K-means is a prominent unsupervised learning algorithm that partitions unlabeled data into K distinct clusters based on feature similarity. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q7",
+          "question": "Q7. Reinforcement learning is most closely associated with:",
+          "options": [
+            "Reward/penalty feedback",
+            "SQL normalization",
+            "File allocation",
+            "Routing tables",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Reinforcement learning optimizes an agent's policy through trial-and-error interactions guided by environmental rewards and penalties. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q8",
+          "question": "Q8. NLP stands for:",
+          "options": [
+            "Natural Language Processing",
+            "Network Layer Protocol",
+            "Normal Logic Program",
+            "Natural Learning Program",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "NLP stands for Natural Language Processing, enabling computers to understand, interpret, and generate human languages. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q9",
+          "question": "Q9. Which is an NLP application?",
+          "options": [
+            "Machine translation",
+            "Speech-to-text",
+            "Predictive typing",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Machine translation, speech recognition, and predictive text input are all classic applications of NLP. Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d39-q10",
+          "question": "Q10. IoT is best described as:",
+          "options": [
+            "Networked devices with embedded hardware/software exchanging data",
+            "Only desktop computers",
+            "A database normalization method",
+            "A sorting algorithm",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Internet of Things (IoT) is a network of physical devices with embedded sensors, actuators, and network connectivity exchanging data. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q11",
+          "question": "Q11. A sensor primarily:",
+          "options": [
+            "Takes input from the physical environment",
+            "Compiles Python",
+            "Normalizes tables",
+            "Creates subnet masks",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A sensor captures physical phenomenon (temperature, light, pressure, motion) and converts it into measurable electronic signals. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q12",
+          "question": "Q12. Which protocol is strongly associated with IoT messaging in TRE 3.0?",
+          "options": [
+            "MQTT",
+            "FAT32",
+            "NTFS",
+            "SQL",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MQTT (Message Queuing Telemetry Transport) is a lightweight publish/subscribe protocol specifically designed for IoT messaging. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q13",
+          "question": "Q13. Bluetooth is especially associated with:",
+          "options": [
+            "Short-range wireless communication",
+            "Relational database normalization",
+            "Compiler optimization",
+            "Disk scheduling",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bluetooth is a short-range wireless standard designed for personal area networks (PANs) and short-range IoT communication. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q14",
+          "question": "Q14. How many major characteristics of Big Data are emphasized in NCERT?",
+          "options": [
+            "2",
+            "3",
+            "5",
+            "7",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "NCERT Class XI kecs103 explicitly delineates the 5 Vs of Big Data: Volume, Velocity, Variety, Veracity, and Value. Correct: (C)."
+        },
+        {
+          "id": "m-d39-q15",
+          "question": "Q15. Which Big Data characteristic refers to the amount of data?",
+          "options": [
+            "Volume",
+            "Velocity",
+            "Variety",
+            "Veracity",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Volume describes the vast size and scale of the data generated and stored. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q16",
+          "question": "Q16. Which refers to the rate at which data is generated?",
+          "options": [
+            "Value",
+            "Velocity",
+            "Veracity",
+            "Variety",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Velocity refers to the speed at which new data is generated, accumulated, and analyzed in real-time. Correct: (B)."
+        },
+        {
+          "id": "m-d39-q17",
+          "question": "Q17. Structured, semi-structured and unstructured data relate to:",
+          "options": [
+            "Variety",
+            "Volume",
+            "Velocity",
+            "Value",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Variety refers to the heterogeneity of data formats, including structured relational data, semi-structured JSON/XML, and unstructured video/text. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q18",
+          "question": "Q18. Trustworthiness/quality of Big Data is:",
+          "options": [
+            "Veracity",
+            "Velocity",
+            "Variety",
+            "Volume",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Veracity indicates the reliability, trustworthiness, consistency, and cleanliness of the data. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q19",
+          "question": "Q19. Useful business knowledge obtained from Big Data relates to:",
+          "options": [
+            "Value",
+            "Velocity",
+            "Volume",
+            "Variety",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Value refers to the practical business utility, insights, and actionable knowledge derived from analyzing Big Data. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q20",
+          "question": "Q20. Cloud computing primarily makes computing resources available:",
+          "options": [
+            "Remotely through the Internet",
+            "Only through floppy disks",
+            "Only inside CPU registers",
+            "Without any network",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Cloud computing delivers on-demand virtualized computing resources remotely across the Internet with metered pricing. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q21",
+          "question": "Q21. IaaS stands for:",
+          "options": [
+            "Infrastructure as a Service",
+            "Internet as a System",
+            "Information as Software",
+            "Integration as Service",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "IaaS stands for Infrastructure as a Service, providing virtualized hardware computing resources (servers, storage, networking). Correct: (A)."
+        },
+        {
+          "id": "m-d39-q22",
+          "question": "Q22. Which cloud model provides a development/deployment platform?",
+          "options": [
+            "PaaS",
+            "SaaS",
+            "IaaS only",
+            "DNS",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "PaaS (Platform as a Service) provides developers with a complete runtime environment and development tools without managing underlying infrastructure. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q23",
+          "question": "Q23. Which cloud model provides ready-to-use application software?",
+          "options": [
+            "SaaS",
+            "IaaS",
+            "PaaS only",
+            "ARP",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SaaS (Software as a Service) delivers fully functional applications directly to end-users over the web. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q24",
+          "question": "Q24. Which NCERT example is associated with SaaS?",
+          "options": [
+            "Google Docs",
+            "CPU register",
+            "Optical fiber",
+            "Binary heap",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "NCERT explicitly cites web-based office applications like Google Docs, Microsoft Office 365, and Dropbox as SaaS examples. Correct: (A)."
+        },
+        {
+          "id": "m-d39-q25",
+          "question": "Q25. Which matching is correct?",
+          "options": [
+            "Decision Tree → Supervised learning",
+            "MQTT → IoT",
+            "SaaS → Software as a Service",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three matchings are core exam facts: Decision Tree is supervised learning, MQTT is an IoT protocol, and SaaS is Software as a Service. Correct: (D)."
+        }
+      ]
+    }
   }
 ];
 
