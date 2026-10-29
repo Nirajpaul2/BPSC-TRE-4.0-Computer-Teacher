@@ -20470,6 +20470,433 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 37,
+    "dayId": "day-37",
+    "badge": "Day 37",
+    "title": "TRE 4.0 — Day 37",
+    "unit": "Part III (CS) • Software Engineering: SDLC Models (Waterfall/Agile/Spiral), Requirements, V&V & Testing Hierarchy",
+    "targetTime": "20–25 mins read + 20 mins test",
+    "summary": "Software Engineering High-Yield Foundations (Five Direct TRE 3.0 Anchors & NCERT kecs104): Software Engineering Goal (Systematic development meeting user requirements within budget & schedule constraints), SDLC Phases (Requirement, Design, Development, Testing, Deployment, Maintenance [RDDTDM]), SDLC Models (Waterfall linear sequential for stable requirements, Agile iterative incremental small releases with frequent feedback, Spiral risk-driven analysis), Requirements Engineering (Functional 'WHAT' system does vs Non-Functional 'HOW WELL' system performs; Physical requirements odd TRE 3.0 anchor), Verification vs Validation (Verification: 'Are we building the product right?' against specifications vs Validation: 'Are we building the right product?' for user needs), Prototyping (Early experimental sample to refine requirements), Software Testing Hierarchy (Unit single module, Integration combined modules, System whole software, Acceptance user acceptance [UISA sequence]), Testing vs Debugging (Test detects defects; Debug locates & fixes causes), Maintenance Types (Corrective, Adaptive, Perfective, Preventive [CAPP]), Day 37 White-Paper Master Sheet & BPSC Traps, and 20-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "SDLC & Core Development Models",
+        "goal": "Master SDLC phases (RDDTDM) and differentiate Waterfall (sequential), Agile (iterative feedback), and Spiral (risk analysis)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Requirements, V&V & Prototyping",
+        "goal": "Distinguish Functional vs Non-Functional requirements, master Verification vs Validation, and understand Prototype purposes"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Testing Hierarchy & Maintenance Types",
+        "goal": "Memorize UISA testing order (Unit, Integration, System, Acceptance), Testing vs Debugging, and CAPP maintenance types"
+      }
+    ],
+    "introNote": "Software Engineering is a compact, high-scoring section for BPSC TRE. TRE 3.0 directly asks five consecutive Software Engineering questions: SDLC models (Waterfall, Agile, Spiral), software development requirements (Functional, System, Physical), verification vs validation, purpose of a prototype, and the primary goal of software engineering. NCERT Class XI kecs104 directly anchors the standardized testing hierarchy (Unit, Integration, System, Acceptance).",
+    "parts": [
+      {
+        "title": "Part III — Software Engineering Core & SDLC Models (TRE 3.0 Anchor)",
+        "sections": [
+          {
+            "title": "1. What is Software Engineering? & 2. The SDLC Phases (RDDTDM)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🏗️",
+                "title": "MENTAL PICTURE — Building a Software House",
+                "content": "Imagine building a house:\nRequirement → Design → Build → Test → Deliver → Maintain\n\nSoftware must also be developed and managed systematically.\nTRE 3.0 asks the primary goal of software engineering:\nDevelop software meeting user requirements, within budget and schedule constraints.\n\nMemory: Right Software + Right Cost + Right Time"
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nSoftware Engineering = systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software.\n\n2. SDLC (Software Development Life Cycle)\nSequential phase flow:\n• Requirement Analysis: Gathering what stakeholders need\n• Design: Architectural and module layout\n• Development (Coding): Implementing source code\n• Testing: Validating and verifying behavior against defects\n• Deployment: Release into the production environment\n• Maintenance: Post-release updates and fixes\n\nMemory mnemonic: R D D T D M\n(Requirement → Design → Development → Testing → Deployment → Maintenance)"
+              }
+            ]
+          },
+          {
+            "title": "3–7. SDLC Models: Waterfall, Agile & Spiral (Direct TRE 3.0 Q131)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 Q131 lists Waterfall, Agile, and Spiral as software-development life-cycle models.\n\n4. Waterfall Model\nMental picture: Water flows downwards.\nRequirements → Design → Coding → Testing → Deployment.\n• Sequential, linear development: one phase must complete before the next begins.\n• Best suited when requirements are clear, stable, and unlikely to change.\nMemory: Waterfall = Sequential (Step-by-Step).\n\n5. Agile Model\nMental picture: Short iterative sprints with continuous feedback.\nPlan → Build → Test → Feedback → Improve (↺ repeated cycles).\n• Iterative and incremental development in small releases.\n• Highly adaptable to evolving user requirements through rapid customer feedback.\nMemory: Agile = Iterative + Frequent Feedback.\n\n6. Spiral Model\nMental picture: Concentric spiral cycles moving outward, combining development with continuous risk evaluation.\nMemory: Spiral = RISK Analysis."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Three SDLC Models Exam Comparison",
+                "content": "• WATERFALL → Sequential / Linear (Clear, fixed requirements)\n• AGILE     → Iterative + Incremental (Frequent feedback, changing needs)\n• SPIRAL    → Risk Analysis & Evaluation (High-risk, complex projects)\n\nWaterfall = Straight line | Agile = Repeated cycles | Spiral = Risk circles"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Requirements Engineering, Verification vs Validation & Prototyping",
+        "sections": [
+          {
+            "title": "8–10. Functional vs Non-Functional Requirements & The Odd Requirement",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "8. Software Requirements (TRE 3.0 Anchor)\nTRE 3.0 directly asks which is NOT a software development requirement and lists:\n• Functional requirements\n• System requirements\n• Physical requirements\n\"Physical requirements\" was the odd/non-software choice in the paper.\n\n9. Functional Requirements\nDescribe WHAT the software system should do (specific behaviors, calculations, data manipulations).\nExamples: User login, Add Student, Book Seat, Process Payment, Generate Report.\nMemory: Functional = WHAT the system does.\n\n10. Non-Functional Requirements\nDescribe HOW WELL the system performs its functions (quality attributes and constraints).\nExamples: Response time under 2 seconds, 99.9% uptime, AES-256 encryption, mobile responsiveness, system scalability.\nMemory: Non-Functional = HOW WELL the system performs."
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "Functional vs Non-Functional Memory Anchor",
+                "content": "FUNCTIONAL     → WHAT the system does (Features, functions: \"User logs in\")\nNON-FUNCTIONAL → HOW WELL it does it (Speed, security: \"Page loads < 2 sec\")"
+              }
+            ]
+          },
+          {
+            "title": "11. Verification vs Validation (Direct TRE 3.0 Anchor)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🎯",
+                "title": "Verification vs Validation (Direct TRE 3.0 Distinction)",
+                "content": "Customer asks for: \"A blue bicycle\"\n\nVERIFICATION:\n\"Are we building the product right?\"\n• Checks whether the product adheres to specifications, architectural designs, and coding standards.\n• Focus: Process, internal design consistency, specifications.\n\nVALIDATION:\n\"Are we building the right product?\"\n• Checks whether the delivered software meets the customer's real-world expectations and actual business needs.\n• Focus: User satisfaction, usability, actual intended purpose.\n\nMemory:\nVerification = Product RIGHT? (Specification)\nValidation   = RIGHT Product? (Customer Needs)"
+              }
+            ]
+          },
+          {
+            "title": "12. Prototype (Direct TRE 3.0 Anchor)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 directly asks the purpose of a software prototype; its options include speeding up development and clarifying requirements.\n\nA Prototype is an early, experimental sample or model of the proposed software system.\nWorkflow: Idea → Prototype → User Feedback → Refine → Final System.\n\nBenefits:\n• Clarifies ambiguous user requirements before costly coding begins\n• Accelerates overall development by preventing expensive redesigns\n• Evaluates technical feasibility early\n\n⚠️ Exam Trap: Prototype ≠ Final Production Product (It is a working model, not the deployed finished system)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Software Testing Hierarchy, Debugging & Maintenance (NCERT kecs104)",
+        "sections": [
+          {
+            "title": "13–17. The 4 Testing Levels: Unit, Integration, System & Acceptance (UISA)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "NCERT Class XI kecs104 explicitly lists the standardized testing hierarchy used in software engineering:\n\n14. Unit Testing\nTesting individual functions, classes, or smallest testable software modules in complete isolation (e.g., testing the login authentication function).\nMemory: UNIT = Smallest single module.\n\n15. Integration Testing\nTesting the interfaces and interactions between combined modules to ensure they cooperate correctly (e.g., testing login module + database module).\nMemory: Integration = Module interaction.\n\n16. System Testing\nTesting the entire, completely integrated software application against specified functional and non-functional requirements.\nMemory: System = Entire complete software.\n\n17. Acceptance Testing\nFinal testing conducted to determine whether the software satisfies business acceptance criteria and is ready for operational release to users.\nMemory: Acceptance = User accepts product."
+              },
+              {
+                "type": "callout",
+                "icon": "🪜",
+                "title": "Standard Testing Hierarchy Order (NCERT kecs104)",
+                "content": "UNIT TESTING        (Individual modules)\n     ↓\nINTEGRATION TESTING (Combined module interactions)\n     ↓\nSYSTEM TESTING      (Entire integrated software)\n     ↓\nACCEPTANCE TESTING  (End-user / customer sign-off)\n\nMnemonic: U I S A (Unit → Integration → System → Acceptance)"
+              }
+            ]
+          },
+          {
+            "title": "18. Testing vs Debugging & 19–20. Maintenance Types (CAPP)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🔍",
+                "title": "18. Testing vs Debugging (NCERT kecs104)",
+                "content": "• TESTING   → The process of executing software to FIND defects, errors, or bugs.\n• DEBUGGING → The process of diagnosing the root cause and FIXING/rectifying defects.\n\nMemory: Testing finds defects; Debugging fixes defects."
+              },
+              {
+                "type": "text",
+                "content": "19. Maintenance (NCERT kecs104)\nMaintenance is the ongoing modification of a software system after delivery to correct faults, improve performance, or adapt to a changing environment.\n\n20. Four Standard Maintenance Categories (CAPP):\n• Corrective Maintenance: Fixing bugs, defects, and errors reported by users in production.\n• Adaptive Maintenance: Modifying software to adapt to new operating systems, hardware, or regulatory requirements.\n• Perfective Maintenance: Enhancing existing functionalities, improving performance, or optimizing code based on user requests.\n• Preventive Maintenance: Updating software to prevent future issues, enhance maintainability, and reduce software decay.\n\nMemory trick: C A P P (Correct, Adapt, Perfect, Prevent)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 37 White-Paper Master Sheet & BPSC Traps",
+        "sections": [
+          {
+            "title": "Day 37 White-Paper Master Sheet & BPSC Exam Traps",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 37 White-Paper Master Sheet",
+                "content": "SDLC PHASES:\nRequirement → Design → Development → Testing → Deployment → Maintenance (RDDTDM)\n\nMODELS:\n• Waterfall → Linear / Sequential (fixed requirements)\n• Agile     → Iterative + Incremental + Frequent Feedback\n• Spiral    → Risk Analysis (risk circles)\n\nREQUIREMENTS:\n• Functional     → WHAT the system does (features)\n• Non-Functional → HOW WELL it performs (speed, security, uptime)\n• Physical       → NOT a software requirement (TRE 3.0 trap)\n\nVERIFICATION vs VALIDATION:\n• Verification → \"Building product RIGHT?\" (Checks specifications)\n• Validation   → \"Building RIGHT product?\" (Satisfies user needs)\n\nTESTING HIERARCHY:\nUnit → Integration → System → Acceptance (UISA)\nTesting finds bugs; Debugging fixes them\n\nMAINTENANCE (CAPP):\nCorrective (Fix bugs) | Adaptive (Change environment) | Perfective (Enhance) | Preventive (Prevent decay)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "4 Critical Day 37 BPSC Exam Traps",
+                "content": "1. Model Focus: Waterfall = sequential; Agile = iterative feedback; Spiral = risk.\n2. V&V Distinction: Verification = product right? (spec); Validation = right product? (customer).\n3. Prototype ≠ Final Product: A prototype is an early model to refine requirements.\n4. Testing vs Debugging: Testing DETECTS bugs; Debugging LOCATES & RECTIFIES them."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 37 Checkpoint Test",
+      "subtitle": "Software Engineering: SDLC, Waterfall/Agile/Spiral, V&V, Requirements & Testing",
+      "questions": [
+        {
+          "id": "m-d37-q1",
+          "question": "Q1. SDLC stands for:",
+          "options": [
+            "Software Design Logic Cycle",
+            "Software Development Life Cycle",
+            "System Data Life Control",
+            "Software Data Logic Control",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SDLC stands for Software Development Life Cycle, representing the structured phases of software development from requirements to maintenance. Correct: (B)."
+        },
+        {
+          "id": "m-d37-q2",
+          "question": "Q2. Which were listed as SDLC models in TRE 3.0?",
+          "options": [
+            "Waterfall",
+            "Agile",
+            "Spiral",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In BPSC TRE 3.0 Q131, Waterfall, Agile, and Spiral were all listed as recognized SDLC models. Hence (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d37-q3",
+          "question": "Q3. Waterfall is primarily:",
+          "options": [
+            "Sequential",
+            "Risk-driven spiral development",
+            "Random development",
+            "Network protocol",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Waterfall model is a linear sequential development approach where each phase must finish before the subsequent phase commences. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q4",
+          "question": "Q4. Agile is best associated with:",
+          "options": [
+            "Iterative development and feedback",
+            "One fixed sequence only",
+            "No customer feedback",
+            "Memory management",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Agile methodologies emphasize iterative and incremental delivery, rapid adaptive planning, and frequent stakeholder feedback. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q5",
+          "question": "Q5. Which SDLC model is especially associated with risk analysis?",
+          "options": [
+            "Waterfall",
+            "Spiral",
+            "FCFS",
+            "TCP",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Spiral model (introduced by Barry Boehm) explicitly incorporates structured risk analysis and evaluation into each concentric iteration. Correct: (B)."
+        },
+        {
+          "id": "m-d37-q6",
+          "question": "Q6. A requirement saying “User must be able to log in” is mainly:",
+          "options": [
+            "Functional requirement",
+            "Non-functional requirement",
+            "Physical requirement only",
+            "Maintenance requirement",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Functional requirements describe specific behaviors, operations, or functions that the software must provide (such as user authentication). Correct: (A)."
+        },
+        {
+          "id": "m-d37-q7",
+          "question": "Q7. “Page must load within two seconds” is best classified as:",
+          "options": [
+            "Functional requirement",
+            "Non-functional/performance requirement",
+            "Database key",
+            "Algorithm",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Performance constraints, response time targets, security protocols, and scalability are Non-Functional requirements (specifying how well the system performs). Correct: (B)."
+        },
+        {
+          "id": "m-d37-q8",
+          "question": "Q8. In the exact TRE 3.0 question, which was the odd/non-software-development requirement?",
+          "options": [
+            "Functional requirement",
+            "System requirement",
+            "Physical requirement",
+            "More than one",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In BPSC TRE 3.0 Q132, \"Physical requirements\" was the odd option that does not form a standard software development requirement category. Correct: (C)."
+        },
+        {
+          "id": "m-d37-q9",
+          "question": "Q9. Verification asks:",
+          "options": [
+            "Are we building the product right?",
+            "Are we building the right product?",
+            "Is the IP address correct?",
+            "Is the database normalized?",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In Software Engineering and TRE 3.0, Verification evaluates whether the software complies with technical specifications: \"Are we building the product right?\" Correct: (A)."
+        },
+        {
+          "id": "m-d37-q10",
+          "question": "Q10. Validation asks:",
+          "options": [
+            "Are we building the product right?",
+            "Are we building the right product?",
+            "Is compilation fast?",
+            "Is CPU utilization 100%?",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Validation assesses whether the software satisfies intended user requirements and real-world expectations: \"Are we building the right product?\" Correct: (B)."
+        },
+        {
+          "id": "m-d37-q11",
+          "question": "Q11. Which matching is correct?",
+          "options": [
+            "Verification → product built right",
+            "Validation → right product built",
+            "Both A and B",
+            "Neither",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Both statements represent the foundational Software Engineering definitions tested directly in TRE 3.0. Correct: (C)."
+        },
+        {
+          "id": "m-d37-q12",
+          "question": "Q12. A prototype is best understood as:",
+          "options": [
+            "An early/sample version of the proposed system",
+            "Always the final production version",
+            "A router",
+            "Database backup",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A prototype is an early, experimental working model used to visualize features, validate requirements, and speed up development. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q13",
+          "question": "Q13. Testing a single function/module independently is:",
+          "options": [
+            "Unit testing",
+            "Integration testing",
+            "System testing",
+            "Acceptance testing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Unit testing isolates individual software functions or discrete components to verify that each functions properly on its own. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q14",
+          "question": "Q14. Testing whether several modules work correctly together is:",
+          "options": [
+            "Unit testing",
+            "Integration testing",
+            "Acceptance testing only",
+            "Regression sorting",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Integration testing verifies the interfaces, data flow, and interactions between integrated software units. Correct: (B)."
+        },
+        {
+          "id": "m-d37-q15",
+          "question": "Q15. Testing the complete integrated application is:",
+          "options": [
+            "Unit testing",
+            "System testing",
+            "Compiler testing",
+            "Paging",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "System testing executes the entire end-to-end integrated application to ensure compliance with specified requirements. Correct: (B)."
+        },
+        {
+          "id": "m-d37-q16",
+          "question": "Q16. Testing whether software satisfies user/business needs is strongly associated with:",
+          "options": [
+            "Acceptance testing",
+            "Unit testing only",
+            "Disk testing",
+            "Network routing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Acceptance testing (UAT) is performed by or on behalf of end users to determine whether to accept the final delivery. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q17",
+          "question": "Q17. Which sequence is correct?",
+          "options": [
+            "Unit → Integration → System → Acceptance",
+            "System → Unit → Acceptance → Integration",
+            "Acceptance → Unit → Integration → System",
+            "Integration → Acceptance → Unit → System",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The standardized NCERT kecs104 testing hierarchy follows the sequence: Unit Testing → Integration Testing → System Testing → Acceptance Testing (UISA). Correct: (A)."
+        },
+        {
+          "id": "m-d37-q18",
+          "question": "Q18. Debugging primarily means:",
+          "options": [
+            "Finding and fixing defects",
+            "Writing user requirements only",
+            "Buying hardware",
+            "Creating IP addresses",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "While testing detects the presence of defects, debugging is the diagnostic and repair process of locating the root cause and fixing the defect. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q19",
+          "question": "Q19. Maintenance occurs mainly:",
+          "options": [
+            "After software delivery as fixes/improvements are needed",
+            "Only before coding",
+            "Only during requirement gathering",
+            "Before any design",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Software maintenance encompasses all activities performed after software deployment to rectify faults, adapt to new platforms, or enhance performance. Correct: (A)."
+        },
+        {
+          "id": "m-d37-q20",
+          "question": "Q20. TRE 3.0's primary software-engineering goal is closest to:",
+          "options": [
+            "Always use newest technology",
+            "Only write code as fast as possible",
+            "Meet user requirements within budget and schedule constraints",
+            "Avoid testing",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In BPSC TRE 3.0 Q135, the primary goal of software engineering is defined as developing software that satisfies user requirements within budget and schedule constraints. Correct: (C)."
+        }
+      ]
+    }
   }
 ];
 
