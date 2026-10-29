@@ -1676,11 +1676,14 @@ body {
   flex-direction: column;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 20;
+  overflow: hidden;
 }
 
 .toc-header {
   padding: 1rem 1.15rem 0.75rem;
   border-bottom: 1px solid var(--reader-border);
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .toc-title-row {
@@ -1714,13 +1717,14 @@ body {
 
 .toc-filter-pills {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.35rem;
   margin-top: 0.65rem;
 }
 
 .btn-toc-filter {
-  flex: 1;
-  padding: 0.25rem 0.35rem;
+  flex: 1 1 auto;
+  padding: 0.28rem 0.45rem;
   font-size: 0.7rem;
   font-weight: 700;
   background: var(--reader-surface-elevated);
