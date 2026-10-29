@@ -54,10 +54,10 @@
           <span>📖</span> NCERT Handbook (Book Reader)
         </button>
         <button class="nav-tab-btn" data-tab="tab-marathon">
-          <span>🏃</span> Marathon (from day 1)
+          <span>🏃</span> Marathon (<span class="tab-red-mark">43 days</span>)
         </button>
         <button class="nav-tab-btn" data-tab="tab-practice">
-          <span>📝</span> Practice Sets (40) <span class="tab-red-pill"><span class="red-bullet">●</span> 6,000 Questions Practice</span>
+          <span>📝</span> Practice Sets (<span class="tab-red-mark">60000 Q</span>)
         </button>
       </div>
     </nav>
@@ -127,6 +127,24 @@
             Read official Class 11 and Class 12 textbooks directly with in-app reader or download for offline revision.
           </p>
           <span style="font-size:0.8rem; font-weight:700; color:var(--accent-primary);">Open NCERT →</span>
+        </div>
+
+        <div class="exam-card" style="cursor:pointer;" onclick="switchTab('tab-marathon')">
+          <div style="font-size:1.8rem; margin-bottom:0.5rem;">🏃</div>
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:0.35rem;">Marathon (<span class="tab-red-mark">43 days</span>)</h3>
+          <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.85rem;">
+            Structured 43-day daily crash course with white-paper mental maps, high-yield concept breakdowns, and cumulative practice tests.
+          </p>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--accent-primary);">Start Marathon Course →</span>
+        </div>
+
+        <div class="exam-card" style="cursor:pointer;" onclick="switchTab('tab-practice')">
+          <div style="font-size:1.8rem; margin-bottom:0.5rem;">📝</div>
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:0.35rem;">Practice Sets (<span class="tab-red-mark">60000 Q</span>)</h3>
+          <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.85rem;">
+            40 Full-Length simulation mock tests (150 Qs each) strictly modeled on the BPSC TRE exam pattern with instant scoring and detailed explanations.
+          </p>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--accent-primary);">Launch Practice Sets →</span>
         </div>
       </div>
 
@@ -433,7 +451,7 @@
 
       <div class="section-intro" style="margin-bottom:1.25rem;">
         <h2 class="ncert-main-title">
-          <span>🏃</span> Marathon (from day 1) • Daily Study Book
+          <span>🏃</span> Marathon (<span class="tab-red-mark">43 days</span>) • Daily Study Book
         </h2>
         <p class="ncert-sub-title">
           Structured high-yield study modules arranged in an interactive book reader. White-paper mental maps, verbatim concept breakdowns, and cumulative practice tests for BPSC TRE 4.0 Computer Science.
@@ -612,9 +630,9 @@
       <span>•</span>
       <a href="#cheatsheet" class="footer-link" onclick="switchTab('tab-cheatsheet'); return false;">NCERT Handbook (Book Reader)</a>
       <span>•</span>
-      <a href="#marathon" class="footer-link" onclick="switchTab('tab-marathon'); return false;">Marathon (from day 1)</a>
+      <a href="#marathon" class="footer-link" onclick="switchTab('tab-marathon'); return false;">Marathon (<span class="tab-red-mark">43 days</span>)</a>
       <span>•</span>
-      <a href="#practice" class="footer-link" onclick="switchTab('tab-practice'); return false;">Practice Sets (40)</a>
+      <a href="#practice" class="footer-link" onclick="switchTab('tab-practice'); return false;">Practice Sets (<span class="tab-red-mark">60000 Q</span>)</a>
       <span>•</span>
       <a href="https://bpsc.bihar.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">BPSC Official Portal</a>
     </div>

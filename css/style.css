@@ -191,6 +191,17 @@ body {
   font-weight: 800;
 }
 
+/* Red Marked Text for Navigation Tabs and Cards */
+.tab-red-mark {
+  color: #dc2626 !important;
+  font-weight: 800;
+  display: inline;
+}
+
+[data-theme="dark"] .tab-red-mark {
+  color: #ef4444 !important;
+}
+
 /* Tab Panes */
 .tab-pane {
   display: none;
