@@ -22339,6 +22339,739 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 41,
+    "dayId": "day-41",
+    "badge": "Day 41",
+    "title": "TRE 4.0 — Day 41",
+    "unit": "Part III (CS) • 🔥 Week-7 Mega Milestone Revision Checkpoint: 50-Question Comprehensive Test (Days 32–40 Synthesis)",
+    "targetTime": "20 mins revision + 50 mins test",
+    "summary": "50-Question Mega Milestone Checkpoint Test synthesizing all concepts from Days 32 to 40: Part A — Computer Networks (Devices Switch/Router/Repeater, OSI 7-layer routing, MAC vs IP, Transport TCP/UDP, Protocols SMTP/DNS/DHCP/ARP, IPv4 32 bits); Part B — Data Communication (Simplex keyboard-to-PC, Half-Duplex walkie-talkie, Full-Duplex telephone, FDM frequency, TDM time slots, Optical fiber speed); Part C — Network Security (Malware, Worm network spread, Trojan disguise, Ransomware encryption & ransom, Phishing fake bank sites, Firewall traffic filtering, HTTPS secure web, Switched networks sniffing mitigation); Part D — Software Engineering (SDLC RDDTDM, Waterfall sequential, Agile iterative feedback, Spiral risk analysis, Verification building right vs Validation right product, UISA testing hierarchy); Part E — Compiler + TOC (Compiler whole program vs Interpreter line by line, Lexical tokens, Syntax structure, DFA exactly one transition, DFA ≡ NFA regular languages, Kleene * zero or more, Type-2 CFG); Part F — AI/ML/IoT/Cloud/Big Data (ML subset of AI, Supervised Decision Tree, Unsupervised K-means, Reinforcement reward/penalty, MQTT IoT messaging, 5 Vs of Big Data, SaaS Google Docs); Part G — Web/E-Commerce/Multimedia (HTML structure, CSS style, JS behavior, B2C Amazon, Adobe Flash multimedia authoring), and 50-Question Comprehensive Practice Test with detailed solutions.",
+    "targets": [
+      {
+        "section": "Part III – CS (Days 32–34)",
+        "topic": "Networks & Data Communication",
+        "goal": "Consolidate Devices (Switch/Router), OSI 7 layers, Protocols (SMTP, DNS, DHCP, ARP), Duplex modes, and Multiplexing (FDM/TDM)"
+      },
+      {
+        "section": "Part III – CS (Days 35–37)",
+        "topic": "Security & Software Engineering",
+        "goal": "Solidify CIA triad, Malware types, Firewall/HTTPS, Sniffing, SDLC models (Waterfall/Agile/Spiral), V&V, and UISA testing hierarchy"
+      },
+      {
+        "section": "Part III – CS (Days 38–40)",
+        "topic": "TOC, Emerging Tech & Web Technology",
+        "goal": "Recall Compiler phases, DFA/NFA regular languages, AI/ML paradigms, MQTT IoT, 5 Vs of Big Data, Cloud SPI, and Front-End Triad"
+      }
+    ],
+    "introNote": "Today is a pure revision and testing milestone. NO new theory. We are testing everything from Days 32 to 40 across seven comprehensive sections: Part A (Computer Networks), Part B (Data Communication), Part C (Network Security), Part D (Software Engineering), Part E (Compiler & Theory of Computation), Part F (AI, ML, IoT, Big Data & Cloud Computing), and Part G (Web Technology, E-Commerce & Multimedia). Several sections directly reflect topics from your TRE 2.0 and TRE 3.0 papers.",
+    "parts": [
+      {
+        "title": "Part III — Rapid Recall: Computer Networks & Data Communication (Days 32–34)",
+        "sections": [
+          {
+            "title": "Networks & Data Communication Milestone Cheat Sheet",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🌐",
+                "title": "Networks & Data Comm Summary (Days 32–34)",
+                "content": "GEOGRAPHICAL SCALES:\n• LAN (Local/Building) → MAN (Metropolitan/City) → WAN (Country/World/Internet)\n\nDEVICES & OSI LAYERS:\n• Switch   → Connects same LAN devices using MAC addresses (Layer 2 - Data Link)\n• Router   → Connects multiple different networks using IP addresses (Layer 3 - Network) [TRE 3.0 Anchor]\n• Repeater → Regenerates weakened physical signals (Layer 1 - Physical)\n• OSI 7 Layers: Application (7) → Presentation (6) → Session (5) → Transport (4) → Network (3) → Data Link (2) → Physical (1)\n\nPROTOCOLS & ADDRESSING:\n• IPv4: 32 bits (4 octets); Subnet Mask identifies Network ID vs Host ID split\n• SMTP (Port 25): Used to SEND email [TRE 3.0 Anchor]\n• DNS (Port 53): Resolves Domain Name → IP address\n• DHCP (Ports 67/68): Automatically allocates IP configurations to clients\n• ARP: Resolves IPv4 Address → Physical MAC Address\n• TCP: Connection-oriented, 3-way handshake (SYN → SYN-ACK → ACK), reliable byte stream\n• UDP: Connectionless, lightweight datagram\n\nDATA COMMUNICATION & MEDIA:\n• Simplex: Unidirectional (Keyboard → Computer [TRE 2.0 Anchor])\n• Half-Duplex: Bidirectional, but one at a time (Walkie-talkie)\n• Full-Duplex: Bidirectional simultaneously (Telephone)\n• Wired Media Speed: Twisted Pair < Coaxial < Optical Fiber (LIGHT, highest speed [TRE 2.0])\n• Multiplexing: FDM (Frequency bands) vs TDM (Time slots; Frame contains Time Slots)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Rapid Recall: Network Security & Software Engineering (Days 35–37)",
+        "sections": [
+          {
+            "title": "Security & Software Engineering Milestone Cheat Sheet",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🛡️",
+                "title": "Security & Software Engineering Summary (Days 35–37)",
+                "content": "SECURITY FUNDAMENTALS:\n• CIA Triad: Confidentiality (Secret) + Integrity (Correct) + Availability (Accessible)\n• Malware: Virus (replicates, attaches to files), Worm (network spread), Trojan (disguised as useful), Ransomware (encrypts files + demands ransom), Spyware (covert monitoring)\n• Social Engineering: Phishing (fake emails/sites fishing for passwords/OTPs), Spam (unsolicited bulk messages)\n• Defense: Firewall (traffic gatekeeper), Antivirus (malware file scanner), HTTPS (TLS port 443)\n• Sniffing: Intercepting network packets; mitigated by Switched Networks [TRE 2.0 Anchor]\n• Auth: Authentication (\"WHO are you?\") vs Authorization (\"WHAT permissions do you have?\")\n\nSOFTWARE ENGINEERING (TRE 3.0 Anchors):\n• SDLC Phases: Requirement → Design → Development → Testing → Deployment → Maintenance (RDDTDM)\n• Models: Waterfall (Linear/Sequential), Agile (Iterative + Incremental + Frequent feedback), Spiral (Risk analysis)\n• Requirements: Functional (WHAT system does) vs Non-Functional (HOW WELL system performs); Physical requirement was odd TRE 3.0 choice\n• V&V: Verification (\"Building product RIGHT? - against specs\") vs Validation (\"Building RIGHT product? - satisfies user needs\")\n• Testing Hierarchy: Unit → Integration → System → Acceptance (UISA sequence); Testing detects defects, Debugging fixes root causes"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Rapid Recall: TOC, Emerging Tech & Web Technologies (Days 38–40)",
+        "sections": [
+          {
+            "title": "TOC, Emerging Tech & Web Milestone Cheat Sheet",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🚀",
+                "title": "TOC, Emerging Tech & Web Summary (Days 38–40)",
+                "content": "COMPILERS & TOC:\n• Compiler (Translates ENTIRE program to machine code [TRE 2.0]) vs Interpreter (Line by line)\n• Phases: Lexical (Tokens), Syntax (Grammar / Parse tree), Semantic (Meaning & Types)\n• Automata: DFA (strictly ONE transition per state-symbol pair) vs NFA (multiple transitions or ε-moves)\n• Theorem: DFA ≡ NFA (both recognize Regular Languages)\n• Regex: Kleene * (ZERO or more), `|` (OR), (0|1)* (all binary strings including ε)\n• Chomsky Hierarchy: Type 0 Unrestricted, Type 1 Context-Sensitive, Type 2 Context-Free (CFG), Type 3 Regular (0 U, 1 CS, 2 CF, 3 R)\n\nEMERGING TECHNOLOGIES (TRE 3.0 Anchors):\n• AI & ML: ML is a subset of AI that learns from data without explicit rules\n• ML Paradigms: Supervised (Decision Tree [TRE 3.0]), Unsupervised (K-means clustering), Reinforcement (Reward/Penalty)\n• IoT: Smart sensors + connectivity; Short-range (Bluetooth/Wi-Fi); MQTT lightweight messaging protocol [TRE 3.0]\n• Big Data 5 Vs: Volume (Amount), Velocity (Speed), Variety (Types), Veracity (Trustworthiness), Value (Utility)\n• Cloud Models: IaaS (Hardware), PaaS (Developer platform), SaaS (Ready software e.g. Google Docs)\n\nWEB, E-COMMERCE & MULTIMEDIA (TRE 3.0 Anchors):\n• Front-End Triad: HTML (STRUCTURE [TRE 3.0]), CSS (STYLE), JavaScript (BEHAVIOR/INTERACTIVITY)\n• Server-Side: Python, PHP, Node.js (HTML, CSS, C++ are NOT server-side scripting languages [TRE 3.0 trap])\n• E-Commerce Models: B2C (Amazon in TRE 3.0), B2B, C2C, C2B (All 4 are legitimate models [TRE 3.0 trap])\n• Multimedia Elements: Text, Image, Audio, Video, Animation (TIAVA)\n• Multimedia Authoring Tool: Adobe Flash [TRE 3.0 Anchor] (Photoshop is an image editor)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Week-7 Mega Milestone Checkpoint Test (50 Questions)",
+      "subtitle": "Comprehensive 50-Question Test Covering Days 32–40 (Networks, Security, SE, TOC, AI/IoT, Web)",
+      "questions": [
+        {
+          "id": "m-d41-q1",
+          "question": "Q1. Which device primarily connects different networks?",
+          "options": [
+            "Switch",
+            "Router",
+            "Repeater",
+            "Hub",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Router connects multiple different networks and forwards data packets using IP addresses (Network Layer 3). Correct: (B)."
+        },
+        {
+          "id": "m-d41-q2",
+          "question": "Q2. Which device primarily connects devices within the same LAN?",
+          "options": [
+            "Switch",
+            "Router",
+            "Modem",
+            "Compiler",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Switch connects multiple computers and devices within the same local network (LAN) using MAC addresses. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q3",
+          "question": "Q3. Which OSI layer is mainly responsible for routing?",
+          "options": [
+            "Physical",
+            "Data Link",
+            "Network",
+            "Presentation",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Network Layer (Layer 3) is responsible for routing, logical addressing, and forwarding packets toward their destination. Correct: (C)."
+        },
+        {
+          "id": "m-d41-q4",
+          "question": "Q4. MAC addresses are most closely associated with:",
+          "options": [
+            "Data Link Layer",
+            "Transport Layer",
+            "Session Layer",
+            "Application Layer",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A MAC (Media Access Control) address is the 48-bit physical/hardware address associated with Layer 2 (Data Link Layer). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q5",
+          "question": "Q5. TCP and UDP belong mainly to:",
+          "options": [
+            "Physical Layer",
+            "Network Layer",
+            "Transport Layer",
+            "Presentation Layer",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) operate at Layer 4 (Transport Layer). Correct: (C)."
+        },
+        {
+          "id": "m-d41-q6",
+          "question": "Q6. Which protocol is used primarily to send email?",
+          "options": [
+            "FTP",
+            "SMTP",
+            "DNS",
+            "ARP",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SMTP (Simple Mail Transfer Protocol, Port 25) is specifically designed and used to send/push email messages (tested in TRE 3.0). Correct: (B)."
+        },
+        {
+          "id": "m-d41-q7",
+          "question": "Q7. DNS primarily performs:",
+          "options": [
+            "IPv4 → MAC",
+            "Domain name → IP address",
+            "Automatic IP allocation",
+            "File transfer",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "DNS (Domain Name System, Port 53) translates human-readable domain names (e.g. google.com) into machine-routable IP addresses. Correct: (B)."
+        },
+        {
+          "id": "m-d41-q8",
+          "question": "Q8. DHCP is mainly used for:",
+          "options": [
+            "Automatically providing IP/network configuration",
+            "Sending email",
+            "Encrypting web traffic",
+            "Resolving MAC addresses",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses, subnet masks, default gateways, and DNS server parameters to client devices. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q9",
+          "question": "Q9. ARP is best remembered as:",
+          "options": [
+            "Domain → IP",
+            "IPv4 → MAC",
+            "IP → Domain only",
+            "Port → MAC",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "ARP (Address Resolution Protocol) maps a known logical IPv4 address to its corresponding physical hardware MAC address on a local area segment. Correct: (B)."
+        },
+        {
+          "id": "m-d41-q10",
+          "question": "Q10. IPv4 has:",
+          "options": [
+            "16 bits",
+            "32 bits",
+            "48 bits",
+            "64 bits",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An IPv4 address consists of exactly 32 bits, divided into four 8-bit octets (e.g., 192.168.1.1). Correct: (B)."
+        },
+        {
+          "id": "m-d41-q11",
+          "question": "Q11. Keyboard-to-computer communication in the basic TRE model is:",
+          "options": [
+            "Simplex",
+            "Half-duplex",
+            "Full-duplex",
+            "Multiplex",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In textbook networking and as tested in TRE 2.0, keyboard-to-computer transmission is strictly unidirectional (Simplex). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q12",
+          "question": "Q12. A walkie-talkie is a common example of:",
+          "options": [
+            "Simplex",
+            "Half-duplex",
+            "Full-duplex",
+            "Circuit switching only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Walkie-talkie communication allows both participants to speak and listen, but only one party can transmit at any given time (Half-duplex). Correct: (B)."
+        },
+        {
+          "id": "m-d41-q13",
+          "question": "Q13. A normal telephone conversation is conceptually:",
+          "options": [
+            "Simplex",
+            "Half-duplex",
+            "Full-duplex",
+            "TDM",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A telephone conversation allows simultaneous two-way transmission and reception (Full-duplex). Correct: (C)."
+        },
+        {
+          "id": "m-d41-q14",
+          "question": "Q14. FDM separates communication mainly by:",
+          "options": [
+            "Time",
+            "Frequency",
+            "MAC address",
+            "IP address",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "FDM (Frequency Division Multiplexing) divides the total available bandwidth into distinct non-overlapping frequency bands. Correct: (B)."
+        },
+        {
+          "id": "m-d41-q15",
+          "question": "Q15. TDM separates communication mainly by:",
+          "options": [
+            "Time slots",
+            "Frequency bands",
+            "IP classes",
+            "Ports",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TDM (Time Division Multiplexing) allocates discrete time slots across the full channel bandwidth to different user streams. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q16",
+          "question": "Q16. Among twisted pair, coaxial and optical fiber, which is the highest-speed choice in the TRE 2.0 question?",
+          "options": [
+            "Twisted pair",
+            "Coaxial cable",
+            "Optical fiber",
+            "All are identical",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Optical fiber utilizes light pulses through glass/plastic cores, providing vastly higher transmission speed and bandwidth than copper cables (TRE 2.0 Anchor). Correct: (C)."
+        },
+        {
+          "id": "m-d41-q17",
+          "question": "Q17. Malware means:",
+          "options": [
+            "Malicious software",
+            "Mail software",
+            "Management software",
+            "Machine language",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Malware is short for Malicious Software, designed to infiltrate, damage, or gain unauthorized control over computer systems. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q18",
+          "question": "Q18. Which malware is especially associated with self-spreading through networks?",
+          "options": [
+            "Worm",
+            "Firewall",
+            "Cookie",
+            "Router",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Worm is a standalone malicious program that autonomously replicates and spreads across computer networks without needing a host program. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q19",
+          "question": "Q19. Malicious software disguised as legitimate software is:",
+          "options": [
+            "Trojan",
+            "DNS",
+            "DHCP",
+            "Switch",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Trojan Horse misleads users by appearing genuine, useful, or harmless while concealing malicious actions. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q20",
+          "question": "Q20. Which attack commonly encrypts or blocks access to files and demands money?",
+          "options": [
+            "Ransomware",
+            "Routing",
+            "Paging",
+            "Multiplexing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Ransomware encrypts target data or locks access and demands a ransom payment to provide the decryption key (NCERT kecs111). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q21",
+          "question": "Q21. A fake banking page designed to steal passwords is:",
+          "options": [
+            "Phishing",
+            "Fragmentation",
+            "Scheduling",
+            "Routing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Phishing uses deceptive emails and spoofed websites to trick users into disclosing confidential passwords, banking credentials, or OTPs. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q22",
+          "question": "Q22. A firewall mainly:",
+          "options": [
+            "Filters network traffic",
+            "Sorts data",
+            "Compiles programs",
+            "Stores tables",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A firewall acts as a protective security barrier, filtering incoming and outgoing network traffic based on configured security rules. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q23",
+          "question": "Q23. HTTPS is:",
+          "options": [
+            "Secure HTTP",
+            "Email protocol",
+            "File-transfer protocol",
+            "IP-allocation protocol",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "HTTPS stands for HyperText Transfer Protocol Secure, encrypting HTTP communications using TLS/SSL protocols on Port 443. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q24",
+          "question": "Q24. In the TRE 2.0 basic-networking question, sniffing is reduced/prevented using:",
+          "options": [
+            "Switched network",
+            "Bubble sort",
+            "Paging",
+            "Stack",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In TRE 2.0, using a switched network (which unicasts frames to destination MAC ports rather than broadcasting like a hub) reduces sniffing risk. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q25",
+          "question": "Q25. SDLC stands for:",
+          "options": [
+            "Software Development Life Cycle",
+            "System Data Logic Control",
+            "Software Design Link Cycle",
+            "System Development Logic Code",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SDLC stands for Software Development Life Cycle, defining the structured phases of software engineering. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q26",
+          "question": "Q26. Which SDLC model is primarily sequential?",
+          "options": [
+            "Waterfall",
+            "Agile",
+            "Spiral",
+            "Scrum only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Waterfall model is a linear sequential development process where each phase must finish before the next begins. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q27",
+          "question": "Q27. Which model is especially associated with iterative development and frequent feedback?",
+          "options": [
+            "Agile",
+            "Waterfall",
+            "FCFS",
+            "Paging",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Agile methodologies deliver software in small iterative sprints with continuous customer feedback. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q28",
+          "question": "Q28. Which SDLC model is especially associated with risk analysis?",
+          "options": [
+            "Waterfall",
+            "Spiral",
+            "TCP",
+            "SQL",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Spiral model explicitly integrates risk analysis and risk management into each concentric iteration. Correct: (B)."
+        },
+        {
+          "id": "m-d41-q29",
+          "question": "Q29. Verification asks:",
+          "options": [
+            "Are we building the product right?",
+            "Are we building the right product?",
+            "Is the network secure?",
+            "Is the CPU fast?",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In Software Engineering and TRE 3.0, Verification evaluates adherence to design specifications: \"Are we building the product right?\" Correct: (A)."
+        },
+        {
+          "id": "m-d41-q30",
+          "question": "Q30. Validation asks:",
+          "options": [
+            "Are we building the product right?",
+            "Are we building the right product?",
+            "Is syntax correct only?",
+            "Is RAM sufficient?",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Validation assesses whether the software satisfies real customer needs: \"Are we building the right product?\" Correct: (B)."
+        },
+        {
+          "id": "m-d41-q31",
+          "question": "Q31. Correct testing order is:",
+          "options": [
+            "Unit → Integration → System → Acceptance",
+            "Acceptance → Unit → System → Integration",
+            "System → Unit → Integration → Acceptance",
+            "Integration → Unit → Acceptance → System",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The standard NCERT kecs104 testing hierarchy follows the sequence: Unit Testing → Integration Testing → System Testing → Acceptance Testing (UISA). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q32",
+          "question": "Q32. Testing a single small component is:",
+          "options": [
+            "Unit testing",
+            "System testing",
+            "Acceptance testing",
+            "Integration testing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Unit testing tests individual functions, procedures, or discrete components in isolation. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q33",
+          "question": "Q33. A compiler generally translates:",
+          "options": [
+            "Entire source program",
+            "Only one statement at a time",
+            "Only comments",
+            "Only HTML",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In TRE 2.0 and NCERT kecs105, a compiler translates the entire high-level source program into machine code before execution. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q34",
+          "question": "Q34. An interpreter generally processes:",
+          "options": [
+            "Statements one by one",
+            "Entire source only before execution",
+            "Only machine code",
+            "Only database queries",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "An interpreter translates and executes source code line by line, statement by statement at runtime. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q35",
+          "question": "Q35. Which compiler phase creates tokens?",
+          "options": [
+            "Lexical analysis",
+            "Syntax analysis",
+            "Semantic analysis",
+            "Code generation",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Lexical Analyzer (Scanner) groups the character stream into meaningful atomic units called Tokens. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q36",
+          "question": "Q36. Which compiler phase checks grammatical structure?",
+          "options": [
+            "Lexical analysis",
+            "Syntax analysis",
+            "Optimization",
+            "Linking",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Syntax Analyzer (Parser) verifies that the sequence of tokens conforms to the grammar rules of the language. Correct: (B)."
+        },
+        {
+          "id": "m-d41-q37",
+          "question": "Q37. In a DFA, for each state and input symbol there is:",
+          "options": [
+            "Exactly one next state",
+            "Always no next state",
+            "Always two next states",
+            "Unlimited transitions required",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In a Deterministic Finite Automaton (DFA), each state has uniquely and deterministically exactly one transition for each input symbol. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q38",
+          "question": "Q38. DFA and NFA recognize:",
+          "options": [
+            "Regular languages",
+            "Only context-sensitive languages",
+            "SQL languages only",
+            "Machine code only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Both DFA and NFA recognize exactly the class of Regular Languages (DFA ≡ NFA). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q39",
+          "question": "Q39. In a regular expression, * means:",
+          "options": [
+            "Exactly one",
+            "Zero or more",
+            "Exactly two",
+            "Logical AND",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Kleene star (*) operator denotes zero or more repetitions of the preceding expression. Correct: (B)."
+        },
+        {
+          "id": "m-d41-q40",
+          "question": "Q40. Type-2 grammar is:",
+          "options": [
+            "Context-free grammar",
+            "Regular grammar",
+            "Unrestricted grammar",
+            "Context-sensitive grammar",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In the Chomsky hierarchy, Type-2 grammars are Context-Free Grammars (CFGs), parsed by Pushdown Automata. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q41",
+          "question": "Q41. Machine Learning is:",
+          "options": [
+            "A subfield/area of AI",
+            "A network cable",
+            "An operating system",
+            "A database key",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Machine Learning is a specialized subfield of Artificial Intelligence where systems learn from data to make predictions. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q42",
+          "question": "Q42. Which is a supervised-learning algorithm in TRE 3.0?",
+          "options": [
+            "Decision Tree",
+            "K-means",
+            "Reinforcement Learning",
+            "FTP",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In TRE 3.0, Decision Tree is the recognized supervised-learning algorithm (operating on labeled datasets). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q43",
+          "question": "Q43. K-means is mainly associated with:",
+          "options": [
+            "Unsupervised clustering",
+            "Supervised classification",
+            "File handling",
+            "Routing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "K-means is a classic unsupervised learning algorithm that partitions unlabeled data into K clusters. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q44",
+          "question": "Q44. Which protocol is strongly associated with IoT messaging?",
+          "options": [
+            "MQTT",
+            "NTFS",
+            "FAT32",
+            "SQL",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MQTT (Message Queuing Telemetry Transport) is a lightweight publish/subscribe protocol designed for constrained IoT devices (TRE 3.0 Anchor). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q45",
+          "question": "Q45. Which list correctly gives the 5 Vs of Big Data?",
+          "options": [
+            "Volume, Velocity, Variety, Veracity, Value",
+            "Volume, Voltage, Virtual, Version, Value",
+            "Value, Variable, Vector, Version, Volume",
+            "Velocity, Voltage, Vector, Variety, View",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "NCERT kecs103 defines the 5 Vs of Big Data as Volume, Velocity, Variety, Veracity, and Value. Correct: (A)."
+        },
+        {
+          "id": "m-d41-q46",
+          "question": "Q46. Which Big Data characteristic means trustworthiness?",
+          "options": [
+            "Volume",
+            "Velocity",
+            "Veracity",
+            "Variety",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Veracity indicates the trustworthiness, quality, accuracy, and cleanliness of the data. Correct: (C)."
+        },
+        {
+          "id": "m-d41-q47",
+          "question": "Q47. Which cloud model provides ready-to-use application software?",
+          "options": [
+            "SaaS",
+            "PaaS",
+            "IaaS",
+            "DNS",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SaaS (Software as a Service) delivers complete ready-to-use software applications over the web (e.g. Google Docs). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q48",
+          "question": "Q48. Which mapping is correct?",
+          "options": [
+            "HTML → Structure",
+            "CSS → Style",
+            "JavaScript → Behavior/interactivity",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three matchings are definitionally correct: HTML for structure, CSS for style, and JavaScript for behavior/interactivity. Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d41-q49",
+          "question": "Q49. Amazon is the clear B2C example in the TRE 3.0 question. B2C means:",
+          "options": [
+            "Business to Consumer",
+            "Business to Computer",
+            "Browser to Client",
+            "Buyer to Compiler",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "B2C stands for Business to Consumer, where companies sell directly to individual end-consumers (e.g. Amazon in TRE 3.0). Correct: (A)."
+        },
+        {
+          "id": "m-d41-q50",
+          "question": "Q50. The intended multimedia-authoring-tool answer in TRE 3.0 was:",
+          "options": [
+            "Microsoft Word",
+            "Adobe Photoshop",
+            "Adobe Flash",
+            "MySQL",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In BPSC TRE 3.0 Q150, Adobe Flash was the intended answer as a multimedia authoring tool. Correct: (C)."
+        }
+      ]
+    }
   }
 ];
 
