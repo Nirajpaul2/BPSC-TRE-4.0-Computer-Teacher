@@ -1,3 +1,0 @@
-# Google AdMob Authorized Digital Sellers (app-ads.txt)
-# Developer: Agiludic (com.zombieshot.aiwazir, com.aiwazire.shootbubble, com.aiwazir.sanatan.app, com.nirajpaul.library)
-google.com, pub-3684459472315971, DIRECT, f08c47fec0942fa0
