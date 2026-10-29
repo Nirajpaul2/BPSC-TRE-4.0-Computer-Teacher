@@ -19985,6 +19985,491 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 36,
+    "dayId": "day-36",
+    "badge": "Day 36",
+    "title": "TRE 4.0 — Day 36",
+    "unit": "Part III (CS) • 🔐 Network Security & Full Computer Networking Milestone Revision + 25-Question Test",
+    "targetTime": "20–25 mins read + 25 mins test",
+    "summary": "Network Security Core & Full Networking Block Synthesis (TRE 2.0/3.0 Paper-Backed & NCERT Class XII): Security Foundations (Definition, CIA Triad: Confidentiality, Integrity, Availability), Malware Taxonomy (Virus file infector & replication, Worm autonomous network propagation, Trojan disguise deception, Ransomware file encryption & extortion, Spyware surveillance, Spam bulk email), Social Engineering & Cybercrime (Phishing credential baiting, Hacking White-Hat vs Black-Hat), Security Controls & Defense (Antivirus malware neutralization, Firewall traffic gatekeeper, HTTP vs HTTPS encrypted web via TLS on Port 443, Encryption Plaintext ↔ Ciphertext, Cookies session state vs virus distinction, Sniffing traffic analysis mitigated by Switched Networks [TRE 2.0 Anchor], Authentication 'Who are you?' vs Authorization 'What permissions do you have?'), Complete Networking Block Recall (LAN/MAN/WAN, Switch L2 MAC vs Router L3 IP, 7-Layer OSI Model, Protocols: SMTP 25, DNS 53, DHCP 67/68, ARP IPv4-to-MAC, TCP 3-way handshake vs UDP, Simplex/Duplex modes, Guided media [Optical fiber highest speed] vs Wireless media [Radio, Microwave, Infrared], Multiplexing FDM vs TDM), Day 36 White-Paper Master Sheet, and 25-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Network Security & The CIA Triad",
+        "goal": "Master CIA triad (Confidentiality, Integrity, Availability), Malware types (Virus, Worm, Trojan, Ransomware), and Authentication vs Authorization"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Defense Controls, Ports & Sniffing",
+        "goal": "Consolidate Firewall, Antivirus, HTTPS (Port 443), and TRE 2.0 Sniffing mitigation via Switched Networks"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Full Computer Networking Milestone Revision",
+        "goal": "Synthesize Days 32–35: OSI 7 layers, Switch (L2) vs Router (L3), Protocols (DNS, DHCP, ARP, SMTP, TCP/UDP), Media & Multiplexing"
+      }
+    ],
+    "introNote": "Since we moved directly to Day 36, today also absorbs the important security concepts that would normally sit in Day 35, along with a full milestone synthesis of Computer Networks. Your TRE 2.0 paper directly asks how sniffers can be prevented, with a switched network among the choices. Your NCERT Class XII syllabus explicitly includes malware, antivirus, spam, HTTP vs HTTPS, firewall, cookies, hackers/crackers and network-security threats.",
+    "parts": [
+      {
+        "title": "Part III — Network Security Foundations, The CIA Triad & Threats",
+        "sections": [
+          {
+            "title": "1. What is Network Security? & 2. The CIA Security Triad",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🏠",
+                "title": "MENTAL PICTURE — Physical House vs Digital Network",
+                "content": "Imagine protecting your house:\n• Lock on door\n• CCTV surveillance\n• Security guard at gate\n• Intrusion alarm\n\nIn a computer network:\n• Strong Passwords & Auth\n• Firewall (Gatekeeper)\n• Antivirus scanner\n• Encryption (TLS/SSL)\n• Access Control & Permissions"
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nNetwork security = protecting systems, networks, and data from unauthorized access, damage, theft, or misuse.\n\n2. Three Fundamental Security Goals — The CIA Triad:\n• C — Confidentiality: Ensuring that information is accessible only to those authorized to have access (protecting secrets from eavesdroppers).\n• I — Integrity: Safeguarding the accuracy and completeness of information and processing methods (preventing unauthorized modification or tampering).\n• A — Availability: Ensuring that authorized users have timely and reliable access to information and associated assets when needed.\n\nMemory: CIA = Secret (Confidentiality) + Correct (Integrity) + Available (Availability)"
+              }
+            ]
+          },
+          {
+            "title": "3–8. Malware Taxonomy: Virus, Worm, Trojan, Ransomware & Spyware",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. Malware (NCERT lecs1ps)\nMalware stands for Malicious Software — an umbrella term for software designed to infiltrate, damage, or gain unauthorized control over systems.\n\n4. Virus (NCERT kecs111)\nA computer virus is malicious code that attaches itself to existing legitimate files or programs, self-replicates when the host program executes, and can corrupt or destroy data.\nMemory: Virus = attaches + spreads.\n\n5. Worm\nA standalone program that replicates and spreads across networks automatically without needing to attach to host files.\nMemory: Worm = walks through network.\n\n6. Trojan Horse\nDeceives users by disguising itself as legitimate or beneficial software (e.g. \"Free Game\" or \"System Optimizer\"), but contains hidden malicious payloads.\nMemory: Trojan = GOOD outside, BAD inside.\n\n7. Ransomware (NCERT kecs111)\nMalware that blocks access to a user's files or entire system, typically via strong encryption, and demands ransom payment for the decryption key.\nMemory: Ransomware = Lock + Ransom.\n\n8. Spyware\nSoftware that secretly observes, monitors, and collects user keystrokes, browsing history, or passwords without their consent.\nMemory: Spyware = secretly watches."
+              }
+            ]
+          },
+          {
+            "title": "9–13. Social Engineering, Threats & Hacking",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🎣",
+                "title": "11. Spam & 12. Phishing (NCERT kecs111)",
+                "content": "• Spam: Unsolicited, bulk commercial or scam messages, especially sent via email.\n• Phishing: Social engineering attacks using deceptive/fake emails or spoofed websites (e.g. \"Your bank account is suspended!\") to trick victims into revealing sensitive usernames, passwords, credit card numbers, or OTPs.\nMemory: Phishing = fishing for your sensitive credentials"
+              },
+              {
+                "type": "text",
+                "content": "13. Hacking (NCERT kecs111)\nUnauthorized access to a computer, network, or digital resource.\n• White-Hat Hacker (Ethical Hacker): Evaluates and strengthens system security with authorization; reports vulnerabilities to improve defense.\n• Black-Hat Hacker (Security Cracker): Breaks into systems without authorization for criminal, malicious, or destructive purposes.\nMemory: White = protect | Black = attack."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Security Defense, Web Protocols & Authentication",
+        "sections": [
+          {
+            "title": "9–10. Antivirus & Firewall (Network Gatekeeper)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "9. Antivirus (NCERT lecs1ps)\nSoftware designed to detect, quarantine, prevent, and remove malware from computer systems. Keeping virus definition databases updated is critical.\nMemory: Antivirus = Detect + Remove malware.\n\n10. Firewall (NCERT lecs1ps)\nA dedicated software or hardware-based security system that acts as a gatekeeper between an untrusted network (Internet) and a trusted private network, filtering traffic according to defined security policies.\nMemory: Firewall = Network Gatekeeper."
+              }
+            ]
+          },
+          {
+            "title": "14–16. HTTP vs HTTPS, Encryption & Cookies",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🔒",
+                "title": "14. HTTP vs HTTPS & 15. Encryption Mechanics",
+                "content": "• HTTP  → HyperText Transfer Protocol (Unencrypted plaintext, Port 80).\n• HTTPS → HTTP Secure (Encrypted via TLS/SSL, Port 443; S = Secure).\n\nEncryption Mechanics:\nPLAINTEXT (\"HELLO\") ───(Encryption Key)───→ CIPHERTEXT (\"X7#Q92\")\nCIPHERTEXT (\"X7#Q92\") ───(Decryption Key)───→ PLAINTEXT (\"HELLO\")\n\n16. Cookies (NCERT lecs1ps):\nSmall text data files stored by browsers to remember session tokens, preferences, or shopping cart contents.\n⚠️ Cookie ≠ Virus (Cookies are state data, not malicious executables)."
+              }
+            ]
+          },
+          {
+            "title": "17–18. Sniffing (TRE 2.0 Anchor) & Authentication vs Authorization",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "👀",
+                "title": "17. Sniffing & Switched Networks (TRE 2.0 Core Anchor)",
+                "content": "Sniffing: Intercepting and capturing packets passing across a network.\nTRE 2.0 asks: \"Sniffers can be prevented/reduced by using what?\"\nIntended paper answer: Switched network.\n\nWhy? In a hub-based network, signals broadcast to all ports. In a switched network, frames are directed point-to-point to destination MAC address ports, drastically curtailing casual sniffing.\nMemory: Switch is safer than hub against casual sniffing."
+              },
+              {
+                "type": "callout",
+                "icon": "🔑",
+                "title": "18. Authentication vs Authorization (Crucial Exam Distinction)",
+                "content": "• Authentication → \"Who are you?\" (Verifying identity via Username, Password, Biometrics, OTP).\n• Authorization  → \"What are you allowed to do?\" (Determining access privileges, permissions, and roles).\n\nExample:\nStudent logs in (Authentication: valid student) → can view marks, but cannot edit marks (Authorization restriction).\nMemory: Authentication = Identity | Authorization = Permission"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Full Computer Networking Milestone Synthesis (Days 32–34)",
+        "sections": [
+          {
+            "title": "19–20. Scale, Hardware Devices & The 7-Layer OSI Model",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "19. Network Scale & Devices Synthesis:\n• LAN (Local Area Network): Building, lab, office.\n• MAN (Metropolitan Area Network): City / metropolitan area.\n• WAN (Wide Area Network): Country / world (Internet).\n\nHardware Devices:\n• Switch: Connects devices in the same LAN; forwards frames via MAC addresses (Data Link Layer 2).\n• Router: Connects multiple different networks; forwards packets via IP addresses (Network Layer 3).\n• Repeater: Regenerates and amplifies attenuated signals (Physical Layer 1).\n\n20. OSI 7-Layer Model Architecture:\nLayer 7: Application  → User services (HTTP, SMTP, DNS, FTP)\nLayer 6: Presentation → Formatting, encryption, compression\nLayer 5: Session      → Dialog control, session management\nLayer 4: Transport    → End-to-end / Process-to-process (TCP/UDP, Ports)\nLayer 3: Network      → Routing & packet forwarding (IP, Router, Packets) [TRE 3.0 Trap]\nLayer 2: Data Link    → Framing & hardware addressing (MAC, Switch, Frames)\nLayer 1: Physical     → Raw bit transmission (Bits, Cables, Repeater)"
+              }
+            ]
+          },
+          {
+            "title": "21–24. Protocols, Duplex Modes, Media & Multiplexing",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "21. High-Yield Protocol Consolidation:\n• SMTP  → Port 25: Protocol used to SEND email over the Internet (TRE 3.0 Anchor).\n• DNS   → Port 53: Domain Name System (resolves Domain Name → IP address).\n• DHCP  → Ports 67/68: Automatically provides client IP and network configuration.\n• ARP   → Address Resolution Protocol: Resolves IPv4 Address → MAC Address.\n• TCP   → Connection-oriented, 3-way handshake (SYN → SYN-ACK → ACK), reliable byte stream.\n• UDP   → Connectionless, lightweight datagram (no handshake, low overhead).\n\n22. Data Communication Modes:\n• Simplex: Unidirectional (Keyboard → Computer [TRE 2.0 Anchor]).\n• Half-Duplex: Bidirectional, but one at a time (Walkie-talkie).\n• Full-Duplex: Bidirectional simultaneously (Telephone conversation).\n\n23. Transmission Media:\n• Guided/Wired: Twisted Pair < Coaxial < Optical Fiber (Light pulses, highest speed/bandwidth, immune to EMI [TRE 2.0 Anchor]).\n• Unguided/Wireless: Radio waves, Microwaves (directional/satellite), Infrared (TV remote).\n\n24. Multiplexing Techniques:\n• FDM (Frequency Division Multiplexing): Divides bandwidth into distinct frequency bands.\n• TDM (Time Division Multiplexing): Divides channel into sequential time slots (Frame contains Time Slots)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 36 White-Paper Master Sheet & Rapid Recall",
+        "sections": [
+          {
+            "title": "Day 36 White-Paper Master Sheet & Rapid Recall",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 36 White-Paper Master Sheet",
+                "content": "SECURITY FUNDAMENTALS:\nCIA Triad → Confidentiality (Secret) + Integrity (Correct) + Availability (Accessible)\n\nMALWARE:\n• Virus      → Attaches to file + self-replicates\n• Worm       → Autonomous network spread\n• Trojan     → Disguised as useful software\n• Ransomware → Encrypts files + demands ransom\n• Spyware    → Covertly spies and logs activity\n\nCONTROLS & DEFENSE:\n• Firewall   → Network traffic gatekeeper\n• Antivirus  → Malware file protection\n• Phishing   → Fake message/site fishing for credentials\n• Spam       → Unsolicited bulk messages\n• HTTPS      → TLS encrypted web on Port 443\n• Sniffing   → Mitigated by Switched Network (TRE 2.0)\n\nAUTH DISTINCTION:\n• Authentication = \"WHO are you?\" (Identity)\n• Authorization  = \"WHAT permissions do you have?\" (Access rights)\n\nNETWORKING SYNTHESIS:\n• Switch  → MAC → L2 (Data Link)\n• Router  → IP  → L3 (Network)\n• TCP/UDP → Ports → L4 (Transport)\n• DNS     → Name → IP\n• DHCP    → Give IP\n• ARP     → IPv4 → MAC\n• SMTP    → Send Email\n• Fiber   → Fastest media (Light)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 36 Checkpoint Test",
+      "subtitle": "Network Security + Full Computer Networking Milestone Revision",
+      "questions": [
+        {
+          "id": "m-d36-q1",
+          "question": "Q1. CIA in information security stands for:",
+          "options": [
+            "Control, Internet, Access",
+            "Confidentiality, Integrity, Availability",
+            "Computer, Internet, Authentication",
+            "Confidentiality, Internet, Authorization",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In security, CIA stands for Confidentiality, Integrity, and Availability. Correct: (B)."
+        },
+        {
+          "id": "m-d36-q2",
+          "question": "Q2. Preventing unauthorized people from reading information relates mainly to:",
+          "options": [
+            "Confidentiality",
+            "Integrity",
+            "Availability",
+            "Routing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Confidentiality ensures that information is accessible and readable only by authorized individuals or entities. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q3",
+          "question": "Q3. Preventing unauthorized modification of data relates mainly to:",
+          "options": [
+            "Availability",
+            "Integrity",
+            "Bandwidth",
+            "Routing",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Integrity ensures that data is accurate, authentic, and protected against unauthorized modification or deletion. Correct: (B)."
+        },
+        {
+          "id": "m-d36-q4",
+          "question": "Q4. Malware means:",
+          "options": [
+            "Malicious software",
+            "Mail software",
+            "Management software",
+            "Mathematical software",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Malware is short for malicious software, designed to compromise or harm digital devices and networks. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q5",
+          "question": "Q5. Which malware typically attaches itself to files/programs in the traditional model?",
+          "options": [
+            "Virus",
+            "Firewall",
+            "Cookie",
+            "Router",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A computer virus traditionally attaches itself to existing host files or executables and self-replicates when the host executes. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q6",
+          "question": "Q6. Which malware is especially associated with self-spreading across networks?",
+          "options": [
+            "Worm",
+            "Cookie",
+            "Firewall",
+            "Switch",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Worm is autonomous self-propagating malware that travels across network links without needing host file attachment. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q7",
+          "question": "Q7. A malicious program disguised as legitimate software is:",
+          "options": [
+            "Trojan",
+            "DNS",
+            "DHCP",
+            "SMTP",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Trojan Horse presents itself as desirable or harmless software to mislead users into executing its hidden malicious payload. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q8",
+          "question": "Q8. Which attack commonly encrypts/block access to files and demands payment?",
+          "options": [
+            "Ransomware",
+            "DHCP",
+            "DNS",
+            "Firewall",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Ransomware encrypts target data or locks computers and demands a financial ransom to release the decryption key. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q9",
+          "question": "Q9. Software that secretly monitors user activity is:",
+          "options": [
+            "Spyware",
+            "Router",
+            "Compiler",
+            "Repeater",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Spyware secretly gathers information on user actions, keystrokes, and habits without their knowledge. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q10",
+          "question": "Q10. A firewall is best remembered as:",
+          "options": [
+            "Network traffic gatekeeper",
+            "File-compression algorithm",
+            "Programming language",
+            "Sorting technique",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A firewall acts as a protective network gatekeeper, monitoring and filtering inbound and outbound packets based on security rules. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q11",
+          "question": "Q11. Unwanted unsolicited email is commonly called:",
+          "options": [
+            "Spam",
+            "ARP",
+            "DNS",
+            "Cookie only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Spam refers to unwanted, unsolicited bulk commercial or fraudulent emails. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q12",
+          "question": "Q12. A fake bank email asking you to click a link and enter your password is an example of:",
+          "options": [
+            "Phishing",
+            "Paging",
+            "Routing",
+            "Multiplexing",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Phishing is the fraudulent attempt to capture sensitive credentials through spoofed emails and counterfeit websites. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q13",
+          "question": "Q13. HTTPS is primarily:",
+          "options": [
+            "Secure version of HTTP",
+            "Email protocol",
+            "File-transfer protocol",
+            "IP-assignment protocol",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "HTTPS (HyperText Transfer Protocol Secure) provides encrypted web communication over TLS/SSL. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q14",
+          "question": "Q14. Standard HTTPS port is:",
+          "options": [
+            "21",
+            "25",
+            "80",
+            "443",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Standard HTTPS operates on port 443 (while unencrypted HTTP uses port 80). Correct: (D)."
+        },
+        {
+          "id": "m-d36-q15",
+          "question": "Q15. Authentication answers:",
+          "options": [
+            "“Who are you?”",
+            "“What are you allowed to do?”",
+            "“What is your subnet?”",
+            "“Which cable are you using?”",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Authentication is the process of verifying identity: \"Who are you?\" (via username, password, biometrics, or token). Correct: (A)."
+        },
+        {
+          "id": "m-d36-q16",
+          "question": "Q16. Authorization answers:",
+          "options": [
+            "“Who are you?”",
+            "“What actions/resources are you permitted to access?”",
+            "“What is your MAC address?”",
+            "“What is DNS?”",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Authorization determines access privileges: \"What actions or resources are you permitted to access?\" Correct: (B)."
+        },
+        {
+          "id": "m-d36-q17",
+          "question": "Q17. TRE 2.0 associates prevention/reduction of basic sniffing with:",
+          "options": [
+            "Switched network",
+            "Bubble sort",
+            "Paging",
+            "Database normalization",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In BPSC TRE 2.0, using a switched network (which unicasts frames to destination MAC ports rather than broadcasting like a hub) reduces sniffing vulnerability. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q18",
+          "question": "Q18. Which device primarily forwards traffic inside a LAN using MAC-address information?",
+          "options": [
+            "Switch",
+            "Router",
+            "Modem only",
+            "Compiler",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Switch connects devices within the same local network (LAN) and directs frames using MAC hardware addresses (Data Link Layer). Correct: (A)."
+        },
+        {
+          "id": "m-d36-q19",
+          "question": "Q19. Which device connects different networks?",
+          "options": [
+            "Router",
+            "Tuple",
+            "Stack",
+            "Repeater only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Router connects multiple different networks and forwards data packets using IP addresses (Network Layer). Correct: (A)."
+        },
+        {
+          "id": "m-d36-q20",
+          "question": "Q20. Which matching is correct?",
+          "options": [
+            "DNS → Domain name to IP",
+            "DHCP → Automatic IP configuration",
+            "ARP → IPv4 to MAC",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three protocol matchings are definitionally correct. Hence (D) More than one of the above is the correct BPSC answer. Correct: (D)."
+        },
+        {
+          "id": "m-d36-q21",
+          "question": "Q21. TCP is:",
+          "options": [
+            "Connection-oriented",
+            "Connectionless only",
+            "A physical cable",
+            "A malware type",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TCP (Transmission Control Protocol) is a connection-oriented transport protocol that performs a 3-way handshake prior to data delivery. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q22",
+          "question": "Q22. Which is full-duplex communication in the basic conceptual model?",
+          "options": [
+            "Keyboard → computer",
+            "Walkie-talkie",
+            "Telephone conversation",
+            "One-way radio broadcast",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In a telephone conversation, both participants can transmit and receive simultaneously (Full-Duplex). Correct: (C)."
+        },
+        {
+          "id": "m-d36-q23",
+          "question": "Q23. TDM primarily divides communication by:",
+          "options": [
+            "Time",
+            "Frequency",
+            "MAC address",
+            "IP class",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TDM (Time Division Multiplexing) allocates discrete time slots across the full channel bandwidth to different users. Correct: (A)."
+        },
+        {
+          "id": "m-d36-q24",
+          "question": "Q24. Which medium is the highest-speed choice among these in TRE 2.0?",
+          "options": [
+            "Twisted pair",
+            "Coaxial cable",
+            "Optical fiber",
+            "All identical",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Optical fiber utilizes light pulses through glass or plastic cores, offering vastly higher speed and bandwidth than electrical copper cables (TRE 2.0 Anchor). Correct: (C)."
+        },
+        {
+          "id": "m-d36-q25",
+          "question": "Q25. Which complete memory rule is correct?",
+          "options": [
+            "Switch → L2/MAC; Router → L3/IP; TCP/UDP → L4",
+            "Switch → L3/IP; Router → L2/MAC",
+            "DNS → IPv4 to MAC",
+            "DHCP → Send email",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Switches operate at Layer 2 (Data Link) using MAC addresses; Routers operate at Layer 3 (Network) using IP addresses; TCP/UDP operate at Layer 4 (Transport). Correct: (A)."
+        }
+      ]
+    }
   }
 ];
 
