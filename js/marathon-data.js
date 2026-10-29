@@ -4846,6 +4846,667 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 9,
+    "dayId": "day-9",
+    "badge": "Day 09",
+    "title": "TRE 4.0 — Day 9",
+    "unit": "Part III (CS) • Queues (Linear, Circular, Deque, Priority) • Light & English",
+    "targetTime": "25–30 mins read + 21 MCQs test",
+    "summary": "Today we continue Data Structures: Queue (FIFO, Front/Rear, Underflow/Overflow), Circular Queue (Ring Buffer, wrap-around index), Deque (O(n) rear deletion in singly linked list), Priority Queue (Binary Heap), Light/Lenses, and English relationship terms.",
+    "targets": [
+      {
+        "section": "Part III – Computer Science",
+        "topic": "Queue + Circular Queue + Deque + Priority Queue",
+        "goal": "FIFO, Enqueue/Dequeue, Ring Buffer, (index+1)%size, Deque complexity, Binary Heap"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Light, Lens & Refraction basics",
+        "goal": "Convex (converging) vs Concave (diverging), lens in water (f increases), fog scattering, frequency constancy"
+      },
+      {
+        "section": "Part I – Language",
+        "topic": "English relationship vocabulary",
+        "goal": "Maternal vs Paternal grandparents, Brother-in-law / Sister-in-law"
+      }
+    ],
+    "introNote": "Today we continue Data Structures.\n\nThis is especially important because TRE 2.0 asked consecutive questions on Queue underflow, Queue applications, Circular Queue/Ring Buffer, why Circular Queue is needed, Priority Queue implementation, Deque complexity and Queue overflow.     BPSC TRE2.0 question paper by c…",
+    "parts": [
+      {
+        "partId": "d9-part-3",
+        "title": "Part III — QUEUE",
+        "sections": [
+          {
+            "title": "🧠 White-paper picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine people standing at a ticket counter:"
+              },
+              {
+                "type": "diagram",
+                "content": "ENTRY                              EXIT\n  ↓                                  ↓\n[ D ] → [ C ] → [ B ] → [ A ]\n REAR                         FRONT"
+              },
+              {
+                "type": "text",
+                "content": "A came first.\n\nSo A leaves first.\n\nTherefore:\nQueue = FIFO\n\nF = First\nI = In\nF = First\nO = Out"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Stack = plates → LIFO\n\nQueue = line of people → FIFO\n\nThis distinction must become automatic."
+              }
+            ]
+          },
+          {
+            "title": "1. FRONT and REAR",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Two ends:\n       QUEUE\n\nREAR                         FRONT\n ↓                              ↓\n[40] → [30] → [20] → [10]"
+              },
+              {
+                "type": "text",
+                "content": "New element enters from:\nREAR\n\nElement leaves from:\nFRONT"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper trick",
+                "content": "ENQUEUE → REAR\nDEQUEUE → FRONT"
+              }
+            ]
+          },
+          {
+            "title": "2. ENQUEUE & 3. DEQUEUE",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "2. ENQUEUE\nAdding an element:\nQueue:\n[10][20][30]\n\nENQUEUE 40\n     ↓\n\n[10][20][30][40]\n\nOperation:\nENQUEUE = Insert"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "EN = Enter"
+              },
+              {
+                "type": "text",
+                "content": "3. DEQUEUE\nRemoving an element:\n[10][20][30]\n ↑\nFRONT\n\nDEQUEUE:\n10 leaves\n↓\n[20][30]\n\nOperation:\nDEQUEUE = Delete from FRONT"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Best memory",
+                "content": "ENQUEUE → ENTER → REAR\nDEQUEUE → DELETE → FRONT"
+              }
+            ]
+          },
+          {
+            "title": "4. Queue Underflow & 5. Queue Overflow",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. Queue Underflow\nSuppose:\nQUEUE\n[ EMPTY ]\n\nYou try:\nDEQUEUE\n\nNothing exists.\n\nResult:\nUNDERFLOW\n\nTRE 2.0 directly asks what condition must be checked before deletion from a queue; underflow is one of the tested concepts.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Delete empty → Underflow\n\nSame idea as Stack."
+              },
+              {
+                "type": "text",
+                "content": "5. Queue Overflow\nImagine an array queue of size 5:\nIndex\n0    1    2    3    4\n\n[10][20][30][40][50]\n                   ↑\n                  rear\n\nNo more room.\n\nTrying to insert:\nENQUEUE 60 ❌\n\nmeans:\nOVERFLOW\n\nFor a simple linear array queue of size MAX_SIZE, TRE 2.0 tests the condition:\nrear = MAX_SIZE - 1\n\nas the full-end condition."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory",
+                "content": "DELETE empty → UNDERFLOW\nINSERT full  → OVERFLOW"
+              }
+            ]
+          },
+          {
+            "title": "6. The problem with Linear Queue & 7. Circular Queue",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. The problem with Linear Queue\nThis is where Circular Queue becomes important.\n\nSuppose size = 5:\n[10][20][30][40][50]\n\nRemove three:\n[  ][  ][  ][40][50]\n               ↑\n              rear\n\nNotice:\nLEFT SIDE = free\nRIGHT SIDE = rear reached end\n\nA simple linear implementation may not reuse those empty positions directly.\n\nThat's wasted space."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nEMPTY EMPTY EMPTY [40][50]\n  ↑\nSpace exists!\n\nBut rear is at end\n              ↑\n            PROBLEM"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "TRE Exam Concept",
+                "content": "TRE 2.0 explicitly links the need for a circular queue with avoiding wastage of memory.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "text",
+                "content": "7. Circular Queue\nNow bend the queue into a circle."
+              },
+              {
+                "type": "diagram",
+                "content": "        [0]\n      ↗     ↘\n    [4]     [1]\n     ↑       ↓\n    [3] ←── [2]\n\nWhen rear reaches the final position:\nit can wrap around to the beginning if space is free."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Circular Queue = recycle empty spaces\n\nAnother name:\nRing Buffer\n\nTRE 2.0 directly asks this and gives Ring Buffer among the choices.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\nCircular Queue\n      =\n Ring Buffer"
+              },
+              {
+                "type": "diagram",
+                "content": "Linear vs Circular Queue\nMental picture:\nLINEAR\n\nSTART -------------------- END\n                          ❌ stop\n\nversus:\nCIRCULAR\n\n     ↗────────↘\n   START      END\n     ↖────────↙\n       reuse"
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Memory sentence",
+                "content": "Linear reaches the wall.\n\nCircular comes back around."
+              }
+            ]
+          },
+          {
+            "title": "8. Circular index formula",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This one is useful.\n\nTo move to next position in a circular queue:\nnext = (current + 1) % size\n\nSuppose size = 5 and rear = 4:\n(4+1) % 5\n= 5 % 5\n= 0\n\nSo:\n4 → 0\n\nExactly like a circle."
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper trick\nLAST\n ↓\n% SIZE\n ↓\nBACK TO ZERO"
+              }
+            ]
+          },
+          {
+            "title": "9. DEQUE",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Deque means:\nDouble Ended Queue\n\nPronounced roughly \"deck.\""
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nNormal Queue:\nINSERT → [QUEUE] → DELETE\n\nDeque:\n        BOTH ENDS\n\n← insert/delete [ A B C ] insert/delete →\n\nSo in a Deque:\ninsertion and deletion can happen at both ends."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "DEQUE = Double-Ended QUEue\n\nFRONT ⇄ [ DEQUE ] ⇄ REAR"
+              },
+              {
+                "type": "text",
+                "content": "Types of Deque\nAt TRE level, know:\nInput-restricted Deque\nOutput-restricted Deque\n\nInput-restricted:\nInsertion allowed at one end, deletion at both.\n\nOutput-restricted:\nDeletion allowed at one end, insertion at both.\n\nDon't spend too much time memorizing these today.\n\nThe main concept:\nDeque = both ends are active"
+              },
+              {
+                "type": "diagram",
+                "content": "TRE trap — Singly Linked List Deque\nIf you implement a deque with a singly linked list:\n10 → 20 → 30 → 40 → NULL\n\nDeleting from the rear requires finding the node before 40.\n\nYou may have to walk:\n10 → 20 → 30 → 40\n\nTherefore:\nrear deletion = O(n)\n\nTRE 2.0 directly asks this complexity.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental trick",
+                "content": "Singly Linked List\n\nOnly →\nOnly →\nOnly →\n\nTo find previous rear:\nwalk from beginning\n↓\nO(n)"
+              }
+            ]
+          },
+          {
+            "title": "10. PRIORITY QUEUE & Queue Applications",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. PRIORITY QUEUE\nNormal Queue:\nFirst come → first served\n\nPriority Queue:\nMost important → served first\n\nImagine a hospital emergency room.\nPatient A → normal fever\nPatient B → serious accident\nPatient C → mild cough\n\nEven if B arrived later:\nB may be treated first\n\nbecause priority is higher."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Queue = arrival matters\n\nPriority Queue = importance matters"
+              },
+              {
+                "type": "text",
+                "content": "Best structure for Priority Queue\nYour TRE 2.0 paper asks which data structure is best for implementing a priority queue and includes Binary Heap as the relevant choice.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "So remember:\nPRIORITY QUEUE\n      ↓\n BINARY HEAP\n\nWe'll study Heap properly in the Tree chapter."
+              },
+              {
+                "type": "diagram",
+                "content": "Queue applications\nBased on the concepts appearing in your paper, think of Queue whenever things are waiting their turn:\nQUEUE\n │\n ├─ CPU scheduling\n ├─ Printer jobs\n ├─ I/O buffers\n ├─ Network packets\n ├─ Asynchronous transfer\n └─ Resource sharing\n\nTRE 2.0 contrasts Queue applications with balancing symbols, which is more naturally a Stack application.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory",
+                "content": "WAITING LINE → QUEUE"
+              },
+              {
+                "type": "diagram",
+                "content": "Stack vs Queue vs Priority Queue\nThis comparison is important.\nSTACK\nLast comes\nFirst goes\n\nLIFO\n\nQUEUE\nFirst comes\nFirst goes\n\nFIFO\n\nPRIORITY QUEUE\nHighest priority\ngoes first"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Best mental picture",
+                "content": "STACK          QUEUE          PRIORITY\n\nplates         ticket line     hospital\n LIFO             FIFO         importance"
+              }
+            ]
+          },
+          {
+            "title": "Day 9 CS master page",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Mentally reproduce:\nQUEUE\nFIFO\n\nENQUEUE → rear\nDEQUEUE → front\n\ndelete empty → underflow\ninsert full  → overflow\n\n\nCIRCULAR QUEUE\n= Ring Buffer\n= reuse space\n\n\nDEQUE\n= Double Ended Queue\n= both ends\n\n\nPRIORITY QUEUE\nimportance first\nbest structure → Binary Heap\n\nIf you can mentally draw that, your Queue foundation is good."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d9-part-2",
+        "title": "Part II — Light & Lenses",
+        "sections": [
+          {
+            "title": "Convex vs Concave & Focus",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 GS section includes questions about a convex lens immersed in water, fog/scattering, and monochromatic light moving between media.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "1. Convex vs Concave Lens\nConvex Lens\nMental picture:\n        ()\n       thick\n      middle\n\nThink:\nConvex = converges\n\nParallel rays:\n→ → →   ()   \\ | /\n                •\n              Focus"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "CONVEX → CONVERGE\n\nBoth start with CONV."
+              },
+              {
+                "type": "diagram",
+                "content": "Concave Lens\n        )(\n       thin\n      middle\n\nIt spreads rays.\nConcave = diverging lens\n\nMental:\n→ → →   )(   ↖ ↑ ↗"
+              },
+              {
+                "type": "text",
+                "content": "2. Focus / Focal Length\nFor a convex lens:\nparallel rays\n      ↓\n    LENS\n      ↓\nmeet at F\n\nDistance between:\nOptical centre → Focus\n\nis:\nFocal length\n\nSymbol:\nf"
+              }
+            ]
+          },
+          {
+            "title": "Lens in Water, Fog Scattering & Refraction",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. Lens in water — TRE concept\nTRE 2.0 asks about a convex lens with focal length 10 cm when immersed in water, with an option that it remains convex but has f > 10 cm.     BPSC TRE2.0 question paper by c…\n\nThe exam-level memory idea:\nIn water, the refractive contrast between glass and surroundings becomes smaller.\n\nTherefore lens power decreases.\n\nSince:\nPower P = 1/f\n\nIf power decreases:\nfocal length increases"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\nConvex lens\nAIR → stronger bending\n\nWATER → weaker bending\n         ↓\n      power ↓\n         ↓\n   focal length ↑"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Water weakens the lens → f increases"
+              },
+              {
+                "type": "text",
+                "content": "4. Fog and Scattering\nTRE 2.0 asks why distant objects cannot be seen clearly in fog even though water itself is transparent.\n\nThe paper points to:\nlight being scattered by fine water droplets.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nLight → • • • • fog droplets\n        ↗ ↓ ↖ ↘\n       scattered"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Fog = tiny droplets = scattering"
+              },
+              {
+                "type": "text",
+                "content": "5. Light entering another medium\nSuppose light travels:\nAIR → WATER\n\nThree things may change:\nspeed\nwavelength\ndirection\n\nBut the TRE paper asks which property of monochromatic light does not change between media:\nFrequency"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nAIR               WATER\n\nSpeed changes   ✅\nWavelength      ✅\nFrequency       ❌ stays same"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Source controls frequency.\n\nSo crossing a boundary doesn't change frequency."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d9-part-1",
+        "title": "Part I — English Relationship Vocabulary",
+        "sections": [
+          {
+            "title": "Family Tree Vocabulary",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 2.0 actually includes relationship-word questions such as husband's brother and mother's parents."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Family-tree picture\n              Grandparents\n                  │\n        ┌─────────┴─────────┐\n      Father              Mother\n\nMother's parents:\nMaternal grandparents\n\nFather's parents:\nPaternal grandparents"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "M = Mother = Maternal\nP = Papa   = Paternal"
+              },
+              {
+                "type": "text",
+                "content": "Husband's brother / wife's brother / spouse's sibling relation often uses:\nbrother-in-law\n\nHusband's sister / wife's sister:\nsister-in-law\n\nTRE 2.0 directly uses brother-in-law and maternal grandparents in its English section."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 9 Practice Test (21 Questions)",
+      "subtitle": "14 CS (Queues & Deque) • 5 Physics (Light & Lenses) • 2 English (Relationships)",
+      "timeLimit": "25–30 mins",
+      "questions": [
+        {
+          "id": "m-d9-q1",
+          "question": "Q1. Queue follows:",
+          "options": [
+            "LIFO",
+            "FIFO",
+            "Random access",
+            "Highest value first always",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A queue operates on the First-In, First-Out (FIFO) principle, where the first element inserted is the first to be deleted. Correct: (B) FIFO."
+        },
+        {
+          "id": "m-d9-q2",
+          "question": "Q2. In a standard Queue, insertion occurs at:",
+          "options": [
+            "Front",
+            "Rear",
+            "Middle",
+            "Top",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "New elements enter (ENQUEUE) at the REAR end of the queue. Correct: (B) Rear."
+        },
+        {
+          "id": "m-d9-q3",
+          "question": "Q3. Deletion from Queue normally occurs at:",
+          "options": [
+            "Rear",
+            "Middle",
+            "Front",
+            "Top",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Elements leave (DEQUEUE) from the FRONT end of the queue. Correct: (C) Front."
+        },
+        {
+          "id": "m-d9-q4",
+          "question": "Q4. Trying to delete from an empty Queue causes:",
+          "options": [
+            "Overflow",
+            "Underflow",
+            "Deadlock",
+            "Collision",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Attempting to remove or dequeue an element from an empty queue triggers an Underflow condition. Correct: (B) Underflow."
+        },
+        {
+          "id": "m-d9-q5",
+          "question": "Q5. Trying to insert into a full Queue causes:",
+          "options": [
+            "Underflow",
+            "Overflow",
+            "Starvation",
+            "Recursion",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Attempting to insert an element into an already full queue causes an Overflow condition. Correct: (B) Overflow."
+        },
+        {
+          "id": "m-d9-q6",
+          "question": "Q6. Another common name for Circular Queue is:",
+          "options": [
+            "Square Buffer",
+            "Ring Buffer",
+            "Tree Buffer",
+            "Stack Buffer",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A circular queue wraps its rear pointer back to the beginning to form a ring-like structure, commonly called a Ring Buffer. Correct: (B) Ring Buffer."
+        },
+        {
+          "id": "m-d9-q7",
+          "question": "Q7. Main advantage of Circular Queue over a simple linear array Queue is:",
+          "options": [
+            "Makes every operation recursive",
+            "Reuses freed array positions",
+            "Makes Queue LIFO",
+            "Removes need for Front",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a linear array queue, dequeued front slots are wasted once rear reaches MAX_SIZE-1. A circular queue reuses these freed positions, avoiding memory wastage. Correct: (B) Reuses freed array positions."
+        },
+        {
+          "id": "m-d9-q8",
+          "question": "Q8. If a circular queue has size 5 and current index is 4, (4+1)%5 gives:",
+          "options": [
+            "5",
+            "4",
+            "1",
+            "0",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "(4 + 1) % 5 = 5 % 5 = 0. The modulo operation wraps the index back to the beginning (0). Correct: (D) 0."
+        },
+        {
+          "id": "m-d9-q9",
+          "question": "Q9. DEQUE stands for:",
+          "options": [
+            "Direct Queue",
+            "Double Ended Queue",
+            "Dynamic Equal Queue",
+            "Distributed Queue",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "DEQUE stands for Double-Ended Queue. Correct: (B) Double Ended Queue."
+        },
+        {
+          "id": "m-d9-q10",
+          "question": "Q10. In a deque:",
+          "options": [
+            "Operations can occur at both ends",
+            "Only rear can be used",
+            "Only front can be used",
+            "It always follows strict LIFO",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A deque allows insertion and deletion operations to occur at both ends (Front and Rear). Correct: (A) Operations can occur at both ends."
+        },
+        {
+          "id": "m-d9-q11",
+          "question": "Q11. With a singly linked-list deque, deleting from the rear generally takes:",
+          "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In a singly linked list, there are no backward pointers; locating the node immediately preceding the rear to update its link to NULL requires traversing the entire list from the head, which takes O(n) time. Correct: (C) O(n)."
+        },
+        {
+          "id": "m-d9-q12",
+          "question": "Q12. Which is commonly best suited for implementing a Priority Queue?",
+          "options": [
+            "Stack",
+            "Binary Heap",
+            "Simple String",
+            "Hash only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Binary Heap allows insertion in O(log n) and extraction of highest/lowest priority element in O(log n), making it the ideal structure for Priority Queues. Correct: (B) Binary Heap."
+        },
+        {
+          "id": "m-d9-q13",
+          "question": "Q13. Priority Queue primarily removes an item according to:",
+          "options": [
+            "Only arrival time",
+            "Priority",
+            "Alphabetical order always",
+            "Random order",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a Priority Queue, items are removed according to their assigned priority (e.g. emergency room triage) rather than simply arrival time. Correct: (B) Priority."
+        },
+        {
+          "id": "m-d9-q14",
+          "question": "Q14. Balancing parentheses/symbols is most commonly associated with:",
+          "options": [
+            "Queue",
+            "Stack",
+            "Priority Queue",
+            "Circular Queue",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Balancing symbols matches the most recently opened symbol with the next incoming closed symbol, which relies on the LIFO behavior of a Stack. Correct: (B) Stack."
+        },
+        {
+          "id": "m-d9-q15",
+          "question": "Q15. A convex lens is primarily a:",
+          "options": [
+            "Diverging lens",
+            "Converging lens",
+            "Plane mirror",
+            "Opaque material",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A convex lens is thicker in the middle and converges parallel rays of light toward its principal focus (converging lens). Correct: (B) Converging lens."
+        },
+        {
+          "id": "m-d9-q16",
+          "question": "Q16. When an ordinary glass convex lens is immersed in water, its power generally:",
+          "options": [
+            "Increases greatly",
+            "Decreases",
+            "Becomes infinite",
+            "Never changes under any condition",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The relative refractive index of glass with respect to water is lower than with respect to air (weaker bending contrast). Thus, its refractive power decreases. Correct: (B) Decreases."
+        },
+        {
+          "id": "m-d9-q17",
+          "question": "Q17. If lens power decreases, focal length generally:",
+          "options": [
+            "Decreases",
+            "Increases",
+            "Becomes zero",
+            "Is unrelated",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Power and focal length are inversely proportional: P = 1 / f. As power decreases, focal length increases. Correct: (B) Increases."
+        },
+        {
+          "id": "m-d9-q18",
+          "question": "Q18. Reduced visibility in fog is mainly due to:",
+          "options": [
+            "Reflection only from the ground",
+            "Scattering by tiny water droplets",
+            "Complete absorption of all light",
+            "Water becoming black",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Fog consists of fine suspended water droplets that scatter light rays in all directions, obscuring distant objects. Correct: (B) Scattering by tiny water droplets."
+        },
+        {
+          "id": "m-d9-q19",
+          "question": "Q19. When monochromatic light passes from one transparent medium to another, which remains unchanged?",
+          "options": [
+            "Speed",
+            "Wavelength",
+            "Frequency",
+            "Direction in every case",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Frequency is determined exclusively by the light source and remains unchanged across different media, while speed and wavelength change together according to v = fλ. Correct: (C) Frequency."
+        },
+        {
+          "id": "m-d9-q20",
+          "question": "Q20. Mother's parents are:",
+          "options": [
+            "Paternal grandparents",
+            "Maternal grandparents",
+            "Parents-in-law",
+            "Cousins",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Parents of one's mother are referred to as Maternal grandparents (M = Mother = Maternal). Correct: (B) Maternal grandparents."
+        },
+        {
+          "id": "m-d9-q21",
+          "question": "Q21. Husband's brother is commonly called:",
+          "options": [
+            "Brother-in-law",
+            "Maternal uncle",
+            "Nephew",
+            "Cousin only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The brother of one's spouse (husband or wife) is called a brother-in-law. Correct: (A) Brother-in-law."
+        }
+      ]
+    }
   }
 ];
 
