@@ -7330,6 +7330,549 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 13,
+    "dayId": "day-13",
+    "badge": "Day 13",
+    "title": "TRE 4.0 — Day 13",
+    "unit": "Part III (CS) • Searching, Sorting & Big-O • Biology (Eye, Reproduction) & Articles",
+    "targetTime": "25–30 mins read + 22 MCQs test",
+    "summary": "Today we complete an important DSA block: Searching (Linear vs Binary Search), Sorting (Bubble, Selection, Insertion, Merge Sort), Big-O Notation & Complexity growth, Biology (Human Eye Retina, Reproductive System, Anther, Budding, Antacid), and English Articles (a, an, the).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Linear Search, Binary Search, Bubble, Selection, Insertion, Merge Sort, Big-O",
+        "goal": "Linear O(n), Binary O(log n), Bubble/Selection/Insertion O(n²), Merge Sort Divide & Conquer O(n log n), Big-O upper bound"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Biology: Human eye, reproduction, budding, antacid",
+        "goal": "Retina screen, Vas deferens male, Anther pollen, Yeast budding, Antacid indigestion"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Articles: a, an, the",
+        "goal": "Vowel sound 'an', consonant sound 'a', specific 'the'"
+      }
+    ],
+    "introNote": "Your TRE 3.0 paper directly asks about Binary Search complexity, Big-O, Divide & Conquer, and Merge Sort.",
+    "parts": [
+      {
+        "partId": "d13-part-3-searching",
+        "title": "Part III — SEARCHING",
+        "sections": [
+          {
+            "title": "1. Linear Search",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "🧠 MENTAL PICTURE\nImagine looking for roll number 40:\n10   25   18   40   30\n↑\ncheck\n\n10   25   18   40   30\n     ↑\n    check\n\n10   25   18   40   30\n          ↑\n\n10   25   18   40   30\n               ↑\n              FOUND\n\nYou check elements one by one.\nLinear Search = Start → Check → Check → Check"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "LINEAR = LINE में चलते जाओ\n\nIt works even if the array is:\n40  10  70  25  5\n\nThat is:\nUnsorted data is okay."
+              },
+              {
+                "type": "text",
+                "content": "Time Complexity\nSuppose there are n elements.\n\nWorst case: target is last or absent.\n\nYou may check all:\nn elements\n\nSo:\nLinear Search = O(n)"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper memory\nLINEAR SEARCH\n     ↓\none by one\n     ↓\nO(n)"
+              }
+            ]
+          },
+          {
+            "title": "2. Binary Search & Comparison",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This one is much faster, but has an important condition:\nData must be SORTED."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nImagine finding page 700 in a 1000-page book.\n\nWould you start:\n1\n2\n3\n4\n5...\n\nNo.\n\nYou open approximately in the middle:\n1 ---------------- 500 ---------------- 1000\n\n700 > 500.\n\nThrow away the left half:\n500 ----------------------------- 1000\n\nAgain check middle.\n\nThat's Binary Search."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Binary Search = HALF, HALF, HALF"
+              },
+              {
+                "type": "diagram",
+                "content": "Binary Search Example\nFind 70:\n10  20  30  40  50  60  70  80\n\nMiddle:\n10 20 30 [40] 50 60 70 80\n\n70 > 40.\n\nIgnore left:\n50 60 [70] 80\n\nFound."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture\n100 items\n   ↓ half\n50\n   ↓ half\n25\n   ↓ half\n12\n   ↓\n6\n   ↓\n3\n   ↓\n1\n\nThat's why:\nBinary Search = O(log n)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Important TRE 3.0 trap",
+                "content": "Your TRE 3.0 paper asks:\n“The order of the binary search algorithm is ____”\n\nbut its displayed options are:\nN\nN log n\nN²\nMore than one\nNone\n\nThe paper does not show log n among the first three choices.\n\nStandard Computer Science result is:\nBinary Search = O(log n)\n\nSo do not memorize O(n log n) from that question.\n\nWith those displayed options, O(log n) corresponds to None of the above."
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "Linear vs Binary Search",
+                "content": "Linear Search: One by one | Sorted not required | O(n) | Slower for large data\nBinary Search: Divide into halves | Sorted required | O(log n) | Faster for sorted data\n\n🔥 Memory:\nLINEAR → LINE → O(n)\nBINARY → HALF → O(log n)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d13-part-3-sorting",
+        "title": "Part III — SORTING",
+        "sections": [
+          {
+            "title": "3. Bubble, 4. Selection & 5. Insertion Sort",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Sorting means arranging:\n50 10 40 20 30\n\ninto:\n10 20 30 40 50\n\nToday remember four main algorithms:\nBubble\nSelection\nInsertion\nMerge"
+              },
+              {
+                "type": "diagram",
+                "content": "3. Bubble Sort\n🧠 Mental picture\nImagine the largest bubble floating to the end.\n\nStart:\n5  3  8  2\n\nCompare neighbours.\n\n5 and 3:\n3  5  8  2\n\nCompare 5 and 8:\n3  5  8  2\n\nCompare 8 and 2:\n3  5  2  8\n            ↑\n       biggest reaches end\n\nAfter first pass:\nLargest element reaches its correct end position."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Bubble = Compare NEIGHBOURS\n\nBubble Sort\n    ↓\ncompare adjacent\n    ↓\nswap\n\nTypically: O(n²)"
+              },
+              {
+                "type": "diagram",
+                "content": "4. Selection Sort\n🧠 MENTAL PICTURE\nImagine a teacher choosing the smallest student first.\n\nArray:\n50 20 40 10 30\n\nFind minimum:\n10\n\nPut it first:\n10 | 20 40 50 30\n\nNow choose minimum from remaining:\n20\n\nThen:\n10 20 | 40 50 30\n\nContinue."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Selection Sort = SELECT minimum\n\nWhite-paper:\nFind smallest → put first → repeat\n\nComplexity: O(n²)"
+              },
+              {
+                "type": "diagram",
+                "content": "5. Insertion Sort\n🧠 MENTAL PICTURE\nImagine arranging playing cards in your hand.\n\nYou already have:\n10 30\n\nNew card:\n20\n\nWhere should it go?\n10 20 30\n\nYou insert it into the correct position."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Insertion Sort = Playing Cards\n\nExample:\n5 | 3 4 1\nInsert 3: 3 5 | 4 1\nInsert 4: 3 4 5 | 1\nInsert 1: 1 3 4 5"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Bubble vs Selection vs Insertion",
+                "content": "BUBBLE → Compare neighbours\nSELECTION → Find minimum\nINSERTION → Insert into sorted portion (Cards)\n\nSay aloud:\nBubble = Neighbour\nSelection = Minimum\nInsertion = Cards"
+              }
+            ]
+          },
+          {
+            "title": "6. Merge Sort & 7. Big-O Complexity",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is especially important because both TRE 2.0 and TRE 3.0 directly connect it with Divide and Conquer. TRE 2.0 asks which listed algorithm is divide-and-conquer, with Merge Sort among the options; TRE 3.0 explicitly asks which paradigm Merge Sort belongs to."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nStart:\n8  3  6  2\n\nDIVIDE\n8 3       6 2\n\nAgain:\n8   3     6   2\n\nCONQUER / sort small pieces\n3 8       2 6\n\nCOMBINE\n2 3 6 8\n\nSo:\n            8 3 6 2\n              ↓\n            DIVIDE\n          /         \\\n        8 3         6 2\n       /   \\       /   \\\n      8     3     6     2\n       \\   /       \\   /\n        3 8         2 6\n          \\         /\n           2 3 6 8"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Divide and Conquer",
+                "content": "Three words:\nDIVIDE → CONQUER → COMBINE\n\nMerge Sort: Divide and Conquer\nThis relationship is directly tested in TRE 3.0.\n\nMerge Sort Complexity:\nStandard result: O(n log n)"
+              },
+              {
+                "type": "text",
+                "content": "7. Big-O Notation\nTRE 3.0 directly asks what Big-O represents; its option B says:\nupper bound of an algorithm's runtime."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nThink of a speed-limit board:\nAlgorithm runtime\n       ↑\n   maximum growth\n       ↑\n      Big-O\n\nFor your exam:\nBig-O = Upper-bound growth"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "White-paper staircase",
+                "content": "O(1) → O(log n) → O(n) → O(n log n) → O(n²) → O(2ⁿ)\n\nMemory sentence:\nConstant → Log → Linear → nLogn → Square"
+              }
+            ]
+          },
+          {
+            "title": "Day 13 CS Master Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Close the notes and reproduce:\nSEARCH\n\nLinear\n→ one by one\n→ unsorted OK\n→ O(n)\n\nBinary\n→ sorted required\n→ half-half\n→ O(log n)\n\n\nSORT\n\nBubble\n→ neighbours\n\nSelection\n→ select minimum\n\nInsertion\n→ playing cards\n\nMerge\n→ divide & conquer\n→ O(n log n)\n\n\nBIG-O\n→ upper bound\n\nIf you can mentally see this page, the core concepts are ready."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d13-part-2",
+        "title": "Part II — General Science: Biology",
+        "sections": [
+          {
+            "title": "Human Eye, Reproduction, Budding & Antacids",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 3.0 paper contains several straightforward biology/science questions together: human eye, reproductive system, anther, budding, and medicine for indigestion."
+              },
+              {
+                "type": "diagram",
+                "content": "1. Human Eye\nObject\n  ↓\nLight\n  ↓\nEye\n  ↓\nRETINA\n  ↓\nImage\n\nFor TRE: Image forms on Retina\nMemory: Retina = Eye's screen (Projector → Screen; Eye lens → Retina)"
+              },
+              {
+                "type": "diagram",
+                "content": "2. Female Reproductive System\nFemale:\nOvary\nUterus\nFallopian tube\n\nVas deferens belongs to the male reproductive system, not female.\n\nMemory:\nOVARY → female ✅\nUTERUS → female ✅\nVAS DEFERENS → male ✅\n\nTRE 3.0 directly asks which is not part of the female reproductive system."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Flower & Plant Biology",
+                "content": "3. Anther:\nSTAMEN → ANTHER → POLLEN GRAINS\nMemory trick: Anther → Pollen\n\n4. Budding:\nAsexual reproduction in Yeast.\nMemory: Yeast grows a Bud"
+              },
+              {
+                "type": "callout",
+                "icon": "💊",
+                "title": "5. Indigestion",
+                "content": "TRE asks which type of medicine is used for indigestion.\n\nAnswer concept: Antacid\nToo much stomach acid → ANTACID\nMemory trick: Acid problem → Anti-acid → Antacid"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d13-part-1",
+        "title": "Part I — English Articles",
+        "sections": [
+          {
+            "title": "Rules for a, an, and the",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE papers repeatedly test a, an, and the.\n\nA / AN:\nChoose according to sound, not merely spelling.\n\nan actress ✅\nan hour ✅\n\na university ✅\na European ✅\n\nWhy?\nhour → starts with vowel SOUND\nuniversity → starts with \"you\" SOUND"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Sound Rules",
+                "content": "VOWEL SOUND     → AN\nCONSONANT SOUND → A"
+              },
+              {
+                "type": "text",
+                "content": "THE:\nUse the when talking about something specific/identified.\n\nExample:\nClose the door. (Specific known door)\n\nOr:\nAll the students... (A particular group of students)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 13 Practice Test (22 Questions)",
+      "subtitle": "14 CS (Searching, Sorting & Big-O) • 5 GS (Biology) • 3 English (Articles)",
+      "timeLimit": "25–30 mins",
+      "questions": [
+        {
+          "id": "m-d13-q1",
+          "question": "Q1. Linear Search normally checks elements:",
+          "options": [
+            "Randomly",
+            "One by one",
+            "Only from the middle",
+            "Using a heap",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Linear Search sequentially checks each element in the array one by one from the first to the last. Correct: (B) One by one."
+        },
+        {
+          "id": "m-d13-q2",
+          "question": "Q2. Worst-case time complexity of Linear Search is:",
+          "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In the worst case, the target element is at the end of the array or not present at all, requiring n comparisons: O(n). Correct: (C) O(n)."
+        },
+        {
+          "id": "m-d13-q3",
+          "question": "Q3. Binary Search normally requires the data to be:",
+          "options": [
+            "Encrypted",
+            "Sorted",
+            "Reversed only",
+            "Stored in a Stack",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Binary Search relies on comparing the key against the middle element to discard half of the array, which strictly requires the data to be Sorted. Correct: (B) Sorted."
+        },
+        {
+          "id": "m-d13-q4",
+          "question": "Q4. Standard time complexity of Binary Search is:",
+          "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Since the search space is divided by 2 in each comparison, the time complexity of Binary Search is O(log n). (Note: in TRE 3.0 question where log n was omitted from choices, 'None of the above' is the correct answer). Correct: (B) O(log n)."
+        },
+        {
+          "id": "m-d13-q5",
+          "question": "Q5. Which search repeatedly reduces the search space approximately by half?",
+          "options": [
+            "Linear Search",
+            "Binary Search",
+            "DFS",
+            "BFS",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Binary Search compares the target with the middle element and cuts the remaining candidate list in half at each step. Correct: (B) Binary Search."
+        },
+        {
+          "id": "m-d13-q6",
+          "question": "Q6. Bubble Sort primarily compares:",
+          "options": [
+            "Adjacent elements",
+            "Only first and last elements",
+            "Tree roots",
+            "Hash keys",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Bubble Sort repeatedly steps through the list, compares adjacent (neighboring) elements, and swaps them if they are in the wrong order. Correct: (A) Adjacent elements."
+        },
+        {
+          "id": "m-d13-q7",
+          "question": "Q7. Which memory sentence best describes Selection Sort?",
+          "options": [
+            "Divide into halves",
+            "Select the smallest and place it correctly",
+            "Visit vertices level by level",
+            "Follow links",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Selection Sort works by finding (selecting) the minimum element from the unsorted subarray and moving it to the beginning. Correct: (B) Select the smallest and place it correctly."
+        },
+        {
+          "id": "m-d13-q8",
+          "question": "Q8. Which algorithm is easiest to visualize as arranging playing cards in your hand?",
+          "options": [
+            "Bubble Sort",
+            "Merge Sort",
+            "Insertion Sort",
+            "Heap Sort",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Insertion Sort builds a sorted list element by element, exactly like arranging playing cards in a hand by inserting each card into its proper position. Correct: (C) Insertion Sort."
+        },
+        {
+          "id": "m-d13-q9",
+          "question": "Q9. Merge Sort follows which design paradigm?",
+          "options": [
+            "Greedy",
+            "Divide and Conquer",
+            "Only Dynamic Programming",
+            "Brute Force only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Merge Sort recursively divides the array into halves, sorts them, and merges the sorted halves, exemplifying the Divide and Conquer paradigm (tested in TRE 2.0 & TRE 3.0). Correct: (B) Divide and Conquer."
+        },
+        {
+          "id": "m-d13-q10",
+          "question": "Q10. Typical time complexity of Merge Sort is:",
+          "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n log n)",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Merge Sort has a consistent time complexity of O(n log n) in best, average, and worst cases because it divides in log n levels and takes O(n) work per level. Correct: (D) O(n log n)."
+        },
+        {
+          "id": "m-d13-q11",
+          "question": "Q11. According to the TRE 3.0 question, Big-O represents:",
+          "options": [
+            "Lower bound",
+            "Upper bound",
+            "Only exact runtime",
+            "Only average runtime",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Big-O notation describes the asymptotic upper bound on the growth rate of an algorithm's running time (tested in TRE 3.0). Correct: (B) Upper bound."
+        },
+        {
+          "id": "m-d13-q12",
+          "question": "Q12. Which order is correct from generally better growth to worse growth?",
+          "options": [
+            "O(n²) → O(n) → O(log n)",
+            "O(1) → O(log n) → O(n)",
+            "O(n) → O(1) → O(log n)",
+            "O(n log n) → O(1) → O(n)",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The hierarchy from best (fastest) to worse (slower) is: O(1) < O(log n) < O(n) < O(n log n) < O(n²). Correct: (B) O(1) → O(log n) → O(n)."
+        },
+        {
+          "id": "m-d13-q13",
+          "question": "Q13. Which algorithm can search an unsorted list directly without first sorting it?",
+          "options": [
+            "Binary Search",
+            "Linear Search",
+            "Merge Sort",
+            "Heap Sort",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Linear Search inspects elements sequentially one by one and does not require the input array to be pre-sorted. Correct: (B) Linear Search."
+        },
+        {
+          "id": "m-d13-q14",
+          "question": "Q14. Which pair is correctly matched?",
+          "options": [
+            "Binary Search → O(n²)",
+            "Linear Search → O(log n)",
+            "Merge Sort → O(n log n)",
+            "Selection Sort → O(log n)",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Merge Sort is correctly matched with O(n log n). Linear Search is O(n), Binary Search is O(log n), and Selection Sort is O(n²). Correct: (C) Merge Sort → O(n log n)."
+        },
+        {
+          "id": "m-d13-q15",
+          "question": "Q15. The image in the human eye is formed on the:",
+          "options": [
+            "Cornea",
+            "Iris",
+            "Retina",
+            "Pupil",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The eye lens focuses light onto the Retina, the light-sensitive sensory membrane at the back of the eyeball. Correct: (C) Retina."
+        },
+        {
+          "id": "m-d13-q16",
+          "question": "Q16. Which is not part of the female reproductive system?",
+          "options": [
+            "Ovary",
+            "Uterus",
+            "Vas deferens",
+            "Fallopian tube",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The vas deferens is an excretory duct of the male reproductive system that carries sperm from the testes (tested in TRE 3.0). Correct: (C) Vas deferens."
+        },
+        {
+          "id": "m-d13-q17",
+          "question": "Q17. Anther contains:",
+          "options": [
+            "Pollen grains",
+            "Roots",
+            "Seeds only",
+            "Sepals",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The anther is the pollen-bearing portion of the stamen (male floral organ) in plants. Correct: (A) Pollen grains."
+        },
+        {
+          "id": "m-d13-q18",
+          "question": "Q18. Budding commonly occurs in:",
+          "options": [
+            "Amoeba",
+            "Yeast",
+            "Plasmodium",
+            "Virus",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Yeast (and Hydra) reproduce asexually through the process of budding (tested in TRE 3.0). Correct: (B) Yeast."
+        },
+        {
+          "id": "m-d13-q19",
+          "question": "Q19. Which medicine is commonly used to neutralize excess stomach acid in indigestion?",
+          "options": [
+            "Antibiotic",
+            "Antacid",
+            "Analgesic",
+            "Vaccine",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Antacids (basic compounds like Mg(OH)₂ or Al(OH)₃) neutralize excess hydrochloric acid in the stomach to alleviate indigestion (tested in TRE 3.0). Correct: (B) Antacid."
+        },
+        {
+          "id": "m-d13-q20",
+          "question": "Q20. Choose the correct article: “She is ___ actress.”",
+          "options": [
+            "a",
+            "an",
+            "the",
+            "no article",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'actress' begins with a vowel sound (/æ/), which requires the article 'an'. Correct: (B) an."
+        },
+        {
+          "id": "m-d13-q21",
+          "question": "Q21. Choose the correct phrase:",
+          "options": [
+            "an university",
+            "a university",
+            "an European",
+            "a hour",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'university' begins with a consonant glide sound /juː/, requiring 'a' ('a university'). 'European' also begins with /juː/ and requires 'a'. 'hour' begins with a vowel sound and requires 'an'. Correct: (B) a university."
+        },
+        {
+          "id": "m-d13-q22",
+          "question": "Q22. Choose the correct phrase:",
+          "options": [
+            "a honest man",
+            "an honest man",
+            "the honest man in every situation",
+            "an university student",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'honest' starts with a silent 'h' and a vowel sound /ɒ/, requiring the indefinite article 'an': 'an honest man'. Correct: (B) an honest man."
+        }
+      ]
+    }
   }
 ];
 
