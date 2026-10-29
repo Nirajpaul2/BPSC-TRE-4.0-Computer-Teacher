@@ -150,6 +150,9 @@
     let html = `
       <div class="practice-hub">
         <header class="practice-header">
+          <div class="practice-top-highlight">
+            <span class="red-bullet-pulse">●</span> 6,000 Questions Practice • 40 Full-Length BPSC Mock Tests
+          </div>
           <h2 class="practice-title"><span>📝</span> BPSC TRE Computer Science Practice Sets</h2>
           <p class="practice-subtitle">
             40 Full-Length Simulation Tests (150 Questions · 150 Marks · 150 Minutes) strictly modeled on the BPSC TRE exam pattern: Part I Language (30 Qs), Part II General Studies (40 Qs), and Part III Computer Science (80 Qs).
@@ -178,11 +181,11 @@
                 <div class="practice-stat-lbl">Exam Duration</div>
               </div>
             </div>
-            <div class="practice-stat-card">
-              <div class="practice-stat-icon">🏆</div>
+            <div class="practice-stat-card" style="border-left: 3px solid #ef4444;">
+              <div class="practice-stat-icon" style="background:#fee2e2; color:#ef4444;"><span class="red-bullet">●</span></div>
               <div>
-                <div class="practice-stat-val">150 Qs</div>
-                <div class="practice-stat-lbl">Questions per Set</div>
+                <div class="practice-stat-val" style="color:#dc2626;">6,000 Qs</div>
+                <div class="practice-stat-lbl">Practice Pool</div>
               </div>
             </div>
           </div>
