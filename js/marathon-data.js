@@ -18506,6 +18506,571 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 33,
+    "dayId": "day-33",
+    "badge": "Day 33",
+    "title": "TRE 4.0 — Day 33",
+    "unit": "Part III (CS) • Computer Networks Deep Dive: OSI vs TCP/IP, TCP vs UDP, Ports, Protocols (DNS/DHCP/ARP) & IPv4 Subnetting",
+    "targetTime": "20–25 mins read + 25 mins test",
+    "summary": "Computer Networks Deep Dive (Paper-Backed & Standard Subnetting Expansion): OSI 7-Layer Deep Model (Sender vs Receiver data flow, Physical bits, Data Link frames & MAC, Network packets & IP routing, Transport end-to-end TCP/UDP & ports, Upper layers), OSI vs 4-Layer TCP/IP Model (Application, Transport, Internet, Network Access mapping), Transport Protocols (TCP connection-oriented 3-way handshake SYN/SYN-ACK/ACK vs UDP connectionless, Socket IP + Port communication endpoint), Standard High-Yield Port Numbers (HTTP 80, HTTPS 443, FTP 21, SMTP 25, DNS 53, DHCP 67/68), Core Network Protocols (DNS domain-to-IP phonebook, DHCP automatic network configuration, ARP IPv4-to-MAC resolution), IPv4 Addressing & CIDR Subnetting (32 bits, 4 octets of 8 bits, Network vs Host partition, /24 prefix = 255.255.255.0 with 8 host bits = 256 total / 254 usable, /26 prefix = 6 host bits = 64 total / 62 usable, prefix table /24 to /28), 6 Critical BPSC Exam Traps, Day 33 White-Paper Master Sheet, and 25-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "OSI 7 Layers & TCP/IP Model Mapping",
+        "goal": "Master sender/receiver flow, layer PDUs (Bits, Frames, Packets, Segments), and OSI to TCP/IP 4-layer mapping"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Transport Protocols, Sockets & Port Numbers",
+        "goal": "Differentiate TCP vs UDP, master 3-way handshake, Socket (IP+Port), and high-yield ports (80, 443, 21, 25, 53)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Protocols & IPv4 / CIDR Subnet Calculations",
+        "goal": "Calculate host bits (32 - prefix), total addresses (2^h), and usable hosts (2^h - 2) for /24 through /28 subnets"
+      }
+    ],
+    "introNote": "Today we go one level deeper than Day 32. Your TRE 3.0 directly asks about router, OSI routing/forwarding, switch, SMTP, and subnet mask. TRE 2.0 directly tests TCP as connection-oriented, three-way handshake, sockets, wireless media, and optical fiber. TCP/IP layer mapping, port numbers, DHCP/ARP details, IPv4/CIDR and subnet calculations below are standard networking expansion around those paper-backed topics.",
+    "parts": [
+      {
+        "title": "Part III — The OSI Reference Model & The 4-Layer TCP/IP Model",
+        "sections": [
+          {
+            "title": "1. OSI Model — The Big Mental Picture & Sender/Receiver Flow",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Sending a Parcel Across Cities",
+                "content": "Imagine sending a parcel from your house to another city.\n\nAt your side (Sender), information moves down:\nAPPLICATION\n    ↓\nPRESENTATION\n    ↓\nSESSION\n    ↓\nTRANSPORT\n    ↓\nNETWORK\n    ↓\nDATA LINK\n    ↓\nPHYSICAL\n\nAt the receiver side, information moves up:\nPHYSICAL\n    ↓\nDATA LINK\n    ↓\nNETWORK\n    ↓\nTRANSPORT\n    ↓\nSESSION\n    ↓\nPRESENTATION\n    ↓\nAPPLICATION"
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nOSI has 7 layers:\n7 — Application\n6 — Presentation\n5 — Session\n4 — Transport\n3 — Network\n2 — Data Link\n1 — Physical\n\nMemory sentence:\nAll People Seem To Need Data Processing"
+              }
+            ]
+          },
+          {
+            "title": "2. Physical, 3. Data Link & 4. Network Layers (The Routing Core & TRE 3.0 Trap)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "2. Layer 1 — Physical\nThink: BITS → Cable / Fiber / Radio Signal\nConcerned with physical transmission.\nMemory: Physical → Bits.\nExamples: Cable, Connector, Electrical/optical signal.\n\n3. Layer 2 — Data Link\nMental:\nMAC Address → FRAME → SWITCH\nMemory: Data Link → Frame + MAC + Switch.\nThink: delivery inside the local network.\n\n4. Layer 3 — Network (Crucial Exam Anchor)\nThis is one of your most important exam facts:\nIP Address → PACKET → ROUTER → Routing\nMemory: Network → Packet + IP + Router"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "TRE 3.0 Routing Layer Exam Trap",
+                "content": "TRE 3.0 asks which OSI layer performs routing and forwarding.\nStandard networking answer is Network Layer, but that option is absent from the printed choices, so \"None of the above\" is logically required for that exact paper question.\n\n⚠️ Do not memorize Data Link or Transport as the routing layer!"
+              }
+            ]
+          },
+          {
+            "title": "5. Transport, 6. Upper Layers & 7. OSI vs TCP/IP Model Mapping",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "5. Layer 4 — Transport\nThink: Application A ↕ TCP/UDP ↕ Application B\nImportant concepts: TCP, UDP, Ports.\nMemory: Transport → TCP/UDP + Ports.\n\n6. Upper Layers (Basic Exam Recall)\n• Application → User/network services\n• Presentation → Data representation, encoding/encryption/compression concept\n• Session → Establish/manage communication session (Don't spend excessive time here)."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "OSI Master Memory",
+                "content": "Application  → User service\nPresentation → Format / Encryption\nSession      → Session coordination\nTransport    → TCP/UDP / Ports\nNetwork      → IP / Router / Packet\nData Link    → MAC / Switch / Frame\nPhysical     → Bits / Cable"
+              },
+              {
+                "type": "text",
+                "content": "7. TCP/IP Model (Standard Networking Expansion)\nThe retrieved TRE question mentions TCP/IP networking but does not itself ask for the TCP/IP layer model.\nA common four-layer representation is:\n• APPLICATION\n• TRANSPORT\n• INTERNET\n• NETWORK ACCESS"
+              },
+              {
+                "type": "callout",
+                "icon": "🗺️",
+                "title": "OSI vs TCP/IP Model Mapping",
+                "content": "OSI Model                        TCP/IP Model\n───────────────────────────────  ───────────────────────────────\nApplication    ┐\nPresentation   ├───(Merged)────→  Application Layer\nSession        ┘\n\nTransport      ────────────────→  Transport Layer\n\nNetwork        ────────────────→  Internet Layer\n\nData Link      ┐\nPhysical       ├───(Merged)────→  Network Access Layer\n\nMemory: TCP/IP = 4-layer practical model"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Transport Layer: TCP vs UDP, Handshake, Sockets & Port Numbers",
+        "sections": [
+          {
+            "title": "8. TCP vs UDP Deep Comparison & 9. TCP Three-Way Handshake",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "8. TCP vs UDP\n\nTCP:\nTRE 2.0 directly treats TCP as:\n• connection-oriented\n• using a three-way handshake\n• receiving application data as a stream.\nMental: Connect → Send reliably → Close.\nMemory: TCP = connection + reliability.\n\nUDP (Standard Expansion):\nNo connection setup → send datagram → lower overhead.\nMemory: UDP = fast/simple, connectionless."
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "TCP vs UDP Comparison Table",
+                "content": "Feature               | TCP                        | UDP\n──────────────────────|────────────────────────────|──────────────────────────────\nConnection Type       | Connection-oriented        | Connectionless\nReliability           | Reliability mechanisms     | No delivery guarantee\nData Stream           | Ordered byte stream        | Independent datagrams\nOverhead              | More header & ACK overhead | Lower overhead\nHandshake             | 3-Way Handshake (SYN..ACK) | No handshake\nMental Analogy        | Phone call ☎️              | Postcard ✉️"
+              },
+              {
+                "type": "callout",
+                "icon": "🤝",
+                "title": "9. TCP Three-Way Handshake (TRE 2.0 Core Anchor)",
+                "content": "TRE 2.0 directly mentions a three-way handshake.\n\nCLIENT                               SERVER\n\n SYN   ─────────────────────────────→\n\n       ←───────────────────────────── SYN-ACK\n\n ACK   ─────────────────────────────→\n\nMemory: SYN → SYN-ACK → ACK"
+              }
+            ]
+          },
+          {
+            "title": "10. What is a Port?, 11. Socket & 12. High-Yield Port Numbers",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Port Numbers",
+                "content": "IP address gets you to the building.\nPort gets you to the room.\n\n• IP Address → Which computer?\n• PORT       → Which application/service?\n\nExample Server:\nServer\n│\n├── Web service  (Port 80/443)\n├── Mail service (Port 25)\n└── DNS service  (Port 53)\n\nEach service can be associated with a port.\nMemory: IP → machine | Port → application"
+              },
+              {
+                "type": "text",
+                "content": "11. Socket (TRE 2.0 Anchor)\nTRE 2.0 directly asks for the endpoint of an inter-process communication flow across a network: Socket.\n\nSimplified mental model:\nIP + Port → Socket endpoint\nMemory: Socket = network communication endpoint."
+              },
+              {
+                "type": "callout",
+                "icon": "🎯",
+                "title": "12. High-Yield Port Numbers (Memorize Only These)",
+                "content": "These are standard networking facts:\n• HTTP   → Port 80\n• HTTPS  → Port 443\n• FTP    → Port 21 (control)\n• SMTP   → Port 25\n• DNS    → Port 53\n• DHCP   → Server: 67 | Client: 68\n\nDon't memorize hundreds of ports!\nWhite-paper trick:\nWeb:  80 / 443\nMail: 25\nDNS:  53\nFTP:  21"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Core Network Protocols: DNS, DHCP & ARP",
+        "sections": [
+          {
+            "title": "13. DNS, 14. DHCP & 15. ARP Resolution",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — DNS Resolution",
+                "content": "You know: google.com\nbut networking hardware needs an IP address:\ngoogle.com ───(DNS)───→ IP Address\n\nSimple concept: DNS converts/resolves domain names to IP addresses.\nMemory: DNS = Internet phonebook"
+              },
+              {
+                "type": "text",
+                "content": "14. DHCP (Dynamic Host Configuration Protocol)\nA new phone joins Wi-Fi:\nPhone → \"I need network settings\" → DHCP → IP configuration.\nMemory: DHCP = automatically gives network configuration/IP.\nWithout automatic configuration, an administrator would need to manually configure static addressing.\n\n15. ARP (Address Resolution Protocol)\nStandard IPv4 networking concept:\nI know IPv4 address → ARP → Find physical MAC address.\nMemory: ARP = IPv4 → MAC.\n(Be careful with this one. Do not reverse it)."
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Master Protocol Triad: Say Aloud 3 Times",
+                "content": "DNS  → NAME → IP\nDHCP → GIVE IP / network config\nARP  → IPv4 → MAC"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — IPv4 Addressing & CIDR Subnetting Calculations",
+        "sections": [
+          {
+            "title": "16. IPv4 Structure & 17. Network Part vs Host Part",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "16. IPv4 Address\nIPv4 has: 32 bits.\nUsually written as four decimal octets: 192.168.1.25\nEach octet = 8 bits.\nTherefore: 8 + 8 + 8 + 8 = 32 bits.\nMemory: IPv4 = 4 × 8 = 32 bits.\n\n17. Network Part vs Host Part (Direct TRE 3.0 Anchor)\nThis connects directly to the TRE 3.0 subnet-mask question.\nAn IP address conceptually contains: NETWORK | HOST\nThe subnet mask helps determine where that division occurs.\nTRE 3.0 specifically asks the purpose of a subnet mask, with identifying the network portion of an IP address as the relevant concept."
+              }
+            ]
+          },
+          {
+            "title": "18. /24 Meaning, 19. /24 Subnet Mask & 20–21. Formulas for Host Bits & Addresses",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🔢",
+                "title": "18. /24 Meaning & 19. Subnet Mask Representation",
+                "content": "Example: 192.168.1.25/24\n/24 means: first 24 bits are the network prefix.\n\nMental:\nIPv4 = 32 bits total\n/24 → 24 Network bits + 8 Host bits\n\nSubnet Mask in Binary:\n11111111.11111111.11111111.00000000\n  (255)     (255)     (255)      (0)\nCount the ones: 8 + 8 + 8 = 24 ones.\nThus: /24 = 255.255.255.0"
+              },
+              {
+                "type": "text",
+                "content": "20. Find Host Bits\nEasy formula:\nHost bits (h) = 32 - prefix\n• Example /24: Host bits = 32 - 24 = 8\n• Example /26: Host bits = 32 - 26 = 6\n\n21. Number of Addresses Calculation\nIf there are h host bits:\n• Total addresses = 2^h\n  For /24: h = 8 → 2^8 = 256 total addresses\n• Traditional IPv4 usable-host calculation:\n  Usable hosts = 2^h - 2\n  For /24: 256 - 2 = 254 usable hosts\n  (Subtract 2 because traditionally one address is the Network ID and one is the Broadcast address).\n\nMemory:\nTOTAL  → 2^h\nUSABLE → 2^h - 2"
+              }
+            ]
+          },
+          {
+            "title": "22. /26 Calculation Example, 23. Easy Prefix Table & 24. Protocol Memory Sheet",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧮",
+                "title": "22. /26 Calculation Walkthrough",
+                "content": "Given prefix: /26\n1. Host bits = 32 - 26 = 6\n2. Total addresses = 2^6 = 64\n3. Traditional usable hosts = 64 - 2 = 62\n\nMemory: /26 → 6 host bits → 64 total → 62 usable"
+              },
+              {
+                "type": "callout",
+                "icon": "📊",
+                "title": "23. Easy Prefix Table (High-Yield Subnets)",
+                "content": "Prefix | Host Bits (32 - p) | Total Addresses (2^h) | Traditional Usable (2^h - 2)\n───────|────────────────────|───────────────────────|──────────────────────────────\n/24    | 8                  | 256                   | 254\n/25    | 7                  | 128                   | 126\n/26    | 6                  | 64                    | 62\n/27    | 5                  | 32                    | 30\n/28    | 4                  | 16                    | 14"
+              },
+              {
+                "type": "text",
+                "content": "24. Protocol Memory Sheet (Paper Anchor Consolidation)\nTRE 3.0 asks SMTP for sending email.\nBuild around that:\n• SMTP  → Send Email\n• FTP   → File Transfer\n• HTTP  → Web\n• HTTPS → Secure Web\n• DNS   → Name → IP\n• DHCP  → Give IP / Configuration\n• ARP   → IPv4 → MAC\n• TCP   → Reliable connection-oriented\n• UDP   → Connectionless"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "6 Critical BPSC Exam Traps",
+                "content": "Trap 1: Router → Network Layer (NOT Data Link).\nTrap 2: Switch → Data Link | Router → Network.\nTrap 3: DNS → Domain → IP | ARP → IPv4 → MAC (Do not swap them!).\nTrap 4: SMTP → SEND mail (Don't choose FTP or HTTP).\nTrap 5: Subnet Mask → identifies network/host split (NOT for converting domain names).\nTrap 6: TCP → connection-oriented | UDP → connectionless."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 33 White-Paper Master Sheet & Rapid Recall",
+        "sections": [
+          {
+            "title": "White-Paper Mental Diagram & High-Yield Summary",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 33 White-Paper Master Sheet",
+                "content": "Close notes and reproduce:\n\nOSI 7 LAYERS:\n7 Application\n6 Presentation\n5 Session\n4 Transport\n3 Network\n2 Data Link\n1 Physical\n\nCORE LAYER MAPPINGS:\nL4 → TCP / UDP / PORT\nL3 → IP / ROUTER / PACKET\nL2 → MAC / SWITCH / FRAME\nL1 → BITS\n\nKEY PROTOCOL TRUTHS:\nDNS  → NAME → IP\nDHCP → GIVE IP\nARP  → IPv4 → MAC\nSMTP → SEND EMAIL\n\nIPv4 & SUBNETTING:\nIPv4 → 32 bits (4 octets)\n/24  → 24 network, 8 host → 256 total → 254 usable\n/26  → 26 network, 6 host → 64 total → 62 usable\n\nTCP HANDSHAKE:\nSYN → SYN-ACK → ACK"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 33 Checkpoint Test",
+      "subtitle": "Computer Networks: OSI + TCP/IP + TCP vs UDP + Ports + DNS/DHCP/ARP + IPv4/Subnetting",
+      "questions": [
+        {
+          "id": "m-d33-q1",
+          "question": "Q1. Which OSI layer is responsible for routing packets?",
+          "options": [
+            "Physical",
+            "Data Link",
+            "Network",
+            "Presentation",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Network Layer (Layer 3) is responsible for logical IP addressing, packet forwarding, and path determination/routing. Correct: (C)."
+        },
+        {
+          "id": "m-d33-q2",
+          "question": "Q2. Which is primarily associated with the Data Link Layer?",
+          "options": [
+            "MAC address",
+            "IP routing",
+            "TCP port",
+            "DNS",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Data Link Layer (Layer 2) is responsible for framing, physical MAC addresses, and switches within local area segments. Correct: (A)."
+        },
+        {
+          "id": "m-d33-q3",
+          "question": "Q3. Which is primarily associated with the Network Layer?",
+          "options": [
+            "Router and IP",
+            "Switch and MAC only",
+            "SMTP only",
+            "Keyboard",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Routers and IP addresses operate at Layer 3 (Network Layer) to navigate packets across interconnected networks. Correct: (A)."
+        },
+        {
+          "id": "m-d33-q4",
+          "question": "Q4. TCP and UDP are mainly associated with:",
+          "options": [
+            "Physical Layer",
+            "Data Link Layer",
+            "Network Layer",
+            "Transport Layer",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "TCP and UDP are the primary transport protocols operating at Layer 4 (Transport Layer) to provide end-to-end communication. Correct: (D)."
+        },
+        {
+          "id": "m-d33-q5",
+          "question": "Q5. Which TCP/IP layer roughly corresponds to the OSI Network Layer?",
+          "options": [
+            "Application",
+            "Internet",
+            "Transport",
+            "Network Access",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In the standard 4-layer TCP/IP architectural model, the Internet Layer directly corresponds to the OSI Network Layer (handling IP routing). Correct: (B)."
+        },
+        {
+          "id": "m-d33-q6",
+          "question": "Q6. TCP is:",
+          "options": [
+            "Connection-oriented",
+            "Connectionless only",
+            "A routing protocol",
+            "A file system",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TCP (Transmission Control Protocol) is connection-oriented; it establishes a logical connection via a 3-way handshake before transmitting data. Correct: (A)."
+        },
+        {
+          "id": "m-d33-q7",
+          "question": "Q7. UDP is generally:",
+          "options": [
+            "Connection-oriented",
+            "Connectionless",
+            "A database protocol",
+            "A subnet mask",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "UDP (User Datagram Protocol) is connectionless; it transmits independent datagrams without establishing a prior connection or delivery guarantee. Correct: (B)."
+        },
+        {
+          "id": "m-d33-q8",
+          "question": "Q8. Correct TCP handshake order is:",
+          "options": [
+            "ACK → SYN → SYN-ACK",
+            "SYN → SYN-ACK → ACK",
+            "SYN-ACK → SYN → ACK",
+            "ACK → ACK → SYN",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The TCP 3-way handshake sequence is: Client sends SYN → Server responds with SYN-ACK → Client acknowledges with ACK. Correct: (B)."
+        },
+        {
+          "id": "m-d33-q9",
+          "question": "Q9. A port number primarily identifies:",
+          "options": [
+            "Network application/service on a host",
+            "Physical cable",
+            "MAC manufacturer only",
+            "Subnet mask",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "While an IP address identifies the machine/host, a port number identifies the specific application or process service running on that host. Correct: (A)."
+        },
+        {
+          "id": "m-d33-q10",
+          "question": "Q10. Which is a network communication endpoint?",
+          "options": [
+            "Socket",
+            "Stack only",
+            "Array",
+            "Heap",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In networking and tested in TRE 2.0, an endpoint of an inter-process communication flow across a network is called a Socket (IP address + Port number). Correct: (A)."
+        },
+        {
+          "id": "m-d33-q11",
+          "question": "Q11. Standard HTTP port is:",
+          "options": [
+            "21",
+            "25",
+            "53",
+            "80",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Standard unencrypted web communication over HTTP uses well-known TCP port 80. Correct: (D)."
+        },
+        {
+          "id": "m-d33-q12",
+          "question": "Q12. Standard HTTPS port is:",
+          "options": [
+            "110",
+            "443",
+            "25",
+            "21",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Secure web communication over HTTPS (HTTP encrypted via TLS/SSL) uses well-known port 443. Correct: (B)."
+        },
+        {
+          "id": "m-d33-q13",
+          "question": "Q13. SMTP is mainly used to:",
+          "options": [
+            "Send email",
+            "Resolve domain names",
+            "Assign IP addresses",
+            "Map IPv4 to MAC",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SMTP (Simple Mail Transfer Protocol, port 25) is specifically designed and used to send email messages across networks (tested in TRE 3.0). Correct: (A)."
+        },
+        {
+          "id": "m-d33-q14",
+          "question": "Q14. DNS performs:",
+          "options": [
+            "Domain name → IP address resolution",
+            "IPv4 → MAC resolution",
+            "Automatic IP allocation",
+            "File transfer",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DNS (Domain Name System, port 53) translates user-friendly hostnames/domain names into numerical IP addresses. Correct: (A)."
+        },
+        {
+          "id": "m-d33-q15",
+          "question": "Q15. DHCP is mainly associated with:",
+          "options": [
+            "Automatic IP/network configuration",
+            "Sending email",
+            "Web encryption",
+            "MAC-to-domain conversion",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DHCP (Dynamic Host Configuration Protocol, ports 67/68) automatically allocates IP addresses and network parameters to client devices joining a network. Correct: (A)."
+        },
+        {
+          "id": "m-d33-q16",
+          "question": "Q16. ARP is best remembered as:",
+          "options": [
+            "Domain → IP",
+            "IPv4 → MAC",
+            "MAC → Domain",
+            "Port → IP",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "ARP (Address Resolution Protocol) resolves a known logical IPv4 address to its corresponding physical hardware MAC address. Correct: (B)."
+        },
+        {
+          "id": "m-d33-q17",
+          "question": "Q17. IPv4 address length is:",
+          "options": [
+            "16 bits",
+            "32 bits",
+            "48 bits",
+            "64 bits",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An IPv4 address consists of exactly 32 bits (4 octets of 8 bits each). Correct: (B)."
+        },
+        {
+          "id": "m-d33-q18",
+          "question": "Q18. An IPv4 address contains how many 8-bit octets?",
+          "options": [
+            "2",
+            "4",
+            "6",
+            "8",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An IPv4 address is formatted as 4 decimal octets separated by dots (e.g., 192.168.1.1), where each octet is 8 bits (4 × 8 = 32 bits). Correct: (B)."
+        },
+        {
+          "id": "m-d33-q19",
+          "question": "Q19. /24 means:",
+          "options": [
+            "24 host bits",
+            "24 network-prefix bits",
+            "24 total IP addresses",
+            "IPv4 has 24 total bits",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In CIDR slash notation, /24 indicates that the first 24 bits represent the network prefix, leaving 32 - 24 = 8 bits for host addressing. Correct: (B)."
+        },
+        {
+          "id": "m-d33-q20",
+          "question": "Q20. A /24 network has how many host bits?",
+          "options": [
+            "4",
+            "6",
+            "8",
+            "24",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Using the formula: Host bits = 32 - prefix = 32 - 24 = 8 host bits. Correct: (C)."
+        },
+        {
+          "id": "m-d33-q21",
+          "question": "Q21. /24 corresponds to which subnet mask?",
+          "options": [
+            "255.0.0.0",
+            "255.255.0.0",
+            "255.255.255.0",
+            "255.255.255.255",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "/24 represents 24 contiguous ones followed by 8 zeros: 11111111.11111111.11111111.00000000 = 255.255.255.0. Correct: (C)."
+        },
+        {
+          "id": "m-d33-q22",
+          "question": "Q22. A /26 prefix leaves how many host bits?",
+          "options": [
+            "4",
+            "6",
+            "8",
+            "26",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Host bits = 32 - prefix = 32 - 26 = 6 host bits. Correct: (B)."
+        },
+        {
+          "id": "m-d33-q23",
+          "question": "Q23. Using the traditional subnet formula, /26 has how many usable host addresses?",
+          "options": [
+            "30",
+            "62",
+            "64",
+            "126",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "With 6 host bits: Total addresses = 2^6 = 64. Usable hosts = 2^h - 2 = 64 - 2 = 62 (excluding network ID and broadcast). Correct: (B)."
+        },
+        {
+          "id": "m-d33-q24",
+          "question": "Q24. Which matching is correct?",
+          "options": [
+            "DNS → Name to IP",
+            "DHCP → Automatic IP configuration",
+            "ARP → IPv4 to MAC",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three matchings are correct: DNS resolves name to IP, DHCP assigns IP configurations, and ARP resolves IPv4 to MAC hardware address. Hence (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d33-q25",
+          "question": "Q25. In the exact TRE 3.0 OSI question, the true routing layer is absent from the printed A–C choices. Therefore the logically appropriate paper option is:",
+          "options": [
+            "Data Link Layer",
+            "Transport Layer",
+            "Physical Layer",
+            "More than one of A–C",
+            "None of the above"
+          ],
+          "correctAnswer": 4,
+          "explanation": "In the actual TRE 3.0 question, the options listed were Data Link, Transport, and Physical. Since routing and forwarding are strictly performed by the Network Layer (which was missing from the choices), the logically appropriate answer on the paper is (E) None of the above. Correct: (E)."
+        }
+      ]
+    }
   }
 ];
 
