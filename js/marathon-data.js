@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 24 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 25 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -14149,6 +14149,847 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "'early' begins with the vowel sound /ɜː/, taking the article 'an': 'an early morning walk'. Correct: (B) an early morning walk."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 25,
+    "dayId": "day-25",
+    "badge": "Day 25",
+    "title": "TRE 4.0 — Day 25",
+    "unit": "Part III (CS) • Full OS Milestone Revision: Process/PCB, CPU Scheduling, Memory Management (Paging, Frames, TLB, Thrashing), Concurrency (Mutex, Semaphore, Deadlock MHNC), File Systems & Disk Scheduling (FCFS 640) • GS • English",
+    "targetTime": "20–25 mins read + 45 mins test",
+    "summary": "Operating Systems Comprehensive Milestone Revision & 50-Question Checkpoint: Process vs Program, PCB, Process States (New, Ready, Running, Waiting, Terminated), CPU Scheduling (FCFS, SJF, Round Robin, Priority, Preemption), Threads & Shared Resources (Code/Data vs Stack/PC), Memory Management (Paging, Frames, Page Table, 2ⁿ Offset calculation: 4 KB = 12 bits, 8 KB = 13 bits), TLB associative cache, Page Faults, Thrashing, Segmentation, Internal vs External Fragmentation, Synchronization (Race Condition, Critical Section, Mutex lock, Semaphore wait/signal, Binary vs Counting), Deadlock (Coffman conditions MHNC, Prevention, Banker's Algorithm avoidance, Deadlock vs Starvation), File Systems (NTFS, FAT32, HFS+), File Operations (Create, Delete, Rename), Interrupts (Hardware/Software, ISR), and Disk Scheduling (FCFS 640 movement calculation, SSTF, SCAN Elevator, C-SCAN), GS Math (Ratio 2:5 diff 66 -> 44; Successive % +/-20% -> 4% loss), and English ('an early morning walk').",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "OS Full Revision Checkpoint (50 MCQs)",
+        "goal": "Consolidate all Operating System core topics: Process & PCB, CPU Scheduling, Paging/TLB, Deadlock/Synchronization, File Systems, and Disk Scheduling"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Ratio & Successive Percentage Change",
+        "goal": "Ratio 2:5 difference 66 (44 & 110); Successive +20% and -20% net change (x²/100 % loss = 4% loss)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Articles Revision",
+        "goal": "Vowel sound vs consonant sound rules ('an early morning walk', 'a university', 'an airport')"
+      }
+    ],
+    "introNote": "Today is revision + testing only. No new major OS topic.\n\nYour TRE 3.0 paper directly tests OS types, paging, segmentation, file systems, interrupts, page/page-offset, thrashing, TLB, file operations, FCFS disk scheduling, and thread sharing.\n\nThe topics Process/PCB, process states, CPU scheduling, context switching, Semaphore/Mutex, Deadlock, SSTF/SCAN/C-SCAN were standard OS expansion from Days 21–24 rather than exact retrieved TRE questions.",
+    "parts": [
+      {
+        "title": "Part III — Process Management, PCB, States & CPU Scheduling",
+        "sections": [
+          {
+            "title": "Process vs Program, PCB & Process States",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "PROGRAM vs PROCESS\n• PROGRAM = passive instructions stored on disk\n• PROCESS = program in execution with active memory, registers and Program Counter (PC)"
+              },
+              {
+                "type": "diagram",
+                "content": "PCB (Process Control Block):\n┌────────────────────────────┐\n│ Process ID (PID)           │\n│ Process State              │\n│ Program Counter (PC)       │\n│ CPU Registers              │\n│ CPU Scheduling Information │\n│ Memory Management Info     │\n│ Accounting & I/O Status    │\n└────────────────────────────┘"
+              },
+              {
+                "type": "diagram",
+                "content": "PROCESS STATES & TRANSITIONS:\n\n      NEW\n       ↓\n ┌──→ READY ─────────────┐\n │     ↑   └──┐ (Dispatch)│\n │(I/O │      ↓           ↓\n │ done)   RUNNING ──→ TERMINATED\n │     │      │\n │     └───┐  │ (I/O or event wait)\n └────── WAITING / BLOCKED\n\n• READY: Waiting for CPU assignment\n• RUNNING: Currently executing instructions on CPU\n• WAITING/BLOCKED: Waiting for an external I/O event"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Context Switching & Threads",
+                "content": "Context Switch = Saving current process state and loading another process's PCB.\n\nThreads in the same process SHARE:\n• Code section\n• Data section (global variables)\n• OS resources (open files)\n\nThreads DO NOT share (each thread has its own):\n• Thread ID, Program Counter, Registers, Stack"
+              }
+            ]
+          },
+          {
+            "title": "CPU Scheduling Algorithms & Preemption",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Algorithm    │ Core Strategy                │ Preemptive / Non-preemptive\n─────────────┼──────────────────────────────┼─────────────────────────────\nFCFS         │ First Come First Served      │ Non-preemptive (basic)\nSJF          │ Shortest next CPU burst      │ Both (SJF non-preempt, SRTF preempt)\nRound Robin  │ Fixed time quantum           │ Preemptive\nPriority     │ Highest priority first       │ Both variations"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Preemption Concept",
+                "content": "Preemptive = OS can take the CPU away from a running process before it voluntarily finishes."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Memory Management: Paging, Frames, TLB, Thrashing & Segmentation",
+        "sections": [
+          {
+            "title": "Paging, Frames, Address Translation & Offset Calculation",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "PAGING & FRAMES\n• PAGE  = Fixed-size block of Virtual / Logical Memory\n• FRAME = Fixed-size block of Physical RAM\n• PAGE TABLE maps: Page Number → Frame Number\n\nLogical Address = Page Number (p) + Page Offset (d)\nPhysical Address = Frame Number (f) + Same Page Offset (d)\n\nOffset remains unchanged during translation!"
+              },
+              {
+                "type": "callout",
+                "icon": "🔢",
+                "title": "Offset Bit Calculation Rule (2ⁿ)",
+                "content": "Page Size = 2ⁿ bytes ⇒ Offset requires n bits:\n• 1 KB (2¹⁰ B) = 10 bits\n• 2 KB (2¹¹ B) = 11 bits\n• 4 KB (2¹² B) = 12 bits (Direct TRE 3.0 question!)\n• 8 KB (2¹³ B) = 13 bits"
+              }
+            ]
+          },
+          {
+            "title": "TLB, Page Fault, Thrashing & Segmentation",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TLB & VIRTUAL MEMORY\n• TLB = Translation Lookaside Buffer, a high-speed Associative Cache storing recent page table entries.\n• PAGE FAULT = Occurs when CPU references a page whose valid bit is 0 (not currently in RAM), triggering an OS trap to fetch it from disk.\n• THRASHING = System spends more time paging (swapping pages in and out) than executing instructions due to insufficient physical memory."
+              },
+              {
+                "type": "diagram",
+                "content": "Paging vs Segmentation & Fragmentation:\n\nFeature       │ Paging                     │ Segmentation\n──────────────┼────────────────────────────┼─────────────────────────────\nDivision      │ Fixed-size blocks (pages)  │ Logical variable-sized blocks\nView          │ Physical / Hardware view   │ User / Programmer view\nFragmentation │ Internal fragmentation     │ External fragmentation\n\n• Internal Fragmentation: Unused wasted memory INSIDE an allocated block/page.\n• External Fragmentation: Sufficient total free memory scattered in unusable non-contiguous HOLES."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Concurrency, Mutex, Semaphore & Deadlock",
+        "sections": [
+          {
+            "title": "Race Condition, Critical Section, Mutex & Semaphore",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🔑",
+                "title": "Concurrency Primitives",
+                "content": "• RACE CONDITION: Result depends on the unpredictable timing or sequence of thread execution.\n• CRITICAL SECTION: Code section accessing shared mutable resources.\n• MUTUAL EXCLUSION: Only ONE thread/process in the critical section at a time.\n• MUTEX: Mutual exclusion lock (Bathroom Key analogy — 1 owner, Lock/Unlock).\n• SEMAPHORE: Integer counter synchronization primitive (Parking spaces analogy — Wait/Signal, P/V).\n  - Binary Semaphore: Values 0 and 1\n  - Counting Semaphore: Non-negative values (≥ 0) for multiple identical resources."
+              }
+            ]
+          },
+          {
+            "title": "Deadlock Coffman Conditions, Prevention & Avoidance",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "THE FOUR NECESSARY COFFMAN CONDITIONS (MHNC):\n\nM → Mutual Exclusion : Resource held in non-shareable mode (1 owner)\nH → Hold and Wait    : Holding at least 1 resource while requesting others\nN → No Preemption    : Resources cannot be forcibly confiscated\nC → Circular Wait    : P1 waits P2, P2 waits P3, P3 waits P1 in a closed loop\n\nMnemonic: \"My Hungry Neighbor Circles\""
+              },
+              {
+                "type": "text",
+                "content": "DEADLOCK HANDLING & CONCEPTS:\n• Deadlock Prevention: Invalidate at least ONE of the 4 Coffman conditions (e.g. strict global resource ordering to eliminate circular wait).\n• Deadlock Avoidance: Banker's Algorithm dynamically tests whether granting a resource maintains the system in a SAFE STATE.\n• Safe State: There exists an execution sequence allowing all processes to finish.\n• Deadlock vs Starvation: Deadlock freezes the entire group permanently; Starvation indefinitely delays one process while others make progress."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — File Systems, Interrupts & Disk Scheduling",
+        "sections": [
+          {
+            "title": "File Systems, File Operations & Interrupts",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "FILE SYSTEMS (TRE 3.0 Anchors):\n• NTFS: Windows modern journaling file system\n• FAT32: Universal legacy file system\n• HFS+: Apple / macOS historical file system\n\nFILE OPERATIONS (TRE 3.0 Anchors):\n• Create, Delete, Rename (plus Open, Close, Read, Write, Seek)\n\nINTERRUPTS:\n• Hardware Interrupt: Signals from physical devices (keyboard, mouse, disk)\n• Software Interrupt: Instructions/traps generated by programs (system calls)\n• ISR: Interrupt Service Routine (the handler routine)"
+              }
+            ]
+          },
+          {
+            "title": "Disk Scheduling: FCFS 640 Calculation, SSTF, SCAN & C-SCAN",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "EXACT TRE 3.0 DISK PROBLEM (FCFS):\nStart Head = 53\nRequests: 98, 183, 37, 122, 14, 124, 65, 67\n\nMovement:\n|98 - 53|   = 45\n|183 - 98|  = 85\n|37 - 183|  = 146\n|122 - 37|  = 85\n|14 - 122|  = 108\n|124 - 14|  = 110\n|65 - 124|  = 59\n|67 - 65|   = 2\nTOTAL = 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640"
+              },
+              {
+                "type": "callout",
+                "icon": "🔄",
+                "title": "Disk Scheduling Algorithms Summary",
+                "content": "• FCFS: Serves requests in arrival order (Total 640 in TRE 3.0 problem).\n• SSTF: Shortest Seek Time First (closest cylinder; starvation possible).\n• SCAN: Elevator algorithm (sweeps both directions back and forth).\n• C-SCAN: Circular SCAN (sweeps one direction only, returns to start without servicing).\n• Seek Time: Time taken to move the disk head to the target cylinder."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part II — General Studies & Part I — English Revision",
+        "sections": [
+          {
+            "title": "General Studies & English Core Rules",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "📐",
+                "title": "General Studies Math Anchors",
+                "content": "1. Ratio Problem: 2 : 5 difference 66\n   5x - 2x = 3x = 66 ⇒ x = 22\n   Smaller number = 2 × 22 = 44; Larger number = 5 × 22 = 110\n\n2. Successive % Formula: +x% then -x%\n   Net Change = x² / 100 % Loss\n   For 20%: 20² / 100 % = 4% Loss (100 → 120 → 96 = 4% loss)"
+              },
+              {
+                "type": "callout",
+                "icon": "📖",
+                "title": "English Article Rules",
+                "content": "• Use 'an' before vowel sounds: 'an early morning walk' (/ɜː/), 'an airport' (/eə/)\n• Use 'a' before consonant sounds: 'a university' (/juː/), 'a European' (/juː/)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 25 Milestone Checkpoint Test",
+      "subtitle": "50 Comprehensive OS Questions: Process, Scheduling, Memory, Concurrency, Storage & General Studies",
+      "questions": [
+        {
+          "id": "m-d25-q1",
+          "question": "Q1. A program is:",
+          "options": [
+            "A running process",
+            "A passive set of instructions",
+            "A PCB",
+            "A CPU scheduler",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A program is a passive entity consisting of a collection of instructions stored on disk (such as an executable file). Correct: (B) A passive set of instructions."
+        },
+        {
+          "id": "m-d25-q2",
+          "question": "Q2. A process is:",
+          "options": [
+            "A program in execution",
+            "Only source code on disk",
+            "A file system",
+            "A database table",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A process is an active entity: a program in execution with associated resources, PC, registers, and memory spaces. Correct: (A) A program in execution."
+        },
+        {
+          "id": "m-d25-q3",
+          "question": "Q3. PCB stands for:",
+          "options": [
+            "Process Control Block",
+            "Program Central Buffer",
+            "Process CPU Bus",
+            "Program Control Base",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "PCB stands for Process Control Block, the operating system's data structure containing all information about a process. Correct: (A) Process Control Block."
+        },
+        {
+          "id": "m-d25-q4",
+          "question": "Q4. Which can be stored in a PCB?",
+          "options": [
+            "Process state",
+            "Program counter",
+            "CPU registers",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "A PCB stores the process state, program counter, CPU registers, CPU scheduling info, and memory management limits. All of A, B, and C are stored. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d25-q5",
+          "question": "Q5. A process waiting for CPU is in:",
+          "options": [
+            "Running",
+            "Ready",
+            "Waiting",
+            "Terminated",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In the Ready state, a process is loaded into memory and waiting to be assigned to a CPU by the scheduler. Correct: (B) Ready."
+        },
+        {
+          "id": "m-d25-q6",
+          "question": "Q6. A process waiting for disk I/O is normally:",
+          "options": [
+            "Ready",
+            "Running",
+            "Waiting/Blocked",
+            "New",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "When a process issues an I/O request or waits for an event, it transitions to the Waiting (or Blocked) state. Correct: (C) Waiting/Blocked."
+        },
+        {
+          "id": "m-d25-q7",
+          "question": "Q7. Which state means a process currently owns the CPU?",
+          "options": [
+            "Ready",
+            "Running",
+            "Waiting",
+            "Terminated",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In the Running state, the process's instructions are actively being executed by the CPU. Correct: (B) Running."
+        },
+        {
+          "id": "m-d25-q8",
+          "question": "Q8. Context switching involves:",
+          "options": [
+            "Saving one process state and loading another",
+            "Deleting all processes",
+            "Formatting memory",
+            "Creating a database",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Context switching is the mechanism of saving the state/context of the currently running process and loading the saved context of another process. Correct: (A) Saving one process state and loading another."
+        },
+        {
+          "id": "m-d25-q9",
+          "question": "Q9. FCFS CPU scheduling means:",
+          "options": [
+            "First Come First Served",
+            "Fastest CPU First Served",
+            "First Context First Scheduled",
+            "First Come Final Stop",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "FCFS stands for First-Come, First-Served scheduling. Correct: (A) First Come First Served."
+        },
+        {
+          "id": "m-d25-q10",
+          "question": "Q10. SJF selects the process with:",
+          "options": [
+            "Largest memory",
+            "Shortest CPU burst",
+            "Highest PID",
+            "Latest arrival",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Shortest Job First (SJF) selects the process with the shortest next CPU burst time. Correct: (B) Shortest CPU burst."
+        },
+        {
+          "id": "m-d25-q11",
+          "question": "Q11. Round Robin scheduling uses:",
+          "options": [
+            "Time quantum",
+            "Page frame",
+            "Hash function",
+            "Semaphore count only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Round Robin (RR) CPU scheduling allocates a fixed time slice called a Time Quantum to each process in circular order. Correct: (A) Time quantum."
+        },
+        {
+          "id": "m-d25-q12",
+          "question": "Q12. Preemptive scheduling means:",
+          "options": [
+            "CPU can be taken from a running process",
+            "Process always keeps CPU until termination",
+            "No scheduler exists",
+            "Only one program can execute",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Under preemptive scheduling, the OS can forcibly interrupt and take the CPU away from a running process. Correct: (A) CPU can be taken from a running process."
+        },
+        {
+          "id": "m-d25-q13",
+          "question": "Q13. Which is typically non-preemptive in its basic form?",
+          "options": [
+            "FCFS",
+            "Round Robin",
+            "Both are always preemptive",
+            "Paging",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Basic FCFS is non-preemptive; once a process gets the CPU, it holds it until voluntary release or termination. Correct: (A) FCFS."
+        },
+        {
+          "id": "m-d25-q14",
+          "question": "Q14. TRE 3.0 asks what threads in the same process share. The relevant option is:",
+          "options": [
+            "Thread ID",
+            "Program counter",
+            "Code section and data section",
+            "Individual stack",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Threads of the same process share the code section, data section (global variables), and OS resources (open files), while each thread maintains its own thread ID, registers, program counter, and stack. Correct: (C) Code section and data section."
+        },
+        {
+          "id": "m-d25-q15",
+          "question": "Q15. In paging, a page is:",
+          "options": [
+            "Fixed-size block of virtual memory",
+            "Fixed-size block of physical memory",
+            "CPU register",
+            "File",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A page is a fixed-size block of logical / virtual memory. Correct: (A) Fixed-size block of virtual memory."
+        },
+        {
+          "id": "m-d25-q16",
+          "question": "Q16. A frame belongs to:",
+          "options": [
+            "Virtual memory",
+            "Physical memory",
+            "Database storage only",
+            "CPU scheduler",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A frame is a fixed-size contiguous block of physical RAM. Correct: (B) Physical memory."
+        },
+        {
+          "id": "m-d25-q17",
+          "question": "Q17. Page Table mainly maps:",
+          "options": [
+            "Page → Frame",
+            "Frame → Process only",
+            "File → Folder",
+            "Stack → Queue",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Page Table translates virtual Page numbers into physical Frame numbers in RAM. Correct: (A) Page → Frame."
+        },
+        {
+          "id": "m-d25-q18",
+          "question": "Q18. A logical address normally contains:",
+          "options": [
+            "Page number + Offset",
+            "Frame number only",
+            "Segment only",
+            "CPU ID only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A logical address generated by the CPU is divided into a Page Number (p) and an Offset (d). Correct: (A) Page number + Offset."
+        },
+        {
+          "id": "m-d25-q19",
+          "question": "Q19. For a 4 KB page size, the offset requires:",
+          "options": [
+            "10 bits",
+            "11 bits",
+            "12 bits",
+            "14 bits",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "4 KB = 4096 bytes = 2¹² bytes, requiring 12 offset bits. Correct: (C) 12 bits."
+        },
+        {
+          "id": "m-d25-q20",
+          "question": "Q20. For an 8 KB page size, offset bits are:",
+          "options": [
+            "10",
+            "11",
+            "12",
+            "13",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "8 KB = 8192 bytes = 2¹³ bytes, requiring 13 offset bits. Correct: (D) 13."
+        },
+        {
+          "id": "m-d25-q21",
+          "question": "Q21. During page-to-frame translation, which portion remains unchanged?",
+          "options": [
+            "Page number",
+            "Offset",
+            "Frame number",
+            "Page Table",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The offset represents the exact byte location within the block and remains identical between the logical page and the physical frame. Correct: (B) Offset."
+        },
+        {
+          "id": "m-d25-q22",
+          "question": "Q22. TLB stands for:",
+          "options": [
+            "Translation Lookaside Buffer",
+            "Table Logical Block",
+            "Transfer Lookup Base",
+            "Translation Link Bus",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TLB stands for Translation Lookaside Buffer. Correct: (A) Translation Lookaside Buffer."
+        },
+        {
+          "id": "m-d25-q23",
+          "question": "Q23. TRE 3.0 associates TLB with:",
+          "options": [
+            "Associative cache",
+            "Stack",
+            "Queue",
+            "File table",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In TRE 3.0, the TLB is directly identified as an associative cache (high-speed hardware cache for page table mappings). Correct: (A) Associative cache."
+        },
+        {
+          "id": "m-d25-q24",
+          "question": "Q24. A page requested by the CPU is not in RAM. This causes:",
+          "options": [
+            "Page fault",
+            "Deadlock necessarily",
+            "Race condition",
+            "Syntax error",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "When a process references a page marked not present in RAM, the hardware generates a Page Fault trap to bring the page from disk into RAM. Correct: (A) Page fault."
+        },
+        {
+          "id": "m-d25-q25",
+          "question": "Q25. Thrashing is mainly associated with:",
+          "options": [
+            "Excessive paging",
+            "Excessive SQL",
+            "Hardware compilation",
+            "File renaming",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Thrashing occurs when virtual memory experiences excessive paging activity, spending more time swapping than executing code. Correct: (A) Excessive paging."
+        },
+        {
+          "id": "m-d25-q26",
+          "question": "Q26. Paging divides memory into:",
+          "options": [
+            "Fixed-size blocks",
+            "Variable logical blocks only",
+            "SQL tables",
+            "CPU processes",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Paging divides memory into fixed-size contiguous blocks (pages and frames). Correct: (A) Fixed-size blocks."
+        },
+        {
+          "id": "m-d25-q27",
+          "question": "Q27. Segmentation divides a program into:",
+          "options": [
+            "Fixed-size pages only",
+            "Logical variable-sized units",
+            "Equal CPU time slices",
+            "Disk cylinders",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Segmentation divides program memory into logical, variable-sized units reflecting the user's view (functions, objects, stacks). Correct: (B) Logical variable-sized units."
+        },
+        {
+          "id": "m-d25-q28",
+          "question": "Q28. Waste inside an allocated memory block is:",
+          "options": [
+            "External fragmentation",
+            "Internal fragmentation",
+            "Deadlock",
+            "Starvation",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Internal fragmentation is unused wasted memory inside a fixed-size partition or page. Correct: (B) Internal fragmentation."
+        },
+        {
+          "id": "m-d25-q29",
+          "question": "Q29. Scattered free holes are associated with:",
+          "options": [
+            "Internal fragmentation",
+            "External fragmentation",
+            "Context switching",
+            "Thread scheduling",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "External fragmentation occurs when total free memory is sufficient, but broken into small non-contiguous scattered holes. Correct: (B) External fragmentation."
+        },
+        {
+          "id": "m-d25-q30",
+          "question": "Q30. A Race Condition occurs when:",
+          "options": [
+            "Result depends on unpredictable concurrent execution order",
+            "CPU runs only one instruction",
+            "Page size changes",
+            "File is renamed",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Race Condition is a flaw where the final outcome depends on the non-deterministic timing or sequence of thread execution. Correct: (A) Result depends on unpredictable concurrent execution order."
+        },
+        {
+          "id": "m-d25-q31",
+          "question": "Q31. The code accessing a shared resource is called:",
+          "options": [
+            "Critical Section",
+            "Page Fault",
+            "Ready Queue",
+            "Segment Table",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Critical Section is the portion of code that accesses shared mutable resources. Correct: (A) Critical Section."
+        },
+        {
+          "id": "m-d25-q32",
+          "question": "Q32. A Mutex is mainly used for:",
+          "options": [
+            "Mutual exclusion",
+            "Paging",
+            "Disk scheduling",
+            "File naming",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Mutex stands for Mutual Exclusion lock and ensures only one thread executes in the critical section at any given time. Correct: (A) Mutual exclusion."
+        },
+        {
+          "id": "m-d25-q33",
+          "question": "Q33. A Semaphore is best visualized as:",
+          "options": [
+            "Counter/synchronization mechanism",
+            "Page frame",
+            "CPU register only",
+            "File path",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Semaphore is a synchronization tool represented conceptually as an integer counter controlling access to shared resources. Correct: (A) Counter/synchronization mechanism."
+        },
+        {
+          "id": "m-d25-q34",
+          "question": "Q34. Which operations are classically associated with Semaphore?",
+          "options": [
+            "Push and Pop",
+            "Wait and Signal",
+            "Enqueue and Dequeue",
+            "Read and Compile",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The two atomic operations on a semaphore are wait() (or P) and signal() (or V). Correct: (B) Wait and Signal."
+        },
+        {
+          "id": "m-d25-q35",
+          "question": "Q35. A Binary Semaphore commonly uses:",
+          "options": [
+            "0 and 1",
+            "1 to 100",
+            "Negative numbers only",
+            "Characters A and B",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A binary semaphore can take only values 0 (locked) and 1 (available). Correct: (A) 0 and 1."
+        },
+        {
+          "id": "m-d25-q36",
+          "question": "Q36. Which is a classic necessary deadlock condition?",
+          "options": [
+            "Hold and Wait",
+            "Circular Wait",
+            "Mutual Exclusion",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Mutual Exclusion, Hold & Wait, No Preemption, and Circular Wait are all necessary Coffman conditions. Since A, B, and C are all valid, D is correct. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d25-q37",
+          "question": "Q37. Which mnemonic represents the four classic deadlock conditions?",
+          "options": [
+            "MHNC",
+            "FIFO",
+            "BODH",
+            "LNR",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MHNC stands for Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait ('My Hungry Neighbor Circles'). Correct: (A) MHNC."
+        },
+        {
+          "id": "m-d25-q38",
+          "question": "Q38. Banker's Algorithm is associated with:",
+          "options": [
+            "Deadlock avoidance",
+            "Disk formatting",
+            "Page replacement only",
+            "Sorting",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Dijkstra's Banker's Algorithm dynamically tests for safety to ensure resource allocation avoids deadlock. Correct: (A) Deadlock avoidance."
+        },
+        {
+          "id": "m-d25-q39",
+          "question": "Q39. Which statement is correct?",
+          "options": [
+            "Deadlock → processes can be stuck waiting on one another",
+            "Starvation → one process may keep waiting while others progress",
+            "Both A and B",
+            "Neither A nor B",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Both definitions are correct: In Deadlock, all involved processes are permanently stuck; in Starvation, one process is indefinitely delayed while others continue making progress. Correct: (C) Both A and B."
+        },
+        {
+          "id": "m-d25-q40",
+          "question": "Q40. Which appear as file systems in your TRE 3.0 paper?",
+          "options": [
+            "NTFS",
+            "FAT32",
+            "HFS+",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "NTFS, FAT32, and HFS+ were all listed as file system options in the TRE 3.0 paper. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d25-q41",
+          "question": "Q41. Which is a standard file operation?",
+          "options": [
+            "Create",
+            "Delete",
+            "Rename",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Create, Delete, and Rename are all standard file operations. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d25-q42",
+          "question": "Q42. In the TRE 3.0 interrupt question, which is the non-standard interrupt type among the listed options?",
+          "options": [
+            "Hardware interrupt",
+            "Memory interrupt",
+            "Software interrupt",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Hardware Interrupt and Software Interrupt are canonical categories; Memory Interrupt was the non-standard distractor in TRE 3.0. Correct: (B) Memory interrupt."
+        },
+        {
+          "id": "m-d25-q43",
+          "question": "Q43. FCFS disk scheduling serves requests:",
+          "options": [
+            "In arrival order",
+            "By nearest cylinder",
+            "Highest cylinder first",
+            "Randomly",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "FCFS disk scheduling handles requests strictly in the order of their queue arrival. Correct: (A) In arrival order."
+        },
+        {
+          "id": "m-d25-q44",
+          "question": "Q44. SSTF selects:",
+          "options": [
+            "First-arrived request",
+            "Nearest pending request",
+            "Largest cylinder only",
+            "Lowest cylinder only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Shortest Seek Time First (SSTF) greedily selects the request with minimum seek time from the current head position. Correct: (B) Nearest pending request."
+        },
+        {
+          "id": "m-d25-q45",
+          "question": "Q45. SCAN is commonly called:",
+          "options": [
+            "Elevator algorithm",
+            "Banker's algorithm",
+            "Hash algorithm",
+            "Sorting algorithm",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SCAN is known as the Elevator Algorithm because it sweeps back and forth servicing requests in both directions. Correct: (A) Elevator algorithm."
+        },
+        {
+          "id": "m-d25-q46",
+          "question": "Q46. C-SCAN primarily:",
+          "options": [
+            "Services requests in one direction, then returns circularly",
+            "Serves the nearest request only",
+            "Always follows FCFS",
+            "Never moves the disk head",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Circular SCAN (C-SCAN) moves in one direction servicing requests, then immediately returns to the beginning without servicing requests on the return trip. Correct: (A) Services requests in one direction, then returns circularly."
+        },
+        {
+          "id": "m-d25-q47",
+          "question": "Q47. In the exact TRE 3.0 FCFS disk problem, initial head = 53 and requests are: 98, 183, 37, 122, 14, 124, 65, 67. The total movement is:",
+          "options": [
+            "620",
+            "630",
+            "640",
+            "650",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640 head movements. Correct: (C) 640."
+        },
+        {
+          "id": "m-d25-q48",
+          "question": "Q48. If two numbers are in ratio 2:5 and their difference is 66, the smaller number is:",
+          "options": [
+            "22",
+            "44",
+            "66",
+            "110",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "5x - 2x = 3x = 66 => x = 22. Smaller number = 2x = 44. Correct: (B) 44."
+        },
+        {
+          "id": "m-d25-q49",
+          "question": "Q49. A value increases by 20% and then decreases by 20%. The net result is:",
+          "options": [
+            "No change",
+            "4% gain",
+            "4% loss",
+            "20% loss",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "+x% followed by -x% yields a net loss of x² / 100% = 20² / 100% = 4% loss (100 * 1.20 = 120 * 0.80 = 96 => 4% loss). Correct: (C) 4% loss."
+        },
+        {
+          "id": "m-d25-q50",
+          "question": "Q50. Choose the correct phrase:",
+          "options": [
+            "a early morning walk",
+            "an early morning walk",
+            "an university",
+            "a airport",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'early' begins with the vowel sound /ɜː/, requiring 'an': 'an early morning walk'. Correct: (B) an early morning walk."
         }
       ]
     }
