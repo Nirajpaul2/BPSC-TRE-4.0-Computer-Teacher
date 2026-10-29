@@ -6718,6 +6718,618 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 12,
+    "dayId": "day-12",
+    "badge": "Day 12",
+    "title": "TRE 4.0 — Day 12",
+    "unit": "Part III (CS) • Graph, BFS/DFS & Spanning Tree • Champaran Satyagraha & Hindi",
+    "targetTime": "25–30 mins read + 21 MCQs test",
+    "summary": "Today we continue Data Structures & Algorithms with Graph: Vertices & Edges, Directed vs Undirected, In/Out-degree, BFS (Queue, level-by-level) vs DFS (Stack, deep-first), Adjacency Matrix & List, Spanning Tree (N-1 edges), Champaran Satyagraha (1917, Gandhiji, Rajendra Prasad), and Hindi पर्यायवाची + वाक्य शुद्धि.",
+    "targets": [
+      {
+        "section": "Part III – Computer Science",
+        "topic": "Graph, Directed/Undirected Graph, BFS, DFS, Spanning Tree",
+        "goal": "V+E, In/Out-degree, BFS Queue, DFS Stack, Spanning Tree N-1 edges"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Champaran Satyagraha + Bihar in National Movement",
+        "goal": "1917 Champaran, Gandhiji, Rajendra Prasad support, Bihar timeline"
+      },
+      {
+        "section": "Part I – Hindi",
+        "topic": "पर्यायवाची + वाक्य शुद्धि",
+        "goal": "जल/नीर, आकाश/नभ, कर्ता-वचन-क्रिया वाक्य शुद्धि"
+      }
+    ],
+    "introNote": "Your STET paper directly asks which traversal is typically implemented using a Stack → DFS and how an edge from A to B is written in a directed graph. TRE 3.0 also directly asks the number of edges in a spanning tree with N vertices: N−1.     BPSC TRE2.0 question paper by c…\n\nThe BFS/Queue and adjacency-representation material below is a standard CS expansion of those paper topics.",
+    "parts": [
+      {
+        "partId": "d12-part-3-graph",
+        "title": "Part III — GRAPH",
+        "sections": [
+          {
+            "title": "🧠 MENTAL PICTURE",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine cities connected by roads:"
+              },
+              {
+                "type": "diagram",
+                "content": "      Delhi\n      /   \\\n   Patna  Jaipur\n     |\n Samastipur"
+              },
+              {
+                "type": "text",
+                "content": "Computer Science calls:\nCity  → Vertex / Node\nRoad  → Edge\n\nSo:\nGraph = Vertices + Edges"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory:",
+                "content": "GRAPH\n  ↓\nV + E\n\nV = Vertices\nE = Edges"
+              }
+            ]
+          },
+          {
+            "title": "1. Vertex and Edge & 2. Undirected Graph",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Vertex and Edge\nConsider:"
+              },
+              {
+                "type": "diagram",
+                "content": "A ----- B\n \\     /\n   \\ /\n    C\n\nVertices:\nA, B, C\n\nEdges:\nA-B\nA-C\nB-C"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Vertex = Point\n\nEdge = Connection"
+              },
+              {
+                "type": "text",
+                "content": "2. Undirected Graph\nImagine a two-way road:"
+              },
+              {
+                "type": "diagram",
+                "content": "A ←────→ B\n\nYou can travel:\nA → B\nB → A\n\nThis is an:\nUndirected Graph\n\nUsually represented conceptually as:\nA — B"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "No arrow = Undirected"
+              }
+            ]
+          },
+          {
+            "title": "3. Directed Graph & Degrees",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. Directed Graph\nNow imagine a one-way road:"
+              },
+              {
+                "type": "diagram",
+                "content": "A ─────► B\n\nYou can go:\nA → B\n\nbut not automatically:\nB → A\n\nThis is:\nDirected Graph / Digraph\n\nYour STET paper directly asks an edge pointing from A to B; its supplied answer notation is (A, B)."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory",
+                "content": "Arrow exists\n    ↓\nDIRECTED"
+              },
+              {
+                "type": "text",
+                "content": "4. Degree of a Vertex\nIn an undirected graph:\nDegree = number of edges connected to a vertex\n\nExample:"
+              },
+              {
+                "type": "diagram",
+                "content": "      B\n      |\nA ----C---- D\n\nVertex C has three connected edges.\n\nTherefore:\ndegree(C) = 3"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Degree = count the roads touching the city"
+              },
+              {
+                "type": "text",
+                "content": "5. Directed Graph: In-degree & Out-degree\nConsider:"
+              },
+              {
+                "type": "diagram",
+                "content": "A ──► B ──► C\n     ▲\n     |\n     D\n\nFor B:\n\nIncoming arrows:\nA → B\nD → B\n\nSo:\nIn-degree = 2\n\nOutgoing:\nB → C\n\nSo:\nOut-degree = 1"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper trick",
+                "content": "Arrow ENTERS → IN-degree\nArrow LEAVES → OUT-degree"
+              }
+            ]
+          },
+          {
+            "title": "6. Graph Traversal: 7. BFS & 8. DFS",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. Graph Traversal\nTraversal means:\nVisit the vertices of the graph systematically.\n\nTwo big algorithms:\nGRAPH TRAVERSAL\n      │\n   ┌──┴──┐\n   ↓     ↓\n  BFS   DFS\n\nThese two must become automatic."
+              },
+              {
+                "type": "text",
+                "content": "7. BFS — Breadth First Search"
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nImagine dropping a stone in water:\n        START\n          ●\n       ↙  ↓  ↘\n      ●   ●   ●\n    next level...\n\nBFS explores:\nLevel by level\n\nSuppose:\n        A\n      /   \\\n     B     C\n    / \\     \\\n   D   E     F\n\nStarting from A, BFS:\nA\n↓\nB C\n↓\nD E F\n\nTraversal:\nA, B, C, D, E, F"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "BFS uses QUEUE",
+                "content": "BFS\n ↓\nQUEUE\n ↓\nFIFO\n\nWhy?\nNodes discovered first are processed first.\n\nMemory trick:\nBFS = Broad first = Queue\n\nThink:\nBFS → BREADTH → LEVEL"
+              },
+              {
+                "type": "text",
+                "content": "8. DFS — Depth First Search\nNow imagine entering a maze.\n\nYou choose one road and keep going deeper:\nA\n|\nB\n|\nD\n\nOnly after reaching the end do you return.\n\nUsing:\n        A\n      /   \\\n     B     C\n    / \\\n   D   E\n\nOne possible DFS traversal:\nA → B → D → E → C\n\nExact order can depend on neighbor ordering."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nGo DEEP\n   ↓\n   ↓\n   ↓\ndead end\n   ↑\ncome back"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "DFS uses STACK",
+                "content": "This is directly tested in your STET paper:\nDFS → Stack\n\nIt may use:\nExplicit Stack\nor\nRecursion (which internally uses a call stack).\n\nMemory trick:\nDFS = Deep → Stack"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "BFS vs DFS Master Table",
+                "content": "Full form: BFS = Breadth First Search | DFS = Depth First Search\nMovement: BFS = Level by level | DFS = Deep first\nMain structure: BFS = Queue | DFS = Stack\nMemory image: BFS = Water ripple | DFS = Maze\n\nBest white-paper line:\nBFS → QUEUE → WIDE\nDFS → STACK → DEEP"
+              }
+            ]
+          },
+          {
+            "title": "9. Graph Representation, 10. Path, 11. Cycle & 12. Connected Graph",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "9. Graph Representation\nStandard CS extension: two common representations are:\nAdjacency Matrix\nAdjacency List"
+              },
+              {
+                "type": "diagram",
+                "content": "Adjacency Matrix\nGraph:\nA ----- B\n|\nC\n\nMatrix:\n    A B C\n\nA   0 1 1\nB   1 0 0\nC   1 0 0\n\n1 means: edge exists.\n0 means: no edge."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Matrix = Table of 0 and 1"
+              },
+              {
+                "type": "diagram",
+                "content": "Adjacency List\nSame graph:\nA → B, C\nB → A\nC → A\n\nMental picture:\nA → B → C\nB → A\nC → A"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "List stores each vertex's neighbours."
+              },
+              {
+                "type": "text",
+                "content": "10. Path & 11. Cycle & 12. Connected Graph"
+              },
+              {
+                "type": "diagram",
+                "content": "10. Path\nGraph:\nA ─ B ─ C ─ D\n\nA path from A to D:\nA → B → C → D\n\nMemory: Path = route between vertices\n\n\n11. Cycle\nSuppose:\nA → B\n↑   ↓\n└─ C\n\nYou can start at A and return to A:\nA → B → C → A\n\nThat's a: Cycle\n\nMemory: Cycle = come back to starting point\n\n\n12. Connected Graph\nIf every vertex can be reached from the others through some path:\nConnected Graph\n\nMental:\nA — B — C — D\n\nNo lonely vertex.\n\nCompare:\nA — B       C\n\nC is isolated.\nSo graph is disconnected."
+              }
+            ]
+          },
+          {
+            "title": "13. Spanning Tree & Tree vs Graph",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "13. Spanning Tree\nThis is directly important for TRE 3.0.\n\nImagine a connected graph:"
+              },
+              {
+                "type": "diagram",
+                "content": "A ----- B\n|\\     /|\n| \\   / |\n|  \\ /  |\nD ----- C\n\nThere are many extra roads.\n\nA spanning tree keeps enough edges to:\n1. connect all vertices\n2. contain no cycle\n\nExample:\nA ----- B\n|\nD ----- C\n\nAll four vertices remain connected, but unnecessary cycles are removed."
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Very important formula",
+                "content": "For:\nN vertices\n\na spanning tree contains:\nN - 1 edges\n\nTRE 3.0 asks this exact fact.     BPSC TRE2.0 question paper by c…\n\nExamples:\n4 vertices → 3 edges\n5 vertices → 4 edges\n10 vertices → 9 edges"
+              },
+              {
+                "type": "diagram",
+                "content": "Memory trick\nSpanning Tree → Vertices minus ONE\n\nV\n↓\nV - 1 edges"
+              },
+              {
+                "type": "text",
+                "content": "Tree vs Graph\nYou've already studied Trees.\n\nConnect the concepts:"
+              },
+              {
+                "type": "diagram",
+                "content": "GRAPH\nmay contain cycles\nmay have many paths\n\nTREE\nconnected\nno cycle\n\nA tree with N nodes also has:\nN - 1 edges"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Mental sentence",
+                "content": "Tree = connected graph without cycles"
+              }
+            ]
+          },
+          {
+            "title": "Day 12 CS White-Paper Sheet",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Close your notes and mentally draw:\nGRAPH = V + E\n\nVertex = point\nEdge   = connection\n\nUNDIRECTED\nA — B\n\nDIRECTED\nA → B\n\nIN-degree  → arrows coming IN\nOUT-degree → arrows going OUT\n\n\nBFS\n→ level by level\n→ QUEUE\n\nDFS\n→ deep first\n→ STACK\n\n\nCycle\n→ return to start\n\nSpanning Tree\n→ all vertices\n→ no cycle\n→ N vertices = N-1 edges"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d12-part-2",
+        "title": "Part II — Champaran + Bihar",
+        "sections": [
+          {
+            "title": "Champaran Satyagraha & Bihar Timeline",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 directly asks who supported Gandhi in the Champaran Satyagraha of 1917, with Rajendra Prasad among the choices.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Timeline\n1917\n  ↓\nCHAMPARAN SATYAGRAHA\n  ↓\nBihar\n  ↓\nFarmers / Indigo issue\n  ↓\nGandhiji"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Main memory pair",
+                "content": "Champaran → 1917 → Bihar → Gandhi\n\nFor the TRE-paper association:\nRajendra Prasad supported Gandhi in Champaran.     BPSC TRE2.0 question paper by c…"
+              },
+              {
+                "type": "text",
+                "content": "Non-Cooperation and Bihar\nYour TRE 2.0 paper also asks who led peasants of Bihar during the Non-Cooperation Movement.     BPSC TRE3.0 question paper by c…\n\nFor exam preparation, keep this question in your PYQ notebook exactly as presented in the paper; we'll revisit Bihar movement leaders together in the dedicated history revision day rather than expanding beyond what this paper excerpt establishes."
+              },
+              {
+                "type": "diagram",
+                "content": "Quick National Movement Timeline\n1857 → Revolt\n\n1885 → INC\n\n1905 → Bengal Partition\n        ↓\n      Swadeshi/Boycott\n\n1917 → Champaran\n\n1920 → Non-Cooperation\n\n1930 → Civil Disobedience\n\n1942 → Quit India\n\n1947 → Independence"
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "White-paper memory",
+                "content": "05 Swadeshi → 17 Champaran → 20 Non-Cooperation → 42 Quit India"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d12-part-1",
+        "title": "Part I — Hindi",
+        "sections": [
+          {
+            "title": "पर्यायवाची + वाक्य शुद्धि",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Today we'll revise पर्यायवाची and वाक्य शुद्धि."
+              },
+              {
+                "type": "diagram",
+                "content": "पर्यायवाची\nSame meaning, different words.\nसूर्य → रवि, भानु, दिनकर\n\nजल → नीर\n\nआकाश → नभ\n\nअग्नि → अनल\n\nपक्षी → विहंग, खग\n\nMental:\nONE MEANING\n    ↓\nMANY WORDS\n    ↓\nपर्यायवाची"
+              },
+              {
+                "type": "text",
+                "content": "वाक्य शुद्धि\nCheck three things:\nकर्ता\n ↓\nवचन\n ↓\nक्रिया\n\nExample:\nलड़का खेल रहे हैं। ❌\nलड़का is singular.\nCorrect: लड़का खेल रहा है। ✅\n\nExample:\nलड़कियाँ पढ़ रहा है। ❌\nCorrect: लड़कियाँ पढ़ रही हैं। ✅"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Memory trick:",
+                "content": "कर्ता देखकर क्रिया चुनो।"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 12 Practice Test (21 Questions)",
+      "subtitle": "14 CS (Graph, BFS/DFS & Spanning Tree) • 4 GS (Champaran & Bihar) • 3 Hindi (पर्यायवाची व वाक्य शुद्धि)",
+      "timeLimit": "25–30 mins",
+      "questions": [
+        {
+          "id": "m-d12-q1",
+          "question": "Q1. A graph is primarily made of:",
+          "options": [
+            "Arrays and stacks",
+            "Vertices and edges",
+            "Rows and columns only",
+            "Keys and values only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A graph is a non-linear data structure consisting of a finite set of vertices (nodes) and edges (lines connecting pairs of vertices): G = (V, E). Correct: (B) Vertices and edges."
+        },
+        {
+          "id": "m-d12-q2",
+          "question": "Q2. In a graph, a vertex represents:",
+          "options": [
+            "A connection",
+            "A node/point",
+            "A traversal algorithm",
+            "A queue",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A vertex (or node) represents an individual entity or point in the graph network. Correct: (B) A node/point."
+        },
+        {
+          "id": "m-d12-q3",
+          "question": "Q3. Which graph has edges with direction?",
+          "options": [
+            "Undirected graph",
+            "Directed graph",
+            "Complete tree only",
+            "Heap",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A directed graph (digraph) has ordered pairs of vertices represented with arrow directions indicating one-way paths. Correct: (B) Directed graph."
+        },
+        {
+          "id": "m-d12-q4",
+          "question": "Q4. The edge: A → B means:",
+          "options": [
+            "Direction from B to A",
+            "Direction from A to B",
+            "No direction",
+            "A and B are disconnected",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In directed graph notation, A → B (or the ordered pair (A, B)) denotes an edge directed from vertex A to vertex B. Correct: (B) Direction from A to B."
+        },
+        {
+          "id": "m-d12-q5",
+          "question": "Q5. In-degree of a vertex means:",
+          "options": [
+            "Number of outgoing arrows",
+            "Number of incoming arrows",
+            "Number of all graph vertices",
+            "Number of cycles",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a directed graph, the in-degree of a vertex is the number of edges directed towards that vertex (incoming arrows). Correct: (B) Number of incoming arrows."
+        },
+        {
+          "id": "m-d12-q6",
+          "question": "Q6. BFS explores a graph mainly:",
+          "options": [
+            "Deepest path first",
+            "Level by level",
+            "Randomly",
+            "By sorting vertices first",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Breadth-First Search (BFS) explores the graph layer by layer, visiting all immediate neighbors at the current distance level before moving to the next level. Correct: (B) Level by level."
+        },
+        {
+          "id": "m-d12-q7",
+          "question": "Q7. BFS is commonly implemented using:",
+          "options": [
+            "Stack",
+            "Queue",
+            "Heap only",
+            "Hash Table",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "BFS relies on First-In, First-Out (FIFO) queue processing to explore vertices in increasing order of their distance from the start node. Correct: (B) Queue."
+        },
+        {
+          "id": "m-d12-q8",
+          "question": "Q8. DFS is typically associated with:",
+          "options": [
+            "Queue",
+            "Stack",
+            "Priority Queue",
+            "Hash Table",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Depth-First Search (DFS) proceeds along a path until it reaches a dead-end and then backtracks (LIFO), which is implemented using a Stack (or call stack via recursion; directly tested in STET). Correct: (B) Stack."
+        },
+        {
+          "id": "m-d12-q9",
+          "question": "Q9. Which memory trick is correct?",
+          "options": [
+            "BFS → Stack, DFS → Queue",
+            "BFS → Queue, DFS → Stack",
+            "Both always use Heap",
+            "Both always use Hash Table",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Core memory rule: BFS uses a Queue (wide/level-by-level), while DFS uses a Stack (deep/maze). Correct: (B) BFS → Queue, DFS → Stack."
+        },
+        {
+          "id": "m-d12-q10",
+          "question": "Q10. A route connecting vertices in a graph is called:",
+          "options": [
+            "Hash",
+            "Path",
+            "Heap",
+            "Array",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A sequence of alternating vertices and edges that connects a starting vertex to an ending vertex is called a Path. Correct: (B) Path."
+        },
+        {
+          "id": "m-d12-q11",
+          "question": "Q11. A path that returns to its starting vertex forms a:",
+          "options": [
+            "Queue",
+            "Cycle",
+            "Heap",
+            "Hash",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A path of positive length where the first and last vertices are identical is called a Cycle. Correct: (B) Cycle."
+        },
+        {
+          "id": "m-d12-q12",
+          "question": "Q12. A spanning tree of a graph with 8 vertices contains:",
+          "options": [
+            "8 edges",
+            "7 edges",
+            "9 edges",
+            "16 edges",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A spanning tree of any connected graph with N vertices always contains exactly N - 1 edges: 8 - 1 = 7 edges. Correct: (B) 7 edges."
+        },
+        {
+          "id": "m-d12-q13",
+          "question": "Q13. A spanning tree must:",
+          "options": [
+            "Contain every possible edge",
+            "Connect all vertices without cycles",
+            "Always contain cycles",
+            "Have N edges for N vertices",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A spanning tree is a connected, acyclic subgraph spanning all vertices of the graph. Correct: (B) Connect all vertices without cycles."
+        },
+        {
+          "id": "m-d12-q14",
+          "question": "Q14. An adjacency matrix mainly represents graph connections using:",
+          "options": [
+            "Only strings",
+            "A table/matrix",
+            "Stack frames",
+            "CPU registers",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An adjacency matrix is a 2D V × V grid/table where matrix[i][j] = 1 indicates an edge between vertex i and vertex j. Correct: (B) A table/matrix."
+        },
+        {
+          "id": "m-d12-q15",
+          "question": "Q15. Champaran Satyagraha took place in:",
+          "options": [
+            "1905",
+            "1917",
+            "1920",
+            "1942",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The historic Champaran Satyagraha occurred in 1917 in Bihar to oppose the oppressive European indigo tinkathia system. Correct: (B) 1917."
+        },
+        {
+          "id": "m-d12-q16",
+          "question": "Q16. Champaran Satyagraha is mainly associated with:",
+          "options": [
+            "Mahatma Gandhi",
+            "Subhas Chandra Bose",
+            "Bhagat Singh",
+            "Lord Curzon",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Mahatma Gandhi arrived in Champaran, Bihar in 1917 at the invitation of Raj Kumar Shukla, marking his first major Satyagraha movement in India. Correct: (A) Mahatma Gandhi."
+        },
+        {
+          "id": "m-d12-q17",
+          "question": "Q17. According to the TRE 3.0 question, who supported Gandhiji during Champaran Satyagraha?",
+          "options": [
+            "Birsa Munda",
+            "Rajendra Prasad",
+            "Satya Narayan Sinha",
+            "Lord Curzon",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Dr. Rajendra Prasad was among the prominent leaders who accompanied and supported Mahatma Gandhi during the 1917 Champaran Satyagraha inquiry (tested in TRE 3.0). Correct: (B) Rajendra Prasad."
+        },
+        {
+          "id": "m-d12-q18",
+          "question": "Q18. Which movement comes chronologically first?",
+          "options": [
+            "Quit India Movement",
+            "Non-Cooperation Movement",
+            "Champaran Satyagraha",
+            "Civil Disobedience Movement",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Timeline: Champaran Satyagraha (1917) → Non-Cooperation Movement (1920) → Civil Disobedience (1930) → Quit India (1942). Champaran occurred first. Correct: (C) Champaran Satyagraha."
+        },
+        {
+          "id": "m-d12-q19",
+          "question": "Q19. “जल” का पर्यायवाची है:",
+          "options": [
+            "अनल",
+            "नीर",
+            "नभ",
+            "रवि",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "जल का पर्यायवाची शब्द 'नीर' है। (अनल = आग, नभ = आकाश, रवि = सूर्य). Correct: (B) नीर."
+        },
+        {
+          "id": "m-d12-q20",
+          "question": "Q20. “आकाश” का पर्यायवाची है:",
+          "options": [
+            "नीर",
+            "अनल",
+            "नभ",
+            "दिनकर",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 2,
+          "explanation": "आकाश का पर्यायवाची शब्द 'नभ' है। (नीर = जल, अनल = अग्नि, दिनकर = सूर्य). Correct: (C) नभ."
+        },
+        {
+          "id": "m-d12-q21",
+          "question": "Q21. शुद्ध वाक्य चुनिए:",
+          "options": [
+            "लड़कियाँ पढ़ रहा है।",
+            "लड़कियाँ पढ़ रही हैं।",
+            "लड़कियाँ पढ़ रहे है।",
+            "लड़कियाँ पढ़ता हैं।",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "कर्ता 'लड़कियाँ' स्त्रीलिंग बहुवचन है, अतः क्रिया भी स्त्रीलिंग बहुवचन 'पढ़ रही हैं' होगी: 'लड़कियाँ पढ़ रही हैं।' Correct: (B) लड़कियाँ पढ़ रही हैं."
+        }
+      ]
+    }
   }
 ];
 
