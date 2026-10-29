@@ -1994,6 +1994,77 @@ def bpsc_concept_solver():
   window.renderMarathonToc = renderMarathonToc;
   window.renderMarathonContent = renderMarathonContent;
 
+  // -------------------------------------------------------------
+  // Candidate Support Helpers
+  // -------------------------------------------------------------
+  function copyTextToClipboard(text, btnElement) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showCopyFeedback(btnElement);
+      }).catch(() => {
+        fallbackCopyText(text, btnElement);
+      });
+    } else {
+      fallbackCopyText(text, btnElement);
+    }
+  }
+
+  function fallbackCopyText(text, btnElement) {
+    const tempInput = document.createElement('input');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    try {
+      document.execCommand('copy');
+      showCopyFeedback(btnElement);
+    } catch (e) {
+      alert('Copied: ' + text);
+    }
+    document.body.removeChild(tempInput);
+  }
+
+  function showCopyFeedback(btnElement) {
+    if (!btnElement) return;
+    const originalText = btnElement.innerHTML;
+    btnElement.innerHTML = '✓ Copied!';
+    btnElement.style.color = '#10b981';
+    btnElement.style.borderColor = '#10b981';
+    setTimeout(() => {
+      btnElement.innerHTML = originalText;
+      btnElement.style.color = '';
+      btnElement.style.borderColor = '';
+    }, 2000);
+  }
+  window.copyTextToClipboard = copyTextToClipboard;
+
+  function sendSupportMessage(channel) {
+    const nameInput = document.getElementById('support-name');
+    const phoneInput = document.getElementById('support-phone');
+    const categorySelect = document.getElementById('support-category');
+    const msgInput = document.getElementById('support-message');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const category = categorySelect ? categorySelect.value : 'General';
+    const message = msgInput ? msgInput.value.trim() : '';
+
+    if (!message) {
+      alert('Please describe your query or question before sending.');
+      if (msgInput) msgInput.focus();
+      return;
+    }
+
+    if (channel === 'whatsapp') {
+      const fullText = `*BPSC TRE 4.0 Support Request*%0A%0A*Name:* ${encodeURIComponent(name || 'Candidate')}%0A*Phone:* ${encodeURIComponent(phone || 'Not provided')}%0A*Category:* ${encodeURIComponent(category)}%0A*Message:* ${encodeURIComponent(message)}`;
+      window.open(`https://wa.me/919942419837?text=${fullText}`, '_blank');
+    } else if (channel === 'email') {
+      const subject = encodeURIComponent(`[BPSC TRE 4.0 CS Support] ${category} - ${name || 'Candidate'}`);
+      const body = encodeURIComponent(`Candidate Name: ${name || 'N/A'}\nPhone/WhatsApp: ${phone || 'N/A'}\nCategory: ${category}\n\nQuery Details:\n${message}\n\n--\nSent via BPSC TRE 4.0 Preparation Portal`);
+      window.location.href = `mailto:support@agiludic.com?subject=${subject}&body=${body}`;
+    }
+  }
+  window.sendSupportMessage = sendSupportMessage;
+
   // Run on DOM Ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
