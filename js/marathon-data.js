@@ -6134,6 +6134,590 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 11,
+    "dayId": "day-11",
+    "badge": "Day 11",
+    "title": "TRE 4.0 — Day 11",
+    "unit": "Part III (CS) • Heap, Hashing & Collision Handling • Indian National Movement & Hindi",
+    "targetTime": "25–30 mins read + 18 MCQs test",
+    "summary": "Today we continue the DSA block with Heap (Min/Max Heap, Priority Queue implementation), Hash Table, Hash Functions, Collision Resolution (Separate Chaining via Linked Lists, Linear Probing), Indian National Movement (1857, 1905 Bengal Partition, 1922 Gaya Session), and Hindi विलोम + वाक्य शुद्धि.",
+    "targets": [
+      {
+        "section": "Part III – Computer Science",
+        "topic": "Heap, Min/Max Heap, Hash Table, Hash Function, Collision, Chaining, Linear Probing",
+        "goal": "Max/Min Heap roots, Priority Queue Binary Heap, Key→Index, Chaining Linked Lists, Linear Probing next empty slot"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Indian National Movement: 1857 → Bengal Partition → Swadeshi",
+        "goal": "1857 Savarkar First War, 1905 Bengal Partition Swadeshi/Boycott, 1922 Gaya Session C.R. Das"
+      },
+      {
+        "section": "Part I – Hindi",
+        "topic": "विलोम + वाक्य शुद्धि",
+        "goal": "विलोम शब्द (लाभ/हानि, उन्नति/अवनति) & कर्ता-क्रिया-वचन वाक्य शुद्धि"
+      }
+    ],
+    "introNote": "This is directly aligned with your papers. TRE 2.0 asks which structure is best for implementing a Priority Queue and includes Binary Heap as the correct choice. TRE 3.0 asks which structure provides efficient searching, insertion and deletion, with Hash Table as the answer. Your STET paper then goes deeper into Separate Chaining and Linear Probing.",
+    "parts": [
+      {
+        "partId": "d11-part-3-heap",
+        "title": "Part III — HEAP",
+        "sections": [
+          {
+            "title": "🧠 Mental picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine a company hierarchy:"
+              },
+              {
+                "type": "diagram",
+                "content": "               BOSS\n              /    \\\n          EMPLOYEE EMPLOYEE\n           /   \\\n        STAFF  STAFF"
+              },
+              {
+                "type": "text",
+                "content": "A Heap is a special binary tree where the parent follows an ordering rule relative to its children.\n\nFor TRE, remember two types:\n             HEAP\n            /    \\\n       MAX HEAP  MIN HEAP"
+              }
+            ]
+          },
+          {
+            "title": "Max Heap vs Min Heap",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Max Heap\nMental picture:\nBig boss stays on TOP."
+              },
+              {
+                "type": "diagram",
+                "content": "             90\n           /    \\\n         70      60\n        /  \\\n      30   20\n\nEvery parent is greater than or equal to its children."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "MAX Heap → MAX at root\n\nSo immediately:\nMax Heap\n   ↓\nLargest element\n   ↓\nROOT"
+              },
+              {
+                "type": "text",
+                "content": "Min Heap\nExactly opposite:\nSmallest boss stays on TOP."
+              },
+              {
+                "type": "diagram",
+                "content": "             10\n           /    \\\n         20      30\n        /  \\\n      40   50"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "MIN Heap → MIN at root\n\nSo:\nMin Heap → smallest at root\nMax Heap → largest at root\n\nThat is the most important distinction."
+              }
+            ]
+          },
+          {
+            "title": "Heap is NOT a BST & Priority Queue Connection",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Heap is NOT a BST\nThis is an important trap.\n\nBST:\nLEFT < ROOT < RIGHT\n\nHeap does not require that complete BST ordering.\n\nFor example this is a valid Max Heap:"
+              },
+              {
+                "type": "diagram",
+                "content": "          100\n         /   \\\n       80     90\n\n80 is left and 90 is right, but we don't care that 80 < 90.\n\nWe only care:\n100 > 80\n100 > 90"
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "White-paper trick",
+                "content": "BST\n↓\nLEFT vs ROOT vs RIGHT\n\nHEAP\n↓\nPARENT vs CHILD"
+              },
+              {
+                "type": "text",
+                "content": "Why Heap matters for TRE\nYesterday we learned:\nPRIORITY QUEUE\n      ↓\nBINARY HEAP\n\nTRE 2.0 directly tests this association."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental example:\nHospital Priority Queue\n\nEmergency 9\nEmergency 7\nEmergency 4\nEmergency 2\n\nA Max Heap can keep the highest priority near the top:\n             9\n           /   \\\n          7     4\n         /\n        2\n\nSo:\nPriority Queue → think Heap"
+              },
+              {
+                "type": "text",
+                "content": "Standard CS extension: Heap insertion\nSuppose Max Heap:\n        80\n       /  \\\n     50    60\n\nInsert 90.\n\nFirst place it in the next free position:\n        80\n       /  \\\n     50    60\n    /\n   90\n\nBut Max Heap rule is broken.\n\nSo 90 moves upward:"
+              },
+              {
+                "type": "diagram",
+                "content": "        90\n       /  \\\n     80    60\n    /\n   50\n\nThis process is often called:\nHeapify / bubble up"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental trick:",
+                "content": "New big value climbs upward."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d11-part-3-hash",
+        "title": "Part III — HASH TABLE",
+        "sections": [
+          {
+            "title": "Hashing Concept & Hash Function",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Now imagine a library with numbered lockers.\nLocker 0\nLocker 1\nLocker 2\nLocker 3\nLocker 4\n...\n\nYou have key:\n42\n\nA special machine decides its locker:\nKEY\n ↓\nHASH FUNCTION\n ↓\nINDEX\n ↓\nTABLE\n\nThat's Hashing."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 White-paper picture\n         KEY\n          ↓\n   [ HASH FUNCTION ]\n          ↓\n        INDEX\n          ↓\n   [ HASH TABLE ]"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "Hash Function = Key → Index"
+              },
+              {
+                "type": "text",
+                "content": "Example\nSuppose table size = 10 and we use:\nindex = key % 10\n\nFor key 42:\n42 % 10 = 2\n\nSo:\nIndex 2 → 42\n\nFor key 37:\n37 % 10 = 7\n\nSo:\nIndex 7 → 37"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\n0 [   ]\n1 [   ]\n2 [42 ]\n3 [   ]\n4 [   ]\n5 [   ]\n6 [   ]\n7 [37 ]\n8 [   ]\n9 [   ]"
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "TRE Exam Reference",
+                "content": "TRE 3.0 explicitly associates Hash Table with efficient searching, insertion and deletion."
+              }
+            ]
+          },
+          {
+            "title": "Collision & Solutions: Chaining vs Linear Probing",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Collision — VERY IMPORTANT\nNow insert:\n42\n52\n\nWith:\nkey % 10\n\nwe get:\n42 % 10 = 2\n52 % 10 = 2\n\nBoth want:\nIndex 2\n\n💥 That is a:\nCOLLISION"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Two keys → same index = Collision"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper:\n42 ──┐\n     ├──► index 2  💥\n52 ──┘"
+              },
+              {
+                "type": "text",
+                "content": "Collision Solution 1 — Separate Chaining\nYour Bihar STET paper directly says that separate chaining typically stores collided elements in Linked Lists.\n\nImagine locker 2 has a chain:"
+              },
+              {
+                "type": "diagram",
+                "content": "INDEX 2\n   ↓\n[42] → [52] → [62] → NULL"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "CHAINING = Linked List chain\n\nSo mentally:\nCOLLISION\n   ↓\nCHAIN\n   ↓\nLinked List\n\nThis is exactly the relationship you should remember for MCQs."
+              },
+              {
+                "type": "text",
+                "content": "Collision Solution 2 — Linear Probing\nYour STET paper also asks which method places a collided item into the next available empty slot.\n\nAnswer:\nLinear Probing\n\nExample:\n42 → index 2\n52 → also index 2 💥\n\nCheck next:\nindex 3\n\nIf empty:\n0 [   ]\n1 [   ]\n2 [42 ]\n3 [52 ]\n4 [   ]"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper trick\nLinear = move one-by-one\n\nCollision at 2\n      ↓\ncheck 3\n      ↓\ncheck 4\n      ↓\ncheck 5..."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "STET Exam Frame",
+                "content": "STET directly frames Linear Probing this way: collided elements go to the next available empty slot."
+              },
+              {
+                "type": "diagram",
+                "content": "Chaining vs Linear Probing\nMemorize this picture:\nCHAINING\n\nindex 2\n  ↓\n42 → 52 → 62\n\nversus:\nLINEAR PROBING\n\nindex 2 → 42\nindex 3 → 52\nindex 4 → 62"
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "So remember:",
+                "content": "Chaining → same bucket, linked list\n\nLinear probing → next empty table slot"
+              },
+              {
+                "type": "text",
+                "content": "Quadratic Probing & Double Hashing\nFor today, only recognize the names.\nCollision Resolution:\n• Separate Chaining\n• Linear Probing\n• Quadratic Probing\n• Double Hashing\n\nDo not spend time deriving them today.\nYour uploaded STET paper specifically tests Separate Chaining and Linear Probing, so those two get priority."
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Standard CS extension — Complexity",
+                "content": "A well-designed Hash Table typically aims for approximately:\nSearch    → O(1) average\nInsert    → O(1) average\nDelete    → O(1) average\n\nBut heavy collisions can reduce performance.\n\nWhite-paper memory:\nHashing = near-direct lookup\n\nFor TRE, the safer fact to memorize from the paper is:\nHash Table → efficient search + insertion + deletion"
+              },
+              {
+                "type": "diagram",
+                "content": "Heap vs BST vs Hash Table\nThis mental comparison is very useful:\nBST\n↓\nordered searching\nLEFT < ROOT < RIGHT\n\n\nHEAP\n↓\npriority\nMIN or MAX at root\n\n\nHASH TABLE\n↓\nkey → index\nfast lookup"
+              },
+              {
+                "type": "callout",
+                "icon": "🎯",
+                "title": "Decision Rule for MCQs",
+                "content": "If the MCQ says Priority Queue:\nThink Heap\n\nIf it says key mapped to index or efficient search/insert/delete:\nThink Hash Table"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d11-part-2",
+        "title": "Part II — Indian National Movement",
+        "sections": [
+          {
+            "title": "Timeline & Key Exam Facts",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 paper contains a sequence of questions on 1857, Sannyasi rebellion, Swadeshi/Boycott, Gaya Congress 1922 and Bihar's role in the freedom movement.\n\nFor today, mentally draw a timeline:"
+              },
+              {
+                "type": "diagram",
+                "content": "1857\n  ↓\nFirst major revolt\n\n1885\n  ↓\nINC\n\n1905\n  ↓\nPartition of Bengal\n  ↓\nSwadeshi + Boycott\n\n1920\n  ↓\nNon-Cooperation\n\n1922\n  ↓\nGaya Congress Session\n\n1942\n  ↓\nQuit India\n\n1947\n  ↓\nIndependence"
+              },
+              {
+                "type": "text",
+                "content": "1857\nFor the specific TRE-style fact:\nV. D. Savarkar is associated with describing the 1857 revolt as the First War of Indian Independence."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "1857\n ↓\nSavarkar\n ↓\nFirst War of Independence"
+              },
+              {
+                "type": "text",
+                "content": "1905 — Partition of Bengal\nThis is especially important.\n1905\n ↓\nPartition of Bengal\n ↓\nSwadeshi\n+\nBoycott\n\nYour TRE 2.0 paper asks when Swadeshi and Boycott were first adopted as forms of struggle, with Partition of Bengal among the options."
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental trick",
+                "content": "Bengal cut → British goods cut\n\nSo:\nPartition\n   ↓\nProtest\n   ↓\nSwadeshi + Boycott"
+              },
+              {
+                "type": "text",
+                "content": "1922 — Gaya Session\nA useful TRE fact:\nChittaranjan Das (C. R. Das) presided over the Gaya Session of the Indian National Congress in 1922."
+              },
+              {
+                "type": "diagram",
+                "content": "Memory picture:\nGAYA 1922\n    ↓\n C. R. DAS\n\nKeep this as a direct factual pair."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d11-part-1",
+        "title": "Part I — Hindi",
+        "sections": [
+          {
+            "title": "विलोम + वाक्य शुद्धि",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "विलोम\nMeaning:\nOpposite word\n\nआदि ↔ अंत\nलाभ ↔ हानि\nउन्नति ↔ अवनति\nआशा ↔ निराशा\nजय ↔ पराजय"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory:",
+                "content": "विलोम = उल्टा अर्थ"
+              },
+              {
+                "type": "text",
+                "content": "वाक्य शुद्धि\nUse three quick checks:\nकर्ता\n  ↓\nक्रिया match?\n\nलिंग\n  ↓\ncorrect?\n\nवचन\n  ↓\nएकवचन / बहुवचन match?"
+              },
+              {
+                "type": "diagram",
+                "content": "Example:\nलड़के खेल रहा है। ❌\n\nलड़के = plural.\n\nSo:\nलड़के खेल रहे हैं। ✅"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental trick:",
+                "content": "Who? How many? Then choose the verb."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d11-part-recap",
+        "title": "Day 11 Quick Recall",
+        "sections": [
+          {
+            "title": "Mental White-Paper Review",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Close notes and mentally say:"
+              },
+              {
+                "type": "diagram",
+                "content": "HEAP\n\nMAX → biggest root\nMIN → smallest root\n\nPriority Queue → Binary Heap\n\n\nHASHING\n\nKey\n ↓\nHash Function\n ↓\nIndex\n\nTwo keys same index\n= COLLISION\n\nChaining\n→ Linked List\n\nLinear Probing\n→ Next empty slot\n\nAnd GS:\n1857 → Savarkar association\n1905 → Bengal Partition → Swadeshi/Boycott\n1922 → Gaya Session → C. R. Das"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 11 Practice Test (18 Questions)",
+      "subtitle": "12 CS (Heap, Hashing & Collisions) • 3 GS (Freedom Movement) • 3 Hindi (विलोम व वाक्य शुद्धि)",
+      "timeLimit": "20–25 mins",
+      "questions": [
+        {
+          "id": "m-d11-q1",
+          "question": "Q1. In a Max Heap, the root normally contains:",
+          "options": [
+            "Smallest element",
+            "Largest element",
+            "Random element",
+            "Last inserted element",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a Max Heap, every parent node is greater than or equal to its children, guaranteeing that the maximum (largest) value is stored at the root. Correct: (B) Largest element."
+        },
+        {
+          "id": "m-d11-q2",
+          "question": "Q2. In a Min Heap, the root normally contains:",
+          "options": [
+            "Largest element",
+            "Smallest element",
+            "Median element",
+            "Random element",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a Min Heap, every parent node is less than or equal to its children, ensuring that the minimum (smallest) value is at the root. Correct: (B) Smallest element."
+        },
+        {
+          "id": "m-d11-q3",
+          "question": "Q3. Which data structure is best suited for implementing a Priority Queue?",
+          "options": [
+            "Stack",
+            "Binary Heap",
+            "Simple Array only",
+            "Linked List only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Binary Heap provides efficient O(log n) insertions and priority deletions, making it the most suitable implementation for a Priority Queue (tested in TRE 2.0). Correct: (B) Binary Heap."
+        },
+        {
+          "id": "m-d11-q4",
+          "question": "Q4. A Hash Function primarily converts a key into:",
+          "options": [
+            "Tree",
+            "Hash-table index",
+            "Queue",
+            "Compiler instruction",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A hash function takes a key and computes an integer index that points to an array slot in the hash table (Key → Hash Function → Index). Correct: (B) Hash-table index."
+        },
+        {
+          "id": "m-d11-q5",
+          "question": "Q5. When two different keys map to the same hash-table index, it is called:",
+          "options": [
+            "Recursion",
+            "Collision",
+            "Deadlock",
+            "Underflow",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A collision occurs when a hash function generates the identical index for two distinct keys. Correct: (B) Collision."
+        },
+        {
+          "id": "m-d11-q6",
+          "question": "Q6. In Separate Chaining, collided elements are commonly stored using:",
+          "options": [
+            "Linked Lists",
+            "Stacks",
+            "Only Arrays",
+            "Queues",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In Separate Chaining, each slot in the hash table points to a Linked List holding all collided keys sharing that hash index (tested in STET). Correct: (A) Linked Lists."
+        },
+        {
+          "id": "m-d11-q7",
+          "question": "Q7. Linear Probing resolves a collision by:",
+          "options": [
+            "Deleting the collided key",
+            "Checking the next available empty slot",
+            "Creating another hash table immediately",
+            "Sorting all keys",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Linear probing is an open-addressing technique that steps forward sequentially (index+1, index+2, ...) until the next empty bucket is found. Correct: (B) Checking the next available empty slot."
+        },
+        {
+          "id": "m-d11-q8",
+          "question": "Q8. If the hash function is h(key) = key % 10, where will key 47 be stored initially?",
+          "options": [
+            "Index 4",
+            "Index 7",
+            "Index 10",
+            "Index 47",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "47 % 10 = 7. Thus, key 47 is placed at Index 7. Correct: (B) Index 7."
+        },
+        {
+          "id": "m-d11-q9",
+          "question": "Q9. Using h(key) = key % 10, which pair will cause a collision?",
+          "options": [
+            "21 and 32",
+            "23 and 43",
+            "11 and 24",
+            "17 and 28",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "23 % 10 = 3 and 43 % 10 = 3. Since both keys produce the same remainder (3), they collide at index 3. Correct: (B) 23 and 43."
+        },
+        {
+          "id": "m-d11-q10",
+          "question": "Q10. Which structure follows the rule that a parent has priority over its children, rather than the BST rule Left < Root < Right?",
+          "options": [
+            "Heap",
+            "Stack",
+            "Queue",
+            "Array",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Heap only requires a parent-child ordering relationship (Parent ≥ Child or Parent ≤ Child) and does not enforce left-to-right sorting like a BST. Correct: (A) Heap."
+        },
+        {
+          "id": "m-d11-q11",
+          "question": "Q11. Which data structure is most naturally associated with: Key → Hash Function → Index?",
+          "options": [
+            "Binary Search Tree",
+            "Hash Table",
+            "Stack",
+            "Deque",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Hash Table maps search keys to array buckets via a hash function for rapid O(1) average access. Correct: (B) Hash Table."
+        },
+        {
+          "id": "m-d11-q12",
+          "question": "Q12. Using % 10, keys 12, 22, and 32 all hash to index 2. With Separate Chaining, which representation is correct?",
+          "options": [
+            "Index 2 → 12 → 22 → 32",
+            "All keys must be deleted",
+            "Each key must become a tree root",
+            "No collision occurs",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In separate chaining, keys sharing the same index are linked together in a linked list attached to bucket 2: Index 2 → [12] → [22] → [32] → NULL. Correct: (A) Index 2 → 12 → 22 → 32."
+        },
+        {
+          "id": "m-d11-q13",
+          "question": "Q13. Who is associated with describing the Revolt of 1857 as the First War of Indian Independence?",
+          "options": [
+            "V. D. Savarkar",
+            "Lord Curzon",
+            "C. R. Das",
+            "David Hare",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Vinayak Damodar Savarkar authored 'The Indian War of Independence 1857' and is historically associated with describing the 1857 revolt as the First War of Indian Independence. Correct: (A) V. D. Savarkar."
+        },
+        {
+          "id": "m-d11-q14",
+          "question": "Q14. The Swadeshi and Boycott movements are strongly associated with which event?",
+          "options": [
+            "Quit India Movement",
+            "Partition of Bengal",
+            "Home Rule Movement",
+            "Non-Cooperation Movement",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Swadeshi and Boycott movements were first adopted as major weapons of struggle in 1905 in response to the Partition of Bengal by Lord Curzon (tested in TRE 2.0). Correct: (B) Partition of Bengal."
+        },
+        {
+          "id": "m-d11-q15",
+          "question": "Q15. Who presided over the Gaya Session of the Indian National Congress in 1922?",
+          "options": [
+            "Mahatma Gandhi",
+            "C. R. Das",
+            "Lord Curzon",
+            "V. D. Savarkar",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Chittaranjan Das (C. R. Das) presided over the Gaya Session of the Indian National Congress in 1922. Correct: (B) C. R. Das."
+        },
+        {
+          "id": "m-d11-q16",
+          "question": "Q16. “लाभ” का विलोम शब्द है:",
+          "options": [
+            "आय",
+            "हानि",
+            "धन",
+            "उन्नति",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'लाभ' का विलोम (उल्टा अर्थ) 'हानि' होता है। Correct: (B) हानि."
+        },
+        {
+          "id": "m-d11-q17",
+          "question": "Q17. “उन्नति” का विलोम शब्द है:",
+          "options": [
+            "प्रगति",
+            "अवनति",
+            "विकास",
+            "सफलता",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'उन्नति' का विलोम शब्द 'अवनति' (पतन) होता है। Correct: (B) अवनति."
+        },
+        {
+          "id": "m-d11-q18",
+          "question": "Q18. शुद्ध वाक्य चुनिए:",
+          "options": [
+            "लड़के खेल रहा है।",
+            "लड़के खेल रहे हैं।",
+            "लड़के खेल रही है।",
+            "लड़के खेलता हैं।",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'लड़के' बहुवचन पुल्लिंग संज्ञा है, अतः इसके साथ बहुवचन पुल्लिंग क्रिया 'खेल रहे हैं' प्रयुक्त होगी: 'लड़के खेल रहे हैं।' Correct: (B) लड़के खेल रहे हैं."
+        }
+      ]
+    }
   }
 ];
 
