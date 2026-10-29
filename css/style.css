@@ -2921,3 +2921,123 @@ pre.code-block {
     display: none;
   }
 }
+
+/* ==========================================================================
+   Marathon Book Reader Theme Adaptations & Enhancements
+   ========================================================================== */
+
+#marathonReaderWrapper .marathon-day-card {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  margin-bottom: 0;
+}
+
+#marathonReaderWrapper .marathon-book-header {
+  background: transparent;
+  padding: 0 0 1.5rem 0;
+  border-bottom: 1px solid var(--reader-border);
+  margin-bottom: 1.5rem;
+}
+
+#marathonReaderWrapper .marathon-book-body {
+  background: transparent;
+  padding: 0;
+}
+
+/* Theme 2: Sepia Adaptations for Marathon Book Elements */
+.reader-theme-sepia .marathon-targets-box,
+.reader-theme-sepia .book-subcard,
+.reader-theme-sepia .marathon-test-card {
+  background: var(--reader-surface) !important;
+  border-color: var(--reader-border) !important;
+  color: var(--reader-text-primary) !important;
+}
+
+.reader-theme-sepia .marathon-targets-lead,
+.reader-theme-sepia .marathon-test-title,
+.reader-theme-sepia .book-subcard-title {
+  color: var(--reader-accent) !important;
+}
+
+.reader-theme-sepia .marathon-targets-table th {
+  background: var(--reader-surface-elevated) !important;
+  color: var(--reader-accent) !important;
+  border-color: var(--reader-border) !important;
+}
+
+.reader-theme-sepia .marathon-targets-table td {
+  border-color: var(--reader-border) !important;
+  color: var(--reader-text-secondary) !important;
+}
+
+.reader-theme-sepia .marathon-option-btn {
+  background: var(--reader-surface-elevated) !important;
+  border-color: var(--reader-border) !important;
+  color: var(--reader-text-primary) !important;
+}
+
+.reader-theme-sepia .marathon-option-btn:hover {
+  border-color: var(--reader-accent) !important;
+  background: var(--reader-surface) !important;
+}
+
+.reader-theme-sepia pre.code-block.book-code-surface {
+  background-color: #f1e4cc !important;
+  border-color: #dec7a4 !important;
+  color: #2c1a0e !important;
+}
+
+/* Theme 3: Paper White Adaptations for Marathon Book Elements */
+.reader-theme-paper .marathon-targets-box,
+.reader-theme-paper .book-subcard,
+.reader-theme-paper .marathon-test-card {
+  background: var(--reader-surface) !important;
+  border-color: var(--reader-border) !important;
+  color: var(--reader-text-primary) !important;
+}
+
+.reader-theme-paper .marathon-targets-lead,
+.reader-theme-paper .marathon-test-title,
+.reader-theme-paper .book-subcard-title {
+  color: var(--reader-accent) !important;
+}
+
+.reader-theme-paper .marathon-targets-table th {
+  background: var(--reader-surface-elevated) !important;
+  color: var(--reader-accent) !important;
+  border-color: var(--reader-border) !important;
+}
+
+.reader-theme-paper .marathon-targets-table td {
+  border-color: var(--reader-border) !important;
+  color: var(--reader-text-secondary) !important;
+}
+
+.reader-theme-paper .marathon-option-btn {
+  background: var(--reader-surface) !important;
+  border-color: var(--reader-border) !important;
+  color: var(--reader-text-primary) !important;
+}
+
+.reader-theme-paper .marathon-option-btn:hover {
+  border-color: var(--reader-accent) !important;
+  background: var(--reader-surface-elevated) !important;
+}
+
+.reader-theme-paper pre.code-block.book-code-surface {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* View Mode Toggles for Marathon Book Reader */
+#marathonReaderWrapper.view-mode-feed #marathonPageTurner {
+  display: none !important;
+}
+
+#marathonReaderWrapper.view-mode-feed .book-page-stage {
+  padding-bottom: 3.5rem;
+}
+

@@ -1177,16 +1177,74 @@
   }
 
   // -------------------------------------------------------------
-  // Marathon (Day 1 to Day 10) Controller
+  // Marathon Book Reader (Day 1 to Day 10) Controller
   // -------------------------------------------------------------
-  const marathonDaysContainer = document.getElementById('marathonDaysContainer');
-  const marathonFilterBar = document.getElementById('marathonFilterBar');
+  const marathonReaderWrapper = document.getElementById('marathonReaderWrapper');
+  const btnToggleMarathonToc = document.getElementById('btnToggleMarathonToc');
+  const btnCloseMarathonToc = document.getElementById('btnCloseMarathonToc');
+  const marathonTocSidebar = document.getElementById('marathonTocSidebar');
+  const marathonTocBackdrop = document.getElementById('marathonTocBackdrop');
+  const marathonTocList = document.getElementById('marathonTocList');
+  const marathonTocFilterPills = document.getElementById('marathonTocFilterPills');
+  const marathonTocCompletedCount = document.getElementById('marathonTocCompletedCount');
+  const btnResetMarathonProgress = document.getElementById('btnResetMarathonProgress');
+
+  const marathonCurrentLabel = document.getElementById('marathonCurrentLabel');
   const marathonProgressBar = document.getElementById('marathonProgressBar');
-  const marathonProgressText = document.getElementById('marathonProgressText');
-  const marathonDaysLabel = document.getElementById('marathonDaysLabel');
-  const btnResetMarathon = document.getElementById('btnResetMarathon');
+  const marathonProgressPercent = document.getElementById('marathonProgressPercent');
+
+  const btnMarathonFontDec = document.getElementById('btnMarathonFontDec');
+  const btnMarathonFontReset = document.getElementById('btnMarathonFontReset');
+  const btnMarathonFontInc = document.getElementById('btnMarathonFontInc');
+
+  const btnMarathonThemeDark = document.getElementById('btnMarathonThemeDark');
+  const btnMarathonThemeSepia = document.getElementById('btnMarathonThemeSepia');
+  const btnMarathonThemePaper = document.getElementById('btnMarathonThemePaper');
+
+  const btnMarathonModeBook = document.getElementById('btnMarathonModeBook');
+  const btnMarathonModeFeed = document.getElementById('btnMarathonModeFeed');
+
+  const marathonPageStage = document.getElementById('marathonPageStage');
+  const marathonPageContent = document.getElementById('marathonPageContent');
+  const marathonPageTurner = document.getElementById('marathonPageTurner');
+  const btnPrevMarathonDay = document.getElementById('btnPrevMarathonDay');
+  const btnNextMarathonDay = document.getElementById('btnNextMarathonDay');
+  const prevMarathonDayTitle = document.getElementById('prevMarathonDayTitle');
+  const nextMarathonDayTitle = document.getElementById('nextMarathonDayTitle');
+  const marathonPageNumberIndicator = document.getElementById('marathonPageNumberIndicator');
+  const chkMarathonDayCompleted = document.getElementById('chkMarathonDayCompleted');
+  const markMarathonCompletedText = document.getElementById('markMarathonCompletedText');
 
   const MARATHON_STORAGE_KEY = 'bpsc_marathon_completed_days';
+  const MARATHON_BOOK_STATE_KEY = 'bpsc_marathon_book_state';
+
+  const marathonState = {
+    currentDay: 0,
+    theme: 'dark',
+    fontSize: 'md',
+    viewMode: 'book',
+    tocFilter: 'all'
+  };
+
+  function loadMarathonState() {
+    try {
+      const saved = localStorage.getItem(MARATHON_BOOK_STATE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.currentDay === 'number') marathonState.currentDay = parsed.currentDay;
+        if (parsed.theme) marathonState.theme = parsed.theme;
+        if (parsed.fontSize) marathonState.fontSize = parsed.fontSize;
+        if (parsed.viewMode) marathonState.viewMode = parsed.viewMode;
+        if (parsed.tocFilter) marathonState.tocFilter = parsed.tocFilter;
+      }
+    } catch (e) {}
+  }
+
+  function saveMarathonState() {
+    try {
+      localStorage.setItem(MARATHON_BOOK_STATE_KEY, JSON.stringify(marathonState));
+    } catch (e) {}
+  }
 
   function getCompletedDays() {
     try {
@@ -1208,6 +1266,60 @@
       localStorage.setItem(MARATHON_STORAGE_KEY, JSON.stringify(completed));
     } catch (e) {}
     updateMarathonProgressUI();
+    renderMarathonToc();
+    updatePageTurnerState();
+  }
+
+  function applyMarathonTheme(theme) {
+    if (!marathonReaderWrapper) return;
+    marathonState.theme = theme;
+    marathonReaderWrapper.classList.remove('reader-theme-dark', 'reader-theme-sepia', 'reader-theme-paper');
+    marathonReaderWrapper.classList.add(`reader-theme-${theme}`);
+
+    const btns = [btnMarathonThemeDark, btnMarathonThemeSepia, btnMarathonThemePaper];
+    btns.forEach(b => {
+      if (b) b.classList.toggle('active', b.getAttribute('data-theme') === theme);
+    });
+    saveMarathonState();
+  }
+
+  function applyMarathonFontSize(size) {
+    if (!marathonReaderWrapper) return;
+    marathonState.fontSize = size;
+    marathonReaderWrapper.classList.remove('font-size-sm', 'font-size-md', 'font-size-lg');
+    marathonReaderWrapper.classList.add(`font-size-${size}`);
+
+    if (btnMarathonFontDec) btnMarathonFontDec.classList.toggle('active', size === 'sm');
+    if (btnMarathonFontReset) btnMarathonFontReset.classList.toggle('active', size === 'md');
+    if (btnMarathonFontInc) btnMarathonFontInc.classList.toggle('active', size === 'lg');
+    saveMarathonState();
+  }
+
+  function applyMarathonViewMode(mode) {
+    if (!marathonReaderWrapper) return;
+    marathonState.viewMode = mode;
+    marathonReaderWrapper.classList.remove('view-mode-book', 'view-mode-feed');
+    marathonReaderWrapper.classList.add(`view-mode-${mode}`);
+
+    if (btnMarathonModeBook) btnMarathonModeBook.classList.toggle('active', mode === 'book');
+    if (btnMarathonModeFeed) btnMarathonModeFeed.classList.toggle('active', mode === 'feed');
+
+    if (marathonPageTurner) {
+      marathonPageTurner.style.display = mode === 'book' ? 'flex' : 'none';
+    }
+
+    renderMarathonContent();
+    saveMarathonState();
+  }
+
+  function openMobileMarathonToc() {
+    if (marathonTocSidebar) marathonTocSidebar.classList.add('open');
+    if (marathonTocBackdrop) marathonTocBackdrop.classList.add('active');
+  }
+
+  function closeMobileMarathonToc() {
+    if (marathonTocSidebar) marathonTocSidebar.classList.remove('open');
+    if (marathonTocBackdrop) marathonTocBackdrop.classList.remove('active');
   }
 
   function updateMarathonProgressUI() {
@@ -1217,276 +1329,318 @@
     const completedCount = completed.filter(id => MARATHON_DATA.some(d => d.dayId === id)).length;
     const percent = totalDays > 0 ? Math.round((completedCount / totalDays) * 100) : 0;
 
-    if (marathonDaysLabel) {
-      if (totalDays === 1) {
-        marathonDaysLabel.textContent = `${MARATHON_DATA[0].title}`;
-      } else {
-        marathonDaysLabel.textContent = `Day 1 to Day ${totalDays}`;
-      }
-    }
-    if (marathonProgressText) {
-      const dayWord = totalDays === 1 ? 'Day' : 'Days';
-      marathonProgressText.textContent = `${completedCount} / ${totalDays} ${dayWord} Completed (${percent}%)`;
-    }
-    if (marathonProgressBar) {
-      marathonProgressBar.style.width = `${percent}%`;
-    }
+    if (marathonProgressBar) marathonProgressBar.style.width = `${percent}%`;
+    if (marathonProgressPercent) marathonProgressPercent.textContent = `${completedCount}/${totalDays} Days (${percent}%)`;
+    if (marathonTocCompletedCount) marathonTocCompletedCount.textContent = `${completedCount}/${totalDays} Days Completed`;
   }
 
-  function renderMarathonFilterBar(currentFilter = 'all') {
-    if (!marathonFilterBar || typeof MARATHON_DATA === 'undefined') return;
-
-    const totalDays = MARATHON_DATA.length;
-    let html = `
-      <button class="btn-marathon-filter ${currentFilter === 'all' ? 'active' : ''}" data-filter="all">
-        All Days (1–${totalDays})
-      </button>
-    `;
-
-    MARATHON_DATA.forEach(day => {
-      const isActive = currentFilter === day.dayId ? 'active' : '';
-      html += `
-        <button class="btn-marathon-filter ${isActive}" data-filter="${day.dayId}">
-          ${escapeHtml(day.badge || `Day ${day.dayNumber}`)}: ${escapeHtml(day.title)}
-        </button>
-      `;
-    });
-
-    marathonFilterBar.innerHTML = html;
-
-    marathonFilterBar.querySelectorAll('.btn-marathon-filter').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter') || 'all';
-        renderMarathonFilterBar(filter);
-        renderMarathonCards(filter);
-      });
-    });
-  }
-
-  function renderMarathonCards(filter = 'all') {
-    if (!marathonDaysContainer || typeof MARATHON_DATA === 'undefined') return;
-
+  function generateDayBookHtml(day, isSingleView = false) {
     const completed = getCompletedDays();
-    let daysToRender = MARATHON_DATA;
-    if (filter !== 'all') {
-      daysToRender = MARATHON_DATA.filter(d => d.dayId === filter);
-    }
+    const isCompleted = completed.includes(day.dayId);
 
-    marathonDaysContainer.innerHTML = daysToRender.map((day, dIdx) => {
-      const isCompleted = completed.includes(day.dayId);
-
-      // 1. Targets Table
-      let targetsHtml = '';
-      if (day.targets && Array.isArray(day.targets)) {
-        targetsHtml = `
-          <div class="marathon-targets-box">
-            <div class="marathon-targets-lead">Today we focus on only three targets so you actually retain them:</div>
-            <div style="overflow-x:auto;">
-              <table class="marathon-targets-table">
-                <thead>
+    // 1. Targets Table
+    let targetsHtml = '';
+    if (day.targets && Array.isArray(day.targets)) {
+      targetsHtml = `
+        <div class="marathon-targets-box">
+          <div class="marathon-targets-lead">🎯 Today's High-Yield Focus Targets (Retain Every Point):</div>
+          <div style="overflow-x:auto;">
+            <table class="marathon-targets-table">
+              <thead>
+                <tr>
+                  <th>Section</th>
+                  <th>Topic</th>
+                  <th>Goal</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${day.targets.map(t => `
                   <tr>
-                    <th>Section</th>
-                    <th>Topic</th>
-                    <th>Goal</th>
+                    <td><strong>${escapeHtml(t.section)}</strong></td>
+                    <td>${escapeHtml(t.topic)}</td>
+                    <td><span class="badge-tag badge-tier-2" style="font-size:0.75rem;">${escapeHtml(t.goal)}</span></td>
                   </tr>
-                </thead>
-                <tbody>
-                  ${day.targets.map(t => `
-                    <tr>
-                      <td><strong>${escapeHtml(t.section)}</strong></td>
-                      <td>${escapeHtml(t.topic)}</td>
-                      <td><span class="badge-tag badge-tier-2" style="font-size:0.75rem;">${escapeHtml(t.goal)}</span></td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        `;
-      }
-
-      // 2. Intro Note / Context
-      let introHtml = '';
-      if (day.introNote) {
-        introHtml = `
-          <div class="book-callout book-callout-insight" style="margin-bottom: 1.5rem; border-left-color: var(--accent-primary);">
-            <div class="callout-icon">📌</div>
-            <div class="callout-content" style="flex:1;">
-              <div class="callout-title">BPSC &amp; NCERT Foundation Context</div>
-              <div class="callout-text" style="line-height:1.6; margin-top:0.25rem;">${escapeHtml(day.introNote)}</div>
-            </div>
-          </div>
-        `;
-      }
-
-      // 3. Parts (Part III CS, Part II GS, Part I English)
-      let partsHtml = '';
-      if (day.parts && Array.isArray(day.parts)) {
-        partsHtml = day.parts.map((part, pIdx) => {
-          const sectionsHtml = (part.sections || []).map((sec, sIdx) => {
-            const blocksHtml = (sec.blocks || []).map((block, bIdx) => {
-              const blockId = `code-m-${day.dayId}-p${pIdx}-s${sIdx}-b${bIdx}`;
-              if (block.type === 'text') {
-                return `<div class="book-prose-para" style="margin-bottom:0.85rem; white-space:pre-line; line-height:1.65; color:var(--text-secondary); font-size:0.95rem;">${escapeHtml(block.content)}</div>`;
-              } else if (block.type === 'diagram') {
-                return `
-                  <div class="book-code-wrapper" style="margin: 0.85rem 0;">
-                    <button class="btn-copy-code" data-copy-id="${blockId}" title="Copy note text">Copy Note</button>
-                    <pre class="code-block book-code-surface" id="${blockId}"><code>${escapeHtml(block.content)}</code></pre>
-                  </div>
-                `;
-              } else if (block.type === 'callout') {
-                return `
-                  <div class="book-callout book-callout-insight" style="margin: 0.85rem 0;">
-                    <div class="callout-icon">${escapeHtml(block.icon || '💡')}</div>
-                    <div class="callout-content" style="flex:1;">
-                      <div class="callout-title">${escapeHtml(block.title)}</div>
-                      ${block.content ? `<div class="callout-text" style="white-space:pre-line; margin-top:0.25rem; font-size:0.92rem; line-height:1.55;">${escapeHtml(block.content)}</div>` : ''}
-                      ${block.diagram ? `
-                        <div class="book-code-wrapper" style="margin: 0.5rem 0 0.2rem;">
-                          <button class="btn-copy-code" data-copy-id="${blockId}-dia" title="Copy note text">Copy Note</button>
-                          <pre class="code-block book-code-surface" id="${blockId}-dia" style="margin:0; font-size:0.88em; padding:0.75rem 1rem;"><code>${escapeHtml(block.diagram)}</code></pre>
-                        </div>
-                      ` : ''}
-                    </div>
-                  </div>
-                `;
-              }
-              return '';
-            }).join('');
-
-            return `
-              <article class="book-subcard" style="margin-bottom: 1.5rem;">
-                <h3 class="book-subcard-title">${escapeHtml(sec.title)}</h3>
-                <div class="book-subcard-body">
-                  ${blocksHtml}
-                </div>
-              </article>
-            `;
-          }).join('');
-
-          return `
-            <div class="marathon-part-container" style="margin-bottom: 2rem;">
-              <div class="marathon-part-divider">
-                <span class="marathon-part-pill">📖 ${escapeHtml(part.title)}</span>
-              </div>
-              ${sectionsHtml}
-            </div>
-          `;
-        }).join('');
-      }
-
-      // 4. Day 1 Test (Interactive 10 Questions)
-      let testHtml = '';
-      if (day.test && Array.isArray(day.test.questions)) {
-        const optionLetters = ['A', 'B', 'C', 'D', 'E'];
-        const qListHtml = day.test.questions.map((q, qIndex) => {
-          return `
-            <div class="marathon-q-item" data-qid="${q.id}" data-correct="${q.correctAnswer}">
-              <div class="marathon-q-header">
-                <span class="marathon-q-num">Question ${qIndex + 1} of ${day.test.questions.length}</span>
-                <span class="badge-tag badge-tier-1" style="font-size:0.72rem;">BPSC TRE Exam Pattern</span>
-              </div>
-              <div class="marathon-q-text">${escapeHtml(q.question)}</div>
-              <div class="marathon-options-grid">
-                ${q.options.map((opt, optIdx) => `
-                  <button type="button" class="marathon-option-btn" data-opt-idx="${optIdx}">
-                    <span class="marathon-option-label">(${optionLetters[optIdx] || optIdx})</span>
-                    <span class="marathon-option-text">${escapeHtml(opt)}</span>
-                  </button>
                 `).join('')}
-              </div>
-              <div class="marathon-q-explanation" id="expl-${q.id}">
-                <strong>💡 Solution &amp; Explanation:</strong>
-                <div style="margin-top:0.35rem; white-space:pre-line;">${escapeHtml(q.explanation)}</div>
-              </div>
-            </div>
-          `;
-        }).join('');
-
-        testHtml = `
-          <div class="marathon-test-card" id="test-${day.dayId}">
-            <div class="marathon-test-header">
-              <div>
-                <h3 class="marathon-test-title">
-                  <span>📝</span> ${escapeHtml(day.test.title)}
-                </h3>
-                <div class="marathon-test-sub">${escapeHtml(day.test.subtitle)}</div>
-              </div>
-              <div class="marathon-score-badge" id="score-badge-${day.dayId}">
-                <span>🎯 Solved: <span class="solved-count">0</span> / ${day.test.questions.length}</span>
-              </div>
-            </div>
-            <div class="marathon-questions-list">
-              ${qListHtml}
-            </div>
-          </div>
-        `;
-      }
-
-      return `
-        <div class="marathon-day-card marathon-book-style ${isCompleted ? 'day-completed' : ''}" id="card-${day.dayId}">
-          <header class="marathon-day-header marathon-book-header">
-            <div class="marathon-day-title-wrap">
-              <div class="marathon-day-badge-row">
-                <span class="marathon-day-badge">${escapeHtml(day.badge)}</span>
-                <span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>
-                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">⏱️ ${escapeHtml(day.targetTime)}</span>
-                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">📝 ${day.test ? day.test.questions.length : 0} MCQs Test</span>
-              </div>
-              <h3 class="marathon-day-title" style="font-size:1.5rem;">${escapeHtml(day.title)}</h3>
-              <p class="marathon-day-desc" style="font-style:italic;">${escapeHtml(day.summary)}</p>
-            </div>
-            <div class="marathon-day-actions">
-              <button class="btn-day-complete ${isCompleted ? 'completed' : ''}" data-day-id="${day.dayId}">
-                <span>${isCompleted ? '✓' : '○'}</span>
-                <span>${isCompleted ? 'Day Completed' : 'Mark Day Complete'}</span>
-              </button>
-            </div>
-          </header>
-
-          <div class="marathon-day-body marathon-book-body">
-            ${targetsHtml}
-            ${introHtml}
-            ${partsHtml}
-            ${testHtml}
-
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding-top:1.5rem; margin-top:1rem; border-top:1px solid var(--border-color);">
-              <div style="display:flex; align-items:center; gap:0.5rem;">
-                <span style="font-size:1.25rem;">🏁</span>
-                <span style="font-weight:700; font-size:0.92rem; color:var(--text-primary);">Completed Day 1 Study &amp; Solved Test?</span>
-              </div>
-              <button class="btn-day-complete ${isCompleted ? 'completed' : ''}" data-day-id="${day.dayId}">
-                <span>${isCompleted ? '✓' : '○'}</span>
-                <span>${isCompleted ? 'Day Completed' : 'Mark Day Complete'}</span>
-              </button>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
       `;
-    }).join('');
+    }
 
-    // Attach Day Completion toggle handlers
-    marathonDaysContainer.querySelectorAll('.btn-day-complete').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const dayId = btn.getAttribute('data-day-id');
-        const isNowCompleted = !btn.classList.contains('completed');
+    // 2. Intro Note / Context
+    let introHtml = '';
+    if (day.introNote) {
+      introHtml = `
+        <div class="book-callout book-callout-insight" style="margin-bottom: 1.5rem; border-left-color: var(--reader-accent);">
+          <div class="callout-icon">📌</div>
+          <div class="callout-content" style="flex:1;">
+            <div class="callout-title" style="color:var(--reader-accent);">BPSC &amp; NCERT Foundation Context</div>
+            <div class="callout-text" style="line-height:1.6; margin-top:0.25rem;">${escapeHtml(day.introNote)}</div>
+          </div>
+        </div>
+      `;
+    }
 
-        marathonDaysContainer.querySelectorAll(`.btn-day-complete[data-day-id="${dayId}"]`).forEach(b => {
-          b.classList.toggle('completed', isNowCompleted);
-          b.innerHTML = `<span>${isNowCompleted ? '✓' : '○'}</span> <span>${isNowCompleted ? 'Day Completed' : 'Mark Day Complete'}</span>`;
-        });
+    // 3. Parts (Part III CS, Part II GS, Part I English)
+    let partsHtml = '';
+    if (day.parts && Array.isArray(day.parts)) {
+      partsHtml = day.parts.map((part, pIdx) => {
+        const sectionsHtml = (part.sections || []).map((sec, sIdx) => {
+          const blocksHtml = (sec.blocks || []).map((block, bIdx) => {
+            const blockId = `code-m-${day.dayId}-p${pIdx}-s${sIdx}-b${bIdx}`;
+            if (block.type === 'text') {
+              return `<div class="book-prose-para" style="margin-bottom:0.85rem; white-space:pre-line; line-height:1.65; color:var(--reader-text-secondary); font-size:0.95rem;">${escapeHtml(block.content)}</div>`;
+            } else if (block.type === 'diagram') {
+              return `
+                <div class="book-code-wrapper" style="margin: 0.85rem 0;">
+                  <button class="btn-copy-code" data-copy-id="${blockId}" title="Copy note text">Copy Note</button>
+                  <pre class="code-block book-code-surface" id="${blockId}"><code>${escapeHtml(block.content)}</code></pre>
+                </div>
+              `;
+            } else if (block.type === 'callout') {
+              return `
+                <div class="book-callout book-callout-insight" style="margin: 0.85rem 0;">
+                  <div class="callout-icon">${escapeHtml(block.icon || '💡')}</div>
+                  <div class="callout-content" style="flex:1;">
+                    <div class="callout-title">${escapeHtml(block.title)}</div>
+                    ${block.content ? `<div class="callout-text" style="white-space:pre-line; margin-top:0.25rem; font-size:0.92rem; line-height:1.55;">${escapeHtml(block.content)}</div>` : ''}
+                    ${block.diagram ? `
+                      <div class="book-code-wrapper" style="margin: 0.5rem 0 0.2rem;">
+                        <button class="btn-copy-code" data-copy-id="${blockId}-dia" title="Copy note text">Copy Note</button>
+                        <pre class="code-block book-code-surface" id="${blockId}-dia" style="margin:0; font-size:0.88em; padding:0.75rem 1rem;"><code>${escapeHtml(block.diagram)}</code></pre>
+                      </div>
+                    ` : ''}
+                  </div>
+                </div>
+              `;
+            }
+            return '';
+          }).join('');
 
-        const card = document.getElementById(`card-${dayId}`);
-        if (card) {
-          card.classList.toggle('day-completed', isNowCompleted);
+          return `
+            <article class="book-subcard" style="margin-bottom: 1.5rem;">
+              <h3 class="book-subcard-title">${escapeHtml(sec.title)}</h3>
+              <div class="book-subcard-body">
+                ${blocksHtml}
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        return `
+          <div class="marathon-part-container" style="margin-bottom: 2rem;">
+            <div class="marathon-part-divider">
+              <span class="marathon-part-pill">📖 ${escapeHtml(part.title)}</span>
+            </div>
+            ${sectionsHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 4. Test (Interactive Questions)
+    let testHtml = '';
+    if (day.test && Array.isArray(day.test.questions)) {
+      const optionLetters = ['A', 'B', 'C', 'D', 'E'];
+      const qListHtml = day.test.questions.map((q, qIndex) => {
+        return `
+          <div class="marathon-q-item" data-qid="${q.id}" data-correct="${q.correctAnswer}">
+            <div class="marathon-q-header">
+              <span class="marathon-q-num">Question ${qIndex + 1} of ${day.test.questions.length}</span>
+              <span class="badge-tag badge-tier-1" style="font-size:0.72rem;">BPSC TRE Exam Pattern</span>
+            </div>
+            <div class="marathon-q-text">${escapeHtml(q.question)}</div>
+            <div class="marathon-options-grid">
+              ${q.options.map((opt, optIdx) => `
+                <button type="button" class="marathon-option-btn" data-opt-idx="${optIdx}">
+                  <span class="marathon-option-label">(${optionLetters[optIdx] || optIdx})</span>
+                  <span class="marathon-option-text">${escapeHtml(opt)}</span>
+                </button>
+              `).join('')}
+            </div>
+            <div class="marathon-q-explanation" id="expl-${q.id}">
+              <strong>💡 Solution &amp; Explanation:</strong>
+              <div style="margin-top:0.35rem; white-space:pre-line;">${escapeHtml(q.explanation)}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      testHtml = `
+        <div class="marathon-test-card" id="test-${day.dayId}">
+          <div class="marathon-test-header">
+            <div>
+              <h3 class="marathon-test-title">
+                <span>📝</span> ${escapeHtml(day.test.title)}
+              </h3>
+              <div class="marathon-test-sub">${escapeHtml(day.test.subtitle)}</div>
+            </div>
+            <div class="marathon-score-badge" id="score-badge-${day.dayId}">
+              <span>🎯 Solved: <span class="solved-count">0</span> / ${day.test.questions.length}</span>
+            </div>
+          </div>
+          <div class="marathon-questions-list">
+            ${qListHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="marathon-day-card marathon-book-style ${isCompleted ? 'day-completed' : ''}" id="card-${day.dayId}" style="${isSingleView ? '' : 'margin-bottom:3rem; padding-bottom:2rem; border-bottom:2px dashed var(--reader-border);'}">
+        <header class="marathon-day-header marathon-book-header">
+          <div class="marathon-day-title-wrap">
+            <div class="marathon-day-badge-row">
+              <span class="marathon-day-badge">${escapeHtml(day.badge)}</span>
+              <span class="badge-tag badge-tier-2">${escapeHtml(day.unit)}</span>
+              <span style="font-size:0.78rem; color:var(--reader-text-muted); font-weight:600;">⏱️ ${escapeHtml(day.targetTime)}</span>
+              <span style="font-size:0.78rem; color:var(--reader-text-muted); font-weight:600;">📝 ${day.test ? day.test.questions.length : 0} MCQs Test</span>
+            </div>
+            <h2 class="marathon-day-title" style="font-size:1.65rem; color:var(--reader-text-primary); margin:0.35rem 0;">${escapeHtml(day.title)}</h2>
+            <p class="marathon-day-desc" style="font-style:italic; color:var(--reader-text-secondary); margin:0;">${escapeHtml(day.summary)}</p>
+          </div>
+        </header>
+
+        <div class="marathon-day-body marathon-book-body">
+          ${targetsHtml}
+          ${introHtml}
+          ${partsHtml}
+          ${testHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderMarathonToc() {
+    if (!marathonTocList || typeof MARATHON_DATA === 'undefined') return;
+
+    const completed = getCompletedDays();
+    const filter = marathonState.tocFilter || 'all';
+
+    let daysToDisplay = MARATHON_DATA;
+    if (filter === 'w1') {
+      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber <= 7);
+    } else if (filter === 'w2') {
+      daysToDisplay = MARATHON_DATA.filter(d => d.dayNumber > 7);
+    }
+
+    let html = '';
+    daysToDisplay.forEach((day) => {
+      const actualIndex = MARATHON_DATA.findIndex(d => d.dayId === day.dayId);
+      const isActive = marathonState.viewMode === 'book' && actualIndex === marathonState.currentDay;
+      const isCompleted = completed.includes(day.dayId);
+
+      html += `
+        <div class="toc-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-day-index="${actualIndex}">
+          <span class="toc-num">${escapeHtml(day.badge || `Day ${day.dayNumber}`)}</span>
+          <span class="toc-title" title="${escapeHtml(day.title)}">${escapeHtml(day.title.replace(/^TRE 4\.0 —\s*/, ''))}</span>
+          <span class="toc-status-icon">${isCompleted ? '✓' : '○'}</span>
+        </div>
+      `;
+    });
+
+    marathonTocList.innerHTML = html;
+
+    marathonTocList.querySelectorAll('.toc-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const dIdx = parseInt(item.getAttribute('data-day-index'), 10);
+        if (!isNaN(dIdx) && dIdx >= 0 && dIdx < MARATHON_DATA.length) {
+          marathonState.currentDay = dIdx;
+          if (marathonState.viewMode === 'feed') {
+            applyMarathonViewMode('book');
+          } else {
+            renderMarathonContent();
+            updatePageTurnerState();
+            renderMarathonToc();
+          }
+          closeMobileMarathonToc();
+          saveMarathonState();
+          if (marathonPageStage) marathonPageStage.scrollTo({ top: 0, behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        setDayCompleted(dayId, isNowCompleted);
       });
     });
 
-    // Attach Option Click Handlers for interactive checking
-    marathonDaysContainer.querySelectorAll('.marathon-q-item').forEach(qItem => {
+    if (marathonTocFilterPills) {
+      marathonTocFilterPills.querySelectorAll('.btn-toc-filter').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+      });
+    }
+
+    updateMarathonProgressUI();
+  }
+
+  function renderMarathonContent() {
+    if (!marathonPageContent || typeof MARATHON_DATA === 'undefined') return;
+
+    if (marathonState.viewMode === 'feed') {
+      marathonPageContent.innerHTML = MARATHON_DATA.map(d => generateDayBookHtml(d, false)).join('');
+    } else {
+      const day = MARATHON_DATA[marathonState.currentDay] || MARATHON_DATA[0];
+      marathonPageContent.innerHTML = generateDayBookHtml(day, true);
+    }
+
+    attachMarathonQuizHandlers();
+    updatePageTurnerState();
+  }
+
+  function updatePageTurnerState() {
+    if (typeof MARATHON_DATA === 'undefined' || MARATHON_DATA.length === 0) return;
+    const current = MARATHON_DATA[marathonState.currentDay] || MARATHON_DATA[0];
+    const totalDays = MARATHON_DATA.length;
+    const completed = getCompletedDays();
+    const isCompleted = completed.includes(current.dayId);
+
+    if (marathonCurrentLabel) {
+      marathonCurrentLabel.textContent = `Day ${current.dayNumber} of ${totalDays} • ${current.title.replace(/^TRE 4\.0 —\s*/, '')}`;
+    }
+
+    if (marathonPageNumberIndicator) {
+      marathonPageNumberIndicator.textContent = `Day ${current.dayNumber} of ${totalDays}`;
+    }
+    if (chkMarathonDayCompleted) {
+      chkMarathonDayCompleted.checked = isCompleted;
+    }
+    if (markMarathonCompletedText) {
+      markMarathonCompletedText.textContent = isCompleted ? 'Day Completed ✓' : 'Mark Day Completed';
+    }
+
+    if (btnPrevMarathonDay) {
+      if (marathonState.currentDay > 0) {
+        btnPrevMarathonDay.disabled = false;
+        btnPrevMarathonDay.style.opacity = '1';
+        if (prevMarathonDayTitle) {
+          const prev = MARATHON_DATA[marathonState.currentDay - 1];
+          prevMarathonDayTitle.textContent = `Day ${prev.dayNumber}: ${prev.title.replace(/^TRE 4\.0 —\s*/, '')}`;
+        }
+      } else {
+        btnPrevMarathonDay.disabled = true;
+        btnPrevMarathonDay.style.opacity = '0.4';
+        if (prevMarathonDayTitle) prevMarathonDayTitle.textContent = 'Cover';
+      }
+    }
+
+    if (btnNextMarathonDay) {
+      if (marathonState.currentDay < totalDays - 1) {
+        btnNextMarathonDay.disabled = false;
+        btnNextMarathonDay.style.opacity = '1';
+        if (nextMarathonDayTitle) {
+          const next = MARATHON_DATA[marathonState.currentDay + 1];
+          nextMarathonDayTitle.textContent = `Day ${next.dayNumber}: ${next.title.replace(/^TRE 4\.0 —\s*/, '')}`;
+        }
+      } else {
+        btnNextMarathonDay.disabled = true;
+        btnNextMarathonDay.style.opacity = '0.4';
+        if (nextMarathonDayTitle) nextMarathonDayTitle.textContent = 'End of Marathon';
+      }
+    }
+  }
+
+  function attachMarathonQuizHandlers() {
+    if (!marathonPageContent) return;
+
+    marathonPageContent.querySelectorAll('.marathon-q-item').forEach(qItem => {
       const correctIdx = parseInt(qItem.getAttribute('data-correct'), 10);
       const qId = qItem.getAttribute('data-qid');
       const explBox = document.getElementById(`expl-${qId}`);
@@ -1495,8 +1649,6 @@
       optionBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           const selectedIdx = parseInt(btn.getAttribute('data-opt-idx'), 10);
-
-          // Disable options to lock answer
           optionBtns.forEach(b => b.disabled = true);
 
           if (selectedIdx === correctIdx) {
@@ -1508,7 +1660,6 @@
             const label = btn.querySelector('.marathon-option-label');
             if (label) label.innerHTML += ' ✗';
 
-            // Highlight the correct one
             const correctBtn = optionBtns[correctIdx];
             if (correctBtn) {
               correctBtn.classList.add('opt-correct');
@@ -1521,7 +1672,6 @@
             explBox.classList.add('show');
           }
 
-          // Update solved count in score badge
           const testCard = qItem.closest('.marathon-test-card');
           if (testCard) {
             const answeredCount = testCard.querySelectorAll('.marathon-option-btn:disabled').length / 5;
@@ -1535,18 +1685,132 @@
     });
   }
 
-  // Reset Marathon streak handler
-  if (btnResetMarathon) {
-    btnResetMarathon.addEventListener('click', () => {
-      if (confirm('Reset your Marathon progress and streak?')) {
-        try {
-          localStorage.removeItem(MARATHON_STORAGE_KEY);
-        } catch (e) {}
-        updateMarathonProgressUI();
-        renderMarathonCards('all');
-        renderMarathonFilterBar('all');
+  function initMarathonBookReader() {
+    loadMarathonState();
+    applyMarathonTheme(marathonState.theme || 'dark');
+    applyMarathonFontSize(marathonState.fontSize || 'md');
+    applyMarathonViewMode(marathonState.viewMode || 'book');
+
+    renderMarathonToc();
+    renderMarathonContent();
+
+    if (btnToggleMarathonToc) {
+      btnToggleMarathonToc.addEventListener('click', () => {
+        if (marathonTocSidebar && marathonTocSidebar.classList.contains('open')) {
+          closeMobileMarathonToc();
+        } else {
+          openMobileMarathonToc();
+        }
+      });
+    }
+
+    if (btnCloseMarathonToc) {
+      btnCloseMarathonToc.addEventListener('click', closeMobileMarathonToc);
+    }
+
+    if (marathonTocBackdrop) {
+      marathonTocBackdrop.addEventListener('click', closeMobileMarathonToc);
+    }
+
+    if (marathonTocFilterPills) {
+      marathonTocFilterPills.querySelectorAll('.btn-toc-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter') || 'all';
+          marathonState.tocFilter = filter;
+          renderMarathonToc();
+          saveMarathonState();
+        });
+      });
+    }
+
+    if (btnMarathonFontDec) btnMarathonFontDec.addEventListener('click', () => applyMarathonFontSize('sm'));
+    if (btnMarathonFontReset) btnMarathonFontReset.addEventListener('click', () => applyMarathonFontSize('md'));
+    if (btnMarathonFontInc) btnMarathonFontInc.addEventListener('click', () => applyMarathonFontSize('lg'));
+
+    if (btnMarathonThemeDark) btnMarathonThemeDark.addEventListener('click', () => applyMarathonTheme('dark'));
+    if (btnMarathonThemeSepia) btnMarathonThemeSepia.addEventListener('click', () => applyMarathonTheme('sepia'));
+    if (btnMarathonThemePaper) btnMarathonThemePaper.addEventListener('click', () => applyMarathonTheme('paper'));
+
+    if (btnMarathonModeBook) btnMarathonModeBook.addEventListener('click', () => applyMarathonViewMode('book'));
+    if (btnMarathonModeFeed) btnMarathonModeFeed.addEventListener('click', () => applyMarathonViewMode('feed'));
+
+    if (btnPrevMarathonDay) {
+      btnPrevMarathonDay.addEventListener('click', () => {
+        if (marathonState.currentDay > 0) {
+          marathonState.currentDay--;
+          renderMarathonContent();
+          renderMarathonToc();
+          saveMarathonState();
+          if (marathonPageStage) marathonPageStage.scrollTo({ top: 0, behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (btnNextMarathonDay) {
+      btnNextMarathonDay.addEventListener('click', () => {
+        if (marathonState.currentDay < MARATHON_DATA.length - 1) {
+          marathonState.currentDay++;
+          renderMarathonContent();
+          renderMarathonToc();
+          saveMarathonState();
+          if (marathonPageStage) marathonPageStage.scrollTo({ top: 0, behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (chkMarathonDayCompleted) {
+      chkMarathonDayCompleted.addEventListener('change', () => {
+        const day = MARATHON_DATA[marathonState.currentDay];
+        if (day) {
+          setDayCompleted(day.dayId, chkMarathonDayCompleted.checked);
+        }
+      });
+    }
+
+    if (btnResetMarathonProgress) {
+      btnResetMarathonProgress.addEventListener('click', () => {
+        if (confirm('Reset your Marathon progress and streak?')) {
+          try {
+            localStorage.removeItem(MARATHON_STORAGE_KEY);
+          } catch (e) {}
+          updateMarathonProgressUI();
+          renderMarathonToc();
+          updatePageTurnerState();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const marathonPane = document.getElementById('tab-marathon');
+      if (!marathonPane || !marathonPane.classList.contains('active')) return;
+      if (marathonState.viewMode !== 'book') return;
+
+      if (e.key === 'ArrowLeft' && marathonState.currentDay > 0) {
+        marathonState.currentDay--;
+        renderMarathonContent();
+        renderMarathonToc();
+        saveMarathonState();
+        if (marathonPageStage) marathonPageStage.scrollTo({ top: 0, behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (e.key === 'ArrowRight' && marathonState.currentDay < MARATHON_DATA.length - 1) {
+        marathonState.currentDay++;
+        renderMarathonContent();
+        renderMarathonToc();
+        saveMarathonState();
+        if (marathonPageStage) marathonPageStage.scrollTo({ top: 0, behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
+  }
+
+  // Backward compatibility aliases
+  function renderMarathonCards(filter = 'all') {
+    initMarathonBookReader();
+  }
+  function renderMarathonFilterBar(filter = 'all') {
+    // Handled in TOC
   }
 
   // -------------------------------------------------------------

@@ -423,44 +423,139 @@
     </section>
 
     <!-- ========================================================
-         TAB 5: MARATHON (FROM DAY 1)
+         TAB 5: MARATHON (FROM DAY 1) — BOOK READER DESK
          ======================================================== -->
     <section class="tab-pane" id="tab-marathon">
 
-      <div class="section-intro" style="margin-bottom:1.5rem;">
+      <div class="section-intro" style="margin-bottom:1.25rem;">
         <h2 class="ncert-main-title">
-          <span>🏃</span> Marathon (from day 1)
+          <span>🏃</span> Marathon (from day 1) • Daily Study Book
         </h2>
         <p class="ncert-sub-title">
-          Daily structured high-yield study modules starting from Day 1. White-paper mental maps, verbatim concept breakdowns, and memory shortcuts for BPSC TRE 4.0 Computer Science.
+          Structured high-yield study modules arranged in an interactive book reader. White-paper mental maps, verbatim concept breakdowns, and cumulative practice tests for BPSC TRE 4.0 Computer Science.
         </p>
       </div>
 
-      <!-- Marathon Daily Completion Tracker Card -->
-      <div class="marathon-progress-card">
-        <div class="marathon-progress-header">
-          <div class="marathon-progress-title">
-            <span>🔥</span>
-            <span>Marathon Goal: <span id="marathonDaysLabel">Day 1 to Day 10</span></span>
-          </div>
-          <div style="display:flex; align-items:center; gap:0.75rem;">
-            <span id="marathonProgressText" style="font-size:0.88rem; font-weight:700; color:var(--accent-primary);">0 / 10 Days Completed (0%)</span>
-            <button class="btn btn-secondary" id="btnResetMarathon" style="font-size:0.75rem; padding:0.25rem 0.6rem;">Reset Streak</button>
-          </div>
-        </div>
-        <div class="marathon-progress-bar-bg">
-          <div class="marathon-progress-bar-fill" id="marathonProgressBar" style="width: 0%;"></div>
-        </div>
-      </div>
+      <!-- Marathon Book Reader Stage Container -->
+      <div class="book-reader-wrapper reader-theme-dark font-size-md" id="marathonReaderWrapper">
 
-      <!-- Day Filter Pills -->
-      <div class="marathon-filter-bar" id="marathonFilterBar">
-        <!-- Dynamically rendered based on MARATHON_DATA -->
-      </div>
+        <!-- Top Marathon Reader Toolbar -->
+        <header class="reader-toolbar" id="marathonReaderToolbar">
+          <div class="reader-toolbar-left">
+            <button class="btn-reader-action" id="btnToggleMarathonToc" title="Toggle Table of Contents (Day Index)">
+              <span class="icon">📖</span> <span class="label">Day Index</span>
+            </button>
+            <div class="reader-book-meta">
+              <span class="reader-tag">MARATHON BOOK</span>
+              <span class="reader-current-label" id="marathonCurrentLabel">Day 1 of 10</span>
+            </div>
+          </div>
 
-      <!-- Container for dynamic day cards -->
-      <div id="marathonDaysContainer">
-        <!-- Injected dynamically by app.js -->
+          <div class="reader-toolbar-center">
+            <div class="reader-progress-wrap" title="Overall Marathon Completion">
+              <div class="reader-progress-track">
+                <div class="reader-progress-fill" id="marathonProgressBar" style="width: 10%;"></div>
+              </div>
+              <span class="reader-progress-percent" id="marathonProgressPercent">10%</span>
+            </div>
+          </div>
+
+          <div class="reader-toolbar-right">
+            <!-- Text Size Scaler -->
+            <div class="reader-control-group font-scaler" title="Adjust Reading Text Size">
+              <button class="btn-reader-tool" id="btnMarathonFontDec" title="Decrease font size">A-</button>
+              <button class="btn-reader-tool active" id="btnMarathonFontReset" title="Default font size">A</button>
+              <button class="btn-reader-tool" id="btnMarathonFontInc" title="Increase font size">A+</button>
+            </div>
+
+            <!-- Theme Switcher -->
+            <div class="reader-control-group theme-switcher" title="Reading Theme">
+              <button class="btn-reader-theme active" data-theme="dark" id="btnMarathonThemeDark" title="Midnight Dark (OLED-friendly)">🌙</button>
+              <button class="btn-reader-theme" data-theme="sepia" id="btnMarathonThemeSepia" title="Warm Sepia / Classic Paper">📜</button>
+              <button class="btn-reader-theme" data-theme="paper" id="btnMarathonThemePaper" title="Crisp Paper White">☀️</button>
+            </div>
+
+            <!-- Reading View Mode Switcher -->
+            <div class="reader-control-group mode-switcher" title="Switch Reading View">
+              <button class="btn-reader-mode active" id="btnMarathonModeBook" title="Book Mode (Day by Day)">📖 Book</button>
+              <button class="btn-reader-mode" id="btnMarathonModeFeed" title="Continuous Feed (All Days)">📜 Feed</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Two-Column Book Reading Desk -->
+        <div class="book-desk" id="marathonBookDesk">
+          
+          <!-- Collapsible Left Sidebar: Table of Contents / Day Index -->
+          <aside class="book-toc-sidebar" id="marathonTocSidebar">
+            <div class="toc-header">
+              <div class="toc-title-row">
+                <h4>Table of Contents</h4>
+                <button class="btn-toc-close" id="btnCloseMarathonToc" title="Close Index Drawer">✕</button>
+              </div>
+              <span class="toc-subtitle">10 Marathon Study Days</span>
+              <div class="toc-filter-pills" id="marathonTocFilterPills">
+                <button class="btn-toc-filter active" data-filter="all">All (10)</button>
+                <button class="btn-toc-filter" data-filter="w1">Week 1 (7)</button>
+                <button class="btn-toc-filter" data-filter="w2">Week 2 (3)</button>
+              </div>
+            </div>
+
+            <nav class="toc-list" id="marathonTocList">
+              <!-- Dynamically populated by app.js -->
+            </nav>
+
+            <div class="toc-footer">
+              <span class="toc-completed-stat" id="marathonTocCompletedCount">0/10 Days Completed</span>
+              <button class="btn-toc-reset" id="btnResetMarathonProgress" title="Reset Marathon Streak">Reset</button>
+            </div>
+          </aside>
+
+          <!-- Backdrop for mobile drawer -->
+          <div class="toc-backdrop" id="marathonTocBackdrop"></div>
+
+          <!-- Main Stage: Open Book Page -->
+          <main class="book-page-stage" id="marathonPageStage">
+            
+            <!-- Active Book Page Content (Injected by app.js) -->
+            <div class="book-page-content" id="marathonPageContent">
+              <!-- Injected dynamically by app.js -->
+            </div>
+
+            <!-- Bottom Page-Turner Bar (Visible in Book Mode) -->
+            <nav class="book-page-turner" id="marathonPageTurner">
+              <button class="btn-turn-page btn-turn-prev" id="btnPrevMarathonDay">
+                <span class="turn-arrow">←</span>
+                <span class="turn-meta">
+                  <span class="turn-sub">PREVIOUS</span>
+                  <span class="turn-title" id="prevMarathonDayTitle">Cover</span>
+                </span>
+              </button>
+
+              <div class="page-indicator-center">
+                <span class="page-number-text" id="marathonPageNumberIndicator">Day 1 of 10</span>
+                <label class="mark-revised-label" title="Toggle day completion state">
+                  <input type="checkbox" id="chkMarathonDayCompleted">
+                  <span class="chk-custom"></span>
+                  <span class="mark-revised-text" id="markMarathonCompletedText">Mark Day Completed</span>
+                </label>
+                <div class="keyboard-nav-hint hide-mobile">
+                  <kbd>←</kbd> <kbd>→</kbd> arrow keys turn days
+                </div>
+              </div>
+
+              <button class="btn-turn-page btn-turn-next" id="btnNextMarathonDay">
+                <span class="turn-meta">
+                  <span class="turn-sub">NEXT</span>
+                  <span class="turn-title" id="nextMarathonDayTitle">Day 2: Logic Gates</span>
+                </span>
+                <span class="turn-arrow">→</span>
+              </button>
+            </nav>
+
+          </main>
+        </div>
+
       </div>
 
     </section>
