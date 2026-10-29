@@ -2264,6 +2264,531 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 5,
+    "dayId": "day-5",
+    "badge": "Day 05",
+    "title": "TRE 4.0 — Day 5",
+    "unit": "Part III (CS) • Part II (GS) • Part I (English)",
+    "targetTime": "15–18 mins read + test",
+    "summary": "Today we finish an important Digital Electronics block: ROM/PROM/EPROM + PLA + BCD + Gray Code + Error Detection (CS), Geometry & Mensuration basics (GS), and Comprehension + Article traps (English).",
+    "targets": [
+      {
+        "section": "Part III – Computer Science",
+        "topic": "ROM/PROM/EPROM + PLA + BCD + Gray Code + Hamming/CRC/Checksum",
+        "goal": "Memory, codes & error-detection mastery"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Geometry & Mensuration basics",
+        "goal": "Angles, circles & cylinder formulas"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Comprehension + Article traps",
+        "goal": "Passage strategy & article rules"
+      }
+    ],
+    "introNote": "Your TRE 3.0 paper directly asked about ROM types, PLA, Booth algorithm and error-detection codes in consecutive questions.     BPSC TRE3.0 question paper by c… It also asked the maximum value of a single BCD digit. So this is a strong exam area.",
+    "parts": [
+      {
+        "partId": "d5-part-3",
+        "title": "Part III — ROM Family & Digital Codes",
+        "sections": [
+          {
+            "title": "ROM Family",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "🧠 White-paper picture\nImagine a cupboard where data remains even when electricity goes away:"
+              },
+              {
+                "type": "diagram",
+                "content": "POWER OFF\n   ↓\n[ ROM ]\n   ↓\nDATA STILL THERE"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Exam preparation:",
+                "content": "ROM = Non-volatile memory\n\nNow draw the family:"
+              },
+              {
+                "type": "diagram",
+                "content": "             ROM\n              │\n     ┌────────┼─────────┐\n     ↓        ↓         ↓\n   MROM      PROM      EPROM"
+              },
+              {
+                "type": "text",
+                "content": "TRE 3.0 explicitly presented PROM, EPROM and MROM as ROM types.     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "1. MROM",
+                "content": "MROM = Mask ROM\n\nThink:\nFACTORY\n   ↓\nMROM\n\nData is programmed during manufacturing.\n\nMemory trick:\nM = Manufacturer"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "2. PROM",
+                "content": "PROM = Programmable Read Only Memory\n\nYou can program it once.\nBlank PROM\n    ↓\nProgram once\n    ↓\nFinished\n\nMemory trick:\nP = Program Once"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "3. EPROM",
+                "content": "EPROM = Erasable Programmable ROM\n\nCan be erased and reprogrammed.\n\nTraditional EPROM uses ultraviolet light for erasure.\nEPROM\n ↓\nUV Light\n ↓\nErase\n ↓\nProgram again\n\nMemory trick:\nE = Erase"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "4. EEPROM",
+                "content": "Useful extension for the exam:\n\nEEPROM = Electrically Erasable Programmable ROM\nEPROM  → UV erase\nEEPROM → Electrical erase"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Best white-paper memory",
+                "diagram": "MROM   → Manufacturer\nPROM   → Program once\nEPROM  → Erase with UV\nEEPROM → Erase Electrically\n\nThat one picture is enough for most MCQs."
+              }
+            ]
+          },
+          {
+            "title": "PLA — Programmable Logic Array",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 asked the expansion of PLA, and your STET paper asked which components PLA uses.\nPLA = Programmable Logic Array\n\nThe STET paper identifies AND gates and OR gates as its combinational-logic building blocks.     f4bc06d5-5757-40ca-b90b-f5ee42d…"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental picture",
+                "diagram": "INPUTS\n  ↓\nAND section\n  ↓\nOR section\n  ↓\nOUTPUT\n\nThink:\nPLA = AND first, OR later"
+              },
+              {
+                "type": "diagram",
+                "content": "A,B,C\n  ↓\n[ AND ]\n  ↓\n[ OR ]\n  ↓\nOutput"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "For TRE level, first remember:",
+                "content": "PLA → Programmable Logic Array → AND + OR logic"
+              }
+            ]
+          },
+          {
+            "title": "BCD — Binary Coded Decimal",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This causes confusion because BCD is not normal binary conversion.\n\nBCD means:\nTake each decimal digit separately and convert it into 4-bit binary.\n\nExample: decimal 25\nDon't convert 25 directly to binary.\n\nInstead:"
+              },
+              {
+                "type": "diagram",
+                "content": "2       5\n↓       ↓\n0010    0101"
+              },
+              {
+                "type": "text",
+                "content": "Therefore:\n25 in BCD = 0010 0101"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "White-paper trick",
+                "diagram": "DECIMAL NUMBER\n      ↓\nbreak into DIGITS\n      ↓\neach digit = 4 bits"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Valid BCD values",
+                "content": "A decimal digit can only be:\n0 1 2 3 4 5 6 7 8 9\n\nSo BCD uses:\n0000 = 0\n0001 = 1\n...\n1001 = 9\n\nBut:\n1010 → invalid BCD digit\n1011 → invalid\n...\n1111 → invalid\n\nMemory trick:\nBCD stops at 9.\n\nTRE 3.0 asked the maximum value representable in one BCD digit. The mathematically correct maximum decimal digit is 9, which was not among A/B/C in that paper, so the appropriate offered choice was “None of the above.”"
+              },
+              {
+                "type": "callout",
+                "icon": "📝",
+                "title": "Binary vs BCD — very important",
+                "diagram": "Take decimal 12.\n\nNormal binary:\n12₁₀ = 1100₂\n\nBCD:\n1      2\n↓      ↓\n0001   0010\n\nTherefore:\nBinary = 1100\n\nBCD    = 0001 0010\n\nMemory sentence:\nBinary converts the whole number.\nBCD converts each decimal digit separately."
+              }
+            ]
+          },
+          {
+            "title": "Gray Code",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Gray Code has one beautiful rule:\nAdjacent Gray-code values differ by only ONE bit."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\n00\n↓ one bit changes\n01\n↓ one bit changes\n11\n↓ one bit changes\n10\n\nLooks familiar?\n\nYes — that's why we used:\n00 01 11 10\n\nin K-map."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "GRAY = One-bit change\n\nYour STET paper asked how Gray Code is converted to binary and identified the XOR operation.     f4bc06d5-5757-40ca-b90b-f5ee42d…"
+              },
+              {
+                "type": "text",
+                "content": "Binary → Gray\nUse this easy method.\n\nSuppose binary:\n1 0 1 1\n\nRule:\n1. First Gray bit = first binary bit.\n2. Then XOR neighbouring binary bits."
+              },
+              {
+                "type": "diagram",
+                "content": "Binary:   1   0   1   1\n           \\ / \\ / \\ /\nGray:     1   1   1   0"
+              },
+              {
+                "type": "text",
+                "content": "Why?\nFirst = 1\n\n1 XOR 0 = 1\n0 XOR 1 = 1\n1 XOR 1 = 0\n\nTherefore:\n1011 binary → 1110 Gray"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "White-paper memory",
+                "content": "FIRST → copy\n\nthen:\nneighbour XOR neighbour"
+              },
+              {
+                "type": "text",
+                "content": "Gray → Binary\nAgain first bit stays same.\n\nThen use previous binary result XOR current Gray bit.\n\nExample Gray:\n1110\n\nFirst Binary = 1\n\n1 XOR 1 = 0\n0 XOR 1 = 1\n1 XOR 0 = 1\n\nAnswer:\n1011 binary\n\nDon't over-practice this today. Just understand the direction."
+              }
+            ]
+          },
+          {
+            "title": "Error Detection",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine sending:\n101101\n\nthrough a network.\n\nNoise accidentally changes it:\n101001\n\nWe need some mechanism to detect that something went wrong."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nDATA\n ↓\nAdd checking information\n ↓\nTRANSMIT\n ↓\nReceiver checks\n ↓\nERROR?"
+              },
+              {
+                "type": "text",
+                "content": "TRE 3.0 explicitly listed Hamming Code, CRC and Checksum in an error-detection question.     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "1. Parity Bit",
+                "content": "Simplest idea.\n\nCount number of 1s.\n\nFor even parity:\nTotal number of 1s should be EVEN.\n\nExample:\nData = 1011\n\nNumber of 1s = 3\n\nNeed one more 1:\n1011 + parity 1\n\nTotal 1s = 4.\n\nMemory trick:\nParity = Count the 1s"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "2. Hamming Code",
+                "content": "For your current level, remember:\nHamming Code uses parity bits positioned so errors can be detected and, in common forms, a single-bit error can be corrected.\n\nWhite-paper:\nDATA\n +\nEXTRA PARITY BITS\n       ↓\nHAMMING CODE\n       ↓\nFind error position\n\nLater we'll practice the formula:\n2ʳ ≥ m + r + 1\n\nwhere:\nm = data bits\nr = parity bits\n\nDon't memorize the derivation today."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "3. CRC",
+                "content": "CRC = Cyclic Redundancy Check\n\nThink:\nDATA\n ↓\nbinary division\n ↓\nREMAINDER\n ↓\nattach remainder\n\nAt the receiver:\nDivide again\n ↓\nremainder check\n\nMemory trick:\nCRC = Division + Remainder"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "4. Checksum",
+                "content": "Think of data divided into blocks.\nBlock 1\nBlock 2\nBlock 3\n   ↓\n  ADD\n   ↓\nChecksum\n\nReceiver performs a corresponding check.\n\nMemory trick:\nChecksum = ADD blocks"
+              },
+              {
+                "type": "callout",
+                "icon": "📝",
+                "title": "Easy comparison",
+                "diagram": "Parity   → Count 1s\nChecksum → Add blocks\nCRC      → Divide / remainder\nHamming  → Parity bits + locate/correct error\n\nThis is a very useful white-paper table."
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "30-second Day 5 CS sheet",
+                "diagram": "Mentally draw:\nROM FAMILY\n\nMROM   → Manufacturer\nPROM   → Program once\nEPROM  → UV erase\nEEPROM → Electrical erase\n\n\nPLA\nAND → OR\n\n\nBCD\neach decimal DIGIT → 4 bits\nmaximum digit = 9\n\n\nGRAY\nadjacent values differ by 1 bit\nconversion uses XOR\n\n\nERROR\n\nParity   → count\nChecksum → add\nCRC      → divide\nHamming  → locate/correct"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d5-part-2",
+        "title": "Part II — Geometry",
+        "sections": [
+          {
+            "title": "Geometry & Mensuration basics",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 included a parallelogram-angle question and a cylinder total-surface-area question.     BPSC TRE3.0 question paper by c…\n\nWe'll keep today to the formulas most likely to give you easy marks."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "1. Triangle",
+                "diagram": "Mental picture:\n      /\\\n     /  \\\n    /____\\\n\nAngles:\nA + B + C = 180°\n\nMemory:\nTriangle = 180"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "2. Quadrilateral",
+                "diagram": "┌────────┐\n│        │\n└────────┘\n\nSum of interior angles:\n360°\n\nMemory:\nFour sides = 360"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "3. Parallelogram",
+                "diagram": "Important:\nOpposite angles = equal\nAdjacent angles = 180°\n\nMental picture:\n        A──────B\n       /      /\n      D──────C\n\nA = C\nB = D\n\nA+B = 180°\n\nTRE 3.0 asked A:B = 1:2.\n\nLet:\nA = x\nB = 2x\n\nBecause they're adjacent:\nx + 2x = 180\n3x = 180\nx = 60°\n\nSo:\nA = 60°\n\nWhite-paper trick:\nParallelogram neighbours add to 180."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "4. Rectangle",
+                "content": "Area:\nLength × Breadth\n\nPerimeter:\n2(L+B)"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "5. Circle",
+                "content": "Remember:\nCircumference = 2πr\n\nArea = πr²\n\nMemory:\nCircle boundary → 2πr\nCircle inside → πr²"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "6. Cylinder",
+                "diagram": "Mental picture:\n    ______\n  /      \\\n |        | ← h\n |        |\n  \\______/\n      r\n\nCurved Surface Area:\n2πrh\n\nTotal Surface Area:\n2πr(r+h)\n\nVolume:\nπr²h\n\nWhite-paper memory:\nCylinder\n\nCSA → 2πrh\nTSA → 2πr(r+h)\nVolume → πr²h"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d5-part-1",
+        "title": "Part I — English",
+        "sections": [
+          {
+            "title": "Comprehension strategy & Article traps",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 3.0 English section used a passage followed by questions and then article questions such as a/an/the.     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "callout",
+                "icon": "📖",
+                "title": "Comprehension strategy",
+                "diagram": "Do not answer from your own knowledge.\n\nWhite-paper:\nQUESTION\n   ↓\nfind KEYWORD\n   ↓\nlocate same idea in PASSAGE\n   ↓\nANSWER FROM PASSAGE\n\nMemory:\nPassage is the boss.\n\nIf your real-world knowledge disagrees with the passage, the examination normally expects the passage-based answer."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Article trap revision",
+                "content": "We learned:\na  → consonant SOUND\nan → vowel SOUND\n\nExamples:\nan hour ✅\na university ✅\n\nNow add:\nthe = specific/particular thing\n\nExample:\nClose the door.\n\nThe speaker means a particular known door."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 5 Test",
+      "subtitle": "Do not look back.",
+      "questions": [
+        {
+          "id": "m-d5-q1",
+          "question": "Q1. Which memory is normally programmable only once by the user?",
+          "options": [
+            "EPROM",
+            "PROM",
+            "EEPROM",
+            "RAM",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "PROM (Programmable Read Only Memory) is manufactured blank and can be programmed only once by the user using a PROM programmer. Correct: (B) PROM."
+        },
+        {
+          "id": "m-d5-q2",
+          "question": "Q2. EPROM is traditionally erased using:",
+          "options": [
+            "Magnetic field",
+            "Heat",
+            "Ultraviolet light",
+            "Sound",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "EPROM (Erasable Programmable ROM) chips have a transparent quartz window and are erased by exposure to strong ultraviolet (UV) light. Correct: (C) Ultraviolet light."
+        },
+        {
+          "id": "m-d5-q3",
+          "question": "Q3. PLA stands for:",
+          "options": [
+            "Programmable Logic Array",
+            "Programming Logic Architecture",
+            "Primary Logic Array",
+            "Programmable Linear Array",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "PLA stands for Programmable Logic Array, consisting of a programmable AND gate array followed by a programmable OR gate array. Correct: (A) Programmable Logic Array."
+        },
+        {
+          "id": "m-d5-q4",
+          "question": "Q4. Decimal 25 in BCD is:",
+          "options": [
+            "11001",
+            "0010 0101",
+            "0011 0101",
+            "0101 0010",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In BCD (Binary Coded Decimal), each decimal digit is converted separately into 4 bits: 2 = 0010, 5 = 0101 ⇒ 0010 0101. (11001₂ is pure binary, not BCD). Correct: (B) 0010 0101."
+        },
+        {
+          "id": "m-d5-q5",
+          "question": "Q5. Maximum valid decimal value represented by one BCD digit is:",
+          "options": [
+            "8",
+            "9",
+            "10",
+            "15",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A BCD digit represents decimal digits 0 through 9 (0000 to 1001). The maximum valid decimal value is 9 (binary patterns 1010 to 1111 are illegal in BCD). Correct: (B) 9."
+        },
+        {
+          "id": "m-d5-q6",
+          "question": "Q6. Adjacent Gray Code values normally differ in:",
+          "options": [
+            "0 bits",
+            "1 bit",
+            "2 bits",
+            "4 bits",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The defining property of Gray Code (unit-distance code) is that consecutive code words differ in only 1 bit position. Correct: (B) 1 bit."
+        },
+        {
+          "id": "m-d5-q7",
+          "question": "Q7. Which operation is central to Gray/Binary conversion?",
+          "options": [
+            "AND",
+            "OR",
+            "XOR",
+            "NAND",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Both Binary-to-Gray and Gray-to-Binary conversion algorithms fundamentally use the XOR (Exclusive-OR) logic operation. Correct: (C) XOR."
+        },
+        {
+          "id": "m-d5-q8",
+          "question": "Q8. Which technique is easiest remembered as division + remainder?",
+          "options": [
+            "Checksum",
+            "CRC",
+            "Parity",
+            "ASCII",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CRC (Cyclic Redundancy Check) treats data as a polynomial and uses binary modulo-2 division to compute a remainder attached as the check value. Correct: (B) CRC."
+        },
+        {
+          "id": "m-d5-q9",
+          "question": "Q9. Which is associated with parity bits and locating an erroneous bit?",
+          "options": [
+            "Hamming Code",
+            "ASCII",
+            "BCD",
+            "Gray Code",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Hamming Code inserts multiple redundant parity bits at positions 2⁰, 2¹, 2²... to not only detect errors but also identify the exact bit position to correct single-bit errors. Correct: (A) Hamming Code."
+        },
+        {
+          "id": "m-d5-q10",
+          "question": "Q10. Sum of angles in a triangle is:",
+          "options": [
+            "90°",
+            "180°",
+            "270°",
+            "360°",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The sum of the three interior angles of any planar triangle is always 180°. Correct: (B) 180°."
+        },
+        {
+          "id": "m-d5-q11",
+          "question": "Q11. In a parallelogram, adjacent angles are:",
+          "options": [
+            "Always equal",
+            "Supplementary",
+            "Always 90°",
+            "Complementary",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In any parallelogram, adjacent angles are consecutive interior angles between parallel lines, making them supplementary (sum = 180°). Correct: (B) Supplementary."
+        },
+        {
+          "id": "m-d5-q12",
+          "question": "Q12. Area of a circle is:",
+          "options": [
+            "2πr",
+            "πr²",
+            "2πrh",
+            "πd",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Area of a circle with radius r is given by πr². (2πr is circumference). Correct: (B) πr²."
+        },
+        {
+          "id": "m-d5-q13",
+          "question": "Q13. Total surface area of a cylinder is:",
+          "options": [
+            "2πrh",
+            "πr²h",
+            "2πr(r+h)",
+            "πr²",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Total Surface Area of a cylinder = Curved Surface Area + 2 Circular Bases = 2πrh + 2πr² = 2πr(r+h). Correct: (C) 2πr(r+h)."
+        },
+        {
+          "id": "m-d5-q14",
+          "question": "Q14. Choose the correct phrase:",
+          "options": [
+            "a hour",
+            "an university",
+            "an honest person",
+            "an European",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "'honest' starts with a vowel sound /ɒ/ (silent 'h') and thus correctly takes 'an'. (hour takes an; university and European take a). Correct: (C) an honest person."
+        },
+        {
+          "id": "m-d5-q15",
+          "question": "Q15. In a reading-comprehension question, your first source for the answer should be:",
+          "options": [
+            "Your personal experience",
+            "The passage",
+            "General knowledge",
+            "The longest option",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In reading comprehension, the given passage is authoritative ('Passage is the boss'); questions must be answered strictly based on what is stated or implied in the text. Correct: (B) The passage."
+        }
+      ]
+    }
   }
 ];
 
