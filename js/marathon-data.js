@@ -5507,6 +5507,633 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 10,
+    "dayId": "day-10",
+    "badge": "Day 10",
+    "title": "TRE 4.0 — Day 10",
+    "unit": "Part III (CS) • Trees (Binary Tree, BST, Traversals, Balanced Tree) • Average & Hindi",
+    "targetTime": "25–30 mins read + 21 MCQs test",
+    "summary": "Today we enter the most important Tree concepts: Binary Tree, BST, Preorder/Inorder/Postorder traversals, Balanced Trees, Catalan numbers for distinct BSTs, GS Average/Mean calculations, and Hindi एक शब्द + परिमाणवाचक विशेषण.",
+    "targets": [
+      {
+        "section": "Part III – Computer Science",
+        "topic": "Tree + Binary Tree + BST + Preorder/Inorder/Postorder + Balanced Tree",
+        "goal": "Root/Leaf/Sibling, Left < Root < Right, NLR/LNR/LRN traversals, BST Inorder sorted, height diff ≤ 1, Catalan formula"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Average / Mean",
+        "goal": "Average = Sum/Count, Total = Average × Count, Uniform addition/subtraction effects"
+      },
+      {
+        "section": "Part I – Hindi",
+        "topic": "एक शब्द + विशेषण",
+        "goal": "अनेक शब्दों के लिए एक शब्द (अमर, अनाहूत) & परिमाणवाचक विशेषण (थोड़ा पानी)"
+      }
+    ],
+    "introNote": "Today we enter the most important Tree concepts:\n\nThis matches your uploaded papers very closely. TRE 3.0 asks which BST subtree contains values greater than the node, balanced-tree height difference, deriving postorder from preorder, and the number of distinct BSTs from four keys.     BPSC TRE3.0 question paper by c…",
+    "parts": [
+      {
+        "partId": "d10-part-3",
+        "title": "Part III — TREE",
+        "sections": [
+          {
+            "title": "🧠 White-paper mental picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Don't imagine a computer first.\n\nImagine a family tree:"
+              },
+              {
+                "type": "diagram",
+                "content": "                  Grandfather\n                      │\n           ┌──────────┴──────────┐\n         Father                Uncle\n           │                      │\n      ┌────┴────┐             ┌──┴──┐\n    Child     Child          Child Child"
+              },
+              {
+                "type": "text",
+                "content": "Computer Tree is similar:"
+              },
+              {
+                "type": "diagram",
+                "content": "                     10\n                   /    \\\n                  5      20\n                 / \\    /  \\\n                3   7  15  25"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory sentence",
+                "content": "Tree = Parent → Children\n\nUnlike Array/Stack/Queue, a tree is non-linear."
+              }
+            ]
+          },
+          {
+            "title": "1. Important Tree Terms",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Use this tree:"
+              },
+              {
+                "type": "diagram",
+                "content": "                     10\n                   /    \\\n                  5      20\n                 / \\    /\n                3   7  15"
+              },
+              {
+                "type": "text",
+                "content": "Root\nTop node:\n10\n\nRoot = first/top node"
+              },
+              {
+                "type": "diagram",
+                "content": "Parent and Child\n      10\n     /\n    5\n\n10 = parent\n5 = child"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "Upper = Parent\n\nLower = Child"
+              },
+              {
+                "type": "text",
+                "content": "Leaf Node\nNode having no child:\n3\n7\n15\n\nMental picture:\nA real tree ends in leaves.\n\nSo:\nNo child = Leaf"
+              },
+              {
+                "type": "diagram",
+                "content": "Sibling\nNodes sharing the same parent:\n       5\n      / \\\n     3   7\n\n3 and 7 are siblings."
+              }
+            ]
+          },
+          {
+            "title": "2. Binary Tree",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Binary means:\nMaximum TWO children per node"
+              },
+              {
+                "type": "diagram",
+                "content": "             NODE\n            /    \\\n          LEFT   RIGHT"
+              },
+              {
+                "type": "text",
+                "content": "Allowed:\n0 children ✅\n1 child    ✅\n2 children ✅\n\nNot allowed in a binary tree:\n3 children ❌"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper trick",
+                "content": "BI = TWO\n\nBinary Tree:\nLEFT ← NODE → RIGHT"
+              }
+            ]
+          },
+          {
+            "title": "3. Binary Search Tree — BST",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is extremely important.\n\nBST adds one special ordering rule:"
+              },
+              {
+                "type": "diagram",
+                "content": "             ROOT\n             /  \\\n        SMALL   LARGE\n\nMore precisely:\nLeft < Root < Right\n\nExample:\n                    50\n                  /    \\\n                30      70\n               /  \\    /  \\\n             20   40  60   80"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory trick",
+                "content": "        BST\n\nSMALL  ← ROOT → LARGE\nLEFT             RIGHT\n\nTRE 3.0 directly asks where elements greater than the node are placed: right subtree.     BPSC TRE3.0 question paper by c…"
+              },
+              {
+                "type": "diagram",
+                "content": "Insert into BST\nInsert:\n50, 30, 70, 20, 40\n\nFirst:\n50\n\n30:\n30 < 50\n\nSo go left:\n     50\n    /\n   30\n\n70:\n70 > 50\n\nGo right:\n      50\n     /  \\\n   30    70\n\n20:\n20 < 50\n20 < 30\n\nSo:\n       50\n      /  \\\n    30    70\n   /\n 20\n\n40:\n40 < 50\n40 > 30\n\nResult:\n       50\n      /  \\\n    30    70\n   / \\\n 20  40"
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Mental sentence",
+                "content": "Smaller? Walk left. Bigger? Walk right."
+              }
+            ]
+          },
+          {
+            "title": "4. Tree Traversal",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Traversal means:\nVisit every node in some order.\n\nThree important DFS traversals:\nPREORDER\nINORDER\nPOSTORDER\n\nDon't blindly memorize three formulas.\n\nUse one brilliant memory trick:\nLook at where ROOT appears."
+              },
+              {
+                "type": "diagram",
+                "content": "PREORDER\nPRE means before.\n\nSo Root comes first:\nROOT → LEFT → RIGHT\n\nShort:\nN L R\n\nN = Node/Root\n\nUse:\n       10\n      /  \\\n     5   20\n\nPreorder:\n10 → 5 → 20"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "PRE = Root PREcedes children"
+              },
+              {
+                "type": "diagram",
+                "content": "INORDER\nRoot is IN the middle:\nLEFT → ROOT → RIGHT\n\nShort:\nL N R\n\nSame tree:\n       10\n      /  \\\n     5   20\n\nInorder:\n5 → 10 → 20"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "IN = Root IN middle"
+              },
+              {
+                "type": "diagram",
+                "content": "POSTORDER\nPOST means after.\n\nRoot comes last:\nLEFT → RIGHT → ROOT\n\nShort:\nL R N\n\nSame tree:\n       10\n      /  \\\n     5   20\n\nPostorder:\n5 → 20 → 10"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "POST = Root postponed to last"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Best white-paper trick of Day 10",
+                "content": "Write only:\nPRE   → N L R\nIN    → L N R\nPOST  → L R N\n\nNotice something:\nPRE    N first\nIN     N middle\nPOST   N last\n\nThat's your memory system."
+              }
+            ]
+          },
+          {
+            "title": "5. Bigger traversal example & 6. TRE 3.0-style traversal",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Tree:\n             8\n           /   \\\n          4     12\n         / \\    / \\\n        2   6  10 14\n\nPreorder\nRoot first:\n8\n↓\nleft subtree\n↓\n4 2 6\n↓\nright subtree\n↓\n12 10 14\n\nAnswer:\n8, 4, 2, 6, 12, 10, 14"
+              },
+              {
+                "type": "diagram",
+                "content": "Inorder\nLEFT → ROOT → RIGHT\n\nAnswer:\n2, 4, 6, 8, 10, 12, 14"
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Notice something important:",
+                "content": "BST + Inorder\nproduces:\nSorted order\n\nThis is an excellent exam fact.\n\nMemory:\nBST's INORDER = Increasing order"
+              },
+              {
+                "type": "diagram",
+                "content": "Postorder\nLEFT → RIGHT → ROOT\n\nAnswer:\n2, 6, 4, 10, 14, 12, 8"
+              },
+              {
+                "type": "text",
+                "content": "6. TRE 3.0-style traversal\nYour TRE 3.0 paper gives preorder:\n15, 10, 12, 11, 20, 18, 16, 19\n\nfor a BST and asks for postorder.     BPSC TRE3.0 question paper by c…\n\nLet's mentally build it.\n\nStart:\n15\n\n10 smaller:\n      15\n     /\n   10\n\n12:\n      15\n     /\n   10\n     \\\n      12\n\n11:\n      15\n     /\n   10\n     \\\n      12\n     /\n    11\n\nRight side:\n         15\n       /    \\\n     10      20\n       \\    /\n       12  18\n      /   / \\\n     11  16 19\n\nPostorder means:\nLEFT → RIGHT → ROOT\n\nLeft subtree:\n11,12,10\n\nRight:\n16,19,18,20\n\nThen root:\n15\n\nAnswer:\n11, 12, 10, 16, 19, 18, 20, 15\n\nThat corresponds to option B in the uploaded paper.     BPSC TRE3.0 question paper by c…"
+              }
+            ]
+          },
+          {
+            "title": "7. Balanced Binary Tree, 8. Why balance matters & 9. Number of BSTs",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "7. Balanced Binary Tree\nImagine carrying two buckets:\nLEFT       RIGHT\n │           │\nheight      height\n\nA balanced binary tree tries to prevent one side from becoming much taller than the other.\n\nYour TRE 3.0 question uses this rule:\nHeight difference between two subtrees should not exceed 1.     BPSC TRE3.0 question paper by c…\n\nMental:\nDifference:\n\n0 ✅\n1 ✅\n\n2 ❌\n3 ❌"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Balanced = difference ≤ 1"
+              },
+              {
+                "type": "diagram",
+                "content": "8. Why balance matters\nBad BST:\n10\n  \\\n   20\n     \\\n      30\n        \\\n         40\n\nThis starts behaving like a linked list.\n\nBetter:\n       20\n      /  \\\n    10    30\n            \\\n             40\n\nSo generally:\nBetter balance → faster search."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Exam complexity insight",
+                "content": "For exam understanding:\nBalanced BST\n     ↓\nroughly O(log n) search\n\nbut a badly skewed BST can degrade toward:\nO(n)\n\nThis complexity explanation is standard CS expansion beyond the literal wording of your papers, but it helps answer BST questions correctly."
+              },
+              {
+                "type": "text",
+                "content": "9. Number of BSTs — TRE trap\nTRE 3.0 asks:\nHow many distinct BSTs can be created using 4 distinct keys?     BPSC TRE3.0 question paper by c…\n\nAnswer:\n14\n\nThis follows Catalan numbers:\nn=1 → 1\nn=2 → 2\nn=3 → 5\nn=4 → 14\nn=5 → 42"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "TRE memory shortcut",
+                "content": "For now memorize:\n1, 2, 5, 14, 42\n\nThink:\nBST Catalan → 1, 2, 5, 14, 42\n\nWe'll derive Catalan formula later if needed."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d10-part-2",
+        "title": "Part II — Average / Mean",
+        "sections": [
+          {
+            "title": "Average Calculation & Transformation Property",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 Part II contains a question in which every number is subtracted from 53 and the mean of the transformed values is given.     BPSC TRE2.0 question paper by c…\n\nSo Average is worth knowing well."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nFive students have marks:\n10  20  30\n\nPut everything into one bag:\n10+20+30 = 60\n\nDistribute equally:\n60 ÷ 3 = 20\n\nThat's average.\n\nFormula:\n          SUM\nAverage = ─────\n          COUNT"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Average = Total ÷ Number"
+              },
+              {
+                "type": "text",
+                "content": "Example\nNumbers:\n10,20,30,40\n\nSum:\n100\n\nCount:\n4\n\nAverage:\n100/4 = 25\n\nFinding Total from Average\nIf:\nAverage = 25\nNumber of items = 8\n\nthen:\nTotal = Average × Number\n\n25 × 8 = 200"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper pair\nAverage = Total / Number\n\nTotal = Average × Number"
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Important Average Trick",
+                "content": "Suppose every student's mark increases by 5.\n\nOld:\n10 20 30\nAverage = 20\n\nNew:\n15 25 35\n\nNew average:\n25\n\nSo:\nEvery value +5 → Average +5\n\nLikewise:\nEvery value −7 → Average −7\n\nThis transformation concept is exactly the kind of idea tested in your TRE 2.0 mean question.     BPSC TRE2.0 question paper by c…"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d10-part-1",
+        "title": "Part I — Hindi",
+        "sections": [
+          {
+            "title": "अनेक शब्दों के लिए एक शब्द & विशेषण",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Today we'll strengthen एक शब्द and one useful विशेषण concept because TRE 2.0 tests both."
+              },
+              {
+                "type": "diagram",
+                "content": "1. अनेक शब्दों के लिए एक शब्द\nMental picture:\nLONG SENTENCE\n     ↓\n ONE WORD\n\nExample:\nजो कभी न मरे\n      ↓\n     अमर\n\nAnother important one from your TRE 2.0 paper:\nजिसे बुलाया न गया हो\n        ↓\n      अनाहूत\n\nSo remember:\nअनाहूत = जिसे बुलाया न गया हो"
+              },
+              {
+                "type": "text",
+                "content": "Other useful examples:\nजो सब जानता हो → सर्वज्ञ\n\nजो दिखाई न दे → अदृश्य\n\nजिसका अंत न हो → अनंत\n\nजो पढ़ा-लिखा न हो → निरक्षर"
+              },
+              {
+                "type": "diagram",
+                "content": "2. परिमाणवाचक विशेषण\nTRE 2.0 asks about the adjective expressing measurement/quantity of a noun.\n\nMental picture:\nकितना दूध?\n   ↓\nदो लीटर दूध\n\nor:\nथोड़ा पानी\nबहुत दूध\nकम चावल\n\nThese express quantity.\nपरिमाणवाचक विशेषण = कितना?"
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "Compare",
+                "content": "कितना? → परिमाणवाचक\n\nकितने? → संख्यावाचक\n\nExample:\nथोड़ा दूध\n\nथोड़ा = परिमाणवाचक विशेषण."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d10-part-recap",
+        "title": "Day 10 Mental Page",
+        "sections": [
+          {
+            "title": "Mental White-Paper Review",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Before attempting the test, close your notes and visualize:"
+              },
+              {
+                "type": "diagram",
+                "content": "TREE\nParent → Child\nNo child → Leaf\n\nBINARY TREE\nmax 2 children\n\nBST\nLEFT < ROOT < RIGHT\n\nThen:\nTRAVERSAL\n\nPRE  → NLR\nIN   → LNR\nPOST → LRN\n\nPRE  → Root first\nIN   → Root middle\nPOST → Root last\n\nBST Inorder → Sorted\n\nAnd:\nBALANCED TREE\nheight difference ≤ 1\n\nBST counts:\n1, 2, 5, 14, 42\n\nPart II:\nAVERAGE\n= TOTAL / NUMBER\n\nTOTAL\n= AVERAGE × NUMBER\n\nEveryone +x\n→ Average +x"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 10 Practice Test (21 Questions)",
+      "subtitle": "14 CS (Trees & Traversals) • 4 GS (Average) • 3 Hindi (एक शब्द & विशेषण)",
+      "timeLimit": "25–30 mins",
+      "questions": [
+        {
+          "id": "m-d10-q1",
+          "question": "Q1. The topmost node of a tree is:",
+          "options": [
+            "Leaf",
+            "Root",
+            "Child",
+            "Edge",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The root is the topmost node of a tree from which all other nodes descend. Correct: (B) Root."
+        },
+        {
+          "id": "m-d10-q2",
+          "question": "Q2. A node having no children is called:",
+          "options": [
+            "Parent",
+            "Root only",
+            "Leaf",
+            "Sibling",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A leaf node (terminal node) is a node that does not have any child nodes. Correct: (C) Leaf."
+        },
+        {
+          "id": "m-d10-q3",
+          "question": "Q3. A Binary Tree node can have at most:",
+          "options": [
+            "1 child",
+            "2 children",
+            "3 children",
+            "4 children",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a binary tree, each node has at most two children, typically referred to as the left and right child. Correct: (B) 2 children."
+        },
+        {
+          "id": "m-d10-q4",
+          "question": "Q4. In a BST, values greater than a node are normally placed in:",
+          "options": [
+            "Left subtree",
+            "Right subtree",
+            "Either subtree randomly",
+            "Root only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "By Binary Search Tree (BST) definition, values smaller than the root go into the left subtree, and values greater than the root go into the right subtree (Left < Root < Right). Correct: (B) Right subtree."
+        },
+        {
+          "id": "m-d10-q5",
+          "question": "Q5. Preorder traversal is:",
+          "options": [
+            "LNR",
+            "LRN",
+            "NLR",
+            "RNL",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Preorder traversal visits Node/Root first, then Left subtree, then Right subtree: NLR (Root Precedes children). Correct: (C) NLR."
+        },
+        {
+          "id": "m-d10-q6",
+          "question": "Q6. Inorder traversal is:",
+          "options": [
+            "NLR",
+            "LNR",
+            "LRN",
+            "NRL",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inorder traversal visits Left subtree, then Node/Root in the middle, then Right subtree: LNR. Correct: (B) LNR."
+        },
+        {
+          "id": "m-d10-q7",
+          "question": "Q7. Postorder traversal is:",
+          "options": [
+            "LRN",
+            "LNR",
+            "NLR",
+            "RNL",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Postorder traversal visits Left subtree, then Right subtree, and Node/Root last: LRN (Root Postponed to end). Correct: (A) LRN."
+        },
+        {
+          "id": "m-d10-q8",
+          "question": "Q8. (For tree: 20 -> left 10 [5,15], right 30 [25,35]) Preorder is:",
+          "options": [
+            "5,10,15,20,25,30,35",
+            "20,10,5,15,30,25,35",
+            "5,15,10,25,35,30,20",
+            "20,30,35,25,10,15,5",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "NLR: Root (20) → Left Subtree (10, 5, 15) → Right Subtree (30, 25, 35). Thus: 20, 10, 5, 15, 30, 25, 35. Correct: (B) 20,10,5,15,30,25,35."
+        },
+        {
+          "id": "m-d10-q9",
+          "question": "Q9. (For tree: 20 -> left 10 [5,15], right 30 [25,35]) Inorder is:",
+          "options": [
+            "20,10,5,15,30,25,35",
+            "5,10,15,20,25,30,35",
+            "5,15,10,25,35,30,20",
+            "35,30,25,20,15,10,5",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "LNR: Inorder traversal of a Binary Search Tree produces nodes in sorted ascending order: 5, 10, 15, 20, 25, 30, 35. Correct: (B) 5,10,15,20,25,30,35."
+        },
+        {
+          "id": "m-d10-q10",
+          "question": "Q10. (For tree: 20 -> left 10 [5,15], right 30 [25,35]) Postorder is:",
+          "options": [
+            "20,10,5,15,30,25,35",
+            "5,10,15,20,25,30,35",
+            "5,15,10,25,35,30,20",
+            "20,30,10,35,25,15,5",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "LRN: Left subtree (5, 15, 10) → Right subtree (25, 35, 30) → Root (20). Result: 5, 15, 10, 25, 35, 30, 20. Correct: (C) 5,15,10,25,35,30,20."
+        },
+        {
+          "id": "m-d10-q11",
+          "question": "Q11. Inorder traversal of a BST usually produces:",
+          "options": [
+            "Random order",
+            "Sorted ascending order",
+            "Reverse insertion order always",
+            "Level order",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Because Left < Root < Right, LNR traversal always visits keys in non-decreasing (sorted ascending) order. Correct: (B) Sorted ascending order."
+        },
+        {
+          "id": "m-d10-q12",
+          "question": "Q12. In the balanced-tree rule tested in TRE 3.0, heights of two subtrees should not differ by more than:",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An AVL / height-balanced binary tree requires the height difference between the left and right subtrees of every node to be at most 1 (|hL - hR| ≤ 1). Correct: (B) 1."
+        },
+        {
+          "id": "m-d10-q13",
+          "question": "Q13. Number of distinct BSTs using 4 distinct keys is:",
+          "options": [
+            "4",
+            "8",
+            "14",
+            "24",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The number of structurally unique BSTs with n distinct keys is given by the n-th Catalan number C(n) = (1/(n+1)) * (2n choose n). For n=4: C(4) = (1/5) * (8! / (4! 4!)) = 14. (Catalan sequence: 1, 2, 5, 14, 42). Correct: (C) 14."
+        },
+        {
+          "id": "m-d10-q14",
+          "question": "Q14. Which tree is most likely to suffer poor search performance?",
+          "options": [
+            "Well-balanced BST",
+            "Highly skewed BST",
+            "Complete balanced tree",
+            "Perfect tree",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A highly skewed BST degenerates into a linear structure similar to a linked list, causing search complexity to deteriorate from O(log n) to O(n). Correct: (B) Highly skewed BST."
+        },
+        {
+          "id": "m-d10-q15",
+          "question": "Q15. Average of 10, 20, 30, 40 is:",
+          "options": [
+            "20",
+            "25",
+            "30",
+            "40",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Sum = 10 + 20 + 30 + 40 = 100. Count = 4. Average = 100 / 4 = 25. Correct: (B) 25."
+        },
+        {
+          "id": "m-d10-q16",
+          "question": "Q16. Average of 8 numbers is 15. Their total is:",
+          "options": [
+            "23",
+            "60",
+            "120",
+            "150",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Total = Average × Count = 15 × 8 = 120. Correct: (C) 120."
+        },
+        {
+          "id": "m-d10-q17",
+          "question": "Q17. Average of 5 numbers is 20. If every number increases by 3, new average becomes:",
+          "options": [
+            "20",
+            "21",
+            "23",
+            "25",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "When every element in a dataset increases by a constant k, the overall average increases by that exact amount: 20 + 3 = 23. Correct: (C) 23."
+        },
+        {
+          "id": "m-d10-q18",
+          "question": "Q18. Average of 6 students is 50. Total marks are:",
+          "options": [
+            "56",
+            "250",
+            "300",
+            "350",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Total = Average × Number of students = 50 × 6 = 300. Correct: (C) 300."
+        },
+        {
+          "id": "m-d10-q19",
+          "question": "Q19. “जो कभी न मरे” के लिए एक शब्द:",
+          "options": [
+            "नश्वर",
+            "अमर",
+            "मृत",
+            "जीवित",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "अनेक शब्दों के लिए एक शब्द: 'जो कभी न मरे' उसे 'अमर' कहते हैं। Correct: (B) अमर."
+        },
+        {
+          "id": "m-d10-q20",
+          "question": "Q20. “जिसे बुलाया न गया हो”:",
+          "options": [
+            "आमंत्रित",
+            "अनाहूत",
+            "अतिथि",
+            "आगंतुक",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'जिसे बुलाया न गया हो' उसे 'अनाहूत' कहा जाता है (TRE 2.0 tested). Correct: (B) अनाहूत."
+        },
+        {
+          "id": "m-d10-q21",
+          "question": "Q21. “थोड़ा पानी” में थोड़ा है:",
+          "options": [
+            "गुणवाचक विशेषण",
+            "परिमाणवाचक विशेषण",
+            "व्यक्तिवाचक संज्ञा",
+            "सर्वनाम",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'थोड़ा' शब्द संज्ञा की मात्रा/नाप-तौल (परिमाण) को दर्शाता है, अतः यह परिमाणवाचक विशेषण है। Correct: (B) परिमाणवाचक विशेषण."
+        }
+      ]
+    }
   }
 ];
 
