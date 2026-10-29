@@ -1,7 +1,5 @@
-// =========================================================================
-// BPSC TRE 4.0 Computer Science — Daily Practice Marathon (Book Style)
-// Day-by-Day High-Yield Revision Modules with Verbatim Exam Notes & Tests.
-// =========================================================================
+// BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
+// Days 1 to 23 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -12984,6 +12982,614 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "First identify the core question and keyword, then scan the passage directly for that reference point. Correct: (B) Identify the question/keyword."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 23,
+    "dayId": "day-23",
+    "badge": "Day 23",
+    "title": "TRE 4.0 — Day 23",
+    "unit": "Part III (CS) • Deadlock, Semaphore, Mutex, Critical Section, Race Condition • GS (Physics Resistance) • Hindi",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Operating Systems Concurrency & Resource Allocation: Synchronization, Race Condition, Critical Section, Mutual Exclusion, Mutex lock (one key/owner), Semaphore (wait/signal counter, Binary 0/1 vs Counting), Deadlock (Pen vs Book analogy), the 4 Coffman Conditions (Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait — MHNC), Deadlock Prevention (breaking one condition) vs Avoidance (Banker's Algorithm, Safe State), Deadlock vs Starvation, Wire Resistance cut & parallel formula (R/n² = R/25, R/R' = 25), and Hindi (अनाहूत, परिमाणवाचक विशेषण).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Race Condition, Critical Section, Mutex, Semaphore, Deadlock",
+        "goal": "Master concurrency control, Mutex vs Semaphore, 4 Coffman conditions (MHNC), Deadlock Prevention vs Avoidance (Banker's Algorithm), and Deadlock vs Starvation"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Resistance calculation (Physics / Electricity)",
+        "goal": "Wire cut into 5 parts (r = R/5), connected in parallel (R' = R/25), ratio R/R' = 25"
+      },
+      {
+        "section": "Part I – Hindi",
+        "topic": "अनेक शब्दों के लिए एक शब्द व विशेषण",
+        "goal": "जिसे बुलाया न गया हो → अनाहूत; संज्ञा की मात्रा/माप → परिमाणवाचक विशेषण (उदा. थोड़ा पानी)"
+      }
+    ],
+    "introNote": "I checked the uploaded TRE/STET excerpts first. I did not find a direct question on Deadlock, Semaphore, Mutex, Critical Section, or Race Condition in those retrieved papers. So today's main OS lesson is standard OS expansion for TRE preparation, not a claim that these exact questions appeared in your papers.\n\nThe papers do establish the surrounding OS area strongly: TRE 3.0 directly tests threads, paging, segmentation, thrashing, TLB, file operations and FCFS disk scheduling.",
+    "parts": [
+      {
+        "title": "Part III — Process Synchronization: Race Condition, Critical Section & Mutex",
+        "sections": [
+          {
+            "title": "1. Why Synchronization? & 2. Race Condition",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Why Synchronization?\n\n🧠 MENTAL PICTURE\nImagine a library has one seat, but two students try to occupy it simultaneously."
+              },
+              {
+                "type": "diagram",
+                "content": "       Seat 10\n          ↑\n       /     \\\n   Student A  Student B\n\nBoth check:\nSeat available? → YES\n\nand both try:\nBook Seat 10\n\nProblem."
+              },
+              {
+                "type": "text",
+                "content": "Computer programs face the same issue when multiple threads access shared data.\nSynchronization = coordinating processes/threads when using shared resources.\n\n2. Race Condition\nConsider:\nBalance = ₹1000\n\nTwo threads execute at the same time:\nThread A → +₹500\nThread B → -₹200\n\nCorrect final balance should be:\n₹1300\n\nBut both may read ₹1000 before either writes.\nThread A reads 1000\nThread B reads 1000\n\nA calculates 1500\nB calculates 800\n\nA writes 1500\nB writes 800\n\nFinal:\n₹800 ❌\n\nOne update disappeared.\n\nThat's a:\nRace Condition"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory Rule: Race Condition",
+                "content": "Race Condition = result depends on who runs first.",
+                "diagram": "SHARED DATA\n   ↑     ↑\nThread1 Thread2\n   ↓     ↓\n same time\n    ↓\n  RACE"
+              }
+            ]
+          },
+          {
+            "title": "3. Critical Section, 4. Mutual Exclusion & 5. Mutex",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. Critical Section\nThe code that accesses shared data/resources is called the:\nCritical Section\n\nExample:\nbalance = balance + 500\n\nIf multiple threads execute this shared-data section simultaneously, problems may occur."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nThread A ─┐\n          ↓\n     ┌───────────┐\n     │ CRITICAL  │\n     │  SECTION  │\n     └───────────┘\n          ↑\nThread B ─┘\n\nGoal:\nAllow controlled access."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Critical Section Concept",
+                "content": "Critical Section = dangerous shared area"
+              },
+              {
+                "type": "text",
+                "content": "4. Mutual Exclusion\nWe want:\nThread A enters\nThread B waits\n\nnot:\nThread A + Thread B enter together ❌\n\nThis principle is:\nMutual Exclusion"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Memory trick: Mutual Exclusion",
+                "content": "Mutual Exclusion = ONE at a time"
+              },
+              {
+                "type": "text",
+                "content": "5. Mutex\nMutex means:\nMutual Exclusion lock\n\n🧠 Mental picture\nImagine one bathroom with one key:"
+              },
+              {
+                "type": "diagram",
+                "content": "Bathroom\n   🔑\n\nPerson A gets key:\nA 🔑 → inside\nB    → waits\n\nA leaves and returns key:\nA → unlock\nB 🔑 → enters\n\nThat's Mutex.\n\nConceptually:\nLOCK\n ↓\nCritical Section\n ↓\nUNLOCK"
+              },
+              {
+                "type": "callout",
+                "icon": "🔑",
+                "title": "Memory: Mutex",
+                "content": "Mutex = one key, one owner, one at a time"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Semaphores & Mutex vs Semaphore Comparison",
+        "sections": [
+          {
+            "title": "6. Semaphore, 7. Semaphore Operations & Types",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. Semaphore\nSemaphore is a synchronization mechanism represented conceptually by a counter.\n\n🧠 Mental picture\nImagine a parking area with:\n3 parking spaces\n\nSemaphore:\nS = 3\n\nCar enters:\nS = 2\n\nAnother:\nS = 1\n\nAnother:\nS = 0\n\nNext car:\nmust wait.\n\nWhen someone leaves:\nS = 1\nanother can enter."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory: Semaphore",
+                "content": "Semaphore = counter controlling access"
+              },
+              {
+                "type": "text",
+                "content": "7. Semaphore Operations\nTwo classic names:\nwait()\nsignal()\n\nAlso often written:\nP()\nV()\n\nWAIT\nConceptually:\nTry to acquire/use a resource.\nwait(S)\n\nSIGNAL\nRelease/announce resource availability:\nsignal(S)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Memory: WAIT vs SIGNAL",
+                "content": "WAIT   → Take / acquire (P)\nSIGNAL → Release / announce (V)"
+              },
+              {
+                "type": "text",
+                "content": "8. Binary Semaphore\nBinary semaphore usually has:\n0 or 1\n\nMental:\n1 → available\n0 → unavailable\n\nIt can be used for mutual-exclusion-style synchronization.\nMemory: Binary = 0/1\n\n9. Counting Semaphore\nCounting semaphore can represent multiple resources.\n\nExample:\n5 printers\n\nSemaphore:\nS = 5\n\nMemory: Counting Semaphore = multiple copies of resource"
+              }
+            ]
+          },
+          {
+            "title": "Mutex vs Semaphore Comparison & Memory Tricks",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Mutex vs Semaphore (Very important):\n\nFeature             │ Mutex                       │ Semaphore\n────────────────────┼─────────────────────────────┼───────────────────────────────\nConcept             │ Lock                        │ Counter / synchronization primitive\nOwnership           │ Usually one owner           │ Signaling need not use same ownership model\nPrimary Purpose     │ Mutual exclusion            │ Resource counting / synchronization\nClassic Operations  │ Lock / Unlock               │ Wait (P) / Signal (V)"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Mental picture: Mutex vs Semaphore",
+                "content": "MUTEX:\n→ Bathroom key 🔑\n→ one person\n\nSEMAPHORE:\n→ Parking spaces\n→ count available spaces"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Core Memory Anchor",
+                "content": "Mutex = KEY\n\nSemaphore = COUNT"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Deadlock, Coffman Conditions, Prevention & Avoidance",
+        "sections": [
+          {
+            "title": "10. Deadlock & 11–15. Four Necessary Deadlock Conditions",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. Deadlock\nNow imagine:\nPerson A has Pen\nPerson B has Book\n\nA says:\nI'll release the Pen only after getting the Book.\n\nB says:\nI'll release the Book only after getting the Pen."
+              },
+              {
+                "type": "diagram",
+                "content": "A holds PEN\n   ↓ wants\n BOOK held by B\n\nB holds BOOK\n   ↓ wants\n PEN held by A\n\nNobody moves.\n\nThat's:\nDeadlock"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Memory: Deadlock",
+                "content": "Deadlock = everybody waits forever for each other."
+              },
+              {
+                "type": "text",
+                "content": "11. Four Necessary Deadlock Conditions\nThis is extremely important.\n\nDeadlock requires all four classic Coffman conditions:\n1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait\n\nUse: M H N C\nor mental sentence:\n\"My Hungry Neighbor Circles\"\n\n12. Mutual Exclusion (M)\nResource can be held by only one process at a time.\nExample:\nPrinter → Process A only\nMemory: M = one owner\n\n13. Hold and Wait (H)\nProcess:\nHOLDS resource A\nwhile:\nWAITS for resource B\nMental:\nProcess\n├── Holding Pen\n└── Waiting Book\nMemory: H = Hold one, Wait another\n\n14. No Preemption (N)\nResource cannot simply be forcibly taken away under the deadlock model; it is released according to the resource/process protocol.\nMental:\nProcess A owns Resource\n        ↓\nOS cannot simply grab it\nMemory: N = No forced taking\n\n15. Circular Wait (C)\nProcesses form a circle:"
+              },
+              {
+                "type": "diagram",
+                "content": "P1 waits for P2\n ↑            ↓\nP4           P3\n ↑            ↓\n └────────────┘\n\nSimpler:\nP1 → waits P2\nP2 → waits P3\nP3 → waits P1\n\nMemory:\nCircular Wait = waiting circle"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Four Conditions White-Paper Picture",
+                "content": "DEADLOCK\n\nM → Mutual Exclusion\nH → Hold and Wait\nN → No Preemption\nC → Circular Wait\n\nAll four must hold for a classic deadlock situation."
+              }
+            ]
+          },
+          {
+            "title": "16. Deadlock Prevention, 17. Avoidance, 18. Safe State & 19. Deadlock vs Starvation",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "16. Deadlock Prevention\nA very useful conceptual rule:\nBreak at least one necessary condition → prevent deadlock.\n\nFor example:\nBreak circular wait by requiring resources to be requested in a fixed order.\nAlways request:\nR1 → R2 → R3\nnot arbitrary:\nP1: R1 then R2\nP2: R2 then R1 ❌\n\nMemory: Prevent = break a Coffman condition\n\n17. Deadlock Avoidance\nStandard OS concept:\nCheck whether granting a resource would leave the system in a safe state.\nFamous algorithm:\nBanker's Algorithm\n\n🧠 Mental picture\nBank:\n“Can I safely give you this loan and still satisfy everyone?”\nOperating system:\n“Can I safely grant this resource?”\n\nMemory: Banker's Algorithm → Deadlock Avoidance\n\n18. Safe State\nA safe state means:\nThere exists some order in which all processes can eventually finish.\nExample:\nP2 finishes → releases resources\nP1 finishes → releases resources\nP3 finishes\n\nMemory: Safe ≠ deadlocked\n\nBut be careful:\nAn unsafe state does not necessarily mean a deadlock has already occurred; it means deadlock is possible."
+              },
+              {
+                "type": "text",
+                "content": "19. Deadlock vs Starvation\nImportant trap."
+              },
+              {
+                "type": "diagram",
+                "content": "Deadlock                 Starvation\n──────────────────────── ────────────────────────\nP1 waits P2              P1 waits...\nP2 waits P1              P2 runs\n                         P3 runs\n                         P4 runs\n                         P5 runs\nNobody progresses        P1 keeps being ignored\n\nSystem is progressing, but one process may wait indefinitely."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Deadlock vs Starvation Distinction",
+                "content": "DEADLOCK   → group stuck\nSTARVATION → one process keeps waiting"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Synchronization Master Sheet & White-Paper Recall",
+        "sections": [
+          {
+            "title": "20. Synchronization Summary & Master Sheet",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "20. Synchronization Summary",
+                "content": "RACE CONDITION   → uncontrolled concurrent access\nCRITICAL SECTION → shared-data code\nMUTEX            → one-at-a-time lock\nSEMAPHORE        → counter/signal\nDEADLOCK         → processes permanently waiting"
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Day 23 White-Paper Master Sheet\nClose notes and draw:\n\nSHARED RESOURCE\n      ↓\nRACE CONDITION\n      ↓\nCRITICAL SECTION\n      ↓\nSYNCHRONIZATION\n\nThen:\nMUTEX\n→ one key\n→ one at time\n\nSEMAPHORE\n→ counter\n→ wait / signal\nBinary → 0/1\nCounting → many resources\n\nThen:\nDEADLOCK\nM → Mutual Exclusion\nH → Hold & Wait\nN → No Preemption\nC → Circular Wait\n\nFinally:\nDeadlock Prevention → break one condition\nDeadlock Avoidance  → Banker's Algorithm\nDeadlock            → everybody/group stuck\nStarvation          → one process may keep waiting"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part II — General Studies: Resistance Calculation (TRE 3.0 Physics)",
+        "sections": [
+          {
+            "title": "Wire Resistance Cut into Equal Parts & Parallel Combination",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 3.0 paper asks about a wire of resistance R cut into 5 equal pieces and then connected in parallel.\n\n🧠 Step 1: Cut wire into 5 parts\nOriginal:\nResistance = R\n\nEach piece:\nR / 5\nbecause resistance is proportional to length (R = ρL/A).\n\nStep 2: Five identical resistors in parallel\nFor n equal resistors of resistance r:\nEquivalent = r / n\n\nHere:\nr = R/5\nn = 5\n\nTherefore:\nR' = (R/5) / 5\n   = R/25\n\nHence:\nR / R'\n= R / (R/25)\n= 25"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "GS Physics Formula Rule",
+                "content": "Cut into n equal pieces + connect all in parallel → R' = R/n²\n\nFor 5 pieces:\nR' = R/25\nRatio R / R' = 25"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part I — Hindi: अनेक शब्दों के लिए एक शब्द व विशेषण",
+        "sections": [
+          {
+            "title": "अनाहूत एवं परिमाणवाचक विशेषण (TRE 2.0 Language)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 language section asks:\n“जिसे बुलाया न गया हो”\n\nThe relevant one-word expression is:\nअनाहूत\n\nAnother question asks what type of adjective indicates measurement/quantity; the relevant concept is परिमाणवाचक विशेषण."
+              },
+              {
+                "type": "callout",
+                "icon": "📖",
+                "title": "Hindi Grammar Memory Anchor",
+                "content": "जिसे बुलाया न गया हो\n→ अनाहूत (आहूत = आमंत्रित/बुलाया गया, अनाहूत = बिना बुलाया)\n\nAnd:\nकितना? (माप/तौल)\n↓\nपरिमाणवाचक विशेषण\n\nExample:\nथोड़ा पानी, दो किलो चावल\n'थोड़ा' मात्रा/परिमाण बताता है।"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 23 Checkpoint Test",
+      "subtitle": "25 Questions: Concurrency, Deadlock, Physics Resistance & Hindi",
+      "questions": [
+        {
+          "id": "m-d23-q1",
+          "question": "Q1. When the final result depends on the unpredictable order of concurrent execution, it is called:",
+          "options": [
+            "Paging",
+            "Race Condition",
+            "Fragmentation",
+            "Thrashing",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Race Condition occurs when multiple concurrent processes or threads access shared mutable data and the outcome depends on the unpredictable execution order. Correct: (B) Race Condition."
+        },
+        {
+          "id": "m-d23-q2",
+          "question": "Q2. The portion of code accessing shared resources is called:",
+          "options": [
+            "Critical Section",
+            "Page Table",
+            "Ready Queue",
+            "PCB",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Critical Section is the segment of code where shared resources (memory, variables, files) are accessed, requiring synchronized protection. Correct: (A) Critical Section."
+        },
+        {
+          "id": "m-d23-q3",
+          "question": "Q3. Mutual Exclusion means:",
+          "options": [
+            "All processes access the critical section simultaneously",
+            "Only controlled/one-at-a-time access to an exclusive resource",
+            "No process can execute",
+            "All memory is shared",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Mutual Exclusion ensures that only one process or thread can execute inside its critical section or use an exclusive resource at any given moment. Correct: (B) Only controlled/one-at-a-time access to an exclusive resource."
+        },
+        {
+          "id": "m-d23-q4",
+          "question": "Q4. Which is easiest to visualize as one bathroom key?",
+          "options": [
+            "Mutex",
+            "Counting Semaphore",
+            "Paging",
+            "FCFS",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Mutex (Mutual Exclusion lock) acts like a single bathroom key: one owner, lock -> critical section -> unlock. Correct: (A) Mutex."
+        },
+        {
+          "id": "m-d23-q5",
+          "question": "Q5. A Semaphore is best understood as:",
+          "options": [
+            "Synchronization counter/mechanism",
+            "CPU register",
+            "Memory page",
+            "File system",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Semaphore is a synchronization mechanism represented conceptually by an integer counter controlling access to shared resources. Correct: (A) Synchronization counter/mechanism."
+        },
+        {
+          "id": "m-d23-q6",
+          "question": "Q6. A Binary Semaphore commonly has values:",
+          "options": [
+            "0 and 1",
+            "1 to 100",
+            "Only -1",
+            "Characters A and B",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Binary Semaphore can take only values 0 (unavailable/locked) and 1 (available/unlocked). Correct: (A) 0 and 1."
+        },
+        {
+          "id": "m-d23-q7",
+          "question": "Q7. A Counting Semaphore is particularly useful when:",
+          "options": [
+            "Multiple identical resources are available",
+            "There can never be shared resources",
+            "Only one CPU instruction exists",
+            "Paging is disabled",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Counting Semaphore tracks multiple identical resource instances (e.g. 5 printers, 3 parking slots) using non-negative integers. Correct: (A) Multiple identical resources are available."
+        },
+        {
+          "id": "m-d23-q8",
+          "question": "Q8. Which pair is correctly matched?",
+          "options": [
+            "Mutex → one-at-a-time locking",
+            "Semaphore → only database indexing",
+            "Mutex → page replacement",
+            "Semaphore → sorting algorithm",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Mutex provides mutual exclusion through one-at-a-time ownership locking. Correct: (A) Mutex → one-at-a-time locking."
+        },
+        {
+          "id": "m-d23-q9",
+          "question": "Q9. Classic Semaphore synchronization operations are:",
+          "options": [
+            "Push and Pop",
+            "Wait and Signal",
+            "Enqueue and Dequeue",
+            "Read and Write only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The two atomic semaphore operations are wait() (or P) to acquire/decrement, and signal() (or V) to release/increment. Correct: (B) Wait and Signal."
+        },
+        {
+          "id": "m-d23-q10",
+          "question": "Q10. A deadlock occurs when:",
+          "options": [
+            "Processes indefinitely wait for resources held within a waiting cycle",
+            "Every process finishes successfully",
+            "CPU utilization is always 100%",
+            "One page is loaded",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Deadlock is a state in which every process in a set is waiting for an event/resource that can only be caused/released by another process in the set, creating a circular standstill. Correct: (A) Processes indefinitely wait for resources held within a waiting cycle."
+        },
+        {
+          "id": "m-d23-q11",
+          "question": "Q11. How many classic necessary Coffman conditions are there for deadlock?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "There are 4 classic Coffman conditions: Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait (MHNC). Correct: (C) 4."
+        },
+        {
+          "id": "m-d23-q12",
+          "question": "Q12. Which is a deadlock condition?",
+          "options": [
+            "Mutual Exclusion",
+            "Hold and Wait",
+            "Circular Wait",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait are all required conditions. Since A, B, and C are all deadlock conditions, D (More than one of the above) is the correct answer. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d23-q13",
+          "question": "Q13. A process holding one resource while waiting for another illustrates:",
+          "options": [
+            "Hold and Wait",
+            "Paging",
+            "Thrashing",
+            "FCFS",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Hold and Wait occurs when a process holding at least one resource is actively waiting to acquire additional resources held by other processes. Correct: (A) Hold and Wait."
+        },
+        {
+          "id": "m-d23-q14",
+          "question": "Q14. Which deadlock condition means a held resource cannot simply be forcibly taken under the model?",
+          "options": [
+            "Circular Wait",
+            "No Preemption",
+            "Hold and Wait",
+            "Mutual Exclusion",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "No Preemption means resources cannot be seized forcibly; they can only be released voluntarily by the holding process after completion. Correct: (B) No Preemption."
+        },
+        {
+          "id": "m-d23-q15",
+          "question": "Q15. P1 waits for P2, P2 waits for P3, and P3 waits for P1 illustrates:",
+          "options": [
+            "Circular Wait",
+            "Paging",
+            "Starvation only",
+            "Context Switching",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A closed circular chain where each process waits for a resource held by the next process in sequence represents Circular Wait. Correct: (A) Circular Wait."
+        },
+        {
+          "id": "m-d23-q16",
+          "question": "Q16. Which is the best mnemonic from today's lesson?",
+          "options": [
+            "MHNC",
+            "FIFO",
+            "BODH",
+            "LNR",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MHNC ('My Hungry Neighbor Circles') stands for Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. Correct: (A) MHNC."
+        },
+        {
+          "id": "m-d23-q17",
+          "question": "Q17. To prevent deadlock, one strategy is to:",
+          "options": [
+            "Ensure all four deadlock conditions always hold",
+            "Break at least one necessary condition",
+            "Disable every process",
+            "Increase page size only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Deadlock Prevention works by constraining resource requests so that at least one of the 4 necessary Coffman conditions cannot hold. Correct: (B) Break at least one necessary condition."
+        },
+        {
+          "id": "m-d23-q18",
+          "question": "Q18. Banker's Algorithm is associated with:",
+          "options": [
+            "Deadlock avoidance",
+            "Sorting",
+            "Paging only",
+            "Database normalization",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Dijkstra's Banker's Algorithm is the primary Deadlock Avoidance algorithm, ensuring resource allocation maintains the system in a safe state. Correct: (A) Deadlock avoidance."
+        },
+        {
+          "id": "m-d23-q19",
+          "question": "Q19. Which statement about a safe state is correct?",
+          "options": [
+            "There exists an execution order allowing all processes to finish",
+            "Deadlock must already exist",
+            "No process can ever run",
+            "It means no resources exist",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A state is safe if there exists a safe sequence of processes such that each process can obtain its maximum needed resources and successfully finish. Correct: (A) There exists an execution order allowing all processes to finish."
+        },
+        {
+          "id": "m-d23-q20",
+          "question": "Q20. Which distinction is correct?",
+          "options": [
+            "Deadlock → group stuck; Starvation → a process may wait indefinitely while others progress",
+            "Starvation and deadlock always mean exactly the same thing",
+            "Deadlock means all processes are running",
+            "Starvation means CPU is physically damaged",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In Deadlock, a whole group of processes is permanently frozen with zero progress across them. In Starvation, other processes continue executing while one process is indefinitely bypassed. Correct: (A) Deadlock → group stuck; Starvation → a process may wait indefinitely while others progress."
+        },
+        {
+          "id": "m-d23-q21",
+          "question": "Q21. A wire of resistance R is cut into 5 equal parts. Resistance of each part is:",
+          "options": [
+            "5R",
+            "R/5",
+            "R/25",
+            "R",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Resistance is directly proportional to length (R = ρL/A). Dividing length by 5 divides resistance by 5: r = R/5. Correct: (B) R/5."
+        },
+        {
+          "id": "m-d23-q22",
+          "question": "Q22. The five equal pieces are connected in parallel. Equivalent resistance is:",
+          "options": [
+            "R/5",
+            "R/10",
+            "R/25",
+            "25R",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "For n identical resistors in parallel, R' = r / n. Here r = R/5 and n = 5, so R' = (R/5) / 5 = R/25. Correct: (C) R/25."
+        },
+        {
+          "id": "m-d23-q23",
+          "question": "Q23. Therefore R/R' equals:",
+          "options": [
+            "5",
+            "10",
+            "25",
+            "1/25",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "R / R' = R / (R / 25) = 25. Correct: (C) 25."
+        },
+        {
+          "id": "m-d23-q24",
+          "question": "Q24. “जिसे बुलाया न गया हो” के लिए एक शब्द है:",
+          "options": [
+            "सर्वज्ञ",
+            "अनाहूत",
+            "अमर",
+            "निरक्षर",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "“जिसे बुलाया न गया हो” के लिए एक शब्द 'अनाहूत' है (आहूत = निमंत्रित/बुलाया गया, अनाहूत = बिना बुलाया). Correct: (B) अनाहूत."
+        },
+        {
+          "id": "m-d23-q25",
+          "question": "Q25. संज्ञा की मात्रा या माप बताने वाला विशेषण कहलाता है:",
+          "options": [
+            "गुणवाचक विशेषण",
+            "परिमाणवाचक विशेषण",
+            "व्यक्तिवाचक संज्ञा",
+            "संबंधवाचक सर्वनाम",
+            "इनमें से कोई नहीं"
+          ],
+          "correctAnswer": 1,
+          "explanation": "संज्ञा या सर्वनाम के नाप, तोल या परिमाण का बोध कराने वाले शब्द परिमाणवाचक विशेषण कहलाते हैं (उदा. 'थोड़ा पानी', 'चार लीटर दूध'). Correct: (B) परिमाणवाचक विशेषण."
         }
       ]
     }
