@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/practice.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2224%22>💻</text></svg>">
 </head>
 <body>
@@ -54,6 +55,9 @@
         </button>
         <button class="nav-tab-btn" data-tab="tab-marathon">
           <span>🏃</span> Marathon (from day 1)
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-practice">
+          <span>📝</span> Practice Sets (40)
         </button>
       </div>
     </nav>
@@ -565,6 +569,15 @@
 
     </section>
 
+    <!-- ========================================================
+         TAB 6: PRACTICE SETS (40) — REAL EXAM SIMULATOR
+         ======================================================== -->
+    <section class="tab-pane" id="tab-practice">
+      <div id="practiceAppRoot">
+        <!-- Rendered dynamically by practice-engine.js -->
+      </div>
+    </section>
+
   </main>
 
   <!-- PDF Preview Modal -->
@@ -601,6 +614,8 @@
       <span>•</span>
       <a href="#marathon" class="footer-link" onclick="switchTab('tab-marathon'); return false;">Marathon (from day 1)</a>
       <span>•</span>
+      <a href="#practice" class="footer-link" onclick="switchTab('tab-practice'); return false;">Practice Sets (40)</a>
+      <span>•</span>
       <a href="https://bpsc.bihar.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">BPSC Official Portal</a>
     </div>
   </footer>
@@ -610,6 +625,9 @@
   <script src="js/ncert-data.js"></script>
   <script src="js/cheatsheets-data.js"></script>
   <script src="js/marathon-data.js"></script>
+  <script src="js/practice-data/set-manifest.js"></script>
+  <script src="js/practice-data/set-01.js"></script>
+  <script src="js/practice-engine.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
