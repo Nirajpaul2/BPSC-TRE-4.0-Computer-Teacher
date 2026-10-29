@@ -2789,6 +2789,656 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 6,
+    "dayId": "day-6",
+    "badge": "Day 06",
+    "title": "TRE 4.0 — Day 6",
+    "unit": "Part III (CS) • Days 1–5 Super Consolidation • Mixed Test",
+    "targetTime": "25–30 mins read + 30 MCQs test",
+    "summary": "Today is a consolidation day. We’ll add one new Computer Organization block (CPU, Registers, Bus, Microcontroller), then test everything from Days 1–5 across 30 cumulative questions.",
+    "targets": [
+      {
+        "section": "Part III – Computer Science",
+        "topic": "CPU Architecture, Registers, Buses & Microcontroller",
+        "goal": "ALU, CU, ACC/PC/IR/MAR/MDR, FDE Cycle, Bus Width"
+      },
+      {
+        "section": "Days 1–5 Super Revision",
+        "topic": "Digital Electronics & Fundamentals Consolidation",
+        "goal": "Connect Days 1 to 6 as one complete master block"
+      },
+      {
+        "section": "Day 6 Mixed Test",
+        "topic": "30 Cumulative Questions (CS, GS, Language)",
+        "goal": "20 CS + 5 GS + 5 Language Comprehensive Check"
+      }
+    ],
+    "introNote": "Your STET paper specifically asks about the Accumulator register, saying it temporarily holds data during arithmetic/logical operations.     f4bc06d5-5757-40ca-b90b-f5ee42d… It also directly asks how data-bus width is measured and gives bits as the answer.     f4bc06d5-5757-40ca-b90b-f5ee42d…",
+    "parts": [
+      {
+        "partId": "d6-part-3",
+        "title": "Part III — CPU and Registers",
+        "sections": [
+          {
+            "title": "🧠 White-paper mental picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine a small office:"
+              },
+              {
+                "type": "diagram",
+                "content": "                COMPUTER\n                   │\n                   ▼\n             ┌───────────┐\n             │    CPU    │  ← BRAIN\n             └───────────┘\n              /    |    \\\n             /     |     \\\n           ALU     CU   Registers\n            │      │       │\n           Work   Boss   Small desk"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "The easiest memory sentence is:",
+                "content": "CPU = Brain\n\nALU = Calculator\n\nCU = Manager\n\nRegister = CPU's tiny desk"
+              }
+            ]
+          },
+          {
+            "title": "ALU & CU",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "ALU\nALU = Arithmetic Logic Unit\n\nIt performs things such as:\nArithmetic\n+  -  ×  ÷\n\nLogic\nAND OR NOT XOR"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick:",
+                "content": "ALU = Arithmetic + Logic"
+              },
+              {
+                "type": "text",
+                "content": "CU\nCU = Control Unit\n\nImagine a manager saying:\nFetch this\n↓\nSend that\n↓\nCalculate this\n↓\nStore result"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "CU controls; ALU calculates."
+              }
+            ]
+          },
+          {
+            "title": "Registers",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "A register is a very small, very fast storage location inside the CPU.\n\nMental picture:"
+              },
+              {
+                "type": "diagram",
+                "content": "RAM\n │\n │ bring important item\n ▼\n┌──────────┐\n│ REGISTER │ ← immediately near CPU\n└──────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "For TRE/STET, learn these registers:",
+                "diagram": "Register\tMeaning\tWhite-paper memory\nACC\tAccumulator\tCalculation result\nPC\tProgram Counter\tNext instruction address\nIR\tInstruction Register\tCurrent instruction\nMAR\tMemory Address Register\tWhere in memory?\nMDR/MBR\tMemory Data Register\tWhat data?"
+              },
+              {
+                "type": "text",
+                "content": "Accumulator\nThink:\n5 + 3\n  ↓\n ALU\n  ↓\n  8\n  ↓\n ACC\n\nThe accumulator commonly keeps intermediate arithmetic/logical results."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "ACC = Accumulates results\n\nThis directly matches the STET question you uploaded.     f4bc06d5-5757-40ca-b90b-f5ee42d…"
+              },
+              {
+                "type": "text",
+                "content": "PC — Program Counter\nImagine you're reading a book.\nCurrent page: 20\nNext page:    21\n               ↑\n              PC\n\nPC normally contains the address of the next instruction to execute."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "PC = Pointer to Coming instruction\n\nNot the official expansion—just our memory trick."
+              },
+              {
+                "type": "text",
+                "content": "IR — Instruction Register\nCPU fetches an instruction:\nADD A,B\n\nWhere does the current instruction stay while being processed?"
+              },
+              {
+                "type": "diagram",
+                "content": "      ADD A,B\n         ↓\n    ┌─────────┐\n    │   IR    │\n    └─────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "IR = Instruction Right now\n\nAgain, that's our memory phrase."
+              },
+              {
+                "type": "text",
+                "content": "MAR vs MDR\nThese two often confuse students.\n\nImagine going to a house.\n\nYou need:\nADDRESS\n+\nTHING stored there\n\nSo:\nMAR → ADDRESS\nMDR → DATA\n\nWhite-paper picture:"
+              },
+              {
+                "type": "diagram",
+                "content": "CPU\n\nMAR ──────► Memory location 500\n                  │\n                  ▼\n               [ DATA ]\n                  │\n                  ▼\nMDR ◄─────────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Best memory trick",
+                "content": "MAR = WHERE\n\nMDR = WHAT\n\nThis is worth memorizing exactly."
+              }
+            ]
+          },
+          {
+            "title": "CPU instruction cycle",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Very easy:\nFETCH\n  ↓\nDECODE\n  ↓\nEXECUTE\n\nImagine a teacher:\nRead question\n    ↓\nUnderstand question\n    ↓\nSolve question\n\nTherefore:\nFetch = bring instruction\nDecode = understand\nExecute = do"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper:",
+                "content": "F → D → E\n\nJust remember FDE."
+              }
+            ]
+          },
+          {
+            "title": "Computer Buses",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine three roads connecting CPU and memory."
+              },
+              {
+                "type": "diagram",
+                "content": "                 CPU\n                  │\n       ┌──────────┼───────────┐\n       ↓          ↓           ↓\n     DATA      ADDRESS      CONTROL\n      BUS        BUS          BUS"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Data Bus",
+                "content": "Carries actual data.\nCPU  ⇄  DATA BUS  ⇄  MEMORY\n\nExamples:\n42\n'A'\n101101\n\nData-bus width is normally expressed in bits, exactly as tested in your STET paper.     f4bc06d5-5757-40ca-b90b-f5ee42d…\n\nMemory:\nData Bus = WHAT is travelling"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Address Bus",
+                "content": "Carries the address of where data should come from/go to.\nCPU ─────► 500\n           ↓\n       Memory[500]\n\nMemory:\nAddress Bus = WHERE\n\nNotice the similarity:\nMAR         → WHERE\nAddress Bus → WHERE\n\nThat helps you connect concepts."
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Control Bus",
+                "content": "Carries control signals such as:\nREAD\nWRITE\nCLOCK\nINTERRUPT\n\nMemory:\nControl Bus = WHAT TO DO"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "White-paper trick for Buses",
+                "diagram": "DATA BUS    → WHAT\nADDRESS BUS → WHERE\nCONTROL BUS → WHAT TO DO\n\nVery powerful for MCQs."
+              },
+              {
+                "type": "callout",
+                "icon": "📐",
+                "title": "Address Bus Width",
+                "content": "Suppose the address bus has n bits.\n\nNumber of possible addresses:\n2ⁿ\n\nExample: 16-bit address bus.\n2¹⁶\n= 65,536 locations\n\nIf each address stores one byte:\n65,536 bytes\n= 64 KB\n\nMemory trick:\nAddress lines → 2ⁿ locations\n\nDon't confuse this with data-bus width."
+              }
+            ]
+          },
+          {
+            "title": "Microprocessor vs Microcontroller",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "This is an important STET-extension topic. Your uploaded STET paper even asks a typical automotive microcontroller application and gives engine control in cars.     f4bc06d5-5757-40ca-b90b-f5ee42d…\n\n🧠 Mental picture"
+              },
+              {
+                "type": "diagram",
+                "content": "Microprocessor\nImagine CPU living alone:\n        MICROPROCESSOR\n              CPU\n               │\n      ┌────────┼────────┐\n      ↓        ↓        ↓\n   external  external  external\n    RAM       ROM       I/O\n\nMicrocontroller\nImagine a complete small computer inside one chip:\n       MICROCONTROLLER\n     ┌─────────────────┐\n     │ CPU             │\n     │ RAM             │\n     │ Flash/ROM       │\n     │ I/O             │\n     │ Timer           │\n     └─────────────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Best memory trick",
+                "content": "Microprocessor = CPU mainly\n\nMicrocontroller = mini computer on a chip\n\nTypical use:\nMicroprocessor\n→ laptop / general-purpose computer\n\nMicrocontroller\n→ washing machine\n→ car controller\n→ microwave\n→ embedded system\n\nFor the STET paper, engine control in cars was the tested example.     f4bc06d5-5757-40ca-b90b-f5ee42d…"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Day 6 white-paper master sheet",
+                "diagram": "Before doing the test, close everything and mentally reproduce this:\n                 CPU = BRAIN\n\n        ALU        CU        REGISTERS\n         ↓          ↓            ↓\n     Calculate    Control     Fast storage\n\n\nACC → result\nPC  → next instruction\nIR  → current instruction\nMAR → WHERE\nMDR → WHAT\n\n\nINSTRUCTION CYCLE\n\nFETCH → DECODE → EXECUTE\n\n\nBUSES\n\nDATA    → WHAT\nADDRESS → WHERE\nCONTROL → WHAT TO DO\n\n\nMicroprocessor\n→ CPU mainly\n\nMicrocontroller\n→ CPU + Memory + I/O on chip\n\nIf you can mentally see that page, today's new material is done."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d6-part-rev",
+        "title": "Days 1–5 Super Revision",
+        "sections": [
+          {
+            "title": "Connecting Days 1 to 6",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Now mentally connect everything we've studied:"
+              },
+              {
+                "type": "diagram",
+                "content": "DAY 1\nNumber System\nBinary / Octal / Decimal / Hex\n\n      ↓\n\nDAY 2\nLogic Gates\nAND OR NOT NAND NOR XOR XNOR\n\n      ↓\n\nDAY 3\nBoolean + De Morgan + K-map\n\n      ↓\n\nDAY 4\nAdder + MUX + Flip-Flop\n\n      ↓\n\nDAY 5\nROM + PLA + BCD + Gray + Error Codes\n\n      ↓\n\nDAY 6\nCPU + Registers + Bus + Microcontroller"
+              },
+              {
+                "type": "callout",
+                "icon": "🎯",
+                "title": "One complete Digital Electronics + Fundamentals block",
+                "content": "This is effectively one complete Digital Electronics + Fundamentals block.\n\nTRE 3.0 supports this grouping: its digital section contains flip-flop, binary AND, Half Adder, ROM, PLA, MUX, number conversion, Booth multiplication and error-detection questions in sequence.     BPSC TRE3.0 question paper by c…"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 6 Mixed Test — 30 Questions",
+      "subtitle": "Don't look at your notes. This is our first proper cumulative check.",
+      "questions": [
+        {
+          "id": "m-d6-q1",
+          "question": "Q1. Decimal 45 in binary is:",
+          "options": [
+            "101101",
+            "101011",
+            "110101",
+            "100101",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "45 = 32 + 8 + 4 + 1 = 2⁵ + 2³ + 2² + 2⁰ = 101101₂. Correct: (A) 101101."
+        },
+        {
+          "id": "m-d6-q2",
+          "question": "Q2. 10.11₂ in decimal is:",
+          "options": [
+            "2.25",
+            "2.50",
+            "2.75",
+            "3.25",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Integer part: 10₂ = 2. Fractional part: .11₂ = 1×0.5 + 1×0.25 = 0.75. Total = 2.75₁₀. Correct: (C) 2.75."
+        },
+        {
+          "id": "m-d6-q3",
+          "question": "Q3. One hexadecimal digit corresponds to:",
+          "options": [
+            "2 bits",
+            "3 bits",
+            "4 bits",
+            "8 bits",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Hexadecimal has base 16 = 2⁴. Each hexadecimal digit corresponds exactly to 4 binary bits. Correct: (C) 4 bits."
+        },
+        {
+          "id": "m-d6-q4",
+          "question": "Q4. Which gate gives output 1 when its two inputs are different?",
+          "options": [
+            "XNOR",
+            "XOR",
+            "NAND",
+            "NOR",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "XOR (Exclusive-OR) outputs 1 when inputs are different (0,1 → 1; 1,0 → 1) and 0 when they are the same. Correct: (B) XOR."
+        },
+        {
+          "id": "m-d6-q5",
+          "question": "Q5. Universal gates are:",
+          "options": [
+            "AND and OR",
+            "XOR and XNOR",
+            "NAND and NOR",
+            "NOT and OR",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "NAND and NOR can be combined to reproduce all other logic operations without needing any other gate type. Correct: (C) NAND and NOR."
+        },
+        {
+          "id": "m-d6-q6",
+          "question": "Q6. According to De Morgan's law: (AB)' =",
+          "options": [
+            "A'B'",
+            "A'+B'",
+            "A+B",
+            "AB",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "De Morgan's theorem states: (A · B)' = A' + B' (Break the bar, flip operator · to +, invert variables). Correct: (B) A'+B'."
+        },
+        {
+          "id": "m-d6-q7",
+          "question": "Q7. A + A' equals:",
+          "options": [
+            "A",
+            "0",
+            "1",
+            "A'",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Complementarity law: If A=0 then A'=1 (0+1=1); if A=1 then A'=0 (1+0=1). Thus A + A' = 1. Correct: (C) 1."
+        },
+        {
+          "id": "m-d6-q8",
+          "question": "Q8. A 3-variable K-map contains:",
+          "options": [
+            "4 cells",
+            "6 cells",
+            "8 cells",
+            "16 cells",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Number of cells in an n-variable K-map = 2ⁿ. For n = 3: 2³ = 8 cells. Correct: (C) 8 cells."
+        },
+        {
+          "id": "m-d6-q9",
+          "question": "Q9. Which is an invalid K-map grouping size?",
+          "options": [
+            "2",
+            "4",
+            "6",
+            "8",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "K-map groups can only have sizes that are powers of 2 (1, 2, 4, 8, 16...). 6 is not a power of 2 and is invalid. Correct: (C) 6."
+        },
+        {
+          "id": "m-d6-q10",
+          "question": "Q10. Half-Adder SUM is generated using:",
+          "options": [
+            "AND",
+            "XOR",
+            "OR",
+            "XNOR",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a Half Adder, SUM = A ⊕ B (generated using an XOR gate). Correct: (B) XOR."
+        },
+        {
+          "id": "m-d6-q11",
+          "question": "Q11. Half-Adder Carry is generated using:",
+          "options": [
+            "XOR",
+            "OR",
+            "AND",
+            "NAND",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In a Half Adder, CARRY = A · B (generated using an AND gate). Correct: (C) AND."
+        },
+        {
+          "id": "m-d6-q12",
+          "question": "Q12. An 8-to-1 MUX needs:",
+          "options": [
+            "2 select lines",
+            "3 select lines",
+            "4 select lines",
+            "8 select lines",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Inputs = 2ⁿ ⇒ 8 = 2³ ⇒ 3 select lines are needed. Correct: (B) 3 select lines."
+        },
+        {
+          "id": "m-d6-q13",
+          "question": "Q13. A DEMUX performs:",
+          "options": [
+            "Many → One",
+            "One → Many",
+            "Many → Many only",
+            "Binary → Decimal",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A DEMUX (Demultiplexer / Distributor) takes One input and routes it to one of Many output lines based on select lines. Correct: (B) One → Many."
+        },
+        {
+          "id": "m-d6-q14",
+          "question": "Q14. A basic flip-flop stores:",
+          "options": [
+            "1 bit",
+            "1 byte",
+            "4 bytes",
+            "8 bits always",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A flip-flop is a bistable circuit storing exactly 1 bit of information (0 or 1). Correct: (A) 1 bit."
+        },
+        {
+          "id": "m-d6-q15",
+          "question": "Q15. In a JK flip-flop, J=1, K=1 normally causes:",
+          "options": [
+            "Reset",
+            "Set",
+            "Toggle",
+            "No change",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "When J=1 and K=1, the JK flip-flop toggles its output state on the active clock edge. Correct: (C) Toggle."
+        },
+        {
+          "id": "m-d6-q16",
+          "question": "Q16. Decimal 37 represented in BCD is:",
+          "options": [
+            "100101",
+            "0011 0111",
+            "0010 0111",
+            "0011 1000",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In BCD, each decimal digit is converted separately into 4 bits: 3 = 0011, 7 = 0111 ⇒ 0011 0111. Correct: (B) 0011 0111."
+        },
+        {
+          "id": "m-d6-q17",
+          "question": "Q17. Which error-checking technique is best remembered as division + remainder?",
+          "options": [
+            "Parity",
+            "Checksum",
+            "CRC",
+            "Gray Code",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "CRC (Cyclic Redundancy Check) treats data as a binary polynomial and computes a remainder using modulo-2 division. Correct: (C) CRC."
+        },
+        {
+          "id": "m-d6-q18",
+          "question": "Q18. Which register holds the address of the next instruction?",
+          "options": [
+            "IR",
+            "MAR",
+            "PC",
+            "ACC",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Program Counter (PC) holds the memory address of the next instruction waiting to be fetched and executed. Correct: (C) PC."
+        },
+        {
+          "id": "m-d6-q19",
+          "question": "Q19. Which register is associated with arithmetic/logical intermediate results?",
+          "options": [
+            "PC",
+            "Accumulator",
+            "MAR",
+            "IR",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Accumulator (ACC) is the primary register used by the ALU to temporarily hold intermediate arithmetic and logical results. Correct: (B) Accumulator."
+        },
+        {
+          "id": "m-d6-q20",
+          "question": "Q20. Which bus tells the system where data should be accessed?",
+          "options": [
+            "Data bus",
+            "Control bus",
+            "Address bus",
+            "USB",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Address Bus carries the physical memory address (WHERE) to identify the specific location being read or written. Correct: (C) Address bus."
+        },
+        {
+          "id": "m-d6-q21",
+          "question": "Q21. An item costs ₹800 and is sold for ₹1000. Profit percentage is:",
+          "options": [
+            "20%",
+            "25%",
+            "30%",
+            "40%",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Profit = 1000 - 800 = ₹200. Profit % = (Profit / CP) × 100 = (200 / 800) × 100 = 25%. Correct: (B) 25%."
+        },
+        {
+          "id": "m-d6-q22",
+          "question": "Q22. Two numbers are in the ratio 3:7. Their difference is 40. The smaller number is:",
+          "options": [
+            "20",
+            "30",
+            "40",
+            "60",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Difference in parts = 7 - 3 = 4 parts = 40 ⇒ 1 part = 10. Smaller number = 3 × 10 = 30. (Larger = 70). Correct: (B) 30."
+        },
+        {
+          "id": "m-d6-q23",
+          "question": "Q23. (a-b)² equals:",
+          "options": [
+            "a²-b²",
+            "a²+2ab+b²",
+            "a²-2ab+b²",
+            "a²+2ab-b²",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "(a-b)² = a² - 2ab + b² (First² - 2×First×Second + Second²). Correct: (C) a²-2ab+b²."
+        },
+        {
+          "id": "m-d6-q24",
+          "question": "Q24. Two adjacent angles of a parallelogram are in ratio 2:3. The smaller angle is:",
+          "options": [
+            "60°",
+            "72°",
+            "90°",
+            "108°",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Adjacent angles of a parallelogram add to 180°: 2x + 3x = 180° ⇒ 5x = 180° ⇒ x = 36°. Smaller angle = 2 × 36° = 72°. (Larger = 108°). Correct: (B) 72°."
+        },
+        {
+          "id": "m-d6-q25",
+          "question": "Q25. The total surface area of a cylinder is:",
+          "options": [
+            "πr²h",
+            "2πrh",
+            "2πr(r+h)",
+            "πr²",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Total Surface Area (TSA) of cylinder = Curved Surface Area + 2 Bases = 2πrh + 2πr² = 2πr(r+h). Correct: (C) 2πr(r+h)."
+        },
+        {
+          "id": "m-d6-q26",
+          "question": "Q26. Choose the correct phrase:",
+          "options": [
+            "a honest man",
+            "an honest man",
+            "an university",
+            "a hour",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'honest' starts with silent 'h' and vowel sound /ɒ/, requiring the indefinite article 'an'. Correct: (B) an honest man."
+        },
+        {
+          "id": "m-d6-q27",
+          "question": "Q27. “जल” का पर्यायवाची है:",
+          "options": [
+            "नभ",
+            "नीर",
+            "अनल",
+            "वायु",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "जल के पर्यायवाची शब्द हैं: नीर, वारि, पानी, तोय, सलिल। (नभ = आकाश, अनल = अग्नि). Correct: (B) नीर."
+        },
+        {
+          "id": "m-d6-q28",
+          "question": "Q28. “लाभ” का विलोम है:",
+          "options": [
+            "आय",
+            "धन",
+            "हानि",
+            "लाभांश",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "लाभ का विलोम शब्द 'हानि' है। Correct: (C) हानि."
+        },
+        {
+          "id": "m-d6-q29",
+          "question": "Q29. “माता-पिता” में कौन-सा समास है?",
+          "options": [
+            "तत्पुरुष",
+            "कर्मधारय",
+            "द्वंद्व",
+            "बहुव्रीहि",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "माता-पिता = माता और पिता। दोनों पद प्रधान होने के कारण यह 'द्वंद्व समास' है। Correct: (C) द्वंद्व."
+        },
+        {
+          "id": "m-d6-q30",
+          "question": "Q30. “राजा का पुत्र → राजपुत्र” किसका उदाहरण है?",
+          "options": [
+            "द्वंद्व",
+            "तत्पुरुष",
+            "कर्मधारय",
+            "अव्ययीभाव",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "सम्बन्ध कारक चिह्न 'का' का लोप होने के कारण 'राजपुत्र' सम्बन्ध तत्पुरुष समास का उदाहरण है। Correct: (B) तत्पुरुष."
+        }
+      ]
+    }
   }
 ];
 
