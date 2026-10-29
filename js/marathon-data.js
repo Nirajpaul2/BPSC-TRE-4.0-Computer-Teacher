@@ -12479,6 +12479,514 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 22,
+    "dayId": "day-22",
+    "badge": "Day 22",
+    "title": "TRE 4.0 — Day 22",
+    "unit": "Part III (CS) • Paging, Frames, Page Offset, Page Table, TLB, Segmentation, Virtual Memory, Thrashing • Math & English",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Today we dive deep into Operating System Memory Management: Paging (fixed-size virtual blocks), Frames (physical memory), Page Table mapping, Page Offset calculation (4 KB = 12 bits), TLB associative cache, Virtual Memory, Demand Paging, Page Faults, Thrashing, Segmentation (logical variable-size blocks), Segment Base, and Internal vs External Fragmentation.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Paging, Page/Frame, Page Offset, Page Table, TLB, Segmentation, Virtual Memory, Thrashing",
+        "goal": "Master Page vs Frame, offset bit calculations (2ⁿ rule), TLB associative cache, thrashing, and Segmentation vs Paging"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Successive Percentage Change",
+        "goal": "+x% then -x% net loss formula (x²/100 % loss; e.g. +20% and -20% gives 4% loss)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Comprehension + Articles",
+        "goal": "Passage scan technique and article rules ('an airport', 'an early morning walk', 'a university')"
+      }
+    ],
+    "introNote": "Your TRE 3.0 paper directly asks:\n• Which is not an OS memory-management technique → Fragmentation\n• What is a page → fixed-size block of virtual memory\n• For 4 KB page size, page-offset bits → 12\n• What is segment base → starting address of a segment in physical memory\n• What causes thrashing → excessive paging activity\n• TLB organization → associative cache\n• A virtual-memory/swapping calculation (10 GB - 6 GB = 4 GB)\n\nThe detailed Page Table, frame mapping, page fault, demand paging, and deeper comparisons below are standard OS expansion for your exam preparation.",
+    "parts": [
+      {
+        "partId": "part-d22-paging-addressing",
+        "title": "Part III — Paging, Frames & Address Translation",
+        "sections": [
+          {
+            "title": "1. Why Memory Management?, 2. Paging & 3. Frame",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Why Memory Management?\n\n🧠 MENTAL PICTURE\nImagine RAM is a hotel:\nRAM: [ Process A | Process B | Process C | Free Space ]\nMany programs want memory at the same time. The OS must decide: Who gets which memory space? That's memory management."
+              },
+              {
+                "type": "diagram",
+                "content": "2. Paging (TRE 3.0 Direct Definition)\nPaging divides virtual/logical memory into fixed-size blocks called: PAGES.\nTRE 3.0 directly defines a page as: fixed-size block of virtual memory.\nMemory: PAGE = Virtual Memory block\n\n3. Frame\nPhysical RAM is also divided into equal-size blocks called: FRAMES.\nMemory: FRAME = Physical Memory block in RAM\n\nTypically: Page size = Frame size"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Page vs Frame Memory Trick",
+                "content": "PAGE  → Virtual (P for Program / Virtual side)\nFRAME → Physical (F for Physical Frame in RAM)"
+              }
+            ]
+          },
+          {
+            "title": "4. Page Mapping, 5. Page Table & 7. Page Offset Calculation",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. Page Mapping\nPages do not need to sit contiguously in RAM:\nPage 0 → Frame 5 | Page 1 → Frame 2 | Page 2 → Frame 8 | Page 3 → Frame 1\n\n5. Page Table\nHotel reception register mapping: Page Number → Frame Number."
+              },
+              {
+                "type": "diagram",
+                "content": "6. Logical Address Structure:\n[ PAGE NUMBER ] [ OFFSET ]\n• Page number tells: Which page?\n• Offset tells: Which exact byte inside that page?\n\n7. Page Offset Calculation (Direct TRE 3.0 Exam Question):\nQuestion: Page size = 4 KB. How many offset bits?\n\n4 KB = 4 × 1024 bytes = 4096 bytes = 2¹² bytes\nTherefore: Offset = 12 bits\n\nMemory Rule: If Page size = 2ⁿ bytes, then Offset bits = n\n• 1 KB = 2¹⁰ → 10 bits\n• 2 KB = 2¹¹ → 11 bits\n• 4 KB = 2¹² → 12 bits\n• 8 KB = 2¹³ → 13 bits"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "8. Address Translation Flow",
+                "content": "CPU Virtual Address (Page + Offset)\n       ↓\nPage Number looked up in PAGE TABLE\n       ↓\nFrame Number retrieved\n       ↓\nPhysical Address = Frame Number + Same Offset\n\nMemory Rule: Page changes to Frame; Offset stays the exact same!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d22-tlb-virtual-mem",
+        "title": "Part III — TLB, Virtual Memory, Page Faults & Thrashing",
+        "sections": [
+          {
+            "title": "9. TLB (Translation Lookaside Buffer)",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "9. TLB (Translation Lookaside Buffer)\nPage-table lookup in RAM takes time, so the CPU uses a very fast associative hardware cache: TLB.\nTRE 3.0 asks how TLB is typically organized: Associative Cache.\n\n10. TLB Hit vs Miss:\n• TLB Hit  : Page found in TLB → Instant Frame translation (Fast!)\n• TLB Miss : Page not in TLB → Look up in main Page Table → Frame (Slower)\n\nMemory: TLB = Fast associative cache of page-table entries"
+              }
+            ]
+          },
+          {
+            "title": "11. Virtual Memory, 12. Demand Paging & 13. Page Fault",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "11. Virtual Memory\nAllows a process to work with an address space larger than currently available physical RAM (RAM + secondary backing storage).\n\n12. Demand Paging\nPages are not all loaded into RAM at once; they are loaded only when needed (brought on demand)."
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "13. Page Fault (Normal Hardware Mechanism)",
+                "content": "When the CPU references a virtual page that is not currently present in physical RAM, the MMU triggers a Page Fault.\nThe OS traps into the kernel, retrieves the requested page from disk into a free frame, updates the page table, and restarts the instruction.\n* A page fault is not an error/crash; it is the standard paging mechanism."
+              },
+              {
+                "type": "diagram",
+                "content": "14. Thrashing (Direct TRE 3.0 Exam Question)\nTRE 3.0 asks: What causes thrashing?\nAnswer: Excessive paging activity.\n\nMental: Computer spends more time swapping pages in/out of disk than executing instructions.\nMemory: Thrashing = Paging more than processing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d22-segmentation-frag",
+        "title": "Part III — Segmentation & Fragmentation",
+        "sections": [
+          {
+            "title": "15. Segmentation & 16. Segment Base",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "15. Segmentation\nDivides memory according to logical program units (Code, Data, Stack, Heap).\nEach segment has a variable, logical size.\n\n16. Segment Base (Direct TRE 3.0 Question)\nTRE 3.0 asks: What is segment base?\nAnswer: Starting address of a segment in physical memory.\n(A segment also has a Segment Limit defining its length/size)."
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "17. Paging vs Segmentation",
+                "content": "• Paging       → Fixed-size blocks (Pages/Frames) | Internal fragmentation\n• Segmentation → Variable-size logical modules (Code/Data/Stack) | External fragmentation"
+              }
+            ]
+          },
+          {
+            "title": "18. Fragmentation & 21. Swapping Calculation",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "18. Fragmentation (Direct TRE 3.0 Trap)",
+                "content": "TRE 3.0 asks which is not a memory-management technique: Paging, Segmentation, Fragmentation.\nAnswer: Fragmentation (it is an undesirable memory problem/phenomenon, NOT a management technique!)."
+              },
+              {
+                "type": "diagram",
+                "content": "19. Internal Fragmentation : Wasted space INSIDE an allocated block/page.\n20. External Fragmentation : Total free space exists, but scattered in non-contiguous holes BETWEEN allocated blocks.\n\n21. TRE 3.0 Swapping Calculation:\nPhysical memory used = 6 GB\nVirtual memory used  = 10 GB\nSwapped out amount   = 10 GB - 6 GB = 4 GB"
+              },
+              {
+                "type": "diagram",
+                "content": "Day 22 Master White-Paper Sheet\n\nMEMORY:\nVirtual  → PAGE\nPhysical → FRAME\n\nPAGE TABLE     → Page → Frame\nLogical Addr   → Page No + Offset\nPhysical Addr  → Frame No + Same Offset\n\nPAGE SIZE 4 KB → 4096 = 2¹² → 12 offset bits\n\nTLB            → Fast associative cache of page-table entries\nPAGE FAULT     → Page not currently in RAM\nTHRASHING      → Excessive paging activity\n\nPAGING         → Fixed-size blocks\nSEGMENTATION   → Logical variable-size blocks\nSEGMENT BASE   → Starting physical address of segment\n\nINTERNAL FRAG  → Waste inside allocated block\nEXTERNAL FRAG  → Scattered free holes between blocks"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d22-gs-math",
+        "title": "Part II — General Studies: Successive Percentage Change",
+        "sections": [
+          {
+            "title": "Successive Percentage Formula",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "+x% followed by -x% results in a NET LOSS:\nLoss = x² / 100 %\n\nExamples:\n• +20% then -20% → 20² / 100 = 400 / 100 = 4% Loss\n• +10% then -10% → 10² / 100 = 100 / 100 = 1% Loss"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d22-english",
+        "title": "Part I — English: Comprehension & Articles",
+        "sections": [
+          {
+            "title": "Articles & Comprehension Strategy",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Reading Strategy: Question → Keyword → Scan passage → Match fact\n\nArticles:\n• an airport (vowel sound /eə/)\n• an early morning walk (vowel sound /ɜː/)\n• a university (consonant sound /juː/)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 22 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d22-q1",
+          "question": "Q1. In paging, a page is:",
+          "options": [
+            "Fixed-size block of virtual memory",
+            "Fixed-size block of physical memory",
+            "CPU register",
+            "File system",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In paging, logical or virtual memory is divided into fixed-size contiguous blocks called Pages. Correct: (A) Fixed-size block of virtual memory."
+        },
+        {
+          "id": "m-d22-q2",
+          "question": "Q2. A frame is associated with:",
+          "options": [
+            "Virtual memory",
+            "Physical memory",
+            "SQL",
+            "Compiler",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Physical memory (RAM) is divided into fixed-size blocks called Frames, matching the page size. Correct: (B) Physical memory."
+        },
+        {
+          "id": "m-d22-q3",
+          "question": "Q3. Which mapping is correct?",
+          "options": [
+            "Page → Virtual memory",
+            "Frame → Physical memory",
+            "Both A and B",
+            "Neither",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Pages belong to the logical/virtual address space, while Frames belong to physical main memory. Correct: (C) Both A and B."
+        },
+        {
+          "id": "m-d22-q4",
+          "question": "Q4. Page Table primarily maps:",
+          "options": [
+            "Frame → CPU only",
+            "Page → Frame",
+            "File → Process",
+            "Stack → Queue",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Page Table translates virtual Page Numbers into physical Frame Numbers. Correct: (B) Page → Frame."
+        },
+        {
+          "id": "m-d22-q5",
+          "question": "Q5. A logical address in paging is commonly divided into:",
+          "options": [
+            "Page number + offset",
+            "Frame only",
+            "Segment only",
+            "CPU + disk",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A virtual address generated by the CPU consists of two parts: a Page Number (high-order bits) and a Page Offset (low-order bits). Correct: (A) Page number + offset."
+        },
+        {
+          "id": "m-d22-q6",
+          "question": "Q6. Page size = 4 KB. Offset requires:",
+          "options": [
+            "10 bits",
+            "11 bits",
+            "12 bits",
+            "14 bits",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "4 KB = 4096 bytes = 2¹² bytes. Hence, 12 bits are required to address each byte within the 4 KB page. Correct: (C) 12 bits."
+        },
+        {
+          "id": "m-d22-q7",
+          "question": "Q7. Page size = 8 KB. Offset requires:",
+          "options": [
+            "10 bits",
+            "11 bits",
+            "12 bits",
+            "13 bits",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "8 KB = 8 × 1024 bytes = 8192 bytes = 2¹³ bytes. Thus, the offset requires 13 bits. Correct: (D) 13 bits."
+        },
+        {
+          "id": "m-d22-q8",
+          "question": "Q8. When translating a paged address, which part normally remains unchanged?",
+          "options": [
+            "Page number",
+            "Offset",
+            "Frame number",
+            "Page-table entry",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "During address translation, the Page Number is translated into a Frame Number via the page table, while the Page Offset is copied directly to the physical address unchanged. Correct: (B) Offset."
+        },
+        {
+          "id": "m-d22-q9",
+          "question": "Q9. TLB stands for:",
+          "options": [
+            "Translation Lookaside Buffer",
+            "Table Logical Block",
+            "Transfer Link Buffer",
+            "Translation Load Base",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "TLB stands for Translation Lookaside Buffer. Correct: (A) Translation Lookaside Buffer."
+        },
+        {
+          "id": "m-d22-q10",
+          "question": "Q10. According to TRE 3.0, TLB is typically organized as:",
+          "options": [
+            "Associative cache",
+            "Stack",
+            "Queue",
+            "Linked list only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In computer architecture, the TLB is constructed using high-speed associative hardware cache memory to search page numbers simultaneously in parallel. Correct: (A) Associative cache."
+        },
+        {
+          "id": "m-d22-q11",
+          "question": "Q11. If a requested page is not currently in RAM, this causes:",
+          "options": [
+            "Page fault",
+            "Deadlock",
+            "Collision",
+            "Syntax error",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "When a process references a page marked invalid (not currently residing in physical RAM), the MMU raises an exception known as a Page Fault. Correct: (A) Page fault."
+        },
+        {
+          "id": "m-d22-q12",
+          "question": "Q12. Demand Paging means:",
+          "options": [
+            "Load every page before execution",
+            "Load a page when needed",
+            "Delete pages permanently",
+            "Never use disk",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Demand Paging is a virtual memory scheme where a page is brought into physical memory only when it is demanded during program execution. Correct: (B) Load a page when needed."
+        },
+        {
+          "id": "m-d22-q13",
+          "question": "Q13. Thrashing is mainly caused by:",
+          "options": [
+            "Excessive paging activity",
+            "Insufficient keyboard input",
+            "SQL query failure",
+            "Compiler optimization",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Thrashing occurs when the system spends more time servicing page faults and swapping pages in/out of disk than executing processes. Correct: (A) Excessive paging activity."
+        },
+        {
+          "id": "m-d22-q14",
+          "question": "Q14. Which memory technique divides memory into fixed-size blocks?",
+          "options": [
+            "Paging",
+            "Segmentation",
+            "Compilation",
+            "Scheduling",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Paging divides logical memory into fixed-size pages and physical memory into matching fixed-size frames. Correct: (A) Paging."
+        },
+        {
+          "id": "m-d22-q15",
+          "question": "Q15. Which divides a program into logical variable-sized units?",
+          "options": [
+            "Paging",
+            "Segmentation",
+            "Hashing",
+            "Sorting",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Segmentation organizes memory into variable-sized logical segments reflecting user modules (e.g. main program, subroutines, stack, symbol table). Correct: (B) Segmentation."
+        },
+        {
+          "id": "m-d22-q16",
+          "question": "Q16. Segment Base is:",
+          "options": [
+            "Starting physical address of the segment",
+            "Ending physical address",
+            "Page offset",
+            "File name",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In segmentation, the Segment Base contains the starting physical memory address where the segment resides in RAM. Correct: (A) Starting physical address of the segment."
+        },
+        {
+          "id": "m-d22-q17",
+          "question": "Q17. Which is not a memory-management technique in the TRE 3.0 question?",
+          "options": [
+            "Paging",
+            "Segmentation",
+            "Fragmentation",
+            "More than one",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Paging and Segmentation are memory-management schemes; Fragmentation is a memory inefficiency problem resulting from allocation, not a technique. Correct: (C) Fragmentation."
+        },
+        {
+          "id": "m-d22-q18",
+          "question": "Q18. Waste inside an allocated block is:",
+          "options": [
+            "External fragmentation",
+            "Internal fragmentation",
+            "Deadlock",
+            "Thrashing",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Internal fragmentation occurs when memory is allocated in fixed-size units and the process requires less space than the block size, leaving wasted space inside. Correct: (B) Internal fragmentation."
+        },
+        {
+          "id": "m-d22-q19",
+          "question": "Q19. Scattered free holes between allocated areas describe:",
+          "options": [
+            "Internal fragmentation",
+            "External fragmentation",
+            "Context switching",
+            "Scheduling",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "External fragmentation occurs when enough total memory space exists to satisfy a request, but it is split into scattered non-contiguous blocks. Correct: (B) External fragmentation."
+        },
+        {
+          "id": "m-d22-q20",
+          "question": "Q20. If virtual memory usage is 10 GB and physical-memory usage is 6 GB, the TRE-style swapped amount is:",
+          "options": [
+            "2 GB",
+            "4 GB",
+            "6 GB",
+            "10 GB",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "10 GB virtual memory - 6 GB physical RAM = 4 GB swapped out to secondary backing store. Correct: (B) 4 GB."
+        },
+        {
+          "id": "m-d22-q21",
+          "question": "Q21. A value increases by 20% and then decreases by 20%. Net result is:",
+          "options": [
+            "No change",
+            "4% gain",
+            "4% loss",
+            "20% loss",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Using net change formula: +20 - 20 - (20×20)/100 = -4% (a 4% loss). Or: 100 × 1.20 = 120; 120 × 0.80 = 96 (4% loss). Correct: (C) 4% loss."
+        },
+        {
+          "id": "m-d22-q22",
+          "question": "Q22. A value increases by 10% and then decreases by 10%. Net result is:",
+          "options": [
+            "1% loss",
+            "1% gain",
+            "No change",
+            "10% loss",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "100 → 110 → 99 (a 1% loss). Formula: 10²/100 = 1% loss. Correct: (A) 1% loss."
+        },
+        {
+          "id": "m-d22-q23",
+          "question": "Q23. Choose the correct phrase:",
+          "options": [
+            "a airport",
+            "an airport",
+            "the airport always in every context",
+            "airport an",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'airport' begins with a vowel sound /eə/, requiring the indefinite article 'an': 'an airport'. Correct: (B) an airport."
+        },
+        {
+          "id": "m-d22-q24",
+          "question": "Q24. Choose the correct phrase:",
+          "options": [
+            "a early morning walk",
+            "an early morning walk",
+            "the early morning walk always",
+            "early an morning walk",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'early' begins with the vowel sound /ɜː/, taking 'an': 'an early morning walk'. Correct: (B) an early morning walk."
+        },
+        {
+          "id": "m-d22-q25",
+          "question": "Q25. For a comprehension question, your first step should be:",
+          "options": [
+            "Guess the answer",
+            "Identify the question/keyword",
+            "Ignore the passage",
+            "Use outside knowledge first",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "First identify the core question and keyword, then scan the passage directly for that reference point. Correct: (B) Identify the question/keyword."
+        }
+      ]
+    }
   }
 ];
 
