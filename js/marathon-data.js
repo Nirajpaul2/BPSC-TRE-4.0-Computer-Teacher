@@ -4159,6 +4159,693 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 8,
+    "dayId": "day-8",
+    "badge": "Day 08",
+    "title": "TRE 4.0 — Day 8",
+    "unit": "Part III (CS) • Data Structures (Array, Linked List, Stack) • Physics & English",
+    "targetTime": "25–30 mins read + 20 MCQs test",
+    "summary": "Today we begin one of the highest-value Part III areas: Data Structures (Array, Linked List, Stack), along with Physics (Electricity, Ohm's law, Power) and English Reading Comprehension technique.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Array + Linked List + Stack",
+        "goal": "Direct access O(1), node pointers, LIFO, recursion stack, infix/prefix/postfix notation"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Electricity: Current, Voltage, Resistance, Power",
+        "goal": "Ohm's law (V=IR), VIR triangle, Electrical Power (P=VI, P=I²R)"
+      },
+      {
+        "section": "Part I – Language",
+        "topic": "English reading comprehension technique",
+        "goal": "Question → Keyword → Scan passage → Match sentence → Answer"
+      }
+    ],
+    "introNote": "Today we begin one of the highest-value Part III areas: Data Structures.\n\nYour TRE 2.0 paper directly asked about Stack applications, infix→prefix conversion, arrays, recursion using Stack, and later Queue/Tree questions. The explanations below use standard CS concepts to prepare those exact topic areas.",
+    "parts": [
+      {
+        "partId": "d8-part-3",
+        "title": "Part III — DATA STRUCTURES",
+        "sections": [
+          {
+            "title": "🧠 First mental picture",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine you have 5 books.\n\nYou can organize them in different ways:\nDATA\n ↓\nHow should I organize it?\n ↓\nDATA STRUCTURE"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory:",
+                "content": "Data Structure = way of organizing data"
+              },
+              {
+                "type": "diagram",
+                "content": "Today:\n           DATA STRUCTURES\n                 │\n       ┌─────────┼─────────┐\n       ↓         ↓         ↓\n     ARRAY    LINKED LIST  STACK"
+              }
+            ]
+          },
+          {
+            "title": "1. ARRAY",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Imagine numbered seats in a cinema:"
+              },
+              {
+                "type": "diagram",
+                "content": "Index:\n 0      1      2      3      4\n ↓      ↓      ↓      ↓      ↓\n[10]   [20]   [30]   [40]   [50]\n\nEverything is arranged side-by-side."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Array = numbered boxes in a row\n\nYour TRE 2.0 paper describes an array as a container storing elements of similar types."
+              },
+              {
+                "type": "text",
+                "content": "Array index\nVery important:\n\nMost programming-language arrays start at:\n0\n\nExample:\nint a[] = {10,20,30,40}"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nVALUE:   10   20   30   40\n          ↑    ↑    ↑    ↑\nINDEX:    0    1    2    3\n\nSo:\na[0] = 10\na[2] = 30"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Exam trap",
+                "content": "If someone asks:\nthe 1st element\n\nit is commonly:\narray[0]\n\nThe nth element is generally:\narray[n-1]\n\nYour TRE 2.0 C++ section directly tested this idea."
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper trick\nPOSITION: 1  2  3  4\nINDEX:    0  1  2  3\n\nINDEX = POSITION - 1"
+              },
+              {
+                "type": "text",
+                "content": "Why is Array fast for access?\nImagine apartment numbers:\nRoom 0\nRoom 1\nRoom 2\nRoom 3\n\nIf I say:\nGo to Room 3\n\nyou don't need to visit rooms 0,1,2 first.\n\nSimilarly:\narray[3]\n\ncan be directly accessed."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Array = Direct access\n\nTypical array access:\nO(1)\n\nWe'll study complexity properly later."
+              },
+              {
+                "type": "text",
+                "content": "Array weakness\nSuppose:\n[10][20][30][40]\n\nYou want to insert 15 after 10:\n[10][15][20][30][40]\n\nOther elements may need to move."
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\nINSERT\n   ↓\npeople shift seats →"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Array: access easy, middle insertion costly"
+              }
+            ]
+          },
+          {
+            "title": "2. LINKED LIST",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Now imagine railway coaches."
+              },
+              {
+                "type": "diagram",
+                "content": "[10 | next] → [20 | next] → [30 | next] → [40 | NULL]\n\nEach box is called a:\nNode\n\nA node normally contains:\n┌──────────────┐\n│ DATA │ NEXT  │\n└──────────────┘"
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 White-paper picture\nNODE\n ├─ DATA\n └─ LINK"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Linked List = data holding hands\n\n10 → 20 → 30 → 40"
+              },
+              {
+                "type": "text",
+                "content": "Array vs Linked List\nThis is very important."
+              },
+              {
+                "type": "diagram",
+                "content": "ARRAY\n[10][20][30][40]\n\nThink:\nNeighbours sitting together\n\nLINKED LIST\n[10] → [20] → [30] → [40]\n\nThink:\nNeighbours connected by address"
+              },
+              {
+                "type": "callout",
+                "icon": "⚖️",
+                "title": "White-paper comparison",
+                "content": "ARRAY\nTogether in memory\nDirect index\n\nLINKED LIST\nConnected by links\nFollow node → node"
+              },
+              {
+                "type": "text",
+                "content": "Head\nThe first node is commonly reached through:"
+              },
+              {
+                "type": "diagram",
+                "content": "HEAD\n ↓\n[10] → [20] → [30] → NULL"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "Head = entrance to Linked List\n\nLose the head, and you may lose access to the chain."
+              },
+              {
+                "type": "text",
+                "content": "NULL\nThe final node points to:\nNULL"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\n10 → 20 → 30 → NULL\n                ↑\n              STOP"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory:",
+                "content": "NULL = end of road"
+              },
+              {
+                "type": "text",
+                "content": "Types of Linked List\nFor TRE level, remember three:"
+              },
+              {
+                "type": "diagram",
+                "content": "Linked List\n   │\n   ├─ Singly\n   ├─ Doubly\n   └─ Circular\n\nSingly\nOnly forward:\n10 → 20 → 30 → NULL\n\nDoubly\nBoth directions:\nNULL ← 10 ⇄ 20 ⇄ 30 → NULL\n\nCircular\nLast returns to first:\n10 → 20 → 30\n↑         ↓\n└─────────┘"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory tricks",
+                "content": "Singly = One-way road\n\nDoubly = Two-way road\n\nCircular = Round road"
+              },
+              {
+                "type": "text",
+                "content": "Array vs Linked List insertion\nImagine inserting 25.\n\nArray:\n10 20 30 40\n      ↓\nshift elements\n\nLinked List conceptually:\n20 → 30\n\nbecomes\n\n20 → 25 → 30\n\nYou change links rather than necessarily shifting a whole contiguous block."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory",
+                "content": "ARRAY\ninsert → SHIFT\n\nLINKED LIST\ninsert → CHANGE LINKS"
+              }
+            ]
+          },
+          {
+            "title": "3. STACK — VERY IMPORTANT",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 2.0 asked several Stack questions, including Stack applications, expression conversion and recursion."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 Mental picture\nImagine plates in a hotel:\n       TOP\n        ↓\n     ┌─────┐\n     │  C  │ ← newest\n     ├─────┤\n     │  B  │\n     ├─────┤\n     │  A  │ ← oldest\n     └─────┘\n\nYou place a plate on top.\n\nYou remove a plate from top.\n\nTherefore:\nLast In → First Out"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "STACK = LIFO\n\nL = Last\nI = In\nF = First\nO = Out"
+              },
+              {
+                "type": "text",
+                "content": "PUSH and POP\nTwo words must become automatic.\nPUSH → Insert\nPOP  → Remove\n\nBoth happen at:\nTOP"
+              },
+              {
+                "type": "diagram",
+                "content": "Mental picture:\n         PUSH ↓\n       ┌─────┐\n       │ 30  │ ← TOP\n       ├─────┤\n       │ 20  │\n       ├─────┤\n       │ 10  │\n       └─────┘\n         POP ↑"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Push = Put\n\nPop = Pull out\n\nNot technically the expansion—just memory words."
+              },
+              {
+                "type": "text",
+                "content": "PEEK / TOP\nSuppose:\nTOP\n ↓\n[30]\n[20]\n[10]\n\npeek() means:\nSee 30 without removing it."
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper",
+                "content": "POP  → SEE + REMOVE\nPEEK → SEE ONLY"
+              },
+              {
+                "type": "text",
+                "content": "Stack Underflow\nImagine an empty plate stack.\n[ EMPTY ]\n\nAnd you try:\nPOP\n\nNothing exists to remove.\n\nThis is:\nUNDERFLOW"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Underflow = Remove from EMPTY"
+              },
+              {
+                "type": "text",
+                "content": "Stack Overflow\nSuppose stack capacity = 3:\n[30]\n[20]\n[10]\n\nIt is full.\n\nTry PUSH 40.\n40\n ↓\nFULL STACK ❌\n\nThat's:\nOVERFLOW"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory",
+                "content": "POP empty  → UNDERFLOW\nPUSH full  → OVERFLOW\n\nVery important exam pair."
+              },
+              {
+                "type": "text",
+                "content": "Stack applications\nYour TRE paper specifically tests applications."
+              },
+              {
+                "type": "diagram",
+                "content": "Remember:\nSTACK\n │\n ├─ Function calls\n ├─ Recursion\n ├─ Expression conversion\n ├─ Expression evaluation\n ├─ Backtracking\n ├─ Undo\n └─ String reversal"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "White-paper memory trick",
+                "content": "Think:\nSTACK = GO BACK\n\nWhy?\n\nRecursion → return to previous function.\n\nBrowser back → previous page.\n\nUndo → previous state.\n\nBacktracking → previous choice."
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Strong memory sentence",
+                "content": "Whenever you must return BACK, think STACK.\n\nTRE 2.0 specifically asks which data structure is used in recursion: Stack."
+              },
+              {
+                "type": "text",
+                "content": "Expression notation\nYou need three terms.\n\nSuppose:\nA + B\n\nThis is:\nINFIX\n\nbecause operator is in the middle.\nA + B\n  ↑\nmiddle\n\nPrefix\nOperator first:\n+ A B\n\nPostfix\nOperator last:\nA B +"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Best memory",
+                "content": "PREFIX\n+AB\n↑\noperator BEFORE\n\nINFIX\nA+B\n ↑\noperator INSIDE\n\nPOSTFIX\nAB+\n  ↑\noperator AFTER\n\nOr:\nPRE = before\n\nIN = inside\n\nPOST = after"
+              },
+              {
+                "type": "diagram",
+                "content": "Example\nExpression:\nA + B * C\n\nRemember multiplication first:\nB*C\n\nPrefix:\n+A*BC\n\nPostfix:\nABC*+"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "TRE 2.0 Exam Link",
+                "content": "Your TRE 2.0 paper actually asked the prefix form of A+B*C and separately asked which data structure is needed for infix→prefix conversion: Stack."
+              }
+            ]
+          },
+          {
+            "title": "Array vs Linked List vs Stack — Master Summary",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Your Day 8 master picture:\nARRAY\n[10][20][30]\nDirect index\n↓\n\nLINKED LIST\n10 → 20 → 30\nFollow links\n↓\n\nSTACK\n10\n20\n30\n↑ TOP\nLIFO"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Easy memory story",
+                "content": "Imagine a classroom:\nArray = students sitting in numbered seats\n\nLinked List = students holding the address of the next student\n\nStack = pile of books\n\nIf you remember those three pictures, you can rebuild the concepts."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d8-part-2",
+        "title": "Part II — Physics: Electricity",
+        "sections": [
+          {
+            "title": "Current, Voltage, Resistance & Ohm's Law",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 Part II included an electric-heater question involving resistance and current, so electricity deserves practice.\n\nToday only four quantities:\nVoltage     → V\nCurrent     → I\nResistance  → R\nPower       → P"
+              },
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Water-pipe memory trick",
+                "content": "Imagine water:\nWater pressure → VOLTAGE\nWater flow     → CURRENT\nPipe blockage  → RESISTANCE\n\nTherefore:\nVoltage pushes\n\nCurrent flows\n\nResistance opposes"
+              },
+              {
+                "type": "text",
+                "content": "Ohm's Law\nVery important:\nV = I × R\n\nUse the triangle:\n       V\n      ───\n      I R\n\nCover what you want.\n\nFor V:\nV = I × R\n\nFor I:\nI = V/R\n\nFor R:\nR = V/I"
+              },
+              {
+                "type": "diagram",
+                "content": "White-paper memory\nVIR triangle\n\n   V\n  ----\n  I  R"
+              }
+            ]
+          },
+          {
+            "title": "Electrical Power",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Formula:\nP = V × I\n\nUsing Ohm's law:\nP = I²R\n\nand:\nP = V²/R"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "For now remember especially:",
+                "content": "Power = VI\n\nand\nIf Current + Resistance are given → I²R"
+              },
+              {
+                "type": "diagram",
+                "content": "Example:\nI = 5 A\nR = 4 Ω\n\nPower:\nP = I²R\n\n= 5² × 4\n= 25 × 4\n= 100 W"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "Current squared × Resistance\n        ↓\n       POWER"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d8-part-1",
+        "title": "Part I — English Comprehension",
+        "sections": [
+          {
+            "title": "English Reading Comprehension Technique",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 used a reading passage followed by multiple questions.\n\nThe biggest mistake is trying to remember the entire passage.\n\nUse this method."
+              },
+              {
+                "type": "diagram",
+                "content": "🧠 White-paper technique\nQUESTION\n   ↓\nKEYWORD\n   ↓\nSCAN passage\n   ↓\nMATCH sentence\n   ↓\nANSWER\n\nExample question:\nWhy did Ravi go to the market?\n\nKeyword:\nRavi + market\n\nSearch those ideas in the passage."
+              },
+              {
+                "type": "callout",
+                "icon": "⭐",
+                "title": "Memory sentence",
+                "content": "Don't read to remember everything. Read to FIND the answer."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "d8-part-recap",
+        "title": "Day 8 quick-revision page",
+        "sections": [
+          {
+            "title": "Mental White-Paper Recap",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Before the test, mentally draw:"
+              },
+              {
+                "type": "diagram",
+                "content": "ARRAY\nnumbered boxes\nindex starts 0\ndirect access\n\nLINKED LIST\nDATA + LINK\nHEAD → first\nNULL → end\n\nSTACK\nLIFO\nPUSH → add\nPOP → remove\nPEEK → see\n\nEmpty POP → Underflow\nFull PUSH → Overflow\n\nSTACK USES\nRecursion\nBacktracking\nExpression conversion\nUndo\n\nThen:\nELECTRICITY\n\nV → push\nI → flow\nR → oppose\n\nV = IR\n\nP = VI\nP = I²R"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 8 Practice Test (20 Questions)",
+      "subtitle": "14 CS (Data Structures) • 4 Physics (Electricity) • 2 English Comprehension",
+      "timeLimit": "20–25 mins",
+      "questions": [
+        {
+          "id": "m-d8-q1",
+          "question": "Q1. Which best describes an array?",
+          "options": [
+            "Collection of unrelated data only",
+            "Container storing similar-type elements",
+            "Always a non-linear structure",
+            "Only a collection of pointers",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An array is a linear data structure that stores elements of similar (homogeneous) types in contiguous memory locations. Correct: (B) Container storing similar-type elements."
+        },
+        {
+          "id": "m-d8-q2",
+          "question": "Q2. In a zero-indexed array, the first element is:",
+          "options": [
+            "a[1]",
+            "a[0]",
+            "a[-1]",
+            "a[first]",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In zero-based indexing systems (C, C++, Java, Python), indices begin at 0, making the first element a[0]. Correct: (B) a[0]."
+        },
+        {
+          "id": "m-d8-q3",
+          "question": "Q3. In a zero-indexed array, the nth element is typically:",
+          "options": [
+            "a[n]",
+            "a[n+1]",
+            "a[n-1]",
+            "a[0]",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Because the index starts at 0, the nth element is located at index (n - 1) (Formula: INDEX = POSITION - 1). Correct: (C) a[n-1]."
+        },
+        {
+          "id": "m-d8-q4",
+          "question": "Q4. The first node of a linked list is commonly accessed by:",
+          "options": [
+            "Top",
+            "Rear",
+            "Head",
+            "Tail only",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The pointer referencing the first node of a linked list is called the Head. Correct: (C) Head."
+        },
+        {
+          "id": "m-d8-q5",
+          "question": "Q5. In a standard singly linked list, the last node generally points to:",
+          "options": [
+            "Head always",
+            "NULL",
+            "Previous node",
+            "Stack",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a standard linear singly linked list, the link field of the last node is set to NULL to signify the end of the chain. Correct: (B) NULL."
+        },
+        {
+          "id": "m-d8-q6",
+          "question": "Q6. Which linked list supports traversal in both directions?",
+          "options": [
+            "Singly linked list",
+            "Doubly linked list",
+            "Simple array",
+            "Stack",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A doubly linked list contains two links per node (previous and next), enabling two-way traversal (forward and backward). Correct: (B) Doubly linked list."
+        },
+        {
+          "id": "m-d8-q7",
+          "question": "Q7. Stack follows:",
+          "options": [
+            "FIFO",
+            "LIFO",
+            "Random order",
+            "Priority only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A stack follows the Last-In, First-Out (LIFO) operational principle. Correct: (B) LIFO."
+        },
+        {
+          "id": "m-d8-q8",
+          "question": "Q8. Adding an element to Stack is called:",
+          "options": [
+            "Pop",
+            "Push",
+            "Peek",
+            "DeleteRear",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The operation of placing/inserting an element onto the top of a stack is PUSH. Correct: (B) Push."
+        },
+        {
+          "id": "m-d8-q9",
+          "question": "Q9. Attempting to POP from an empty Stack causes:",
+          "options": [
+            "Overflow",
+            "Underflow",
+            "Collision",
+            "Deadlock",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Attempting to delete/remove an item from an empty stack generates an Underflow condition. Correct: (B) Underflow."
+        },
+        {
+          "id": "m-d8-q10",
+          "question": "Q10. Which data structure is normally associated with recursion?",
+          "options": [
+            "Queue",
+            "Array",
+            "Stack",
+            "Heap only",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Recursion utilizes the system Call Stack to remember function states, local variables, and return addresses. Correct: (C) Stack."
+        },
+        {
+          "id": "m-d8-q11",
+          "question": "Q11. Which structure is normally used for infix→prefix/postfix processing?",
+          "options": [
+            "Stack",
+            "Queue only",
+            "Tree only",
+            "Hash table",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Stack is the standard data structure used to handle operator precedence during infix-to-prefix and infix-to-postfix conversions. Correct: (A) Stack."
+        },
+        {
+          "id": "m-d8-q12",
+          "question": "Q12. Prefix notation for A+B is:",
+          "options": [
+            "AB+",
+            "+AB",
+            "A+B",
+            "BA+",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In prefix (Polish) notation, the operator is placed BEFORE operands: +AB. Correct: (B) +AB."
+        },
+        {
+          "id": "m-d8-q13",
+          "question": "Q13. Postfix notation for A+B is:",
+          "options": [
+            "+AB",
+            "A+B",
+            "AB+",
+            "+BA",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In postfix (Reverse Polish) notation, the operator is placed AFTER operands: AB+. Correct: (C) AB+."
+        },
+        {
+          "id": "m-d8-q14",
+          "question": "Q14. Prefix form of A+B*C is:",
+          "options": [
+            "+A*BC",
+            "ABC*+",
+            "*+ABC",
+            "AB+C*",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Multiplication has higher precedence than addition: B*C becomes (* B C). Then A + (* B C) becomes + A * B C (+A*BC). Correct: (A) +A*BC."
+        },
+        {
+          "id": "m-d8-q15",
+          "question": "Q15. According to Ohm's law:",
+          "options": [
+            "V=IR",
+            "V=I/R",
+            "R=VI",
+            "I=VR",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Ohm's law defines the relationship: Voltage = Current × Resistance (V = I × R). Correct: (A) V=IR."
+        },
+        {
+          "id": "m-d8-q16",
+          "question": "Q16. If V=12 V and R=4 Ω, current is:",
+          "options": [
+            "2 A",
+            "3 A",
+            "4 A",
+            "48 A",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "From Ohm's law: I = V / R = 12 / 4 = 3 A. Correct: (B) 3 A."
+        },
+        {
+          "id": "m-d8-q17",
+          "question": "Q17. Electrical power is:",
+          "options": [
+            "V+I",
+            "V/I",
+            "VI",
+            "R/I",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Electric power is the rate at which electrical energy is transferred: Power = Voltage × Current (P = V × I). Correct: (C) VI."
+        },
+        {
+          "id": "m-d8-q18",
+          "question": "Q18. A device draws 2 A through a resistance of 5 Ω. Power using I²R is:",
+          "options": [
+            "10 W",
+            "15 W",
+            "20 W",
+            "25 W",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "P = I² × R = 2² × 5 = 4 × 5 = 20 W. Correct: (C) 20 W."
+        },
+        {
+          "id": "m-d8-q19",
+          "question": "Q19. Why did Ravi start walking?",
+          "options": [
+            "To meet friends",
+            "To improve his health",
+            "To reach school",
+            "To lose his books",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The passage directly states: 'Ravi wanted to improve his health, so he started walking every morning.' Correct: (B) To improve his health."
+        },
+        {
+          "id": "m-d8-q20",
+          "question": "Q20. What happened after a few weeks?",
+          "options": [
+            "He stopped studying",
+            "He became tired",
+            "He felt more energetic",
+            "He stopped walking",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The passage states: 'After a few weeks, he felt more energetic and could concentrate better on his studies.' Correct: (C) He felt more energetic."
+        }
+      ]
+    }
   }
 ];
 
