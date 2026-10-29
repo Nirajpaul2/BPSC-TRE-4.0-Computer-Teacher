@@ -5,3 +5,4 @@ payments_db.json
 analytics_db.json
 .vscode/
 .idea/
+*.zip
