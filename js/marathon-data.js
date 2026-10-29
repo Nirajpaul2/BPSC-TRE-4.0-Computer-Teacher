@@ -10252,6 +10252,502 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 18,
+    "dayId": "day-18",
+    "badge": "Day 18",
+    "title": "TRE 4.0 — Day 18",
+    "unit": "Part III (CS) • ER Model, Entity, Attribute, Relationship, Cardinality, Schema vs Instance, DB Architecture • Geography & Family Vocabulary",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Today we transition from SQL and transactions to conceptual database design: ER Modeling (Entity, Attribute, Relationship, Cardinality), Schema vs Instance, Catalog hierarchy, Database Models (Hierarchical, Network, Relational), and the Three-Schema Architecture (External, Conceptual, Internal).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "ER Model, Entity, Attribute, Relationship, Cardinality, Schema vs Instance, DB Architecture",
+        "goal": "Master ER notations, 1:1 / 1:M / M:N cardinalities, junction tables, Schema vs Instance, and the 3-level ANSI/SPARC architecture"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Indian Geography quick revision",
+        "goal": "Leguminous crop (Pulse), East-West Corridor (Silchar ↔ Porbandar), Survey of India (topographical maps), cave groundwater formations"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Family/relationship vocabulary",
+        "goal": "Maternal vs Paternal grandparents, brother-in-law"
+      }
+    ],
+    "introNote": "Today we move from SQL/transactions to database design concepts.\n\nYour uploaded TRE 2.0 paper directly supports the database hierarchy idea Catalogs → Schemas, asks about Hierarchical DBMS, and continues testing keys and DBMS structure. The exact ER-model/cardinality/three-schema questions were not found in the retrieved TRE/STET excerpts, so those sections below are standard DBMS expansion for TRE-level preparation, not claims that these exact questions appeared in your papers.",
+    "parts": [
+      {
+        "partId": "part-d18-er-model",
+        "title": "Part III — ER Model & Components",
+        "sections": [
+          {
+            "title": "1. ER Model, 2. Entity, 3. Entity Set & 4. Attribute",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. ER Model\nER stands for: Entity–Relationship\n\n🧠 MENTAL PICTURE\nImagine your library system:\nSTUDENT takes SEAT\n\nTwo things exist: Student and Seat.\nAnd there is a relationship: Student TAKES Seat.\n\nENTITY → THING\nRELATIONSHIP → CONNECTION\nMemory: ER Model = Things + their relationships"
+              },
+              {
+                "type": "diagram",
+                "content": "2. Entity\nAn Entity is a real-world object or concept about which data is stored:\nStudent, Teacher, Book, Course, Employee\nMemory: Entity = Thing\n\n3. Entity Set\nMany similar entities together form an Entity Set:\nRavi, Aman, Neha, Rahul all belong to STUDENT entity set.\nMemory: One Student = Entity | All Students = Entity Set\n\n4. Attribute\nAn Attribute describes an Entity:\n        STUDENT\n           │\n ┌─────────┼──────────┐\n ↓         ↓          ↓\nName      Age       Phone\n\nMemory: Attribute = Property"
+              },
+              {
+                "type": "callout",
+                "icon": "🔑",
+                "title": "5. Key Attribute",
+                "content": "StudentID uniquely identifies one student, acting as a key attribute.\nThis connects directly with the Primary-Key idea tested in TRE 3.0: a primary key uniquely identifies records.\n\nMemory: Key Attribute = Identity"
+              }
+            ]
+          },
+          {
+            "title": "6. Relationship & 7. Cardinality (1:1, 1:M, M:N)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. Relationship\nA Relationship connects entities:\nSTUDENT ───── studies ───── COURSE\n\nEntities are people/things (nouns); relationship is the verb between them:\nStudent ENROLLS Course | Teacher TEACHES Subject | Customer PLACES Order\n\n7. Cardinality tells how many entities can participate in a relationship."
+              },
+              {
+                "type": "diagram",
+                "content": "8. One-to-One (1:1)\nOne person has one passport:\nPERSON ───── PASSPORT\n   1            1\nMemory: One ↔ One (e.g. Vehicle ↔ Registration certificate)\n\n9. One-to-Many (1:M)\nTEACHER ───── STUDENTS (1 teacher teaches many students)\nDEPARTMENT ── EMPLOYEES (1 department has many employees)\nMemory: One parent → Many children\n\n10. Many-to-Many (M:N)\nSTUDENTS ──── COURSES (Many students study many courses)\nMemory: Many ↔ Many"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "11. Why M:N is special in RDBMS",
+                "content": "In a relational database, an M:N relationship is typically handled using an intermediate/junction table:\nSTUDENT → ENROLLMENT (StudentID, CourseID) → COURSE\n\nMemory: M:N → middle / junction table"
+              },
+              {
+                "type": "diagram",
+                "content": "12. ER Diagram Symbols — Exam Basics\n\nRectangle    → Entity\nOval         → Attribute\nDiamond (◇)  → Relationship\n\n[ STUDENT ] ---- ◇ studies ◇ ---- [ COURSE ]\n      |\n    (Name)\n\nMemory trick:\nEntity       → Rectangle\nAttribute    → Oval\nRelationship → Diamond"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d18-schema-arch",
+        "title": "Part III — Schema vs Instance & DB Architecture",
+        "sections": [
+          {
+            "title": "13. Schema vs 14. Instance & 15. Catalog Hierarchy",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "13. Schema\nSchema means: Database structure / design / blueprint.\nImagine an empty student form: StudentID, Name, Phone, City.\nThis describes what fields exist, not today's actual values.\nMemory: Schema = Design / Blueprint (changes rarely)\n\n14. Instance\nInstance means: Actual data stored at a particular moment in time.\nToday: 101 Ravi, 102 Aman\nTomorrow: 101 Ravi, 102 Aman, 103 Neha\nSchema remains the same; data changes.\nMemory: Instance = Current Data (changes frequently)"
+              },
+              {
+                "type": "callout",
+                "icon": "🏫",
+                "title": "Schema vs Instance Classroom Picture",
+                "content": "• Classroom architectural layout = Schema (rarely changes)\n• Students sitting inside today = Instance (changes every period)"
+              },
+              {
+                "type": "diagram",
+                "content": "15. Catalog and Schema (Direct TRE 2.0 Exam Support)\nTRE 2.0 asks: the top level consists of catalogs, each of which can contain schemas.\n\nCATALOG\n   ↓\nSCHEMA\n   ↓\nTABLE\n\nMemory: Catalog contains Schemas"
+              }
+            ]
+          },
+          {
+            "title": "16. Database Models & 20. Three-Schema Architecture",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Database Models (TRE 2.0 includes comparison of models):\n\n17. Hierarchical DBMS\nTree structure with parent-child relationships (like folders):\n        COMPANY\n        /     \\\n      HR      IT\n     /         \\\nEmployee     Employee\nMemory: Hierarchical DBMS = Tree structure\n\n18. Network DBMS\nGraph-like many-to-many connections without strict single-parent hierarchy.\nMemory: Network = Graph-like connections\n\n19. Relational DBMS (RDBMS)\nOrganized into Tables (Rows + Columns) with relational foreign keys.\nMemory: RDBMS = Tables + Relationships"
+              },
+              {
+                "type": "diagram",
+                "content": "20. Three-Schema Architecture (ANSI/SPARC)\n\nUSER VIEW         → EXTERNAL LEVEL (What a particular user sees, e.g. teacher sees marks, not salary)\n     ↓\nDATABASE DESIGN   → CONCEPTUAL LEVEL (Overall logical structure of the entire database)\n     ↓\nDISK / STORAGE    → INTERNAL LEVEL (Physical storage layout, files, blocks, indexing)\n\nMemory Mnemonic: VDS (View, Design, Storage)"
+              },
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "Day 18 DBMS Master Sheet",
+                "content": "ER MODEL\nENTITY       → Thing (Rectangle)\nATTRIBUTE    → Property (Oval)\nRELATIONSHIP → Connection (Diamond)\n\nCARDINALITY\n1:1 → Person ↔ Passport\n1:M → Department → Employees\nM:N → Students ↔ Courses (requires Junction Table)\n\nSCHEMA   → Blueprint (structure)\nINSTANCE → Actual current data\nCATALOG  → contains SCHEMAS\n\nARCHITECTURE (VDS)\nExternal   → View\nConceptual → Design\nInternal   → Storage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d18-geography",
+        "title": "Part II — General Studies: Geography Quick Revision",
+        "sections": [
+          {
+            "title": "High-Yield Geography Pairs",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 paper contains a geography block testing minerals, leguminous crops, East-West Corridor, cave formations, Earth Day, and Survey of India."
+              },
+              {
+                "type": "diagram",
+                "content": "Leguminous crop\n→ Pulse\n\nEast-West Corridor\n→ Silchar ↔ Porbandar\n\nTopographical maps\n→ Survey of India\n\nStalactite and stalagmite formations\n→ Underground water"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d18-english-relations",
+        "title": "Part I — English: Family & Relationship Vocabulary",
+        "sections": [
+          {
+            "title": "Family Relationship Vocabulary",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 2.0 directly asks family-relation vocabulary."
+              },
+              {
+                "type": "diagram",
+                "content": "Mother's parents\n→ Maternal grandparents\n\nFather's parents\n→ Paternal grandparents\n\nHusband's brother\n→ Brother-in-law"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Memory trick",
+                "content": "M → Mother → Maternal\nP → Papa   → Paternal"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 18 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d18-q1",
+          "question": "Q1. ER stands for:",
+          "options": [
+            "Entity–Relation",
+            "Entity–Relationship",
+            "External–Relation",
+            "Entity–Record",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "ER stands for Entity–Relationship (Entity–Relationship Model). Correct: (B) Entity–Relationship."
+        },
+        {
+          "id": "m-d18-q2",
+          "question": "Q2. A real-world object about which data is stored is called:",
+          "options": [
+            "Attribute",
+            "Entity",
+            "Relationship",
+            "Schema",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An Entity is a distinguishable real-world object or concept (e.g., student, employee) about which information is collected. Correct: (B) Entity."
+        },
+        {
+          "id": "m-d18-q3",
+          "question": "Q3. Name, Age, and Phone of a Student are examples of:",
+          "options": [
+            "Relationships",
+            "Attributes",
+            "Entities",
+            "Schemas",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Attributes are descriptive properties or characteristics that define an entity. Correct: (B) Attributes."
+        },
+        {
+          "id": "m-d18-q4",
+          "question": "Q4. Which best describes a Relationship?",
+          "options": [
+            "Property of an entity only",
+            "Association between entities",
+            "Primary Key only",
+            "Table name only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A relationship defines an association, interaction, or link between two or more entities. Correct: (B) Association between entities."
+        },
+        {
+          "id": "m-d18-q5",
+          "question": "Q5. One Person having one Passport is typically:",
+          "options": [
+            "1:1",
+            "1:M",
+            "M:N",
+            "0:N",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A person holds at most one passport, and a passport belongs to exactly one person, representing a One-to-One (1:1) cardinality. Correct: (A) 1:1."
+        },
+        {
+          "id": "m-d18-q6",
+          "question": "Q6. One Department having many Employees is:",
+          "options": [
+            "1:1",
+            "1:M",
+            "M:N",
+            "M:1 only from both directions",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "One department contains multiple employees, while each employee belongs to one department: One-to-Many (1:M). Correct: (B) 1:M."
+        },
+        {
+          "id": "m-d18-q7",
+          "question": "Q7. Students enrolling in many Courses and Courses having many Students is:",
+          "options": [
+            "1:1",
+            "1:M",
+            "M:N",
+            "0:1",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A student can enroll in multiple courses, and each course can be taken by multiple students: Many-to-Many (M:N). Correct: (C) M:N."
+        },
+        {
+          "id": "m-d18-q8",
+          "question": "Q8. An M:N relationship in an RDBMS is commonly resolved using:",
+          "options": [
+            "Stack",
+            "Junction/Intermediate table",
+            "Queue",
+            "Heap",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "RDBMS tables cannot directly store multivalued composite foreign keys, so Many-to-Many relationships are implemented via an intermediate Junction (associative) table. Correct: (B) Junction/Intermediate table."
+        },
+        {
+          "id": "m-d18-q9",
+          "question": "Q9. In basic ER notation, an Entity is commonly represented by:",
+          "options": [
+            "Rectangle",
+            "Oval",
+            "Diamond",
+            "Triangle",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In Chen's ER notation, Entity sets are drawn as Rectangles. Correct: (A) Rectangle."
+        },
+        {
+          "id": "m-d18-q10",
+          "question": "Q10. In basic ER notation, an Attribute is commonly represented by:",
+          "options": [
+            "Rectangle",
+            "Oval",
+            "Diamond",
+            "Square only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Attributes are represented by Ovals (ellipses) connected to their entity rectangle. Correct: (B) Oval."
+        },
+        {
+          "id": "m-d18-q11",
+          "question": "Q11. In basic ER notation, a Relationship is commonly represented by:",
+          "options": [
+            "Rectangle",
+            "Oval",
+            "Diamond",
+            "Circle",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Relationships are represented by Diamond shapes connecting participating entities. Correct: (C) Diamond."
+        },
+        {
+          "id": "m-d18-q12",
+          "question": "Q12. A database Schema is best thought of as:",
+          "options": [
+            "Current database values",
+            "Database blueprint/structure",
+            "One SQL row",
+            "Only a transaction",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A database schema is the overall structural framework, design, or blueprint defining tables, columns, data types, and constraints. Correct: (B) Database blueprint/structure."
+        },
+        {
+          "id": "m-d18-q13",
+          "question": "Q13. An Instance refers to:",
+          "options": [
+            "Database structure only",
+            "Actual data at a particular moment",
+            "DBMS software name",
+            "Primary Key only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "An instance (or database state) is the collection of actual data values stored in the database at a specific snapshot in time. Correct: (B) Actual data at a particular moment."
+        },
+        {
+          "id": "m-d18-q14",
+          "question": "Q14. Which is correct?",
+          "options": [
+            "Schema changes constantly, Instance never changes",
+            "Schema is structure; Instance is current data",
+            "Schema and Instance are identical",
+            "Instance contains only metadata",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Schema is the invariant or rarely modified structural definition; Instance represents the dynamic data currently populated in the database. Correct: (B) Schema is structure; Instance is current data."
+        },
+        {
+          "id": "m-d18-q15",
+          "question": "Q15. According to the TRE 2.0 hierarchy question, the top level contains:",
+          "options": [
+            "Schemas containing catalogs",
+            "Catalogs containing schemas",
+            "Tables containing DBMS",
+            "Keys containing schemas",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In SQL/RDBMS catalog architecture (specifically tested in TRE 2.0), the top-level container consists of Catalogs, each of which contains one or more Schemas. Correct: (B) Catalogs containing schemas."
+        },
+        {
+          "id": "m-d18-q16",
+          "question": "Q16. A Hierarchical DBMS is easiest to visualize as:",
+          "options": [
+            "Stack",
+            "Tree",
+            "Queue",
+            "Hash Table",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A hierarchical database model arranges records in an inverted Tree-like parent-child hierarchy (similar to a filesystem folder structure). Correct: (B) Tree."
+        },
+        {
+          "id": "m-d18-q17",
+          "question": "Q17. A Relational DBMS primarily organizes data into:",
+          "options": [
+            "Trees only",
+            "Tables",
+            "Stacks",
+            "CPU registers",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "RDBMS structures data into two-dimensional relations called Tables, composed of rows (tuples) and columns (attributes). Correct: (B) Tables."
+        },
+        {
+          "id": "m-d18-q18",
+          "question": "Q18. In the standard three-schema architecture, the External level represents:",
+          "options": [
+            "Physical storage",
+            "User views",
+            "Disk sectors only",
+            "Transaction log only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The External Level (view level) defines customized views tailored to specific end-user groups, hiding the rest of the database. Correct: (B) User views."
+        },
+        {
+          "id": "m-d18-q19",
+          "question": "Q19. The Conceptual level represents:",
+          "options": [
+            "Overall logical database design",
+            "User password only",
+            "Disk blocks only",
+            "One table row",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The Conceptual Level defines the complete logical structure of the entire database, entities, relationships, data types, and constraints. Correct: (A) Overall logical database design."
+        },
+        {
+          "id": "m-d18-q20",
+          "question": "Q20. The Internal level primarily concerns:",
+          "options": [
+            "User views",
+            "Physical storage details",
+            "English language queries",
+            "Cardinality only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Internal Level (physical level) describes how data is actually stored on physical storage devices (data files, compression, indexing, block allocation). Correct: (B) Physical storage details."
+        },
+        {
+          "id": "m-d18-q21",
+          "question": "Q21. Which is a leguminous crop?",
+          "options": [
+            "Pulse",
+            "Jowar",
+            "Millet",
+            "Rice",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Pulses (beans, lentils, peas) are leguminous crops whose root nodules contain nitrogen-fixing Rhizobium bacteria. Correct: (A) Pulse."
+        },
+        {
+          "id": "m-d18-q22",
+          "question": "Q22. The East-West Corridor connects:",
+          "options": [
+            "Mumbai and Kolkata",
+            "Silchar and Porbandar",
+            "Delhi and Chennai",
+            "Patna and Mumbai",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The East-West Corridor of the Golden Quadrilateral project links Silchar (Assam) in the east with Porbandar (Gujarat) in the west. Correct: (B) Silchar and Porbandar."
+        },
+        {
+          "id": "m-d18-q23",
+          "question": "Q23. Topographical maps of India are prepared by:",
+          "options": [
+            "Geological Survey of India",
+            "Survey of India",
+            "Zoological Survey of India",
+            "ISRO only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Survey of India is the national mapping agency entrusted with the preparation of official topographical maps. Correct: (B) Survey of India."
+        },
+        {
+          "id": "m-d18-q24",
+          "question": "Q24. Mother's parents are called:",
+          "options": [
+            "Paternal grandparents",
+            "Maternal grandparents",
+            "Parents-in-law",
+            "Cousins",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Relatives on one's mother's side are referred to as Maternal (Maternal grandparents). Father's side are Paternal. Correct: (B) Maternal grandparents."
+        },
+        {
+          "id": "m-d18-q25",
+          "question": "Q25. Husband's brother is commonly called:",
+          "options": [
+            "Brother-in-law",
+            "Maternal uncle",
+            "Nephew",
+            "Cousin",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A husband's or wife's brother is termed a Brother-in-law. Correct: (A) Brother-in-law."
+        }
+      ]
+    }
   }
 ];
 
