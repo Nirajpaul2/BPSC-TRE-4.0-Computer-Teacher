@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science - Marathon Practice Study Days Data
-// Days 1 to 23 comprehensive notes, target topics, interactive checkpoints, and explanations
+// Days 1 to 24 comprehensive notes, target topics, interactive checkpoints, and explanations
 
 const MARATHON_DATA = [
   {
@@ -13590,6 +13590,565 @@ const MARATHON_DATA = [
           ],
           "correctAnswer": 1,
           "explanation": "संज्ञा या सर्वनाम के नाप, तोल या परिमाण का बोध कराने वाले शब्द परिमाणवाचक विशेषण कहलाते हैं (उदा. 'थोड़ा पानी', 'चार लीटर दूध'). Correct: (B) परिमाणवाचक विशेषण."
+        }
+      ]
+    }
+  },
+  {
+    "dayNumber": 24,
+    "dayId": "day-24",
+    "badge": "Day 24",
+    "title": "TRE 4.0 — Day 24",
+    "unit": "Part III (CS) • File Systems (NTFS, FAT32, HFS+), Interrupts (Hardware/Software, ISR), File Operations, Disk Scheduling (FCFS 640 movements, SSTF, SCAN, C-SCAN) • GS (Ratio & Parallelogram Angles) • English",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Operating Systems Storage & Control Flow: File Systems (NTFS, FAT32, HFS+), File Operations (Create, Open, Read, Write, Rename, Delete, Close), Interrupts (Hardware vs Software, ISR execution flow), Disk Scheduling: FCFS exact TRE 3.0 calculation (53 -> 98 -> 183 -> 37 -> 122 -> 14 -> 124 -> 65 -> 67 = 640 total head movements), SSTF (nearest cylinder, starvation issue), SCAN (Elevator algorithm, bi-directional), C-SCAN (Circular one-way + return jump), Seek Time, GS Math (Ratio 2:5 diff 66 -> 44 & 110; Parallelogram adjacent angles 1:2 -> 60°), and English (Kerala passage spicy hot flavours, articles: an early morning walk).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "File System, Interrupts, File Operations, FCFS, SSTF, SCAN, C-SCAN",
+        "goal": "Master file system types (NTFS, FAT32, HFS+), hardware vs software interrupts & ISR, file operations, FCFS disk calculation (640 movements), SSTF, SCAN, and C-SCAN"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Ratio + Geometry (Parallelogram)",
+        "goal": "Two numbers in ratio 2:5 differing by 66 (44 & 110); Adjacent angles in ratio 1:2 (sum = 180° -> 60° and 120°)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Comprehension + Articles",
+        "goal": "TRE 3.0 Kerala passage scan (spicy hot flavours, English widespread); Articles: 'an early morning walk', 'an airport'"
+      }
+    ],
+    "introNote": "Today’s paper-backed OS anchors are very clear. TRE 3.0 directly tests NTFS/FAT32/HFS+ as file systems, hardware/software interrupts, create/delete/rename as file operations, and an FCFS disk-scheduling calculation.\n\nSSTF, SCAN, and C-SCAN below are standard OS expansion; I did not find those exact algorithms in the retrieved TRE excerpts.",
+    "parts": [
+      {
+        "title": "Part III — File System Architecture, Types & File Operations",
+        "sections": [
+          {
+            "title": "1. What is a File System? & 2. File Systems in TRE 3.0",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. What is a File System?\n\n🧠 MENTAL PICTURE\nImagine your laptop disk as a huge library.\n\nWithout organization:\nphoto.jpg\nresume.pdf\nvideo.mp4\nnotes.txt\napp.zip\n\nEverything thrown together 😵"
+              },
+              {
+                "type": "diagram",
+                "content": "A file system organizes them:\nDISK\n │\n ├── Documents\n │     └── resume.pdf\n │\n ├── Photos\n │     └── photo.jpg\n │\n └── Videos\n       └── video.mp4"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Simple Concept: File System",
+                "content": "File System = method used by the OS to organize, store and retrieve files."
+              },
+              {
+                "type": "text",
+                "content": "2. File Systems in Your TRE Paper\nTRE 3.0 asks which is a commonly used file system and lists:\n- NTFS\n- FAT32\n- HFS+\nSo the paper itself treats multiple listed choices as valid file-system examples.\n\nFor memory:\n• NTFS  → Windows association\n• FAT32 → widely compatible older file system\n• HFS+  → Apple/macOS historical association"
+              },
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "White-Paper Memory: File Systems",
+                "content": "FILE SYSTEM\n\nNTFS  (Windows)\nFAT32 (Universal / USB)\nHFS+  (macOS)"
+              }
+            ]
+          },
+          {
+            "title": "3. File Operations, 16. File vs Directory & 17. Paths",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "3. File Operations\nTRE 3.0 asks which is a common file operation and lists:\n• Create\n• Delete\n• Rename\n\nAll are standard file operations.\n\nStandard expansion also includes:\n• Open\n• Close\n• Read\n• Write\n• Seek"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "Memory: CRUD-like File Thinking",
+                "content": "Create → Read/Write → Rename → Delete"
+              },
+              {
+                "type": "text",
+                "content": "16. File vs Directory\nA file stores information:\nresume.pdf, photo.jpg, data.txt\n\nA directory organizes files:\nDocuments/\n  ├── resume.pdf\n  └── notes.txt\n\nMemory:\nFile = data\nDirectory = container / organization\n\n17. Absolute vs Relative Path — Standard Expansion\nExample:\n/home/user/docs/resume.pdf\nThis describes the full route starting from root (/): Absolute path\n\nRelative:\ndocs/resume.pdf\nDepends on current working directory."
+              },
+              {
+                "type": "callout",
+                "icon": "🧭",
+                "title": "Path Distinction",
+                "content": "Absolute = full address from root (/)\nRelative = path relative to current location"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Interrupts: Hardware vs Software & ISR Flow",
+        "sections": [
+          {
+            "title": "4. What is an Interrupt?, 5. Hardware & 6. Software Interrupts",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "4. Interrupt\n\n🧠 MENTAL PICTURE\nImagine you are studying.\n\nSuddenly:\nDoorbell rings 🔔\n\nYou stop temporarily, answer the door, then continue studying.\n\nCPU behaves similarly."
+              },
+              {
+                "type": "diagram",
+                "content": "CPU doing Program A\n      ↓\n  INTERRUPT\n      ↓\nhandle urgent event\n      ↓\nreturn to Program A"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Simple Concept: Interrupt",
+                "content": "Interrupt = signal/event that temporarily gets CPU attention."
+              },
+              {
+                "type": "text",
+                "content": "5. Hardware Interrupt\nComes from hardware devices.\n\nExamples:\n• Keyboard input\n• Mouse\n• Disk\n• Timer\n• Network card\n\nMental:\nDEVICE → INTERRUPT → CPU\n\nMemory: Hardware Interrupt = device asks CPU for attention\n\n6. Software Interrupt\nGenerated by software/instruction.\n\nConceptually:\nPROGRAM → special instruction/system request → CPU handling\n\nMemory: Software Interrupt = software-generated request\n\nTRE 3.0 explicitly lists Hardware Interrupt and Software Interrupt as interrupt types; Memory interrupt is the odd/non-standard option in that question."
+              }
+            ]
+          },
+          {
+            "title": "7. Interrupt Execution Flow & ISR",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "Mental white paper:\nProgram running\n      ↓\nInterrupt arrives\n      ↓\nSave current state (registers/PC)\n      ↓\nRun ISR\n      ↓\nRestore state\n      ↓\nContinue program"
+              },
+              {
+                "type": "callout",
+                "icon": "⚡",
+                "title": "ISR Definition & Flow",
+                "content": "ISR = Interrupt Service Routine\n\nMemory:\nInterrupt → Save State → ISR → Restore State → Return"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Disk Scheduling: FCFS, SSTF, SCAN, C-SCAN & Seek Time",
+        "sections": [
+          {
+            "title": "8. Disk Scheduling & 9. FCFS Exact TRE 3.0 Problem (640 Movements)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "8. Disk Scheduling\nNow imagine a hard disk has cylinders:\n0 -------------------------------------- 199\n\nDisk head is currently at: 53\nRequests arrive at: 98, 183, 37, 122, 14, 124, 65, 67\n\nThe OS must decide: Which request should the disk head serve next?\nThat is: Disk Scheduling\n\n9. FCFS Disk Scheduling\nFCFS: First Come First Served\nRule: Serve requests in the exact arrival order."
+              },
+              {
+                "type": "diagram",
+                "content": "Your TRE 3.0 gives exactly:\nStart = 53\nRequests: 98, 183, 37, 122, 14, 124, 65, 67\n\nCalculate Head Movements:\n53  → 98  = |98 - 53|   = 45\n98  → 183 = |183 - 98|  = 85\n183 → 37  = |37 - 183|  = 146\n37  → 122 = |122 - 37|  = 85\n122 → 14  = |14 - 122|  = 108\n14  → 124 = |124 - 14|  = 110\n124 → 65  = |65 - 124|  = 59\n65  → 67  = |67 - 65|   = 2\n\nTotal Movement:\n45 + 85 + 146 + 85 + 108 + 110 + 59 + 2\n= 640 head movements"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "FCFS Exam Trap",
+                "content": "Do not sort: 14, 37, 65, 67...\nThat is wrong for FCFS!\n\nFCFS = strict arrival order, NOT nearest order.\nExact TRE 3.0 answer = 640 head movements."
+              }
+            ]
+          },
+          {
+            "title": "10–15. SSTF, SCAN (Elevator), C-SCAN & Seek Time",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. SSTF — Standard Expansion\nSSTF: Shortest Seek Time First\nImagine head at: 50. Pending: 10, 45, 90.\nDistances: 50→10 = 40, 50→45 = 5, 50→90 = 40. Choose 45 because it is nearest.\n\n🧠 Mental Picture: Elevator goes to the closest waiting floor.\nMemory: SSTF = nearest request first\n\n11. SSTF Problem\nSSTF reduces head movement, but distant requests may keep waiting if closer requests keep arriving.\nThat can cause: Starvation!\nMemory: SSTF = efficient locally, but starvation possible.\n\n12. SCAN — Elevator Algorithm\nAn elevator moves upward (1→2→3→4→5) servicing requests, reaches the top, then reverses and moves downward (5→4→3→2→1) servicing requests on the way back.\nMemory: SCAN = Elevator goes both directions (back-and-forth).\n\n13. C-SCAN (Circular SCAN)\nThe head services requests in ONE direction only (e.g. 0 → 199). After reaching the high end, it immediately jumps back to 0 without servicing on the return trip, and begins again.\nMemory: C-SCAN = one-way circular elevator."
+              },
+              {
+                "type": "diagram",
+                "content": "Disk Scheduling Comparison:\n\nAlgorithm │ Main Rule                    │ Direction / Behavior\n──────────┼──────────────────────────────┼─────────────────────────────────\nFCFS      │ Arrival order                │ Jumps according to queue\nSSTF      │ Closest request              │ Greedy nearest; starvation risk\nSCAN      │ Elevator, both directions    │ Serves going up, then coming down\nC-SCAN    │ One direction + circle jump  │ Serves one-way, resets to start"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "Seek Time Definition",
+                "content": "Seek Time = time taken to move the disk arm/head across cylinders to the desired track.\nDisk scheduling algorithms aim to minimize seek time and head movement."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 24 White-Paper Master Sheet & Recall",
+        "sections": [
+          {
+            "title": "White-Paper Master Sheet & Exact Anchor",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "🧠 Day 24 White-Paper Master Sheet\nClose your notes and reproduce:\n\nFILE SYSTEM\n→ organizes files\nNTFS, FAT32, HFS+\n\nFILE OPERATIONS\nCreate, Open, Read, Write, Rename, Delete, Close\n\nINTERRUPT\n→ CPU attention\nHardware → device (keyboard, mouse, disk)\nSoftware → program/system call\nInterrupt → ISR → return\n\nDISK SCHEDULING\nFCFS   → arrival order\nSSTF   → nearest (starvation risk)\nSCAN   → elevator both ways\nC-SCAN → one way + jump back\n\nEXACT TRE 3.0 PAPER ANCHOR:\nStart = 53\nRequests: 98, 183, 37, 122, 14, 124, 65, 67\n45 + 85 + 146 + 85 + 108 + 110 + 59 + 2\nTOTAL = 640"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part II — General Studies: Ratio & Parallelogram Angles (TRE 3.0)",
+        "sections": [
+          {
+            "title": "Ratio 2:5 Difference 66 & Parallelogram Adjacent Angles",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 asks a ratio question:\nTwo numbers are in ratio 2:5 and differ by 66.\n\n🧠 Mental Calculation:\nRatio = 2 : 5\nDifference = 5 - 2 = 3 parts\nGiven: 3 parts = 66\nTherefore: 1 part = 22\n\nNumbers:\n• Smaller: 2 × 22 = 44\n• Larger:  5 × 22 = 110\nSo the numbers are 44 and 110.\n\nParallelogram Question (TRE 3.0):\nAdjacent angles A and B of a parallelogram are in ratio 1:2.\n\nRule: Adjacent angles of a parallelogram are supplementary (sum = 180°).\nA + B = 180°\n1x + 2x = 180°\n3x = 180° ⇒ x = 60°\n\nSo:\nAngle A = 60° (smaller angle)\nAngle B = 120° (larger angle)"
+              },
+              {
+                "type": "callout",
+                "icon": "📐",
+                "title": "Geometry Memory Rule",
+                "content": "Adjacent angles of a parallelogram = 180°\nOpposite angles of a parallelogram = equal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part I — English: Comprehension & Articles (TRE 3.0 Kerala Passage)",
+        "sections": [
+          {
+            "title": "Kerala Passage & Articles",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "TRE 3.0 directly uses a Kerala passage and article questions.\n\nRemember the reading strategy:\nQUESTION → KEYWORD → SCAN → MATCH\n\nFrom the passage:\n• Kerala cuisine is known for spicy hot flavours.\n• Foreign bargain-hunters would not face a language problem because: English is spoken and understood everywhere in Kerala.\n\nArticles:\n• 'an airport' ('airport' starts with vowel sound /eə/)\n• 'an early morning walk' ('early' starts with vowel sound /ɜː/)\n• 'a university' ('university' starts with consonant glide sound /juː/)"
+              },
+              {
+                "type": "callout",
+                "icon": "📖",
+                "title": "Article Vowel Sound Rule",
+                "content": "Use 'an' before vowel SOUNDS (/æ/, /e/, /ɪ/, /ɒ/, /ʌ/, /ɜː/, /eə/):\n• an airport\n• an early morning walk\n• an hour (silent h)\n\nUse 'a' before consonant sounds:\n• a university (/juː/)\n• a European (/juː/)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 24 Checkpoint Test",
+      "subtitle": "25 Questions: File Systems, Interrupts, Disk Scheduling (FCFS 640), Ratio & English",
+      "questions": [
+        {
+          "id": "m-d24-q1",
+          "question": "Q1. The main purpose of a file system is to:",
+          "options": [
+            "Schedule CPU processes only",
+            "Organize and manage stored files",
+            "Replace RAM",
+            "Compile programs",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A file system provides the structure and access methods used by the operating system to store, organize, name, and retrieve files on storage media. Correct: (B) Organize and manage stored files."
+        },
+        {
+          "id": "m-d24-q2",
+          "question": "Q2. Which of the following appears as a file system in your TRE 3.0 question?",
+          "options": [
+            "NTFS",
+            "FAT32",
+            "HFS+",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In TRE 3.0, NTFS (Windows), FAT32 (universal), and HFS+ (macOS) all appear as valid file systems, making 'More than one of the above' the correct choice. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d24-q3",
+          "question": "Q3. Which is a common file operation?",
+          "options": [
+            "Create",
+            "Delete",
+            "Rename",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Standard file operations include Create, Delete, Rename, Open, Close, Read, and Write. Since A, B, and C are all valid, D is correct. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d24-q4",
+          "question": "Q4. An interrupt is best described as:",
+          "options": [
+            "An event/signal requiring CPU attention",
+            "A database table",
+            "A sorting algorithm",
+            "A page-replacement algorithm only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "An interrupt is an asynchronous signal or event generated by hardware or software that temporarily alerts the CPU and suspends current execution to service the event. Correct: (A) An event/signal requiring CPU attention."
+        },
+        {
+          "id": "m-d24-q5",
+          "question": "Q5. Keyboard or disk-device activity can generate:",
+          "options": [
+            "Hardware interrupt",
+            "Normalization",
+            "SQL JOIN",
+            "Bubble Sort",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Peripherals such as the keyboard, mouse, or disk controller send hardware interrupts to signal data arrival or I/O completion. Correct: (A) Hardware interrupt."
+        },
+        {
+          "id": "m-d24-q6",
+          "question": "Q6. Which pair appears as valid interrupt types in the TRE 3.0 question?",
+          "options": [
+            "Hardware and Software",
+            "Memory and Database",
+            "Stack and Queue",
+            "Binary and Decimal",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Operating systems classify interrupts primarily into Hardware Interrupts (external device signals) and Software Interrupts (traps/system calls). Correct: (A) Hardware and Software."
+        },
+        {
+          "id": "m-d24-q7",
+          "question": "Q7. In the TRE question, which option is the non-standard interrupt type?",
+          "options": [
+            "Hardware Interrupt",
+            "Memory Interrupt",
+            "Software Interrupt",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Hardware Interrupt and Software Interrupt are standard canonical types; 'Memory Interrupt' is the non-standard odd option in the TRE 3.0 question. Correct: (B) Memory Interrupt."
+        },
+        {
+          "id": "m-d24-q8",
+          "question": "Q8. ISR stands for:",
+          "options": [
+            "Interrupt Service Routine",
+            "Internal Storage Register",
+            "Input Scheduling Rule",
+            "Interrupt System RAM",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "ISR stands for Interrupt Service Routine, the handler procedure executed by the CPU to process an interrupt request. Correct: (A) Interrupt Service Routine."
+        },
+        {
+          "id": "m-d24-q9",
+          "question": "Q9. FCFS disk scheduling processes requests:",
+          "options": [
+            "By nearest cylinder",
+            "In arrival order",
+            "In descending order",
+            "Randomly",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "First-Come, First-Served (FCFS) services disk I/O requests strictly in the chronological order of their arrival. Correct: (B) In arrival order."
+        },
+        {
+          "id": "m-d24-q10",
+          "question": "Q10. For the TRE 3.0 disk problem, the initial head position is:",
+          "options": [
+            "37",
+            "53",
+            "65",
+            "98",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In the exact TRE 3.0 disk scheduling problem, the read/write head starts at cylinder 53. Correct: (B) 53."
+        },
+        {
+          "id": "m-d24-q11",
+          "question": "Q11. For: 53 → 98, head movement is:",
+          "options": [
+            "35",
+            "45",
+            "55",
+            "98",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Head movement is |98 - 53| = 45 cylinders. Correct: (B) 45."
+        },
+        {
+          "id": "m-d24-q12",
+          "question": "Q12. For: 98 → 183, head movement is:",
+          "options": [
+            "75",
+            "80",
+            "85",
+            "95",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Head movement is |183 - 98| = 85 cylinders. Correct: (C) 85."
+        },
+        {
+          "id": "m-d24-q13",
+          "question": "Q13. The total FCFS movement in the exact TRE 3.0 problem is:",
+          "options": [
+            "620",
+            "630",
+            "640",
+            "650",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Total head movements = 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640 cylinders. Correct: (C) 640."
+        },
+        {
+          "id": "m-d24-q14",
+          "question": "Q14. SSTF means:",
+          "options": [
+            "Serve the first request only",
+            "Serve the nearest pending disk request",
+            "Always move toward cylinder 0",
+            "Serve largest request first",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SSTF (Shortest Seek Time First) selects the request that requires the minimum head movement from the current position. Correct: (B) Serve the nearest pending disk request."
+        },
+        {
+          "id": "m-d24-q15",
+          "question": "Q15. A possible problem with SSTF is:",
+          "options": [
+            "Starvation of distant requests",
+            "It cannot access a disk",
+            "It always causes deadlock",
+            "It needs no requests",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Because SSTF favors requests close to the current head, distant requests may suffer starvation if new nearby requests continually arrive. Correct: (A) Starvation of distant requests."
+        },
+        {
+          "id": "m-d24-q16",
+          "question": "Q16. SCAN is commonly called:",
+          "options": [
+            "Elevator algorithm",
+            "Banker's algorithm",
+            "Divide-and-conquer algorithm",
+            "Hashing algorithm",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SCAN is known as the Elevator Algorithm because the disk arm moves back and forth across the disk servicing requests just like an elevator servicing building floors. Correct: (A) Elevator algorithm."
+        },
+        {
+          "id": "m-d24-q17",
+          "question": "Q17. SCAN generally:",
+          "options": [
+            "Services requests while moving in one direction, then reverses",
+            "Serves only one request",
+            "Never changes head position",
+            "Always follows arrival order",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SCAN sweeps in one direction servicing all requests until it reaches the disk boundary, then reverses direction to service requests on the return sweep. Correct: (A) Services requests while moving in one direction, then reverses."
+        },
+        {
+          "id": "m-d24-q18",
+          "question": "Q18. C-SCAN generally:",
+          "options": [
+            "Services in one direction and then circles back",
+            "Always behaves exactly like FCFS",
+            "Chooses nearest request only",
+            "Uses a Stack",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "C-SCAN (Circular SCAN) provides a more uniform wait time by servicing requests in only one direction, then immediately returning to the beginning without servicing requests on the return trip. Correct: (A) Services in one direction and then circles back."
+        },
+        {
+          "id": "m-d24-q19",
+          "question": "Q19. Which matching is correct?",
+          "options": [
+            "FCFS → arrival order",
+            "SSTF → nearest",
+            "SCAN → elevator",
+            "More than one of the above",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three associations are correct: FCFS uses arrival order, SSTF selects the nearest cylinder, and SCAN operates like an elevator. Correct: (D) More than one of the above."
+        },
+        {
+          "id": "m-d24-q20",
+          "question": "Q20. Seek time is mainly associated with:",
+          "options": [
+            "Moving the disk head to the required location",
+            "SQL execution",
+            "CPU register allocation",
+            "Page-table creation only",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Seek time is the physical time required to move the disk read/write head arm to the desired cylinder/track. Correct: (A) Moving the disk head to the required location."
+        },
+        {
+          "id": "m-d24-q21",
+          "question": "Q21. Two numbers are in ratio 2:5 and their difference is 66. The smaller number is:",
+          "options": [
+            "22",
+            "44",
+            "66",
+            "110",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Difference = 5x - 2x = 3x = 66 => x = 22. Smaller number = 2x = 2 * 22 = 44. Correct: (B) 44."
+        },
+        {
+          "id": "m-d24-q22",
+          "question": "Q22. The larger number is:",
+          "options": [
+            "88",
+            "99",
+            "110",
+            "132",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Larger number = 5x = 5 * 22 = 110. Correct: (C) 110."
+        },
+        {
+          "id": "m-d24-q23",
+          "question": "Q23. Adjacent angles of a parallelogram are in ratio 1:2. The smaller angle is:",
+          "options": [
+            "30°",
+            "45°",
+            "60°",
+            "90°",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Adjacent angles of a parallelogram sum to 180°. 1x + 2x = 180° => 3x = 180° => x = 60°. Smaller angle = 60°. Correct: (C) 60°."
+        },
+        {
+          "id": "m-d24-q24",
+          "question": "Q24. According to the TRE 3.0 Kerala passage, Kerala cuisine is known for:",
+          "options": [
+            "Bland flavours",
+            "Spicy hot flavours",
+            "Only sweet food",
+            "No spices",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "From the TRE 3.0 Kerala comprehension passage, Kerala cuisine is specifically noted for its spicy hot flavours. Correct: (B) Spicy hot flavours."
+        },
+        {
+          "id": "m-d24-q25",
+          "question": "Q25. Choose the correct phrase:",
+          "options": [
+            "a early morning walk",
+            "an early morning walk",
+            "a airport",
+            "an university",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'early' begins with the vowel sound /ɜː/, taking the article 'an': 'an early morning walk'. Correct: (B) an early morning walk."
         }
       ]
     }
