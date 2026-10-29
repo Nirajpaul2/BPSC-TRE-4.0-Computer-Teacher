@@ -19573,6 +19573,418 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 35,
+    "dayId": "day-35",
+    "badge": "Day 35",
+    "title": "TRE 4.0 — Day 35",
+    "unit": "Part III (CS) • 🔐 Network Security: Malware, Phishing, Ransomware, Firewall, HTTPS & Sniffing Mitigation",
+    "targetTime": "20–25 mins read + 20 mins test",
+    "summary": "Network Security Core Foundations (NCERT Class XI & XII and TRE 2.0 Paper-Backed Focus): Malware Classification (Malicious software, Virus self-replicating file infector, Worm network self-propagator, Trojan Horse deceptive disguise, Ransomware encryption & ransom demands, Spyware surveillance), Cybercrime & Social Engineering (Unauthorized hacking, White-Hat ethical vulnerability reporting vs Black-Hat malicious crackers, Phishing deceptive fake sites/emails to steal credentials, Identity Theft fraudulent impersonation, Spam unsolicited bulk messaging), Defense & Protection Mechanisms (Antivirus malware scanning/removal, Firewall network traffic filtering gateway, HTTP vs HTTPS encrypted web on port 443 with TLS, Cookies browser session tokens vs virus myth), Sniffing Traffic Analysis (Packet capture observation, Switched Networks mitigation over broadcast hubs [TRE 2.0 Anchor]), Cyber-Safety Hygiene, Day 35 White-Paper Master Sheet & 6 Critical Traps, and 20-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Malware Taxonomies & Social Engineering",
+        "goal": "Distinguish Virus (replicates/infects), Worm (network-spreading), Trojan (disguised), Ransomware (encrypts + ransom), and Phishing (fake credential traps)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Network Defense: Firewall, Antivirus & HTTPS",
+        "goal": "Master Firewall (traffic filtering), Antivirus (malware protection), HTTPS (TLS port 443), and Cookies (browser state, not virus)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Sniffing Mitigation & Cyber-Safety Rules",
+        "goal": "Recall TRE 2.0 Sniffing mitigation via Switched Networks and NCERT cyber-hygiene rules (backups, updates, passwords)"
+      }
+    ],
+    "introNote": "Treat this as the essential security foundation lesson before Day 36's networking revision. Your NCERT material directly covers virus/malware, hacking, phishing, ransomware and cybercrime prevention (NCERT kecs111, lecs1ps). The Class XII syllabus explicitly includes Antivirus, Spam, HTTP vs HTTPS, Firewall, Cookies, Hackers/Crackers and Network Security Threats. TRE 2.0 directly tests sniffing mitigation via switched networks.",
+    "parts": [
+      {
+        "title": "Part III — Malware Types & Social Engineering Threats",
+        "sections": [
+          {
+            "title": "1–5. Malware Taxonomy: Virus, Worm, Trojan Horse & Ransomware",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "MENTAL PICTURE — Malware Taxonomies",
+                "content": "Imagine a box labelled:\nMALWARE\n│\n├── Virus      (Infects files & replicates)\n├── Worm       (Self-spreads across networks)\n├── Trojan     (Disguised as useful software)\n├── Ransomware (Encrypts files & demands ransom)\n└── Spyware    (Silently observes & spies)\n\nMemory: MAL + WARE = MALICIOUS SOFTWARE"
+              },
+              {
+                "type": "text",
+                "content": "1. Malware (NCERT kecs111)\nNCERT defines malware as software designed to gain unauthorized access to computer systems or cause damage.\n\n2. Virus (NCERT kecs111)\nNCERT describes a virus as malicious code that attaches to files, can copy itself (self-replicate), and may destroy data or corrupt a system.\nMental: Normal File + VIRUS → Infected File.\nMemory: Virus → infects + copies.\n\n3. Worm (Standard Networking Expansion)\nA worm is a standalone malicious program that replicates without attaching to host files and spreads across networks.\nMental: PC1 → PC2 → PC3 → PC4 (WORM spreading autonomously).\nMemory: Worm walks through network.\n\n4. Trojan Horse\nTricks users by appearing legitimate or beneficial (e.g. \"Free Utility Game\") while concealing malicious code inside.\nMemory: Trojan = GOOD outside, BAD inside.\n\n5. Ransomware (NCERT kecs111)\nNCERT directly explains ransomware as software that blocks access to a system or files, commonly by encrypting data, and then demands payment (ransom) to restore access.\nMental: YOUR FILES → ENCRYPTED 🔒 → PAY MONEY.\nMemory: Ransomware = LOCK + RANSOM."
+              }
+            ]
+          },
+          {
+            "title": "6–9. Hacking, Phishing, Identity Theft & Spam",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. Hacking (NCERT kecs111)\nNCERT defines hacking as unauthorized access to a computer, network, or digital system.\n• White-Hat Hacker (Ethical): Finds vulnerabilities with permission and reports them to improve security.\n• Black-Hat Hacker / Cracker: Maliciously breaks into systems without authorization to steal or destroy data.\nMemory: White = protect | Black = attack.\n\n7. Phishing (High-Yield NCERT kecs111)\nNCERT defines phishing as the fraudulent attempt to obtain sensitive information (usernames, passwords, credit card/bank details, OTPs) by disguising as a trustworthy entity in fake emails or spoofed websites."
+              },
+              {
+                "type": "callout",
+                "icon": "🎣",
+                "title": "Mental Picture: Phishing Trap",
+                "content": "Fake Message:\n\"Your bank account will be blocked! CLICK HERE NOW\"\n       ↓\nFake Website asks:\n• Username / Password\n• Debit card details & OTP\n\nMemory: Phishing = fishing for your confidential information"
+              },
+              {
+                "type": "text",
+                "content": "8. Identity Theft (NCERT kecs111)\nNCERT links stolen personal information directly to identity theft: an attacker fraudulently impersonates the victim to gain financial advantages or commit crimes.\nMemory: Identity theft = someone fraudulently pretends to be YOU.\n\n9. Spam (NCERT Class XII lecs1ps)\nSpam refers to unwanted, unsolicited bulk messages sent indiscriminately, especially over email (promotions, fake lotteries, scam offers).\nMemory: Spam = unwanted / unsolicited mail."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Network Defense: Antivirus, Firewall, HTTPS & Cookies",
+        "sections": [
+          {
+            "title": "10. Antivirus & 11. Firewall (The Network Security Gatekeeper)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. Antivirus (NCERT kecs111)\nNCERT advises regular use and updates of antivirus software.\nIt scans files against known signature databases, identifies heuristic anomalies, and quarantines or deletes malware.\nMemory: Antivirus → detect/protect against malware."
+              },
+              {
+                "type": "callout",
+                "icon": "🛡️",
+                "title": "11. Firewall — The Network Security Gatekeeper",
+                "content": "INTERNET (Untrusted)\n       ↓\n┌──────────────┐\n│   FIREWALL   │  ← Filters traffic based on security rules (IP, Port, Protocol)\n└──────────────┘\n       ↓\nPRIVATE NETWORK (Trusted)\n\nFirewall monitors and filters incoming and outgoing network traffic based on predetermined security rules.\nMemory: Firewall = security guard at the network gate"
+              }
+            ]
+          },
+          {
+            "title": "12. HTTP vs HTTPS & 13. Cookies (Web Security Facts)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "12. HTTP vs HTTPS (Class XII Syllabus lecs1ps)\n• HTTP (HyperText Transfer Protocol): Transmits web pages as plaintext. Standard Port: 80.\n• HTTPS (HTTP Secure): Transmits encrypted data using TLS/SSL cryptographic protocols. Standard Port: 443.\nNCERT recommends using secure HTTPS sites for financial transactions and downloads.\nMemory: S in HTTPS = Secure (Port 443).\n\n13. Cookies (NCERT kecs111 & lecs1ps)\nA cookie is a small piece of text data stored on a user's browser by a website to remember session tokens, login states, or user preferences.\n⚠️ Exam Trap: A cookie is website data, NOT a computer virus!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Sniffing Mitigation & Cyber-Safety Best Practices",
+        "sections": [
+          {
+            "title": "14. Sniffing & Switched Networks (TRE 2.0 Core Anchor)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "👀",
+                "title": "Sniffing Mental Picture & TRE 2.0 Anchor",
+                "content": "A ───── DATA PACKETS ─────→ B\n              ↑\n            👀 SNIFFER (Captures/observes passing traffic)\n\nTRE 2.0 directly asks:\n\"Sniffers can be prevented/reduced by using...\"\nIntended Paper Answer: Switched network.\n\nExam Concept:\n• HUB: Broadcasts electrical signals to ALL ports (easy for a sniffer to tap into other devices' traffic).\n• SWITCH: Directs frames unicast to the specific destination MAC address port, significantly reducing passive sniffing on the LAN.\nMemory: Sniffer question → Switched Network"
+              }
+            ]
+          },
+          {
+            "title": "15. NCERT Cyber-Safety Rules",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "📋",
+                "title": "NCERT Recommended Cyber-Safety Hygiene",
+                "content": "• Regular Backups: Maintain independent offline or cloud backups of critical data.\n• Updated Antivirus: Keep antivirus definitions and scanners continually updated.\n• Operating System & Software Updates: Install security patches promptly.\n• Strong Passwords: Use alphanumeric and special-character combinations; avoid default passwords.\n• Secure Sites: Always check for HTTPS (padlock icon) before entering credentials.\n• Avoid Suspicious Links: Do not download attachments or click links from unknown senders."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 35 White-Paper Master Sheet & Exam Traps",
+        "sections": [
+          {
+            "title": "Day 35 White-Paper Master Sheet & 6 Critical Traps",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 35 White-Paper Master Sheet",
+                "content": "MALWARE TAXONOMY:\n• Virus      → Infects existing files + self-replicates\n• Worm       → Autonomous network propagation\n• Trojan     → Disguised as legitimate tool (good outside, bad inside)\n• Ransomware → Encrypts files + demands ransom\n• Spyware    → Covertly spies and collects user activity\n\nCYBERCRIME & THREATS:\n• Hacking    → Unauthorized access (White-Hat ethical vs Black-Hat malicious)\n• Phishing   → Fake website/email to steal credentials and card details\n• Identity Theft → Fraudulent impersonation of another person\n• Spam       → Unsolicited bulk emails\n\nDEFENSE & MITIGATION:\n• Antivirus  → Scans, quarantines, removes malware\n• Firewall   → Filters network traffic based on security rules\n• HTTPS      → Encrypted web transfer via TLS on Port 443\n• Cookies    → Browser session data (NOT a virus)\n• Sniffing   → Packet capture; mitigated via Switched Network (TRE 2.0)"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "6 Critical Day 35 BPSC Exam Traps",
+                "content": "1. Virus ≠ Trojan: Virus infects and replicates; Trojan relies on deceptive disguise.\n2. Phishing tricks the USER; Hacking attacks system ACCESS.\n3. Ransomware encrypts/locks data AND demands ransom payment.\n4. Firewall filters NETWORK traffic; Antivirus protects against MALWARE files.\n5. Cookie is website state data, NEVER a virus.\n6. TRE 2.0 Sniffing mitigation answer: Switched Network."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 35 Checkpoint Test",
+      "subtitle": "Network Security: Malware, Phishing, Ransomware, Firewall, HTTPS & Sniffing Mitigation",
+      "questions": [
+        {
+          "id": "m-d35-q1",
+          "question": "Q1. Malware means:",
+          "options": [
+            "Mathematical software",
+            "Malicious software",
+            "Mail software",
+            "Management software",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Malware is a portmanteau of \"malicious software\", designed to compromise, damage, or gain unauthorized access to computer systems. Correct: (B)."
+        },
+        {
+          "id": "m-d35-q2",
+          "question": "Q2. A computer virus is most closely associated with:",
+          "options": [
+            "Malicious code capable of copying itself",
+            "Routing packets",
+            "Assigning IP addresses",
+            "DNS resolution",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In NCERT and standard computing, a computer virus is malicious code that attaches to other files and is capable of self-replication. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q3",
+          "question": "Q3. Which is especially associated with spreading through networks?",
+          "options": [
+            "Worm",
+            "Firewall",
+            "Cookie",
+            "SMTP",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Worm is an autonomous malware program that replicates and spreads itself across network connections without needing to attach to a host program. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q4",
+          "question": "Q4. Malware disguised as legitimate software is commonly called:",
+          "options": [
+            "Trojan",
+            "Router",
+            "DNS",
+            "Firewall",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A Trojan Horse is malware that masquerades as genuine or useful software to deceive users into installing it. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q5",
+          "question": "Q5. Which malware commonly encrypts/blocks access to data and demands payment?",
+          "options": [
+            "Ransomware",
+            "DHCP",
+            "Cookie",
+            "Repeater",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Ransomware is malicious software that encrypts user files or locks systems and demands a financial ransom for the decryption key. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q6",
+          "question": "Q6. Unauthorized access to a computer or network is:",
+          "options": [
+            "Hacking",
+            "Routing",
+            "Multiplexing",
+            "Paging",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "NCERT defines hacking as gaining unauthorized access to a computer, network, or digital data system. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q7",
+          "question": "Q7. An ethical security hacker is commonly called:",
+          "options": [
+            "White-hat hacker",
+            "Black-hat hacker",
+            "Trojan",
+            "Worm",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "White-hat hackers are ethical security professionals who identify and report system vulnerabilities to improve defenses. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q8",
+          "question": "Q8. A malicious hacker/cracker is most closely associated with:",
+          "options": [
+            "Black hat",
+            "White hat",
+            "DHCP",
+            "DNS",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Black-hat hackers (or security crackers) break into digital systems maliciously for illegal gain, damage, or theft. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q9",
+          "question": "Q9. A fake banking website designed to steal your password is:",
+          "options": [
+            "Phishing",
+            "Routing",
+            "Fragmentation",
+            "TDM",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Phishing uses counterfeit communications and spoofed websites to deceive individuals into disclosing sensitive credentials and banking details. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q10",
+          "question": "Q10. Using another person's stolen personal details fraudulently is:",
+          "options": [
+            "Identity theft",
+            "Multiplexing",
+            "Routing",
+            "Paging",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Identity theft involves fraudulently impersonating another person using their stolen personal or financial information. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q11",
+          "question": "Q11. Unwanted unsolicited email is called:",
+          "options": [
+            "Spam",
+            "DNS",
+            "ARP",
+            "TCP",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Spam is unsolicited, unwanted bulk messages distributed across email or messaging platforms. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q12",
+          "question": "Q12. Which software helps detect/protect against malware?",
+          "options": [
+            "Antivirus",
+            "Compiler",
+            "Router",
+            "DBMS",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Antivirus software monitors, detects, blocks, and removes malicious software programs from computing devices. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q13",
+          "question": "Q13. A firewall primarily:",
+          "options": [
+            "Filters network traffic",
+            "Sorts arrays",
+            "Stores SQL tables",
+            "Compiles Python",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A firewall acts as a security barrier that monitors and filters incoming and outgoing network traffic based on predefined security policies. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q14",
+          "question": "Q14. HTTPS is best remembered as:",
+          "options": [
+            "Secure HTTP",
+            "Email sending protocol",
+            "File-transfer protocol",
+            "IP assignment protocol",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "HTTPS stands for HyperText Transfer Protocol Secure, providing encrypted web communications over TLS/SSL. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q15",
+          "question": "Q15. Standard HTTPS port is:",
+          "options": [
+            "21",
+            "25",
+            "80",
+            "443",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "HTTPS traffic is assigned well-known port 443 (while unencrypted HTTP uses port 80). Correct: (D)."
+        },
+        {
+          "id": "m-d35-q16",
+          "question": "Q16. A cookie should not automatically be considered:",
+          "options": [
+            "Website/browser data",
+            "A virus",
+            "Session-related information",
+            "Preference-related information",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A cookie is state/session data stored by browsers for websites and should NOT be mistakenly categorized as a virus. Correct: (B)."
+        },
+        {
+          "id": "m-d35-q17",
+          "question": "Q17. A network sniffer is associated with:",
+          "options": [
+            "Capturing/observing network traffic",
+            "Sorting data",
+            "SQL normalization",
+            "Memory paging",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A packet sniffer (packet analyzer) is software or hardware used to intercept, log, and inspect traffic passing over a network. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q18",
+          "question": "Q18. In the TRE 2.0 question, sniffing is associated with prevention/reduction using:",
+          "options": [
+            "Switched network",
+            "Bubble sort",
+            "Paging",
+            "Stack",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In BPSC TRE 2.0, using a switched network (which unicasts frames to destination ports instead of broadcasting like a hub) is cited as a mechanism to prevent or reduce sniffing. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q19",
+          "question": "Q19. Which is a sensible cyber-safety practice supported by NCERT?",
+          "options": [
+            "Keep antivirus updated",
+            "Open every unknown attachment",
+            "Use the same weak password everywhere",
+            "Download from doubtful sites",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Keeping antivirus software and operating systems updated with the latest definitions is a core NCERT cyber-safety guideline. Correct: (A)."
+        },
+        {
+          "id": "m-d35-q20",
+          "question": "Q20. Which matching is correct?",
+          "options": [
+            "Phishing → fake site/email to steal information",
+            "Ransomware → encrypt/block + demand money",
+            "Firewall → traffic filtering",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three matchings are definitionally correct. Hence (D) More than one of the above is the correct BPSC exam choice. Correct: (D)."
+        }
+      ]
+    }
   }
 ];
 
