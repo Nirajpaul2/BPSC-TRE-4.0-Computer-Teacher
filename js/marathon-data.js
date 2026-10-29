@@ -21837,6 +21837,508 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 40,
+    "dayId": "day-40",
+    "badge": "Day 40",
+    "title": "TRE 4.0 — Day 40",
+    "unit": "Part III (CS) • 🌐 Web Technology, E-Commerce Models & Multimedia Authoring (TRE 3.0 Anchors)",
+    "targetTime": "20–25 mins read + 25 mins test",
+    "summary": "Web Technology, E-Commerce & Multimedia Core Foundations (Direct TRE 3.0 Paper-Backed Anchors): Web Architecture (Client browser request ↔ Server response; Static vs Dynamic web pages; URL structure), Front-End Core Triad (HTML defines web-page STRUCTURE [TRE 3.0 Q140 Trap: not style/interactivity], CSS controls visual STYLE & presentation, JavaScript drives interactive BEHAVIOR & actions), Client-Side vs Server-Side Scripting (Browser execution vs Server execution [Python, PHP, Node.js]; TRE 3.0 Q141 Trap: HTML/CSS/C++ are not server-side scripting languages → None of the above), E-Commerce Models (Electronic commercial transactions; B2C Business-to-Consumer [Amazon in TRE 3.0], B2B Business-to-Business, C2C Consumer-to-Consumer, C2B Consumer-to-Business; TRE 3.0 Q148 Trap: all three are valid models → None of the above), Multimedia (Combination of multiple media types; 5 Elements [TIAVA]: Text, Image, Audio, Video, Animation; Multimedia Authoring Tools vs Image Editors [Adobe Flash in TRE 3.0 vs Adobe Photoshop]), Day 40 White-Paper Master Sheet & 6 Critical Traps, and 25-Question Checkpoint Test.",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Front-End Triad & Server-Side Scripting",
+        "goal": "Master HTML (Structure), CSS (Style), JavaScript (Behavior), and recognize Server-Side scripting (Python, PHP, Node.js)"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "E-Commerce Models (B2C, B2B, C2C, C2B)",
+        "goal": "Differentiate B2C (Amazon in TRE 3.0), B2B, C2C, and C2B, and resolve the TRE 3.0 Q148 exam trap"
+      },
+      {
+        "section": "Part III – CS",
+        "topic": "Multimedia Elements & Authoring Tools",
+        "goal": "Recall the 5 multimedia elements (TIAVA) and differentiate Authoring tools (Adobe Flash in TRE 3.0) from Image editors (Photoshop)"
+      }
+    ],
+    "introNote": "Day 40 covers a high-scoring block with direct TRE 3.0 anchors: HTML purpose, server-side scripting, e-commerce models (B2C, B2B, C2C, C2B), and multimedia authoring tools. Two major paper traps are clarified: TRE 3.0 Q141 lists HTML, CSS, C++ (none of which is a proper common server-side scripting language), and Q148 lists B2C, C2B, C2C (all of which are legitimate e-commerce models, making \"None of the above\" the logical paper answer).",
+    "parts": [
+      {
+        "title": "Part III — Web Architecture & The Front-End Core Triad (TRE 3.0 Anchors)",
+        "sections": [
+          {
+            "title": "1. How a Website Works (Client-Server Request-Response Model)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🍽️",
+                "title": "MENTAL PICTURE — Client-Server Restaurant Model",
+                "content": "Imagine ordering food at a restaurant:\nYOU (Client) ───(Request)───→ KITCHEN (Server) ───(Prepares Food)───→ YOU (Response)\n\nIn Web Technology:\nBROWSER / CLIENT ───(HTTP/HTTPS Request)───→ WEB SERVER\nWEB SERVER       ───(HTML/CSS/JS Response)───→ BROWSER / CLIENT"
+              },
+              {
+                "type": "text",
+                "content": "💡 SIMPLE CONCEPT\nClient requests; Server responds.\n• Browser (Client): Chrome, Firefox, Safari, Edge.\n• Web Server: Apache, Nginx, Node.js web server receiving requests, executing server logic, querying databases, and returning response payloads.\n\nStatic vs Dynamic Web Pages:\n• Static Page: Pre-built HTML/CSS files served identically to every visitor.\n• Dynamic Page: Content generated on-the-fly customized by user session, database records, and parameters.\n\nURL (Uniform Resource Locator):\nThe global address of a web resource (e.g. https://example.com/products/index.html)."
+              }
+            ]
+          },
+          {
+            "title": "2–5. Front-End Triad: HTML, CSS & JavaScript (TRE 3.0 Q140 Anchor)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🏗️",
+                "title": "The Front-End Triad (House Construction Analogy)",
+                "content": "• HTML (HyperText Markup Language) → STRUCTURE (The foundation, walls, doors, beams)\n• CSS (Cascading Style Sheets)     → STYLE & PRESENTATION (Paint, wallpaper, lighting, layout)\n• JAVASCRIPT                       → BEHAVIOR & INTERACTION (Electricity, plumbing, moving parts)"
+              },
+              {
+                "type": "text",
+                "content": "2. HTML (Direct TRE 3.0 Anchor)\nTRE 3.0 Q140 asks the primary purpose of HTML.\nThe correct concept: HTML defines the STRUCTURE of a web page (headings, paragraphs, images, links, forms, tables).\nMemory: HTML = Structure.\n\n3. CSS\nControls visual presentation: colors, typography, spacing, flexbox/grid layout, and responsive media queries.\nMemory: CSS = Style & Presentation.\n\n4. JavaScript\nEnables dynamic client-side behavior: button click handlers, form validation, animations, modal dialogs, and AJAX/Fetch data retrieval.\nMemory: JavaScript = Behavior & Interactivity."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "TRE 3.0 Q140 Exam Trap: HTML Purpose",
+                "content": "Question asks: What is the primary purpose of HTML?\nOptions: A. Define web-page structure | B. Style web pages | C. Add interactivity\n\nCorrect Answer: A — Define web-page structure!\nNever confuse:\n• HTML = Structure (NOT styling, NOT interactivity)\n• CSS  = Style\n• JS   = Interactivity"
+              }
+            ]
+          },
+          {
+            "title": "6–7. Client-Side vs Server-Side Scripting & The TRE 3.0 Q141 Trap",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "6. Client-Side vs Server-Side Scripting\n• Client-Side: Executes on user's browser (HTML, CSS, JavaScript). Fast execution, immediate UI feedback.\n• Server-Side: Executes on backend web server (Python, PHP, Node.js, Java, Ruby). Handles business logic, authentication, database operations, and data security."
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "TRE 3.0 Q141 Exam Trap: Server-Side Scripting Language",
+                "content": "TRE 3.0 asks: Which is a commonly used server-side scripting language?\nOptions printed: HTML | CSS | C++ | More than one | None\n\nAnalysis:\n• HTML = Markup language (Front-end)\n• CSS = Style-sheet language (Front-end)\n• C++ = Compiled general-purpose systems programming language (NOT a common server-side scripting language!)\n\nTherefore, for the exact printed choices, the logically and technically correct choice is: (E) None of the above.\nDo NOT memorize C++ as a server-side scripting language!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — E-Commerce Business Models (TRE 3.0 Anchors)",
+        "sections": [
+          {
+            "title": "11–15. Four E-Commerce Models: B2C, B2B, C2C & C2B",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "E-Commerce (Electronic Commerce): The buying, selling, and commercial transacting of goods and services over electronic networks, predominantly the Internet.\n\nFour Standard E-Commerce Models:\n1. B2C (Business to Consumer): Businesses sell products or services directly to individual end consumers.\n   TRE 3.0 Anchor: Amazon is the prime example.\n   Memory: B2C = Business sells to Consumer.\n\n2. B2B (Business to Business): Commercial transactions conducted between two business enterprises (e.g., component manufacturer selling to automobile company, Alibaba wholesale).\n   Memory: B2B = Business sells to Business.\n\n3. C2C (Consumer to Consumer): Individual consumers sell goods directly to other consumers through an online marketplace/platform (e.g. eBay auctions, OLX classifieds).\n   Memory: C2C = Consumer sells to Consumer.\n\n4. C2B (Consumer to Business): Individual consumers create value, provide freelance services, or sell goods/reviews to businesses (e.g., freelancers on Upwork, influencers promoting corporate products).\n   Memory: C2B = Consumer provides to Business."
+              },
+              {
+                "type": "callout",
+                "icon": "🛍️",
+                "title": "Four E-Commerce Models Summary",
+                "content": "• B2B → Business to Business (Wholesale, enterprise services)\n• B2C → Business to Consumer (Amazon, retail online shopping [TRE 3.0 Anchor])\n• C2C → Consumer to Consumer (OLX, eBay classifieds)\n• C2B → Consumer to Business (Freelancers, influencer content)"
+              }
+            ]
+          },
+          {
+            "title": "16–17. The TRE 3.0 Q148 Trap & Amazon Anchor",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "TRE 3.0 Q148 Exam Trap: \"NOT a Common E-Commerce Model\"",
+                "content": "TRE 3.0 asks: Which is NOT a common type of e-commerce model?\nOptions printed: B2C | C2B | C2C | More than one | None\n\nFact: B2C, C2B, and C2C are ALL universally recognized, legitimate e-commerce relationship models in academic textbooks and industry!\n\nTherefore, the strictly logical paper answer is: (E) None of the above.\nDo NOT mistakenly assume C2B is invalid!"
+              },
+              {
+                "type": "text",
+                "content": "17. B2C Anchor (Direct TRE 3.0 Question)\nTRE 3.0 directly tests B2C classification among companies:\nAmazon is the classic textbook example of a Business-to-Consumer (B2C) e-commerce platform."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Multimedia Elements & Authoring Tools (TRE 3.0 Anchors)",
+        "sections": [
+          {
+            "title": "18–21. Multimedia Elements (TIAVA) & Authoring Tools (Adobe Flash)",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🎬",
+                "title": "18. Multimedia Definition & 19. Five Core Elements (TIAVA)",
+                "content": "Multimedia: The integration and combination of multiple digital media forms to communicate information interactively.\n\nFive Core Elements (TIAVA):\n• T — Text (Headings, subtitles, body content)\n• I — Images / Graphics (Bitmaps, vector illustrations)\n• A — Audio (Speech, music, sound effects)\n• V — Video (Recorded digital live-action motion frames)\n• A — Animation (Synthesized computer-generated movement/vector frames)"
+              },
+              {
+                "type": "text",
+                "content": "20. Multimedia Authoring Tool (Direct TRE 3.0 Anchor)\nAn authoring tool is software that enables designers to combine, sequence, synchronize, and script interactive multimedia assets into a unified application.\n\nTRE 3.0 asks: Which of the following is a multimedia authoring tool?\nOptions: Microsoft Word, Adobe Photoshop, Adobe Flash.\nIntended Paper Answer: Adobe Flash.\n\n21. Photoshop vs Flash Distinction:\n• Adobe Photoshop: Raster image and photo editing tool.\n• Adobe Flash (Historical): Integrated timeline-based animation and interactive multimedia authoring software."
+              }
+            ]
+          },
+          {
+            "title": "22–24. HTML Structure Overview & End-to-End Web Request Model",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "22. Basic HTML Document Structure:\n<html>\n  <body>\n    <h1>Main Heading</h1>\n    <p>This is a paragraph.</p>\n    <a href=\"https://example.com\">Clickable Link</a>\n  </body>\n</html>\n\n24. End-to-End Web Request Architecture (Synthesizing Networking & Web):\n1. USER types \"https://amazon.com\" in Browser.\n2. DNS Query resolves \"amazon.com\" → IP address.\n3. TCP 3-Way Handshake establishes reliable connection on Port 443 (HTTPS).\n4. TLS Handshake establishes secure cryptographic encryption.\n5. Browser sends HTTP GET request.\n6. Web Server runs server-side script (e.g. Python), queries Database, and returns HTML/CSS/JS payload.\n7. Browser parses HTML (Structure), applies CSS (Style), and executes JavaScript (Behavior)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part III — Day 40 White-Paper Master Sheet & Exam Traps",
+        "sections": [
+          {
+            "title": "Day 40 White-Paper Master Sheet & Traps",
+            "blocks": [
+              {
+                "type": "callout",
+                "icon": "🧠",
+                "title": "Day 40 White-Paper Master Sheet",
+                "content": "FRONT-END TRIAD:\n• HTML       → STRUCTURE (Headings, Paragraphs, Forms [TRE 3.0 Q140])\n• CSS        → STYLE & PRESENTATION (Colors, Fonts, Layout)\n• JavaScript → BEHAVIOR & INTERACTIVITY (Clicks, Events, Validations)\n\nCLIENT vs SERVER:\n• Client-Side → Browser (HTML, CSS, JS)\n• Server-Side → Web server (Python, PHP, Node.js [TRE 3.0 Q141 trap: C++ is NOT a server scripting language])\n\nE-COMMERCE MODELS:\n• B2B → Business to Business\n• B2C → Business to Consumer (Amazon in TRE 3.0)\n• C2C → Consumer to Consumer (OLX, eBay)\n• C2B → Consumer to Business (Freelancers)\n(All 4 are legitimate models [TRE 3.0 Q148 trap])\n\nMULTIMEDIA:\n• 5 Elements: Text, Image, Audio, Video, Animation (TIAVA)\n• Authoring Tool: Adobe Flash (TRE 3.0 Anchor) | Image Editor: Photoshop"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "6 Critical Day 40 BPSC Exam Traps",
+                "content": "1. HTML = Structure ONLY (not style, not interactivity).\n2. CSS = Style; JavaScript = Interactivity.\n3. TRE 3.0 Q141: HTML/CSS/C++ → \"None of the above\" is the true server-side scripting answer.\n4. TRE 3.0 Q148: B2C, C2B, C2C are ALL valid e-commerce models (answer: None of the above).\n5. Amazon is the textbook B2C example in TRE 3.0.\n6. Adobe Flash is the multimedia authoring tool; Photoshop is an image editor."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 40 Checkpoint Test",
+      "subtitle": "Web Technology, Front-End Triad, E-Commerce Models & Multimedia Authoring",
+      "questions": [
+        {
+          "id": "m-d40-q1",
+          "question": "Q1. HTML stands for:",
+          "options": [
+            "HyperText Markup Language",
+            "High Transfer Machine Language",
+            "HyperText Machine Logic",
+            "High Text Marking Language",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "HTML stands for HyperText Markup Language, the standard markup language used to structure web pages. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q2",
+          "question": "Q2. The primary purpose of HTML is to:",
+          "options": [
+            "Define web-page structure",
+            "Style web pages",
+            "Replace databases",
+            "Route packets",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In BPSC TRE 3.0 Q140, the primary purpose of HTML is directly tested as defining the structure and content layout of a web page. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q3",
+          "question": "Q3. CSS is primarily used for:",
+          "options": [
+            "Styling/presentation",
+            "Database normalization",
+            "Packet routing",
+            "CPU scheduling",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "CSS (Cascading Style Sheets) is used for describing the visual presentation, styling, typography, colors, and layout of HTML documents. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q4",
+          "question": "Q4. JavaScript in a typical browser is strongly associated with:",
+          "options": [
+            "Page behavior/interactivity",
+            "Optical-fiber transmission",
+            "Memory paging",
+            "SQL normalization",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "JavaScript provides client-side programmability, dynamic behavior, user interactivity, and event handling within web browsers. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q5",
+          "question": "Q5. Which mapping is correct?",
+          "options": [
+            "HTML → Structure",
+            "CSS → Style",
+            "JavaScript → Behavior",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three core mappings are definitionally accurate: HTML for structure, CSS for style, and JavaScript for behavior. Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d40-q6",
+          "question": "Q6. A web browser primarily acts as:",
+          "options": [
+            "A client in ordinary web communication",
+            "A subnet mask",
+            "An operating-system scheduler",
+            "A database key",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "In the client-server web architecture, the web browser functions as the client that initiates HTTP/HTTPS requests to servers. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q7",
+          "question": "Q7. Which is a web browser?",
+          "options": [
+            "Chrome",
+            "Firefox",
+            "Safari",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Google Chrome, Mozilla Firefox, and Apple Safari are all standard web browsers. Hence (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d40-q8",
+          "question": "Q8. Server-side processing generally occurs:",
+          "options": [
+            "On the server",
+            "Only inside CSS",
+            "Only in the monitor",
+            "Only inside a switch",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Server-side processing executes directly on the remote web/application server handling business logic and databases before sending responses. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q9",
+          "question": "Q9. Which is a genuine server-side programming/scripting technology?",
+          "options": [
+            "Python",
+            "PHP",
+            "Node.js/JavaScript",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Python, PHP, and Node.js are all widely utilized server-side technologies. Hence (D) More than one of the above is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d40-q10",
+          "question": "Q10. For the exact TRE 3.0 Q141 options HTML, CSS and C++, the most conceptually appropriate answer to “commonly used server-side scripting language” is:",
+          "options": [
+            "HTML",
+            "CSS",
+            "C++",
+            "More than one",
+            "None of the above"
+          ],
+          "correctAnswer": 4,
+          "explanation": "HTML is a markup language, CSS is a style sheet, and C++ is a general-purpose compiled language (not a server-side scripting language). Hence (E) None of the above is the appropriate answer. Correct: (E)."
+        },
+        {
+          "id": "m-d40-q11",
+          "question": "Q11. URL stands for:",
+          "options": [
+            "Uniform Resource Locator",
+            "Universal Routing Language",
+            "User Resource Linkage",
+            "Unified Runtime Logic",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "URL stands for Uniform Resource Locator, specifying the web address of a resource on the Internet. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q12",
+          "question": "Q12. E-commerce is mainly associated with:",
+          "options": [
+            "Electronic commercial transactions",
+            "CPU scheduling",
+            "Operating-system paging",
+            "Compiler optimization",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "E-commerce refers to commercial transactions, retail buying and selling conducted electronically across computer networks. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q13",
+          "question": "Q13. B2C means:",
+          "options": [
+            "Business to Consumer",
+            "Business to Computer",
+            "Browser to Client",
+            "Binary to Character",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "B2C stands for Business to Consumer, where commercial entities sell directly to retail end-users. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q14",
+          "question": "Q14. B2B means:",
+          "options": [
+            "Business to Business",
+            "Browser to Browser",
+            "Binary to Binary",
+            "Buyer to Browser",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "B2B stands for Business to Business, representing electronic commerce conducted between two business firms. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q15",
+          "question": "Q15. C2C means:",
+          "options": [
+            "Consumer to Consumer",
+            "Computer to Compiler",
+            "Client to CPU",
+            "Code to Compiler",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "C2C stands for Consumer to Consumer, where individual consumers transact directly with each other (e.g. OLX, eBay). Correct: (A)."
+        },
+        {
+          "id": "m-d40-q16",
+          "question": "Q16. C2B means:",
+          "options": [
+            "Consumer to Business",
+            "Computer to Browser",
+            "Client to Binary",
+            "Consumer to Browser only",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "C2B stands for Consumer to Business, where individual consumers offer goods, freelance services, or value to businesses. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q17",
+          "question": "Q17. Which are valid common e-commerce relationship models?",
+          "options": [
+            "B2C",
+            "C2B",
+            "C2C",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "B2C, C2B, and C2C are all legitimate, established e-commerce relationship models. Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d40-q18",
+          "question": "Q18. In the exact TRE 3.0 Q148, all three listed models—B2C, C2B and C2C—are genuine models. Therefore the logical answer to “NOT a common type” is:",
+          "options": [
+            "B2C",
+            "C2B",
+            "C2C",
+            "More than one of A–C",
+            "None of the above"
+          ],
+          "correctAnswer": 4,
+          "explanation": "Since B2C, C2B, and C2C are all recognized e-commerce models, none of them is invalid, logically yielding (E) None of the above on that paper. Correct: (E)."
+        },
+        {
+          "id": "m-d40-q19",
+          "question": "Q19. In TRE 3.0, the clear B2C example among Alibaba, Amazon and Google is:",
+          "options": [
+            "Alibaba",
+            "Amazon",
+            "Google",
+            "All three equally in the paper's intended classification",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Amazon is the classic, intended example of a Business-to-Consumer (B2C) e-commerce platform in TRE 3.0 Q149. Correct: (B)."
+        },
+        {
+          "id": "m-d40-q20",
+          "question": "Q20. Multimedia means combining:",
+          "options": [
+            "Multiple forms of media",
+            "Only text",
+            "Only sound",
+            "Only numbers",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Multimedia refers to the integrated combination of multiple media forms (text, graphics, audio, video, animation) to convey information. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q21",
+          "question": "Q21. Which can be multimedia elements?",
+          "options": [
+            "Text and images",
+            "Audio and video",
+            "Animation",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "The five primary elements of multimedia are Text, Images, Audio, Video, and Animation (TIAVA). Hence (D) is correct. Correct: (D)."
+        },
+        {
+          "id": "m-d40-q22",
+          "question": "Q22. Which tool was the intended multimedia-authoring answer in TRE 3.0?",
+          "options": [
+            "Microsoft Word",
+            "Adobe Photoshop",
+            "Adobe Flash",
+            "MySQL",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In BPSC TRE 3.0 Q150, Adobe Flash was the intended answer as a multimedia authoring tool (combining graphics, audio, video, and animation). Correct: (C)."
+        },
+        {
+          "id": "m-d40-q23",
+          "question": "Q23. Adobe Photoshop is primarily associated with:",
+          "options": [
+            "Image/graphics editing",
+            "Packet routing",
+            "SQL processing",
+            "Operating-system scheduling",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Adobe Photoshop is specialized software for image manipulation, photo editing, and raster graphic design. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q24",
+          "question": "Q24. DNS is used in web communication mainly to:",
+          "options": [
+            "Resolve domain names to IP addresses",
+            "Style HTML",
+            "Create multimedia",
+            "Perform e-commerce payments",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "DNS (Domain Name System) translates human-friendly web domain names into routable numerical IP addresses so browsers can connect to web servers. Correct: (A)."
+        },
+        {
+          "id": "m-d40-q25",
+          "question": "Q25. Which complete memory rule is correct?",
+          "options": [
+            "HTML → Structure",
+            "Amazon → B2C",
+            "Adobe Flash → historical multimedia authoring tool",
+            "More than one of the above",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "All three associations are verified TRE 3.0 paper anchors: HTML defines structure, Amazon is B2C, and Adobe Flash is a multimedia authoring tool. Hence (D) is correct. Correct: (D)."
+        }
+      ]
+    }
   }
 ];
 
