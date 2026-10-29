@@ -9736,6 +9736,522 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 17,
+    "dayId": "day-17",
+    "badge": "Day 17",
+    "title": "TRE 4.0 — Day 17",
+    "unit": "Part III (CS) • Transactions, ACID, COMMIT/ROLLBACK, Constraints, DELETE/DROP/TRUNCATE, DDL/DML/DCL/TCL • Earth Day, Survey of India & Articles",
+    "targetTime": "18–20 mins read + 22 mins test",
+    "summary": "Today we finish the core DBMS foundation: Transactions, ACID Properties in depth, COMMIT vs ROLLBACK, SAVEPOINT, Constraints (PK, FK, UNIQUE, NOT NULL, CHECK), DELETE vs TRUNCATE vs DROP, and SQL Command Classifications (DDL, DML, DCL, TCL).",
+    "targets": [
+      {
+        "section": "Part III – CS",
+        "topic": "Transactions, ACID, COMMIT, ROLLBACK, Constraints, DELETE/DROP/TRUNCATE, DDL/DML/DCL/TCL",
+        "goal": "Master ACID properties, transaction control commands, table constraints, and SQL category classifications"
+      },
+      {
+        "section": "Part II – GS",
+        "topic": "Earth Day + Survey of India + Geography facts",
+        "goal": "World Earth Day (22 April), Survey of India (topographical maps), and groundwater cave formations (stalactites/stalagmites)"
+      },
+      {
+        "section": "Part I – English",
+        "topic": "Articles revision",
+        "goal": "Master sound-based usage: 'an actress', 'an hour', 'a university', 'a European'"
+      }
+    ],
+    "introNote": "Today we finish the core DBMS foundation.\n\nYour TRE 2.0 paper explicitly treats support for ACID as a DBMS feature and asks correct DELETE FROM ... syntax. TRE 3.0 also directly tests Primary Key, 2NF and INSERT.\n\nThe deeper transaction commands, constraints, DROP/TRUNCATE, and DDL/DML/DCL/TCL classifications below are standard DBMS expansion for exam preparation; they are not all explicitly present in the retrieved paper excerpts.",
+    "parts": [
+      {
+        "partId": "part-d17-transactions-acid",
+        "title": "Part III — Transactions & ACID Properties",
+        "sections": [
+          {
+            "title": "1. Transaction & 2. ACID Properties",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "1. Transaction\n\n🧠 MENTAL PICTURE\nImagine transferring ₹500:\nAccount A (₹5000) → - ₹500 → Account B (+ ₹500)\n\nBoth operations belong together.\nIf A loses ₹500 but B does not receive it:\nA - ₹500 ✅\nB + ₹500 ❌\nSYSTEM WRONG!\n\nSo the whole group should behave as one unit of work.\nTransaction = group of database operations treated as one logical unit.\n\nMemory: Transaction = All operations belong together"
+              },
+              {
+                "type": "diagram",
+                "content": "2. ACID Properties (TRE 2.0 explicitly tests ACID as a DBMS feature)\n\nA → Atomicity   (All or nothing)\nC → Consistency (Database moves valid state → valid state)\nI → Isolation   (Transactions do not interfere)\nD → Durability  (Committed changes survive restart/crashes)\n\n🧠 One Bank Story for all four:\nA → All or Nothing\nC → Correct state\nI → Independent transactions\nD → Done means permanent"
+              },
+              {
+                "type": "callout",
+                "icon": "🔥",
+                "title": "ACID Master Trick (Say it aloud five times)",
+                "content": "A → All or nothing\nC → Correct\nI → Independent\nD → Durable/permanent"
+              }
+            ]
+          },
+          {
+            "title": "3. Atomicity, 4. Consistency, 5. Isolation & 6. Durability",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "3. Atomicity\nEither the whole transaction happens or none of it happens.\nBank transfer: A -500 and B +500.\nEither BOTH ✅ or NEITHER ✅. Never only A -500 ❌.\nMemory: Atomicity = ALL or NOTHING\n\n4. Consistency\nDatabase must move: VALID STATE → transaction → VALID STATE.\nTotal money before: A(5000) + B(3000) = 8000.\nAfter ₹500 transfer: A(4500) + B(3500) = 8000.\nRules remain valid.\nMemory: Consistency = Database remains correct\n\n5. Isolation\nImagine two people doing transactions simultaneously:\nTransaction 1 ──────►\nTransaction 2 ──────►\nThey should not incorrectly interfere with each other's incomplete work.\nMental: Two students writing exams in separate rooms (Student A | wall | Student B).\nMemory: Isolation = Transactions don't disturb each other\n\n6. Durability\nSuppose: COMMIT ✅. Then electricity goes off.\nWhen the database restarts, committed data should still exist.\nMemory: Durability = DONE means stays DONE (COMMIT → PERMANENT)"
+              }
+            ]
+          },
+          {
+            "title": "7. COMMIT, 8. ROLLBACK & 9. SAVEPOINT",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "7. COMMIT\nCOMMIT makes transaction changes permanent:\nUPDATE Account SET balance = balance - 500 WHERE id = 1;\nCOMMIT;\nAfter COMMIT: Changes are permanently saved.\nMemory: COMMIT = SAVE\n\n8. ROLLBACK\nSuppose something goes wrong:\nUPDATE Account SET balance = balance - 500 WHERE id = 1;\nROLLBACK;\nRollback cancels uncommitted changes and returns to earlier transaction state.\nMemory: ROLLBACK = UNDO\n\nCOMMIT vs ROLLBACK:\nCOMMIT   → SAVE\nROLLBACK → UNDO"
+              },
+              {
+                "type": "callout",
+                "icon": "🎮",
+                "title": "9. SAVEPOINT = Checkpoint",
+                "content": "Imagine a video game:\nLevel start → SAVEPOINT A → more work → SAVEPOINT B\n\nYou may roll back to a saved intermediate point rather than canceling everything.\nMemory: SAVEPOINT = checkpoint"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d17-constraints-drop",
+        "title": "Part III — Constraints & Table Deletion (DELETE vs TRUNCATE vs DROP)",
+        "sections": [
+          {
+            "title": "10. Constraints (PK, FK, UNIQUE, NOT NULL, CHECK)",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "10. Constraints\nConstraint means: Rule applied to table data.\nImagine a school admission form: Roll number cannot repeat, Name cannot be empty, Age must be valid."
+              },
+              {
+                "type": "diagram",
+                "content": "11. PRIMARY KEY\nUniquely identifies each row (TRE 3.0 directly tests this definition).\nPRIMARY KEY → Unique + Not NULL (Identity Card)\n\n12. FOREIGN KEY\nConnects tables (points to Primary Key in parent table).\nFOREIGN KEY → Connect Tables\n\n13. UNIQUE\nDuplicate values are not allowed in the constrained column.\nEmail: a@gmail.com, b@gmail.com (duplicate a@gmail.com ❌)\nUNIQUE = No duplicate\n\n14. NOT NULL\nValue cannot be missing/null. Must provide a value.\n\n15. CHECK\nEnforces a condition: CHECK (age >= 18)\nAge 21 ✅, Age 25 ✅, Age 15 ❌\nCHECK = condition checker"
+              },
+              {
+                "type": "callout",
+                "icon": "📌",
+                "title": "Constraint Master Sheet",
+                "content": "PRIMARY KEY → identity\nFOREIGN KEY → relationship\nUNIQUE      → no duplicate\nNOT NULL    → cannot be empty\nCHECK       → condition"
+              }
+            ]
+          },
+          {
+            "title": "16. DELETE, 17. TRUNCATE & 18. DROP",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "16. DELETE (TRE 2.0 directly tests: DELETE FROM teaches;)\nDELETE removes rows.\nDELETE FROM Student WHERE id = 10;\nMental: TABLE stays, ROWS removed."
+              },
+              {
+                "type": "diagram",
+                "content": "17. TRUNCATE\nTRUNCATE TABLE Student;\nRemoves all rows quickly while keeping the table structure.\nBefore: TABLE + DATA\nTRUNCATE → TABLE ✅, DATA ❌\nMemory: TRUNCATE = empty table\n\n18. DROP\nDROP TABLE Student;\nRemoves the table object itself.\nDROP → TABLE ❌, DATA ❌\nMemory: DROP = destroy table"
+              },
+              {
+                "type": "callout",
+                "icon": "🏫",
+                "title": "Classroom Mental Picture (DELETE vs TRUNCATE vs DROP)",
+                "content": "Students = rows | Classroom = table\n\n• DELETE   → Remove a few students: Classroom ✅, Some students ❌\n• TRUNCATE → Send every student out: Classroom ✅, Students ❌\n• DROP     → Demolish classroom: Classroom ❌, Students ❌"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d17-sql-categories",
+        "title": "Part III — SQL Command Categories & Traps",
+        "sections": [
+          {
+            "title": "19. SQL Command Categories (DDL, DML, DCL, TCL)",
+            "blocks": [
+              {
+                "type": "diagram",
+                "content": "DDL (Data Definition Language) → STRUCTURE\nDeals mainly with database/table structure:\nCREATE, ALTER, DROP, TRUNCATE\nMnemonic: C A D T (Create, Alter, Drop, Truncate)\n\nDML (Data Manipulation Language) → DATA\nDeals with table data:\nINSERT, UPDATE, DELETE (and SELECT in many exam syllabi)\nTRE 3.0 directly tests: INSERT → add rows\n\nDCL (Data Control Language) → PERMISSIONS\nGRANT  → Give permission\nREVOKE → Take permission back\n\nTCL (Transaction Control Language) → TRANSACTIONS\nCOMMIT, ROLLBACK, SAVEPOINT"
+              },
+              {
+                "type": "callout",
+                "icon": "⚠️",
+                "title": "Major Exam Traps",
+                "content": "• Trap 1: DROP vs DELETE → DELETE removes rows, DROP destroys table\n• Trap 2: COMMIT vs ROLLBACK → COMMIT saves, ROLLBACK undos\n• Trap 3: UNIQUE vs PRIMARY KEY → PRIMARY KEY is main row identifier (only 1 per table, not null), UNIQUE prevents duplicates\n• Trap 4: DDL vs DML → CREATE table is DDL, INSERT row is DML"
+              },
+              {
+                "type": "diagram",
+                "content": "Day 17 White-Paper Recall\n\nTRANSACTION\n→ one logical unit\n\nACID\nA → All or Nothing\nC → Correct state\nI → Independent\nD → Permanent\n\nCOMMIT → SAVE\nROLLBACK → UNDO\nSAVEPOINT → CHECKPOINT\n\nCONSTRAINTS\nPK → identity\nFK → relationship\nUNIQUE → no duplicate\nNOT NULL → required\nCHECK → condition\n\nDELETE   → rows\nTRUNCATE → all rows, table stays\nDROP     → table gone\n\nDDL → structure\nDML → data\nDCL → permission\nTCL → transaction"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d17-gs-geography",
+        "title": "Part II — General Studies: Earth Day & Survey of India",
+        "sections": [
+          {
+            "title": "Earth Day, Topographical Maps & Caves",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 paper directly asks about 22 April and which organization prepares India's topographical maps."
+              },
+              {
+                "type": "diagram",
+                "content": "1. 22 April = World Earth Day 🌍\nMemory: 22/4 → Earth Day\n\n2. Topographical Maps of India\nExam association: Survey of India\nMAP → SURVEY → Survey of India\n\n3. Stalactite and Stalagmite\nThe same TRE GS block associates these cave formations with: Underground water (Karst topography)\nCAVE → groundwater → stalactite / stalagmite"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "partId": "part-d17-english-articles",
+        "title": "Part I — English: Articles Revision",
+        "sections": [
+          {
+            "title": "Articles Rules & Traps",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Your TRE 2.0 language section directly asks article questions including actress."
+              },
+              {
+                "type": "diagram",
+                "content": "A   → consonant SOUND\nAN  → vowel SOUND\nTHE → specific\n\nExamples:\nan actress ✅\nan hour ✅\n\na university ✅\na European ✅"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 17 Test",
+      "subtitle": "Answer without looking back.",
+      "questions": [
+        {
+          "id": "m-d17-q1",
+          "question": "Q1. A database transaction is best described as:",
+          "options": [
+            "Random collection of tables",
+            "One logical unit of database work",
+            "A type of operating system",
+            "Only a SELECT statement",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A transaction is a sequence of one or more database operations treated as a single, indivisible logical unit of work. Correct: (B) One logical unit of database work."
+        },
+        {
+          "id": "m-d17-q2",
+          "question": "Q2. In ACID, A stands for:",
+          "options": [
+            "Availability",
+            "Atomicity",
+            "Attribute",
+            "Access",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In the ACID model, A stands for Atomicity. Correct: (B) Atomicity."
+        },
+        {
+          "id": "m-d17-q3",
+          "question": "Q3. Atomicity means:",
+          "options": [
+            "All or nothing",
+            "Data is always sorted",
+            "Every table has one row",
+            "Every transaction runs forever",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Atomicity ensures that either all operations of a transaction succeed and are committed, or none are (all-or-nothing). Correct: (A) All or nothing."
+        },
+        {
+          "id": "m-d17-q4",
+          "question": "Q4. Which ACID property means the database should remain in a valid state?",
+          "options": [
+            "Atomicity",
+            "Consistency",
+            "Isolation",
+            "Durability",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Consistency ensures that a transaction transforms the database from one valid state to another valid state, preserving all integrity constraints. Correct: (B) Consistency."
+        },
+        {
+          "id": "m-d17-q5",
+          "question": "Q5. Which ACID property concerns transactions not improperly interfering with each other?",
+          "options": [
+            "Durability",
+            "Isolation",
+            "Atomicity",
+            "Metadata",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Isolation ensures concurrent execution of transactions results in a system state that would be obtained if transactions were executed serially. Correct: (B) Isolation."
+        },
+        {
+          "id": "m-d17-q6",
+          "question": "Q6. After a successful COMMIT, data should survive a system restart. This represents:",
+          "options": [
+            "Isolation",
+            "Durability",
+            "Partial dependency",
+            "Redundancy",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Durability guarantees that once a transaction is committed, its changes are permanent and survive crashes or power failures. Correct: (B) Durability."
+        },
+        {
+          "id": "m-d17-q7",
+          "question": "Q7. COMMIT primarily means:",
+          "options": [
+            "Undo",
+            "Save transaction changes",
+            "Delete table",
+            "Create database",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "COMMIT ends the current transaction and makes all changes permanent in the database. Correct: (B) Save transaction changes."
+        },
+        {
+          "id": "m-d17-q8",
+          "question": "Q8. ROLLBACK primarily means:",
+          "options": [
+            "Undo uncommitted changes",
+            "Permanently save changes",
+            "Grant permission",
+            "Create table",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "ROLLBACK cancels and undoes all uncommitted data modifications performed in the current transaction. Correct: (A) Undo uncommitted changes."
+        },
+        {
+          "id": "m-d17-q9",
+          "question": "Q9. Which is best remembered as a transaction checkpoint?",
+          "options": [
+            "DROP",
+            "SAVEPOINT",
+            "SELECT",
+            "ALTER",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A SAVEPOINT establishes a designated checkpoint within a transaction to which you can later roll back without discarding preceding work. Correct: (B) SAVEPOINT."
+        },
+        {
+          "id": "m-d17-q10",
+          "question": "Q10. Which constraint uniquely identifies a row?",
+          "options": [
+            "NOT NULL",
+            "PRIMARY KEY",
+            "CHECK",
+            "DEFAULT",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A PRIMARY KEY uniquely identifies each row in a table and cannot contain NULL values. Correct: (B) PRIMARY KEY."
+        },
+        {
+          "id": "m-d17-q11",
+          "question": "Q11. Which constraint is mainly used to connect related tables?",
+          "options": [
+            "FOREIGN KEY",
+            "PRIMARY KEY only",
+            "CHECK",
+            "NOT NULL",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A FOREIGN KEY references a Primary Key in another table, enforcing referential integrity and linking relations. Correct: (A) FOREIGN KEY."
+        },
+        {
+          "id": "m-d17-q12",
+          "question": "Q12. Which constraint prevents missing/null values?",
+          "options": [
+            "UNIQUE",
+            "NOT NULL",
+            "CHECK only",
+            "FOREIGN KEY",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "NOT NULL enforces that a column must always be assigned an actual value and cannot accept NULL. Correct: (B) NOT NULL."
+        },
+        {
+          "id": "m-d17-q13",
+          "question": "Q13. Which constraint can enforce:\n\nAge >= 18",
+          "options": [
+            "CHECK",
+            "UNIQUE",
+            "DROP",
+            "COMMIT",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The CHECK constraint validates that values in a column satisfy a specified boolean condition (e.g. CHECK (Age >= 18)). Correct: (A) CHECK."
+        },
+        {
+          "id": "m-d17-q14",
+          "question": "Q14. Which SQL command removes selected rows?",
+          "options": [
+            "DROP",
+            "DELETE",
+            "CREATE",
+            "ALTER",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The DELETE command removes rows that match a WHERE clause predicate while keeping the table structure intact. Correct: (B) DELETE."
+        },
+        {
+          "id": "m-d17-q15",
+          "question": "Q15. Which command removes all rows while retaining the table structure in the basic distinction taught today?",
+          "options": [
+            "DELETE with mandatory WHERE",
+            "TRUNCATE",
+            "DROP",
+            "CREATE",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "TRUNCATE removes all rows rapidly while preserving the underlying table definition and schema. Correct: (B) TRUNCATE."
+        },
+        {
+          "id": "m-d17-q16",
+          "question": "Q16. Which command removes the table itself?",
+          "options": [
+            "UPDATE",
+            "DROP",
+            "INSERT",
+            "SELECT",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "DROP TABLE destroys the table definition, metadata, and all stored rows permanently. Correct: (B) DROP."
+        },
+        {
+          "id": "m-d17-q17",
+          "question": "Q17. CREATE belongs to:",
+          "options": [
+            "DML",
+            "DDL",
+            "TCL",
+            "DCL",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "CREATE modifies database schema structure and belongs to Data Definition Language (DDL). Correct: (B) DDL."
+        },
+        {
+          "id": "m-d17-q18",
+          "question": "Q18. INSERT belongs to the commonly taught:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "INSERT manipulates the data records stored in a table and belongs to Data Manipulation Language (DML). Correct: (B) DML."
+        },
+        {
+          "id": "m-d17-q19",
+          "question": "Q19. GRANT and REVOKE belong to:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 2,
+          "explanation": "GRANT and REVOKE manage user privileges and security access, belonging to Data Control Language (DCL). Correct: (C) DCL."
+        },
+        {
+          "id": "m-d17-q20",
+          "question": "Q20. COMMIT, ROLLBACK, and SAVEPOINT belong to:",
+          "options": [
+            "DDL",
+            "DML",
+            "DCL",
+            "TCL",
+            "None of the above"
+          ],
+          "correctAnswer": 3,
+          "explanation": "COMMIT, ROLLBACK, and SAVEPOINT manage database transactions, belonging to Transaction Control Language (TCL). Correct: (D) TCL."
+        },
+        {
+          "id": "m-d17-q21",
+          "question": "Q21. Which pair is correctly matched?",
+          "options": [
+            "DELETE → remove table structure",
+            "DROP → remove table",
+            "COMMIT → undo",
+            "ROLLBACK → permanently save",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "DROP removes the table object itself. DELETE removes rows, COMMIT saves, and ROLLBACK undoes uncommitted work. Correct: (B) DROP → remove table."
+        },
+        {
+          "id": "m-d17-q22",
+          "question": "Q22. World Earth Day is observed on:",
+          "options": [
+            "22 April",
+            "5 June",
+            "16 September",
+            "10 December",
+            "None of the above"
+          ],
+          "correctAnswer": 0,
+          "explanation": "World Earth Day is celebrated annually worldwide on 22 April to demonstrate support for environmental protection. Correct: (A) 22 April."
+        },
+        {
+          "id": "m-d17-q23",
+          "question": "Q23. Topographical maps of India are prepared by:",
+          "options": [
+            "Geological Survey of India",
+            "Survey of India",
+            "Zoological Survey of India",
+            "Election Commission",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The Survey of India (headquartered in Dehradun) is the National Mapping Agency responsible for preparing topographical maps of India. Correct: (B) Survey of India."
+        },
+        {
+          "id": "m-d17-q24",
+          "question": "Q24. Stalactite and stalagmite formations are mainly associated in the TRE paper with:",
+          "options": [
+            "Wind action",
+            "Underground water",
+            "Snow only",
+            "Volcanoes only",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Stalactites (growing down from cave ceilings) and stalagmites (rising up from cave floors) are mineral deposits formed by underground water in limestone / Karst topography. Correct: (B) Underground water."
+        },
+        {
+          "id": "m-d17-q25",
+          "question": "Q25. Choose the correct phrase:",
+          "options": [
+            "a actress",
+            "an actress",
+            "a hour",
+            "an university",
+            "None of the above"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'actress' begins with a vowel sound /æ/, requiring the indefinite article 'an': 'an actress'. Correct: (B) an actress."
+        }
+      ]
+    }
   }
 ];
 
