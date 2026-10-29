@@ -3439,6 +3439,726 @@ const MARATHON_DATA = [
         }
       ]
     }
+  },
+  {
+    "dayNumber": 7,
+    "dayId": "day-7",
+    "badge": "Day 07",
+    "title": "TRE 4.0 — Day 7: Weekly Revision + Test",
+    "unit": "Week 1 Grand Review • 5-Minute Recall • 50-Question Master Test",
+    "targetTime": "10 mins recall + 35–40 mins 50 MCQs test",
+    "summary": "Today, no major new chapter. Day 7 is for checking whether Days 1–6 are actually in long-term memory across Part III (CS), Part II (GS), and Part I (Language).",
+    "targets": [
+      {
+        "section": "Step 1 — Recall",
+        "topic": "5-Minute White-Paper Mental Map",
+        "goal": "Quickly mentally draw the entire Week 1 master summary"
+      },
+      {
+        "section": "Part III — Computer Science",
+        "topic": "30 CS Cumulative Questions",
+        "goal": "Number systems, Logic, Boolean, K-map, Adders, MUX, Flip-Flops, ROM, Codes, CPU"
+      },
+      {
+        "section": "Part II & I — GS + Language",
+        "topic": "20 GS & Language Questions",
+        "goal": "Math, Geometry, Articles, Prepositions, Hindi Grammar & Vocab"
+      }
+    ],
+    "introNote": "Today, no major new chapter. Day 7 is for checking whether Days 1–6 are actually in long-term memory.\n\nYour real papers justify this focus: TRE 3.0 contains a concentrated Digital Electronics block covering gates, flip-flop, Half Adder, ROM, PLA, MUX, number conversion and error-detection topics, while the STET paper adds registers, buses and microcontroller concepts.     f4bc06d5-5757-40ca-b90b-f5ee42d…     f4bc06d5-5757-40ca-b90b-f5ee42d…",
+    "parts": [
+      {
+        "partId": "d7-part-recall",
+        "title": "Step 1 — 5-minute white-paper recall",
+        "sections": [
+          {
+            "title": "🧠 White-Paper Recall Roadmap",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Before attempting questions, close your notes and mentally draw this:"
+              },
+              {
+                "type": "diagram",
+                "content": "                 WEEK 1\n\nNUMBER SYSTEM\nB O D H\n2 8 10 16\n\nTo Decimal   → Multiply\nFrom Decimal → Divide\n\nOctal → 3 bits\nHex   → 4 bits\n\nThen:\nLOGIC\n\nAND  → ALL\nOR   → ANY\nNOT  → Opposite\n\nXOR  → Different = 1\nXNOR → Same = 1\n\nNAND + NOR → Universal\n\nThen:\nDE MORGAN\n\n(A+B)' = A'B'\n(AB)'  = A'+B'\n\n\"Break the bar,\n flip variables + operator\"\n\nThen:\nHALF ADDER\nSum   → XOR\nCarry → AND\n\nFULL ADDER\nA + B + Carry-In\n\nThen:\nMUX   → MANY → ONE\nDEMUX → ONE → MANY\n\n2ⁿ inputs → n select lines\n\nThen:\nFLIP-FLOP → stores 1 bit\n\nSR → Set/Reset\nJK → 11 = Toggle\nD  → Data\nT  → Toggle\n\nThen:\nROM\n\nMROM   → Manufacturer\nPROM   → Program once\nEPROM  → UV erase\nEEPROM → Electrical erase\n\nThen:\nBCD      → each decimal digit = 4 bits\nGRAY     → one-bit change\nPARITY   → count 1s\nCHECKSUM → add\nCRC      → division/remainder\nHAMMING  → locate/correct error\n\nFinally:\nCPU = Brain\n\nALU → Calculate\nCU  → Control\n\nACC → Result\nPC  → Next instruction\nIR  → Current instruction\nMAR → WHERE\nMDR → WHAT\n\nBUS:\nData    → WHAT\nAddress → WHERE\nControl → WHAT TO DO"
+              },
+              {
+                "type": "callout",
+                "icon": "💡",
+                "title": "Self-Check Rule",
+                "content": "If you can reproduce most of that mentally, Week 1 is working."
+              }
+            ]
+          },
+          {
+            "title": "Day 7 Weekly Test Instructions",
+            "blocks": [
+              {
+                "type": "text",
+                "content": "Rule: Do not use notes.\n\nTry to finish in 35–40 minutes.\n\nThe test comprises:\n• Part III — Computer Science (Q1 to Q30)\n• Part II — GS Weekly Test (Q31 to Q40)\n• Part I — Language Weekly Test (Q41 to Q50)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "test": {
+      "title": "Day 7 Weekly Master Test (50 Questions)",
+      "subtitle": "Complete Week 1 Coverage — 30 CS • 10 GS • 10 Language",
+      "timeLimit": "35–40 mins",
+      "questions": [
+        {
+          "id": "m-d7-q1",
+          "question": "Q1. Decimal 29 in binary is:",
+          "options": [
+            "11101",
+            "11011",
+            "10111",
+            "11110",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "29 ÷ 2 = 14 R 1; 14 ÷ 2 = 7 R 0; 7 ÷ 2 = 3 R 1; 3 ÷ 2 = 1 R 1; 1 ÷ 2 = 0 R 1. Reading upwards: 11101₂ (16 + 8 + 4 + 1 = 29). Correct: (A) 11101."
+        },
+        {
+          "id": "m-d7-q2",
+          "question": "Q2. 10110₂ in decimal is:",
+          "options": [
+            "20",
+            "21",
+            "22",
+            "24",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "1×2⁴ + 0×2³ + 1×2² + 1×2¹ + 0×2⁰ = 16 + 0 + 4 + 2 + 0 = 22₁₀. Correct: (C) 22."
+        },
+        {
+          "id": "m-d7-q3",
+          "question": "Q3. 111011₂ in octal is:",
+          "options": [
+            "71",
+            "72",
+            "73",
+            "74",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Group in 3 bits from right: 111 | 011. 111₂ = 7, 011₂ = 3. Thus, 111011₂ = 73₈. Correct: (C) 73."
+        },
+        {
+          "id": "m-d7-q4",
+          "question": "Q4. 11011110₂ in hexadecimal is:",
+          "options": [
+            "CE",
+            "DE",
+            "DF",
+            "ED",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Group in 4 bits: 1101 | 1110. 1101₂ = 13 (D), 1110₂ = 14 (E). Thus 11011110₂ = DE₁₆. Correct: (B) DE."
+        },
+        {
+          "id": "m-d7-q5",
+          "question": "Q5. 101.011₂ equals:",
+          "options": [
+            "5.125",
+            "5.25",
+            "5.375",
+            "5.75",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Integer part: 101₂ = 4 + 0 + 1 = 5. Fractional part: 0×0.5 + 1×0.25 + 1×0.125 = 0.375. Total = 5.375₁₀. Correct: (C) 5.375."
+        },
+        {
+          "id": "m-d7-q6",
+          "question": "Q6. Which gate produces 1 only when all inputs are 1?",
+          "options": [
+            "OR",
+            "AND",
+            "XOR",
+            "NOR",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "AND gate gives output 1 only when ALL inputs are 1 (Memory rule: AND = ALL). Correct: (B) AND."
+        },
+        {
+          "id": "m-d7-q7",
+          "question": "Q7. Which gate outputs 1 for equal two-input combinations?",
+          "options": [
+            "XOR",
+            "XNOR",
+            "OR",
+            "NAND",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "XNOR (equivalence gate) produces 1 when both inputs are equal / identical (0 XNOR 0 = 1, 1 XNOR 1 = 1; Memory rule: XNOR → Same = 1). Correct: (B) XNOR."
+        },
+        {
+          "id": "m-d7-q8",
+          "question": "Q8. Which are universal gates?",
+          "options": [
+            "AND and OR",
+            "XOR and XNOR",
+            "NAND and NOR",
+            "AND and XOR",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "NAND and NOR are universal gates because any boolean function can be implemented using only NAND or only NOR gates. Correct: (C) NAND and NOR."
+        },
+        {
+          "id": "m-d7-q9",
+          "question": "Q9. A 5-input logic circuit has how many possible input combinations?",
+          "options": [
+            "10",
+            "16",
+            "25",
+            "32",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "For n binary inputs, there are 2ⁿ combinations. For n = 5: 2⁵ = 32 combinations (00000 to 11111). Correct: (D) 32."
+        },
+        {
+          "id": "m-d7-q10",
+          "question": "Q10. 1 NAND 1 equals:",
+          "options": [
+            "0",
+            "1",
+            "10",
+            "Undefined",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "1 AND 1 = 1. NAND inverts the result: NOT(1) = 0. So 1 NAND 1 = 0. Correct: (A) 0."
+        },
+        {
+          "id": "m-d7-q11",
+          "question": "Q11. According to De Morgan: (A+B+C)' =",
+          "options": [
+            "A'+B'+C'",
+            "A'B'C'",
+            "ABC",
+            "A+B+C",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "By De Morgan's theorem: (A+B+C)' = A'·B'·C' ('Break the bar, flip variables + operator'). Correct: (B) A'B'C'."
+        },
+        {
+          "id": "m-d7-q12",
+          "question": "Q12. A + A' simplifies to:",
+          "options": [
+            "A",
+            "A'",
+            "0",
+            "1",
+            "None"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Complement law: One value is always 1 and the other is 0. In OR logic: Opposites OR → 1. Correct: (D) 1."
+        },
+        {
+          "id": "m-d7-q13",
+          "question": "Q13. A.A' equals:",
+          "options": [
+            "0",
+            "1",
+            "A",
+            "A'",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Complement law: Since either A or A' is always 0, in AND logic: Opposites AND → 0. Correct: (A) 0."
+        },
+        {
+          "id": "m-d7-q14",
+          "question": "Q14. A 4-variable K-map contains:",
+          "options": [
+            "8 cells",
+            "12 cells",
+            "16 cells",
+            "32 cells",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A K-map for n variables has 2ⁿ cells. For 4 variables, 2⁴ = 16 cells. Correct: (C) 16 cells."
+        },
+        {
+          "id": "m-d7-q15",
+          "question": "Q15. Which sequence follows Gray-code ordering?",
+          "options": [
+            "00, 01, 10, 11",
+            "00, 01, 11, 10",
+            "00, 11, 01, 10",
+            "00, 10, 11, 01",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Gray code (reflected binary code) changes only 1 bit between successive values: 00 → 01 → 11 → 10. Correct: (B) 00, 01, 11, 10."
+        },
+        {
+          "id": "m-d7-q16",
+          "question": "Q16. Half-Adder Sum is:",
+          "options": [
+            "AND",
+            "XOR",
+            "OR",
+            "NOR",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Half-Adder SUM is generated by an XOR gate: SUM = A ⊕ B. Correct: (B) XOR."
+        },
+        {
+          "id": "m-d7-q17",
+          "question": "Q17. Half-Adder Carry is:",
+          "options": [
+            "AND",
+            "XOR",
+            "OR",
+            "XNOR",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Half-Adder CARRY is generated by an AND gate: CARRY = A · B. Correct: (A) AND."
+        },
+        {
+          "id": "m-d7-q18",
+          "question": "Q18. A Full Adder accepts:",
+          "options": [
+            "A and B only",
+            "A, B and Carry-In",
+            "Sum and Carry only",
+            "One input only",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A Full Adder accepts three 1-bit inputs: A, B, and Carry-In (Cin), producing Sum and Carry-Out. Correct: (B) A, B and Carry-In."
+        },
+        {
+          "id": "m-d7-q19",
+          "question": "Q19. A 32-to-1 MUX requires:",
+          "options": [
+            "4 select lines",
+            "5 select lines",
+            "6 select lines",
+            "32 select lines",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "For 2ⁿ inputs, n select lines are required. Since 32 = 2⁵, n = 5 select lines. Correct: (B) 5 select lines."
+        },
+        {
+          "id": "m-d7-q20",
+          "question": "Q20. DEMUX means conceptually:",
+          "options": [
+            "Many → One",
+            "One → Many",
+            "Decimal → Binary",
+            "Analog → Digital",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Demultiplexer (DEMUX) takes 1 single input and routes it to 1 of Many outputs (One → Many). Correct: (B) One → Many."
+        },
+        {
+          "id": "m-d7-q21",
+          "question": "Q21. Which flip-flop has the memory rule 11 → Toggle?",
+          "options": [
+            "SR",
+            "JK",
+            "D",
+            "T only when T=0",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In a JK flip-flop, J=1 and K=1 causes the output state to toggle (invert) on clock pulse. Correct: (B) JK."
+        },
+        {
+          "id": "m-d7-q22",
+          "question": "Q22. A flip-flop stores:",
+          "options": [
+            "1 bit",
+            "1 byte",
+            "1 KB",
+            "4 bits",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A flip-flop is the basic sequential digital memory unit that stores exactly 1 bit of binary data. Correct: (A) 1 bit."
+        },
+        {
+          "id": "m-d7-q23",
+          "question": "Q23. Which ROM can traditionally be erased with UV light?",
+          "options": [
+            "PROM",
+            "MROM",
+            "EPROM",
+            "RAM",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "EPROM (Erasable Programmable Read-Only Memory) chips have a quartz window and are erased with ultraviolet (UV) light. Correct: (C) EPROM."
+        },
+        {
+          "id": "m-d7-q24",
+          "question": "Q24. Decimal 49 in BCD is:",
+          "options": [
+            "110001",
+            "0100 1001",
+            "0101 1001",
+            "1001 0100",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In BCD (8421), each decimal digit is represented by 4 bits: 4 = 0100, 9 = 1001. So 49₁₀ = 0100 1001. Correct: (B) 0100 1001."
+        },
+        {
+          "id": "m-d7-q25",
+          "question": "Q25. Which code has the rule that adjacent values differ by one bit?",
+          "options": [
+            "ASCII",
+            "Gray Code",
+            "BCD",
+            "Excess-3",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Gray Code is a unit-distance code where adjacent numerical values differ in exactly one bit position. Correct: (B) Gray Code."
+        },
+        {
+          "id": "m-d7-q26",
+          "question": "Q26. Which is best remembered as binary division + remainder?",
+          "options": [
+            "Parity",
+            "Checksum",
+            "CRC",
+            "ASCII",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Cyclic Redundancy Check (CRC) is based on binary modulo-2 polynomial division, where the remainder forms the error-checking checksum. Correct: (C) CRC."
+        },
+        {
+          "id": "m-d7-q27",
+          "question": "Q27. Which register normally keeps the next instruction address?",
+          "options": [
+            "ACC",
+            "IR",
+            "PC",
+            "MDR",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The Program Counter (PC) holds the memory address of the next instruction to be fetched and executed. Correct: (C) PC."
+        },
+        {
+          "id": "m-d7-q28",
+          "question": "Q28. Which register answers “Where in memory?”",
+          "options": [
+            "MAR",
+            "MDR",
+            "ACC",
+            "IR",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MAR (Memory Address Register) holds the memory address where data or instruction is being read or written (answers 'WHERE'). Correct: (A) MAR."
+        },
+        {
+          "id": "m-d7-q29",
+          "question": "Q29. Which CPU component performs arithmetic and logical operations?",
+          "options": [
+            "CU",
+            "RAM",
+            "ALU",
+            "ROM",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The ALU (Arithmetic Logic Unit) executes all arithmetic calculations (+, -, *, /) and logical decisions. Correct: (C) ALU."
+        },
+        {
+          "id": "m-d7-q30",
+          "question": "Q30. Which best describes a microcontroller?",
+          "options": [
+            "Only an ALU",
+            "CPU plus memory and I/O integrated for embedded control",
+            "Only external RAM",
+            "A type of operating system",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A microcontroller integrates a CPU core along with RAM, ROM/Flash, timers, and I/O peripherals onto a single integrated circuit for embedded control applications (tested in STET paper). Correct: (B) CPU plus memory and I/O integrated for embedded control."
+        },
+        {
+          "id": "m-d7-q31",
+          "question": "Q31. 25% of 360 is:",
+          "options": [
+            "80",
+            "90",
+            "100",
+            "120",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "25% = 1/4. 360 × (1/4) = 90. Correct: (B) 90."
+        },
+        {
+          "id": "m-d7-q32",
+          "question": "Q32. A ₹600 article is sold at 20% profit. Selling price is:",
+          "options": [
+            "₹680",
+            "₹700",
+            "₹720",
+            "₹750",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "SP = CP × (100 + P%)/100 = 600 × 1.20 = ₹720. Correct: (C) ₹720."
+        },
+        {
+          "id": "m-d7-q33",
+          "question": "Q33. A value increases by 10% and then decreases by 10%. Overall:",
+          "options": [
+            "No change",
+            "1% gain",
+            "1% loss",
+            "10% loss",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Net change = +10 - 10 - (10×10)/100 = -1%. Hence, overall 1% loss. (e.g. 100 → 110 → 99). Correct: (C) 1% loss."
+        },
+        {
+          "id": "m-d7-q34",
+          "question": "Q34. Two numbers are in ratio 2:7. Their difference is 50. Smaller number is:",
+          "options": [
+            "10",
+            "20",
+            "25",
+            "35",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Difference in ratio parts = 7 - 2 = 5 parts = 50 ⇒ 1 part = 10. Smaller number = 2 × 10 = 20. (Larger = 70). Correct: (B) 20."
+        },
+        {
+          "id": "m-d7-q35",
+          "question": "Q35. If x and y are inversely proportional:",
+          "options": [
+            "x+y = constant",
+            "x-y = constant",
+            "xy = constant",
+            "x/y = constant",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In inverse variation, x ∝ 1/y ⇒ x · y = constant (k). (TRE 3.0 tested ratio and inverse-proportion questions). Correct: (C) xy = constant."
+        },
+        {
+          "id": "m-d7-q36",
+          "question": "Q36. 3² × 3⁴ =",
+          "options": [
+            "3⁶",
+            "9⁶",
+            "3⁸",
+            "3²",
+            "None"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Exponents with identical bases add together: aᵐ × aⁿ = aᵐ⁺ⁿ ⇒ 3²⁺⁴ = 3⁶. Correct: (A) 3⁶."
+        },
+        {
+          "id": "m-d7-q37",
+          "question": "Q37. Roots are 3 and 4. Their quadratic equation is:",
+          "options": [
+            "x²+7x+12=0",
+            "x²-7x+12=0",
+            "x²-12x+7=0",
+            "x²+12x-7=0",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Formula: x² - (Sum of roots)x + (Product of roots) = 0. Sum = 3+4=7, Product = 3×4=12. So x² - 7x + 12 = 0. Correct: (B) x²-7x+12=0."
+        },
+        {
+          "id": "m-d7-q38",
+          "question": "Q38. Sum of the interior angles of a triangle is:",
+          "options": [
+            "90°",
+            "180°",
+            "270°",
+            "360°",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The interior angle sum of any triangle in plane geometry is always 180°. Correct: (B) 180°."
+        },
+        {
+          "id": "m-d7-q39",
+          "question": "Q39. Adjacent angles of a parallelogram are:",
+          "options": [
+            "Equal in all cases",
+            "Supplementary",
+            "Complementary",
+            "Always 90°",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Consecutive adjacent angles formed by parallel sides and a transversal add to 180° (supplementary). Correct: (B) Supplementary."
+        },
+        {
+          "id": "m-d7-q40",
+          "question": "Q40. Area of a circle is:",
+          "options": [
+            "2πr",
+            "πr²",
+            "2πrh",
+            "πr²h",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Area of a circle is πr² (while circumference is 2πr). Correct: (B) πr²."
+        },
+        {
+          "id": "m-d7-q41",
+          "question": "Q41. Choose the correct expression:",
+          "options": [
+            "a honest person",
+            "an honest person",
+            "an university",
+            "a hour",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'honest' begins with a silent 'h' and vowel sound /ɒ/, requiring the article 'an'. Correct: (B) an honest person."
+        },
+        {
+          "id": "m-d7-q42",
+          "question": "Q42. We arrived ___ 7 PM.",
+          "options": [
+            "on",
+            "in",
+            "at",
+            "by",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The preposition 'at' is used for specific points in time on a clock (e.g., at 7 PM). Correct: (C) at."
+        },
+        {
+          "id": "m-d7-q43",
+          "question": "Q43. The students ___ studying.",
+          "options": [
+            "is",
+            "are",
+            "am",
+            "was",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Plural subject 'students' takes the plural present continuous verb 'are'. Correct: (B) are."
+        },
+        {
+          "id": "m-d7-q44",
+          "question": "Q44. “जल” का पर्यायवाची है:",
+          "options": [
+            "अनल",
+            "नीर",
+            "नभ",
+            "पवन",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "जल के पर्यायवाची शब्द हैं: नीर, तोय, वारि, पानी, सलिल। (अनल = आग, नभ = आकाश, पवन = वायु). Correct: (B) नीर."
+        },
+        {
+          "id": "m-d7-q45",
+          "question": "Q45. “सुख” का विलोम है:",
+          "options": [
+            "लाभ",
+            "दुःख",
+            "शांति",
+            "आनंद",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'सुख' का सटीक विलोम शब्द 'दुःख' है। Correct: (B) दुःख."
+        },
+        {
+          "id": "m-d7-q46",
+          "question": "Q46. “जो कभी न मरे”:",
+          "options": [
+            "नश्वर",
+            "अमर",
+            "अज्ञात",
+            "निर्जीव",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "वाक्यांश के लिए एक शब्द: 'जो कभी न मरे' उसे 'अमर' कहते हैं। (नश्वर = जो नष्ट होने वाला हो). Correct: (B) अमर."
+        },
+        {
+          "id": "m-d7-q47",
+          "question": "Q47. “सुंदर फूल” में विशेषण है:",
+          "options": [
+            "फूल",
+            "सुंदर",
+            "दोनों",
+            "कोई नहीं",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "'सुंदर' गुणवाचक विशेषण है, जो संज्ञा 'फूल' की विशेषता बता रहा है (फूल विशेष्य है). Correct: (B) सुंदर."
+        },
+        {
+          "id": "m-d7-q48",
+          "question": "Q48. “राम ने खाना खाया” में ने है:",
+          "options": [
+            "कर्म कारक",
+            "करण कारक",
+            "कर्ता कारक",
+            "अधिकरण कारक",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "'ने' प्रथमा कर्ता कारक का परसर्ग (विभक्ति चिह्न) है। Correct: (C) कर्ता कारक."
+        },
+        {
+          "id": "m-d7-q49",
+          "question": "Q49. “माता-पिता” है:",
+          "options": [
+            "तत्पुरुष समास",
+            "द्वंद्व समास",
+            "कर्मधारय समास",
+            "बहुव्रीहि समास",
+            "None"
+          ],
+          "correctAnswer": 1,
+          "explanation": "माता-पिता = माता और पिता। दोनों पद समान रूप से प्रधान हैं, अतः यह द्वंद्व समास है। Correct: (B) द्वंद्व समास."
+        },
+        {
+          "id": "m-d7-q50",
+          "question": "Q50. “राजपुत्र” का सही विग्रह:",
+          "options": [
+            "राजा और पुत्र",
+            "राजा जैसा पुत्र",
+            "राजा का पुत्र",
+            "पुत्र का राजा",
+            "None"
+          ],
+          "correctAnswer": 2,
+          "explanation": "'राजपुत्र' का सही समास विग्रह 'राजा का पुत्र' है (सम्बन्ध तत्पुरुष समास)। Correct: (C) राजा का पुत्र."
+        }
+      ]
+    }
   }
 ];
 
