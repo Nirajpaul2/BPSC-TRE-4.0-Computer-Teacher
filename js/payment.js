@@ -208,7 +208,7 @@
         payBtn.disabled = false;
         payBtn.innerHTML = originalBtnContent;
       }
-      alert("Unable to open Razorpay checkout popup. Please check your internet connection or use the Direct Payment link below.");
+      alert("Unable to open Razorpay checkout popup. Please check your internet connection or contact support.");
       return;
     }
 
@@ -265,7 +265,7 @@
           payBtn.innerHTML = originalBtnContent;
         }
         const errDescription = response?.error?.description || 'Transaction was canceled or failed.';
-        alert(`❌ Payment Failed: ${errDescription}\nYou can also use the direct link below.`);
+        alert(`❌ Payment Failed: ${errDescription}\nPlease retry or contact support via WhatsApp/Email.`);
       });
       rzp.open();
     } catch (err) {
@@ -274,7 +274,7 @@
         payBtn.disabled = false;
         payBtn.innerHTML = originalBtnContent;
       }
-      alert("Failed to initialize Razorpay checkout. Please use the Direct Payment link or contact support.");
+      alert("Failed to initialize Razorpay checkout. Please check your connection or contact support.");
     }
   };
 

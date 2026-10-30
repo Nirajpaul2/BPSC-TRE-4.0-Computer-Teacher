@@ -1544,10 +1544,8 @@ def bpsc_concept_solver():
                 <button class="btn-unlock-course" onclick="window.openPaywallModal('Marathon Day ${day.dayNumber}')" style="width: 100%; justify-content: center; padding: 0.85rem 1.25rem; font-size: 1.05rem;">
                   ⚡ Unlock All 43 Days &amp; 40 Practice Sets for <s style="opacity:0.75; font-size:0.9rem;">₹999</s> ₹299 (70% OFF)
                 </button>
-                <div style="margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; text-align: center;">
                   <span>Already purchased? <a href="javascript:void(0)" onclick="window.openRestoreModal()" style="color: #38bdf8; text-decoration: underline;">Restore Access</a></span>
-                  <span>•</span>
-                  <a href="https://rzp.io/rzp/f8vkVi7Y" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline;">Direct Razorpay Link ↗</a>
                 </div>
               </div>
             </div>
