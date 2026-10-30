@@ -129,6 +129,9 @@
 
   // 4. Modal Triggers
   window.openPaywallModal = function (contextInfo) {
+    // Pre-warm Razorpay SDK in background without blocking initial page paint
+    loadRazorpaySdk();
+
     const modal = document.getElementById('paywall-checkout-modal');
     if (!modal) return;
     const prefillName = localStorage.getItem(STORAGE_CANDIDATE_NAME) || '';
