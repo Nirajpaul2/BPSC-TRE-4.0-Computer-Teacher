@@ -1120,19 +1120,6 @@
         <span style="font-size: 0.82rem; opacity: 0.9;">Limited Time Launch Pass • Instant Access (UPI / QR / Cards)</span>
       </button>
 
-      <!-- [DEV TEST] Temporary Payment Bypass for Testing -->
-      <div id="modal-test-bypass-box" style="margin-top: 0.85rem; padding: 0.75rem 0.9rem; background: rgba(245, 158, 11, 0.12); border: 1.5px dashed #f59e0b; border-radius: var(--radius-sm); text-align: center;">
-        <div style="font-size: 0.8rem; font-weight: 800; color: #d97706; margin-bottom: 0.35rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
-          <span>🧪</span> TEST MODE (Temporary Bypass)
-        </div>
-        <div style="font-size: 0.76rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.4;">
-          Test full unlocked access without real Razorpay payment.
-        </div>
-        <button type="button" onclick="simulateSuccessfulTestPayment()" style="background: #f59e0b; color: #0f172a; border: none; padding: 0.55rem 1rem; border-radius: 4px; font-weight: 800; font-size: 0.84rem; cursor: pointer; width: 100%; box-shadow: 0 2px 8px rgba(245,158,11,0.3); display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
-          <span>⚡</span> Simulate Payment &amp; Unlock Full Course
-        </button>
-      </div>
-
       <!-- Already Paid Cross-Device Restore Trigger in Modal -->
       <div style="margin-top: 0.85rem; padding: 0.75rem; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center;">
         <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">
@@ -1253,35 +1240,15 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       TEMPORARY TEST WIDGET (Easily removable after testing)
-       ======================================================== -->
-  <div id="dev-test-bypass-pill" style="position: fixed; bottom: 18px; left: 18px; z-index: 99999; background: #1e293b; border: 1.5px solid #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.45); border-radius: 8px; padding: 0.55rem 0.85rem; font-family: system-ui, -apple-system, sans-serif; display: flex; align-items: center; gap: 0.65rem; color: #fff; font-size: 0.78rem;">
-    <div style="display: flex; flex-direction: column; gap: 2px;">
-      <span style="font-weight: 800; color: #f59e0b; display: flex; align-items: center; gap: 4px;">
-        🧪 TEST MODE
-      </span>
-      <span id="dev-test-status-text" style="font-size: 0.72rem; font-weight: 600; color: #fca5a5;">
-        State: LOCKED 🔒
-      </span>
-    </div>
-    <button id="dev-test-toggle-btn" onclick="window.simulateSuccessfulTestPayment()" style="background: #f59e0b; color: #0f172a; border: none; padding: 0.4rem 0.75rem; border-radius: 4px; font-weight: 800; font-size: 0.76rem; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 4px;">
-      <span>⚡</span> Unlock (Bypass Pay)
-    </button>
-    <button onclick="document.getElementById('dev-test-bypass-pill').style.display='none'" title="Dismiss test widget" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer; padding: 0 2px; line-height: 1;">
-      &times;
-    </button>
-  </div>
-
   <!-- Scripts with cache-busting to ensure immediate updates across all devices -->
-  <script src="js/syllabus-data.js?v=2.3"></script>
-  <script src="js/ncert-data.js?v=2.3"></script>
-  <script src="js/cheatsheets-data.js?v=2.3"></script>
-  <script src="js/marathon-data.js?v=2.3"></script>
-  <script src="js/practice-data/set-manifest.js?v=2.3"></script>
-  <script src="js/practice-data/set-01.js?v=2.3"></script>
-  <script src="js/practice-engine.js?v=2.3"></script>
-  <script src="js/payment.js?v=2.3"></script>
-  <script src="js/app.js?v=2.3"></script>
+  <script src="js/syllabus-data.js?v=2.4"></script>
+  <script src="js/ncert-data.js?v=2.4"></script>
+  <script src="js/cheatsheets-data.js?v=2.4"></script>
+  <script src="js/marathon-data.js?v=2.4"></script>
+  <script src="js/practice-data/set-manifest.js?v=2.4"></script>
+  <script src="js/practice-data/set-01.js?v=2.4"></script>
+  <script src="js/practice-engine.js?v=2.4"></script>
+  <script src="js/payment.js?v=2.4"></script>
+  <script src="js/app.js?v=2.4"></script>
 </body>
 </html>

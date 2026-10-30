@@ -407,57 +407,6 @@
     if (window.PracticeEngine && typeof window.PracticeEngine.renderApp === 'function') {
       window.PracticeEngine.renderApp();
     }
-
-    // Refresh Dev Test Widget UI if present
-    if (typeof window.updateTestBypassWidgetUI === 'function') {
-      window.updateTestBypassWidgetUI();
-    }
-  };
-
-  // 🧪 TEMPORARY TEST BYPASS FUNCTIONS (Easily removable after testing)
-  window.simulateSuccessfulTestPayment = function () {
-    const nameInput = document.getElementById('pay-name');
-    const phoneInput = document.getElementById('pay-phone');
-    const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "Test Teacher Aspirant";
-    const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "9876543210";
-    const testPaymentId = `pay_TEST_${Date.now().toString(36).toUpperCase()}`;
-
-    window.setCourseUnlocked(true, testPaymentId, candidateName, candidatePhone);
-    window.closePaywallModal();
-    window.closeRestoreModal();
-    window.showPaymentSuccessModal(testPaymentId, candidateName, candidatePhone);
-    window.refreshAppUnlockedState();
-  };
-
-  window.resetCourseLockForTesting = function () {
-    window.setCourseUnlocked(false);
-    window.refreshAppUnlockedState();
-    alert("🔒 Course access has been RESET to Locked state for testing.\nAll paywalls and locks are active again.");
-  };
-
-  window.updateTestBypassWidgetUI = function () {
-    const pill = document.getElementById('dev-test-bypass-pill');
-    if (!pill) return;
-    const isUnlocked = window.isCourseUnlocked();
-    const statusText = document.getElementById('dev-test-status-text');
-    const toggleBtn = document.getElementById('dev-test-toggle-btn');
-    if (statusText) {
-      statusText.textContent = isUnlocked ? "State: UNLOCKED ✅" : "State: LOCKED 🔒";
-      statusText.style.color = isUnlocked ? "#10b981" : "#fca5a5";
-    }
-    if (toggleBtn) {
-      if (isUnlocked) {
-        toggleBtn.innerHTML = '<span>🔒</span> Re-Lock (Test Paywall)';
-        toggleBtn.style.background = '#ef4444';
-        toggleBtn.style.color = '#ffffff';
-        toggleBtn.onclick = () => window.resetCourseLockForTesting();
-      } else {
-        toggleBtn.innerHTML = '<span>⚡</span> Unlock (Bypass Pay)';
-        toggleBtn.style.background = '#f59e0b';
-        toggleBtn.style.color = '#0f172a';
-        toggleBtn.onclick = () => window.simulateSuccessfulTestPayment();
-      }
-    }
   };
 
   // Run on DOM ready
