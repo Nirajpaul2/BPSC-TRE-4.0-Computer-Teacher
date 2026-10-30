@@ -489,7 +489,7 @@
               </div>
 
               <div class="exam-q-text">
-                ${escapeHtml(currentQ.question).replace(/\n/g, '<br>')}
+                ${renderQuestionContent(currentQ.question)}
               </div>
 
               <!-- Options -->
@@ -1140,7 +1140,7 @@
           </div>
 
           <div style="font-size:1rem; font-weight:600; line-height:1.5; margin-bottom:1rem; color:var(--text-primary);">
-            ${escapeHtml(q.question).replace(/\n/g, '<br>')}
+            ${renderQuestionContent(q.question)}
           </div>
 
           <div class="review-options-list">
@@ -1204,6 +1204,24 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
+  }
+
+  // Helper to render question text (supporting Bilingual Hindi + English)
+  function renderQuestionContent(text) {
+    if (!text) return '';
+    const parts = text.split('\n').map(p => p.trim()).filter(Boolean);
+    if (parts.length <= 1) {
+      return `<div class="q-text-single">${escapeHtml(text)}</div>`;
+    }
+    const lang1 = parts[0];
+    const lang2 = parts.slice(1).join('<br>');
+    return `
+      <div class="q-bilingual-block">
+        <div class="q-lang-primary">${escapeHtml(lang1)}</div>
+        <div class="q-lang-divider"></div>
+        <div class="q-lang-secondary">${escapeHtml(lang2)}</div>
+      </div>
+    `;
   }
 
   // On-demand lazy script loader for practice sets

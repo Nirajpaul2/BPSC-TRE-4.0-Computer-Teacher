@@ -1,5 +1,5 @@
 // BPSC TRE 4.0 Computer Science — Practice Set 06 Data
-// 150 Questions: 30 Language (8 English + 22 Hindi) + 40 GS + 80 CS
+// 150 Questions: 30 Language (8 English + 22 Hindi) + 40 GS (Bilingual) + 80 CS (Bilingual)
 
 const PRACTICE_SET_06 = {
   "id": "set-06",
@@ -518,13 +518,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "दो संख्याओं 22 तथा 33 का महत्तम समापवर्तक (HCF) 11 है। इन दोनों संख्याओं का लघुत्तम समापवर्त्य (LCM) क्या होगा?",
+      "question": "दो संख्याओं 22 तथा 33 का महत्तम समापवर्तक (HCF) 11 है। इन दोनों संख्याओं का लघुत्तम समापवर्त्य (LCM) क्या होगा?\nThe greatest common multiple (HCF) of two numbers 22 and 33 is 11. What will be the least common multiple (LCM) of these two numbers?",
       "options": [
         "A. 66",
         "B. 80",
         "C. 56",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "दो संख्याओं का गुणनफल = HCF × LCM => LCM = (22 × 33) / 11 = 66."
@@ -534,13 +534,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "एक विक्रेता किसी वस्तु को ₹400 में खरीदकर 30% के लाभ पर बेचता है। उस वस्तु का विक्रय मूल्य (Selling Price) क्या होगा?",
+      "question": "एक विक्रेता किसी वस्तु को ₹400 में खरीदकर 30% के लाभ पर बेचता है। उस वस्तु का विक्रय मूल्य (Selling Price) क्या होगा?\nA seller buys an article for ₹400 and sells it at a profit of 30%. What will be the selling price of that item?",
       "options": [
         "A. ₹520",
         "B. ₹545",
         "C. ₹500",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "विक्रय मूल्य = CP × (100 + लाभ%) / 100 = ₹400 × 130 / 100 = ₹520."
@@ -550,13 +550,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "₹2200 की कुल धनराशि को A, B और C के मध्य 3 : 3 : 4 के अनुपात में विभाजित किया जाता है। B का भाग कितना होगा?",
+      "question": "₹2200 की कुल धनराशि को A, B और C के मध्य 3 : 3 : 4 के अनुपात में विभाजित किया जाता है। B का भाग कितना होगा?\nA total amount of ₹2200 is divided among A, B and C in the ratio 3 : 3 : 4. What will be B's share?",
       "options": [
         "A. ₹660",
         "B. ₹705",
         "C. ₹630",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "कुल अनुपात = 3+3+4 = 10. B का हिस्सा = (3/10) × ₹2200 = ₹660."
@@ -566,13 +566,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "₹2800 की मूलधन राशि पर 9% वार्षिक साधारण ब्याज की दर से 2 वर्षों में कितना साधारण ब्याज (SI) प्राप्त होगा?",
+      "question": "₹2800 की मूलधन राशि पर 9% वार्षिक साधारण ब्याज की दर से 2 वर्षों में कितना साधारण ब्याज (SI) प्राप्त होगा?\nHow much simple interest (SI) will be received on the principal amount of ₹ 2800 in 2 years at the rate of 9% annual simple interest?",
       "options": [
         "A. ₹504",
         "B. ₹539",
         "C. ₹479",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "साधारण ब्याज = (P × R × T) / 100 = (2800 × 9 × 2) / 100 = ₹504."
@@ -582,13 +582,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "A किसी कार्य को 16 दिन में तथा B उसी कार्य को 22 दिन में कर सकता है। दोनों मिलकर उस कार्य को कितने दिनों में समाप्त करेंगे?",
+      "question": "A किसी कार्य को 16 दिन में तथा B उसी कार्य को 22 दिन में कर सकता है। दोनों मिलकर उस कार्य को कितने दिनों में समाप्त करेंगे?\nA can do a work in 16 days and B can do the same work in 22 days. In how many days will both of them together finish the work?",
       "options": [
         "A. 9.3 दिन",
         "B. 11.8 दिन",
         "C. 7.3 दिन",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "कुल कार्य = LCM(16, 22) = 176. A की क्षमता = 11, B की क्षमता = 8. संयुक्त समय = 176 / 19 = 9.3 दिन."
@@ -598,13 +598,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "220 मीटर लंबी एक ट्रेन 108 किमी/घंटा की नियत गति से चल रही है। पटरी किनारे खड़े एक खंभे को पार करने में उसे कितना समय लगेगा?",
+      "question": "220 मीटर लंबी एक ट्रेन 108 किमी/घंटा की नियत गति से चल रही है। पटरी किनारे खड़े एक खंभे को पार करने में उसे कितना समय लगेगा?\nA train 220 meters long is running at a constant speed of 108 km/hr. How much time will it take to cross a pole standing on the side of the track?",
       "options": [
         "A. 7.3 सेकंड",
         "B. 10.5 सेकंड",
         "C. 4.8 सेकंड",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "चाल = 108 × (5/18) = 30 मी/से. समय = दूरी / चाल = 220 / 30 = 7.3 सेकंड."
@@ -614,13 +614,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "एक वृत्ताकार मैदान की त्रिज्या (Radius) 42 मीटर है। उस मैदान का कुल क्षेत्रफल कितना होगा? (माना π = 22/7)",
+      "question": "एक वृत्ताकार मैदान की त्रिज्या (Radius) 42 मीटर है। उस मैदान का कुल क्षेत्रफल कितना होगा? (माना π = 22/7)\nThe radius of a circular field is 42 meters. What will be the total area of ​​that field? (Let π = 22/7)",
       "options": [
         "A. 5544 वर्ग मीटर",
         "B. 5698 वर्ग मीटर",
         "C. 5456 वर्ग मीटर",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "वृत्त का क्षेत्रफल = π r² = (22/7) × 42 × 42 = 5544 वर्ग मीटर."
@@ -630,13 +630,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Elementary Mathematics & Reasoning",
-      "question": "दी गई अंक श्रृंखला में प्रश्नचिह्न (?) के स्थान पर अगला पद ज्ञात कीजिए: 13, 20, 27, 34, 41, ?",
+      "question": "दी गई अंक श्रृंखला में प्रश्नचिह्न (?) के स्थान पर अगला पद ज्ञात कीजिए: 13, 20, 27, 34, 41, ?\nFind the next term in place of question mark (?) in the given number series: 13, 20, 27, 34, 41, ?",
       "options": [
         "A. 48",
         "B. 55",
         "C. 45",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "यह समांतर श्रेणी (AP) है जिसमें प्रत्येक पद पिछले पद में +7 जोड़ने पर प्राप्त होता है। अतः अगला पद = 41 + 7 = 48."
@@ -646,13 +646,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "प्रकाश के परावर्तन (Reflection) के नियमानुसार आपतन कोण (i) तथा परावर्तन कोण (r) में क्या संबंध होता है?",
+      "question": "प्रकाश के परावर्तन (Reflection) के नियमानुसार आपतन कोण (i) तथा परावर्तन कोण (r) में क्या संबंध होता है?\nAccording to the law of reflection of light, what is the relationship between the angle of incidence (i) and the angle of reflection (r)?",
       "options": [
         "A. आपतन कोण = परावर्तन कोण (∠i = ∠r)",
         "B. ∠i > ∠r",
         "C. ∠i + ∠r = 90°",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "परावर्तन के प्रथम नियमानुसार आपतन कोण सदैव परावर्तन कोण के ठीक बराबर होता है।"
@@ -662,13 +662,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "न्यूटन के गति के प्रथम नियम को किस अन्य नाम से भी जाना जाता है?",
+      "question": "न्यूटन के गति के प्रथम नियम को किस अन्य नाम से भी जाना जाता है?\nBy what other name is Newton's first law of motion also known?",
       "options": [
         "A. जड़त्व का नियम (Law of Inertia)",
         "B. संवेग का नियम",
         "C. क्रिया-प्रतिक्रिया नियम",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "गैलीलियो के जड़त्व संकल्पना के आधार पर प्रथम नियम कहता है कि वस्तु अपनी विराम या गति की अवस्था स्वतः नहीं बदलती।"
@@ -678,13 +678,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "20 Hz से कम आवृत्ति वाली ध्वनि तरंगों को क्या कहा जाता है?",
+      "question": "20 Hz से कम आवृत्ति वाली ध्वनि तरंगों को क्या कहा जाता है?\nWhat are sound waves with frequency less than 20 Hz called?",
       "options": [
         "A. अपश्रव्य तरंगें (Infrasonic Waves)",
         "B. पराश्रव्य तरंगें",
         "C. अल्ट्रासोनिक तरंगें",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "हाथी, व्हेल तथा भूकंप के झटके 20 Hz से कम की अपश्रव्य तरंगें उत्पन्न करते हैं।"
@@ -694,13 +694,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "विद्युत विभव तथा विभवांतर (Potential Difference) का SI मात्रक क्या है?",
+      "question": "विद्युत विभव तथा विभवांतर (Potential Difference) का SI मात्रक क्या है?\nWhat is the SI unit of electric potential and potential difference?",
       "options": [
         "A. वोल्ट (Volt - V)",
         "B. वाट",
         "C. ओम",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "एकांक धनावेश को एक बिंदु से दूसरे बिंदु तक ले जाने में किया गया कार्य: V = W / Q, मात्रक वोल्ट है।"
@@ -710,13 +710,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "मानव आमाशय (Stomach) में भोजन के पाचन हेतु कौन-सा अम्ल स्रावित होता है?",
+      "question": "मानव आमाशय (Stomach) में भोजन के पाचन हेतु कौन-सा अम्ल स्रावित होता है?\nWhich acid is secreted in the human stomach for digestion of food?",
       "options": [
         "A. हाइड्रोक्लोरिक अम्ल (HCl)",
         "B. सल्फ्यूरिक अम्ल",
         "C. नाइट्रिक अम्ल",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "आमाशय की जठर ग्रंथियों से HCl निकलता है जो भोजन को अम्लीय माध्यम देकर पेप्सिन को सक्रिय करता है।"
@@ -726,13 +726,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "विद्युत की सर्वोत्तम सुचालक (Best Conductor of Electricity) धातु कौन-सी है?",
+      "question": "विद्युत की सर्वोत्तम सुचालक (Best Conductor of Electricity) धातु कौन-सी है?\nWhich metal is the best conductor of electricity?",
       "options": [
         "A. चाँदी (Silver - Ag)",
         "B. तांबा",
         "C. सोना",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "चाँदी की विद्युत प्रतिरोधकता सबसे कम होती है; इसके बाद तांबा और सोना आते हैं।"
@@ -742,13 +742,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "बकमिनिस्टर फुलरीन (Buckminsterfullerene) में कार्बन के कितने परमाणु फुटबॉल जैसी संरचना में जुड़े होते हैं?",
+      "question": "बकमिनिस्टर फुलरीन (Buckminsterfullerene) में कार्बन के कितने परमाणु फुटबॉल जैसी संरचना में जुड़े होते हैं?\nHow many atoms of carbon are linked in a football-like structure in Buckminsterfullerene?",
       "options": [
         "A. 60 कार्बन परमाणु (C₆₀)",
         "B. 50 परमाणु",
         "C. 70 परमाणु",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "C₆₀ में 20 षट्भुज और 12 पंचभुज वलय मिलकर फुटबॉल जैसी पिंजरेदार संरचना बनाते हैं।"
@@ -758,13 +758,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "सर्वाधिक इलेक्ट्रॉन बंधुता (Highest Electron Affinity) किस तत्व की होती है?",
+      "question": "सर्वाधिक इलेक्ट्रॉन बंधुता (Highest Electron Affinity) किस तत्व की होती है?\nWhich element has the highest electron affinity?",
       "options": [
         "A. क्लोरीन (Chlorine - Cl)",
         "B. फ्लोरीन",
         "C. ब्रोमीन",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "क्लोरीन का आकार फ्लोरीन से थोड़ा बड़ा होने से आने वाले इलेक्ट्रॉन को कम प्रतिकर्षण मिलता है, अतः EA सर्वाधिक है।"
@@ -774,13 +774,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "कोशिका का 'यातायात प्रबंधक' या 'ट्रैफिक पुलिस' किसे कहा जाता है?",
+      "question": "कोशिका का 'यातायात प्रबंधक' या 'ट्रैफिक पुलिस' किसे कहा जाता है?\nWho is called the 'traffic manager' or 'traffic police' of the cell?",
       "options": [
         "A. गॉल्जीकाय (Golgi Apparatus)",
         "B. अंतर्द्रव्यी जालिका",
         "C. लाइसोसोम",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "गॉल्जी उपकरण प्रोटीनों और लिपिडों का संवेष्टन (Packaging), रूपांतरण तथा परिवहन करता है।"
@@ -790,13 +790,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "हृदय की स्वाभाविक धड़कन को नियंत्रित करने वाला प्राकृतिक पेसमेकर (Pacemaker) किसे कहा जाता है?",
+      "question": "हृदय की स्वाभाविक धड़कन को नियंत्रित करने वाला प्राकृतिक पेसमेकर (Pacemaker) किसे कहा जाता है?\nWhat is called the natural pacemaker that controls the natural heartbeat?",
       "options": [
         "A. साइनो-एट्रियल नोड (SA Node / शिरा-अलिंद पर्व)",
         "B. AV नोड",
         "C. हिस का बंडल",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "दाएं अलिंद की दीवार में स्थित SA नोड स्वतः विद्युत आवेग उत्पन्न कर हृदय गति प्रारंभ करता है।"
@@ -806,13 +806,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "मानव शरीर का संतुलन, समन्वय और पेशीय गति (Posture & Balance) मस्तिष्क के किस भाग द्वारा नियंत्रित होती है?",
+      "question": "मानव शरीर का संतुलन, समन्वय और पेशीय गति (Posture & Balance) मस्तिष्क के किस भाग द्वारा नियंत्रित होती है?\nBalance, coordination and muscular movement (Posture & Balance) of the human body is controlled by which part of the brain?",
       "options": [
         "A. अनुमस्तिष्क / सेरेबेलम (Cerebellum)",
         "B. सेरेब्रम",
         "C. हाइपोथैलेमस",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "शराब पीने पर सेरेबेलम प्रभावित होता है जिससे व्यक्ति लड़खड़ाने लगता है।"
@@ -822,13 +822,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "General Science",
-      "question": "बाँझपन (Infertility) तथा मांसपेशियों की कमजोरी किस विटामिन की कमी से संबंधित है?",
+      "question": "बाँझपन (Infertility) तथा मांसपेशियों की कमजोरी किस विटामिन की कमी से संबंधित है?\nInfertility and muscle weakness are related to the deficiency of which vitamin?",
       "options": [
         "A. विटामिन E (Tocopherol / ब्यूटी विटामिन)",
         "B. विटामिन K",
         "C. विटामिन D",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "विटामिन E एक शक्तिशाली एंटीऑक्सीडेंट है जो कोशिका झिल्लियों की रक्षा करता है।"
@@ -838,13 +838,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "कुंवर सिंह के विरुद्ध शाहाबाद में अंग्रेजी सेना का नेतृत्व करते हुए कौन-सा कैप्टन 29-30 जुलाई 1857 को मारा गया था?",
+      "question": "कुंवर सिंह के विरुद्ध शाहाबाद में अंग्रेजी सेना का नेतृत्व करते हुए कौन-सा कैप्टन 29-30 जुलाई 1857 को मारा गया था?\nWhich Captain was killed on 29-30 July 1857 while leading the British army in Shahabad against Kunwar Singh?",
       "options": [
         "A. कैप्टन डनबर (Dunbar)",
         "B. मेजर विंसेंट आयर",
         "C. विलियम टेलर",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "आरा के समीप बीबीगंज के जंगलों में कुंवर सिंह की सेना ने डनबर की टुकड़ी पर भीषण घात लगाकर उसे ढेर कर दिया।"
@@ -854,13 +854,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "चंपारण सत्याग्रह के दौरान गांधीजी के प्रमुख सहयोगियों में निम्नलिखित में से कौन शामिल थे?",
+      "question": "चंपारण सत्याग्रह के दौरान गांधीजी के प्रमुख सहयोगियों में निम्नलिखित में से कौन शामिल थे?\nWho among the following were among the major associates of Gandhiji during the Champaran Satyagraha?",
       "options": [
         "A. डॉ. राजेंद्र प्रसाद, जे.बी. कृपलानी, अनुग्रह नारायण सिन्हा",
         "B. जवाहरलाल नेहरू",
         "C. सुभाष चंद्र बोस",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "राजेंद्र प्रसाद, जे.बी. कृपलानी, ब्रजकिशोर प्रसाद, धरणीधर और अनुग्रह नारायण सिन्हा ने गांधीजी के साथ काम किया।"
@@ -870,13 +870,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "बिहार में 'बकाश्त भूमि आंदोलन' (Bakasht Movement - 1937-39) का नेतृत्व मुंगेर के बड़हिया टाल में किसने किया था?",
+      "question": "बिहार में 'बकाश्त भूमि आंदोलन' (Bakasht Movement - 1937-39) का नेतृत्व मुंगेर के बड़हिया टाल में किसने किया था?\nWho led the 'Bakasht Land Movement' (1937-39) in Badhiya Tal of Munger in Bihar?",
       "options": [
         "A. कार्यानंद शर्मा (Karyanand Sharma)",
         "B. यदुंदन शर्मा",
         "C. सहजानंद सरस्वती",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "जमींदारों द्वारा बेदखल की गई बकाश्त जमीन पर किसानों के अधिकार हेतु कार्यानंद शर्मा ने जेल यात्राएं कीं।"
@@ -886,13 +886,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "पटना के दीघा में अपनी निजी भूमि दान देकर 'सदाकत आश्रम' (Sadaqat Ashram) की स्थापना किसने की थी?",
+      "question": "पटना के दीघा में अपनी निजी भूमि दान देकर 'सदाकत आश्रम' (Sadaqat Ashram) की स्थापना किसने की थी?\nWho established 'Sadaqat Ashram' by donating his personal land in Digha, Patna?",
       "options": [
         "A. मौलाना मजहरुल हक (1921)",
         "B. डॉ. राजेंद्र प्रसाद",
         "C. महमूद आलम",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "खैरू मियां की दान दी गई जमीन पर मजहरुल हक ने सदाकत (सत्य) आश्रम बनाया जो स्वतंत्रता संग्राम का गढ़ बना।"
@@ -902,13 +902,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "चौकीदारी कर बंदी आंदोलन का प्रारंभ बिहार के किस जिले से हुआ था?",
+      "question": "चौकीदारी कर बंदी आंदोलन का प्रारंभ बिहार के किस जिले से हुआ था?\nChowkidari tax ban movement was started from which district of Bihar?",
       "options": [
         "A. सारण, चंपारण, मुंगेर और भागलपुर",
         "B. गया",
         "C. पटना",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "गाँवों के चौकीदारों और दफादारों ने त्यागपत्र दे दिए और जनता ने कर देने से साफ इनकार कर दिया।"
@@ -918,13 +918,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "भारत छोड़ो आंदोलन के दौरान 9 नवंबर 1942 (दीवाली की रात) को जयप्रकाश नारायण (JP) अपने किन साथियों के साथ हजारीबाग केंद्रीय जेल की दीवार फांदकर फरार हुए थे?",
+      "question": "भारत छोड़ो आंदोलन के दौरान 9 नवंबर 1942 (दीवाली की रात) को जयप्रकाश नारायण (JP) अपने किन साथियों के साथ हजारीबाग केंद्रीय जेल की दीवार फांदकर फरार हुए थे?\nWith which of his comrades did Jayaprakash Narayan (JP) escape by climbing the wall of Hazaribagh Central Jail on 9 November 1942 (on the night of Diwali) during the Quit India Movement?",
       "options": [
         "A. योगेंद्र शुक्ल, रामानंद मिश्रा, सूरज नारायण सिंह, शालिग्राम सिंह और गुलाब चंद गुप्त",
         "B. श्रीकृष्ण सिंह",
         "C. राजेंद्र प्रसाद",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "धोती की रस्सी बनाकर 17 फीट ऊंची दीवार लांघकर जेपी ने भूमिगत आंदोलन की बागडोर संभाली।"
@@ -934,13 +934,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "1912 के बांकीपुर अधिवेशन में कांग्रेस के संस्थापक ए.ओ. ह्यूम (A.O. Hume) की मृत्यु पर उन्हें किस उपाधि से सम्मानित किया गया?",
+      "question": "1912 के बांकीपुर अधिवेशन में कांग्रेस के संस्थापक ए.ओ. ह्यूम (A.O. Hume) की मृत्यु पर उन्हें किस उपाधि से सम्मानित किया गया?\nIn the Bankipur session of 1912, Congress founder A.O. Which title was awarded to A.O. Hume on his death?",
       "options": [
         "A. 'कांग्रेस का पिता' (Father of the Congress)",
         "B. राष्ट्रपिता",
         "C. महात्मा",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "ह्यूम के निधन पर शोक व्यक्त करते हुए उन्हें औपचारिक रूप से कांग्रेस का जनक घोषित किया गया।"
@@ -950,13 +950,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "भागलपुर के समीप प्रसिद्ध 'विक्रमशिला विश्वविद्यालय' (Vikramshila University) की स्थापना किस पाल वंश के प्रतापी राजा ने की थी?",
+      "question": "भागलपुर के समीप प्रसिद्ध 'विक्रमशिला विश्वविद्यालय' (Vikramshila University) की स्थापना किस पाल वंश के प्रतापी राजा ने की थी?\nWhich famous king of Pala dynasty established the famous 'Vikramshila University' near Bhagalpur?",
       "options": [
         "A. धर्मपाल (King Dharmapala - 8वीं शताब्दी)",
         "B. गोपाल",
         "C. देवपाल",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "धर्मपाल ने वज्रयान बौद्ध धर्म और तंत्र विद्या के प्रमुख केंद्र विक्रमशिला की स्थापना कहलगांव के पास की।"
@@ -966,13 +966,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "शेरशाह सूरी ने पाटलिपुत्र का जीर्णोद्धार कराकर 1541 ईस्वी में इसका नया नाम क्या रखा?",
+      "question": "शेरशाह सूरी ने पाटलिपुत्र का जीर्णोद्धार कराकर 1541 ईस्वी में इसका नया नाम क्या रखा?\nShershah Suri renovated Pataliputra and gave it a new name in 1541 AD.",
       "options": [
         "A. पटना (Patna - बिहार की राजधानी बनाया)",
         "B. अजीमाबाद",
         "C. शेरगढ़",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "अब्दुल्लाह की 'तारीख-ए-दाऊदी' में उल्लेख है कि शेरशाह ने गंगा तट पर किला बनाकर पटना नाम रखा।"
@@ -982,13 +982,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Indian National Movement & Bihar History",
-      "question": "'धन की निकासी का सिद्धांत' (Drain of Wealth Theory) अपनी पुस्तक 'Poverty and Un-British Rule in India' में किसने प्रस्तुत किया?",
+      "question": "'धन की निकासी का सिद्धांत' (Drain of Wealth Theory) अपनी पुस्तक 'Poverty and Un-British Rule in India' में किसने प्रस्तुत किया?\nWho presented the 'Drain of Wealth Theory' in his book 'Poverty and Un-British Rule in India'?",
       "options": [
         "A. दादाभाई नौरोजी (Dadabhai Naoroji)",
         "B. आर.सी. दत्त",
         "C. गोखले",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "नौरोजी ने सिद्ध किया कि भारत की गरीबी का मुख्य कारण अंग्रेजी शासन द्वारा निरंतर धन का इंग्लैंड पलायन है।"
@@ -998,13 +998,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Geography & Environment",
-      "question": "गंडक नदी (सदा नीरा / नारायणी) बिहार की सीमा में किस स्थान पर प्रवेश करती है?",
+      "question": "गंडक नदी (सदा नीरा / नारायणी) बिहार की सीमा में किस स्थान पर प्रवेश करती है?\nAt which place does Gandak River (Sada Neera / Narayani) enter the border of Bihar?",
       "options": [
         "A. वाल्मीकि नगर (भैंसालोटन, पश्चिम चंपारण)",
         "B. बगहा",
         "C. रक्सौल",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "नेपाल के हिमालय से निकलकर गंडक त्रिवेणी संगम (वाल्मीकिनगर) में प्रवेश करती है जहाँ त्रिवेणी बैराज बना है।"
@@ -1014,13 +1014,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Geography & Environment",
-      "question": "बिहार की पहली 'रामसर आर्द्रभूमि साइट' (Ramsar Wetland Site) घोषित होने वाली झील कौन-सी है?",
+      "question": "बिहार की पहली 'रामसर आर्द्रभूमि साइट' (Ramsar Wetland Site) घोषित होने वाली झील कौन-सी है?\nWhich is the lake to be declared the first 'Ramsar Wetland Site' of Bihar?",
       "options": [
         "A. कांवर झील / कबर ताल (Kanwar Lake, बेगूसराय - 2020 में घोषित)",
         "B. कुशेश्वरस्थान",
         "C. गोगाबिल",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "कांवर झील एशिया की सबसे बड़ी ताजे पानी की गोखुर झील (Oxbow Lake) है जो प्रवासी पक्षियों का स्वर्ग है।"
@@ -1030,13 +1030,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Geography & Environment",
-      "question": "बिहार में बॉक्साइट (एल्युमिनियम अयस्क) किस जिले की खड़गपुर पहाड़ियों में पाया जाता है?",
+      "question": "बिहार में बॉक्साइट (एल्युमिनियम अयस्क) किस जिले की खड़गपुर पहाड़ियों में पाया जाता है?\nBauxite (aluminium ore) is found in Kharagpur hills of which district in Bihar?",
       "options": [
         "A. मुंगेर जिला (Munger)",
         "B. रोहतास",
         "C. भागलपुर",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "मुंगेर के असरगंज और खड़गपुर में बॉक्साइट की खदानें हैं।"
@@ -1046,13 +1046,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Geography & Environment",
-      "question": "भारत की मानक समय रेखा (Standard Meridian - 82°30' E) किस शहर से होकर गुजरती है?",
+      "question": "भारत की मानक समय रेखा (Standard Meridian - 82°30' E) किस शहर से होकर गुजरती है?\nIndia's Standard Time Line (Standard Meridian - 82°30' E) passes through which city?",
       "options": [
         "A. मिर्जापुर / नैनी (प्रयागराज के पास, उत्तर प्रदेश)",
         "B. भोपाल",
         "C. नागपुर",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "82°30' पूर्वी देशांतर ग्रीनविच समय (GMT) से 5 घंटे 30 मिनट आगे (+5:30) है और 5 राज्यों से गुजरती है।"
@@ -1062,13 +1062,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Geography & Environment",
-      "question": "किसी जलीय पारिस्थितिक तंत्र में 'जैव भार का पिरामिड' (Pyramid of Biomass) सामान्यतः कैसा होता है?",
+      "question": "किसी जलीय पारिस्थितिक तंत्र में 'जैव भार का पिरामिड' (Pyramid of Biomass) सामान्यतः कैसा होता है?\nWhat does the 'Pyramid of Biomass' generally look like in an aquatic ecosystem?",
       "options": [
         "A. उल्टा (Inverted Pyramid)",
         "B. सीधा",
         "C. गोलाकार",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "पादप प्लवक (Phytoplankton) का भार कम होता है और बड़ी मछलियों का भार अधिक, अतः पिरामिड उल्टा बनता है।"
@@ -1078,13 +1078,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Current Affairs & Bihar GK",
-      "question": "पर्यावरण संरक्षण, जल संचयन और हरित आवरण बढ़ाने हेतु बिहार में 2019 से कौन-सा महा-अभियान चल रहा है?",
+      "question": "पर्यावरण संरक्षण, जल संचयन और हरित आवरण बढ़ाने हेतु बिहार में 2019 से कौन-सा महा-अभियान चल रहा है?\nWhich mega-campaign is going on in Bihar since 2019 for environmental protection, water harvesting and increasing green cover?",
       "options": [
         "A. 'जल-जीवन-हरियाली' अभियान (Jal-Jeevan-Hariyali Mission)",
         "B. हरित बिहार",
         "C. वृक्षारोपण मिशन",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "कुओं, तालाबों के जीर्णोद्धार, सौर ऊर्जा और सघन पौधरोपण का यह 11 अवयवों वाला एकीकृत अभियान है।"
@@ -1094,13 +1094,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Current Affairs & Bihar GK",
-      "question": "बिहार पंचायती राज अधिनियम 2006 के तहत पंचायती राज संस्थाओं और नगर निकायों में महिलाओं को कितना आरक्षण दिया गया?",
+      "question": "बिहार पंचायती राज अधिनियम 2006 के तहत पंचायती राज संस्थाओं और नगर निकायों में महिलाओं को कितना आरक्षण दिया गया?\nHow much reservation was given to women in Panchayati Raj institutions and municipal bodies under the Bihar Panchayati Raj Act 2006?",
       "options": [
         "A. 50% आरक्षण (पचास प्रतिशत - देश में सर्वप्रथम)",
         "B. 33%",
         "C. 25%",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "बिहार 2006 में स्थानीय निकायों में महिलाओं को 50% आरक्षण देने वाला भारत का पहला राज्य बना था।"
@@ -1110,13 +1110,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Current Affairs & Bihar GK",
-      "question": "2001 से 2011 के दशक में बिहार की 'दशकीय जनसंख्या वृद्धि दर' (Decadal Growth Rate) कितनी रही?",
+      "question": "2001 से 2011 के दशक में बिहार की 'दशकीय जनसंख्या वृद्धि दर' (Decadal Growth Rate) कितनी रही?\nWhat was the 'Decade Population Growth Rate' of Bihar in the decade 2001 to 2011?",
       "options": [
         "A. 25.42% (देश में छठा स्थान)",
         "B. 17.7%",
         "C. 30.5%",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "राष्ट्रीय दशकीय वृद्धि दर 17.7% थी, जबकि बिहार में यह 25.42% रही।"
@@ -1126,13 +1126,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Current Affairs & Bihar GK",
-      "question": "नवादा और गया के किस प्रसिद्ध पान के पत्ते को 2018 में जीआई टैग का दर्जा मिला?",
+      "question": "नवादा और गया के किस प्रसिद्ध पान के पत्ते को 2018 में जीआई टैग का दर्जा मिला?\nWhich famous betel leaf of Nawada and Gaya got GI tag status in 2018?",
       "options": [
         "A. मगही पान (Magahi Paan)",
         "B. बनारसी पान",
         "C. मीठा पान",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "मुलायम, घुलनशील और रेशारहित मगही पान देश-विदेश में अत्यंत लोकप्रिय है।"
@@ -1142,13 +1142,13 @@ const PRACTICE_SET_06 = {
       "section": "part2",
       "sectionName": "Part II: General Studies",
       "topic": "Current Affairs & Bihar GK",
-      "question": "नए संसद भवन में लोकसभा अध्यक्ष के आसन के समीप स्थापित किया गया ऐतिहासिक 'सेंगोल' (Sengol) किस प्राचीन साम्राज्य से संबंधित राजदंड है?",
+      "question": "नए संसद भवन में लोकसभा अध्यक्ष के आसन के समीप स्थापित किया गया ऐतिहासिक 'सेंगोल' (Sengol) किस प्राचीन साम्राज्य से संबंधित राजदंड है?\nThe historical 'Sengol' installed near the seat of the Lok Sabha Speaker in the new Parliament House is the scepter related to which ancient empire?",
       "options": [
         "A. चोल साम्राज्य (Chola Dynasty - सत्ता हस्तांतरण का प्रतीक)",
         "B. मौर्य",
         "C. गुप्त",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "तमिलनाडु के थिरुववदुथुराई अधीनम द्वारा 1947 में नेहरू को दिया गया सेंगोल नए संसद भवन में प्रतिष्ठित हुआ।"
@@ -1158,13 +1158,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "Which register in an accumulator-based architecture holds intermediate arithmetic and logical results?",
+      "question": "Which register in an accumulator-based architecture holds intermediate arithmetic and logical results?\nसंचायक-आधारित आर्किटेक्चर में कौन सा रजिस्टर मध्यवर्ती अंकगणित और तार्किक परिणाम रखता है?",
       "options": [
         "A. Accumulator (AC)",
         "B. Instruction Register (IR)",
         "C. Program Counter (PC)",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The Accumulator register implicitly serves as one of the source operands and the destination for ALU operations."
@@ -1174,13 +1174,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "What memory property allows cache systems to successfully anticipate future data accesses based on recently accessed memory addresses?",
+      "question": "What memory property allows cache systems to successfully anticipate future data accesses based on recently accessed memory addresses?\nकौन सी मेमोरी प्रॉपर्टी कैश सिस्टम को हाल ही में एक्सेस किए गए मेमोरी एड्रेस के आधार पर भविष्य के डेटा एक्सेस का सफलतापूर्वक अनुमान लगाने की अनुमति देती है?",
       "options": [
         "A. Principle of Locality of Reference (Temporal and Spatial Locality)",
         "B. Virtual address translation",
         "C. Parity checking",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Locality of reference states that programs tend to reuse recent memory locations (temporal) and nearby addresses (spatial)."
@@ -1190,13 +1190,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "Which addressing mode uses a pointer that points to a memory location containing ANOTHER memory address (Effective Address = M[Address])?",
+      "question": "Which addressing mode uses a pointer that points to a memory location containing ANOTHER memory address (Effective Address = M[Address])?\nकौन सा एड्रेसिंग मोड एक पॉइंटर का उपयोग करता है जो किसी अन्य मेमोरी एड्रेस (प्रभावी पता = एम [पता]) वाले मेमोरी स्थान को इंगित करता है?",
       "options": [
         "A. Memory Indirect Addressing Mode",
         "B. Immediate Addressing Mode",
         "C. Indexed Addressing Mode",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Indirect Addressing requires two sequential memory accesses: first to read the pointer address, second to read the operand."
@@ -1206,13 +1206,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "How can structural hazards between instruction fetch and data operand fetch be eliminated?",
+      "question": "How can structural hazards between instruction fetch and data operand fetch be eliminated?\nनिर्देश फ़ेच और डेटा ऑपरेंड फ़ेच के बीच संरचनात्मक खतरों को कैसे समाप्त किया जा सकता है?",
       "options": [
         "A. Using separate Instruction and Data caches (Harvard cache architecture)",
         "B. Decreasing pipeline clock speed",
         "C. Increasing branch penalties",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Providing independent L1 Instruction (L1I) and L1 Data (L1D) caches allows simultaneous instruction and data memory access without structural conflict."
@@ -1222,13 +1222,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "If a microprocessor has a 64-bit address bus, what is its theoretical maximum addressable physical memory capacity?",
+      "question": "If a microprocessor has a 64-bit address bus, what is its theoretical maximum addressable physical memory capacity?\nयदि एक माइक्रोप्रोसेसर में 64-बिट एड्रेस बस है, तो इसकी सैद्धांतिक अधिकतम एड्रेसेबल भौतिक मेमोरी क्षमता क्या है?",
       "options": [
         "A. 16 Exabytes (16 EB = 2^64 bytes)",
         "B. 16 Terabytes",
         "C. 64 Gigabytes",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "2^64 bytes = 16 * 2^60 bytes = 16 Exabytes (EB), providing an astronomically large flat address space."
@@ -1238,13 +1238,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "In the 'Cycle Stealing' mode of DMA transfer, how does the DMA controller utilize the system bus?",
+      "question": "In the 'Cycle Stealing' mode of DMA transfer, how does the DMA controller utilize the system bus?\nडीएमए ट्रांसफर के 'साइकिल चोरी' मोड में, डीएमए नियंत्रक सिस्टम बस का उपयोग कैसे करता है?",
       "options": [
         "A. The DMA controller acquires the bus for the duration of a single bus cycle to transfer one byte/word, then immediately yields it back to the CPU",
         "B. It locks the bus until the entire hard disk is read",
         "C. It only transfers data when the CPU is completely powered down",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Cycle Stealing takes one memory cycle from the processor when the CPU is not accessing the bus, minimizing impact on foreground CPU execution."
@@ -1254,13 +1254,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "If a system has a 32-bit physical address, a cache with 1024 lines, and a block size of 64 bytes, how many bits are used for the Line (Index) field?",
+      "question": "If a system has a 32-bit physical address, a cache with 1024 lines, and a block size of 64 bytes, how many bits are used for the Line (Index) field?\nयदि किसी सिस्टम में 32-बिट भौतिक पता, 1024 लाइनों वाला कैश और 64 बाइट्स का ब्लॉक आकार है, तो लाइन (इंडेक्स) फ़ील्ड के लिए कितने बिट्स का उपयोग किया जाता है?",
       "options": [
         "A. 10 bits (since 2^10 = 1024)",
         "B. 6 bits",
         "C. 16 bits",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Number of cache lines = 1024 = 2^10, so exactly 10 bits are needed to index the lines. Block offset = log2(64) = 6 bits. Tag = 32 - 10 - 6 = 16 bits."
@@ -1270,13 +1270,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Architecture & Organization",
-      "question": "Which of the following is a defining characteristic of RISC (Reduced Instruction Set Computer) architecture?",
+      "question": "Which of the following is a defining characteristic of RISC (Reduced Instruction Set Computer) architecture?\nनिम्नलिखित में से कौन सा आरआईएससी (रिड्यूस्ड इंस्ट्रक्शन सेट कंप्यूटर) आर्किटेक्चर की एक परिभाषित विशेषता है?",
       "options": [
         "A. Fixed-length instructions, simple hardwired control unit, and Load/Store memory model",
         "B. Variable-length complex instructions with many addressing modes",
         "C. Memory-to-memory ALU operations",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "RISC focuses on simple, uniform-length instructions executing in single clock cycles, with ALU operations restricted strictly to registers."
@@ -1286,13 +1286,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "Convert the binary number (111001)₂ to its equivalent hexadecimal representation:",
+      "question": "Convert the binary number (111001)₂ to its equivalent hexadecimal representation:\nबाइनरी संख्या (111001)₂ को उसके समकक्ष हेक्साडेसिमल प्रतिनिधित्व में बदलें:",
       "options": [
         "A. (39)₁₆",
         "B. (3B)₁₆",
         "C. (38)₁₆",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Grouping the bits of (111001)₂ into 4-bit nibbles from right to left gives (39)₁₆ (decimal 57)."
@@ -1302,13 +1302,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "What is the 8-bit 2's complement representation of the decimal integer -17?",
+      "question": "What is the 8-bit 2's complement representation of the decimal integer -17?\nदशमलव पूर्णांक -17 का 8-बिट 2 का पूरक प्रतिनिधित्व क्या है?",
       "options": [
         "A. 11101111",
         "B. 11110001",
         "C. 11101100",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Positive magnitude 17 in 8-bit binary is 00010001. Inverting all bits gives 1's complement 11101110; adding 1 yields 2's complement 11101111."
@@ -1318,13 +1318,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "An Exclusive-OR (XOR) gate with two inputs A and B produces an output of HIGH (1) when:",
+      "question": "An Exclusive-OR (XOR) gate with two inputs A and B produces an output of HIGH (1) when:\nदो इनपुट ए और बी के साथ एक एक्सक्लूसिव-ओआर (एक्सओआर) गेट उच्च (1) का आउटपुट उत्पन्न करता है जब:",
       "options": [
         "A. Inputs A and B have different logic values (one is 0 and the other is 1)",
         "B. Both inputs A and B are 1",
         "C. Both inputs A and B are 0",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The XOR gate (Y = A ⊕ B = A'B + AB') is an inequality detector: output is 1 when inputs differ, and 0 when they match."
@@ -1334,13 +1334,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "According to the Complementarity Law of Boolean algebra:",
+      "question": "According to the Complementarity Law of Boolean algebra:\nबूलियन बीजगणित के पूरकता नियम के अनुसार:",
       "options": [
         "A. A + A' = 1 and A · A' = 0",
         "B. A + A' = 0",
         "C. A · A' = 1",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A variable ORed with its complement is always 1 (tautology); a variable ANDed with its complement is always 0 (contradiction)."
@@ -1350,13 +1350,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "In a 4-variable K-Map, grouping an isolated single cell (group size = 1) yields a product term with how many literals?",
+      "question": "In a 4-variable K-Map, grouping an isolated single cell (group size = 1) yields a product term with how many literals?\n4-वेरिएबल के-मैप में, एक अलग एकल सेल (समूह आकार = 1) को समूहीकृत करने से कितने अक्षर के साथ एक उत्पाद शब्द प्राप्त होता है?",
       "options": [
         "A. 4 literals",
         "B. 3 literals",
         "C. 2 literals",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A group of size 2^0 = 1 eliminates 0 variables, retaining all 4 literals in the product term (e.g., A' B C' D)."
@@ -1366,13 +1366,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "What are the Boolean expressions for the Sum and Carry-out (Cout) of a Full Adder?",
+      "question": "What are the Boolean expressions for the Sum and Carry-out (Cout) of a Full Adder?\nपूर्ण योजक के योग और कैरी-आउट (काउट) के लिए बूलियन अभिव्यक्तियाँ क्या हैं?",
       "options": [
         "A. Sum = A ⊕ B ⊕ Cin, Cout = AB + Cin(A ⊕ B)",
         "B. Sum = AB + Cin, Cout = A ⊕ B ⊕ Cin",
         "C. Sum = A + B + Cin, Cout = ABCin",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Sum = A ⊕ B ⊕ Cin. Cout = AB + Cin(A ⊕ B), which is also expressible as AB + BCin + ACin."
@@ -1382,13 +1382,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "In an active-low NAND-gate S'R' Latch, what is the inactive quiescent state of the control inputs?",
+      "question": "In an active-low NAND-gate S'R' Latch, what is the inactive quiescent state of the control inputs?\nएक सक्रिय-निम्न NAND-गेट S'R' लैच में, नियंत्रण इनपुट की निष्क्रिय निष्क्रिय स्थिति क्या है?",
       "options": [
         "A. S' = 1, R' = 1 (Hold state / No change)",
         "B. S' = 0, R' = 0",
         "C. S' = 1, R' = 0",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "For cross-coupled NAND gates, 1-1 preserves current state; pulling S' to 0 sets Q to 1; pulling R' to 0 resets Q to 0; 0-0 is forbidden."
@@ -1398,13 +1398,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Digital Logic & Number Systems",
-      "question": "Which TTL integrated circuit is the classic, widely used 4-bit asynchronous decade (BCD) counter?",
+      "question": "Which TTL integrated circuit is the classic, widely used 4-bit asynchronous decade (BCD) counter?\nकौन सा टीटीएल एकीकृत सर्किट क्लासिक, व्यापक रूप से उपयोग किया जाने वाला 4-बिट एसिंक्रोनस दशक (बीसीडी) काउंटर है?",
       "options": [
         "A. 7490 (or 74LS90)",
         "B. 7400",
         "C. 74138",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The 74LS90 contains a divide-by-2 and a divide-by-5 section, cascaded together to form a BCD decade counter."
@@ -1414,13 +1414,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What is the output of type( (50) ) versus type( (50,) ) in Python?",
+      "question": "What is the output of type( (50) ) versus type( (50,) ) in Python?\nपायथन में टाइप((50)) बनाम टाइप((50,)) का आउटपुट क्या है?",
       "options": [
         "A. <class 'int'> and <class 'tuple'>",
         "B. Both are tuple",
         "C. Both are int",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A single value in parentheses without a trailing comma is treated as a parenthesized integer. (50,) is a 1-element tuple."
@@ -1430,13 +1430,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What is the result of the exponentiation expression 2 ** 3 ** 2 in Python?",
+      "question": "What is the result of the exponentiation expression 2 ** 3 ** 2 in Python?\nपायथन में घातांक अभिव्यक्ति 2 ** 3 ** 2 का परिणाम क्या है?",
       "options": [
         "A. 512 (since ** is right-to-left associative: 2 ** (3 ** 2) = 2 ** 9 = 512)",
         "B. 64",
         "C. 36",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The power operator ** associates from right to left: 3 ** 2 = 9, then 2 ** 9 = 512."
@@ -1446,13 +1446,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "Which of the following values is considered 'Truthy' in a Python conditional context?",
+      "question": "Which of the following values is considered 'Truthy' in a Python conditional context?\nपायथन सशर्त संदर्भ में निम्नलिखित में से कौन सा मान 'सत्य' माना जाता है?",
       "options": [
         "A. 'False' (a non-empty string)",
         "B. 0",
         "C. [] (empty list)",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Any non-empty string (even '0' or 'False') has non-zero length and evaluates to True in boolean contexts."
@@ -1462,13 +1462,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What does range(5, 2) generate with default step +1?",
+      "question": "What does range(5, 2) generate with default step +1?\nश्रेणी(5,2) डिफ़ॉल्ट चरण +1 के साथ क्या उत्पन्न करती है?",
       "options": [
         "A. An empty sequence (generates no numbers)",
         "B. 5, 4, 3",
         "C. SyntaxError",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "When start > stop and step is positive (+1), range produces an empty sequence."
@@ -1478,13 +1478,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What is the output of 'COMPUTER'[1:4] in Python?",
+      "question": "What is the output of 'COMPUTER'[1:4] in Python?\nपायथन में 'कंप्यूटर'[1:4] का आउटपुट क्या है?",
       "options": [
         "A. 'OMP' (indices 1, 2, 3: C=0, O=1, M=2, P=3, U=4)",
         "B. 'COMP'",
         "C. 'OMPU'",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Extracts characters at indices 1, 2, and 3: 'OMP'."
@@ -1494,13 +1494,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What error occurs if str.join() is called on a list containing non-string elements, e.g. '-'.join([1, 2, 3])?",
+      "question": "What error occurs if str.join() is called on a list containing non-string elements, e.g. '-'.join([1, 2, 3])?\nयदि गैर-स्ट्रिंग तत्वों वाली सूची में str.join() को कॉल किया जाता है, तो क्या त्रुटि होती है, उदाहरण के लिए? '-'.जुड़ें([1,2,3])?",
       "options": [
         "A. TypeError: sequence item 0: expected str instance, int found",
         "B. ValueError",
         "C. Converts ints automatically",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "join() expects all items in the iterable to be of type str; ints must be cast first (e.g. join(map(str, nums)))."
@@ -1510,13 +1510,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What is the output of: a = [1, 2]; a.extend([3, 4]); print(a)?",
+      "question": "What is the output of: a = [1, 2]; a.extend([3, 4]); print(a)?\nइसका आउटपुट क्या है: a = [1, 2]; ए.विस्तार([3,4]); प्रिंट(ए)?",
       "options": [
         "A. [1, 2, 3, 4]",
         "B. [1, 2, [3, 4]]",
         "C. [3, 4, 1, 2]",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "extend() unpacks [3, 4] and appends elements 3 and 4 individually."
@@ -1526,13 +1526,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "Are Python tuples mutable or immutable?",
+      "question": "Are Python tuples mutable or immutable?\nक्या पायथन टुपल्स परिवर्तनशील या अपरिवर्तनीय हैं?",
       "options": [
         "A. Immutable (elements cannot be added, removed, or reassigned after creation)",
         "B. Mutable",
         "C. Mutable if length > 1",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Tuples are immutable sequence types; once instantiated, their element slots cannot be modified."
@@ -1542,13 +1542,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What happens when you access a non-existent key using bracket notation: d = {'a': 1}; print(d['b'])?",
+      "question": "What happens when you access a non-existent key using bracket notation: d = {'a': 1}; print(d['b'])?\nजब आप ब्रैकेट नोटेशन का उपयोग करके किसी गैर-मौजूद कुंजी तक पहुंचते हैं तो क्या होता है: d = {'a': 1}; प्रिंट(डी['बी'])?",
       "options": [
         "A. Raises KeyError: 'b'",
         "B. Returns None",
         "C. Returns 0",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Direct bracket access d[key] raises a KeyError exception if the key is not found in the dictionary."
@@ -1558,13 +1558,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "Are Python sets mutable or immutable?",
+      "question": "Are Python sets mutable or immutable?\nक्या पायथन सेट परिवर्तनशील या अपरिवर्तनीय हैं?",
       "options": [
         "A. Mutable (elements can be added and removed in-place using add, remove, discard)",
         "B. Immutable",
         "C. Immutable if non-empty",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Standard set objects are mutable; frozenset is the immutable counterpart."
@@ -1574,13 +1574,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What is the idiomatically recommended way to use a default list in a Python function?",
+      "question": "What is the idiomatically recommended way to use a default list in a Python function?\nपायथन फ़ंक्शन में डिफ़ॉल्ट सूची का उपयोग करने के लिए मुहावरेदार रूप से अनुशंसित तरीका क्या है?",
       "options": [
         "A. def func(lst=None): if lst is None: lst = []",
         "B. def func(lst=[]): pass",
         "C. def func(lst=list): pass",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Using None as a sentinel default value and creating a fresh list inside the body ensures a clean list per call."
@@ -1590,13 +1590,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "What is the output of: list(map(lambda x: x * 2, [1, 2, 3]))?",
+      "question": "What is the output of: list(map(lambda x: x * 2, [1, 2, 3]))?\nइसका आउटपुट क्या है: सूची(मानचित्र(लैम्ब्डा x: x * 2, [1, 2, 3]))?",
       "options": [
         "A. [2, 4, 6]",
         "B. [1, 2, 3, 1, 2, 3]",
         "C. [2, 2, 2]",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Applies the doubling lambda to each item in the list: [2, 4, 6]."
@@ -1606,13 +1606,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "Which file mode creates a new file for writing, but raises a FileExistsError if the file already exists?",
+      "question": "Which file mode creates a new file for writing, but raises a FileExistsError if the file already exists?\nकौन सा फ़ाइल मोड लिखने के लिए एक नई फ़ाइल बनाता है, लेकिन यदि फ़ाइल पहले से मौजूद है तो FileExistsError उत्पन्न करता है?",
       "options": [
         "A. 'x' (exclusive creation mode)",
         "B. 'w'",
         "C. 'a'",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "'x' mode guarantees that an existing file is not accidentally overwritten."
@@ -1622,13 +1622,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Python Programming",
-      "question": "Which keyword is used to intentionally throw (trigger) an exception in Python?",
+      "question": "Which keyword is used to intentionally throw (trigger) an exception in Python?\nपाइथॉन में किसी अपवाद को जानबूझकर फेंकने (ट्रिगर) करने के लिए किस कीवर्ड का उपयोग किया जाता है?",
       "options": [
         "A. raise",
         "B. throw",
         "C. assert",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Exceptions are explicitly triggered using 'raise': raise ValueError('Invalid input')."
@@ -1638,13 +1638,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Object-Oriented Programming (OOP)",
-      "question": "Is the identifier name 'self' a reserved keyword in the Python language?",
+      "question": "Is the identifier name 'self' a reserved keyword in the Python language?\nक्या पहचानकर्ता नाम 'स्वयं' पायथन भाषा में एक आरक्षित कीवर्ड है?",
       "options": [
         "A. No, 'self' is a strong naming convention, not a keyword (any valid identifier could technically be used, though strongly discouraged)",
         "B. Yes, 'self' is a reserved keyword",
         "C. Only inside __init__",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "'self' is not a language keyword, but violating the convention severely damages readability and style standards (PEP 8)."
@@ -1654,13 +1654,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Object-Oriented Programming (OOP)",
-      "question": "How is a Protected attribute indicated by convention in Python?",
+      "question": "How is a Protected attribute indicated by convention in Python?\nपायथन में कन्वेंशन द्वारा संरक्षित विशेषता को कैसे दर्शाया जाता है?",
       "options": [
         "A. By prefixing the identifier name with a SINGLE leading underscore (e.g. _protected_var)",
         "B. Using the 'protected' keyword",
         "C. Using an exclamation mark",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A single leading underscore is an advisory convention indicating that an attribute is intended for internal or subclass use only."
@@ -1670,13 +1670,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Object-Oriented Programming (OOP)",
-      "question": "What is Multilevel Inheritance?",
+      "question": "What is Multilevel Inheritance?\nबहुस्तरीय वंशानुक्रम क्या है?",
       "options": [
         "A. A class inherits from a child class, forming an inheritance chain/hierarchy (e.g. Class C inherits from B, which inherits from A)",
         "B. A class inheriting from multiple parents",
         "C. A class with multiple methods",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "In multilevel inheritance, ancestry cascades down generations: Grandparent -> Parent -> Child."
@@ -1686,13 +1686,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Object-Oriented Programming (OOP)",
-      "question": "What does the @functools.singledispatch decorator do in Python?",
+      "question": "What does the @functools.singledispatch decorator do in Python?\n@functools.singledispatch डेकोरेटर पायथन में क्या करता है?",
       "options": [
         "A. Transforms a regular function into a generic single-dispatch function that executes different implementations based on the TYPE of the first argument",
         "B. Dispatches threads",
         "C. Runs code on one CPU",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "singledispatch provides clean, extensible function overloading based on argument type: @func.register(int) def _(x): ..."
@@ -1702,13 +1702,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Object-Oriented Programming (OOP)",
-      "question": "What happens if a concrete subclass inherits from an ABC but forgets to implement one of the declared abstract methods?",
+      "question": "What happens if a concrete subclass inherits from an ABC but forgets to implement one of the declared abstract methods?\nक्या होता है यदि एक ठोस उपवर्ग एबीसी से विरासत में मिलता है लेकिन घोषित अमूर्त तरीकों में से एक को लागू करना भूल जाता है?",
       "options": [
         "A. The subclass remains abstract itself and CANNOT be instantiated, raising a TypeError upon instantiation",
         "B. Compiles but crashes at runtime when called",
         "C. SyntaxError at import",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A subclass remains abstract until EVERY abstract method inherited from its parent ABC is given a concrete implementation."
@@ -1718,13 +1718,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "If a 2D array A[1...10, 1...10] is stored in Row-Major order with Base=2000 and w=2 bytes, what is the address of A[5, 4]?",
+      "question": "If a 2D array A[1...10, 1...10] is stored in Row-Major order with Base=2000 and w=2 bytes, what is the address of A[5, 4]?\nयदि 2D सरणी A[1...10, 1...10] को बेस=2000 और w=2 बाइट्स के साथ पंक्ति-प्रमुख क्रम में संग्रहीत किया जाता है, तो A[5, 4] का पता क्या है?",
       "options": [
         "A. 2086 (2000 + [(5-1)*10 + (4-1)] * 2 = 2000 + [40 + 3] * 2 = 2086)",
         "B. 2076",
         "C. 2044",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Row offset = (5 - 1) * 10 = 40; Column offset = 4 - 1 = 3; Total offset = 43 * 2 = 86 bytes; Address = 2086."
@@ -1734,13 +1734,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "What condition causes a 'Stack Underflow' error?",
+      "question": "What condition causes a 'Stack Underflow' error?\nकौन सी स्थिति 'स्टैक अंडरफ्लो' त्रुटि का कारण बनती है?",
       "options": [
         "A. Attempting to pop or peek an element from a stack that is EMPTY (top == -1)",
         "B. Stack is completely full",
         "C. Stack has 1 element",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Underflow occurs when attempting to remove an element when no elements exist."
@@ -1750,13 +1750,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "In a naive Linear Array implementation of a queue of size N, what major inefficiency occurs after several enqueues and dequeues?",
+      "question": "In a naive Linear Array implementation of a queue of size N, what major inefficiency occurs after several enqueues and dequeues?\nआकार N की एक कतार के एक सरल रैखिक सरणी कार्यान्वयन में, कई कतारों और कतारों के बाद कौन सी बड़ी अक्षमता होती है?",
       "options": [
         "A. False Overflow (the rear pointer reaches N-1, preventing new insertions even though vacant space exists at the front)",
         "B. Memory corruption",
         "C. Data inversion",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "As elements are dequeued, front moves forward; once rear reaches the end, new insertions fail despite empty slots at the front."
@@ -1766,13 +1766,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "In a 0-indexed array representation of a binary heap, what is the index of the Left Child of node i?",
+      "question": "In a 0-indexed array representation of a binary heap, what is the index of the Left Child of node i?\nबाइनरी हीप के 0-अनुक्रमित सरणी प्रतिनिधित्व में, नोड i के बाएं चाइल्ड का सूचकांक क्या है?",
       "options": [
         "A. 2 * i + 1",
         "B. 2 * i",
         "C. 2 * i + 2",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "For 0-based indexing: Left(i) = 2i + 1; Right(i) = 2i + 2; Parent(i) = (i - 1) // 2."
@@ -1782,13 +1782,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "What is the time complexity to INSERT a node at the END of a Singly Linked List if only the 'head' pointer is maintained?",
+      "question": "What is the time complexity to INSERT a node at the END of a Singly Linked List if only the 'head' pointer is maintained?\nयदि केवल 'हेड' पॉइंटर बनाए रखा जाता है तो सिंगल लिंक्ड सूची के अंत में एक नोड डालने में समय की जटिलता क्या है?",
       "options": [
         "A. O(n) linear time (must traverse all n nodes to locate the tail)",
         "B. O(1)",
         "C. O(log n)",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Without a tail pointer, one must traverse from head to tail to locate the last node, taking O(n) steps."
@@ -1798,13 +1798,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "Why can a Doubly Linked List delete a given node in O(1) time whereas a Singly Linked List takes O(n)?",
+      "question": "Why can a Doubly Linked List delete a given node in O(1) time whereas a Singly Linked List takes O(n)?\nएक डबल लिंक्ड सूची किसी दिए गए नोड को O(1) समय में क्यों हटा सकती है जबकि एक सिंगल लिंक्ड सूची O(n) लेती है?",
       "options": [
         "A. Because the doubly linked node directly references its predecessor via 'prev', while a singly linked node must traverse from head to find it",
         "B. DLL nodes are smaller",
         "C. SLL has no tail",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Having the prev pointer eliminates the need to scan from the head to find the preceding node."
@@ -1814,13 +1814,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "What is an 'Internal' node (Non-terminal Node)?",
+      "question": "What is an 'Internal' node (Non-terminal Node)?\n'आंतरिक' नोड (गैर-टर्मिनल नोड) क्या है?",
       "options": [
         "A. A node that has at least ONE child node",
         "B. A leaf node",
         "C. The root node only",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Internal nodes possess one or two children in a binary tree."
@@ -1830,13 +1830,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "What is the time complexity of Inorder, Preorder, and Postorder traversals on a binary tree with n nodes?",
+      "question": "What is the time complexity of Inorder, Preorder, and Postorder traversals on a binary tree with n nodes?\nएन नोड्स वाले बाइनरी ट्री पर इनऑर्डर, प्रीऑर्डर और पोस्टऑर्डर ट्रैवर्सल की समय जटिलता क्या है?",
       "options": [
         "A. O(n) linear time (each node is visited a constant number of times)",
         "B. O(log n)",
         "C. O(n log n)",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Every node is traversed exactly once, requiring O(n) time."
@@ -1846,13 +1846,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "Where does the MINIMUM element in a Binary Search Tree always reside?",
+      "question": "Where does the MINIMUM element in a Binary Search Tree always reside?\nबाइनरी सर्च ट्री में मिनिमम तत्व हमेशा कहाँ रहता है?",
       "options": [
         "A. At the leftmost node of the tree (follow left pointers until left is NULL)",
         "B. At the root",
         "C. At the rightmost leaf",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Because smaller keys always branch left, the minimum key is found at the leftmost node."
@@ -1862,13 +1862,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "What is the Adjacency List representation of a graph?",
+      "question": "What is the Adjacency List representation of a graph?\nकिसी ग्राफ़ का आसन्नता सूची प्रतिनिधित्व क्या है?",
       "options": [
         "A. An array of V linked lists or dynamic arrays, where list[u] contains all neighboring vertices directly connected to vertex u",
         "B. A 2D grid of bits",
         "C. A stack of edges",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Adjacency lists use O(V + E) memory space, making them vastly superior for sparse graphs where E << V²."
@@ -1878,13 +1878,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "Which algorithm is particularly efficient for sorting SMALL arrays (e.g. n < 20) or nearly-sorted data?",
+      "question": "Which algorithm is particularly efficient for sorting SMALL arrays (e.g. n < 20) or nearly-sorted data?\nछोटे सरणियों (उदा. n <20) या लगभग-सॉर्ट किए गए डेटा को सॉर्ट करने के लिए कौन सा एल्गोरिदम विशेष रूप से कुशल है?",
       "options": [
         "A. Insertion Sort",
         "B. Merge Sort",
         "C. Quick Sort",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Insertion sort has very low constant factors and minimal overhead, making it the algorithm of choice for small arrays in hybrid sorts."
@@ -1894,13 +1894,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Data Structures & Algorithms",
-      "question": "Why is `mid = low + (high - low) // 2` preferred over `mid = (low + high) // 2` in binary search implementations?",
+      "question": "Why is `mid = low + (high - low) // 2` preferred over `mid = (low + high) // 2` in binary search implementations?\nबाइनरी खोज कार्यान्वयन में `मध्य = निम्न + (उच्च - निम्न) // 2` को `मध्य = (निम्न + उच्च) // 2` से अधिक प्राथमिकता क्यों दी जाती है?",
       "options": [
         "A. To prevent integer arithmetic overflow when low + high exceeds the maximum integer limit (2³¹ - 1 in C/Java)",
         "B. To handle negative numbers",
         "C. It runs 2x faster",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "In fixed-width languages (C, C++, Java), (low + high) can overflow into a negative integer for large arrays."
@@ -1910,13 +1910,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "In the Three-Schema Architecture, what does the Conceptual (Logical) Level describe?",
+      "question": "In the Three-Schema Architecture, what does the Conceptual (Logical) Level describe?\nथ्री-स्कीमा आर्किटेक्चर में, वैचारिक (तार्किक) स्तर क्या वर्णन करता है?",
       "options": [
         "A. WHAT data is stored in the entire database, including entity types, attributes, relationships, and constraints, independent of physical storage",
         "B. User login credentials",
         "C. Network protocols",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The conceptual schema presents the community-wide view of the database (tables, foreign keys, constraints)."
@@ -1926,13 +1926,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "What is the 'Cardinality' of a relation?",
+      "question": "What is the 'Cardinality' of a relation?\nकिसी रिश्ते की 'कार्डिनैलिटी' क्या है?",
       "options": [
         "A. The total number of TUPLES (rows) currently stored in the relation",
         "B. The number of columns",
         "C. The number of primary keys",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Cardinality = Number of rows. (e.g. A table currently holding 500 student records has cardinality 500)."
@@ -1942,13 +1942,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "What are the two mandatory constraints enforced on every Primary Key in SQL?",
+      "question": "What are the two mandatory constraints enforced on every Primary Key in SQL?\nSQL में प्रत्येक प्राथमिक कुंजी पर लागू होने वाली दो अनिवार्य बाधाएँ क्या हैं?",
       "options": [
         "A. UNIQUE (no two rows can have the same key) AND NOT NULL (no primary key column can be null)",
         "B. Only UNIQUE",
         "C. Only NOT NULL",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A primary key enforces both uniqueness and non-nullness to guarantee reliable entity identification."
@@ -1958,13 +1958,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "What is a Weak Entity in the ER Model?",
+      "question": "What is a Weak Entity in the ER Model?\nईआर मॉडल में एक कमजोर इकाई क्या है?",
       "options": [
         "A. An entity that cannot be uniquely identified by its own attributes alone and depends on an identifying owner entity for existence",
         "B. An entity with no attributes",
         "C. A deleted entity",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A Weak Entity lacks a primary key and is existence-dependent on an identifying parent entity (e.g. Dependent depends on Employee)."
@@ -1974,13 +1974,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "Is the Projection operator (π) in formal relational algebra duplicate-eliminating?",
+      "question": "Is the Projection operator (π) in formal relational algebra duplicate-eliminating?\nक्या प्रोजेक्शन ऑपरेटर (π) औपचारिक संबंधपरक बीजगणित में डुप्लिकेट-उन्मूलन कर रहा है?",
       "options": [
         "A. Yes, because relational algebra operates on mathematical sets where duplicate tuples cannot exist",
         "B. No, duplicates are retained",
         "C. Only in SQL",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Pure relational algebra is set-based; projection drops duplicates automatically (unlike SQL `SELECT`, which requires `DISTINCT`)."
@@ -1990,13 +1990,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "According to Armstrong's Axioms, what does the Transitivity Rule state?",
+      "question": "According to Armstrong's Axioms, what does the Transitivity Rule state?\nआर्मस्ट्रांग के अभिगृहीतों के अनुसार, परिवर्तनशीलता नियम क्या बताता है?",
       "options": [
         "A. If X -> Y and Y -> Z hold, then X -> Z holds",
         "B. If X -> Y, then Y -> X",
         "C. If X -> Y, then X -> YZ",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Transitivity: intermediate dependencies can be chained together (X determines Y, and Y determines Z, so X determines Z)."
@@ -2006,13 +2006,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "Is TRUNCATE TABLE classified as DDL or DML in standard relational database engines (like Oracle, PostgreSQL, MySQL)?",
+      "question": "Is TRUNCATE TABLE classified as DDL or DML in standard relational database engines (like Oracle, PostgreSQL, MySQL)?\nक्या TRUNCATE TABLE को मानक रिलेशनल डेटाबेस इंजन (जैसे Oracle, PostgreSQL, MySQL) में DDL या DML के रूप में वर्गीकृत किया गया है?",
       "options": [
         "A. DDL (Data Definition Language) - it implicitly commits and deallocates data pages directly",
         "B. DML (Data Manipulation Language)",
         "C. DCL (Data Control Language)",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "TRUNCATE is a DDL operation: it deallocates storage extents, resets high-water marks, and cannot be rolled back in many standard RDBMS engines."
@@ -2022,13 +2022,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "Which SQL statement deletes specific rows from a table?",
+      "question": "Which SQL statement deletes specific rows from a table?\nकौन सा SQL कथन किसी तालिका से विशिष्ट पंक्तियों को हटा देता है?",
       "options": [
         "A. DELETE FROM table_name WHERE condition;",
         "B. REMOVE FROM table_name WHERE condition;",
         "C. DROP ROWS FROM table_name;",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "DELETE FROM table_name WHERE condition; removes all rows satisfying the predicate."
@@ -2038,13 +2038,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "How do aggregate functions like SUM, AVG, MIN, and MAX handle NULL values in a column?",
+      "question": "How do aggregate functions like SUM, AVG, MIN, and MAX handle NULL values in a column?\nSUM, AVG, MIN और MAX जैसे समग्र कार्य किसी कॉलम में NULL मानों को कैसे संभालते हैं?",
       "options": [
         "A. They completely IGNORE (skip) all NULL values during calculation",
         "B. They treat NULL as 0",
         "C. They return NULL immediately",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Standard SQL aggregate functions automatically ignore NULLs (e.g. AVG of [10, 20, NULL] is (10+20)/2 = 15)."
@@ -2054,13 +2054,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Database Management Systems & SQL",
-      "question": "What is a CROSS JOIN (Cartesian Product) between table A (m rows) and table B (n rows)?",
+      "question": "What is a CROSS JOIN (Cartesian Product) between table A (m rows) and table B (n rows)?\nतालिका A (m पंक्तियाँ) और तालिका B (n पंक्तियाँ) के बीच क्रॉस जॉइन (कार्टेशियन उत्पाद) क्या है?",
       "options": [
         "A. A join that combines EVERY row of table A with EVERY row of table B, producing m * n rows",
         "B. Produces m + n rows",
         "C. Produces max(m, n) rows",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A Cartesian product combines every tuple of A with every tuple of B, resulting in m * n rows without join conditions."
@@ -2070,13 +2070,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "In Unix/Linux, what does the fork() system call do?",
+      "question": "In Unix/Linux, what does the fork() system call do?\nयूनिक्स/लिनक्स में, फोर्क() सिस्टम कॉल क्या करता है?",
       "options": [
         "A. Creates a brand new child process that is an exact duplicate (clone) of the calling parent process",
         "B. Terminates the process",
         "C. Executes a compiler",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "fork() duplicates the parent's address space; it returns 0 to the child process and the child's PID to the parent process."
@@ -2086,13 +2086,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What is a Process Control Block (PCB) / Task Control Block?",
+      "question": "What is a Process Control Block (PCB) / Task Control Block?\nप्रोसेस कंट्रोल ब्लॉक (पीसीबी)/टास्क कंट्रोल ब्लॉक क्या है?",
       "options": [
         "A. A vital kernel data structure that stores all information and execution context associated with a specific process",
         "B. A physical chip on the motherboard",
         "C. A user directory",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The PCB maintains process state, PID, Program Counter (PC), CPU registers, memory limits, and open file lists."
@@ -2102,13 +2102,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What is the primary practical difficulty in implementing Shortest Job First (SJF) scheduling in real operating systems?",
+      "question": "What is the primary practical difficulty in implementing Shortest Job First (SJF) scheduling in real operating systems?\nवास्तविक ऑपरेटिंग सिस्टम में शॉर्टेस्ट जॉब फर्स्ट (एसजेएफ) शेड्यूलिंग को लागू करने में प्राथमिक व्यावहारिक कठिनाई क्या है?",
       "options": [
         "A. It is impossible to know the EXACT length of the next CPU burst in advance for arbitrary user programs",
         "B. It requires too much RAM",
         "C. It only works on 8-bit CPUs",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Operating systems cannot predict the future; they must approximate burst times using exponential smoothing of previous burst history."
@@ -2118,13 +2118,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What is a User-Level Thread (ULT)?",
+      "question": "What is a User-Level Thread (ULT)?\nउपयोगकर्ता-स्तरीय थ्रेड (ULT) क्या है?",
       "options": [
         "A. A thread managed entirely by a user-space threading library (e.g. POSIX pthreads, green threads) WITHOUT kernel awareness or intervention",
         "B. A thread that has root privileges",
         "C. A thread that controls hardware",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "ULTs execute in user space; switching threads does not require kernel mode transitions, making switching fast but blocking all threads on blocking I/O."
@@ -2134,13 +2134,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What does the 'Progress' requirement guarantee in the critical section problem?",
+      "question": "What does the 'Progress' requirement guarantee in the critical section problem?\nमहत्वपूर्ण अनुभाग समस्या में 'प्रगति' आवश्यकता क्या गारंटी देती है?",
       "options": [
         "A. If no process is in its critical section and some processes wish to enter, only those not in their remainder sections can participate in deciding who enters next, and selection cannot be postponed indefinitely",
         "B. Processes finish in 1 second",
         "C. CPU utilization stays above 50%",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Progress guarantees that when the critical section is free, an interested thread is granted entry without deadlocking or indefinite delay."
@@ -2150,13 +2150,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "In the Coffman conditions, what does 'No Preemption' mean?",
+      "question": "In the Coffman conditions, what does 'No Preemption' mean?\nकॉफ़मैन शर्तों में, 'नो प्रीएम्प्शन' का क्या अर्थ है?",
       "options": [
         "A. Resources cannot be forcibly confiscated from a process; a resource can be released only voluntarily by the holding process after completion",
         "B. CPU cannot be interrupted",
         "C. Process cannot be terminated",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "No Preemption prevents the OS from stripping held resources from a waiting process to satisfy other requests."
@@ -2166,13 +2166,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What is External Fragmentation?",
+      "question": "What is External Fragmentation?\nबाह्य विखंडन क्या है?",
       "options": [
         "A. Wasted memory space that occurs OUTSIDE allocated blocks when total free memory is sufficient to satisfy a request, but is broken into non-contiguous fragments",
         "B. Internal page waste",
         "C. Disk bad sectors",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "External fragmentation leaves enough aggregate free memory, but no single contiguous chunk is large enough to fit an incoming job."
@@ -2182,13 +2182,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What are the sequential steps executed by the OS when a Page Fault occurs?",
+      "question": "What are the sequential steps executed by the OS when a Page Fault occurs?\nपेज फॉल्ट होने पर ओएस द्वारा निष्पादित अनुक्रमिक चरण क्या हैं?",
       "options": [
         "A. Trap to OS -> Save context -> Check if valid address -> Find free frame -> Read page from disk into frame -> Update page table (set bit to valid) -> Restart faulted instruction",
         "B. Reboot PC -> Load file",
         "C. Terminate the process immediately",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The OS verifies the reference, initiates disk read, context switches while waiting, updates PTE, and restarts the instruction transparently."
@@ -2198,13 +2198,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Operating Systems",
-      "question": "What is Rotational Latency in magnetic disk access?",
+      "question": "What is Rotational Latency in magnetic disk access?\nचुंबकीय डिस्क एक्सेस में घूर्णी विलंबता क्या है?",
       "options": [
         "A. The time spent waiting for the target sector on the spinning platter to rotate directly beneath the read/write head",
         "B. The time to move the arm across tracks",
         "C. The time to spin down the drive",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Average rotational latency is the time for half a revolution: for a 7200 RPM drive, one revolution is $8.33\text{ ms}$, so average latency is $\u0007pprox 4.16\text{ ms}$."
@@ -2214,13 +2214,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is a Personal Area Network (PAN)?",
+      "question": "What is a Personal Area Network (PAN)?\nपर्सनल एरिया नेटवर्क (पैन) क्या है?",
       "options": [
         "A. A very short-range computer network centered around an individual person within a reach of approximately 10 meters (e.g. Bluetooth)",
         "B. A city-wide fiber network",
         "C. A banking network",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "PAN interconnects personal devices (smartphones, headphones, smartwatches) over short distances using Bluetooth, Zigbee, or NFC."
@@ -2230,13 +2230,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "Which layer of the OSI model is Layer 3?",
+      "question": "Which layer of the OSI model is Layer 3?\nOSI मॉडल की कौन सी परत लेयर 3 है?",
       "options": [
         "A. Network Layer",
         "B. Transport Layer",
         "C. Data Link Layer",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Layer 3 is the Network layer, responsible for end-to-end packet routing and logical IP addressing across multiple networks."
@@ -2246,13 +2246,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is Parity Check in error detection?",
+      "question": "What is Parity Check in error detection?\nत्रुटि पता लगाने में समता जाँच क्या है?",
       "options": [
         "A. Adding a single redundant parity bit to each data word such that the total count of 1s is either always Even (Even Parity) or always Odd (Odd Parity)",
         "B. Comparing two bytes",
         "C. Multiplying bits",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Parity check detects any single-bit error (or odd number of bit errors), but fails completely if an even number of bits are flipped."
@@ -2262,13 +2262,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is Non-Persistent CSMA?",
+      "question": "What is Non-Persistent CSMA?\nनॉन-पर्सिस्टेंट सीएसएमए क्या है?",
       "options": [
         "A. Station listens: if channel is busy, it waits a random amount of time and senses the channel again, reducing collision chances",
         "B. Never transmits data",
         "C. Transmits immediately without sensing",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Non-persistent CSMA introduces random backoff upon busy channel, greatly reducing collisions at the cost of slight channel idle delay."
@@ -2278,13 +2278,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "In Classful IPv4 addressing, what is Class D (224.0.0.0 to 239.255.255.255) reserved for?",
+      "question": "In Classful IPv4 addressing, what is Class D (224.0.0.0 to 239.255.255.255) reserved for?\nक्लासफुल IPv4 एड्रेसिंग में, क्लास D (224.0.0.0 से 239.255.255.255) किसके लिए आरक्षित है?",
       "options": [
         "A. Multicast addressing (Leading bits '1110')",
         "B. Experimental research",
         "C. Large enterprise networks",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Class D (224.0.0.0 - 239.255.255.255) is dedicated to IP Multicast streaming, where packets are delivered to multiple subscribers."
@@ -2294,13 +2294,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "In IPv4 fragmentation, what unit is used to express the Fragment Offset field?",
+      "question": "In IPv4 fragmentation, what unit is used to express the Fragment Offset field?\nIPv4 विखंडन में, फ्रैगमेंट ऑफसेट फ़ील्ड को व्यक्त करने के लिए किस इकाई का उपयोग किया जाता है?",
       "options": [
         "A. 8-byte (64-bit) blocks (Fragment Offset = byte position divided by 8)",
         "B. 1-byte bytes",
         "C. 32-byte words",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The 13-bit Fragment Offset specifies the starting byte position of the fragment relative to the original datagram, measured in 8-byte units."
@@ -2310,13 +2310,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is the minimum header size of a TCP segment without options?",
+      "question": "What is the minimum header size of a TCP segment without options?\nविकल्पों के बिना टीसीपी सेगमेंट का न्यूनतम हेडर आकार क्या है?",
       "options": [
         "A. 20 bytes (maximum 60 bytes with options)",
         "B. 8 bytes",
         "C. 40 bytes",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "A standard TCP header is 20 bytes long (Data Offset field value of 5 means $5 \times 4 = 20\text{ bytes}$)."
@@ -2326,13 +2326,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is the difference between Recursive and Iterative DNS queries?",
+      "question": "What is the difference between Recursive and Iterative DNS queries?\nपुनरावर्ती और पुनरावृत्त DNS क्वेरीज़ के बीच क्या अंतर है?",
       "options": [
         "A. In a Recursive query, the contacted server MUST return the final answer (or error), querying other servers on client's behalf; in an Iterative query, the server returns the best referral to the next server",
         "B. They are identical",
         "C. Recursive is for emails only",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Clients issue recursive queries to local resolvers; local resolvers perform iterative queries across Root -> TLD -> Authoritative name servers."
@@ -2342,13 +2342,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is a CAM (Content Addressable Memory) Table / MAC Address Table in a switch?",
+      "question": "What is a CAM (Content Addressable Memory) Table / MAC Address Table in a switch?\nएक स्विच में CAM (कंटेंट एड्रेसेबल मेमोरी) टेबल/मैक एड्रेस टेबल क्या है?",
       "options": [
         "A. A high-speed hardware table mapping known MAC addresses to their corresponding physical switch ports",
         "B. A list of IP addresses",
         "C. A table of user passwords",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "The CAM table enables instantaneous $O(1)$ hardware lookups to determine which output port leads to a given destination MAC address."
@@ -2358,13 +2358,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Computer Networks & Network Security",
-      "question": "What is 'Non-Repudiation' in information security?",
+      "question": "What is 'Non-Repudiation' in information security?\nसूचना सुरक्षा में 'गैर-अस्वीकरण' क्या है?",
       "options": [
         "A. The assurance that a sender or party to a transaction CANNOT falsely deny having sent a message or performed an action",
         "B. Encrypting emails",
         "C. Changing passwords regularly",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Non-repudiation is provided by digital signatures: only the owner of the private key could have generated the signature."
@@ -2374,13 +2374,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Software Engineering, Compiler & TOC",
-      "question": "What is the major drawback or disadvantage of the Waterfall Model?",
+      "question": "What is the major drawback or disadvantage of the Waterfall Model?\nवाटरफॉल मॉडल की प्रमुख खामी या हानि क्या है?",
       "options": [
         "A. Working software is produced very late in the lifecycle, and customer feedback is delayed until after delivery, making requirement changes catastrophic",
         "B. It requires too much testing",
         "C. It cannot be documented",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Because a working build appears only near the end, requirement misunderstandings discovered during late testing lead to massive budget and schedule overruns."
@@ -2390,13 +2390,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Software Engineering, Compiler & TOC",
-      "question": "In Top-Down Integration Testing, what are 'Stubs' used for?",
+      "question": "In Top-Down Integration Testing, what are 'Stubs' used for?\nटॉप-डाउन एकीकरण परीक्षण में, 'स्टब्स' का उपयोग किस लिए किया जाता है?",
       "options": [
         "A. Dummy/mock replacement modules that simulate lower-level child modules that have not yet been developed or integrated",
         "B. Programs that test CPU speed",
         "C. Hardware cables",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Stubs act as dummy subordinate components, returning hardcoded dummy data so upper-level modules can be tested before lower modules are built."
@@ -2406,13 +2406,13 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Software Engineering, Compiler & TOC",
-      "question": "What mathematical model and formal tool are primarily used to implement Lexical Analyzers (e.g. Lex / Flex)?",
+      "question": "What mathematical model and formal tool are primarily used to implement Lexical Analyzers (e.g. Lex / Flex)?\nलेक्सिकल एनालाइजर (जैसे लेक्स/फ्लेक्स) को लागू करने के लिए मुख्य रूप से किस गणितीय मॉडल और औपचारिक उपकरण का उपयोग किया जाता है?",
       "options": [
         "A. Regular Expressions and Deterministic Finite Automata (DFA)",
         "B. Context-Free Grammars and Pushdown Automata",
         "C. Turing Machines",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "Tokens are defined using Regular Expressions and recognized efficiently in $O(1)$ time per character by DFAs generated via Lex/Flex."
@@ -2422,26 +2422,19 @@ const PRACTICE_SET_06 = {
       "section": "part3",
       "sectionName": "Part III: Computer Science",
       "topic": "Software Engineering, Compiler & TOC",
-      "question": "What is the Kleene Star ($*$) operation on a set of strings $\\Sigma$?",
+      "question": "What is the Kleene Star ($*$) operation on a set of strings $\\Sigma$?\n$\\Sigma$ स्ट्रिंग्स के सेट पर क्लेन स्टार ($*$) ऑपरेशन क्या है?",
       "options": [
         "A. The set of all possible strings formed by concatenating zero or more symbols from $\\Sigma$, INCLUDING the empty string $\\epsilon$",
         "B. One or more symbols excluding empty string",
         "C. Only strings of length 2",
-        "D. More than one of the above",
-        "E. None of the above"
+        "D. उपर्युक्त में से एक से अधिक / More than one of the above",
+        "E. उपर्युक्त में से कोई नहीं / None of the above"
       ],
       "correctAnswer": 0,
       "explanation": "$\\Sigma^* = \\Sigma^0 \\cup \\Sigma^1 \\cup \\Sigma^2 \\cup \\dots = \\{\\epsilon, a, b, aa, ab, \\dots\\}$. It represents unbounded repetition."
     }
   ]
 };
-
-if (typeof window !== 'undefined') {
-  window.PRACTICE_SET_06 = PRACTICE_SET_06;
-  if (window.PracticeEngine && window.PracticeEngine.registerSet) {
-    window.PracticeEngine.registerSet(PRACTICE_SET_06);
-  }
-}
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { PRACTICE_SET_06 };

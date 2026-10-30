@@ -7,3 +7,4 @@ analytics_db.json
 .idea/
 *.zip
 .wrangler/
+scratch/
