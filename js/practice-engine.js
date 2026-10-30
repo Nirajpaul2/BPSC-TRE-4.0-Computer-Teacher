@@ -562,10 +562,11 @@
 
     paletteIndices.forEach(idx => {
       const q = set.questions[idx];
-      const status = engineState.statusMap[idx] || 'not_visited';
+      const rawStatus = engineState.statusMap[idx] || 'not_visited';
+      const statusClass = rawStatus.replace(/_/g, '-');
       const isCurrent = idx === engineState.currentQIndex;
       html += `
-        <div class="btn-palette-q state-${status} ${isCurrent ? 'current' : ''}" onclick="window.PracticeEngine.jumpToQuestion(${idx})" title="Question ${q.num}">
+        <div class="btn-palette-q state-${statusClass} state-${rawStatus} ${isCurrent ? 'current' : ''}" onclick="window.PracticeEngine.jumpToQuestion(${idx})" title="Question ${q.num}">
           ${q.num}
         </div>
       `;
