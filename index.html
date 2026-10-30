@@ -1184,9 +1184,9 @@
     </div>
   </div>
 
-  <!-- Cross-Device Restoration Modal (Strictly Valid Payment ID Only) -->
+  <!-- Cross-Device Restoration Modal (Option A: Secure Support Verification & Activation Passcode) -->
   <div class="modal-overlay" id="restore-access-modal" style="display: none;">
-    <div class="modal-content" style="max-width: 500px;">
+    <div class="modal-content" style="max-width: 520px;">
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 0.6rem;">
           <img src="assets/logo.jpg" alt="Logo" style="width: 32px; height: 32px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border-color); flex-shrink: 0;">
@@ -1195,42 +1195,60 @@
         <button class="btn-close-modal" onclick="closeRestoreModal()">&times;</button>
       </div>
 
-      <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5;">
-        If you previously purchased the ₹299 Lifetime Pass on another phone, tablet, or browser, enter your official <strong>Razorpay Payment ID</strong> (starts with <code>pay_...</code> from your payment receipt SMS/Email) to restore full course access.
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.85rem; line-height: 1.5;">
+        Paid ₹299 on another phone, tablet, or browser? To protect genuine buyers and prevent unauthorized access, choose an option below:
       </p>
 
-      <div style="margin-bottom: 1rem;">
-        <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
-          Razorpay Payment ID:
-        </label>
-        <input type="text" id="restore-query-input" placeholder="e.g. pay_Q810a9XyZ12345" onkeydown="if(event.key==='Enter') submitRestorePayment()" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.88rem; box-sizing: border-box;">
+      <!-- Method 1: Instant WhatsApp Verification (Fastest & Direct) -->
+      <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.85rem 1rem; margin-bottom: 0.85rem; text-align: left;">
+        <div style="font-size: 0.86rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+          <span>💬</span> Method 1: Instant WhatsApp Verification (Fastest)
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.65rem; line-height: 1.45;">
+          Send your <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code> from your SMS/Email receipt) to our support team. We verify it instantly in our merchant dashboard and activate your access.
+        </p>
+        <a href="https://wa.me/919942419837?text=Hello%20BPSC%20Support,%20I%20have%20paid%20Rs%20299%20for%20the%20course.%20Please%20restore%20my%20access.%20My%20Razorpay%20Payment%20ID%20is:%20" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: #10b981; color: #ffffff; text-decoration: none; padding: 0.6rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 700; box-shadow: 0 2px 8px rgba(16,185,129,0.3); transition: var(--transition);">
+          <span>📲</span> Message WhatsApp: +91 99424 19837
+        </a>
       </div>
 
-      <div id="restore-status-msg" style="margin-bottom: 1rem; font-size: 0.84rem;"></div>
+      <!-- Method 2: Have an Authorized Passcode? -->
+      <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.85rem 1rem; margin-bottom: 0.85rem; text-align: left;">
+        <div style="font-size: 0.86rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+          <span>🔑</span> Method 2: Have an Activation Passcode?
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.55rem; line-height: 1.45;">
+          If you received an authorized activation code from our support desk, enter it below to unlock:
+        </p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <input type="text" id="restore-passcode-input" placeholder="Enter Activation Passcode" onkeydown="if(event.key==='Enter') submitRestorePasscode()" style="flex: 1; min-width: 170px; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem; box-sizing: border-box; text-transform: uppercase;">
+          <button class="btn btn-primary" onclick="submitRestorePasscode()" style="background: var(--accent-primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 700; cursor: pointer;">
+            Unlock
+          </button>
+        </div>
+      </div>
 
-      <button class="btn-razorpay-pay" onclick="submitRestorePayment()" style="background:var(--accent-primary); color:white; font-weight:700;">
-        <span>🔍 Verify Payment ID &amp; Restore Course</span>
-      </button>
+      <div id="restore-status-msg" style="margin-bottom: 0.75rem; font-size: 0.84rem;"></div>
 
-      <div style="margin-top: 1rem; text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+      <div style="margin-top: 0.75rem; text-align: center; font-size: 0.8rem; color: var(--text-muted);">
         Haven't purchased yet? <a href="javascript:void(0)" onclick="closeRestoreModal(); openPaywallModal('From Restore');" style="color: var(--accent-primary); text-decoration: underline; font-weight: 600;">Unlock All for <s style="opacity:0.75;">₹999</s> ₹299 (70% OFF)</a>
       </div>
 
-      <div style="margin-top: 0.75rem; text-align: center; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 0.6rem;">
-        Need help finding your Payment ID? WhatsApp: <a href="https://wa.me/919942419837" target="_blank" rel="noopener noreferrer" style="color: #10b981; font-weight: 700;">9942419837</a> • Email: <a href="mailto:support@agiludic.com" style="color: var(--text-main); font-weight: 600; text-decoration: underline;">support@agiludic.com</a>
+      <div style="margin-top: 0.65rem; text-align: center; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 0.6rem;">
+        Email Support: <a href="mailto:support@agiludic.com" style="color: var(--text-main); font-weight: 600; text-decoration: underline;">support@agiludic.com</a>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="js/syllabus-data.js"></script>
-  <script src="js/ncert-data.js"></script>
-  <script src="js/cheatsheets-data.js"></script>
-  <script src="js/marathon-data.js"></script>
-  <script src="js/practice-data/set-manifest.js"></script>
-  <script src="js/practice-data/set-01.js"></script>
-  <script src="js/practice-engine.js"></script>
-  <script src="js/payment.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Scripts with cache-busting to ensure immediate updates across all devices -->
+  <script src="js/syllabus-data.js?v=2.2"></script>
+  <script src="js/ncert-data.js?v=2.2"></script>
+  <script src="js/cheatsheets-data.js?v=2.2"></script>
+  <script src="js/marathon-data.js?v=2.2"></script>
+  <script src="js/practice-data/set-manifest.js?v=2.2"></script>
+  <script src="js/practice-data/set-01.js?v=2.2"></script>
+  <script src="js/practice-engine.js?v=2.2"></script>
+  <script src="js/payment.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
 </body>
 </html>

@@ -151,7 +151,7 @@
     if (modal) {
       modal.style.display = 'flex';
       modal.classList.add('open');
-      const input = document.getElementById('restore-query-input');
+      const input = document.getElementById('restore-passcode-input') || document.getElementById('restore-query-input');
       const statusMsg = document.getElementById('restore-status-msg');
       if (statusMsg) statusMsg.innerHTML = '';
       if (input) {
@@ -278,38 +278,83 @@
     }
   };
 
-  // 6. Cross-Device Restoration (Strictly Valid Razorpay Payment ID Only)
-  window.submitRestorePayment = function () {
-    const inputEl = document.getElementById('restore-query-input');
+  // 6. Cross-Device Restoration & Admin Verification (Option A: Secure Support Verification)
+  // Protected SHA-256 hashes for authorized admin activation passcodes (e.g. TEACHER2026, AGILUDIC2026)
+  const AUTHORIZED_PASSCODE_HASHES = new Set([
+    'f9d9335d70b421c989cdd6aaae450adcefd67e73d336c2fc4547ad54a71911e8', // TEACHER2026
+    'f8f94a33e17aa96b1e663818d792628daf0b62d0b9aeab30424a533b4ab6f821', // AGILUDIC2026
+    'fe6d276de84c52a54f2527b2ca1a7ead43b67d6f2e76e04235b18d15e74124b4'  // BPSC4ADMIN
+  ]);
+
+  async function computeSha256Hex(text) {
+    try {
+      const enc = new TextEncoder();
+      const data = enc.encode(text.trim().toUpperCase());
+      const hashBuf = await crypto.subtle.digest('SHA-256', data);
+      const hashArr = Array.from(new Uint8Array(hashBuf));
+      return hashArr.map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch (e) {
+      return '';
+    }
+  }
+
+  window.submitRestorePasscode = async function () {
+    const inputEl = document.getElementById('restore-passcode-input');
     const statusEl = document.getElementById('restore-status-msg');
     if (!inputEl) return;
 
-    const query = inputEl.value.trim();
-    if (!query) {
-      if (statusEl) statusEl.innerHTML = '<span style="color: #ef4444;">⚠️ Please enter your Razorpay Payment ID.</span>';
+    const code = inputEl.value.trim().toUpperCase();
+    if (!code) {
+      if (statusEl) statusEl.innerHTML = '<span style="color: #ef4444;">⚠️ Please enter an activation passcode.</span>';
       return;
     }
 
-    // Strictly validate Razorpay Payment ID: must start with pay_ followed by alphanumeric/underscore (minimum 10 chars total)
-    const isPayId = /^pay_[A-Za-z0-9_]{8,32}$/i.test(query);
-
-    if (isPayId) {
-      window.setCourseUnlocked(true, query, "Restored Paid Aspirant", "");
+    const hash = await computeSha256Hex(code);
+    if (AUTHORIZED_PASSCODE_HASHES.has(hash)) {
+      const passId = `AUTH_PASS_${Date.now()}`;
+      window.setCourseUnlocked(true, passId, "Verified Teacher Aspirant", "");
       window.closeRestoreModal();
       window.refreshAppUnlockedState();
-      alert(`🎉 Full Course Successfully Restored!\n\nVerified Payment ID: ${query}\nAll 43 Marathon Days and 40 Practice Sets are now permanently unlocked.`);
+      alert("🎉 Activation Successful!\n\nAll 43 Marathon Days and 40 Practice Sets are now permanently unlocked on this device.");
     } else {
       if (statusEl) {
         statusEl.innerHTML = `
-          <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 0.65rem 0.85rem; border-radius: 6px; color: #ef4444; font-size: 0.84rem; text-align: left;">
-            ❌ <strong>Invalid Payment ID:</strong><br>
-            Course restoration is allowed strictly via a valid <strong>Razorpay Payment ID</strong> starting with <code>pay_...</code> (e.g. <code>pay_Q810a9XyZ12345</code>).<br>
-            <span style="font-size:0.78rem; color:var(--text-muted); display:inline-block; margin-top:0.25rem;">Check the SMS or Email receipt received from Razorpay upon purchase.</span>
+          <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 0.65rem 0.85rem; border-radius: 6px; color: #ef4444; font-size: 0.84rem; text-align: left; line-height: 1.5;">
+            ❌ <strong>Invalid Activation Passcode:</strong><br>
+            Random phone numbers and unverified Payment IDs cannot unlock the course.<br>
+            Please message WhatsApp <strong><a href="https://wa.me/919942419837?text=Hello%20BPSC%20Support,%20I%20have%20paid%20Rs%20299%20for%20the%20course.%20Please%20restore%20my%20access.%20My%20Razorpay%20Payment%20ID%20is:%20" target="_blank" style="color:#10b981; font-weight:700;">+91 99424 19837</a></strong> with your Razorpay Payment ID to receive your authorized activation code.
           </div>
         `;
       }
     }
   };
+
+  // Backward compatibility alias for modal input
+  window.submitRestorePayment = window.submitRestorePasscode;
+
+  // Check URL parameter for one-click admin unlock link (?unlock=TEACHER2026)
+  async function checkUrlUnlockParameter() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const unlockParam = params.get('unlock');
+      if (unlockParam) {
+        const hash = await computeSha256Hex(unlockParam);
+        if (AUTHORIZED_PASSCODE_HASHES.has(hash)) {
+          const passId = `AUTH_LINK_${Date.now()}`;
+          window.setCourseUnlocked(true, passId, "Verified Teacher Aspirant", "");
+          window.refreshAppUnlockedState();
+          // Clean URL without page refresh
+          const cleanUrl = window.location.origin + window.location.pathname;
+          window.history.replaceState({}, document.title, cleanUrl);
+          setTimeout(() => {
+            alert("🎉 Course Access Activated!\n\nWelcome to BPSC TRE 4.0 Computer Teacher. All 43 Marathon Days and 40 Practice Sets are now permanently unlocked.");
+          }, 350);
+        }
+      }
+    } catch (e) {
+      // Ignore URL parsing errors
+    }
+  }
 
   window.copyPaymentIdToClipboard = function () {
     const idEl = document.getElementById('success-payment-id-display');
@@ -366,6 +411,7 @@
 
   // Run on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
+    checkUrlUnlockParameter();
     window.refreshAppUnlockedState();
   });
 })();
