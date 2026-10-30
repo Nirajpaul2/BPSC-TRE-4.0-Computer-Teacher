@@ -9,8 +9,30 @@
 (function () {
   'use strict';
 
-  // Config
-  window.RAZORPAY_KEY_ID = window.RAZORPAY_KEY_ID || "rzp_live_TDeXjTGJZV2T7v";
+  // Config: Domain-specific Razorpay Live Keys
+  // 1. https://tre4.agiludic.com (Agiludic Merchant Account)
+  const KEY_AGILUDIC = "rzp_live_Tu0MlvjMbsI1Z5";
+  // 2. https://tre4ct.aiwazir.com (AIWazir Merchant Account)
+  const KEY_AIWAZIR = "rzp_live_TDeXjTGJZV2T7v";
+
+  function getActiveRazorpayKey() {
+    try {
+      const hostname = (window.location && window.location.hostname) ? window.location.hostname.toLowerCase() : '';
+      if (hostname.includes('aiwazir.com')) {
+        return KEY_AIWAZIR;
+      }
+      if (hostname.includes('agiludic.com')) {
+        return KEY_AGILUDIC;
+      }
+    } catch (e) {
+      // Fallback
+    }
+    // Default to tre4.agiludic.com
+    return KEY_AGILUDIC;
+  }
+
+  window.getActiveRazorpayKey = getActiveRazorpayKey;
+  window.RAZORPAY_KEY_ID = getActiveRazorpayKey();
   window.RAZORPAY_FALLBACK_LINK = window.RAZORPAY_FALLBACK_LINK || "https://rzp.io/rzp/f8vkVi7Y";
   window.COURSE_PRICE_INR = 299;
   window.COURSE_PRICE_PAISE = 29900; // Rs 299.00 in paise
@@ -212,7 +234,7 @@
       return;
     }
 
-    const rzpKey = window.RAZORPAY_KEY_ID || "rzp_live_TDeXjTGJZV2T7v";
+    const rzpKey = window.getActiveRazorpayKey ? window.getActiveRazorpayKey() : (window.RAZORPAY_KEY_ID || "rzp_live_Tu0MlvjMbsI1Z5");
     const amountPaise = window.COURSE_PRICE_PAISE || 29900;
 
     const options = {
