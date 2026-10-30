@@ -1213,15 +1213,27 @@
     if (parts.length <= 1) {
       return `<div class="q-text-single">${escapeHtml(text)}</div>`;
     }
-    const lang1 = parts[0];
-    const lang2 = parts.slice(1).join('<br>');
-    return `
-      <div class="q-bilingual-block">
-        <div class="q-lang-primary">${escapeHtml(lang1)}</div>
-        <div class="q-lang-divider"></div>
-        <div class="q-lang-secondary">${escapeHtml(lang2)}</div>
-      </div>
-    `;
+    
+    // Check if parts contain different languages (Devanagari vs Latin)
+    const hasHindi = str => /[\u0900-\u097F]/.test(str);
+    const hasLatin = str => /[a-zA-Z]/.test(str);
+    
+    const isBilingual = (hasHindi(parts[0]) && hasLatin(parts.slice(1).join(' '))) ||
+                        (hasLatin(parts[0]) && hasHindi(parts.slice(1).join(' ')));
+    
+    if (isBilingual) {
+      const lang1 = parts[0];
+      const lang2 = parts.slice(1).join('<br>');
+      return `
+        <div class="q-bilingual-block">
+          <div class="q-lang-primary">${escapeHtml(lang1)}</div>
+          <div class="q-lang-divider"></div>
+          <div class="q-lang-secondary">${escapeHtml(lang2)}</div>
+        </div>
+      `;
+    }
+    
+    return `<div class="q-text-single">${escapeHtml(text).replace(/\n/g, '<br>')}</div>`;
   }
 
   // On-demand lazy script loader for practice sets
