@@ -1055,8 +1055,6 @@
       <a href="privacy.html" class="footer-link" style="color:var(--text-main); font-weight:600;">🔒 Privacy Policy</a>
       <span>•</span>
       <a href="terms.html" class="footer-link" style="color:var(--text-main); font-weight:600;">📄 Terms &amp; Conditions</a>
-      <span>•</span>
-      <a href="javascript:void(0)" class="footer-link" onclick="window.lockCourseAgain(); return false;" style="color:var(--text-muted);" title="Test locking mechanism">🔁 Reset to Preview Mode</a>
     </div>
     <div style="margin-top:0.75rem; padding-top:0.65rem; border-top:1px solid var(--border-color); font-size:0.82rem; color:var(--text-muted); display:flex; align-items:center; justify-content:center; gap:0.9rem; flex-wrap:wrap;">
       <span>✉️ Email: <a href="mailto:support@agiludic.com" style="color:var(--text-main); font-weight:600; text-decoration:underline;">support@agiludic.com</a></span>
@@ -1128,20 +1126,6 @@
         <a href="https://rzp.io/rzp/f8vkVi7Y" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); font-weight: 600; text-decoration: underline;">
           Pay via Direct Razorpay Link ↗
         </a>
-      </div>
-
-      <!-- Dev/Test Simulation & Passcode Section -->
-      <div style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-primary); border: 1px dashed var(--border-color); border-radius: var(--radius-sm); text-align: left;">
-        <details>
-          <summary style="font-size: 0.78rem; color: var(--text-muted); cursor: pointer; font-weight: 600;">
-            🔑 Have an Activation Passcode or Localhost Test Mode?
-          </summary>
-          <div style="margin-top: 0.65rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <input type="text" id="activation-passcode-input" placeholder="Passcode (e.g. TEACHER2026)" style="flex: 1; min-width: 180px; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.4rem 0.6rem; border-radius: 4px; font-size: 0.82rem;">
-            <button onclick="applyActivationCode()" style="background: var(--accent-primary); color: white; border: none; padding: 0.4rem 0.85rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; cursor: pointer;">Apply Code</button>
-            <button onclick="simulatePaymentSuccess()" style="background: #10b981; color: #0f172a; border: none; padding: 0.4rem 0.85rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; cursor: pointer;" title="Instant Test Unlock without deduction">⚡ Test Mode Unlock</button>
-          </div>
-        </details>
       </div>
 
       <!-- Already Paid Cross-Device Restore Trigger in Modal -->

@@ -278,38 +278,7 @@
     }
   };
 
-  // 6. Test Simulation & Passcode
-  window.simulatePaymentSuccess = function () {
-    const nameInput = document.getElementById('pay-name');
-    const phoneInput = document.getElementById('pay-phone');
-    const candidateName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "Teacher Candidate (Test)";
-    const candidatePhone = (phoneInput && phoneInput.value.trim()) ? phoneInput.value.trim() : "9876543210";
-    const randomSuffix = Math.random().toString(36).substring(2, 9);
-    const mockPaymentId = `pay_sim_${randomSuffix}`;
-
-    window.setCourseUnlocked(true, mockPaymentId, candidateName, candidatePhone);
-    window.closePaywallModal();
-    window.showPaymentSuccessModal(mockPaymentId, candidateName, candidatePhone);
-    window.refreshAppUnlockedState();
-  };
-
-  window.applyActivationCode = function () {
-    const codeInput = document.getElementById('activation-passcode-input');
-    if (!codeInput) return;
-    const code = codeInput.value.trim().toUpperCase();
-
-    if (code === 'TEACHER2026' || code === 'BPSC4' || code === 'FREE299' || code === 'ADMIN') {
-      const passId = `CODE_${code}_${Date.now()}`;
-      window.setCourseUnlocked(true, passId, "Verified Teacher Pass", "");
-      window.closePaywallModal();
-      window.refreshAppUnlockedState();
-      alert("🎉 Activation Code Accepted! All 43 Marathon Days and 40 Practice Sets are now permanently UNLOCKED.");
-    } else {
-      alert("❌ Invalid Activation Code. Please enter a valid passcode or pay ₹299 via Razorpay.");
-    }
-  };
-
-  // 7. Cross-Device Restoration
+  // 6. Cross-Device Restoration (Legitimate Razorpay Payment ID or Phone)
   window.submitRestorePayment = function () {
     const inputEl = document.getElementById('restore-query-input');
     const statusEl = document.getElementById('restore-status-msg');
@@ -323,10 +292,9 @@
 
     const isPayId = /^pay_[A-Za-z0-9_]{6,30}$/i.test(query);
     const isPhone = /^[6-9]\d{9}$/.test(query);
-    const isPasscode = (query.toUpperCase() === 'TEACHER2026' || query.toUpperCase() === 'BPSC4' || query.toUpperCase() === 'ADMIN');
 
-    if (isPayId || isPhone || isPasscode) {
-      const paymentId = isPayId ? query : (isPasscode ? `CODE_${query.toUpperCase()}` : `RESTORE_${query}`);
+    if (isPayId || isPhone) {
+      const paymentId = isPayId ? query : `RESTORE_${query}`;
       window.setCourseUnlocked(true, paymentId, "Restored Teacher Aspirant", isPhone ? query : "");
       window.closeRestoreModal();
       window.refreshAppUnlockedState();
@@ -336,7 +304,7 @@
         statusEl.innerHTML = `
           <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 0.65rem 0.85rem; border-radius: 6px; color: #ef4444; font-size: 0.84rem; text-align: left;">
             ❌ <strong>Invalid format:</strong><br>
-            Please enter a valid <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code>) or <strong>10-digit mobile number</strong>.
+            Please enter a valid <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code>) or <strong>10-digit mobile number</strong> used during checkout.
           </div>
         `;
       }
@@ -358,15 +326,7 @@
     }
   };
 
-  window.lockCourseAgain = function () {
-    if (confirm("Reset to Free Preview Mode? This will re-lock the 20 Marathon days and 28 Practice Sets for testing.")) {
-      window.setCourseUnlocked(false);
-      window.refreshAppUnlockedState();
-      alert("Course reset to Free Preview mode (20 Marathon days and 28 Practice Sets are now locked).");
-    }
-  };
-
-  // 8. Refresh App UI according to unlock state
+  // 7. Refresh App UI according to unlock state
   window.refreshAppUnlockedState = function () {
     const isUnlocked = window.isCourseUnlocked();
 
