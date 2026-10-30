@@ -278,7 +278,7 @@
     }
   };
 
-  // 6. Cross-Device Restoration (Legitimate Razorpay Payment ID or Phone)
+  // 6. Cross-Device Restoration (Strictly Valid Razorpay Payment ID Only)
   window.submitRestorePayment = function () {
     const inputEl = document.getElementById('restore-query-input');
     const statusEl = document.getElementById('restore-status-msg');
@@ -286,25 +286,25 @@
 
     const query = inputEl.value.trim();
     if (!query) {
-      if (statusEl) statusEl.innerHTML = '<span style="color: #ef4444;">⚠️ Please enter your Payment ID or 10-digit Mobile Number.</span>';
+      if (statusEl) statusEl.innerHTML = '<span style="color: #ef4444;">⚠️ Please enter your Razorpay Payment ID.</span>';
       return;
     }
 
-    const isPayId = /^pay_[A-Za-z0-9_]{6,30}$/i.test(query);
-    const isPhone = /^[6-9]\d{9}$/.test(query);
+    // Strictly validate Razorpay Payment ID: must start with pay_ followed by alphanumeric/underscore (minimum 10 chars total)
+    const isPayId = /^pay_[A-Za-z0-9_]{8,32}$/i.test(query);
 
-    if (isPayId || isPhone) {
-      const paymentId = isPayId ? query : `RESTORE_${query}`;
-      window.setCourseUnlocked(true, paymentId, "Restored Teacher Aspirant", isPhone ? query : "");
+    if (isPayId) {
+      window.setCourseUnlocked(true, query, "Restored Paid Aspirant", "");
       window.closeRestoreModal();
       window.refreshAppUnlockedState();
-      alert(`🎉 Access Restored Successfully!\n\nWelcome back!\nPayment ID: ${paymentId}\nAll 43 Marathon Days and 40 Practice Sets are now UNLOCKED.`);
+      alert(`🎉 Full Course Successfully Restored!\n\nVerified Payment ID: ${query}\nAll 43 Marathon Days and 40 Practice Sets are now permanently unlocked.`);
     } else {
       if (statusEl) {
         statusEl.innerHTML = `
           <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 0.65rem 0.85rem; border-radius: 6px; color: #ef4444; font-size: 0.84rem; text-align: left;">
-            ❌ <strong>Invalid format:</strong><br>
-            Please enter a valid <strong>Razorpay Payment ID</strong> (e.g. <code>pay_...</code>) or <strong>10-digit mobile number</strong> used during checkout.
+            ❌ <strong>Invalid Payment ID:</strong><br>
+            Course restoration is allowed strictly via a valid <strong>Razorpay Payment ID</strong> starting with <code>pay_...</code> (e.g. <code>pay_Q810a9XyZ12345</code>).<br>
+            <span style="font-size:0.78rem; color:var(--text-muted); display:inline-block; margin-top:0.25rem;">Check the SMS or Email receipt received from Razorpay upon purchase.</span>
           </div>
         `;
       }
