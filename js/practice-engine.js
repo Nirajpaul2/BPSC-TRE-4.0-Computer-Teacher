@@ -1237,45 +1237,74 @@
   }
 
   // On-demand lazy script loader for practice sets
+  function resolveSetData(globalVarName) {
+    if (typeof window !== 'undefined') {
+      if (window[globalVarName]) return window[globalVarName];
+      const match = globalVarName.match(/\d+/);
+      if (match) {
+        const altVar = 'PRACTICE_SET_' + parseInt(match[0], 10);
+        if (window[altVar]) return window[altVar];
+      }
+    }
+    try {
+      const evalData = eval(globalVarName);
+      if (evalData) return evalData;
+    } catch (e) {}
+    return null;
+  }
+
   function ensureSetLoaded(setId, callback) {
+    const match = String(setId).match(/\d+/);
+    const num = match ? parseInt(match[0], 10) : 1;
+    const numStr = String(num).padStart(2, '0');
+    const normalizedId = `set-${numStr}`;
+    const globalVarName = 'PRACTICE_SET_' + numStr;
+
+    if (practiceDataRegistry[normalizedId]) {
+      callback(practiceDataRegistry[normalizedId]);
+      return;
+    }
     if (practiceDataRegistry[setId]) {
       callback(practiceDataRegistry[setId]);
       return;
     }
-    const numStr = setId.replace('set-', '');
-    const globalVarName = 'PRACTICE_SET_' + numStr;
-    if (typeof window !== 'undefined' && window[globalVarName]) {
-      registerPracticeSet(window[globalVarName]);
-      callback(practiceDataRegistry[setId]);
+
+    const preloaded = resolveSetData(globalVarName);
+    if (preloaded) {
+      registerPracticeSet(preloaded);
+      callback(practiceDataRegistry[normalizedId] || practiceDataRegistry[setId]);
       return;
     }
 
-    const existingScript = document.querySelector(`script[src*="${setId}.js"]`);
+    const existingScript = document.querySelector(`script[src*="${normalizedId}.js"]`);
     if (existingScript) {
       existingScript.addEventListener('load', () => {
-        if (typeof window !== 'undefined' && window[globalVarName]) {
-          registerPracticeSet(window[globalVarName]);
+        const loadedData = resolveSetData(globalVarName);
+        if (loadedData) {
+          registerPracticeSet(loadedData);
         }
-        callback(practiceDataRegistry[setId]);
+        callback(practiceDataRegistry[normalizedId] || practiceDataRegistry[setId]);
       });
       return;
     }
 
     const script = document.createElement('script');
-    script.src = `js/practice-data/${setId}.js`;
+    script.src = `js/practice-data/${normalizedId}.js?v=2.6`;
     script.async = true;
     script.onload = function () {
-      if (typeof window !== 'undefined' && window[globalVarName]) {
-        registerPracticeSet(window[globalVarName]);
+      const loadedData = resolveSetData(globalVarName);
+      if (loadedData) {
+        registerPracticeSet(loadedData);
       }
-      if (practiceDataRegistry[setId]) {
-        callback(practiceDataRegistry[setId]);
+      const finalSet = practiceDataRegistry[normalizedId] || practiceDataRegistry[setId];
+      if (finalSet) {
+        callback(finalSet);
       } else {
-        alert('Could not initialize practice set ' + setId);
+        alert('Could not initialize practice set ' + normalizedId);
       }
     };
     script.onerror = function () {
-      alert('Failed to load practice data for ' + setId + '. Please check network connection.');
+      alert('Failed to load practice data for ' + normalizedId + '. Please check network connection.');
     };
     document.head.appendChild(script);
   }

@@ -25,3 +25,7 @@ const PRACTICE_SETS_MANIFEST = Array.from({ length: 40 }, (_, idx) => {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { PRACTICE_SETS_MANIFEST };
 }
+
+if (typeof window !== "undefined") {
+  window.PRACTICE_SETS_MANIFEST = PRACTICE_SETS_MANIFEST;
+}

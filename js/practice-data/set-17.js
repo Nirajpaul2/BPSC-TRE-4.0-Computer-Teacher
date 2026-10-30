@@ -2439,3 +2439,10 @@ const PRACTICE_SET_17 = {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { PRACTICE_SET_17 };
 }
+
+if (typeof window !== "undefined") {
+  window.PRACTICE_SET_17 = PRACTICE_SET_17;
+  if (window.PracticeEngine && typeof window.PracticeEngine.registerSet === "function") {
+    window.PracticeEngine.registerSet(PRACTICE_SET_17);
+  }
+}
