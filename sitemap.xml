@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- BPSC TRE 4.0 Computer Science (PGT) Master Preparation & Practice Sets Hub -->
   <url>
     <loc>https://tre4.agiludic.com/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://tre4.agiludic.com/assets/banner_landscape.jpg</image:loc>
+      <image:title>BPSC TRE 4.0 Computer Science PGT Master Preparation Hub</image:title>
+      <image:caption>Complete 43-Day Marathon, 40 Full Practice Sets (6,000 Questions) &amp; NCERT Handbook</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://tre4.agiludic.com/assets/logo.jpg</image:loc>
+      <image:title>BPSC TRE 4.0 Computer Teacher Official Logo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://tre4.agiludic.com/privacy.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tre4.agiludic.com/terms.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
