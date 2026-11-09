@@ -3,7 +3,7 @@
  * 100% Client-side Static Integration:
  * - Marathon: 20 Days blocked alternatively (Day 1 allow, Day 2 block, Day 3 allow...)
  * - Practice Sets: 70% blocked (Sets 13 to 40 locked, Sets 01 to 12 free preview)
- * - ₹299 Lifetime Full Course Access Pass
+ * - ₹149 Lifetime Full Course Access Pass
  */
 
 (function () {
@@ -34,8 +34,8 @@
   window.getActiveRazorpayKey = getActiveRazorpayKey;
   window.RAZORPAY_KEY_ID = getActiveRazorpayKey();
   window.RAZORPAY_FALLBACK_LINK = window.RAZORPAY_FALLBACK_LINK || "https://rzp.io/rzp/f8vkVi7Y";
-  window.COURSE_PRICE_INR = 299;
-  window.COURSE_PRICE_PAISE = 29900; // Rs 299.00 in paise
+  window.COURSE_PRICE_INR = 149;
+  window.COURSE_PRICE_PAISE = 14900; // Rs 149.00 in paise
 
   const STORAGE_UNLOCKED = 'bpsc_unlocked';
   const STORAGE_PAYMENT_ID = 'bpsc_payment_id';
@@ -64,12 +64,12 @@
       if (typeof gtag === 'function') {
         gtag('event', 'purchase', {
           transaction_id: paymentId,
-          value: 299,
+          value: 149,
           currency: 'INR',
           items: [{
             item_id: 'bpsc_tre4_cs_full_pass',
             item_name: 'BPSC TRE 4.0 CS Lifetime Full Pass',
-            price: 299,
+            price: 149,
             quantity: 1
           }]
         });
@@ -150,12 +150,12 @@
     // Track checkout initiation in Google Analytics 4 (GA4)
     if (typeof gtag === 'function') {
       gtag('event', 'begin_checkout', {
-        value: 299,
+        value: 149,
         currency: 'INR',
         items: [{
           item_id: 'bpsc_tre4_cs_full_pass',
           item_name: 'BPSC TRE 4.0 CS Lifetime Full Pass',
-          price: 299,
+          price: 149,
           quantity: 1
         }]
       });
@@ -238,7 +238,7 @@
     }
 
     const rzpKey = window.getActiveRazorpayKey ? window.getActiveRazorpayKey() : (window.RAZORPAY_KEY_ID || "rzp_live_Tu0MlvjMbsI1Z5");
-    const amountPaise = window.COURSE_PRICE_PAISE || 29900;
+    const amountPaise = window.COURSE_PRICE_PAISE || 14900;
 
     const options = {
       key: rzpKey,
@@ -254,7 +254,7 @@
       },
       notes: {
         exam: "BPSC TRE 4.0 Computer Teacher",
-        access: "Lifetime Pass (₹299)",
+        access: "Lifetime Pass (₹149)",
         marathon: "20 Blocked Days Unlocked (All 43 Days)",
         practice_sets: "27 Blocked Sets Unlocked (All 40 Sets / 6,000 Qs Total)"
       },
@@ -347,7 +347,7 @@
           <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 0.65rem 0.85rem; border-radius: 6px; color: #ef4444; font-size: 0.84rem; text-align: left; line-height: 1.5;">
             ❌ <strong>Invalid Activation Passcode:</strong><br>
             Random phone numbers and unverified Payment IDs cannot unlock the course.<br>
-            Please message WhatsApp <strong><a href="https://wa.me/919942419837?text=Hello%20BPSC%20Support,%20I%20have%20paid%20Rs%20299%20for%20the%20course.%20Please%20restore%20my%20access.%20My%20Razorpay%20Payment%20ID%20is:%20" target="_blank" style="color:#10b981; font-weight:700;">+91 99424 19837</a></strong> with your Razorpay Payment ID to receive your authorized activation code.
+            Please message WhatsApp <strong><a href="https://wa.me/919942419837?text=Hello%20BPSC%20Support,%20I%20have%20paid%20Rs%20149%20for%20the%20course.%20Please%20restore%20my%20access.%20My%20Razorpay%20Payment%20ID%20is:%20" target="_blank" style="color:#10b981; font-weight:700;">+91 99424 19837</a></strong> with your Razorpay Payment ID to receive your authorized activation code.
           </div>
         `;
       }
@@ -412,10 +412,10 @@
           alert(`✅ Premium Pass Active!\nPayment ID: ${localStorage.getItem(STORAGE_PAYMENT_ID) || 'Verified'}\nAll 43 Marathon Days & 40 Practice Sets (6,000 Qs) are unlocked.`);
         };
       } else {
-        headerBtn.innerHTML = '<span>💎</span> <span class="hide-mobile">Unlock</span> <s style="opacity:0.75; font-size:0.76rem; text-decoration:line-through;">₹999</s> <strong>₹299</strong> <span class="discount-sticker-pill">70% OFF</span>';
+        headerBtn.innerHTML = '<span>💎</span> <span class="hide-mobile">Unlock</span> <s style="opacity:0.75; font-size:0.76rem; text-decoration:line-through;">₹999</s> <strong>₹149</strong> <span class="discount-sticker-pill">85% OFF</span>';
         headerBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
         headerBtn.style.color = '#0f172a';
-        headerBtn.title = 'Unlock Full Course: ₹999 ₹299 (70% OFF — Limited Time Launch Pass)';
+        headerBtn.title = 'Unlock Full Course: ₹999 ₹149 (85% OFF — Limited Time Launch Pass)';
         headerBtn.onclick = () => window.openPaywallModal('Header CTA');
       }
     }

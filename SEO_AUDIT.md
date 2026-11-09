@@ -78,7 +78,7 @@ Implemented a unified `@graph` JSON-LD schema with complete entity linking:
 1. **`WebSite`**: Canonical URL, site name, search intent, and Indian English/Hindi language declarations.
 2. **`EducationalOrganization`**: Official publisher profile with contact point (+91 99424 19837), support email (`support@agiludic.com`), and verified logo image object.
 3. **`BreadcrumbList`**: Structured navigational breadcrumb enabling rich breadcrumb snippets in Google search results (`Home > Master Syllabus > 40 Practice Sets & Mock Tests > Cutoff Matrix & PYQ Analysis`).
-4. **`Course`**: Full curriculum details, 12 syllabus units, 43-day marathon, ₹299 lifetime pass offer details, and PGT Class 11–12 qualification targets.
+4. **`Course`**: Full curriculum details, 12 syllabus units, 43-day marathon, ₹149 lifetime pass offer details, and PGT Class 11–12 qualification targets.
 5. **`Quiz`**: 40 full-length CBT simulation mock tests, 6,000 questions, 150-minute exam duration, and scoring rules.
 6. **`FAQPage`**: 6 comprehensive, rich-snippet-eligible FAQ pairs answering cutoff targets, PYQ integration, syllabus structure, and mock test features.
 7. **Legal Pages**: Added `WebPage` and `BreadcrumbList` schemas to both `privacy.html` and `terms.html`.
@@ -122,7 +122,7 @@ For AI search engines (Perplexity, Google Search Generative Experience / SGE, Ge
 | **Question Format** | Standard 4-option MCQs | **Exact BPSC 5-Option Format** (More than one / None) | Authentic examination training |
 | **Language Support** | Often English only for CS | **Bilingual (Hindi + English) for Parts 2 & 3** | Tailored to Bihar Hindi-medium aspirants |
 | **Integrated NCERT Companion** | None (requires external books) | **Built-in Class 11 & 12 NCERT Handbook Reader** | All-in-one preparation ecosystem |
-| **Pricing & Access Model** | Recurring subscription (monthly/annual) | **₹299 One-Time Lifetime Pass** | Lower barrier to entry with higher conversion rate |
+| **Pricing & Access Model** | Recurring subscription (monthly/annual) | **₹149 One-Time Lifetime Pass** | Lower barrier to entry with higher conversion rate |
 
 ---
 

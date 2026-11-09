@@ -1534,15 +1534,15 @@ def bpsc_concept_solver():
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0.45rem; margin-bottom: 1.25rem;">
                   <div style="display: flex; align-items: center; justify-content: center; gap: 0.65rem;">
                     <span style="font-size: 1.35rem; color: #94a3b8; text-decoration: line-through; font-weight: 700;">₹999</span>
-                    <span style="font-size: 2.5rem; font-weight: 900; color: #10b981; line-height: 1;">₹299</span>
-                    <span class="discount-sticker-badge" style="font-size: 0.78rem; padding: 0.25rem 0.65rem;">🔥 70% OFF</span>
+                    <span style="font-size: 2.5rem; font-weight: 900; color: #10b981; line-height: 1;">₹149</span>
+                    <span class="discount-sticker-badge" style="font-size: 0.78rem; padding: 0.25rem 0.65rem;">🔥 85% OFF</span>
                   </div>
                   <div class="limited-launch-pass-tag" style="font-size: 0.78rem; padding: 0.25rem 0.75rem; background: rgba(245, 158, 11, 0.18); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">
                     ⚡ Limited Time Launch Pass • Lifetime Validity
                   </div>
                 </div>
                 <button class="btn-unlock-course" onclick="window.openPaywallModal('Marathon Day ${day.dayNumber}')" style="width: 100%; justify-content: center; padding: 0.85rem 1.25rem; font-size: 1.05rem;">
-                  ⚡ Unlock All 43 Days &amp; 40 Practice Sets for <s style="opacity:0.75; font-size:0.9rem;">₹999</s> ₹299 (70% OFF)
+                  ⚡ Unlock All 43 Days &amp; 40 Practice Sets for <s style="opacity:0.75; font-size:0.9rem;">₹999</s> ₹149 (85% OFF)
                 </button>
                 <div style="margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; text-align: center;">
                   <span>Already purchased? <a href="javascript:void(0)" onclick="window.openRestoreModal()" style="color: #38bdf8; text-decoration: underline;">Restore Course (Payment ID)</a></span>
