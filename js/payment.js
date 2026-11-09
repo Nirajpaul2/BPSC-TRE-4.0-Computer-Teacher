@@ -14,10 +14,15 @@
   const KEY_AGILUDIC = "rzp_live_Tu0MlvjMbsI1Z5";
   // 2. https://tre4ct.aiwazir.com (AIWazir Merchant Account)
   const KEY_AIWAZIR = "rzp_live_TDeXjTGJZV2T7v";
+  // 3. https://notegov.com / *.notegov.com (NoteGov Merchant Account)
+  const KEY_NOTEGOV = "rzp_live_TxwvGlYaBhVRdn";
 
   function getActiveRazorpayKey() {
     try {
       const hostname = (window.location && window.location.hostname) ? window.location.hostname.toLowerCase() : '';
+      if (hostname.includes('notegov.com')) {
+        return KEY_NOTEGOV;
+      }
       if (hostname.includes('aiwazir.com')) {
         return KEY_AIWAZIR;
       }
