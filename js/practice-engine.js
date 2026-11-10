@@ -155,7 +155,7 @@
       <div class="practice-hub">
         <header class="practice-header">
           <div class="practice-top-highlight">
-            <span class="red-bullet-pulse">●</span> Practice Sets (<span class="tab-red-mark">60000 Q</span>) • 13 Free Tests + 27 Premium Tests (70% Paywall)
+            <span class="red-bullet-pulse">●</span> Practice Sets (<span class="tab-red-mark">6000 Q</span>) • 13 Free Tests + 27 Premium Tests (70% Paywall)
           </div>
           <h2 class="practice-title"><span>📝</span> BPSC TRE Computer Science Practice Sets</h2>
           <p class="practice-subtitle">
