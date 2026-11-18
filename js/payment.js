@@ -10,12 +10,12 @@
   'use strict';
 
   // Config: Domain-specific Razorpay Live Keys
-  // 1. https://tre4.agiludic.com (Agiludic Merchant Account)
-  const KEY_AGILUDIC = "rzp_live_Tu0MlvjMbsI1Z5";
-  // 2. https://tre4ct.aiwazir.com (AIWazir Merchant Account)
-  const KEY_AIWAZIR = "rzp_live_TDeXjTGJZV2T7v";
-  // 3. https://notegov.com / *.notegov.com (NoteGov Merchant Account)
+  // 1. https://notegov.com / *.notegov.com (Primary Merchant Account)
   const KEY_NOTEGOV = "rzp_live_TxwvGlYaBhVRdn";
+  // 2. https://tre4.agiludic.com (Agiludic Merchant Account)
+  const KEY_AGILUDIC = "rzp_live_Tu0MlvjMbsI1Z5";
+  // 3. https://tre4ct.aiwazir.com (AIWazir Merchant Account)
+  const KEY_AIWAZIR = "rzp_live_TDeXjTGJZV2T7v";
 
   function getActiveRazorpayKey() {
     try {
@@ -32,8 +32,8 @@
     } catch (e) {
       // Fallback
     }
-    // Default to tre4.agiludic.com
-    return KEY_AGILUDIC;
+    // Default to notegov.com (Primary)
+    return KEY_NOTEGOV;
   }
 
   window.getActiveRazorpayKey = getActiveRazorpayKey;

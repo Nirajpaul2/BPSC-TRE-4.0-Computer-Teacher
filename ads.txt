@@ -1,1 +1,3 @@
+# ads.txt for notegov.com (Primary)
+# Google AdSense Authorized Digital Sellers
 google.com, pub-3684459472315971, DIRECT, f08c47fec0942fa0

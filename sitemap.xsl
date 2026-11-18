@@ -136,7 +136,7 @@
             <span class="badge-live">● Google Search Console Ready</span>
           </div>
           <p class="desc">
-            This XML Sitemap informs search engines (such as Google and Bing) about the canonical URLs available for indexing on <strong>BPSC TRE 4.0 Computer Science Hub</strong> (<code>https://tre4.agiludic.com</code>).
+            This XML Sitemap informs search engines (such as Google and Bing) about the canonical URLs available for indexing on <strong>BPSC TRE 4.0 Computer Science Hub</strong> (<code>https://notegov.com</code>).
           </p>
           <div class="table-wrapper">
             <table>
@@ -173,7 +173,7 @@
             </table>
           </div>
           <div class="footer">
-            <span>Verified Domain: <strong>tre4.agiludic.com</strong></span>
+            <span>Verified Domain: <strong>notegov.com</strong></span>
             <span>Includes Canonical URLs, Legal Policies &amp; Rich Schema</span>
           </div>
         </div>

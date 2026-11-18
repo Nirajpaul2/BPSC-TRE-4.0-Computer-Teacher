@@ -101,7 +101,7 @@ class DetailedHTMLAudit(HTMLParser):
 
 def run_audit():
     print("=" * 70)
-    print("  🚀 AUTOMATED SEO AUDIT FOR https://tre4.agiludic.com")
+    print("  🚀 AUTOMATED SEO AUDIT FOR https://notegov.com (Primary)")
     print("=" * 70)
     
     passed_checks = 0
@@ -123,7 +123,7 @@ def run_audit():
             record("PASS", "Technical SEO", "robots.txt exists and permits search bot crawling.")
         else:
             record("FAIL", "Technical SEO", "robots.txt missing User-agent or Allow directives.")
-        if "Sitemap: https://tre4.agiludic.com/sitemap.xml" in r_txt:
+        if "Sitemap: https://notegov.com/sitemap.xml" in r_txt or "Sitemap: https://tre4.agiludic.com/sitemap.xml" in r_txt:
             record("PASS", "Technical SEO", "robots.txt contains correct canonical Sitemap URL.")
         else:
             record("WARN", "Technical SEO", "robots.txt does not link to canonical sitemap.xml.")
@@ -180,7 +180,7 @@ def run_audit():
             record("FAIL", f"{hf} Meta Desc", "Meta description tag missing!")
 
         # Canonical
-        if parser.canonical.startswith("https://tre4.agiludic.com"):
+        if parser.canonical.startswith("https://notegov.com") or parser.canonical.startswith("https://tre4.agiludic.com"):
             record("PASS", f"{hf} Canonical", f"Valid canonical URL: {parser.canonical}")
         else:
             record("FAIL", f"{hf} Canonical", f"Missing or invalid canonical URL in {hf}")
