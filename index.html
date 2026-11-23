@@ -284,112 +284,7 @@
 
         <h1 class="page-title">Explore exams</h1>
 
-        <!-- SECTION 1: Board Exams (2x2 Grid) -->
-        <section class="exam-section board-section" data-group="board" aria-labelledby="board-exams-title">
-          <div class="section-head">
-            <h2 id="board-exams-title">Board exams</h2>
-            <button type="button" class="view-all-link" onclick="setDirectoryFilter('board')">
-              <span>View all</span>
-              <span class="arrow">→</span>
-            </button>
-          </div>
-
-          <div class="board-grid">
-            <!-- Card 1: CBSE Class 10 -->
-            <article class="exam-card board" data-id="cbse-10" data-group="board" data-title="CBSE Class 10" data-terms="CBSE Class 10 Central Board of Secondary Education matric date sheet sample papers">
-              <div class="card-dogear" aria-hidden="true"></div>
-              <div class="card-top">
-                <div class="card-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="2" x2="12" y2="4"/>
-                    <line x1="8" y1="3" x2="9" y2="5"/>
-                    <line x1="16" y1="3" x2="15" y2="5"/>
-                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
-                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
-                  </svg>
-                </div>
-                <button type="button" class="card-bookmark-btn" aria-label="Save CBSE Class 10" onclick="toggleDirectorySaved('cbse-10', event)">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-                </button>
-              </div>
-              <div class="card-body">
-                <h3>CBSE Class 10</h3>
-                <p class="card-desc">Central Board of Secondary Education</p>
-              </div>
-            </article>
-
-            <!-- Card 2: CBSE Class 12 -->
-            <article class="exam-card board" data-id="cbse-12" data-group="board" data-title="CBSE Class 12" data-terms="CBSE Class 12 Central Board of Secondary Education senior secondary sample papers date sheet">
-              <div class="card-dogear" aria-hidden="true"></div>
-              <div class="card-top">
-                <div class="card-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="2" x2="12" y2="4"/>
-                    <line x1="8" y1="3" x2="9" y2="5"/>
-                    <line x1="16" y1="3" x2="15" y2="5"/>
-                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
-                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
-                  </svg>
-                </div>
-                <button type="button" class="card-bookmark-btn" aria-label="Save CBSE Class 12" onclick="toggleDirectorySaved('cbse-12', event)">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-                </button>
-              </div>
-              <div class="card-body">
-                <h3>CBSE Class 12</h3>
-                <p class="card-desc">Central Board of Secondary Education</p>
-              </div>
-            </article>
-
-            <!-- Card 3: Bihar Board -->
-            <article class="exam-card board" data-id="bihar-board" data-group="board" data-title="Bihar Board" data-terms="Bihar Board BSEB Bihar School Examination Board matric intermediate">
-              <div class="card-dogear" aria-hidden="true"></div>
-              <div class="card-top">
-                <div class="card-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="2" x2="12" y2="4"/>
-                    <line x1="8" y1="3" x2="9" y2="5"/>
-                    <line x1="16" y1="3" x2="15" y2="5"/>
-                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
-                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
-                  </svg>
-                </div>
-                <button type="button" class="card-bookmark-btn" aria-label="Save Bihar Board" onclick="toggleDirectorySaved('bihar-board', event)">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-                </button>
-              </div>
-              <div class="card-body">
-                <h3>Bihar Board</h3>
-                <p class="card-desc">Bihar School Examination Board</p>
-              </div>
-            </article>
-
-            <!-- Card 4: ICSE / ISC -->
-            <article class="exam-card board" data-id="icse-isc" data-group="board" data-title="ICSE / ISC" data-terms="ICSE ISC Council for the Indian School Certificate Examinations CISCE 10 12">
-              <div class="card-dogear" aria-hidden="true"></div>
-              <div class="card-top">
-                <div class="card-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="2" x2="12" y2="4"/>
-                    <line x1="8" y1="3" x2="9" y2="5"/>
-                    <line x1="16" y1="3" x2="15" y2="5"/>
-                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
-                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
-                  </svg>
-                </div>
-                <button type="button" class="card-bookmark-btn" aria-label="Save ICSE / ISC" onclick="toggleDirectorySaved('icse-isc', event)">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-                </button>
-              </div>
-              <div class="card-body">
-                <h3>ICSE / ISC</h3>
-                <p class="card-desc">Council for the Indian School Certificate Examinations</p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- SECTION 2: Competitive Exams (3x2 Grid) -->
+        <!-- SECTION 1: Competitive Exams (3x2 Grid) -->
         <section class="exam-section competitive-section" data-group="competitive" aria-labelledby="competitive-exams-title">
           <div class="section-head">
             <h2 id="competitive-exams-title">Competitive exams</h2>
@@ -535,6 +430,111 @@
               <div class="card-body">
                 <h3>Teaching</h3>
                 <p class="card-desc">Teaching Recruitment Exams</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- SECTION 2: Board Exams (2x2 Grid) -->
+        <section class="exam-section board-section" data-group="board" aria-labelledby="board-exams-title">
+          <div class="section-head">
+            <h2 id="board-exams-title">Board exams</h2>
+            <button type="button" class="view-all-link" onclick="setDirectoryFilter('board')">
+              <span>View all</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <div class="board-grid">
+            <!-- Card 1: CBSE Class 10 -->
+            <article class="exam-card board" data-id="cbse-10" data-group="board" data-title="CBSE Class 10" data-terms="CBSE Class 10 Central Board of Secondary Education matric date sheet sample papers">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save CBSE Class 10" onclick="toggleDirectorySaved('cbse-10', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>CBSE Class 10</h3>
+                <p class="card-desc">Central Board of Secondary Education</p>
+              </div>
+            </article>
+
+            <!-- Card 2: CBSE Class 12 -->
+            <article class="exam-card board" data-id="cbse-12" data-group="board" data-title="CBSE Class 12" data-terms="CBSE Class 12 Central Board of Secondary Education senior secondary sample papers date sheet">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save CBSE Class 12" onclick="toggleDirectorySaved('cbse-12', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>CBSE Class 12</h3>
+                <p class="card-desc">Central Board of Secondary Education</p>
+              </div>
+            </article>
+
+            <!-- Card 3: Bihar Board -->
+            <article class="exam-card board" data-id="bihar-board" data-group="board" data-title="Bihar Board" data-terms="Bihar Board BSEB Bihar School Examination Board matric intermediate">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save Bihar Board" onclick="toggleDirectorySaved('bihar-board', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>Bihar Board</h3>
+                <p class="card-desc">Bihar School Examination Board</p>
+              </div>
+            </article>
+
+            <!-- Card 4: ICSE / ISC -->
+            <article class="exam-card board" data-id="icse-isc" data-group="board" data-title="ICSE / ISC" data-terms="ICSE ISC Council for the Indian School Certificate Examinations CISCE 10 12">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save ICSE / ISC" onclick="toggleDirectorySaved('icse-isc', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>ICSE / ISC</h3>
+                <p class="card-desc">Council for the Indian School Certificate Examinations</p>
               </div>
             </article>
           </div>
