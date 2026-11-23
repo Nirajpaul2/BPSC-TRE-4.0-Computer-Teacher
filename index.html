@@ -611,79 +611,72 @@
        ======================================================== -->
   <div id="bpsc-section" style="display:none;">
 
-    <!-- Breadcrumb back navigation to NoteGov Directory -->
-    <div class="bpsc-top-nav-bar">
-      <button type="button" class="btn-back-directory" onclick="showDirectoryView(); return false;">
-        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
-        <span>← Back to All Exams (NoteGov)</span>
-      </button>
-      <div class="bpsc-status-pill">
-        <span class="live-dot"></span> BPSC TRE 4.0 Computer Science Suite Active
-      </div>
-    </div>
-
-    <!-- Top Sticky Header & Tab Navigation Bar (tre4ct style) -->
+    <!-- Top Sticky Header & Tab Navigation Bar (Unified SaaS Layout) -->
     <header class="top-header-wrapper">
-    <nav class="navbar" role="navigation">
-      <div class="nav-container">
-        <a href="#dashboard" class="brand" onclick="switchTab('tab-dashboard'); return false;" aria-label="BPSC TRE 4.0 CS Syllabus">
-          <div class="brand-icon">
-            <img src="assets/logo.jpg" alt="BPSC TRE 4.0 Computer Teacher Logo" class="brand-logo-img" width="36" height="36" fetchpriority="high">
+      <nav class="navbar" role="navigation" aria-label="BPSC Main Navigation">
+        <div class="nav-container">
+          <div class="nav-left-group">
+            <button type="button" class="btn-back-directory" onclick="showDirectoryView(); return false;" title="Back to All Exams (NoteGov)">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.4" fill="none" aria-hidden="true"><path d="M15 19l-7-7 7-7"/></svg>
+              <span>All Exams</span>
+            </button>
+            <span class="header-divider" aria-hidden="true"></span>
+            <a href="#dashboard" class="brand" onclick="switchTab('tab-dashboard'); return false;" aria-label="BPSC TRE 4.0 Computer Science">
+              <div class="brand-icon">
+                <img src="assets/notegov.svg" alt="NoteGov Logo" class="brand-logo-img" width="30" height="30" fetchpriority="high">
+              </div>
+              <div class="brand-text-group">
+                <span class="brand-title">BPSC TRE 4.0 Computer Science</span>
+                <span class="brand-badge">PGT 11–12</span>
+              </div>
+            </a>
           </div>
-          <div>
-            <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
-              <span class="brand-title">BPSC TRE 4.0 CS</span>
-              <span class="brand-badge">PGT 11–12</span>
-            </div>
-            <span style="font-size:0.7rem; color:var(--text-muted); display:block;">Computer Science Teacher • Subject Code 083</span>
-          </div>
-        </a>
 
-        <div class="nav-actions">
-          <button class="btn btn-primary btn-unlock-header" id="btnHeaderUnlock" onclick="window.openPaywallModal('Header CTA')" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a; font-weight:800; border:none; padding:0.45rem 0.85rem; font-size:0.82rem; border-radius:var(--radius-sm); display:inline-flex; align-items:center; gap:0.35rem; cursor:pointer; box-shadow:0 2px 8px rgba(245,158,11,0.35);" title="Unlock Full Course: ₹999 ₹149 (85% OFF — Limited Time Launch Pass)">
-            <span>💎</span> <span class="hide-mobile">Unlock</span> <s style="opacity:0.75; font-size:0.76rem; text-decoration:line-through;">₹999</s> <strong>₹149</strong> <span class="discount-sticker-pill">85% OFF</span>
+          <div class="nav-actions">
+            <button class="btn btn-primary btn-unlock-header" id="btnHeaderUnlock" onclick="window.openPaywallModal('Header CTA')" title="Unlock Full Course: ₹999 ₹149 (85% OFF — Limited Time Launch Pass)">
+              <span>💎</span> <span class="hide-mobile">Unlock Pass</span> <s style="opacity:0.75; font-size:0.76rem; text-decoration:line-through;">₹999</s> <strong>₹149</strong> <span class="discount-sticker-pill">85% OFF</span>
+            </button>
+            <button class="btn btn-outline" id="btnHeaderRestore" onclick="window.openRestoreModal()" title="Restore course via Razorpay Payment ID">
+              <span>🔄</span> <span class="hide-mobile">Restore Access</span>
+            </button>
+            <button class="btn btn-outline" id="btnHeaderSupport" onclick="switchTab('tab-support')" title="Help &amp; Support Desk (WhatsApp &amp; Email)">
+              <span>💬</span> <span class="hide-mobile">Support</span>
+            </button>
+            <button class="btn btn-outline" id="themeToggleBtn" aria-label="Toggle Theme" title="Switch between Warm Light &amp; Night Mode">
+              <span id="themeIcon">☀️</span>
+              <span class="hide-mobile" id="themeLabel">Warm Light</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Navigation Tabs Bar -->
+      <nav class="nav-tabs-bar" aria-label="Main Tabs Navigation">
+        <div class="nav-tabs-container">
+          <button class="nav-tab-btn active" data-tab="tab-dashboard">
+            <span>🏠</span> Dashboard
           </button>
-          <button class="btn btn-outline" id="btnHeaderRestore" onclick="window.openRestoreModal()" title="Restore course via Razorpay Payment ID" style="font-size:0.8rem; padding:0.45rem 0.75rem;">
-            <span>🔄</span> <span class="hide-mobile">Restore Course</span>
+          <button class="nav-tab-btn" data-tab="tab-syllabus">
+            <span>📑</span> Master Syllabus (12 Units)
           </button>
-          <button class="btn btn-outline" id="btnHeaderSupport" onclick="switchTab('tab-support')" title="Help &amp; Support Desk (WhatsApp &amp; Email)" style="font-size:0.8rem; padding:0.45rem 0.75rem;">
-            <span>💬</span> <span class="hide-mobile">Support</span>
+          <button class="nav-tab-btn" data-tab="tab-ncert">
+            <span>📚</span> NCERT
           </button>
-          <button class="btn btn-outline" id="themeToggleBtn" aria-label="Toggle Theme" title="Switch between Warm Light &amp; Night Mode">
-            <span id="themeIcon">☀️</span>
-            <span class="hide-mobile" id="themeLabel">Warm Light</span>
+          <button class="nav-tab-btn" data-tab="tab-cheatsheet">
+            <span>📖</span> Handbook
+          </button>
+          <button class="nav-tab-btn" data-tab="tab-marathon">
+            <span>🏃</span> 43-Day Marathon
+          </button>
+          <button class="nav-tab-btn" data-tab="tab-practice">
+            <span>📝</span> 40 Mock Tests (<span class="tab-red-mark">6000 Q</span>)
+          </button>
+          <button class="nav-tab-btn" data-tab="tab-support">
+            <span>💬</span> Support
           </button>
         </div>
-      </div>
-    </nav>
-
-    <!-- Navigation Tabs Bar (tre4ct.aiwazir.com style) -->
-    <nav class="nav-tabs-bar" aria-label="Main Tabs Navigation">
-      <div class="nav-tabs-container">
-        <button class="nav-tab-btn active" data-tab="tab-dashboard">
-          <span>🏠</span> Dashboard
-        </button>
-        <button class="nav-tab-btn" data-tab="tab-syllabus">
-          <span>📑</span> Master Syllabus (12 Units)
-        </button>
-        <button class="nav-tab-btn" data-tab="tab-ncert">
-          <span>📚</span> NCERT
-        </button>
-        <button class="nav-tab-btn" data-tab="tab-cheatsheet">
-          <span>📖</span> NCERT Handbook (Book Reader)
-        </button>
-        <button class="nav-tab-btn" data-tab="tab-marathon">
-          <span>🏃</span> Marathon (<span class="tab-red-mark">43 days</span>)
-        </button>
-        <button class="nav-tab-btn" data-tab="tab-practice">
-          <span>📝</span> Practice Sets (<span class="tab-red-mark">6000 Q</span>)
-        </button>
-        <button class="nav-tab-btn" data-tab="tab-support">
-          <span>💬</span> Support
-        </button>
-      </div>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
   <!-- Main Container with Tab Panes -->
   <main class="main-container">

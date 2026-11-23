@@ -1920,9 +1920,11 @@ def bpsc_concept_solver():
   // -------------------------------------------------------------
   function switchTab(tabId) {
     const dirView = document.getElementById('directory-view');
+    const notegovHeader = document.getElementById('notegov-header');
     const bpscSection = document.getElementById('bpsc-section');
     if (bpscSection) bpscSection.style.display = 'block';
     if (dirView) dirView.style.display = 'none';
+    if (notegovHeader) notegovHeader.style.display = 'none';
 
     const navButtons = document.querySelectorAll('.nav-tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');

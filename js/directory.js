@@ -185,9 +185,11 @@
   // -------------------------------------------------------------
   window.openBpscSection = function (tabName) {
     const dirView = document.getElementById('directory-view');
+    const notegovHeader = document.getElementById('notegov-header');
     const bpscSection = document.getElementById('bpsc-section');
 
     if (dirView) dirView.style.display = 'none';
+    if (notegovHeader) notegovHeader.style.display = 'none';
     if (bpscSection) bpscSection.style.display = 'block';
 
     const targetTab = tabName ? `tab-${tabName}` : 'tab-dashboard';
@@ -200,9 +202,11 @@
 
   window.showDirectoryView = function () {
     const dirView = document.getElementById('directory-view');
+    const notegovHeader = document.getElementById('notegov-header');
     const bpscSection = document.getElementById('bpsc-section');
 
     if (dirView) dirView.style.display = 'block';
+    if (notegovHeader) notegovHeader.style.display = 'block';
     if (bpscSection) bpscSection.style.display = 'none';
 
     if (history.replaceState) {

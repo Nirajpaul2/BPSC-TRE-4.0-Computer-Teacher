@@ -417,7 +417,7 @@
           alert(`✅ Premium Pass Active!\nPayment ID: ${localStorage.getItem(STORAGE_PAYMENT_ID) || 'Verified'}\nAll 43 Marathon Days & 40 Practice Sets (6,000 Qs) are unlocked.`);
         };
       } else {
-        headerBtn.innerHTML = '<span>💎</span> <span class="hide-mobile">Unlock</span> <s style="opacity:0.75; font-size:0.76rem; text-decoration:line-through;">₹999</s> <strong>₹149</strong> <span class="discount-sticker-pill">85% OFF</span>';
+        headerBtn.innerHTML = '<span>💎</span> <span class="hide-mobile">Unlock Pass</span> <s style="opacity:0.75; font-size:0.76rem; text-decoration:line-through;">₹999</s> <strong>₹149</strong> <span class="discount-sticker-pill">85% OFF</span>';
         headerBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
         headerBtn.style.color = '#0f172a';
         headerBtn.title = 'Unlock Full Course: ₹999 ₹149 (85% OFF — Limited Time Launch Pass)';
