@@ -207,338 +207,334 @@
 <body>
 
   <!-- ========================================================
-       NOTEGOV EXAM DIRECTORY HEADER
+       NOTEGOV EXAM DIRECTORY & DASHBOARD (3-Column Layout)
        ======================================================== -->
-  <header class="directory-header" id="notegov-header">
-    <div class="directory-header-inner">
-      <a href="#/" class="brand" onclick="showDirectoryView(); return false;" aria-label="NoteGov home">
-        <img src="assets/notegov.svg" alt="NoteGov Logo" width="36" height="36">
-        <span>NoteGov</span>
-      </a>
-
-      <nav class="dir-main-nav" aria-label="Main Navigation">
-        <a href="#/" class="dir-nav-link active" onclick="setDirectoryFilter('all'); return false;">
-          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <span>Explore exams</span>
+  <main class="notegov-app-shell" id="directory-view">
+    <!-- LEFT VERTICAL SIDEBAR -->
+    <aside class="dir-sidebar-left" aria-label="Main Navigation">
+      <div class="sidebar-top">
+        <a href="#/" class="sidebar-brand" onclick="setDirectoryFilter('all'); return false;" aria-label="NoteGov home">
+          <div class="brand-icon-wrap">
+            <img src="assets/notegov.svg" alt="NoteGov Logo" width="22" height="22">
+          </div>
+          <span class="brand-text">NoteGov</span>
         </a>
-        <a href="#updates" class="dir-nav-link" onclick="scrollToUpdates(); return false;">
-          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>Latest updates</span>
-        </a>
-        <a href="#calendar" class="dir-nav-link" onclick="openExamCalendarModal(); return false;">
-          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>Calendar</span>
-        </a>
-        <button type="button" class="dir-nav-link directory-saved" id="btnDirectorySaved" onclick="setDirectoryFilter('saved');" aria-label="Saved exams">
-          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-          <span>Saved</span>
-        </button>
-      </nav>
 
-      <div class="header-lang-wrap">
-        <span class="lang-divider" aria-hidden="true">|</span>
-        <button type="button" class="lang-btn active" id="btnLangEn" onclick="setLanguage('en');" title="English">EN</button>
-        <span class="lang-slash">/</span>
-        <button type="button" class="lang-btn" id="btnLangHi" onclick="setLanguage('hi');" title="हिन्दी">हिंदी</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ========================================================
-       NOTEGOV EXAM DIRECTORY MAIN VIEW
-       ======================================================== -->
-  <main class="exam-directory" id="directory-view">
-    <h1 class="sr-only">NoteGov Exam Hub — Board Exams &amp; Competitive Exams</h1>
-
-    <!-- Sub-Header Toolbar (Filter Pills & Search Bar) -->
-    <div class="directory-toolbar">
-      <div class="toolbar-left">
-        <nav class="directory-filters" aria-label="Filter exams">
-          <button type="button" class="dir-pill-btn active" data-filter="all" onclick="setDirectoryFilter('all')">All exams</button>
-          <button type="button" class="dir-pill-btn" data-filter="board" onclick="setDirectoryFilter('board')">Board exams</button>
-          <button type="button" class="dir-pill-btn" data-filter="competitive" onclick="setDirectoryFilter('competitive')">Competitive exams</button>
-        </nav>
-        <div class="illustrative-status-text">Illustrative exam statuses</div>
-      </div>
-
-      <div class="toolbar-right">
-        <div class="dir-search-wrap">
-          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="search" id="directorySearchInput" aria-label="Search exams" placeholder="Search exams">
-          <button type="button" class="clear-search-btn" id="clearDirectorySearch" aria-label="Clear search" style="display:none;" onclick="clearDirectorySearch();">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <nav class="sidebar-nav" aria-label="Directory Navigation">
+          <button type="button" class="sidebar-nav-item active" id="btnNavExplore" onclick="setDirectoryFilter('all');" aria-label="Explore exams">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+            <span>Explore</span>
           </button>
+          <button type="button" class="sidebar-nav-item" id="btnNavUpdates" onclick="scrollToUpdates();" aria-label="Latest updates">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span>Latest updates</span>
+          </button>
+          <button type="button" class="sidebar-nav-item" id="btnNavMyExams" onclick="openBpscSection('dashboard');" aria-label="My exams">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+            </svg>
+            <span>My exams</span>
+          </button>
+          <button type="button" class="sidebar-nav-item" id="btnNavCalendar" onclick="openExamCalendarModal();" aria-label="Calendar">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span>Calendar</span>
+          </button>
+          <button type="button" class="sidebar-nav-item" id="btnNavSaved" onclick="setDirectoryFilter('saved');" aria-label="Saved exams">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+              <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+            </svg>
+            <span>Saved</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-lang-wrap">
+          <button type="button" class="lang-btn active" id="btnLangEn" onclick="setLanguage('en');" title="English">EN</button>
+          <span class="lang-slash">/</span>
+          <button type="button" class="lang-btn" id="btnLangHi" onclick="setLanguage('hi');" title="हिन्दी">हिंदी</button>
         </div>
       </div>
-    </div>
+    </aside>
 
-    <!-- 2-Column Layout (Main Cards Grid + Sidebar Widgets) -->
-    <div class="directory-layout-container">
-      <!-- Main Content (Left Column) -->
-      <div class="directory-main-content">
+    <!-- MAIN AND RIGHT WRAPPER -->
+    <div class="dir-main-wrapper">
+      <!-- MIDDLE CENTER COLUMN -->
+      <div class="dir-center-col">
+        <!-- Mobile Search Box (visible on mobile screens) -->
+        <div class="search-box-wrap mobile-search-only" role="search">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="directorySearchInputMobile" aria-label="Search exams or boards" placeholder="Search exams or boards" oninput="syncSearchInputs(this);">
+          <button type="button" class="clear-search-btn" id="clearDirectorySearchMobile" aria-label="Clear search" onclick="clearDirectorySearch();">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
 
-        <!-- SECTION 1: Board Exams -->
-        <section class="exam-group board" data-group="board" aria-labelledby="board-exams-title">
-          <div class="section-banner board-banner">
-            <div class="banner-title-wrap">
-              <svg class="banner-icon blue-icon" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-              </svg>
-              <h2 id="board-exams-title">Board exams</h2>
-            </div>
+        <h1 class="page-title">Explore exams</h1>
+
+        <!-- SECTION 1: Board Exams (2x2 Grid) -->
+        <section class="exam-section board-section" data-group="board" aria-labelledby="board-exams-title">
+          <div class="section-head">
+            <h2 id="board-exams-title">Board exams</h2>
             <button type="button" class="view-all-link" onclick="setDirectoryFilter('board')">
               <span>View all</span>
-              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.4" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              <span class="arrow">→</span>
             </button>
           </div>
 
-          <div class="exam-grid">
+          <div class="board-grid">
             <!-- Card 1: CBSE Class 10 -->
-            <article class="exam-card board" data-id="cbse-10" data-group="board" data-title="CBSE Class 10" data-terms="CBSE Class 10 Central Board Secondary Education date sheet schedule sample papers matric">
-              <div class="card-head">
-                <div class="card-brand">
-                  <svg class="card-type-icon blue-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <h3>CBSE Class 10</h3>
+            <article class="exam-card board" data-id="cbse-10" data-group="board" data-title="CBSE Class 10" data-terms="CBSE Class 10 Central Board of Secondary Education matric date sheet sample papers">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
                 </div>
-                <button type="button" class="icon-btn directory-bookmark" aria-label="Save CBSE Class 10" onclick="toggleDirectorySaved('cbse-10', event)">
+                <button type="button" class="card-bookmark-btn" aria-label="Save CBSE Class 10" onclick="toggleDirectorySaved('cbse-10', event)">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="stage-badge stage-blue">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                <span>CURRENT STAGE: Date sheet available</span>
-              </div>
-
-              <div class="card-subtitle">Class 10 exam schedule</div>
-
-              <div class="card-action-primary">
-                <a href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer" class="primary-action-link">
-                  <span>View date sheet</span>
-                  <span class="action-arrow">→</span>
-                </a>
-              </div>
-
-              <div class="card-foot">
-                <a href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer" class="btn-open-notebook">
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Open notebook</span>
-                  <span class="foot-arrow">→</span>
-                </a>
-                <button type="button" class="btn-follow" data-id="cbse-10" onclick="toggleFollow('cbse-10', event)">
-                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="follow-text">Follow</span>
-                </button>
+              <div class="card-body">
+                <h3>CBSE Class 10</h3>
+                <p class="card-desc">Central Board of Secondary Education</p>
               </div>
             </article>
 
             <!-- Card 2: CBSE Class 12 -->
-            <article class="exam-card board" data-id="cbse-12" data-group="board" data-title="CBSE Class 12" data-terms="CBSE Class 12 Central Board Secondary Education senior secondary sample papers date sheet science commerce arts">
-              <div class="card-head">
-                <div class="card-brand">
-                  <svg class="card-type-icon blue-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <h3>CBSE Class 12</h3>
+            <article class="exam-card board" data-id="cbse-12" data-group="board" data-title="CBSE Class 12" data-terms="CBSE Class 12 Central Board of Secondary Education senior secondary sample papers date sheet">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
                 </div>
-                <button type="button" class="icon-btn directory-bookmark" aria-label="Save CBSE Class 12" onclick="toggleDirectorySaved('cbse-12', event)">
+                <button type="button" class="card-bookmark-btn" aria-label="Save CBSE Class 12" onclick="toggleDirectorySaved('cbse-12', event)">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="stage-badge stage-green">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                <span>CURRENT STAGE: Sample papers available</span>
-              </div>
-
-              <div class="card-subtitle">Practice resources</div>
-
-              <div class="card-action-primary">
-                <a href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer" class="primary-action-link">
-                  <span>View sample papers</span>
-                  <span class="action-arrow">→</span>
-                </a>
-              </div>
-
-              <div class="card-foot">
-                <a href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer" class="btn-open-notebook">
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Open notebook</span>
-                  <span class="foot-arrow">→</span>
-                </a>
-                <button type="button" class="btn-follow" data-id="cbse-12" onclick="toggleFollow('cbse-12', event)">
-                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="follow-text">Follow</span>
-                </button>
+              <div class="card-body">
+                <h3>CBSE Class 12</h3>
+                <p class="card-desc">Central Board of Secondary Education</p>
               </div>
             </article>
 
             <!-- Card 3: Bihar Board -->
-            <article class="exam-card board" data-id="bihar-board" data-group="board" data-title="Bihar Board" data-terms="BSEB Bihar School Examination Board matric intermediate 10 12 date sheet sample papers">
-              <div class="card-head">
-                <div class="card-brand">
-                  <svg class="card-type-icon blue-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <h3>Bihar Board</h3>
+            <article class="exam-card board" data-id="bihar-board" data-group="board" data-title="Bihar Board" data-terms="Bihar Board BSEB Bihar School Examination Board matric intermediate">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
                 </div>
-                <button type="button" class="icon-btn directory-bookmark" aria-label="Save Bihar Board" onclick="toggleDirectorySaved('bihar-board', event)">
+                <button type="button" class="card-bookmark-btn" aria-label="Save Bihar Board" onclick="toggleDirectorySaved('bihar-board', event)">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="stage-badge stage-amber">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
-                <span>CURRENT STAGE: Awaiting update</span>
+              <div class="card-body">
+                <h3>Bihar Board</h3>
+                <p class="card-desc">Bihar School Examination Board</p>
               </div>
+            </article>
 
-              <div class="card-subtitle">Next announcement pending</div>
-
-              <div class="card-action-primary">
-                <button type="button" class="btn-notify-me" onclick="notifyMe('Bihar Board', event)">
-                  <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span>Notify me</span>
+            <!-- Card 4: ICSE / ISC -->
+            <article class="exam-card board" data-id="icse-isc" data-group="board" data-title="ICSE / ISC" data-terms="ICSE ISC Council for the Indian School Certificate Examinations CISCE 10 12">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save ICSE / ISC" onclick="toggleDirectorySaved('icse-isc', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="card-foot">
-                <a href="https://biharboardonline.bihar.gov.in/" target="_blank" rel="noreferrer" class="btn-open-notebook">
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Open notebook</span>
-                  <span class="foot-arrow">→</span>
-                </a>
+              <div class="card-body">
+                <h3>ICSE / ISC</h3>
+                <p class="card-desc">Council for the Indian School Certificate Examinations</p>
               </div>
             </article>
           </div>
         </section>
 
-        <!-- SECTION 2: Competitive Exams -->
-        <section class="exam-group competitive" data-group="competitive" aria-labelledby="competitive-exams-title">
-          <div class="section-banner competitive-banner">
-            <div class="banner-title-wrap">
-              <svg class="banner-icon orange-icon" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
-              </svg>
-              <h2 id="competitive-exams-title">Competitive exams</h2>
-            </div>
+        <!-- SECTION 2: Competitive Exams (3x2 Grid) -->
+        <section class="exam-section competitive-section" data-group="competitive" aria-labelledby="competitive-exams-title">
+          <div class="section-head">
+            <h2 id="competitive-exams-title">Competitive exams</h2>
             <button type="button" class="view-all-link" onclick="setDirectoryFilter('competitive')">
               <span>View all</span>
-              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.4" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              <span class="arrow">→</span>
             </button>
           </div>
 
-          <div class="exam-grid">
+          <div class="competitive-grid">
             <!-- Card 1: SSC -->
-            <article class="exam-card competitive" data-id="ssc-cgl" data-group="competitive" data-title="SSC" data-terms="Staff Selection Commission CGL combined graduate level CHSL MTS GD jobs latest updates admit card">
-              <div class="card-head">
-                <div class="card-brand">
-                  <svg class="card-type-icon orange-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-                  <h3>SSC</h3>
+            <article class="exam-card competitive" data-id="ssc-cgl" data-group="competitive" data-title="SSC" data-terms="Staff Selection Commission SSC CGL CHSL MTS GD jobs latest updates admit card">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
                 </div>
-                <button type="button" class="icon-btn directory-bookmark" aria-label="Save SSC" onclick="toggleDirectorySaved('ssc-cgl', event)">
+                <button type="button" class="card-bookmark-btn" aria-label="Save SSC" onclick="toggleDirectorySaved('ssc-cgl', event)">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="stage-badge stage-teal">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                <span>CURRENT STAGE: Admit card available</span>
-              </div>
-
-              <div class="card-subtitle">Exam entry documents</div>
-
-              <div class="card-action-primary">
-                <a href="https://ssc.gov.in/home/admit-card" target="_blank" rel="noreferrer" class="primary-action-link">
-                  <span>View admit card</span>
-                  <span class="action-arrow">→</span>
-                </a>
-              </div>
-
-              <div class="card-foot">
-                <a href="https://ssc.gov.in/" target="_blank" rel="noreferrer" class="btn-open-notebook">
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Open notebook</span>
-                  <span class="foot-arrow">→</span>
-                </a>
-                <button type="button" class="btn-follow" data-id="ssc-cgl" onclick="toggleFollow('ssc-cgl', event)">
-                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="follow-text">Follow</span>
-                </button>
+              <div class="card-body">
+                <h3>SSC</h3>
+                <p class="card-desc">Staff Selection Commission</p>
               </div>
             </article>
 
             <!-- Card 2: BPSC (Opens full BPSC TRE 4.0 Suite) -->
-            <article class="exam-card competitive" data-id="bpsc-tre" data-group="competitive" data-title="BPSC" data-terms="BPSC Bihar Public Service Commission TRE 4 TRE 4.0 Computer Science PGT Class 11-12 Recruitment applications 40 Mock Tests 6000 Questions Syllabus Notes Marathon">
-              <div class="card-head">
-                <div class="card-brand">
-                  <svg class="card-type-icon orange-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-                  <h3>BPSC</h3>
+            <article class="exam-card competitive" data-id="bpsc-tre" data-group="competitive" data-title="BPSC" data-terms="Bihar Public Service Commission BPSC TRE 4.0 TRE 4 Computer Science PGT Class 11-12 Recruitment 40 Mock Tests 6000 Questions Syllabus Notes Marathon" onclick="openBpscSection('dashboard');" title="Open BPSC TRE 4.0 Computer Science Suite">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
                 </div>
-                <button type="button" class="icon-btn directory-bookmark" aria-label="Save BPSC" onclick="toggleDirectorySaved('bpsc-tre', event)">
+                <button type="button" class="card-bookmark-btn" aria-label="Save BPSC" onclick="toggleDirectorySaved('bpsc-tre', event)">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="stage-badge stage-purple">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                <span>CURRENT STAGE: Application open</span>
-              </div>
-
-              <div class="card-subtitle">Recruitment applications</div>
-
-              <div class="card-action-primary">
-                <button type="button" class="primary-action-link" onclick="openBpscSection('dashboard');" title="Open BPSC TRE 4.0 Preparation Portal">
-                  <span>View notification</span>
-                  <span class="action-arrow">→</span>
-                </button>
-              </div>
-
-              <div class="card-foot">
-                <button type="button" class="btn-open-notebook" onclick="openBpscSection('dashboard');" title="Open BPSC TRE 4.0 Preparation Portal">
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Open notebook</span>
-                  <span class="foot-arrow">→</span>
-                </button>
-                <button type="button" class="btn-follow" data-id="bpsc-tre" onclick="toggleFollow('bpsc-tre', event)">
-                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="follow-text">Follow</span>
-                </button>
+              <div class="card-body">
+                <h3>BPSC</h3>
+                <p class="card-desc">Bihar Public Service Commission</p>
               </div>
             </article>
 
             <!-- Card 3: UPSC -->
-            <article class="exam-card competitive" data-id="upsc" data-group="competitive" data-title="UPSC" data-terms="Union Public Service Commission Civil Services CSE IAS IPS IFS Prelims Mains result latest updates admit card">
-              <div class="card-head">
-                <div class="card-brand">
-                  <svg class="card-type-icon orange-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-                  <h3>UPSC</h3>
+            <article class="exam-card competitive" data-id="upsc" data-group="competitive" data-title="UPSC" data-terms="Union Public Service Commission UPSC Civil Services CSE IAS IPS IFS Prelims Mains result">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
                 </div>
-                <button type="button" class="icon-btn directory-bookmark" aria-label="Save UPSC" onclick="toggleDirectorySaved('upsc', event)">
+                <button type="button" class="card-bookmark-btn" aria-label="Save UPSC" onclick="toggleDirectorySaved('upsc', event)">
                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
               </div>
-
-              <div class="stage-badge stage-green">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-                <span>CURRENT STAGE: Result available</span>
+              <div class="card-body">
+                <h3>UPSC</h3>
+                <p class="card-desc">Union Public Service Commission</p>
               </div>
+            </article>
 
-              <div class="card-subtitle">Exam result published</div>
-
-              <div class="card-action-primary">
-                <a href="https://upsc.gov.in/" target="_blank" rel="noreferrer" class="primary-action-link">
-                  <span>Check result</span>
-                  <span class="action-arrow">→</span>
-                </a>
-              </div>
-
-              <div class="card-foot">
-                <a href="https://upsc.gov.in/" target="_blank" rel="noreferrer" class="btn-open-notebook">
-                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Open notebook</span>
-                  <span class="foot-arrow">→</span>
-                </a>
-                <button type="button" class="btn-follow" data-id="upsc" onclick="toggleFollow('upsc', event)">
-                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="follow-text">Follow</span>
+            <!-- Card 4: Railway -->
+            <article class="exam-card competitive" data-id="rrb-ntpc" data-group="competitive" data-title="Railway" data-terms="Railway Recruitment Boards RRB NTPC Group D ALP technician">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save Railway" onclick="toggleDirectorySaved('rrb-ntpc', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                 </button>
+              </div>
+              <div class="card-body">
+                <h3>Railway</h3>
+                <p class="card-desc">Railway Recruitment Boards</p>
+              </div>
+            </article>
+
+            <!-- Card 5: Banking -->
+            <article class="exam-card competitive" data-id="ibps-sbi" data-group="competitive" data-title="Banking" data-terms="Banking Recruitment Exams IBPS PO Clerk SBI RBI RRB Bank">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save Banking" onclick="toggleDirectorySaved('ibps-sbi', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>Banking</h3>
+                <p class="card-desc">Banking Recruitment Exams</p>
+              </div>
+            </article>
+
+            <!-- Card 6: Teaching (Also connects to BPSC TRE CS) -->
+            <article class="exam-card competitive" data-id="teaching-exams" data-group="competitive" data-title="Teaching" data-terms="Teaching Recruitment Exams CTET STET BPSC TRE 4.0 Computer Science Teacher KVS NVS DSSSB" onclick="openBpscSection('dashboard');" title="Open BPSC TRE 4.0 Computer Teacher Suite">
+              <div class="card-dogear" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="8" y1="3" x2="9" y2="5"/>
+                    <line x1="16" y1="3" x2="15" y2="5"/>
+                    <path d="M3 8h6a3 3 0 0 1 3 3v10a2 2 0 0 0-2-2H3z"/>
+                    <path d="M21 8h-6a3 3 0 0 0-3 3v10a2 2 0 0 1 2-2h7z"/>
+                  </svg>
+                </div>
+                <button type="button" class="card-bookmark-btn" aria-label="Save Teaching" onclick="toggleDirectorySaved('teaching-exams', event)">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>Teaching</h3>
+                <p class="card-desc">Teaching Recruitment Exams</p>
               </div>
             </article>
           </div>
@@ -550,72 +546,125 @@
           <p id="directoryEmptyDesc">Try a different search term or clear your filters.</p>
           <button type="button" class="btn-clear-search-pill" id="directoryEmptyBtn" onclick="clearDirectorySearch();">Clear search</button>
         </div>
-      </div><!-- .directory-main-content -->
+      </div><!-- .dir-center-col -->
 
-      <!-- Right Sidebar Column -->
-      <aside class="directory-sidebar" id="directorySidebar" aria-label="Updates and Calendar">
-        <!-- Widget 1: Latest Updates -->
-        <div class="sidebar-card" id="widgetUpdates">
+      <!-- RIGHT SIDEBAR COLUMN -->
+      <aside class="dir-right-col" aria-label="Updates and Upcoming Dates">
+        <!-- Search Box Wrap (Desktop) -->
+        <div class="search-box-wrap desktop-search-only" role="search">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="directorySearchInput" aria-label="Search exams or boards" placeholder="Search exams or boards" oninput="syncSearchInputs(this);">
+          <button type="button" class="clear-search-btn" id="clearDirectorySearch" aria-label="Clear search" onclick="clearDirectorySearch();">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Widget 1: Exam updates -->
+        <div class="widget-card" id="widgetUpdates">
           <div class="widget-head">
-            <svg class="widget-head-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-            </svg>
-            <h2>Latest updates</h2>
+            <div class="widget-title-wrap">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              <h2>Exam updates</h2>
+            </div>
+            <span class="badge-sample">Sample updates</span>
           </div>
+
+          <!-- Updates Tabs -->
+          <div class="updates-tabs" role="tablist" aria-label="Updates filter">
+            <button type="button" class="update-tab-btn active" id="tabAllUpdates" onclick="setUpdatesTab('all')" role="tab" aria-selected="true">All updates</button>
+            <button type="button" class="update-tab-btn" id="tabFollowingUpdates" onclick="setUpdatesTab('following')" role="tab" aria-selected="false">Following</button>
+          </div>
+
+          <!-- Updates List -->
           <ul class="updates-list">
             <li>
-              <a href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer" class="update-item-link">
-                <span class="update-left">
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                  <span>Board exam schedules</span>
-                </span>
-                <span class="update-arrow" aria-hidden="true">&rsaquo;</span>
+              <a href="https://ssc.gov.in/home/admit-card" target="_blank" rel="noreferrer" class="update-row">
+                <div class="update-left">
+                  <div class="update-icon-box orange-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  </div>
+                  <div class="update-info">
+                    <span class="update-item-title">SSC CGL admit card</span>
+                    <span class="update-tag tag-orange">Admit card</span>
+                  </div>
+                </div>
+                <span class="update-chevron" aria-hidden="true">&rsaquo;</span>
               </a>
             </li>
             <li>
-              <button type="button" class="update-item-link" onclick="openBpscSection('dashboard');">
-                <span class="update-left">
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>Recruitment notices</span>
-                </span>
-                <span class="update-arrow" aria-hidden="true">&rsaquo;</span>
+              <button type="button" class="update-row" onclick="openBpscSection('dashboard');" title="Open BPSC TRE 4.0 Suite">
+                <div class="update-left">
+                  <div class="update-icon-box purple-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                  </div>
+                  <div class="update-info">
+                    <span class="update-item-title">BPSC recruitment notice</span>
+                    <span class="update-tag tag-purple">Recruitment</span>
+                  </div>
+                </div>
+                <span class="update-chevron" aria-hidden="true">&rsaquo;</span>
               </button>
             </li>
             <li>
-              <a href="https://upsc.gov.in/" target="_blank" rel="noreferrer" class="update-item-link">
-                <span class="update-left">
-                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-                  <span>Exam results</span>
-                </span>
-                <span class="update-arrow" aria-hidden="true">&rsaquo;</span>
+              <a href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer" class="update-row">
+                <div class="update-left">
+                  <div class="update-icon-box blue-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div class="update-info">
+                    <span class="update-item-title">CBSE Class 12 sample papers</span>
+                    <span class="update-tag tag-blue">Study material</span>
+                  </div>
+                </div>
+                <span class="update-chevron" aria-hidden="true">&rsaquo;</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://upsc.gov.in/" target="_blank" rel="noreferrer" class="update-row">
+                <div class="update-left">
+                  <div class="update-icon-box green-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                  </div>
+                  <div class="update-info">
+                    <span class="update-item-title">UPSC prelims result</span>
+                    <span class="update-tag tag-green">Result</span>
+                  </div>
+                </div>
+                <span class="update-chevron" aria-hidden="true">&rsaquo;</span>
               </a>
             </li>
           </ul>
+
+          <a href="#updates" class="view-all-updates-link" onclick="setDirectoryFilter('all'); return false;">
+            <span>View all updates</span>
+            <span class="arrow">→</span>
+          </a>
         </div>
 
-        <!-- Widget 2: Exam Calendar -->
-        <div class="sidebar-card" id="widgetCalendar">
-          <div class="widget-head">
-            <svg class="widget-head-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+        <!-- Widget 2: Upcoming dates -->
+        <div class="upcoming-dates-card" id="widgetUpcomingDates">
+          <div class="upcoming-icon-box">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            <h2>Exam calendar</h2>
           </div>
-          <p class="calendar-desc">View key exam dates and upcoming exam events in one place.</p>
-          <button type="button" class="btn-open-calendar" onclick="openExamCalendarModal();">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span>Open exam calendar</span>
-            <span class="cal-btn-arrow">→</span>
-          </button>
+          <div class="upcoming-content">
+            <h2>Upcoming dates</h2>
+            <p class="upcoming-desc">Track deadlines and exam days</p>
+            <button type="button" class="open-calendar-cta" onclick="openExamCalendarModal();">
+              <span>Open calendar</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
         </div>
       </aside>
-    </div><!-- .directory-layout-container -->
+    </div><!-- .dir-main-wrapper -->
 
     <!-- Interactive Exam Calendar Modal -->
     <div class="calendar-modal-backdrop" id="calendarModal" onclick="if(event.target===this)closeExamCalendarModal();" aria-modal="true" role="dialog" aria-labelledby="calModalTitle">
@@ -640,32 +689,32 @@
               <tr>
                 <td><strong>CBSE Class 10</strong></td>
                 <td>Annual Board Exams</td>
-                <td><span class="stage-badge stage-blue" style="display:inline-flex;">Date sheet out</span></td>
+                <td><span class="update-tag tag-blue" style="display:inline-flex;">Date sheet out</span></td>
               </tr>
               <tr>
                 <td><strong>CBSE Class 12</strong></td>
                 <td>Senior School Exams</td>
-                <td><span class="stage-badge stage-green" style="display:inline-flex;">Sample papers live</span></td>
+                <td><span class="update-tag tag-green" style="display:inline-flex;">Sample papers live</span></td>
               </tr>
               <tr>
                 <td><strong>Bihar Board (BSEB)</strong></td>
                 <td>Matric &amp; Intermediate</td>
-                <td><span class="stage-badge stage-amber" style="display:inline-flex;">Awaiting update</span></td>
+                <td><span class="update-tag tag-orange" style="display:inline-flex;">Awaiting update</span></td>
               </tr>
               <tr>
                 <td><strong>BPSC TRE 4.0 (CS)</strong></td>
                 <td>Recruitment &amp; CBT</td>
-                <td><span class="stage-badge stage-purple" style="display:inline-flex;">Application open</span></td>
+                <td><span class="update-tag tag-purple" style="display:inline-flex;">Application open</span></td>
               </tr>
               <tr>
                 <td><strong>SSC CGL / CHSL</strong></td>
                 <td>Tier 1 &amp; Tier 2</td>
-                <td><span class="stage-badge stage-teal" style="display:inline-flex;">Admit card available</span></td>
+                <td><span class="update-tag tag-orange" style="display:inline-flex;">Admit card available</span></td>
               </tr>
               <tr>
                 <td><strong>UPSC Civil Services</strong></td>
                 <td>CSE Prelims / Final</td>
-                <td><span class="stage-badge stage-green" style="display:inline-flex;">Result available</span></td>
+                <td><span class="update-tag tag-green" style="display:inline-flex;">Result available</span></td>
               </tr>
             </tbody>
           </table>

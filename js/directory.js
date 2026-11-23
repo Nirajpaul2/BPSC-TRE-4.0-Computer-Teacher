@@ -86,9 +86,9 @@
   };
 
   function updateBookmarkButtons() {
-    document.querySelectorAll('.exam-directory .exam-card').forEach(card => {
+    document.querySelectorAll('.exam-card').forEach(card => {
       const id = card.dataset.id;
-      const btn = card.querySelector('.directory-bookmark');
+      const btn = card.querySelector('.card-bookmark-btn, .directory-bookmark');
       const svg = btn ? btn.querySelector('svg') : null;
       const isSaved = savedExams.includes(id);
 
@@ -103,55 +103,15 @@
       }
     });
 
-    const headerSavedBtn = document.getElementById('btnDirectorySaved');
-    if (headerSavedBtn) {
-      headerSavedBtn.classList.toggle('active', currentFilter === 'saved');
-      const svg = headerSavedBtn.querySelector('svg');
+    const btnNavSaved = document.getElementById('btnNavSaved');
+    if (btnNavSaved) {
+      btnNavSaved.classList.toggle('active', currentFilter === 'saved');
+      const svg = btnNavSaved.querySelector('svg');
       if (svg) {
         svg.setAttribute('fill', currentFilter === 'saved' || savedExams.length > 0 ? 'currentColor' : 'none');
       }
     }
   }
-
-  // Follow / Unfollow exam updates
-  window.toggleFollow = function (examId, event) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    const idx = followedExams.indexOf(examId);
-    let isFollowing = false;
-    if (idx >= 0) {
-      followedExams.splice(idx, 1);
-    } else {
-      followedExams.push(examId);
-      isFollowing = true;
-    }
-    saveFollowedExams();
-    updateFollowButtons();
-    showToastNotification(isFollowing ? '🔔 Following updates for this exam.' : 'Notifications turned off.');
-  };
-
-  function updateFollowButtons() {
-    document.querySelectorAll('.btn-follow').forEach(btn => {
-      const id = btn.dataset.id;
-      const isFollowing = followedExams.includes(id);
-      btn.classList.toggle('following', isFollowing);
-      const textSpan = btn.querySelector('.follow-text');
-      if (textSpan) {
-        textSpan.textContent = isFollowing ? 'Following' : 'Follow';
-      }
-    });
-  }
-
-  // Notify Me button handler
-  window.notifyMe = function (examName, event) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    showToastNotification(`🔔 Notifications enabled for ${examName} updates.`);
-  };
 
   // Calendar Modal Controls
   window.openExamCalendarModal = function () {
@@ -186,30 +146,53 @@
     const updates = document.getElementById('widgetUpdates');
     if (updates) {
       updates.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      updates.style.boxShadow = '0 0 0 3px rgba(237, 114, 5, 0.4)';
+      updates.style.boxShadow = '0 0 0 3px rgba(234, 88, 12, 0.4)';
       setTimeout(() => {
         updates.style.boxShadow = '';
       }, 1500);
     }
   };
 
+  // Updates tab switcher (All updates vs Following)
+  window.setUpdatesTab = function (tab) {
+    const tabAll = document.getElementById('tabAllUpdates');
+    const tabFoll = document.getElementById('tabFollowingUpdates');
+    if (tabAll) tabAll.classList.toggle('active', tab === 'all');
+    if (tabFoll) tabFoll.classList.toggle('active', tab === 'following');
+
+    if (tab === 'following') {
+      showToastNotification('🔔 Showing updates from exams you follow.');
+    }
+  };
+
+  // Search Input Synchronization & Filtering
+  window.syncSearchInputs = function (source) {
+    const val = source.value;
+    const desktopInput = document.getElementById('directorySearchInput');
+    const mobileInput = document.getElementById('directorySearchInputMobile');
+    if (desktopInput && desktopInput !== source) desktopInput.value = val;
+    if (mobileInput && mobileInput !== source) mobileInput.value = val;
+    filterDirectory();
+  };
+
   // Filter and Search Directory Cards
   window.filterDirectory = function () {
     const searchInput = document.getElementById('directorySearchInput');
-    const clearBtn = document.getElementById('clearDirectorySearch');
-    const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+    const searchInputMobile = document.getElementById('directorySearchInputMobile');
+    const query = ((searchInput ? searchInput.value : '') || (searchInputMobile ? searchInputMobile.value : '')).trim().toLowerCase();
     const terms = query.split(/\s+/).filter(Boolean);
 
-    if (clearBtn) {
-      clearBtn.style.display = query ? 'inline-grid' : 'none';
-    }
+    const clearBtn = document.getElementById('clearDirectorySearch');
+    const clearBtnMobile = document.getElementById('clearDirectorySearchMobile');
+    if (clearBtn) clearBtn.style.display = query ? 'inline-block' : 'none';
+    if (clearBtnMobile) clearBtnMobile.style.display = query ? 'inline-block' : 'none';
 
     let totalVisible = 0;
-    const groups = document.querySelectorAll('.exam-directory .exam-group');
+    const sections = document.querySelectorAll('.exam-section');
 
-    groups.forEach(group => {
-      const groupId = group.dataset.group; // 'board' or 'competitive'
-      const cards = group.querySelectorAll('.exam-card');
+    sections.forEach(section => {
+      const sectionGroup = section.dataset.group; // 'board' or 'competitive'
+      const cards = section.querySelectorAll('.exam-card');
       let groupVisible = 0;
 
       cards.forEach(card => {
@@ -241,9 +224,9 @@
         }
       });
 
-      // Show group header only if it has visible cards and filter allows
-      const allowGroup = currentFilter === 'all' || currentFilter === 'saved' || currentFilter === groupId;
-      group.style.display = (groupVisible > 0 && allowGroup) ? 'block' : 'none';
+      // Show section only if it has visible cards and filter allows
+      const allowGroup = currentFilter === 'all' || currentFilter === 'saved' || currentFilter === sectionGroup;
+      section.style.display = (groupVisible > 0 && allowGroup) ? 'block' : 'none';
     });
 
     // Handle Empty State
@@ -275,35 +258,33 @@
   window.setDirectoryFilter = function (filterId) {
     currentFilter = filterId;
 
-    // Update filter buttons
-    document.querySelectorAll('.directory-filters .dir-pill-btn').forEach(btn => {
-      const active = btn.dataset.filter === filterId;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-current', active ? 'page' : 'false');
-    });
-
-    // Main nav links
-    const navExplore = document.querySelector('.dir-main-nav .dir-nav-link[href="#/"]');
-    if (navExplore) {
-      navExplore.classList.toggle('active', filterId === 'all');
-    }
+    // Update left sidebar active items
+    const btnExplore = document.getElementById('btnNavExplore');
+    const btnSaved = document.getElementById('btnNavSaved');
+    if (btnExplore) btnExplore.classList.toggle('active', filterId === 'all');
+    if (btnSaved) btnSaved.classList.toggle('active', filterId === 'saved');
 
     updateBookmarkButtons();
     filterDirectory();
 
     // Scroll slightly if scrolled down
-    const directoryContainer = document.querySelector('.exam-directory');
+    const directoryContainer = document.querySelector('.dir-center-col');
     if (directoryContainer && window.scrollY > 200) {
       directoryContainer.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   window.clearDirectorySearch = function () {
-    const searchInput = document.getElementById('directorySearchInput');
-    if (searchInput) {
-      searchInput.value = '';
-      searchInput.focus();
-    }
+    const desktopInput = document.getElementById('directorySearchInput');
+    const mobileInput = document.getElementById('directorySearchInputMobile');
+    if (desktopInput) desktopInput.value = '';
+    if (mobileInput) mobileInput.value = '';
+
+    const clearBtn = document.getElementById('clearDirectorySearch');
+    const clearBtnMobile = document.getElementById('clearDirectorySearchMobile');
+    if (clearBtn) clearBtn.style.display = 'none';
+    if (clearBtnMobile) clearBtnMobile.style.display = 'none';
+
     filterDirectory();
   };
 
@@ -312,11 +293,9 @@
   // -------------------------------------------------------------
   window.openBpscSection = function (tabName) {
     const dirView = document.getElementById('directory-view');
-    const notegovHeader = document.getElementById('notegov-header');
     const bpscSection = document.getElementById('bpsc-section');
 
     if (dirView) dirView.style.display = 'none';
-    if (notegovHeader) notegovHeader.style.display = 'none';
     if (bpscSection) bpscSection.style.display = 'block';
 
     const targetTab = tabName ? `tab-${tabName}` : 'tab-dashboard';
@@ -329,11 +308,9 @@
 
   window.showDirectoryView = function () {
     const dirView = document.getElementById('directory-view');
-    const notegovHeader = document.getElementById('notegov-header');
     const bpscSection = document.getElementById('bpsc-section');
 
-    if (dirView) dirView.style.display = 'block';
-    if (notegovHeader) notegovHeader.style.display = 'block';
+    if (dirView) dirView.style.display = 'flex';
     if (bpscSection) bpscSection.style.display = 'none';
 
     if (history.replaceState) {
@@ -368,7 +345,6 @@
     });
 
     updateBookmarkButtons();
-    updateFollowButtons();
 
     // Check initial route hash
     const rawHash = (window.location.hash || '').replace('#', '').replace(/^\//, '');
