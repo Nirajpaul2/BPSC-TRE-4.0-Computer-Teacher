@@ -1,727 +1,964 @@
 /* ==========================================================================
-   NoteGov Exam Directory Styles
-   Matches http://127.0.0.1:3000/#/ and the NoteGov Reference Design
+   NoteGov Exam Directory & Dashboard Styles
+   Matches the 2026 NoteGov Reference Design with 2-Column SaaS Layout
    ========================================================================== */
 
 :root {
-  --directory-ink: #0a1233;
-  --directory-line: #b6c0d2;
-  --directory-blue: #176dc3;
-  --directory-orange: #ed7205;
+  --dir-ink: #0b1434;
+  --dir-text: #1e293b;
+  --dir-muted: #64748b;
+  --dir-border: #e2e8f0;
+  --dir-bg: #f8fafc;
+  --dir-card-bg: #ffffff;
+  --dir-orange: #ea580c;
+  --dir-orange-hover: #c2410c;
+  --dir-orange-light: #fff7ed;
+  --dir-orange-border: #fed7aa;
+  --dir-blue: #2563eb;
+  --dir-blue-light: #eff6ff;
+  --dir-blue-border: #dbeafe;
 }
 
 body:has(.directory-header) {
-  background: radial-gradient(ellipse at 45% 50%, #f7f9fd, #f4f7fc 85%);
+  background-color: var(--dir-bg);
+  color: var(--dir-text);
   color-scheme: light;
 }
 
+/* Screen reader only utility (Accessible SEO H1) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /* -------------------------------------------------------------
-   Top Directory Header
+   1. Top Directory Header
    ------------------------------------------------------------- */
 .directory-header {
-  border-bottom: 1px solid var(--directory-line);
   background: #ffffff;
+  border-bottom: 1px solid var(--dir-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  color: var(--directory-ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .directory-header-inner {
-  width: min(1440px, calc(100% - 6.4vw));
-  margin-inline: auto;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
   display: flex;
-  min-height: 87px;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding-inline: 6px;
+  gap: 1.5rem;
 }
 
 .directory-header .brand {
   display: inline-flex;
   align-items: center;
-  gap: 15px;
-  color: var(--directory-ink);
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  font-size: clamp(27px, 2.95vw, 45px);
-  font-weight: 800;
-  letter-spacing: -0.022em;
-  line-height: 1;
+  gap: 0.65rem;
   text-decoration: none;
-  cursor: pointer;
+  color: var(--dir-ink);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  flex-shrink: 0;
 }
 
 .directory-header .brand img {
-  width: 58px;
-  height: 58px;
-  border: 0;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
+  object-fit: contain;
 }
 
-.directory-saved {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 15px;
-  border: none;
-  background: transparent;
-  border-radius: 7px;
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--directory-ink);
-  cursor: pointer;
-  text-decoration: none;
-  padding: 6px 14px;
-  transition: all 0.15s ease;
-}
-
-.directory-saved:hover,
-.directory-saved.active,
-.directory-saved[aria-current="page"] {
-  color: var(--directory-blue);
-  background: rgba(23, 109, 195, 0.08);
-}
-
-.directory-saved svg {
-  flex-shrink: 0;
-}
-
-/* -------------------------------------------------------------
-   Main Directory Container
-   ------------------------------------------------------------- */
-.exam-directory {
-  width: min(1440px, calc(100% - 6.4vw));
-  margin-inline: auto;
-  padding: 33px 0 60px;
-  color: var(--directory-ink);
-}
-
-/* -------------------------------------------------------------
-   Search Hero Banner
-   ------------------------------------------------------------- */
-.directory-search-banner {
-  display: grid;
-  width: 90.85%;
-  min-height: 112px;
-  grid-template-columns: minmax(max-content, 35.65%) 1px minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(22px, 2.55vw, 39px);
-  margin-inline: auto;
-  padding: 16px clamp(25px, 3.5vw, 54px);
-  padding-inline-end: clamp(25px, 3.25vw, 50px);
-  border-radius: 24px;
-  background: linear-gradient(108deg, #142140, #0e1b3d);
-  color: #fff;
-  box-shadow: 0 8px 24px rgba(14, 27, 61, 0.25);
-}
-
-.directory-search-banner h1,
-.directory-search-banner .banner-title {
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  font-size: clamp(32px, 3.78vw, 58px);
-  font-weight: 800;
-  letter-spacing: -0.017em;
-  white-space: nowrap;
-  margin: 0;
-  color: #ffffff;
-}
-
-.directory-search-divider {
-  width: 1px;
-  height: 54px;
-  background: #a3adc2;
-}
-
-.directory-search {
+/* Navigation Links */
+.dir-main-nav {
   display: flex;
-  min-width: 0;
-  min-height: 54px;
   align-items: center;
-  gap: 18px;
-  padding-inline: 21px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 40px;
-  background: #fbf6ef;
-  color: var(--directory-ink);
-  box-shadow: 0 4px 9px rgba(2, 9, 24, 0.26);
-  transition: all 0.2s ease;
+  gap: 1.85rem;
+  height: 100%;
 }
 
-.directory-search:focus-within {
-  outline: 3px solid #85b9ff;
-  outline-offset: 3px;
-}
-
-.directory-search svg {
-  flex: none;
-  color: #344057;
-}
-
-.directory-search input {
-  min-width: 0;
-  min-height: 50px;
-  flex: 1;
-  color: #0a1233;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(16px, 1.68vw, 26px);
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.directory-search input::placeholder {
-  color: #344057;
-  opacity: 1;
-}
-
-.directory-search input::-webkit-search-cancel-button {
-  display: none;
-}
-
-.directory-search .clear-search-btn {
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  display: inline-grid;
-  place-items: center;
-  cursor: pointer;
-  color: #344057;
-  padding: 0;
-}
-
-.directory-search .clear-search-btn:hover {
-  background: #e9ebf1;
-}
-
-/* -------------------------------------------------------------
-   Category Filter Pills
-   ------------------------------------------------------------- */
-.directory-filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  margin: 28px 0 24px;
-}
-
-.directory-filters button {
-  display: inline-grid;
-  min-height: 49px;
-  min-width: 133px;
-  place-items: center;
-  padding: 4px clamp(19px, 2.1vw, 32px);
-  border: 1px solid var(--directory-line);
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--directory-ink);
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(16px, 1.43vw, 22px);
-  font-weight: 500;
-  line-height: 1.15;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-
-.directory-filters button:first-child {
-  min-width: 200px;
-}
-
-.directory-filters button:hover {
-  background: #e8eff8;
-  border-color: #8da4c4;
-}
-
-.directory-filters button.active,
-.directory-filters button[aria-current="page"] {
-  border-color: #101b3a;
-  background: #14203f;
-  color: #fff;
-  font-weight: 750;
-}
-
-/* -------------------------------------------------------------
-   Exam Groups & Grids
-   ------------------------------------------------------------- */
-.exam-group + .exam-group {
-  margin-top: 32px;
-}
-
-.exam-group-header {
-  display: flex;
-  min-height: 54px;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding-inline: 12px;
-}
-
-.exam-group-header h2 {
-  flex: none;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(25px, 2.56vw, 39px);
-  font-weight: 800;
-  letter-spacing: -0.014em;
-  transform: translateY(4px);
-  margin: 0;
-  color: var(--directory-ink);
-}
-
-.directory-group-icon {
-  width: 56px;
-  height: 54px;
-  flex: none;
-  color: var(--directory-blue);
-}
-
-.competitive .directory-group-icon,
-.view-all-link svg {
-  color: var(--directory-orange);
-}
-
-.exam-group-rule {
-  min-width: 12px;
-  flex: 1;
-  align-self: center;
-  margin-inline: 6px 16px;
-  transform: translateY(10px);
-  border-block-start: 1px solid var(--directory-line);
-}
-
-.view-all-link {
-  display: inline-flex;
-  flex: none;
-  align-items: center;
-  gap: 8px;
-  border-radius: 5px;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(15px, 1.48vw, 23px);
-  font-weight: 750;
-  color: var(--directory-ink);
-  transform: translateY(4px);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 4px 6px;
-}
-
-.view-all-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.exam-directory .exam-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 18px;
-}
-
-/* -------------------------------------------------------------
-   Directory Exam Cards
-   ------------------------------------------------------------- */
-.exam-directory .exam-card {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid #bec8d8;
-  border-radius: 16px;
-  background: linear-gradient(170deg, #fff, #fdfdfe);
-  box-shadow: 0 3px 7px rgba(16, 34, 73, 0.04);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-  position: relative;
-}
-
-.exam-directory .exam-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(16, 34, 73, 0.1);
-}
-
-.exam-directory .exam-card-body {
-  flex: 1;
-  padding: 12px clamp(15px, 2vw, 30px) 9px;
-}
-
-.exam-directory .competitive .exam-card-body {
-  padding-bottom: 13px;
-}
-
-.exam-directory .exam-card-heading {
-  display: flex;
-  height: 45px;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.directory-card-icon {
-  width: 46px;
-  height: 45px;
-  flex: none;
-  color: var(--directory-blue);
-}
-
-.competitive .directory-card-icon {
-  color: var(--directory-orange);
-}
-
-.directory-card-icon[data-icon="people"] {
-  width: 56px;
-  height: 54px;
-  transform: translateY(-3px);
-}
-
-.directory-bookmark {
-  width: 38px;
-  height: 38px;
-  margin: -2px -9px 0 0;
-  border: none;
-  background: transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  display: inline-grid;
-  place-items: center;
-  color: #718096;
-  padding: 0;
-  transition: all 0.15s ease;
-}
-
-.directory-bookmark:hover,
-.directory-bookmark.saved,
-.directory-bookmark[aria-pressed="true"] {
-  background: #eaf1fa;
-  color: var(--directory-blue);
-}
-
-.directory-links {
-  display: grid;
-  grid-auto-rows: minmax(46px, auto);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.directory-links li + li {
-  border-top: 1px solid #c5cbd7;
-}
-
-.directory-links a {
-  display: flex;
-  min-height: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-bottom: 4px;
-  border-radius: 4px;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(17px, 1.44vw, 22px);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--directory-ink);
-  text-decoration: none;
-}
-
-.directory-links a:hover {
-  color: var(--directory-blue);
-}
-
-.directory-links a svg {
-  flex: none;
-  transition: transform 0.15s ease;
-}
-
-.directory-links a:hover svg {
-  transform: translateX(3px);
-}
-
-.exam-directory .exam-card h3 {
-  margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(20px, 1.88vw, 29px);
-  font-weight: 800;
-  letter-spacing: -0.028em;
-}
-
-.notebook-link {
-  display: flex;
-  min-height: 57px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px clamp(15px, 2vw, 30px) 10px;
-  background: #d3e6fb;
-  color: var(--directory-ink);
-  text-decoration: none;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: inherit;
-  font-weight: 800;
-  width: 100%;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.competitive .notebook-link {
-  min-height: 59px;
-  background: #fee0c2;
-}
-
-.notebook-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  filter: brightness(0.97);
-}
-
-.notebook-link:focus-visible {
-  outline-offset: -4px;
-}
-
-/* -------------------------------------------------------------
-   Empty Results State
-   ------------------------------------------------------------- */
-.directory-empty {
-  max-width: 640px;
-  margin: 36px auto 0;
-  padding: 40px 24px;
-  border: 1px solid #bec8d8;
-  border-radius: 16px;
-  background: #ffffff;
-  color: #344057;
-  text-align: center;
-}
-
-.directory-empty h3 {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--directory-ink);
-  margin-bottom: 8px;
-}
-
-.directory-empty p {
-  font-size: 16px;
-  color: #59637a;
-  margin-bottom: 20px;
-}
-
-/* -------------------------------------------------------------
-   BPSC Section Integration Styles
-   ------------------------------------------------------------- */
-.btn-back-directory {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: #ffffff;
-  color: #14203f;
-  border: 1px solid var(--border-color, #e2e8f0);
-  border-radius: 8px;
-  padding: 0.38rem 0.75rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-
-.btn-back-directory:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: var(--accent-primary, #4f46e5);
-}
-
-[data-theme="dark"] .btn-back-directory {
-  background: #1e293b;
-  color: #f1f5f9;
-  border-color: #334155;
-}
-
-[data-theme="dark"] .btn-back-directory:hover {
-  background: #334155;
-  color: #ffffff;
-}
-
-.header-divider {
-  width: 1px;
-  height: 22px;
-  background: var(--border-color, #e2e8f0);
-  flex-shrink: 0;
-}
-
-.bpsc-status-pill {
+.dir-nav-link {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: #334155;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  padding: 0 0.15rem;
+  transition: color 0.15s ease;
+  font-family: inherit;
 }
 
-.bpsc-status-pill .live-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+.dir-nav-link:hover {
+  color: var(--dir-orange);
+}
+
+.dir-nav-link.active {
+  color: var(--dir-orange);
+  font-weight: 700;
+}
+
+.dir-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: var(--dir-orange);
+  border-radius: 2px 2px 0 0;
+}
+
+.dir-nav-link svg {
+  flex-shrink: 0;
+}
+
+/* Language Switcher */
+.header-lang-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.lang-divider {
+  color: #cbd5e1;
+  margin: 0 0.35rem;
+  user-select: none;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s ease;
+}
+
+.lang-btn:hover {
+  color: var(--dir-orange);
+}
+
+.lang-btn.active {
+  color: var(--dir-orange);
+  font-weight: 800;
+  border-bottom: 2px solid var(--dir-orange);
+}
+
+.lang-slash {
+  color: #94a3b8;
+  font-size: 0.85rem;
 }
 
 /* -------------------------------------------------------------
-   Responsive Breakpoints
+   2. Sub-Header Toolbar (Filter Pills & Search)
    ------------------------------------------------------------- */
-@media (max-width: 1050px) {
-  .directory-header-inner {
-    min-height: 73px;
-  }
+.directory-toolbar {
+  max-width: 1380px;
+  margin: 1.5rem auto 1.25rem;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
 
-  .directory-header .brand img {
-    width: 47px;
-    height: 47px;
-  }
+.toolbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
 
-  .directory-saved {
-    font-size: 19px;
-  }
+.directory-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
 
-  .directory-saved svg {
-    width: 25px;
-  }
+.dir-pill-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
 
-  .directory-search-banner {
-    width: 96%;
-    min-height: 94px;
-  }
+.dir-pill-btn:hover {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+}
 
-  .directory-filters button:first-child {
-    min-width: 145px;
-  }
+.dir-pill-btn.active {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #1e293b;
+  font-weight: 750;
+  box-shadow: 0 1px 2px rgba(234, 88, 12, 0.08);
+}
 
-  .directory-filters button {
-    min-width: auto;
-  }
+.illustrative-status-text {
+  font-size: 0.78rem;
+  color: var(--dir-muted);
+  font-weight: 500;
+  padding-left: 0.25rem;
+}
 
-  .exam-directory .exam-grid {
+/* Search Bar */
+.toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.dir-search-wrap {
+  position: relative;
+  width: 290px;
+  max-width: 100%;
+}
+
+.dir-search-wrap .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+}
+
+.dir-search-wrap input {
+  width: 100%;
+  padding: 0.48rem 2.2rem 0.48rem 2.35rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.dir-search-wrap input:focus {
+  border-color: var(--dir-orange);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.14);
+}
+
+.dir-search-wrap input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.dir-search-wrap .clear-search-btn {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dir-search-wrap .clear-search-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* -------------------------------------------------------------
+   3. Two-Column Layout Container
+   ------------------------------------------------------------- */
+.directory-layout-container {
+  max-width: 1380px;
+  margin: 0 auto 3.5rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.directory-main-content {
+  min-width: 0;
+}
+
+/* -------------------------------------------------------------
+   4. Section Banners (Board & Competitive Headers)
+   ------------------------------------------------------------- */
+.section-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1.15rem;
+  border-radius: 10px;
+  margin-bottom: 1.15rem;
+}
+
+.board-banner {
+  background: var(--dir-blue-light);
+  border: 1px solid var(--dir-blue-border);
+}
+
+.competitive-banner {
+  background: var(--dir-orange-light);
+  border: 1px solid var(--dir-orange-border);
+}
+
+.banner-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.banner-icon {
+  flex-shrink: 0;
+}
+
+.blue-icon {
+  color: var(--dir-blue);
+}
+
+.orange-icon {
+  color: var(--dir-orange);
+}
+
+.section-banner h2 {
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+  margin: 0;
+}
+
+.view-all-link {
+  color: var(--dir-orange);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.view-all-link:hover {
+  color: var(--dir-orange-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* -------------------------------------------------------------
+   5. Cards Grid & Modern Exam Card
+   ------------------------------------------------------------- */
+.exam-group {
+  margin-bottom: 2rem;
+}
+
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+}
+
+.exam-card {
+  background: var(--dir-card-bg);
+  border: 1px solid var(--dir-border);
+  border-radius: 12px;
+  padding: 1.15rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.exam-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+/* Card Header */
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.card-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.card-type-icon {
+  flex-shrink: 0;
+}
+
+.card-head h3 {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.directory-bookmark {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 3px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.directory-bookmark:hover {
+  color: var(--dir-orange);
+  background: #fff7ed;
+}
+
+.directory-bookmark.saved,
+.directory-bookmark[aria-pressed="true"] {
+  color: var(--dir-orange);
+}
+
+/* Stage Badges */
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.71rem;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+}
+
+.stage-badge svg {
+  flex-shrink: 0;
+}
+
+.stage-blue {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.stage-green {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.stage-amber {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.stage-teal {
+  background: #ccfbf1;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+}
+
+.stage-purple {
+  background: #f3e8ff;
+  color: #6b21a8;
+  border: 1px solid #e9d5ff;
+}
+
+/* Subtitle */
+.card-subtitle {
+  font-size: 0.81rem;
+  color: var(--dir-muted);
+  margin: 0 0 0.5rem;
+  line-height: 1.35;
+}
+
+/* Primary Action */
+.card-action-primary {
+  margin-bottom: 1.15rem;
+}
+
+.primary-action-link {
+  color: var(--dir-orange);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.primary-action-link:hover {
+  color: var(--dir-orange-hover);
+  transform: translateX(2px);
+}
+
+.btn-notify-me {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff7ed;
+  color: var(--dir-orange);
+  border: 1px solid #fdba74;
+  border-radius: 999px;
+  padding: 0.28rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-notify-me:hover {
+  background: #ffedd5;
+  border-color: #fb923c;
+}
+
+/* Card Footer Row */
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+  gap: 0.5rem;
+}
+
+.btn-open-notebook {
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.btn-open-notebook:hover {
+  color: var(--dir-orange);
+}
+
+.btn-follow {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 0.24rem 0.65rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-follow:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.btn-follow.following {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+/* -------------------------------------------------------------
+   6. Right Sidebar Widgets (Latest Updates & Exam Calendar)
+   ------------------------------------------------------------- */
+.directory-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sidebar-card {
+  background: #ffffff;
+  border: 1px solid var(--dir-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.widget-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.widget-head-icon {
+  color: #0f172a;
+  flex-shrink: 0;
+}
+
+.widget-head h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.updates-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.updates-list li + li {
+  border-top: 1px solid #f1f5f9;
+}
+
+.update-item-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  color: #1e293b;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.update-item-link:hover {
+  color: var(--dir-orange);
+}
+
+.update-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.update-left svg {
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.update-arrow {
+  color: #94a3b8;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.update-item-link:hover .update-arrow {
+  transform: translateX(2px);
+  color: var(--dir-orange);
+}
+
+/* Calendar Widget */
+.calendar-desc {
+  font-size: 0.84rem;
+  color: var(--dir-muted);
+  line-height: 1.45;
+  margin: 0 0 1.15rem;
+}
+
+.btn-open-calendar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--dir-orange);
+  background: #ffffff;
+  color: var(--dir-orange);
+  font-weight: 700;
+  font-size: 0.86rem;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-open-calendar:hover {
+  background: #fff7ed;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.15);
+}
+
+/* -------------------------------------------------------------
+   7. Empty Results State
+   ------------------------------------------------------------- */
+.directory-empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #ffffff;
+  border: 1px dashed var(--dir-border);
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.directory-empty h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+
+.directory-empty p {
+  color: var(--dir-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+}
+
+.btn-clear-search-pill {
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.btn-clear-search-pill:hover {
+  background: #1e293b;
+}
+
+/* -------------------------------------------------------------
+   8. Exam Calendar Modal
+   ------------------------------------------------------------- */
+.calendar-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.calendar-modal-backdrop.active {
+  display: flex;
+}
+
+.calendar-modal-box {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 650px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  padding: 1.75rem;
+  position: relative;
+}
+
+.calendar-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--dir-border);
+}
+
+.calendar-modal-head h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 4px;
+}
+
+.calendar-dates-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.calendar-dates-table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  border-bottom: 1px solid var(--dir-border);
+}
+
+.calendar-dates-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+}
+
+.calendar-dates-table tr:hover td {
+  background: #fafafa;
+}
+
+/* -------------------------------------------------------------
+   9. Responsive Breakpoints
+   ------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .exam-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 650px) {
-  .directory-header-inner,
-  .exam-directory {
-    width: calc(100% - 32px);
+@media (max-width: 900px) {
+  .directory-layout-container {
+    grid-template-columns: minmax(0, 1fr);
   }
 
+  .directory-sidebar {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
   .directory-header-inner {
-    min-height: 63px;
-    padding-inline: 0;
+    padding: 0 1rem;
+    height: 56px;
   }
 
   .directory-header .brand {
-    gap: 8px;
+    font-size: 1.25rem;
   }
 
   .directory-header .brand img {
-    width: 39px;
-    height: 39px;
+    width: 30px;
+    height: 30px;
   }
 
-  .directory-saved {
-    gap: 5px;
-    font-size: 16px;
+  .dir-main-nav {
+    gap: 1rem;
   }
 
-  .directory-saved svg {
-    width: 21px;
+  .dir-nav-link {
+    font-size: 0.82rem;
   }
 
-  .exam-directory {
-    padding: 18px 0 35px;
-  }
-
-  .directory-search-banner {
-    width: 100%;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-    padding: 13px 17px;
-    border-radius: 17px;
-  }
-
-  .directory-search-divider {
+  .dir-nav-link span {
     display: none;
   }
 
-  .directory-search {
-    min-height: 43px;
-    gap: 8px;
-    padding-inline: 12px 7px;
+  .dir-nav-link.active span {
+    display: inline;
   }
 
-  .directory-search input {
-    min-height: 43px;
+  .directory-toolbar {
+    margin: 1rem auto;
+    padding: 0 1rem;
+    gap: 1rem;
   }
 
-  .directory-search svg {
-    width: 22px;
+  .dir-search-wrap {
+    width: 100%;
   }
 
-  .directory-filters {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 7px;
-    margin: 16px 0 19px;
+  .directory-layout-container {
+    padding: 0 1rem;
   }
 
-  .directory-filters button,
-  .directory-filters button:first-child {
-    min-width: 0;
-    min-height: 42px;
-    padding-inline: 5px;
-    text-align: center;
+  .exam-grid {
+    grid-template-columns: 1fr;
   }
-
-  .exam-group-header {
-    min-height: 39px;
-    gap: 7px;
-    margin-bottom: 10px;
-    padding-inline: 0;
-  }
-
-  .directory-group-icon {
-    width: 31px;
-    height: 31px;
-  }
-
-  .exam-group-header h2 {
-    flex: initial;
-    font-size: clamp(21px, 4.6vw, 28px);
-    transform: none;
-  }
-
-  .exam-group-rule {
-    min-width: 0;
-    margin-inline: 1px;
-  }
-
-  .view-all-link {
-    gap: 3px;
-    transform: none;
-  }
-
-  .view-all-link svg {
-    width: 17px;
-  }
-
-  .exam-directory .exam-grid {
-    gap: 10px;
-  }
-
-
 }
 
-@media (max-width: 420px) {
-  .exam-directory .exam-grid {
-    grid-template-columns: minmax(0, 1fr);
+@media (max-width: 480px) {
+  .dir-main-nav {
+    display: none;
+  }
+
+  .dir-pill-btn {
+    padding: 0.4rem 0.95rem;
+    font-size: 0.82rem;
   }
 }

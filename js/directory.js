@@ -1,14 +1,17 @@
 /**
  * NoteGov Exam Directory Controller
- * Manages search, filtering, bookmarks, and seamless transition to BPSC Section.
+ * Manages search, filtering, bookmarks, following, calendar modal,
+ * and seamless transition to the BPSC TRE 4.0 Suite.
  */
 
 (function () {
   'use strict';
 
   const STORAGE_KEY = 'notegov_saved_exams';
+  const FOLLOW_KEY = 'notegov_followed_exams';
   let currentFilter = 'all'; // 'all' | 'board' | 'competitive' | 'saved'
   let savedExams = [];
+  let followedExams = [];
 
   // Load saved bookmarks from localStorage
   try {
@@ -19,12 +22,47 @@
     savedExams = [];
   }
 
+  // Load followed exams from localStorage
+  try {
+    const rawF = localStorage.getItem(FOLLOW_KEY);
+    followedExams = rawF ? JSON.parse(rawF) : [];
+    if (!Array.isArray(followedExams)) followedExams = [];
+  } catch (e) {
+    followedExams = [];
+  }
+
   function saveSavedExams() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(savedExams));
     } catch (e) {
-      console.warn('Could not save to localStorage:', e);
+      console.warn('Could not save bookmarks to localStorage:', e);
     }
+  }
+
+  function saveFollowedExams() {
+    try {
+      localStorage.setItem(FOLLOW_KEY, JSON.stringify(followedExams));
+    } catch (e) {
+      console.warn('Could not save followed exams to localStorage:', e);
+    }
+  }
+
+  // Toast notification helper
+  function showToastNotification(message) {
+    let toast = document.getElementById('notegov-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'notegov-toast';
+      toast.style.cssText = 'position:fixed; bottom:24px; right:24px; z-index:9999; background:#0f172a; color:#fff; padding:12px 20px; border-radius:999px; font-size:0.88rem; font-weight:600; box-shadow:0 10px 25px rgba(0,0,0,0.3); opacity:0; transform:translateY(10px); transition:opacity 0.25s ease, transform 0.25s ease; pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+    }, 2800);
   }
 
   // Toggle bookmark for an exam ID
@@ -34,14 +72,17 @@
       event.stopPropagation();
     }
     const idx = savedExams.indexOf(examId);
+    let isSavedNow = false;
     if (idx >= 0) {
       savedExams.splice(idx, 1);
     } else {
       savedExams.push(examId);
+      isSavedNow = true;
     }
     saveSavedExams();
     updateBookmarkButtons();
     filterDirectory();
+    showToastNotification(isSavedNow ? '🔖 Exam saved to your collection.' : 'Exam removed from saved.');
   };
 
   function updateBookmarkButtons() {
@@ -71,6 +112,86 @@
       }
     }
   }
+
+  // Follow / Unfollow exam updates
+  window.toggleFollow = function (examId, event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    const idx = followedExams.indexOf(examId);
+    let isFollowing = false;
+    if (idx >= 0) {
+      followedExams.splice(idx, 1);
+    } else {
+      followedExams.push(examId);
+      isFollowing = true;
+    }
+    saveFollowedExams();
+    updateFollowButtons();
+    showToastNotification(isFollowing ? '🔔 Following updates for this exam.' : 'Notifications turned off.');
+  };
+
+  function updateFollowButtons() {
+    document.querySelectorAll('.btn-follow').forEach(btn => {
+      const id = btn.dataset.id;
+      const isFollowing = followedExams.includes(id);
+      btn.classList.toggle('following', isFollowing);
+      const textSpan = btn.querySelector('.follow-text');
+      if (textSpan) {
+        textSpan.textContent = isFollowing ? 'Following' : 'Follow';
+      }
+    });
+  }
+
+  // Notify Me button handler
+  window.notifyMe = function (examName, event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    showToastNotification(`🔔 Notifications enabled for ${examName} updates.`);
+  };
+
+  // Calendar Modal Controls
+  window.openExamCalendarModal = function () {
+    const modal = document.getElementById('calendarModal');
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeExamCalendarModal = function () {
+    const modal = document.getElementById('calendarModal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  // Language Switch
+  window.setLanguage = function (lang) {
+    const btnEn = document.getElementById('btnLangEn');
+    const btnHi = document.getElementById('btnLangHi');
+    if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+    if (btnHi) btnHi.classList.toggle('active', lang === 'hi');
+    showToastNotification(lang === 'hi' ? 'भाषा: हिन्दी चयनित' : 'Language: English selected');
+  };
+
+  // Scroll to Updates widget
+  window.scrollToUpdates = function () {
+    const updates = document.getElementById('widgetUpdates');
+    if (updates) {
+      updates.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      updates.style.boxShadow = '0 0 0 3px rgba(237, 114, 5, 0.4)';
+      setTimeout(() => {
+        updates.style.boxShadow = '';
+      }, 1500);
+    }
+  };
 
   // Filter and Search Directory Cards
   window.filterDirectory = function () {
@@ -155,11 +276,17 @@
     currentFilter = filterId;
 
     // Update filter buttons
-    document.querySelectorAll('.directory-filters button').forEach(btn => {
+    document.querySelectorAll('.directory-filters .dir-pill-btn').forEach(btn => {
       const active = btn.dataset.filter === filterId;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-current', active ? 'page' : 'false');
     });
+
+    // Main nav links
+    const navExplore = document.querySelector('.dir-main-nav .dir-nav-link[href="#/"]');
+    if (navExplore) {
+      navExplore.classList.toggle('active', filterId === 'all');
+    }
 
     updateBookmarkButtons();
     filterDirectory();
@@ -219,7 +346,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Attach search input listeners
+  // Attach listeners
   function initDirectory() {
     const searchInput = document.getElementById('directorySearchInput');
     if (searchInput) {
@@ -233,7 +360,15 @@
       });
     }
 
+    // Keyboard support for ESC on modal
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        window.closeExamCalendarModal();
+      }
+    });
+
     updateBookmarkButtons();
+    updateFollowButtons();
 
     // Check initial route hash
     const rawHash = (window.location.hash || '').replace('#', '').replace(/^\//, '');
