@@ -1919,6 +1919,11 @@ def bpsc_concept_solver():
   // Navigation Tabs Controller (tre4ct.aiwazir.com style)
   // -------------------------------------------------------------
   function switchTab(tabId) {
+    const dirView = document.getElementById('directory-view');
+    const bpscSection = document.getElementById('bpsc-section');
+    if (bpscSection) bpscSection.style.display = 'block';
+    if (dirView) dirView.style.display = 'none';
+
     const navButtons = document.querySelectorAll('.nav-tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 

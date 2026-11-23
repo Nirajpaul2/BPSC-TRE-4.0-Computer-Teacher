@@ -200,13 +200,393 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/practice.css">
+  <link rel="stylesheet" href="css/directory.css">
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
   <link rel="apple-touch-icon" href="assets/logo.jpg">
 </head>
 <body>
 
-  <!-- Top Sticky Header & Tab Navigation Bar (tre4ct style) -->
-  <header class="top-header-wrapper">
+  <!-- ========================================================
+       NOTEGOV EXAM DIRECTORY HEADER
+       ======================================================== -->
+  <header class="directory-header" id="notegov-header">
+    <div class="directory-header-inner">
+      <a href="#/" class="brand" onclick="showDirectoryView(); return false;" aria-label="NoteGov home">
+        <img src="assets/notegov.svg" alt="NoteGov Logo" width="58" height="58">
+        <span>NoteGov</span>
+      </a>
+      <button type="button" class="directory-saved" id="btnDirectorySaved" onclick="setDirectoryFilter('saved');" aria-label="Saved exams">
+        <svg viewBox="0 0 24 24" width="34" height="34" stroke="currentColor" stroke-width="1.6" fill="none" aria-hidden="true">
+          <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+        </svg>
+        <span>Saved</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       NOTEGOV EXAM DIRECTORY MAIN VIEW
+       ======================================================== -->
+  <main class="exam-directory" id="directory-view">
+    <!-- Hero Search Banner -->
+    <div class="directory-search-banner">
+      <h1>Find your exam</h1>
+      <span class="directory-search-divider" aria-hidden="true"></span>
+      <div class="directory-search" role="search">
+        <svg viewBox="0 0 24 24" width="34" height="34" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="directorySearchInput" aria-label="Search exams, boards or jobs" placeholder="Search exams, boards or jobs">
+        <button type="button" class="clear-search-btn" id="clearDirectorySearch" aria-label="Clear search" style="display:none;" onclick="clearDirectorySearch();">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <nav class="directory-filters" aria-label="Filter exams">
+      <button type="button" class="active" data-filter="all" onclick="setDirectoryFilter('all')">All exams</button>
+      <button type="button" data-filter="board" onclick="setDirectoryFilter('board')">Board exams</button>
+      <button type="button" data-filter="competitive" onclick="setDirectoryFilter('competitive')">Competitive exams</button>
+      <button type="button" data-filter="saved" onclick="setDirectoryFilter('saved')">Saved</button>
+    </nav>
+
+    <!-- SECTION 1: Board Exams -->
+    <section class="exam-group board" data-group="board" aria-labelledby="board-exams-title">
+      <div class="exam-group-header">
+        <svg class="directory-group-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+          <path fill="currentColor" fill-rule="evenodd" d="M3 45h2V25l4-4h9L28 11l10 10h9l4 4v20h2v3H3Zm7-15h3v4h-3Zm6 0h3v4h-3Zm-6 8h3v5h-3Zm6 0h3v5h-3Zm21-8h3v4h-3Zm6 0h3v4h-3Zm-6 8h3v5h-3Zm6 0h3v5h-3Zm-18 7h6V34a3 3 0 0 0-6 0Zm0-24a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"/>
+          <path fill="currentColor" d="M26.5 4h3v9h-3zM29 4h10l-2 3.5L39 11H29z"/>
+        </svg>
+        <h2 id="board-exams-title">Board exams</h2>
+        <span class="exam-group-rule" aria-hidden="true"></span>
+        <button type="button" class="view-all-link" onclick="setDirectoryFilter('board')">
+          View all <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div class="exam-grid">
+        <!-- Card 1: CBSE Class 10 -->
+        <article class="exam-card board" data-id="cbse-10" data-group="board" data-title="CBSE Class 10" data-terms="Central Board Secondary Education X tenth matric 10th date sheet sample papers">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" d="M28 44c-5.6-5.9-15.7-6.6-25-3.8V12.7C9 6.5 23 7.4 28 13.8c5-6.4 19-7.3 25-1.1v27.5c-9.3-2.8-19.4-2.1-25 3.8Zm0 0V14"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save CBSE Class 10" onclick="toggleDirectorySaved('cbse-10', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://www.cbse.gov.in/cbsenew/examination_circular.html" target="_blank" rel="noreferrer">
+                  <span>Date sheet</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://cbseacademic.nic.in/sqp_archive.html" target="_blank" rel="noreferrer">
+                  <span>Sample papers</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer">
+              CBSE Class 10
+            </a>
+          </h3>
+        </article>
+
+        <!-- Card 2: CBSE Class 12 -->
+        <article class="exam-card board" data-id="cbse-12" data-group="board" data-title="CBSE Class 12" data-terms="Central Board Secondary Education XII twelfth senior secondary 12th date sheet sample papers">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" d="M28 44c-5.6-5.9-15.7-6.6-25-3.8V12.7C9 6.5 23 7.4 28 13.8c5-6.4 19-7.3 25-1.1v27.5c-9.3-2.8-19.4-2.1-25 3.8Zm0 0V14"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save CBSE Class 12" onclick="toggleDirectorySaved('cbse-12', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://www.cbse.gov.in/cbsenew/examination_circular.html" target="_blank" rel="noreferrer">
+                  <span>Date sheet</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://cbseacademic.nic.in/sqp_archive.html" target="_blank" rel="noreferrer">
+                  <span>Sample papers</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://www.cbse.gov.in/" target="_blank" rel="noreferrer">
+              CBSE Class 12
+            </a>
+          </h3>
+        </article>
+
+        <!-- Card 3: Bihar Board -->
+        <article class="exam-card board" data-id="bihar-board" data-group="board" data-title="Bihar Board" data-terms="BSEB Bihar School Examination Board matric intermediate 10 12 date sheet sample papers">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M4 12 27 3l25 9-5 4v5l-20 8-23-8a5 5 0 0 1 0-9Z"/>
+                <path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="m49 23-22 9L6 25c-2 .5-3 2.5-3 5s1 4 3 5l21 8 22-9M46 25v7"/>
+                <path fill="#fff" d="m6 15 20 7 17-6v4l-17 6L6 19a2 2 0 0 1 0-4Z"/>
+                <path fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" d="m10 38 17 7 22-9"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save Bihar Board" onclick="toggleDirectorySaved('bihar-board', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://biharboardonline.bihar.gov.in/" target="_blank" rel="noreferrer">
+                  <span>Date sheet</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://biharboardonline.com/modelpapermatric.html" target="_blank" rel="noreferrer">
+                  <span>Sample papers</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://biharboardonline.bihar.gov.in/" target="_blank" rel="noreferrer">
+              Bihar Board
+            </a>
+          </h3>
+        </article>
+
+        <!-- Card 4: ICSE / ISC -->
+        <article class="exam-card board" data-id="icse-isc" data-group="board" data-title="ICSE / ISC" data-terms="CISCE Indian School Certificate council 10 12 class X XII date sheet sample papers">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="currentColor" fill-rule="evenodd" d="M3 45h2V25l4-4h9L28 11l10 10h9l4 4v20h2v3H3Zm7-15h3v4h-3Zm6 0h3v4h-3Zm-6 8h3v5h-3Zm6 0h3v5h-3Zm21-8h3v4h-3Zm6 0h3v4h-3Zm-6 8h3v5h-3Zm6 0h3v5h-3Zm-18 7h6V34a3 3 0 0 0-6 0Zm0-24a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"/>
+                <path fill="currentColor" d="M26.5 4h3v9h-3zM29 4h10l-2 3.5L39 11H29z"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save ICSE / ISC" onclick="toggleDirectorySaved('icse-isc', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://cisce.org/examination/" target="_blank" rel="noreferrer">
+                  <span>Date sheet</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://cisce.org/icse-specimen-question-papers/" target="_blank" rel="noreferrer">
+                  <span>Sample papers</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://cisce.org/" target="_blank" rel="noreferrer">
+              ICSE / ISC
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Competitive Exams -->
+    <section class="exam-group competitive" data-group="competitive" aria-labelledby="competitive-exams-title">
+      <div class="exam-group-header">
+        <svg class="directory-group-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M2 21 26 10a5 5 0 0 1 4 0l24 11a2 2 0 0 1 0 4L30 36a5 5 0 0 1-4 0L2 25a2 2 0 0 1 0-4Z"/>
+          <path fill="currentColor" d="m10 32 14 6a10 10 0 0 0 8 0l14-6v8c0 5-11 9-18 9s-18-4-18-9Z"/>
+          <path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M51 25v15"/>
+          <rect fill="currentColor" x="48" y="38" width="6" height="7" rx="2.5"/>
+        </svg>
+        <h2 id="competitive-exams-title">Competitive exams</h2>
+        <span class="exam-group-rule" aria-hidden="true"></span>
+        <button type="button" class="view-all-link" onclick="setDirectoryFilter('competitive')">
+          View all <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div class="exam-grid">
+        <!-- Card 1: SSC -->
+        <article class="exam-card competitive" data-id="ssc-cgl" data-group="competitive" data-title="SSC" data-terms="Staff Selection Commission CGL combined graduate level CHSL MTS GD jobs latest updates admit card">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" data-icon="people" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <circle fill="currentColor" cx="28" cy="12" r="8"/>
+                <circle fill="currentColor" cx="10" cy="17" r="5.8"/>
+                <circle fill="currentColor" cx="46" cy="17" r="5.8"/>
+                <path fill="currentColor" d="M12 39v-3a16 16 0 0 1 32 0v3ZM1 37v-3a10 10 0 0 1 14-9c-3 3-5 7-5 12Zm54 0h-9c0-5-2-9-5-12a10 10 0 0 1 14 9Z"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save SSC" onclick="toggleDirectorySaved('ssc-cgl', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://ssc.gov.in/home/noticeboard" target="_blank" rel="noreferrer">
+                  <span>Latest updates</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://ssc.gov.in/home/admit-card" target="_blank" rel="noreferrer">
+                  <span>Admit card</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://ssc.gov.in/" target="_blank" rel="noreferrer">
+              SSC
+            </a>
+          </h3>
+        </article>
+
+        <!-- Card 2: BPSC (Opens full BPSC suite) -->
+        <article class="exam-card competitive" data-id="bpsc-tre" data-group="competitive" data-title="BPSC" data-terms="Bihar Public Service Commission teacher recruitment TRE teaching jobs BPSC TRE 4.0 Computer Science PGT latest updates admit card syllabus mock test practice sets">
+          <div class="exam-card-body" onclick="openBpscSection('dashboard');" style="cursor:pointer;" title="Click to open BPSC TRE 4.0 Preparation Portal">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="m2 16 24-12a4 4 0 0 1 4 0l24 12v4H2Zm4 29h44v4H6Zm4-22h7v19h-7Zm14 0h8v19h-8Zm15 0h7v19h-7ZM2 49h52v4H2Z"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save BPSC" onclick="toggleDirectorySaved('bpsc-tre', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links" onclick="event.stopPropagation();">
+              <li>
+                <a href="https://bpsc.bihar.gov.in/" target="_blank" rel="noreferrer">
+                  <span>Latest updates</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://bpsconline.bihar.gov.in/candidate/login" target="_blank" rel="noreferrer">
+                  <span>Admit card</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <button type="button" class="notebook-link" onclick="openBpscSection('dashboard');" title="Open BPSC TRE 4.0 Preparation Portal">
+              <span>BPSC</span>
+              <span class="bpsc-badge-indicator" style="font-size:0.75rem; font-weight:700; background:rgba(237,114,5,0.18); color:#b44e00; padding:3px 9px; border-radius:12px; border:1px solid rgba(237,114,5,0.35); text-decoration:none;">TRE 4.0 Prep →</span>
+            </button>
+          </h3>
+        </article>
+
+        <!-- Card 3: UPSC -->
+        <article class="exam-card competitive" data-id="upsc" data-group="competitive" data-title="UPSC" data-terms="Union Public Service Commission civil services IAS IFS IPS NDA CDS jobs latest updates admit card">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 10c0-5 3-8 6-8s6 3 6 8c2-3 6-5 10-2l5 5-4 4-6-1-2 5-1 10 4 8v5l4 2v5H12v-5l4-2v-5l4-8-1-10-2-5-6 1-4-4 5-5c4-3 8-1 10 2Z M17 42h22M14 47h28M22 15l1 16-3 9m14-25-1 16 3 9M25 11l3 3 3-3"/>
+                <path fill="currentColor" d="m11 13 3-3 3 1-2 3Zm34 0-3-3-3 1 2 3ZM24 7h3v2h-3Zm5 0h3v2h-3Zm-3 10h4l-2 4Z"/>
+                <circle fill="none" stroke="currentColor" stroke-width="1.5" cx="28" cy="43" r="4.8"/>
+                <path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M28 38.4v9.2m-4.6-4.6h9.2m-11-21 1 8m11-8-1 8m-7-9v11m4-11v11M17 46l-1 2m24-2 1 2"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save UPSC" onclick="toggleDirectorySaved('upsc', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://upsc.gov.in/" target="_blank" rel="noreferrer">
+                  <span>Latest updates</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://upsconline.nic.in/" target="_blank" rel="noreferrer">
+                  <span>Admit card</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://upsc.gov.in/" target="_blank" rel="noreferrer">
+              UPSC
+            </a>
+          </h3>
+        </article>
+
+        <!-- Card 4: Railway -->
+        <article class="exam-card competitive" data-id="rrb-ntpc" data-group="competitive" data-title="Railway" data-terms="Railways RRB Railway Recruitment Board NTPC group D ALP technician jobs latest updates admit card">
+          <div class="exam-card-body">
+            <div class="exam-card-heading">
+              <svg class="directory-card-icon" viewBox="0 0 56 54" aria-hidden="true" focusable="false">
+                <path fill="currentColor" fill-rule="evenodd" d="M8 12A8 8 0 0 1 16 4h24a8 8 0 0 1 8 8v23a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9Zm7-1v3h26v-3Zm0 8v10h26V19Zm2 16a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm22 0a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"/>
+                <path fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" d="m15 43-7 8m33-8 7 8M13 49h30"/>
+              </svg>
+              <button type="button" class="icon-btn directory-bookmark" aria-label="Save Railway" onclick="toggleDirectorySaved('rrb-ntpc', event)">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.65" fill="none" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              </button>
+            </div>
+            <ul class="directory-links">
+              <li>
+                <a href="https://www.rrbcdg.gov.in/index.php" target="_blank" rel="noreferrer">
+                  <span>Latest updates</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.rrbcdg.gov.in/2025-06-ntpcg.php" target="_blank" rel="noreferrer">
+                  <span>Admit card</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3>
+            <a class="notebook-link" href="https://www.rrbcdg.gov.in/" target="_blank" rel="noreferrer">
+              Railway
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- Empty Results State (shown when 0 matches) -->
+    <div class="directory-empty" id="directoryEmpty" style="display:none;">
+      <h3 id="directoryEmptyTitle">No exams found</h3>
+      <p id="directoryEmptyDesc">Try a different search term or clear your filters.</p>
+      <button type="button" class="btn btn-primary" id="directoryEmptyBtn" style="background:#14203f; color:#fff; border:none; padding:0.6rem 1.4rem; border-radius:999px; font-weight:700;">Clear search</button>
+    </div>
+  </main>
+
+  <!-- ========================================================
+       BPSC SECTION (Complete BPSC TRE 4.0 Suite)
+       ======================================================== -->
+  <div id="bpsc-section" style="display:none;">
+
+    <!-- Breadcrumb back navigation to NoteGov Directory -->
+    <div class="bpsc-top-nav-bar">
+      <button type="button" class="btn-back-directory" onclick="showDirectoryView(); return false;">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+        <span>← Back to All Exams (NoteGov)</span>
+      </button>
+      <div class="bpsc-status-pill">
+        <span class="live-dot"></span> BPSC TRE 4.0 Computer Science Suite Active
+      </div>
+    </div>
+
+    <!-- Top Sticky Header & Tab Navigation Bar (tre4ct style) -->
+    <header class="top-header-wrapper">
     <nav class="navbar" role="navigation">
       <div class="nav-container">
         <a href="#dashboard" class="brand" onclick="switchTab('tab-dashboard'); return false;" aria-label="BPSC TRE 4.0 CS Syllabus">
@@ -278,7 +658,7 @@
 
       <!-- Hero Header -->
       <div class="hero-header" style="text-align:center; max-width:850px; margin:1.5rem auto 2rem;">
-        <h1 class="hero-title">BPSC TRE 4.0 Computer Science (PGT)</h1>
+        <h2 class="hero-title">BPSC TRE 4.0 Computer Science (PGT)</h2>
       </div>
 
       <!-- 3-Part Exam Framework Cards -->
@@ -1121,6 +1501,7 @@
     </section>
 
   </main>
+  </div> <!-- /#bpsc-section -->
 
   <!-- PDF Preview Modal -->
   <div class="pdf-modal-backdrop" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
@@ -1144,28 +1525,30 @@
   <!-- Footer -->
   <footer class="footer">
     <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-bottom:0.4rem;">
-      <img src="assets/logo.jpg" alt="BPSC TRE 4.0 Logo" width="28" height="28" loading="lazy" style="width:28px; height:28px; border-radius:6px; object-fit:cover;">
-      <div style="font-weight:700;">BPSC TRE 4.0 Computer Science Preparation Hub</div>
+      <img src="assets/notegov.svg" alt="NoteGov Logo" width="28" height="28" loading="lazy" style="width:28px; height:28px; border-radius:6px; object-fit:contain;">
+      <div style="font-weight:700;">NoteGov — Exam Directory &amp; BPSC Preparation Hub</div>
     </div>
     <div>Syllabus reconstructed in alignment with NCERT Class 11 &amp; 12 CS (Subject Code 083) and BPSC Official Examination Standards.</div>
     <div class="footer-links">
-      <a href="#dashboard" class="footer-link" onclick="switchTab('tab-dashboard'); return false;">Dashboard</a>
+      <a href="#/" class="footer-link" onclick="showDirectoryView(); return false;">All Exams (Directory)</a>
       <span>•</span>
-      <a href="#syllabus" class="footer-link" onclick="switchTab('tab-syllabus'); return false;">Master Syllabus</a>
+      <a href="#dashboard" class="footer-link" onclick="openBpscSection('dashboard'); return false;">BPSC TRE 4.0 Prep</a>
       <span>•</span>
-      <a href="#ncert" class="footer-link" onclick="switchTab('tab-ncert'); return false;">NCERT</a>
+      <a href="#syllabus" class="footer-link" onclick="openBpscSection('syllabus'); return false;">Master Syllabus</a>
       <span>•</span>
-      <a href="#cheatsheet" class="footer-link" onclick="switchTab('tab-cheatsheet'); return false;">NCERT Handbook (Book Reader)</a>
+      <a href="#ncert" class="footer-link" onclick="openBpscSection('ncert'); return false;">NCERT</a>
       <span>•</span>
-      <a href="#marathon" class="footer-link" onclick="switchTab('tab-marathon'); return false;">Marathon (<span class="tab-red-mark">43 days</span>)</a>
+      <a href="#cheatsheet" class="footer-link" onclick="openBpscSection('cheatsheet'); return false;">NCERT Handbook</a>
       <span>•</span>
-      <a href="#practice" class="footer-link" onclick="switchTab('tab-practice'); return false;">Practice Sets (<span class="tab-red-mark">6000 Q</span>)</a>
+      <a href="#marathon" class="footer-link" onclick="openBpscSection('marathon'); return false;">Marathon (<span class="tab-red-mark">43 days</span>)</a>
       <span>•</span>
-      <a href="#blueprintSection" class="footer-link" onclick="switchTab('tab-dashboard'); setTimeout(function(){ document.getElementById('blueprintSection')?.scrollIntoView({behavior:'smooth'}); }, 100); return false;">BPSC TRE 4.0 Cutoff Matrix</a>
+      <a href="#practice" class="footer-link" onclick="openBpscSection('practice'); return false;">Practice Sets (<span class="tab-red-mark">6000 Q</span>)</a>
       <span>•</span>
-      <a href="#faqSection" class="footer-link" onclick="switchTab('tab-dashboard'); setTimeout(function(){ document.getElementById('faqSection')?.scrollIntoView({behavior:'smooth'}); }, 100); return false;">BPSC TRE 4.0 CS FAQs</a>
+      <a href="#blueprintSection" class="footer-link" onclick="openBpscSection('dashboard'); setTimeout(function(){ document.getElementById('blueprintSection')?.scrollIntoView({behavior:'smooth'}); }, 100); return false;">Cutoff Matrix</a>
       <span>•</span>
-      <a href="#support" class="footer-link" onclick="switchTab('tab-support'); return false;" style="color:#10b981; font-weight:700;">💬 Help &amp; Support</a>
+      <a href="#faqSection" class="footer-link" onclick="openBpscSection('dashboard'); setTimeout(function(){ document.getElementById('faqSection')?.scrollIntoView({behavior:'smooth'}); }, 100); return false;">BPSC TRE 4.0 FAQs</a>
+      <span>•</span>
+      <a href="#support" class="footer-link" onclick="openBpscSection('support'); return false;" style="color:#10b981; font-weight:700;">💬 Help &amp; Support</a>
       <span>•</span>
       <a href="https://bpsc.bihar.gov.in" target="_blank" rel="noopener noreferrer" class="footer-link">BPSC Official Portal</a>
       <span>•</span>
@@ -1182,7 +1565,7 @@
       <span>•</span>
       <span>💬 WhatsApp: <a href="https://wa.me/919942419837" target="_blank" rel="noopener noreferrer" style="color:#10b981; font-weight:700; text-decoration:none;">+91 99424 19837</a></span>
       <span>•</span>
-      <span>Candidate Help Desk (Mon–Sun)</span>
+      <span>&copy; 2026 NoteGov (notegov.com) &amp; Agiludic. All rights reserved.</span>
     </div>
   </footer>
 
@@ -1371,5 +1754,6 @@
   <script src="js/practice-engine.js?v=3.0"></script>
   <script src="js/payment.js?v=3.0"></script>
   <script src="js/app.js?v=3.0"></script>
+  <script src="js/directory.js?v=3.0"></script>
 </body>
 </html>

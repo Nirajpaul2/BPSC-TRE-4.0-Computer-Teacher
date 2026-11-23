@@ -1,0 +1,715 @@
+/* ==========================================================================
+   NoteGov Exam Directory Styles
+   Matches http://127.0.0.1:3000/#/ and the NoteGov Reference Design
+   ========================================================================== */
+
+:root {
+  --directory-ink: #0a1233;
+  --directory-line: #b6c0d2;
+  --directory-blue: #176dc3;
+  --directory-orange: #ed7205;
+}
+
+body:has(.directory-header) {
+  background: radial-gradient(ellipse at 45% 50%, #f7f9fd, #f4f7fc 85%);
+  color-scheme: light;
+}
+
+/* -------------------------------------------------------------
+   Top Directory Header
+   ------------------------------------------------------------- */
+.directory-header {
+  border-bottom: 1px solid var(--directory-line);
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: var(--directory-ink);
+}
+
+.directory-header-inner {
+  width: min(1440px, calc(100% - 6.4vw));
+  margin-inline: auto;
+  display: flex;
+  min-height: 87px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-inline: 6px;
+}
+
+.directory-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--directory-ink);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-size: clamp(27px, 2.95vw, 45px);
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.directory-header .brand img {
+  width: 58px;
+  height: 58px;
+  border: 0;
+  border-radius: 8px;
+}
+
+.directory-saved {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 15px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--directory-ink);
+  cursor: pointer;
+  text-decoration: none;
+  padding: 6px 14px;
+  transition: all 0.15s ease;
+}
+
+.directory-saved:hover,
+.directory-saved.active,
+.directory-saved[aria-current="page"] {
+  color: var(--directory-blue);
+  background: rgba(23, 109, 195, 0.08);
+}
+
+.directory-saved svg {
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------
+   Main Directory Container
+   ------------------------------------------------------------- */
+.exam-directory {
+  width: min(1440px, calc(100% - 6.4vw));
+  margin-inline: auto;
+  padding: 33px 0 60px;
+  color: var(--directory-ink);
+}
+
+/* -------------------------------------------------------------
+   Search Hero Banner
+   ------------------------------------------------------------- */
+.directory-search-banner {
+  display: grid;
+  width: 90.85%;
+  min-height: 112px;
+  grid-template-columns: minmax(max-content, 35.65%) 1px minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(22px, 2.55vw, 39px);
+  margin-inline: auto;
+  padding: 16px clamp(25px, 3.5vw, 54px);
+  padding-inline-end: clamp(25px, 3.25vw, 50px);
+  border-radius: 24px;
+  background: linear-gradient(108deg, #142140, #0e1b3d);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(14, 27, 61, 0.25);
+}
+
+.directory-search-banner h1,
+.directory-search-banner .banner-title {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-size: clamp(32px, 3.78vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.017em;
+  white-space: nowrap;
+  margin: 0;
+  color: #ffffff;
+}
+
+.directory-search-divider {
+  width: 1px;
+  height: 54px;
+  background: #a3adc2;
+}
+
+.directory-search {
+  display: flex;
+  min-width: 0;
+  min-height: 54px;
+  align-items: center;
+  gap: 18px;
+  padding-inline: 21px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 40px;
+  background: #fbf6ef;
+  color: var(--directory-ink);
+  box-shadow: 0 4px 9px rgba(2, 9, 24, 0.26);
+  transition: all 0.2s ease;
+}
+
+.directory-search:focus-within {
+  outline: 3px solid #85b9ff;
+  outline-offset: 3px;
+}
+
+.directory-search svg {
+  flex: none;
+  color: #344057;
+}
+
+.directory-search input {
+  min-width: 0;
+  min-height: 50px;
+  flex: 1;
+  color: #0a1233;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(16px, 1.68vw, 26px);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.directory-search input::placeholder {
+  color: #344057;
+  opacity: 1;
+}
+
+.directory-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.directory-search .clear-search-btn {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  color: #344057;
+  padding: 0;
+}
+
+.directory-search .clear-search-btn:hover {
+  background: #e9ebf1;
+}
+
+/* -------------------------------------------------------------
+   Category Filter Pills
+   ------------------------------------------------------------- */
+.directory-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin: 28px 0 24px;
+}
+
+.directory-filters button {
+  display: inline-grid;
+  min-height: 49px;
+  min-width: 133px;
+  place-items: center;
+  padding: 4px clamp(19px, 2.1vw, 32px);
+  border: 1px solid var(--directory-line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--directory-ink);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(16px, 1.43vw, 22px);
+  font-weight: 500;
+  line-height: 1.15;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.directory-filters button:first-child {
+  min-width: 200px;
+}
+
+.directory-filters button:hover {
+  background: #e8eff8;
+  border-color: #8da4c4;
+}
+
+.directory-filters button.active,
+.directory-filters button[aria-current="page"] {
+  border-color: #101b3a;
+  background: #14203f;
+  color: #fff;
+  font-weight: 750;
+}
+
+/* -------------------------------------------------------------
+   Exam Groups & Grids
+   ------------------------------------------------------------- */
+.exam-group + .exam-group {
+  margin-top: 32px;
+}
+
+.exam-group-header {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-inline: 12px;
+}
+
+.exam-group-header h2 {
+  flex: none;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(25px, 2.56vw, 39px);
+  font-weight: 800;
+  letter-spacing: -0.014em;
+  transform: translateY(4px);
+  margin: 0;
+  color: var(--directory-ink);
+}
+
+.directory-group-icon {
+  width: 56px;
+  height: 54px;
+  flex: none;
+  color: var(--directory-blue);
+}
+
+.competitive .directory-group-icon,
+.view-all-link svg {
+  color: var(--directory-orange);
+}
+
+.exam-group-rule {
+  min-width: 12px;
+  flex: 1;
+  align-self: center;
+  margin-inline: 6px 16px;
+  transform: translateY(10px);
+  border-block-start: 1px solid var(--directory-line);
+}
+
+.view-all-link {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(15px, 1.48vw, 23px);
+  font-weight: 750;
+  color: var(--directory-ink);
+  transform: translateY(4px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.exam-directory .exam-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.055fr) repeat(2, minmax(0, 1fr)) minmax(0, 1.055fr);
+  gap: 18px;
+}
+
+/* -------------------------------------------------------------
+   Directory Exam Cards
+   ------------------------------------------------------------- */
+.exam-directory .exam-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #bec8d8;
+  border-radius: 16px;
+  background: linear-gradient(170deg, #fff, #fdfdfe);
+  box-shadow: 0 3px 7px rgba(16, 34, 73, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+}
+
+.exam-directory .exam-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(16, 34, 73, 0.1);
+}
+
+.exam-directory .exam-card-body {
+  flex: 1;
+  padding: 12px clamp(15px, 2vw, 30px) 9px;
+}
+
+.exam-directory .competitive .exam-card-body {
+  padding-bottom: 13px;
+}
+
+.exam-directory .exam-card-heading {
+  display: flex;
+  height: 45px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.directory-card-icon {
+  width: 46px;
+  height: 45px;
+  flex: none;
+  color: var(--directory-blue);
+}
+
+.competitive .directory-card-icon {
+  color: var(--directory-orange);
+}
+
+.directory-card-icon[data-icon="people"] {
+  width: 56px;
+  height: 54px;
+  transform: translateY(-3px);
+}
+
+.directory-bookmark {
+  width: 38px;
+  height: 38px;
+  margin: -2px -9px 0 0;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  color: #718096;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.directory-bookmark:hover,
+.directory-bookmark.saved,
+.directory-bookmark[aria-pressed="true"] {
+  background: #eaf1fa;
+  color: var(--directory-blue);
+}
+
+.directory-links {
+  display: grid;
+  grid-auto-rows: minmax(46px, auto);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.directory-links li + li {
+  border-top: 1px solid #c5cbd7;
+}
+
+.directory-links a {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-radius: 4px;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(17px, 1.44vw, 22px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--directory-ink);
+  text-decoration: none;
+}
+
+.directory-links a:hover {
+  color: var(--directory-blue);
+}
+
+.directory-links a svg {
+  flex: none;
+  transition: transform 0.15s ease;
+}
+
+.directory-links a:hover svg {
+  transform: translateX(3px);
+}
+
+.exam-directory .exam-card h3 {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(20px, 1.88vw, 29px);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+}
+
+.notebook-link {
+  display: flex;
+  min-height: 57px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px clamp(15px, 2vw, 30px) 10px;
+  background: #d3e6fb;
+  color: var(--directory-ink);
+  text-decoration: none;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: inherit;
+  font-weight: 800;
+  width: 100%;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.competitive .notebook-link {
+  min-height: 59px;
+  background: #fee0c2;
+}
+
+.notebook-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  filter: brightness(0.97);
+}
+
+.notebook-link:focus-visible {
+  outline-offset: -4px;
+}
+
+/* -------------------------------------------------------------
+   Empty Results State
+   ------------------------------------------------------------- */
+.directory-empty {
+  max-width: 640px;
+  margin: 36px auto 0;
+  padding: 40px 24px;
+  border: 1px solid #bec8d8;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #344057;
+  text-align: center;
+}
+
+.directory-empty h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--directory-ink);
+  margin-bottom: 8px;
+}
+
+.directory-empty p {
+  font-size: 16px;
+  color: #59637a;
+  margin-bottom: 20px;
+}
+
+/* -------------------------------------------------------------
+   BPSC Section Integration Styles
+   ------------------------------------------------------------- */
+.bpsc-top-nav-bar {
+  width: min(1440px, calc(100% - 6.4vw));
+  margin: 0 auto 1rem;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn-back-directory {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #14203f;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.15rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-back-directory:hover {
+  background: #233560;
+}
+
+.bpsc-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.bpsc-status-pill .live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+/* -------------------------------------------------------------
+   Responsive Breakpoints
+   ------------------------------------------------------------- */
+@media (max-width: 1050px) {
+  .directory-header-inner {
+    min-height: 73px;
+  }
+
+  .directory-header .brand img {
+    width: 47px;
+    height: 47px;
+  }
+
+  .directory-saved {
+    font-size: 19px;
+  }
+
+  .directory-saved svg {
+    width: 25px;
+  }
+
+  .directory-search-banner {
+    width: 96%;
+    min-height: 94px;
+  }
+
+  .directory-filters button:first-child {
+    min-width: 145px;
+  }
+
+  .directory-filters button {
+    min-width: auto;
+  }
+
+  .exam-directory .exam-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .directory-header-inner,
+  .exam-directory {
+    width: calc(100% - 32px);
+  }
+
+  .directory-header-inner {
+    min-height: 63px;
+    padding-inline: 0;
+  }
+
+  .directory-header .brand {
+    gap: 8px;
+  }
+
+  .directory-header .brand img {
+    width: 39px;
+    height: 39px;
+  }
+
+  .directory-saved {
+    gap: 5px;
+    font-size: 16px;
+  }
+
+  .directory-saved svg {
+    width: 21px;
+  }
+
+  .exam-directory {
+    padding: 18px 0 35px;
+  }
+
+  .directory-search-banner {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 13px 17px;
+    border-radius: 17px;
+  }
+
+  .directory-search-divider {
+    display: none;
+  }
+
+  .directory-search {
+    min-height: 43px;
+    gap: 8px;
+    padding-inline: 12px 7px;
+  }
+
+  .directory-search input {
+    min-height: 43px;
+  }
+
+  .directory-search svg {
+    width: 22px;
+  }
+
+  .directory-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    margin: 16px 0 19px;
+  }
+
+  .directory-filters button,
+  .directory-filters button:first-child {
+    min-width: 0;
+    min-height: 42px;
+    padding-inline: 5px;
+    text-align: center;
+  }
+
+  .exam-group-header {
+    min-height: 39px;
+    gap: 7px;
+    margin-bottom: 10px;
+    padding-inline: 0;
+  }
+
+  .directory-group-icon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .exam-group-header h2 {
+    flex: initial;
+    font-size: clamp(21px, 4.6vw, 28px);
+    transform: none;
+  }
+
+  .exam-group-rule {
+    min-width: 0;
+    margin-inline: 1px;
+  }
+
+  .view-all-link {
+    gap: 3px;
+    transform: none;
+  }
+
+  .view-all-link svg {
+    width: 17px;
+  }
+
+  .exam-directory .exam-grid {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .exam-directory .exam-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
